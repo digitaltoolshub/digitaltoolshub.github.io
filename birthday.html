@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Real-Time Age in Milliseconds ✨</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: white;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 2rem 3rem;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 10;
+            max-width: 600px;
+            width: 90%;
+        }
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 1rem;
+            font-size: 2.2rem;
+            background: linear-gradient(90deg, #ff00cc, #3333ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        
+        .input-group {
+            margin: 1.5rem 0;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #4e54c8;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        input:focus {
+            border-color: #f64f59;
+            box-shadow: 0 0 15px #f64f59;
+        }
+        
+        .age-display {
+            margin-top: 2rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .time-unit {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.8rem 1.2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            min-width: 100px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        .time-unit:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .time-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        .time-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Floating Particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        /* Birthday Confetti */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #f00;
+            animation: confetti-fall 5s linear forwards;
+        }
+        
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    <div class="container">
+        <h1>⏳ Real-Time Age in Milliseconds ⏳</h1>
+        
+        <div class="input-group">
+            <label for="birthdate">Enter Your Birthdate:</label>
+            <input type="datetime-local" id="birthdate" required>
+        </div>
+        
+        <div class="age-display">
+            <div class="time-unit">
+                <div class="time-value" id="years">0</div>
+                <div class="time-label">Years</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-value" id="months">0</div>
+                <div class="time-label">Months</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-value" id="days">0</div>
+                <div class="time-label">Days</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-value" id="hours">0</div>
+                <div class="time-label">Hours</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-value" id="minutes">0</div>
+                <div class="time-label">Minutes</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-value" id="seconds">0</div>
+                <div class="time-label">Seconds</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-value" id="milliseconds">0</div>
+                <div class="time-label">Milliseconds</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create floating particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.width = `${Math.random() * 10 + 5}px`;
+            particle.style.height = particle.style.width;
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.top = `${Math.random() * 100}vh`;
+            particle.style.animationDuration = `${Math.random() * 20 + 10}s`;
+            particlesContainer.appendChild(particle);
+        }
+
+        // Age Calculator Logic
+        const birthdateInput = document.getElementById('birthdate');
+        const timeUnits = {
+            years: document.getElementById('years'),
+            months: document.getElementById('months'),
+            days: document.getElementById('days'),
+            hours: document.getElementById('hours'),
+            minutes: document.getElementById('minutes'),
+            seconds: document.getElementById('seconds'),
+            milliseconds: document.getElementById('milliseconds')
+        };
+
+        let interval;
+        let lastBirthday = null;
+
+        birthdateInput.addEventListener('change', function() {
+            clearInterval(interval);
+            const birthdate = new Date(this.value);
+            if (isNaN(birthdate.getTime())) return;
+
+            interval = setInterval(() => updateAge(birthdate), 10); // Update every millisecond
+        });
+
+        function updateAge(birthdate) {
+            const now = new Date();
+            const diff = now - birthdate;
+
+            // Calculate all time units
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+            const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30.44) % 12);
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24) % 30.44);
+            const hours = Math.floor(diff / (1000 * 60 * 60) % 24);
+            const minutes = Math.floor(diff / (1000 * 60) % 60);
+            const seconds = Math.floor(diff / 1000 % 60);
+            const milliseconds = Math.floor(diff % 1000);
+
+            // Update the display
+            timeUnits.years.textContent = years;
+            timeUnits.months.textContent = months;
+            timeUnits.days.textContent = days;
+            timeUnits.hours.textContent = hours;
+            timeUnits.minutes.textContent = minutes;
+            timeUnits.seconds.textContent = seconds;
+            timeUnits.milliseconds.textContent = milliseconds;
+
+            // Check if it's the user's birthday today!
+            const todayMonth = now.getMonth();
+            const todayDate = now.getDate();
+            const birthMonth = birthdate.getMonth();
+            const birthDate = birthdate.getDate();
+
+            if (todayMonth === birthMonth && todayDate === birthDate) {
+                if (!lastBirthday || lastBirthday.getFullYear() !== now.getFullYear()) {
+                    celebrateBirthday();
+                    lastBirthday = new Date(now);
+                }
+            }
+        }
+
+        function celebrateBirthday() {
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                document.body.appendChild(confetti);
+
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+    </script>
+</body>
+</html>

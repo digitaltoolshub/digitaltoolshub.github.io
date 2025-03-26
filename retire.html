@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⏳ Ultimate Retirement Calculator</title>
+    <style>
+        /* Modern Gradient Background */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;900&family=Orbitron:wght@700&display=swap');
+        
+        :root {
+            --primary: #6dd5ed;
+            --secondary: #2193b0;
+            --accent: #ff758c;
+            --tip-color: #f9f871;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Floating Particles */
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: float linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        }
+        
+        /* Main Container */
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            width: 90%;
+            max-width: 900px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(109, 213, 237, 0.3);
+        }
+        
+        .subtitle {
+            font-weight: 300;
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+        
+        /* Input Section */
+        .input-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .input-group {
+            position: relative;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(109, 213, 237, 0.3);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(255, 117, 140, 0.5);
+        }
+        
+        /* Results Section */
+        .results {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .countdown {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            margin: 1.5rem 0;
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(109, 213, 237, 0.5);
+            animation: pulse 2s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+        
+        .result-text {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        /* Hourglass Visualization */
+        .hourglass-container {
+            width: 150px;
+            height: 200px;
+            margin: 2rem auto;
+            position: relative;
+        }
+        
+        .hourglass {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .glass {
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px 10px 50px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sand {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: linear-gradient(to bottom, var(--accent), var(--primary));
+            transition: height 1s ease-out;
+            border-radius: 0 0 50px 50px;
+        }
+        
+        /* Comparison Section */
+        .comparison {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .comparison-title {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .comparison-bar {
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 0.5rem 0;
+            overflow: hidden;
+        }
+        
+        .comparison-progress {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 10px;
+            transition: width 1s ease-out;
+        }
+        
+        /* Tips Section */
+        .tips-container {
+            margin-top: 2rem;
+        }
+        
+        .tip {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--tip-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            animation: fadeIn 0.5s ease-out;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .tip:hover {
+            transform: translateX(5px);
+        }
+        
+        .tip-title {
+            color: var(--tip-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Share Button */
+        .share-btn {
+            background: linear-gradient(to right, #25aae1, #4481eb);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(37, 170, 225, 0.3);
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 170, 225, 0.4);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .countdown {
+                font-size: 2.5rem;
+            }
+            
+            .input-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Particles Background -->
+    <div id="particles"></div>
+    
+    <!-- Main Calculator Container -->
+    <div class="container">
+        <div class="header">
+            <h1>⏳ ULTIMATE RETIREMENT PLANNER</h1>
+            <p class="subtitle">Your personalized roadmap to financial freedom</p>
+        </div>
+        
+        <div class="input-section">
+            <div class="input-group">
+                <label for="current-age">Current Age</label>
+                <input type="number" id="current-age" min="18" max="100" value="30">
+            </div>
+            
+            <div class="input-group">
+                <label for="retirement-age">Planned Retirement Age</label>
+                <input type="number" id="retirement-age" min="25" max="100" value="65">
+            </div>
+            
+            <div class="input-group">
+                <label for="monthly-savings">Monthly Savings ($)</label>
+                <input type="number" id="monthly-savings" min="0" value="1000">
+            </div>
+            
+            <div class="input-group">
+                <label for="return-rate">Expected Return Rate (%)</label>
+                <input type="number" id="return-rate" min="0" max="20" step="0.1" value="7">
+            </div>
+        </div>
+        
+        <div class="hourglass-container">
+            <div class="hourglass">
+                <div class="glass">
+                    <div class="sand" id="sand"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="results">
+            <div class="countdown" id="countdown">00:00:00</div>
+            <p class="result-text">
+                You have <span class="highlight" id="years-left">35 years</span> until retirement.<br>
+                At this rate, you'll have <span class="highlight" id="retirement-amount">$1,200,000</span> saved.
+            </p>
+            
+            <!-- Comparison Section -->
+            <div class="comparison">
+                <div class="comparison-title">How You Compare</div>
+                <div>Your projected savings: <span id="user-savings">$1,200,000</span></div>
+                <div class="comparison-bar">
+                    <div class="comparison-progress" id="savings-comparison" style="width: 50%"></div>
+                </div>
+                <div>Average retirement savings at 65: <span id="average-savings">$500,000</span></div>
+            </div>
+            
+            <!-- Share Button -->
+            <button class="share-btn" id="share-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"/>
+                </svg>
+                Share Your Results
+            </button>
+        </div>
+        
+        <!-- Tips Section -->
+        <div class="tips-container" id="tips-container">
+            <div class="tip-title">💡 Retirement Tips</div>
+            <!-- Tips will be inserted here by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Sound Effects (hidden audio elements) -->
+    <audio id="tick-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3" preload="auto"></audio>
+    <audio id="success-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3" preload="auto"></audio>
+
+    <script>
+        // Retirement tips database
+        const retirementTips = [
+            {
+                title: "💰 The Power of Compounding",
+                content: "Starting early is key! $500/month at age 25 could grow to over $1.4M by 65 (at 7% return), while starting at 35 would only reach about $700k."
+            },
+            {
+                title: "📈 Increase Savings Gradually",
+                content: "Try increasing your savings rate by 1% each year. You'll barely notice the difference but could retire years earlier."
+            },
+            {
+                title: "🏠 Consider Downsizing",
+                content: "Moving to a smaller home in retirement could free up $100k+ in equity and reduce living costs by 20-30%."
+            },
+            {
+                title: "🔄 Tax Diversification",
+                content: "Balance between Roth, Traditional, and taxable accounts to optimize tax efficiency in retirement."
+            },
+            {
+                title: "⏳ The 4% Rule",
+                content: "Aim to save 25x your annual expenses. This allows you to withdraw 4% yearly with high success probability."
+            },
+            {
+                title: "💼 Work Part-Time in Retirement",
+                content: "Even $10k/year in part-time income reduces needed savings by $250k (using the 4% rule)."
+            },
+            {
+                title: "🌍 Geoarbitrage Opportunity",
+                content: "Retiring in a lower-cost area could cut expenses by 30-50%, making your savings last much longer."
+            },
+            {
+                title: "🛑 Watch Out for Fees",
+                content: "A 1% fee difference could cost you $300k+ over 30 years. Index funds often charge <0.1%."
+            }
+        ];
+
+        // Average savings data by age (US averages)
+        const averageSavings = {
+            30: 45000,
+            35: 90000,
+            40: 135000,
+            45: 210000,
+            50: 300000,
+            55: 400000,
+            60: 500000,
+            65: 600000
+        };
+
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.bottom = `-10px`;
+                
+                const duration = Math.random() * 10 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // Play sound effect
+        function playSound(id) {
+            const sound = document.getElementById(id);
+            sound.currentTime = 0;
+            sound.play().catch(e => console.log("Sound playback prevented:", e));
+        }
+        
+        // Calculate retirement savings
+        function calculateRetirement() {
+            playSound('tick-sound');
+            
+            // Get input values
+            const currentAge = parseInt(document.getElementById('current-age').value);
+            const retirementAge = parseInt(document.getElementById('retirement-age').value);
+            const monthlySavings = parseFloat(document.getElementById('monthly-savings').value);
+            const returnRate = parseFloat(document.getElementById('return-rate').value) / 100;
+            
+            // Validate inputs
+            if (currentAge >= retirementAge) {
+                document.getElementById('retirement-age').value = currentAge + 1;
+                return calculateRetirement();
+            }
+            
+            // Calculate time until retirement
+            const yearsLeft = retirementAge - currentAge;
+            const monthsLeft = yearsLeft * 12;
+            
+            // Calculate future value of savings
+            let futureValue = 0;
+            for (let i = 0; i < yearsLeft; i++) {
+                futureValue = (futureValue + monthlySavings * 12) * (1 + returnRate);
+            }
+            
+            // Update countdown display
+            updateCountdown(yearsLeft);
+            
+            // Update hourglass visualization
+            updateHourglass(currentAge, retirementAge);
+            
+            // Update result text
+            document.getElementById('years-left').textContent = `${yearsLeft} years`;
+            const formattedValue = futureValue.toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                maximumFractionDigits: 0
+            });
+            document.getElementById('retirement-amount').textContent = formattedValue;
+            document.getElementById('user-savings').textContent = formattedValue;
+            
+            // Update comparison
+            updateComparison(currentAge, retirementAge, futureValue);
+            
+            // Play success sound if savings are above average
+            const avg = getAverageSavings(retirementAge);
+            if (futureValue > avg) {
+                playSound('success-sound');
+            }
+        }
+        
+        // Update the countdown display
+        function updateCountdown(yearsLeft) {
+            const monthsLeft = yearsLeft * 12;
+            const remainingMonths = monthsLeft % 12;
+            const remainingDays = Math.floor(yearsLeft * 365.25) % 30;
+            
+            document.getElementById('countdown').textContent = 
+                `${String(yearsLeft).padStart(2, '0')}:${String(remainingMonths).padStart(2, '0')}:${String(remainingDays).padStart(2, '0')}`;
+        }
+        
+        // Update the hourglass visualization
+        function updateHourglass(currentAge, retirementAge) {
+            const sand = document.getElementById('sand');
+            const totalYears = retirementAge - currentAge;
+            const yearsPassed = currentAge - 18; // Assuming working age starts at 18
+            const totalWorkingYears = retirementAge - 18;
+            
+            const percentageRemaining = (totalYears / totalWorkingYears) * 100;
+            sand.style.height = `${percentageRemaining}%`;
+        }
+        
+        // Get average savings for age
+        function getAverageSavings(age) {
+            // Find closest age in our data
+            const ages = Object.keys(averageSavings).map(Number).sort((a,b) => a-b);
+            let closestAge = ages[0];
+            
+            for (let a of ages) {
+                if (Math.abs(a - age) < Math.abs(closestAge - age)) {
+                    closestAge = a;
+                }
+            }
+            
+            return averageSavings[closestAge];
+        }
+        
+        // Update comparison section
+        function updateComparison(currentAge, retirementAge, userSavings) {
+            const avgSavings = getAverageSavings(retirementAge);
+            document.getElementById('average-savings').textContent = 
+                avgSavings.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 0});
+            
+            // Calculate comparison percentage (capped at 200% for display)
+            const comparisonPct = Math.min((userSavings / avgSavings) * 100, 200);
+            document.getElementById('savings-comparison').style.width = `${comparisonPct}%`;
+            
+            // Color code based on comparison
+            const progressBar = document.getElementById('savings-comparison');
+            if (userSavings > avgSavings * 1.5) {
+                progressBar.style.background = 'linear-gradient(to right, #4CAF50, #8BC34A)';
+            } else if (userSavings > avgSavings) {
+                progressBar.style.background = 'linear-gradient(to right, #FFC107, #FF9800)';
+            } else {
+                progressBar.style.background = 'linear-gradient(to right, #F44336, #E91E63)';
+            }
+        }
+        
+        // Display random tip
+        function showRandomTip() {
+            const tipsContainer = document.getElementById('tips-container');
+            
+            // Clear previous tips (keep the title)
+            while (tipsContainer.children.length > 1) {
+                tipsContainer.removeChild(tipsContainer.lastChild);
+            }
+            
+            // Get 3 unique random tips
+            const shuffled = [...retirementTips].sort(() => 0.5 - Math.random());
+            const selectedTips = shuffled.slice(0, 3);
+            
+            // Create tip elements
+            selectedTips.forEach(tip => {
+                const tipElement = document.createElement('div');
+                tipElement.className = 'tip';
+                tipElement.innerHTML = `
+                    <div class="tip-title">${tip.title}</div>
+                    <div class="tip-content">${tip.content}</div>
+                `;
+                tipsContainer.appendChild(tipElement);
+            });
+        }
+        
+        // Share results
+        function shareResults() {
+            const yearsLeft = document.getElementById('years-left').textContent;
+            const retirementAmount = document.getElementById('retirement-amount').textContent;
+            
+            const shareText = `My retirement countdown: ${yearsLeft} left to save ${retirementAmount}. Calculate yours!`;
+            const shareUrl = window.location.href;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Retirement Countdown',
+                    text: shareText,
+                    url: shareUrl
+                }).catch(err => {
+                    console.log('Error sharing:', err);
+                    fallbackShare(shareText, shareUrl);
+                });
+            } else {
+                fallbackShare(shareText, shareUrl);
+            }
+        }
+        
+        // Fallback for browsers without Web Share API
+        function fallbackShare(text, url) {
+            const input = document.createElement('input');
+            input.value = `${text} ${url}`;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            document.body.removeChild(input);
+            
+            alert('Copied to clipboard! Paste to share.');
+        }
+        
+        // Initialize
+        function init() {
+            createParticles();
+            calculateRetirement();
+            showRandomTip();
+            
+            // Update calculations when inputs change
+            document.querySelectorAll('input').forEach(input => {
+                input.addEventListener('input', calculateRetirement);
+            });
+            
+            // Add subtle animation to hourglass
+            setInterval(() => {
+                const hourglass = document.querySelector('.hourglass');
+                hourglass.style.transform = 'rotate(0.5deg)';
+                setTimeout(() => {
+                    hourglass.style.transform = 'rotate(-0.5deg)';
+                }, 500);
+            }, 1000);
+            
+            // Rotate tips every 15 seconds
+            setInterval(showRandomTip, 15000);
+            
+            // Set up share button
+            document.getElementById('share-btn').addEventListener('click', shareResults);
+        }
+        
+        // Start the app
+        init();
+    </script>
+</body>
+</html>

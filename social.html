@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Wasted on Social Media Calculator</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      text-align: center;
+      max-width: 800px;
+      width: 100%;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      animation: fadeIn 2s ease-in-out;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    input {
+      width: 80%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      background: rgba(255, 255, 255, 0.8);
+      transition: transform 0.3s ease;
+    }
+    input:focus {
+      transform: scale(1.05);
+      outline: none;
+    }
+    button {
+      background: #ff6f61;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    button:hover {
+      background: #ff3b2f;
+      transform: scale(1.05);
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .comparison {
+      margin-top: 20px;
+      font-size: 16px;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .progress {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: #ff6f61;
+      width: 0;
+      transition: width 0.5s ease;
+    }
+    .challenge {
+      margin-top: 20px;
+      font-size: 16px;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .tips {
+      margin-top: 30px;
+      text-align: left;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .tips h2 {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+    .tips ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+    .tips li {
+      margin-bottom: 10px;
+    }
+    .resources {
+      margin-top: 20px;
+      text-align: left;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .resources h2 {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+    .resources a {
+      color: #ff6f61;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .resources a:hover {
+      text-decoration: underline;
+    }
+    canvas {
+      margin-top: 20px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 8px;
+      padding: 10px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>⏳ Time Wasted on Social Media Calculator</h1>
+    <label for="hours">Daily Social Media Usage (in hours):</label>
+    <input type="number" id="hours" placeholder="Enter hours per day">
+    <button onclick="calculateTimeWasted()">Calculate</button>
+    <div class="result" id="result"></div>
+    <div class="comparison" id="comparison"></div>
+    <div class="progress">
+      <div>Your Progress Toward Reducing Time:</div>
+      <div class="progress-bar">
+        <div class="progress-bar-fill" id="progressBar"></div>
+      </div>
+    </div>
+    <div class="challenge" id="challenge"></div>
+    <canvas id="timeChart"></canvas>
+
+    <!-- Tips Section -->
+    <div class="tips">
+      <h2>📌 Why Excessive Social Media Usage is Harmful:</h2>
+      <ul>
+        <li>📉 <strong>Reduces Productivity:</strong> Hours spent scrolling could be used for learning or achieving goals.</li>
+        <li>😔 <strong>Increases Anxiety and Depression:</strong> Constant comparison with others can harm mental health.</li>
+        <li>🛑 <strong>Disrupts Sleep:</strong> Blue light from screens affects sleep quality.</li>
+        <li>👥 <strong>Weakens Real-Life Relationships:</strong> Overuse can lead to neglecting face-to-face interactions.</li>
+        <li>🧠 <strong>Impairs Focus:</strong> Constant notifications reduce attention span.</li>
+      </ul>
+    </div>
+
+    <!-- Resources Section -->
+    <div class="resources">
+      <h2>🚀 Learn Useful Skills Instead:</h2>
+      <ul>
+        <li>🎓 <a href="https://www.coursera.org" target="_blank">Coursera</a> - Learn from top universities and organizations.</li>
+        <li>💻 <a href="https://www.udemy.com" target="_blank">Udemy</a> - Affordable courses on a wide range of topics.</li>
+        <li>📚 <a href="https://www.khanacademy.org" target="_blank">Khan Academy</a> - Free educational resources for all ages.</li>
+        <li>🎨 <a href="https://www.skillshare.com" target="_blank">Skillshare</a> - Creative courses on design, art, and more.</li>
+        <li>🌐 <a href="https://www.freecodecamp.org" target="_blank">freeCodeCamp</a> - Learn coding for free.</li>
+        <li>🧠 <a href="https://www.duolingo.com" target="_blank">Duolingo</a> - Learn a new language for free.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    let myChart;
+    let totalHoursWasted = 0;
+    let progress = 0;
+
+    function calculateTimeWasted() {
+      const hoursPerDay = parseFloat(document.getElementById('hours').value);
+      if (isNaN(hoursPerDay) || hoursPerDay < 0) {
+        alert("Please enter a valid number of hours.");
+        return;
+      }
+
+      const daysPerYear = 365;
+      const years = 5; // Example: Calculate for 5 years
+      totalHoursWasted = hoursPerDay * daysPerYear * years;
+
+      // Convert hours to more relatable units
+      const hoursInADay = 24;
+      const daysWasted = totalHoursWasted / hoursInADay;
+      const monthsWasted = daysWasted / 30;
+      const yearsWasted = daysWasted / 365;
+
+      // Generate the result message
+      const resultMessage = `
+        In ${years} years, you will waste:
+        <br>• ${totalHoursWasted.toFixed(1)} hours
+        <br>• ${daysWasted.toFixed(1)} days
+        <br>• ${monthsWasted.toFixed(1)} months
+        <br>• ${yearsWasted.toFixed(1)} years
+      `;
+
+      // Generate comparison message
+      const comparisonMessage = `
+        <br><br>💡 Did you know? You could have:
+        <br>• Watched ${Math.round(totalHoursWasted / 2)} movies 🎬
+        <br>• Traveled ${Math.round(totalHoursWasted / 8)} times around the world 🌍
+        <br>• Learned ${Math.round(totalHoursWasted / 20)} new skills 🎓
+      `;
+
+      // Display the result and comparison
+      document.getElementById('result').innerHTML = resultMessage;
+      document.getElementById('comparison').innerHTML = comparisonMessage;
+
+      // Update the chart
+      updateChart(totalHoursWasted, daysWasted, monthsWasted, yearsWasted);
+
+      // Update progress and challenge
+      updateProgress(hoursPerDay);
+      generateChallenge();
+    }
+
+    function updateProgress(hoursPerDay) {
+      const maxHours = 10; // Assume 10 hours is the max for progress calculation
+      progress = ((maxHours - hoursPerDay) / maxHours) * 100;
+      if (progress < 0) progress = 0;
+      document.getElementById('progressBar').style.width = `${progress}%`;
+    }
+
+    function generateChallenge() {
+      const challenges = [
+        "Try reducing your daily usage by 1 hour this week!",
+        "Spend 30 minutes less on social media today and read a book instead.",
+        "Challenge yourself to a social media-free day this week!",
+        "Replace 1 hour of social media with a workout or walk.",
+        "Track your usage daily and aim to reduce it by 10%."
+      ];
+      const randomChallenge = challenges[Math.floor(Math.random() * challenges.length)];
+      document.getElementById('challenge').innerHTML = `🎯 Challenge: ${randomChallenge}`;
+    }
+
+    function updateChart(hours, days, months, years) {
+      const ctx = document.getElementById('timeChart').getContext('2d');
+      if (myChart) {
+        myChart.destroy(); // Destroy existing chart
+      }
+      myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Hours', 'Days', 'Months', 'Years'],
+          datasets: [{
+            label: 'Time Wasted',
+            data: [hours, days, months, years],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.8)',
+              'rgba(54, 162, 235, 0.8)',
+              'rgba(255, 206, 86, 0.8)',
+              'rgba(75, 192, 192, 0.8)'
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: {
+                color: 'rgba(255, 255, 255, 0.2)'
+              },
+              ticks: {
+                color: '#fff'
+              }
+            },
+            x: {
+              grid: {
+                color: 'rgba(255, 255, 255, 0.2)'
+              },
+              ticks: {
+                color: '#fff'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              labels: {
+                color: '#fff'
+              }
+            }
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>

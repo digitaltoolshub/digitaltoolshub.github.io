@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌍 Multi-Currency Earnings Calculator</title>
+    <style>
+        /* Base Styles */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #1a1a1a, #2d3436, #636e72);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            color: white;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Container Styles */
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255, 223, 0, 0.2);
+            backdrop-filter: blur(15px);
+            max-width: 800px;
+            width: 95%;
+            margin: 2rem;
+            position: relative;
+        }
+
+        /* Header Styles */
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(90deg, #00ff87, #60efff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(0, 255, 135, 0.3);
+            margin-bottom: 1rem;
+        }
+
+        /* Currency Selector */
+        .currency-selector {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .currency-flag {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .currency-flag:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px currentColor;
+        }
+
+        .currency-flag.active {
+            border-color: #00ff87;
+            box-shadow: 0 0 20px #00ff87;
+        }
+
+        /* Input Section */
+        .input-section {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .salary-input {
+            font-size: 1.2rem;
+            padding: 1rem;
+            border: 2px solid #00ff87;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            transition: all 0.3s;
+        }
+
+        .salary-input:focus {
+            box-shadow: 0 0 20px #00ff87;
+            outline: none;
+        }
+
+        /* Results Display */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .result-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 135, 0.2);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 255, 135, 0.05);
+            box-shadow: 0 0 15px rgba(0, 255, 135, 0.2);
+        }
+
+        .time-unit {
+            font-size: 0.9rem;
+            color: #00ff87;
+            margin-bottom: 0.5rem;
+        }
+
+        .amount {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: #60efff;
+        }
+
+        /* Engagement Features */
+        .fortune-cookie {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .fortune-cookie:hover {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .progress-bar {
+            height: 5px;
+            background: #00ff87;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transition: width 0.5s;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>💸 Global Earnings Calculator 🌐</h1>
+            
+            <!-- Currency Selector -->
+            <div class="currency-selector" id="currencySelector">
+                <img src="https://flagcdn.com/24x18/us.png" class="currency-flag active" data-currency="USD" alt="USD">
+                <img src="https://flagcdn.com/24x18/pk.png" class="currency-flag" data-currency="PKR" alt="PKR">
+                <img src="https://flagcdn.com/24x18/ae.png" class="currency-flag" data-currency="AED" alt="AED">
+                <img src="https://flagcdn.com/24x18/jp.png" class="currency-flag" data-currency="JPY" alt="JPY">
+                <img src="https://flagcdn.com/24x18/gb.png" class="currency-flag" data-currency="GBP" alt="GBP">
+                <img src="https://flagcdn.com/24x18/eu.png" class="currency-flag" data-currency="EUR" alt="EUR">
+            </div>
+
+            <!-- Salary Input -->
+            <div class="input-section">
+                <input type="number" class="salary-input" id="salaryInput" 
+                       placeholder="Enter annual salary" step="1000" min="0">
+            </div>
+        </div>
+
+        <!-- Results Display -->
+        <div class="results-grid" id="resultsGrid">
+            <!-- Generated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Engagement Elements -->
+    <div class="fortune-cookie" id="fortuneCookie" onclick="showFortune()">🎉 Click for Money Wisdom!</div>
+
+    <script>
+        // ================
+        // INITIALIZATION
+        // ================
+        
+        // Currency Exchange Rates (example rates - should use real API)
+        let exchangeRates = {
+            USD: 1,
+            PKR: 278.50,
+            AED: 3.67,
+            JPY: 157.32,
+            GBP: 0.79,
+            EUR: 0.93
+        };
+
+        // Fortune Messages
+        const fortunes = [
+            "Every second counts - literally!",
+            "Financial wisdom: Save first, spend later.",
+            "Your time is your most valuable asset!",
+            "Small daily savings grow into fortunes.",
+            "Wealth is built one second at a time! 🌟"
+        ];
+
+        // ================
+        // DOM ELEMENTS
+        // ================
+        const elements = {
+            salaryInput: document.getElementById('salaryInput'),
+            currencyFlags: document.querySelectorAll('.currency-flag'),
+            resultsGrid: document.getElementById('resultsGrid'),
+            progressBar: document.getElementById('progressBar'),
+            fortuneCookie: document.getElementById('fortuneCookie')
+        };
+
+        // ================
+        // EVENT LISTENERS
+        // ================
+        elements.currencyFlags.forEach(flag => {
+            flag.addEventListener('click', () => selectCurrency(flag));
+        });
+
+        elements.salaryInput.addEventListener('input', updateCalculations);
+
+        // ================
+        // CORE FUNCTIONS
+        // ================
+
+        // Currency Selection
+        function selectCurrency(flag) {
+            elements.currencyFlags.forEach(f => f.classList.remove('active'));
+            flag.classList.add('active');
+            updateCalculations();
+        }
+
+        // Main Calculation Function
+        function updateCalculations() {
+            const salary = parseFloat(elements.salaryInput.value) || 0;
+            const currency = document.querySelector('.currency-flag.active').dataset.currency;
+            
+            // Convert to USD first
+            const usdAmount = salary / exchangeRates[currency];
+            
+            // Calculate time-based values
+            const calculations = {
+                'Year': usdAmount,
+                'Month': usdAmount / 12,
+                'Day': usdAmount / 365,
+                'Hour': (usdAmount / 365) / 24,
+                'Minute': ((usdAmount / 365) / 24) / 60,
+                'Second': (((usdAmount / 365) / 24) / 60) / 60
+            };
+
+            // Update Display
+            updateResults(calculations, currency);
+            updateProgressBar(salary);
+        }
+
+        // Update Results Display
+        function updateResults(data, currency) {
+            elements.resultsGrid.innerHTML = '';
+            
+            Object.entries(data).forEach(([unit, value]) => {
+                const convertedValue = value * exchangeRates[currency];
+                const card = document.createElement('div');
+                card.className = 'result-card';
+                card.innerHTML = `
+                    <div class="time-unit">Per ${unit}</div>
+                    <div class="amount">${formatCurrency(convertedValue, currency)}</div>
+                `;
+                elements.resultsGrid.appendChild(card);
+            });
+        }
+
+        // ================
+        // ENGAGEMENT FEATURES
+        // ================
+
+        // Progress Bar Animation
+        function updateProgressBar(salary) {
+            const maxSalary = 1000000; // Adjust based on target audience
+            const widthPercentage = Math.min((salary / maxSalary) * 100, 100);
+            elements.progressBar.style.width = `${widthPercentage}%`;
+        }
+
+        // Fortune Cookie Interaction
+        function showFortune() {
+            const message = fortunes[Math.floor(Math.random() * fortunes.length)];
+            elements.fortuneCookie.textContent = message;
+            setTimeout(() => {
+                elements.fortuneCookie.textContent = "🎉 Click for More Wisdom!";
+            }, 3000);
+        }
+
+        // ================
+        // HELPER FUNCTIONS
+        // ================
+
+        function formatCurrency(amount, currency) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: currency,
+                minimumFractionDigits: 2,
+                maximumFractionDigits: currency === 'JPY' ? 0 : 2
+            }).format(amount);
+        }
+
+        // Initial Calculation
+        updateCalculations();
+
+        // Real-time Updates
+        setInterval(updateCalculations, 1000);
+    </script>
+</body>
+</html>

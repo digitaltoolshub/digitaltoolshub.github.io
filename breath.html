@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breath Counter - BioLife</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #fff;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00b4d8, #48cae4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        .description {
+            text-align: center;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #00b4d8;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .live-update {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #00b4d8;
+        }
+
+        .result {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+            background: rgba(0, 180, 216, 0.15);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .breath-icon {
+            font-size: 60px;
+            text-align: center;
+            margin: 20px 0;
+            animation: breathe 4s infinite ease-in-out;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+
+        .fun-fact {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(233, 69, 96, 0.2);
+            border-radius: 8px;
+            font-style: italic;
+        }
+
+        .highlight {
+            color: #00b4d8;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌬️ Lifetime Breath Counter</h1>
+        <p class="description">Find out how many breaths you've taken in your life!</p>
+
+        <div class="input-group">
+            <label>Your Date of Birth</label>
+            <input type="date" id="dob-input">
+        </div>
+
+        <div class="live-update">
+            <label>Enable Real-time Updates</label>
+            <label class="switch">
+                <input type="checkbox" id="realtime-toggle" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div id="result" class="result">
+            <div class="breath-icon">🌬️</div>
+            <p>Enter your date of birth to see your lifetime breaths!</p>
+        </div>
+
+        <div id="fun-fact" class="fun-fact">
+            Did you know? A sloth breathes only <span class="highlight">6-8 times per minute</span>, while a mouse breathes about <span class="highlight">200 times per minute</span>!
+        </div>
+    </div>
+
+    <script>
+        const dobInput = document.getElementById('dob-input');
+        const realtimeToggle = document.getElementById('realtime-toggle');
+        const resultDiv = document.getElementById('result');
+        const funFactDiv = document.getElementById('fun-fact');
+        let updateInterval;
+        const avgBreathsPerMin = 16;
+
+        // Set default date to 30 years ago
+        window.addEventListener('DOMContentLoaded', () => {
+            const defaultDate = new Date();
+            defaultDate.setFullYear(defaultDate.getFullYear() - 30);
+            dobInput.valueAsDate = defaultDate;
+            calculateBreaths();
+            startRealTimeUpdates();
+        });
+
+        dobInput.addEventListener('change', function() {
+            if (new Date(this.value) > new Date()) {
+                alert("You can't breathe before you're born! Enter a valid date.");
+                this.value = '';
+                return;
+            }
+            calculateBreaths();
+        });
+
+        realtimeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                startRealTimeUpdates();
+            } else {
+                clearInterval(updateInterval);
+            }
+        });
+
+        function calculateBreaths() {
+            const dob = new Date(dobInput.value);
+            const now = new Date();
+            const diffMs = now - dob;
+            const minutes = diffMs / (1000 * 60);
+            const breaths = Math.round(minutes * avgBreathsPerMin);
+            
+            // Funny comparisons
+            const comparisons = [
+                `That's enough to fill <span class="highlight">${Math.round(breaths/25000)}</span> hot air balloons! �`,
+                `You could've inflated <span class="highlight">${Math.round(breaths/500)}</span> parade floats with that air!`,
+                `Enough breaths to keep <span class="highlight">${Math.round(breaths/100000)}</span> scuba divers alive for an hour!`,
+                `That's <span class="highlight">${Math.round(breaths/7000)}</span> years worth of a sloth's breathing!`
+            ];
+            
+            const randomComparison = comparisons[Math.floor(Math.random() * comparisons.length)];
+            
+            resultDiv.innerHTML = `
+                <h3>You've taken approximately:</h3>
+                <div class="breath-icon">🌬️</div>
+                <p style="font-size: 2rem; text-align: center; margin: 1rem 0;"><span class="highlight">${breaths.toLocaleString()}</span> breaths</p>
+                <p>${randomComparison}</p>
+                <p>Current rate: ~${avgBreathsPerMin} breaths per minute</p>
+            `;
+        }
+
+        function startRealTimeUpdates() {
+            clearInterval(updateInterval);
+            updateInterval = setInterval(calculateBreaths, 1000);
+        }
+    </script>
+</body>
+</html>

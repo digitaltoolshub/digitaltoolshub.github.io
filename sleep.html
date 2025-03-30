@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Time Calculator - BioLife</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #fff;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #9d4edd, #c77dff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        .description {
+            text-align: center;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #9d4edd;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .result {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+            background: rgba(157, 78, 221, 0.15);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .sleep-icon {
+            font-size: 60px;
+            text-align: center;
+            margin: 20px 0;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .fun-fact {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(0, 180, 216, 0.2);
+            border-radius: 8px;
+            font-style: italic;
+        }
+
+        .highlight {
+            color: #9d4edd;
+            font-weight: bold;
+        }
+
+        .sleep-input {
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌙 Sleep Time Calculator</h1>
+        <p class="description">Find out how much of your life you've spent sleeping!</p>
+
+        <div class="input-group">
+            <label>Your Date of Birth</label>
+            <input type="date" id="dob-input">
+        </div>
+
+        <div class="sleep-input">
+            <label>Average Daily Sleep (hours)</label>
+            <input type="number" id="sleep-hours" min="0" max="24" step="0.5" value="8">
+        </div>
+
+        <div id="result" class="result">
+            <div class="sleep-icon">🛌</div>
+            <p>Enter your information to see your sleep stats!</p>
+        </div>
+
+        <div id="fun-fact" class="fun-fact">
+            Did you know? Giraffes sleep only <span class="highlight">30 minutes to 2 hours</span> per day, while koalas sleep up to <span class="highlight">20 hours</span> daily!
+        </div>
+    </div>
+
+    <script>
+        const dobInput = document.getElementById('dob-input');
+        const sleepHoursInput = document.getElementById('sleep-hours');
+        const resultDiv = document.getElementById('result');
+        const funFactDiv = document.getElementById('fun-fact');
+
+        // Set default date to 30 years ago
+        window.addEventListener('DOMContentLoaded', () => {
+            const defaultDate = new Date();
+            defaultDate.setFullYear(defaultDate.getFullYear() - 30);
+            dobInput.valueAsDate = defaultDate;
+            calculateSleep();
+        });
+
+        dobInput.addEventListener('change', function() {
+            if (new Date(this.value) > new Date()) {
+                alert("You can't sleep before you're born! Enter a valid date.");
+                this.value = '';
+                return;
+            }
+            calculateSleep();
+        });
+
+        sleepHoursInput.addEventListener('input', calculateSleep);
+
+        function calculateSleep() {
+            const dob = new Date(dobInput.value);
+            const sleepHours = parseFloat(sleepHoursInput.value);
+            const now = new Date();
+            
+            const diffMs = now - dob;
+            const diffYears = diffMs / (1000 * 60 * 60 * 24 * 365);
+            const totalSleepHours = diffYears * sleepHours * 365;
+            
+            const years = totalSleepHours / 24 / 365;
+            const months = (years % 1) * 12;
+            const days = (months % 1) * 30;
+            const percentage = (sleepHours/24*100).toFixed(1);
+            
+            // Funny comparisons
+            const comparisons = [
+                `You could've watched <span class="highlight">${Math.round(totalSleepHours/2)}</span> full-length movies!`,
+                `That's like sleeping through <span class="highlight">${Math.round(totalSleepHours/24/365*12)}</span> Christmases!`,
+                `Enough sleep to dream about <span class="highlight">${Math.round(totalSleepHours*4)}</span> different dreams!`,
+                `You've slept through <span class="highlight">${Math.round(totalSleepHours/8)}</span> work weeks! 💼`
+            ];
+            
+            const randomComparison = comparisons[Math.floor(Math.random() * comparisons.length)];
+            
+            resultDiv.innerHTML = `
+                <h3>You've slept approximately:</h3>
+                <div class="sleep-icon">${sleepHours >= 10 ? "😴" : "🛌"}</div>
+                <p style="font-size: 1.8rem; text-align: center; margin: 1rem 0;">
+                    <span class="highlight">${Math.floor(years)}</span> years 
+                    <span class="highlight">${Math.floor(months)}</span> months 
+                    <span class="highlight">${Math.round(days)}</span> days
+                </p>
+                <p>That's <span class="highlight">${(totalSleepHours/24).toLocaleString()}</span> full days sleeping!</p>
+                <p>You've spent <span class="highlight">${percentage}%</span> of your life asleep</p>
+                <p>${randomComparison}</p>
+            `;
+        }
+    </script>
+</body>
+</html>

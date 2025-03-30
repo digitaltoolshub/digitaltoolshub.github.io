@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heartbeat Calculator - BioLife</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #fff;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #e94560, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        .description {
+            text-align: center;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #e94560;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .live-update {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #e94560;
+        }
+
+        .result {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+            background: rgba(233, 69, 96, 0.15);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .heart-animation {
+            width: 60px;
+            height: 60px;
+            animation: heartbeat 1.2s infinite;
+            margin: 20px auto;
+            font-size: 60px;
+            text-align: center;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.3); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.15); }
+            60% { transform: scale(1); }
+        }
+
+        .fun-fact {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(0, 180, 216, 0.2);
+            border-radius: 8px;
+            font-style: italic;
+        }
+
+        .highlight {
+            color: #e94560;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>❤️ Heartbeat Calculator</h1>
+        <p class="description">Discover how many times your heart has beaten since birth!</p>
+
+        <div class="input-group">
+            <label>Your Date of Birth</label>
+            <input type="date" id="dob-input">
+        </div>
+
+        <div class="live-update">
+            <label>Enable Real-time Updates</label>
+            <label class="switch">
+                <input type="checkbox" id="realtime-toggle" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div id="result" class="result">
+            <div class="heart-animation">❤️</div>
+            <p>Enter your date of birth to see your lifetime heartbeats!</p>
+        </div>
+
+        <div id="fun-fact" class="fun-fact">
+            Did you know? A blue whale's heart beats only <span class="highlight">5-10 times per minute</span>, while a hummingbird's heart can beat up to <span class="highlight">1,200 times per minute</span>!
+        </div>
+    </div>
+
+    <script>
+        const dobInput = document.getElementById('dob-input');
+        const realtimeToggle = document.getElementById('realtime-toggle');
+        const resultDiv = document.getElementById('result');
+        const funFactDiv = document.getElementById('fun-fact');
+        let updateInterval;
+        const avgBpm = 75;
+
+        // Set default date to 30 years ago
+        window.addEventListener('DOMContentLoaded', () => {
+            const defaultDate = new Date();
+            defaultDate.setFullYear(defaultDate.getFullYear() - 30);
+            dobInput.valueAsDate = defaultDate;
+            calculateHeartbeats();
+            startRealTimeUpdates();
+        });
+
+        dobInput.addEventListener('change', function() {
+            if (new Date(this.value) > new Date()) {
+                alert("Wait a minute... you haven't been born yet! Enter a valid date.");
+                this.value = '';
+                return;
+            }
+            calculateHeartbeats();
+        });
+
+        realtimeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                startRealTimeUpdates();
+            } else {
+                clearInterval(updateInterval);
+            }
+        });
+
+        function calculateHeartbeats() {
+            const dob = new Date(dobInput.value);
+            const now = new Date();
+            const diffMs = now - dob;
+            const minutes = diffMs / (1000 * 60);
+            const beats = Math.round(minutes * avgBpm);
+            
+            // Funny comparisons
+            const comparisons = [
+                `That's like <span class="highlight">${Math.round(beats/1000)}</span> songs on the radio!`,
+                `Enough beats to power <span class="highlight">${Math.round(beats/100000)}</span> pacemakers for a year!`,
+                `More than all the applause at <span class="highlight">${Math.round(beats/5000)}</span> rock concerts!`,
+                `Your heart could've powered <span class="highlight">${Math.round(beats/2000000)}</span> Flash superhero runs!`
+            ];
+            
+            const randomComparison = comparisons[Math.floor(Math.random() * comparisons.length)];
+            
+            resultDiv.innerHTML = `
+                <h3>Your heart has beaten approximately:</h3>
+                <div class="heart-animation">❤️</div>
+                <p style="font-size: 2rem; text-align: center; margin: 1rem 0;"><span class="highlight">${beats.toLocaleString()}</span> times</p>
+                <p>${randomComparison}</p>
+                <p>Current rate: ~${avgBpm} beats per minute</p>
+            `;
+        }
+
+        function startRealTimeUpdates() {
+            clearInterval(updateInterval);
+            updateInterval = setInterval(calculateHeartbeats, 1000);
+        }
+    </script>
+</body>
+</html>

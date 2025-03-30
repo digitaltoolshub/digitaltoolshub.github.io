@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⏳ Ultimate Retirement Calculator</title>
+    <title>🌍 Ultimate Retirement Planner</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <style>
         /* Modern Gradient Background */
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;900&family=Orbitron:wght@700&display=swap');
@@ -13,6 +14,9 @@
             --secondary: #2193b0;
             --accent: #ff758c;
             --tip-color: #f9f871;
+            --luxury: #ff9ff3;
+            --comfortable: #48dbfb;
+            --basic: #1dd1a1;
         }
         
         * {
@@ -27,9 +31,6 @@
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             color: white;
             overflow-x: hidden;
         }
@@ -62,13 +63,12 @@
             border-radius: 20px;
             padding: 3rem;
             width: 90%;
-            max-width: 900px;
+            max-width: 1200px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             position: relative;
             z-index: 2;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            overflow: hidden;
-            margin: 2rem 0;
+            margin: 2rem auto;
         }
         
         /* Header */
@@ -95,16 +95,27 @@
             font-size: 1.1rem;
         }
         
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        @media (max-width: 1000px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
         /* Input Section */
         .input-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
         
         .input-group {
             position: relative;
+            margin-bottom: 1.5rem;
         }
         
         label {
@@ -131,10 +142,48 @@
             box-shadow: 0 0 15px rgba(255, 117, 140, 0.5);
         }
         
+        /* Lifestyle Selector */
+        .lifestyle-options {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .lifestyle-option {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid transparent;
+        }
+        
+        .lifestyle-option:hover {
+            transform: translateY(-3px);
+        }
+        
+        .lifestyle-option.active {
+            border-color: currentColor;
+            box-shadow: 0 0 15px currentColor;
+        }
+        
+        .lifestyle-option.basic {
+            color: var(--basic);
+        }
+        
+        .lifestyle-option.comfortable {
+            color: var(--comfortable);
+        }
+        
+        .lifestyle-option.luxury {
+            color: var(--luxury);
+        }
+        
         /* Results Section */
         .results {
             text-align: center;
-            margin-top: 2rem;
         }
         
         .countdown {
@@ -225,6 +274,31 @@
             transition: width 1s ease-out;
         }
         
+        /* Location Explorer */
+        .location-explorer {
+            margin-top: 2rem;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        #map {
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .location-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem;
+            display: none;
+        }
+        
         /* Tips Section */
         .tips-container {
             margin-top: 2rem;
@@ -292,8 +366,8 @@
                 font-size: 2.5rem;
             }
             
-            .input-section {
-                grid-template-columns: 1fr;
+            .lifestyle-options {
+                flex-direction: column;
             }
         }
     </style>
@@ -305,69 +379,114 @@
     <!-- Main Calculator Container -->
     <div class="container">
         <div class="header">
-            <h1>⏳ ULTIMATE RETIREMENT PLANNER</h1>
-            <p class="subtitle">Your personalized roadmap to financial freedom</p>
+            <h1>🌍 GLOBAL RETIREMENT PLANNER</h1>
+            <p class="subtitle">Plan your perfect retirement anywhere in the world</p>
         </div>
         
-        <div class="input-section">
-            <div class="input-group">
-                <label for="current-age">Current Age</label>
-                <input type="number" id="current-age" min="18" max="100" value="30">
-            </div>
-            
-            <div class="input-group">
-                <label for="retirement-age">Planned Retirement Age</label>
-                <input type="number" id="retirement-age" min="25" max="100" value="65">
-            </div>
-            
-            <div class="input-group">
-                <label for="monthly-savings">Monthly Savings ($)</label>
-                <input type="number" id="monthly-savings" min="0" value="1000">
-            </div>
-            
-            <div class="input-group">
-                <label for="return-rate">Expected Return Rate (%)</label>
-                <input type="number" id="return-rate" min="0" max="20" step="0.1" value="7">
-            </div>
-        </div>
-        
-        <div class="hourglass-container">
-            <div class="hourglass">
-                <div class="glass">
-                    <div class="sand" id="sand"></div>
+        <div class="grid">
+            <div class="input-section">
+                <div class="input-group">
+                    <label for="current-age">Current Age</label>
+                    <input type="number" id="current-age" min="18" max="100" value="30">
+                </div>
+                
+                <div class="input-group">
+                    <label for="retirement-age">Planned Retirement Age</label>
+                    <input type="number" id="retirement-age" min="25" max="100" value="65">
+                </div>
+                
+                <div class="input-group">
+                    <label for="current-savings">Current Savings ($)</label>
+                    <input type="number" id="current-savings" min="0" value="50000">
+                </div>
+                
+                <div class="input-group">
+                    <label for="monthly-contribution">Monthly Contribution ($)</label>
+                    <input type="number" id="monthly-contribution" min="0" value="1000">
+                </div>
+                
+                <div class="input-group">
+                    <label for="return-rate">Expected Return Rate (%)</label>
+                    <input type="number" id="return-rate" min="0" max="20" step="0.1" value="7">
+                </div>
+                
+                <div class="input-group">
+                    <label>Retirement Lifestyle</label>
+                    <div class="lifestyle-options">
+                        <div class="lifestyle-option basic active" data-value="basic">
+                            <div>🏡 Basic</div>
+                            <small>$40k/year</small>
+                        </div>
+                        <div class="lifestyle-option comfortable" data-value="comfortable">
+                            <div>✈️ Comfortable</div>
+                            <small>$70k/year</small>
+                        </div>
+                        <div class="lifestyle-option luxury" data-value="luxury">
+                            <div>🏖️ Luxury</div>
+                            <small>$120k+/year</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="retirement-location">Preferred Retirement Region</label>
+                    <select id="retirement-location">
+                        <option value="us">United States</option>
+                        <option value="europe">Europe</option>
+                        <option value="asia">Southeast Asia</option>
+                        <option value="latin">Latin America</option>
+                    </select>
                 </div>
             </div>
+            
+            <div class="results">
+                <div class="hourglass-container">
+                    <div class="hourglass">
+                        <div class="glass">
+                            <div class="sand" id="sand"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="countdown" id="countdown">00:00:00</div>
+                <p class="result-text">
+                    You have <span class="highlight" id="years-left">35 years</span> until retirement.<br>
+                    At this rate, you'll have <span class="highlight" id="retirement-amount">$1,200,000</span> saved.
+                </p>
+                
+                <!-- Comparison Section -->
+                <div class="comparison">
+                    <div class="comparison-title">How You Compare</div>
+                    <div>Your projected savings: <span id="user-savings">$1,200,000</span></div>
+                    <div class="comparison-bar">
+                        <div class="comparison-progress" id="savings-comparison" style="width: 50%"></div>
+                    </div>
+                    <div>Average retirement savings at 65: <span id="average-savings">$500,000</span></div>
+                </div>
+                
+                <!-- Share Button -->
+                <button class="share-btn" id="share-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"/>
+                    </svg>
+                    Share Your Plan
+                </button>
+            </div>
         </div>
         
-        <div class="results">
-            <div class="countdown" id="countdown">00:00:00</div>
-            <p class="result-text">
-                You have <span class="highlight" id="years-left">35 years</span> until retirement.<br>
-                At this rate, you'll have <span class="highlight" id="retirement-amount">$1,200,000</span> saved.
-            </p>
-            
-            <!-- Comparison Section -->
-            <div class="comparison">
-                <div class="comparison-title">How You Compare</div>
-                <div>Your projected savings: <span id="user-savings">$1,200,000</span></div>
-                <div class="comparison-bar">
-                    <div class="comparison-progress" id="savings-comparison" style="width: 50%"></div>
-                </div>
-                <div>Average retirement savings at 65: <span id="average-savings">$500,000</span></div>
+        <!-- Location Explorer -->
+        <div class="location-explorer">
+            <div id="map"></div>
+            <div class="location-info" id="location-info">
+                <h3 id="location-name">Location Name</h3>
+                <p>Cost of living: <span id="location-cost">$2,500/month</span></p>
+                <p>Healthcare quality: <span id="location-healthcare">Excellent</span></p>
             </div>
-            
-            <!-- Share Button -->
-            <button class="share-btn" id="share-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"/>
-                </svg>
-                Share Your Results
-            </button>
         </div>
         
         <!-- Tips Section -->
         <div class="tips-container" id="tips-container">
-            <div class="tip-title">💡 Retirement Tips</div>
+            <div class="tip-title">💡 Retirement Strategy Tips</div>
             <!-- Tips will be inserted here by JavaScript -->
         </div>
     </div>
@@ -375,55 +494,103 @@
     <!-- Sound Effects (hidden audio elements) -->
     <audio id="tick-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3" preload="auto"></audio>
     <audio id="success-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3" preload="auto"></audio>
+    <audio id="location-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3" preload="auto"></audio>
 
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
-        // Retirement tips database
-        const retirementTips = [
-            {
-                title: "💰 The Power of Compounding",
-                content: "Starting early is key! $500/month at age 25 could grow to over $1.4M by 65 (at 7% return), while starting at 35 would only reach about $700k."
+        // Retirement data
+        const retirementData = {
+            lifestyles: {
+                basic: { annualCost: 40000, color: '#1dd1a1' },
+                comfortable: { annualCost: 70000, color: '#48dbfb' },
+                luxury: { annualCost: 120000, color: '#ff9ff3' }
             },
-            {
-                title: "📈 Increase Savings Gradually",
-                content: "Try increasing your savings rate by 1% each year. You'll barely notice the difference but could retire years earlier."
+            
+            locations: {
+                us: [
+                    { name: "Florida, USA", lat: 27.6648, lng: -81.5158, cost: 3500, healthcare: "Excellent" },
+                    { name: "Arizona, USA", lat: 34.0489, lng: -111.0937, cost: 3200, healthcare: "Excellent" }
+                ],
+                europe: [
+                    { name: "Algarve, Portugal", lat: 37.1028, lng: -8.6730, cost: 2500, healthcare: "Excellent" },
+                    { name: "Malaga, Spain", lat: 36.7213, lng: -4.4213, cost: 2200, healthcare: "Excellent" }
+                ],
+                asia: [
+                    { name: "Chiang Mai, Thailand", lat: 18.7061, lng: 98.9817, cost: 1500, healthcare: "Good" },
+                    { name: "Penang, Malaysia", lat: 5.4164, lng: 100.3327, cost: 1800, healthcare: "Good" }
+                ],
+                latin: [
+                    { name: "Medellín, Colombia", lat: 6.2442, lng: -75.5812, cost: 1600, healthcare: "Good" },
+                    { name: "Cuenca, Ecuador", lat: -2.9006, lng: -79.0045, cost: 1400, healthcare: "Fair" }
+                ]
             },
-            {
-                title: "🏠 Consider Downsizing",
-                content: "Moving to a smaller home in retirement could free up $100k+ in equity and reduce living costs by 20-30%."
+            
+            averageSavings: {
+                30: 45000,
+                35: 90000,
+                40: 135000,
+                45: 210000,
+                50: 300000,
+                55: 400000,
+                60: 500000,
+                65: 600000
             },
-            {
-                title: "🔄 Tax Diversification",
-                content: "Balance between Roth, Traditional, and taxable accounts to optimize tax efficiency in retirement."
-            },
-            {
-                title: "⏳ The 4% Rule",
-                content: "Aim to save 25x your annual expenses. This allows you to withdraw 4% yearly with high success probability."
-            },
-            {
-                title: "💼 Work Part-Time in Retirement",
-                content: "Even $10k/year in part-time income reduces needed savings by $250k (using the 4% rule)."
-            },
-            {
-                title: "🌍 Geoarbitrage Opportunity",
-                content: "Retiring in a lower-cost area could cut expenses by 30-50%, making your savings last much longer."
-            },
-            {
-                title: "🛑 Watch Out for Fees",
-                content: "A 1% fee difference could cost you $300k+ over 30 years. Index funds often charge <0.1%."
-            }
-        ];
-
-        // Average savings data by age (US averages)
-        const averageSavings = {
-            30: 45000,
-            35: 90000,
-            40: 135000,
-            45: 210000,
-            50: 300000,
-            55: 400000,
-            60: 500000,
-            65: 600000
+            
+            tips: [
+                {
+                    title: "💰 The Power of Compounding",
+                    content: "Starting early is key! $500/month at age 25 could grow to over $1.4M by 65 (at 7% return), while starting at 35 would only reach about $700k."
+                },
+                {
+                    title: "🌍 Geoarbitrage Strategy",
+                    content: "Retiring in Thailand instead of California could reduce your annual expenses from $70k to $25k, making your savings last 3x longer."
+                },
+                {
+                    title: "🏥 Healthcare Considerations",
+                    content: "Countries like Portugal and Malaysia offer excellent healthcare at 1/3 the US cost. Factor this into location decisions."
+                },
+                {
+                    title: "🔄 Tax Optimization",
+                    content: "Panama and Costa Rica offer special retiree visas with tax breaks on foreign-earned income and pensions."
+                },
+                {
+                    title: "🏠 Housing Options",
+                    content: "Renting vs buying abroad? Many expats rent first to test locations. Some countries restrict property purchases."
+                },
+                {
+                    title: "📈 Dynamic Withdrawal Strategy",
+                    content: "Instead of fixed 4% withdrawals, adjust spending based on market performance to avoid depleting funds early."
+                }
+            ]
         };
+
+        // Global variables
+        let map;
+        let markers = [];
+        let currentLocation = 'us';
+        let currentLifestyle = 'basic';
+        let retirementNumber = 0;
+
+        // Initialize the application
+        function init() {
+            createParticles();
+            setupEventListeners();
+            initMap();
+            calculateRetirement();
+            showRandomTip();
+            
+            // Rotate tips every 15 seconds
+            setInterval(showRandomTip, 15000);
+            
+            // Animate hourglass
+            setInterval(() => {
+                const hourglass = document.querySelector('.hourglass');
+                hourglass.style.transform = 'rotate(0.5deg)';
+                setTimeout(() => {
+                    hourglass.style.transform = 'rotate(-0.5deg)';
+                }, 500);
+            }, 1000);
+        }
 
         // Create floating particles
         function createParticles() {
@@ -446,22 +613,103 @@
                 container.appendChild(particle);
             }
         }
-        
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Input changes
+            document.querySelectorAll('input, select').forEach(input => {
+                input.addEventListener('input', calculateRetirement);
+            });
+            
+            // Lifestyle selection
+            document.querySelectorAll('.lifestyle-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.lifestyle-option').forEach(opt => 
+                        opt.classList.remove('active'));
+                    this.classList.add('active');
+                    currentLifestyle = this.dataset.value;
+                    calculateRetirement();
+                });
+            });
+            
+            // Location selection
+            document.getElementById('retirement-location').addEventListener('change', function() {
+                currentLocation = this.value;
+                updateMap();
+                calculateRetirement();
+            });
+            
+            // Share button
+            document.getElementById('share-btn').addEventListener('click', shareResults);
+        }
+
+        // Initialize the map
+        function initMap() {
+            map = L.map('map').setView([20, 0], 2);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            
+            updateMap();
+        }
+
+        // Update map with retirement locations
+        function updateMap() {
+            // Clear existing markers
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+            
+            // Add new markers
+            retirementData.locations[currentLocation].forEach(location => {
+                const marker = L.marker([location.lat, location.lng])
+                    .addTo(map)
+                    .bindPopup(`<b>${location.name}</b><br>Cost: ~$${location.cost}/month`)
+                    .on('click', function() {
+                        showLocationDetails(location);
+                        playSound('location-sound');
+                    });
+                
+                markers.push(marker);
+            });
+            
+            // Fit map to show all markers
+            if (markers.length > 0) {
+                const group = new L.featureGroup(markers);
+                map.fitBounds(group.getBounds().pad(0.2));
+            }
+        }
+
+        // Show location details
+        function showLocationDetails(location) {
+            const info = document.getElementById('location-info');
+            document.getElementById('location-name').textContent = location.name;
+            document.getElementById('location-cost').textContent = `$${location.cost}/month`;
+            document.getElementById('location-healthcare').textContent = location.healthcare;
+            info.style.display = 'block';
+            
+            // Hide after 5 seconds
+            setTimeout(() => {
+                info.style.display = 'none';
+            }, 5000);
+        }
+
         // Play sound effect
         function playSound(id) {
             const sound = document.getElementById(id);
             sound.currentTime = 0;
             sound.play().catch(e => console.log("Sound playback prevented:", e));
         }
-        
-        // Calculate retirement savings
+
+        // Calculate retirement numbers
         function calculateRetirement() {
             playSound('tick-sound');
             
             // Get input values
             const currentAge = parseInt(document.getElementById('current-age').value);
             const retirementAge = parseInt(document.getElementById('retirement-age').value);
-            const monthlySavings = parseFloat(document.getElementById('monthly-savings').value);
+            const currentSavings = parseFloat(document.getElementById('current-savings').value);
+            const monthlyContribution = parseFloat(document.getElementById('monthly-contribution').value);
             const returnRate = parseFloat(document.getElementById('return-rate').value) / 100;
             
             // Validate inputs
@@ -475,38 +723,41 @@
             const monthsLeft = yearsLeft * 12;
             
             // Calculate future value of savings
-            let futureValue = 0;
+            let futureValue = currentSavings;
             for (let i = 0; i < yearsLeft; i++) {
-                futureValue = (futureValue + monthlySavings * 12) * (1 + returnRate);
+                futureValue = (futureValue + monthlyContribution * 12) * (1 + returnRate);
             }
             
-            // Update countdown display
+            // Update display
             updateCountdown(yearsLeft);
-            
-            // Update hourglass visualization
             updateHourglass(currentAge, retirementAge);
             
-            // Update result text
-            document.getElementById('years-left').textContent = `${yearsLeft} years`;
+            // Format currency
             const formattedValue = futureValue.toLocaleString('en-US', {
                 style: 'currency',
                 currency: 'USD',
                 maximumFractionDigits: 0
             });
+            
+            // Update result text
+            document.getElementById('years-left').textContent = `${yearsLeft} years`;
             document.getElementById('retirement-amount').textContent = formattedValue;
             document.getElementById('user-savings').textContent = formattedValue;
             
-            // Update comparison
-            updateComparison(currentAge, retirementAge, futureValue);
+            // Calculate retirement number based on lifestyle
+            const lifestyle = retirementData.lifestyles[currentLifestyle];
+            retirementNumber = lifestyle.annualCost * 25; // Using 4% rule
             
-            // Play success sound if savings are above average
-            const avg = getAverageSavings(retirementAge);
-            if (futureValue > avg) {
+            // Update comparison
+            updateComparison(retirementAge, futureValue, retirementNumber);
+            
+            // Play success sound if savings are above target
+            if (futureValue >= retirementNumber) {
                 playSound('success-sound');
             }
         }
-        
-        // Update the countdown display
+
+        // Update countdown display
         function updateCountdown(yearsLeft) {
             const monthsLeft = yearsLeft * 12;
             const remainingMonths = monthsLeft % 12;
@@ -515,8 +766,8 @@
             document.getElementById('countdown').textContent = 
                 `${String(yearsLeft).padStart(2, '0')}:${String(remainingMonths).padStart(2, '0')}:${String(remainingDays).padStart(2, '0')}`;
         }
-        
-        // Update the hourglass visualization
+
+        // Update hourglass visualization
         function updateHourglass(currentAge, retirementAge) {
             const sand = document.getElementById('sand');
             const totalYears = retirementAge - currentAge;
@@ -526,11 +777,41 @@
             const percentageRemaining = (totalYears / totalWorkingYears) * 100;
             sand.style.height = `${percentageRemaining}%`;
         }
-        
+
+        // Update comparison section
+        function updateComparison(retirementAge, userSavings, targetSavings) {
+            const avgSavings = getAverageSavings(retirementAge);
+            document.getElementById('average-savings').textContent = 
+                avgSavings.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 0});
+            
+            // Calculate comparison to target
+            const comparisonPct = Math.min((userSavings / targetSavings) * 100, 200);
+            document.getElementById('savings-comparison').style.width = `${comparisonPct}%`;
+            
+            // Color code based on comparison to target
+            const progressBar = document.getElementById('savings-comparison');
+            if (userSavings >= targetSavings) {
+                progressBar.style.background = 'linear-gradient(to right, #4CAF50, #8BC34A)';
+            } else if (userSavings >= targetSavings * 0.7) {
+                progressBar.style.background = 'linear-gradient(to right, #FFC107, #FF9800)';
+            } else {
+                progressBar.style.background = 'linear-gradient(to right, #F44336, #E91E63)';
+            }
+            
+            // Update comparison text
+            const shortfall = targetSavings - userSavings;
+            if (shortfall > 0) {
+                document.querySelector('.comparison-title').textContent = 
+                    `You're ${(shortfall/1000).toFixed(0)}k short of your ${currentLifestyle} lifestyle target`;
+            } else {
+                document.querySelector('.comparison-title').textContent = 
+                    `You've reached your ${currentLifestyle} lifestyle target!`;
+            }
+        }
+
         // Get average savings for age
         function getAverageSavings(age) {
-            // Find closest age in our data
-            const ages = Object.keys(averageSavings).map(Number).sort((a,b) => a-b);
+            const ages = Object.keys(retirementData.averageSavings).map(Number).sort((a,b) => a-b);
             let closestAge = ages[0];
             
             for (let a of ages) {
@@ -539,30 +820,9 @@
                 }
             }
             
-            return averageSavings[closestAge];
+            return retirementData.averageSavings[closestAge];
         }
-        
-        // Update comparison section
-        function updateComparison(currentAge, retirementAge, userSavings) {
-            const avgSavings = getAverageSavings(retirementAge);
-            document.getElementById('average-savings').textContent = 
-                avgSavings.toLocaleString('en-US', {style: 'currency', currency: 'USD', maximumFractionDigits: 0});
-            
-            // Calculate comparison percentage (capped at 200% for display)
-            const comparisonPct = Math.min((userSavings / avgSavings) * 100, 200);
-            document.getElementById('savings-comparison').style.width = `${comparisonPct}%`;
-            
-            // Color code based on comparison
-            const progressBar = document.getElementById('savings-comparison');
-            if (userSavings > avgSavings * 1.5) {
-                progressBar.style.background = 'linear-gradient(to right, #4CAF50, #8BC34A)';
-            } else if (userSavings > avgSavings) {
-                progressBar.style.background = 'linear-gradient(to right, #FFC107, #FF9800)';
-            } else {
-                progressBar.style.background = 'linear-gradient(to right, #F44336, #E91E63)';
-            }
-        }
-        
+
         // Display random tip
         function showRandomTip() {
             const tipsContainer = document.getElementById('tips-container');
@@ -572,9 +832,9 @@
                 tipsContainer.removeChild(tipsContainer.lastChild);
             }
             
-            // Get 3 unique random tips
-            const shuffled = [...retirementTips].sort(() => 0.5 - Math.random());
-            const selectedTips = shuffled.slice(0, 3);
+            // Get 2 unique random tips
+            const shuffled = [...retirementData.tips].sort(() => 0.5 - Math.random());
+            const selectedTips = shuffled.slice(0, 2);
             
             // Create tip elements
             selectedTips.forEach(tip => {
@@ -587,18 +847,19 @@
                 tipsContainer.appendChild(tipElement);
             });
         }
-        
+
         // Share results
         function shareResults() {
             const yearsLeft = document.getElementById('years-left').textContent;
             const retirementAmount = document.getElementById('retirement-amount').textContent;
+            const lifestyle = document.querySelector('.lifestyle-option.active').textContent.trim();
             
-            const shareText = `My retirement countdown: ${yearsLeft} left to save ${retirementAmount}. Calculate yours!`;
+            const shareText = `My retirement plan: ${yearsLeft} left to save ${retirementAmount} for ${lifestyle} lifestyle. Plan yours!`;
             const shareUrl = window.location.href;
             
             if (navigator.share) {
                 navigator.share({
-                    title: 'Retirement Countdown',
+                    title: 'Retirement Plan',
                     text: shareText,
                     url: shareUrl
                 }).catch(err => {
@@ -609,7 +870,7 @@
                 fallbackShare(shareText, shareUrl);
             }
         }
-        
+
         // Fallback for browsers without Web Share API
         function fallbackShare(text, url) {
             const input = document.createElement('input');
@@ -621,34 +882,7 @@
             
             alert('Copied to clipboard! Paste to share.');
         }
-        
-        // Initialize
-        function init() {
-            createParticles();
-            calculateRetirement();
-            showRandomTip();
-            
-            // Update calculations when inputs change
-            document.querySelectorAll('input').forEach(input => {
-                input.addEventListener('input', calculateRetirement);
-            });
-            
-            // Add subtle animation to hourglass
-            setInterval(() => {
-                const hourglass = document.querySelector('.hourglass');
-                hourglass.style.transform = 'rotate(0.5deg)';
-                setTimeout(() => {
-                    hourglass.style.transform = 'rotate(-0.5deg)';
-                }, 500);
-            }, 1000);
-            
-            // Rotate tips every 15 seconds
-            setInterval(showRandomTip, 15000);
-            
-            // Set up share button
-            document.getElementById('share-btn').addEventListener('click', shareResults);
-        }
-        
+
         // Start the app
         init();
     </script>

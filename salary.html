@@ -7,7 +7,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-R4N9RB1SNN');
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
@@ -51,10 +50,18 @@ crossorigin="anonymous"></script>
             border-radius: 20px;
             box-shadow: 0 0 30px rgba(255, 223, 0, 0.2);
             backdrop-filter: blur(15px);
-            max-width: 800px;
+            max-width: 900px;
             width: 95%;
             margin: 2rem;
             position: relative;
+            transform: scale(0.95);
+            opacity: 0;
+            animation: containerEntrance 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes containerEntrance {
+            0% { transform: scale(0.95); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         /* Header Styles */
@@ -71,14 +78,35 @@ crossorigin="anonymous"></script>
             color: transparent;
             text-shadow: 0 0 15px rgba(0, 255, 135, 0.3);
             margin-bottom: 1rem;
+            font-size: 2.2rem;
         }
 
         /* Currency Selector */
         .currency-selector {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 1rem;
             margin-bottom: 2rem;
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 10px;
+            scrollbar-width: thin;
+            scrollbar-color: #00ff87 #1a1a1a;
+        }
+
+        .currency-selector::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .currency-selector::-webkit-scrollbar-track {
+            background: #1a1a1a;
+            border-radius: 10px;
+        }
+
+        .currency-selector::-webkit-scrollbar-thumb {
+            background-color: #00ff87;
+            border-radius: 10px;
         }
 
         .currency-flag {
@@ -86,18 +114,29 @@ crossorigin="anonymous"></script>
             height: 50px;
             border-radius: 50%;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
             border: 2px solid transparent;
+            object-fit: cover;
+            filter: grayscale(30%);
         }
 
         .currency-flag:hover {
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(10deg);
             box-shadow: 0 0 15px currentColor;
+            filter: grayscale(0%);
         }
 
         .currency-flag.active {
             border-color: #00ff87;
             box-shadow: 0 0 20px #00ff87;
+            filter: grayscale(0%);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 10px #00ff87; }
+            50% { box-shadow: 0 0 25px #00ff87; }
+            100% { box-shadow: 0 0 10px #00ff87; }
         }
 
         /* Input Section */
@@ -106,17 +145,22 @@ crossorigin="anonymous"></script>
             text-align: center;
         }
 
+        .salary-input-container {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
         .salary-input {
             font-size: 1.2rem;
-            padding: 1rem;
+            padding: 1rem 1rem 1rem 3rem;
             border: 2px solid #00ff87;
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.1);
             color: white;
             width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
             transition: all 0.3s;
+            font-family: 'Orbitron', sans-serif;
         }
 
         .salary-input:focus {
@@ -124,39 +168,105 @@ crossorigin="anonymous"></script>
             outline: none;
         }
 
+        .currency-symbol {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Orbitron', sans-serif;
+            color: #00ff87;
+            font-weight: bold;
+            pointer-events: none;
+        }
+
+        .frequency-selector {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .frequency-btn {
+            background: rgba(0, 255, 135, 0.2);
+            color: white;
+            border: 1px solid #00ff87;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .frequency-btn.active {
+            background: #00ff87;
+            color: #1a1a1a;
+            font-weight: bold;
+            box-shadow: 0 0 15px #00ff87;
+        }
+
+        .frequency-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px #00ff87;
+        }
+
         /* Results Display */
         .results-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
             margin-top: 2rem;
         }
 
         .result-card {
             background: rgba(255, 255, 255, 0.05);
             padding: 1.5rem;
-            border-radius: 10px;
+            border-radius: 15px;
             border: 1px solid rgba(0, 255, 135, 0.2);
             transition: all 0.3s;
             position: relative;
+            overflow: hidden;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #00ff87, #60efff);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
         }
 
         .result-card:hover {
-            transform: translateY(-5px);
-            background: rgba(0, 255, 135, 0.05);
-            box-shadow: 0 0 15px rgba(0, 255, 135, 0.2);
+            transform: translateY(-10px);
+            background: rgba(0, 255, 135, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 255, 135, 0.2);
+        }
+
+        .result-card:hover::before {
+            transform: scaleX(1);
         }
 
         .time-unit {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: #00ff87;
             margin-bottom: 0.5rem;
+            font-weight: 600;
         }
 
         .amount {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.2rem;
             color: #60efff;
+            word-break: break-word;
+            line-height: 1.3;
         }
 
         /* Engagement Features */
@@ -168,32 +278,110 @@ crossorigin="anonymous"></script>
             padding: 1rem;
             border-radius: 10px;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: all 0.3s;
+            border: 1px solid #00ff87;
+            box-shadow: 0 0 15px rgba(0, 255, 135, 0.3);
+            z-index: 100;
         }
 
         .fortune-cookie:hover {
             transform: rotate(10deg) scale(1.1);
+            box-shadow: 0 0 25px #00ff87;
         }
 
         .progress-bar {
             height: 5px;
-            background: #00ff87;
+            background: linear-gradient(90deg, #00ff87, #60efff);
             position: fixed;
             top: 0;
             left: 0;
             transition: width 0.5s;
+            z-index: 1000;
         }
 
-        /* Animations */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+        /* Floating Coins Animation */
+        .floating-coins {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .coin {
+            position: absolute;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FFD700"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="8" fill="%23FFC000"/><text x="12" y="16" font-family="Arial" font-size="8" text-anchor="middle" fill="%23800000">$</text></svg>');
+            background-size: contain;
+            width: 30px;
+            height: 30px;
+            opacity: 0;
+            animation: floatUp 4s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .results-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            }
+            
+            .currency-flag {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .amount {
+                font-size: 1rem;
+            }
+        }
+
+        /* Sparkle Animation */
+        .sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            animation: sparkle 1s ease-out;
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(0); opacity: 0; }
         }
     </style>
 </head>
 <body>
     <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- Floating coins background -->
+    <div class="floating-coins" id="floatingCoins"></div>
     
     <div class="container">
         <div class="header">
@@ -201,18 +389,40 @@ crossorigin="anonymous"></script>
             
             <!-- Currency Selector -->
             <div class="currency-selector" id="currencySelector">
-                <img src="https://flagcdn.com/24x18/us.png" class="currency-flag active" data-currency="USD" alt="USD">
-                <img src="https://flagcdn.com/24x18/pk.png" class="currency-flag" data-currency="PKR" alt="PKR">
-                <img src="https://flagcdn.com/24x18/ae.png" class="currency-flag" data-currency="AED" alt="AED">
-                <img src="https://flagcdn.com/24x18/jp.png" class="currency-flag" data-currency="JPY" alt="JPY">
-                <img src="https://flagcdn.com/24x18/gb.png" class="currency-flag" data-currency="GBP" alt="GBP">
-                <img src="https://flagcdn.com/24x18/eu.png" class="currency-flag" data-currency="EUR" alt="EUR">
+                <img src="https://flagcdn.com/24x18/us.png" class="currency-flag active" data-currency="USD" alt="USD" title="US Dollar">
+                <img src="https://flagcdn.com/24x18/pk.png" class="currency-flag" data-currency="PKR" alt="PKR" title="Pakistani Rupee">
+                <img src="https://flagcdn.com/24x18/ae.png" class="currency-flag" data-currency="AED" alt="AED" title="UAE Dirham">
+                <img src="https://flagcdn.com/24x18/jp.png" class="currency-flag" data-currency="JPY" alt="JPY" title="Japanese Yen">
+                <img src="https://flagcdn.com/24x18/gb.png" class="currency-flag" data-currency="GBP" alt="GBP" title="British Pound">
+                <img src="https://flagcdn.com/24x18/eu.png" class="currency-flag" data-currency="EUR" alt="EUR" title="Euro">
+                <img src="https://flagcdn.com/24x18/ca.png" class="currency-flag" data-currency="CAD" alt="CAD" title="Canadian Dollar">
+                <img src="https://flagcdn.com/24x18/au.png" class="currency-flag" data-currency="AUD" alt="AUD" title="Australian Dollar">
+                <img src="https://flagcdn.com/24x18/in.png" class="currency-flag" data-currency="INR" alt="INR" title="Indian Rupee">
+                <img src="https://flagcdn.com/24x18/cn.png" class="currency-flag" data-currency="CNY" alt="CNY" title="Chinese Yuan">
+                <img src="https://flagcdn.com/24x18/sg.png" class="currency-flag" data-currency="SGD" alt="SGD" title="Singapore Dollar">
+                <img src="https://flagcdn.com/24x18/ch.png" class="currency-flag" data-currency="CHF" alt="CHF" title="Swiss Franc">
+                <img src="https://flagcdn.com/24x18/nz.png" class="currency-flag" data-currency="NZD" alt="NZD" title="New Zealand Dollar">
+                <img src="https://flagcdn.com/24x18/br.png" class="currency-flag" data-currency="BRL" alt="BRL" title="Brazilian Real">
+                <img src="https://flagcdn.com/24x18/za.png" class="currency-flag" data-currency="ZAR" alt="ZAR" title="South African Rand">
+                <img src="https://flagcdn.com/24x18/ru.png" class="currency-flag" data-currency="RUB" alt="RUB" title="Russian Ruble">
+                <img src="https://flagcdn.com/24x18/mx.png" class="currency-flag" data-currency="MXN" alt="MXN" title="Mexican Peso">
+                <img src="https://flagcdn.com/24x18/kr.png" class="currency-flag" data-currency="KRW" alt="KRW" title="South Korean Won">
             </div>
 
             <!-- Salary Input -->
             <div class="input-section">
-                <input type="number" class="salary-input" id="salaryInput" 
-                       placeholder="Enter annual salary" step="1000" min="0">
+                <div class="salary-input-container">
+                    <span class="currency-symbol" id="currencySymbol">$</span>
+                    <input type="number" class="salary-input" id="salaryInput" 
+                           placeholder="Enter your salary" step="100" min="0">
+                </div>
+                
+                <div class="frequency-selector">
+                    <button class="frequency-btn active" data-frequency="yearly">Yearly</button>
+                    <button class="frequency-btn" data-frequency="monthly">Monthly</button>
+                    <button class="frequency-btn" data-frequency="weekly">Weekly</button>
+                    <button class="frequency-btn" data-frequency="hourly">Hourly</button>
+                </div>
             </div>
         </div>
 
@@ -237,7 +447,41 @@ crossorigin="anonymous"></script>
             AED: 3.67,
             JPY: 157.32,
             GBP: 0.79,
-            EUR: 0.93
+            EUR: 0.93,
+            CAD: 1.36,
+            AUD: 1.50,
+            INR: 83.30,
+            CNY: 7.23,
+            SGD: 1.35,
+            CHF: 0.89,
+            NZD: 1.63,
+            BRL: 5.05,
+            ZAR: 18.75,
+            RUB: 92.45,
+            MXN: 17.25,
+            KRW: 1350.50
+        };
+
+        // Currency Symbols
+        const currencySymbols = {
+            USD: '$',
+            PKR: '₨',
+            AED: 'د.إ',
+            JPY: '¥',
+            GBP: '£',
+            EUR: '€',
+            CAD: '$',
+            AUD: '$',
+            INR: '₹',
+            CNY: '¥',
+            SGD: '$',
+            CHF: 'CHF',
+            NZD: '$',
+            BRL: 'R$',
+            ZAR: 'R',
+            RUB: '₽',
+            MXN: '$',
+            KRW: '₩'
         };
 
         // Fortune Messages
@@ -246,7 +490,12 @@ crossorigin="anonymous"></script>
             "Financial wisdom: Save first, spend later.",
             "Your time is your most valuable asset!",
             "Small daily savings grow into fortunes.",
-            "Wealth is built one second at a time! 🌟"
+            "Wealth is built one second at a time! 🌟",
+            "Money grows on the tree of patience.",
+            "A penny saved is a penny earned.",
+            "Time is money - calculate it wisely!",
+            "Financial freedom starts with awareness.",
+            "Watch your pennies and the dollars will follow."
         ];
 
         // ================
@@ -257,17 +506,51 @@ crossorigin="anonymous"></script>
             currencyFlags: document.querySelectorAll('.currency-flag'),
             resultsGrid: document.getElementById('resultsGrid'),
             progressBar: document.getElementById('progressBar'),
-            fortuneCookie: document.getElementById('fortuneCookie')
+            fortuneCookie: document.getElementById('fortuneCookie'),
+            currencySymbol: document.getElementById('currencySymbol'),
+            frequencyBtns: document.querySelectorAll('.frequency-btn'),
+            floatingCoins: document.getElementById('floatingCoins')
         };
+
+        // State
+        let currentFrequency = 'yearly';
 
         // ================
         // EVENT LISTENERS
         // ================
         elements.currencyFlags.forEach(flag => {
             flag.addEventListener('click', () => selectCurrency(flag));
+            flag.addEventListener('click', createSparkle);
         });
 
         elements.salaryInput.addEventListener('input', updateCalculations);
+        elements.salaryInput.addEventListener('focus', () => {
+            elements.salaryInput.style.boxShadow = '0 0 20px #00ff87';
+        });
+        elements.salaryInput.addEventListener('blur', () => {
+            elements.salaryInput.style.boxShadow = 'none';
+        });
+
+        elements.frequencyBtns.forEach(btn => {
+            btn.addEventListener('click', () => selectFrequency(btn));
+        });
+
+        // Create floating coins on mouse move
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.9) {
+                createFloatingCoin(e.clientX, e.clientY);
+            }
+        });
+
+        // Create initial floating coins
+        for (let i = 0; i < 20; i++) {
+            setTimeout(() => {
+                createFloatingCoin(
+                    Math.random() * window.innerWidth,
+                    Math.random() * window.innerHeight
+                );
+            }, i * 300);
+        }
 
         // ================
         // CORE FUNCTIONS
@@ -277,6 +560,16 @@ crossorigin="anonymous"></script>
         function selectCurrency(flag) {
             elements.currencyFlags.forEach(f => f.classList.remove('active'));
             flag.classList.add('active');
+            const currency = flag.dataset.currency;
+            elements.currencySymbol.textContent = currencySymbols[currency] || '$';
+            updateCalculations();
+        }
+
+        // Frequency Selection
+        function selectFrequency(btn) {
+            elements.frequencyBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentFrequency = btn.dataset.frequency;
             updateCalculations();
         }
 
@@ -288,14 +581,34 @@ crossorigin="anonymous"></script>
             // Convert to USD first
             const usdAmount = salary / exchangeRates[currency];
             
+            // Adjust based on frequency
+            let annualUsdAmount;
+            switch(currentFrequency) {
+                case 'yearly':
+                    annualUsdAmount = usdAmount;
+                    break;
+                case 'monthly':
+                    annualUsdAmount = usdAmount * 12;
+                    break;
+                case 'weekly':
+                    annualUsdAmount = usdAmount * 52;
+                    break;
+                case 'hourly':
+                    annualUsdAmount = usdAmount * 2080; // 40 hours/week * 52 weeks
+                    break;
+                default:
+                    annualUsdAmount = usdAmount;
+            }
+
             // Calculate time-based values
             const calculations = {
-                'Year': usdAmount,
-                'Month': usdAmount / 12,
-                'Day': usdAmount / 365,
-                'Hour': (usdAmount / 365) / 24,
-                'Minute': ((usdAmount / 365) / 24) / 60,
-                'Second': (((usdAmount / 365) / 24) / 60) / 60
+                'Year': annualUsdAmount,
+                'Month': annualUsdAmount / 12,
+                'Week': annualUsdAmount / 52,
+                'Day': annualUsdAmount / 365,
+                'Hour': (annualUsdAmount / 365) / 24,
+                'Minute': ((annualUsdAmount / 365) / 24) / 60,
+                'Second': (((annualUsdAmount / 365) / 24) / 60) / 60
             };
 
             // Update Display
@@ -311,11 +624,25 @@ crossorigin="anonymous"></script>
                 const convertedValue = value * exchangeRates[currency];
                 const card = document.createElement('div');
                 card.className = 'result-card';
+                
+                // Format the amount to fit in the card
+                let displayValue;
+                if (convertedValue >= 1000000) {
+                    displayValue = formatCompactCurrency(convertedValue, currency);
+                } else {
+                    displayValue = formatCurrency(convertedValue, currency);
+                }
+                
                 card.innerHTML = `
                     <div class="time-unit">Per ${unit}</div>
-                    <div class="amount">${formatCurrency(convertedValue, currency)}</div>
+                    <div class="amount">${displayValue}</div>
                 `;
                 elements.resultsGrid.appendChild(card);
+                
+                // Add hover animation
+                card.addEventListener('mouseenter', () => {
+                    createSparkleOnElement(card);
+                });
             });
         }
 
@@ -325,18 +652,86 @@ crossorigin="anonymous"></script>
 
         // Progress Bar Animation
         function updateProgressBar(salary) {
-            const maxSalary = 1000000; // Adjust based on target audience
+            const maxSalary = currentFrequency === 'yearly' ? 1000000 : 
+                             currentFrequency === 'monthly' ? 100000 : 
+                             currentFrequency === 'weekly' ? 25000 : 500;
             const widthPercentage = Math.min((salary / maxSalary) * 100, 100);
             elements.progressBar.style.width = `${widthPercentage}%`;
+            
+            // Change color based on percentage
+            if (widthPercentage > 80) {
+                elements.progressBar.style.background = 'linear-gradient(90deg, #00ff87, #ff5e62)';
+            } else if (widthPercentage > 50) {
+                elements.progressBar.style.background = 'linear-gradient(90deg, #00ff87, #ffd700)';
+            } else {
+                elements.progressBar.style.background = 'linear-gradient(90deg, #00ff87, #60efff)';
+            }
         }
 
         // Fortune Cookie Interaction
         function showFortune() {
             const message = fortunes[Math.floor(Math.random() * fortunes.length)];
             elements.fortuneCookie.textContent = message;
+            elements.fortuneCookie.style.backgroundColor = 'rgba(0, 255, 135, 0.3)';
+            
+            // Create sparkles
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    createSparkleOnElement(elements.fortuneCookie);
+                }, i * 200);
+            }
+            
             setTimeout(() => {
                 elements.fortuneCookie.textContent = "🎉 Click for More Wisdom!";
-            }, 3000);
+                elements.fortuneCookie.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+            }, 4000);
+        }
+
+        // Create floating coin animation
+        function createFloatingCoin(x, y) {
+            const coin = document.createElement('div');
+            coin.className = 'coin';
+            coin.style.left = `${x}px`;
+            coin.style.top = `${y}px`;
+            coin.style.animationDelay = `${Math.random() * 2}s`;
+            elements.floatingCoins.appendChild(coin);
+            
+            // Remove coin after animation
+            setTimeout(() => {
+                coin.remove();
+            }, 4000);
+        }
+
+        // Create sparkle effect
+        function createSparkle(e) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = `${e.clientX}px`;
+            sparkle.style.top = `${e.clientY}px`;
+            sparkle.style.backgroundColor = `hsl(${Math.random() * 60 + 150}, 100%, 70%)`;
+            document.body.appendChild(sparkle);
+            
+            // Remove sparkle after animation
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1000);
+        }
+
+        function createSparkleOnElement(element) {
+            const rect = element.getBoundingClientRect();
+            for (let i = 0; i < 5; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = `${rect.left + Math.random() * rect.width}px`;
+                sparkle.style.top = `${rect.top + Math.random() * rect.height}px`;
+                sparkle.style.backgroundColor = `hsl(${Math.random() * 60 + 150}, 100%, 70%)`;
+                document.body.appendChild(sparkle);
+                
+                // Remove sparkle after animation
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1000);
+            }
         }
 
         // ================
@@ -348,8 +743,28 @@ crossorigin="anonymous"></script>
                 style: 'currency',
                 currency: currency,
                 minimumFractionDigits: 2,
-                maximumFractionDigits: currency === 'JPY' ? 0 : 2
+                maximumFractionDigits: currency === 'JPY' || currency === 'KRW' ? 0 : 2
             }).format(amount);
+        }
+
+        function formatCompactCurrency(amount, currency) {
+            if (amount >= 1000000000) {
+                return new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: currency,
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                    notation: 'compact',
+                    compactDisplay: 'short'
+                }).format(amount);
+            } else {
+                return new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: currency,
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0
+                }).format(amount);
+            }
         }
 
         // Initial Calculation

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculate your lifetime steps and walking distance. Enter your birth date and average daily steps to discover how far you've walked in your life.">
+    <meta name="keywords" content="step calculator, walking distance, lifetime steps, health calculator, fitness tracker, steps to kilometers, walking statistics">
+    <meta name="author" content="Lifetime Steps Calculator">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Lifetime Steps Calculator | Discover Your Walking Journey">
+    <meta property="og:description" content="Calculate how many steps you've taken in your lifetime and how far you've walked since birth.">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://yourwebsite.com/lifetime-steps-calculator">
+    
+    <title>Lifetime Steps Calculator | Discover Your Walking Journey Since Birth</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fredoka+One&display=swap');
+        
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --accent: #fd79a8;
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+            opacity: 0.1;
+            z-index: -1;
+            animation: rotate 30s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        h1 {
+            font-family: 'Fredoka One', cursive;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .intro-text {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            animation: slideIn 0.6s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        
+        input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+        }
+        
+        button {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(108, 92, 231, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        .result {
+            margin-top: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.1) 0%, rgba(162, 155, 254, 0.1) 100%);
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .result-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .result-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+        
+        .result-label {
+            font-size: 1rem;
+            color: var(--dark);
+            opacity: 0.8;
+        }
+        
+        .footsteps {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            opacity: 0.6;
+            animation: footsteps 3s linear infinite;
+            z-index: -1;
+        }
+        
+        @keyframes footsteps {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent);
+            opacity: 0;
+            z-index: 10;
+        }
+        
+        .seo-content {
+            margin-top: 40px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .seo-content h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .seo-content p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lifetime Steps Calculator</h1>
+        
+        <p class="intro-text">Discover how many steps you've taken in your lifetime and how far you've walked since the day you were born. Just enter your birth date and average daily steps below.</p>
+        
+        <div class="form-group">
+            <label for="dob">Your Date of Birth</label>
+            <input type="date" id="dob" required aria-label="Enter your date of birth">
+        </div>
+        
+        <div class="form-group">
+            <label for="steps">Your Daily Average Steps</label>
+            <input type="number" id="steps" min="100" max="50000" placeholder="e.g., 7500" required aria-label="Enter your daily average steps">
+        </div>
+        
+        <button id="calculate" aria-label="Calculate lifetime steps">Calculate My Lifetime Steps</button>
+        
+        <div class="result" id="result">
+            <h2>Your Walking Journey</h2>
+            
+            <div class="result-item">
+                <div class="result-value" id="total-days">0</div>
+                <div class="result-label">Days of Walking</div>
+            </div>
+            
+            <div class="result-item">
+                <div class="result-value" id="total-steps">0</div>
+                <div class="result-label">Total Steps Taken</div>
+            </div>
+            
+            <div class="result-item">
+                <div class="result-value" id="total-km">0</div>
+                <div class="result-label">Kilometers Walked</div>
+            </div>
+            
+            <div class="result-item">
+                <div class="result-value" id="total-marathons">0</div>
+                <div class="result-label">Marathons Equivalent</div>
+            </div>
+        </div>
+        
+        <div class="seo-content">
+            <h3>About the Lifetime Steps Calculator</h3>
+            <p>Our lifetime steps calculator helps you estimate how many steps you've taken since birth based on your average daily walking habits. This fun health calculator provides interesting insights into your walking journey throughout your life.</p>
+            
+            <h3>How the Calculation Works</h3>
+            <p>The calculator determines the number of days you've been alive since your birth date, then multiplies that by your average daily steps. It converts your total steps to kilometers using the average step length of 0.000762 km (about 2.5 feet per step). For perspective, it also shows how many marathons (42.195 km each) your walking distance equals.</p>
+            
+            <h3>Why Track Your Steps?</h3>
+            <p>Walking is one of the simplest yet most effective forms of exercise. The average person takes between 3,000-4,000 steps per day just going about their normal activities. Increasing your daily steps can significantly improve cardiovascular health, maintain healthy weight, and boost mental wellbeing.</p>
+        </div>
+    </div>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Lifetime Steps Calculator",
+      "description": "Calculate how many steps you've taken in your lifetime and how far you've walked since birth.",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create animated footsteps
+            createFootsteps();
+            
+            // Calculate button click event
+            document.getElementById('calculate').addEventListener('click', calculateLifetimeSteps);
+        });
+        
+        function createFootsteps() {
+            const colors = ['#6c5ce7', '#a29bfe', '#fd79a8', '#00cec9'];
+            const container = document.querySelector('.container');
+            
+            for (let i = 0; i < 15; i++) {
+                const footstep = document.createElement('div');
+                footstep.className = 'footsteps';
+                footstep.innerHTML = '👣';
+                footstep.style.left = Math.random() * 100 + '%';
+                footstep.style.top = Math.random() * 100 + '%';
+                footstep.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                footstep.style.animationDelay = Math.random() * 5 + 's';
+                footstep.style.animationDuration = (Math.random() * 5 + 3) + 's';
+                container.appendChild(footstep);
+            }
+        }
+        
+        function createConfetti() {
+            const container = document.querySelector('.container');
+            const colors = ['#6c5ce7', '#a29bfe', '#fd79a8', '#00cec9', '#55efc4', '#ffeaa7'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                
+                const animationDuration = Math.random() * 3 + 2;
+                confetti.style.animation = `fall ${animationDuration}s linear forwards`;
+                
+                container.appendChild(confetti);
+                
+                // Animate confetti
+                setTimeout(() => {
+                    confetti.style.opacity = '1';
+                    confetti.style.top = '100%';
+                    confetti.style.transform = `rotate(${Math.random() * 720}deg)`;
+                    
+                    // Remove confetti after animation
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, animationDuration * 1000);
+                }, 10);
+            }
+            
+            // Add CSS for confetti animation
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes fall {
+                    to {
+                        top: 100%;
+                        opacity: 0;
+                        transform: rotate(720deg);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        function calculateLifetimeSteps() {
+            const dobInput = document.getElementById('dob');
+            const stepsInput = document.getElementById('steps');
+            const resultDiv = document.getElementById('result');
+            
+            if (!dobInput.value || !stepsInput.value) {
+                alert('Please enter both your date of birth and daily average steps.');
+                return;
+            }
+            
+            const dob = new Date(dobInput.value);
+            const today = new Date();
+            const dailySteps = parseInt(stepsInput.value);
+            
+            if (dob >= today) {
+                alert('Please enter a valid date of birth in the past.');
+                return;
+            }
+            
+            if (dailySteps < 100 || dailySteps > 50000) {
+                alert('Please enter a reasonable number of daily steps (100-50,000).');
+                return;
+            }
+            
+            // Calculate days lived
+            const diffTime = Math.abs(today - dob);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            // Calculate total steps
+            const totalSteps = diffDays * dailySteps;
+            
+            // Calculate kilometers (average step length is about 0.000762 km for an adult)
+            const stepLengthKm = 0.000762;
+            const totalKm = totalSteps * stepLengthKm;
+            
+            // Calculate marathons equivalent (a marathon is 42.195 km)
+            const marathons = totalKm / 42.195;
+            
+            // Animate the results
+            animateValue('total-days', 0, diffDays, 1500);
+            animateValue('total-steps', 0, totalSteps, 2000);
+            animateValue('total-km', 0, Math.round(totalKm), 2000);
+            animateValue('total-marathons', 0, marathons.toFixed(1), 2000);
+            
+            // Show results
+            resultDiv.style.display = 'block';
+            
+            // Create celebration confetti
+            createConfetti();
+        }
+        
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                
+                // Format numbers with commas
+                obj.innerHTML = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+    </script>
+</body>
+</html>

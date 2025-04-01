@@ -1,22 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-R4N9RB1SNN');
-</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
-crossorigin="anonymous"></script>
-<meta charset="UTF-8">
+  <!-- Primary Meta Tags -->
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Time Wasted on Social Media Calculator</title>
+  <title>Time Wasted on Social Media Calculator | Track & Reduce Usage</title>
+  <meta name="description" content="Calculate how much time you waste on social media and discover ways to be more productive. Learn how to reduce screen time and improve your life.">
+  <meta name="keywords" content="social media calculator, time wasted, screen time, productivity, digital detox, time management">
+  <meta name="author" content="Your Name or Company">
+  
+  <!-- Open Graph / Facebook Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yourwebsite.com/social-media-calculator">
+  <meta property="og:title" content="Time Wasted on Social Media Calculator | Track & Reduce Usage">
+  <meta property="og:description" content="Calculate how much time you waste on social media and discover ways to be more productive. Learn how to reduce screen time and improve your life.">
+  <meta property="og:image" content="https://yourwebsite.com/images/social-media-calculator-preview.jpg">
+  
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://yourwebsite.com/social-media-calculator">
+  <meta name="twitter:title" content="Time Wasted on Social Media Calculator | Track & Reduce Usage">
+  <meta name="twitter:description" content="Calculate how much time you waste on social media and discover ways to be more productive. Learn how to reduce screen time and improve your life.">
+  <meta name="twitter:image" content="https://yourwebsite.com/images/social-media-calculator-preview.jpg">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://yourwebsite.com/social-media-calculator">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-R4N9RB1SNN');
+  </script>
+  
+  <!-- Google Ads -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
+  
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<style>
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Time Wasted on Social Media Calculator",
+    "description": "Calculate how much time you waste on social media and discover ways to be more productive.",
+    "url": "https://yourwebsite.com/social-media-calculator",
+    "applicationCategory": "ProductivityApplication",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  
+  <style>
     body {
       font-family: 'Arial', sans-serif;
       background: linear-gradient(135deg, #1e3c72, #2a5298);
@@ -27,6 +73,7 @@ crossorigin="anonymous"></script>
       min-height: 100vh;
       margin: 0;
       padding: 20px;
+      line-height: 1.6;
     }
     .container {
       background: rgba(255, 255, 255, 0.1);
@@ -158,49 +205,93 @@ crossorigin="anonymous"></script>
       from { opacity: 0; }
       to { opacity: 1; }
     }
+    
+    /* Semantic HTML improvements */
+    main {
+      display: contents; /* Allows the container to be treated as main content */
+    }
+    
+    /* Accessibility improvements */
+    a:focus, button:focus {
+      outline: 2px solid #ff6f61;
+      outline-offset: 2px;
+    }
+    
+    /* Print styles */
+    @media print {
+      body {
+        background: white;
+        color: black;
+      }
+      .container {
+        background: white;
+        box-shadow: none;
+        backdrop-filter: none;
+      }
+      .tips, .resources {
+        background: #f9f9f9;
+      }
+      a::after {
+        content: " (" attr(href) ")";
+        font-size: smaller;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>⏳ Time Wasted on Social Media Calculator</h1>
-    <label for="hours">Daily Social Media Usage (in hours):</label>
-    <input type="number" id="hours" placeholder="Enter hours per day">
-    <button onclick="calculateTimeWasted()">Calculate</button>
-    <div class="result" id="result"></div>
-    <div class="comparison" id="comparison"></div>
-    <div class="progress">
-      <div>Your Progress Toward Reducing Time:</div>
-      <div class="progress-bar">
-        <div class="progress-bar-fill" id="progressBar"></div>
-      </div>
-    </div>
-    <div class="challenge" id="challenge"></div>
-    <canvas id="timeChart"></canvas>
+    <main>
+      <h1>⏳ Time Wasted on Social Media Calculator</h1>
+      <p>Discover how much of your life you're spending on social platforms and learn how to reclaim your time.</p>
+      
+      <form onsubmit="calculateTimeWasted(); return false;">
+        <label for="hours">Daily Social Media Usage (in hours):</label>
+        <input type="number" id="hours" placeholder="Enter hours per day" aria-label="Enter your daily social media usage in hours">
+        <button type="submit">Calculate</button>
+      </form>
+      
+      <section class="result" id="result" aria-live="polite"></section>
+      <section class="comparison" id="comparison" aria-live="polite"></section>
+      
+      <section class="progress">
+        <h2>Your Progress Toward Reducing Time:</h2>
+        <div class="progress-bar">
+          <div class="progress-bar-fill" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </section>
+      
+      <section class="challenge" id="challenge" aria-live="polite"></section>
+      
+      <figure>
+        <canvas id="timeChart" aria-label="Visual representation of time wasted on social media"></canvas>
+        <figcaption>Visual breakdown of time spent on social media</figcaption>
+      </figure>
 
-    <!-- Tips Section -->
-    <div class="tips">
-      <h2>📌 Why Excessive Social Media Usage is Harmful:</h2>
-      <ul>
-        <li>📉 <strong>Reduces Productivity:</strong> Hours spent scrolling could be used for learning or achieving goals.</li>
-        <li>😔 <strong>Increases Anxiety and Depression:</strong> Constant comparison with others can harm mental health.</li>
-        <li>🛑 <strong>Disrupts Sleep:</strong> Blue light from screens affects sleep quality.</li>
-        <li>👥 <strong>Weakens Real-Life Relationships:</strong> Overuse can lead to neglecting face-to-face interactions.</li>
-        <li>🧠 <strong>Impairs Focus:</strong> Constant notifications reduce attention span.</li>
-      </ul>
-    </div>
+      <!-- Tips Section -->
+      <section class="tips">
+        <h2>📌 Why Excessive Social Media Usage is Harmful:</h2>
+        <ul>
+          <li>📉 <strong>Reduces Productivity:</strong> Hours spent scrolling could be used for learning or achieving goals.</li>
+          <li>😔 <strong>Increases Anxiety and Depression:</strong> Constant comparison with others can harm mental health.</li>
+          <li>🛑 <strong>Disrupts Sleep:</strong> Blue light from screens affects sleep quality.</li>
+          <li>👥 <strong>Weakens Real-Life Relationships:</strong> Overuse can lead to neglecting face-to-face interactions.</li>
+          <li>🧠 <strong>Impairs Focus:</strong> Constant notifications reduce attention span.</li>
+        </ul>
+      </section>
 
-    <!-- Resources Section -->
-    <div class="resources">
-      <h2>🚀 Learn Useful Skills Instead:</h2>
-      <ul>
-        <li>🎓 <a href="https://www.coursera.org" target="_blank">Coursera</a> - Learn from top universities and organizations.</li>
-        <li>💻 <a href="https://www.udemy.com" target="_blank">Udemy</a> - Affordable courses on a wide range of topics.</li>
-        <li>📚 <a href="https://www.khanacademy.org" target="_blank">Khan Academy</a> - Free educational resources for all ages.</li>
-        <li>🎨 <a href="https://www.skillshare.com" target="_blank">Skillshare</a> - Creative courses on design, art, and more.</li>
-        <li>🌐 <a href="https://www.freecodecamp.org" target="_blank">freeCodeCamp</a> - Learn coding for free.</li>
-        <li>🧠 <a href="https://www.duolingo.com" target="_blank">Duolingo</a> - Learn a new language for free.</li>
-      </ul>
-    </div>
+      <!-- Resources Section -->
+      <section class="resources">
+        <h2>🚀 Learn Useful Skills Instead:</h2>
+        <ul>
+          <li>🎓 <a href="https://www.coursera.org" target="_blank" rel="noopener noreferrer">Coursera</a> - Learn from top universities and organizations.</li>
+          <li>💻 <a href="https://www.udemy.com" target="_blank" rel="noopener noreferrer">Udemy</a> - Affordable courses on a wide range of topics.</li>
+          <li>📚 <a href="https://www.khanacademy.org" target="_blank" rel="noopener noreferrer">Khan Academy</a> - Free educational resources for all ages.</li>
+          <li>🎨 <a href="https://www.skillshare.com" target="_blank" rel="noopener noreferrer">Skillshare</a> - Creative courses on design, art, and more.</li>
+          <li>🌐 <a href="https://www.freecodecamp.org" target="_blank" rel="noopener noreferrer">freeCodeCamp</a> - Learn coding for free.</li>
+          <li>🧠 <a href="https://www.duolingo.com" target="_blank" rel="noopener noreferrer">Duolingo</a> - Learn a new language for free.</li>
+        </ul>
+      </section>
+    </main>
   </div>
 
   <script>
@@ -258,7 +349,9 @@ crossorigin="anonymous"></script>
       const maxHours = 10; // Assume 10 hours is the max for progress calculation
       progress = ((maxHours - hoursPerDay) / maxHours) * 100;
       if (progress < 0) progress = 0;
-      document.getElementById('progressBar').style.width = `${progress}%`;
+      const progressBar = document.getElementById('progressBar');
+      progressBar.style.width = `${progress}%`;
+      progressBar.setAttribute('aria-valuenow', progress);
     }
 
     function generateChallenge() {
@@ -330,6 +423,12 @@ crossorigin="anonymous"></script>
         }
       });
     }
+    
+    // Initialize with default values for better SEO
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('hours').value = '2'; // Default value
+      calculateTimeWasted();
+    });
   </script>
 </body>
 </html>

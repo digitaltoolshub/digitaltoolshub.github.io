@@ -1,19 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-R4N9RB1SNN');
-</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
-crossorigin="anonymous"></script>
-<meta charset="UTF-8">
+    <!-- Primary Meta Tags -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌍 Multi-Currency Earnings Calculator</title>
+    <meta name="description" content="Convert your salary across 18 currencies and see your earnings per year, month, week, day, hour, minute, and second. Global earnings calculator for financial planning.">
+    <meta name="keywords" content="salary calculator, currency converter, earnings calculator, income calculator, financial planning, money converter">
+    <meta name="author" content="Global Earnings Calculator">
+    
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="🌍 Multi-Currency Earnings Calculator | Convert Your Salary">
+    <meta property="og:description" content="See what your salary equals in different currencies and time periods. Calculate earnings per second to per year in 18 global currencies.">
+    <meta property="og:url" content="https://yourapp.com">
+    <meta property="og:image" content="https://yourapp.com/preview-image.jpg">
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🌍 Multi-Currency Earnings Calculator | Convert Your Salary">
+    <meta name="twitter:description" content="See what your salary equals in different currencies and time periods. Calculate earnings per second to per year in 18 global currencies.">
+    <meta name="twitter:image" content="https://yourapp.com/preview-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourapp.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Multi-Currency Earnings Calculator",
+      "description": "Tool to convert salary amounts between different currencies and time periods",
+      "url": "https://yourapp.com",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-R4N9RB1SNN');
+    </script>
+    
+    <!-- Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
+    
+    <title>🌍 Multi-Currency Earnings Calculator | Convert Salary to 18 Currencies</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;600&display=swap" as="style">
+    <link rel="preload" href="https://flagcdn.com/24x18/us.png" as="image">
+    
     <style>
         /* Base Styles */
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;600&display=swap');
@@ -414,26 +464,26 @@ crossorigin="anonymous"></script>
                 <div class="salary-input-container">
                     <span class="currency-symbol" id="currencySymbol">$</span>
                     <input type="number" class="salary-input" id="salaryInput" 
-                           placeholder="Enter your salary" step="100" min="0">
+                           placeholder="Enter your salary" step="100" min="0" aria-label="Enter your salary amount">
                 </div>
                 
-                <div class="frequency-selector">
-                    <button class="frequency-btn active" data-frequency="yearly">Yearly</button>
-                    <button class="frequency-btn" data-frequency="monthly">Monthly</button>
-                    <button class="frequency-btn" data-frequency="weekly">Weekly</button>
-                    <button class="frequency-btn" data-frequency="hourly">Hourly</button>
+                <div class="frequency-selector" role="group" aria-label="Salary frequency selection">
+                    <button class="frequency-btn active" data-frequency="yearly" aria-pressed="true">Yearly</button>
+                    <button class="frequency-btn" data-frequency="monthly" aria-pressed="false">Monthly</button>
+                    <button class="frequency-btn" data-frequency="weekly" aria-pressed="false">Weekly</button>
+                    <button class="frequency-btn" data-frequency="hourly" aria-pressed="false">Hourly</button>
                 </div>
             </div>
         </div>
 
         <!-- Results Display -->
-        <div class="results-grid" id="resultsGrid">
+        <div class="results-grid" id="resultsGrid" aria-live="polite">
             <!-- Generated by JavaScript -->
         </div>
     </div>
 
     <!-- Engagement Elements -->
-    <div class="fortune-cookie" id="fortuneCookie" onclick="showFortune()">🎉 Click for Money Wisdom!</div>
+    <div class="fortune-cookie" id="fortuneCookie" onclick="showFortune()" role="button" aria-label="Click for money wisdom">🎉 Click for Money Wisdom!</div>
 
     <script>
         // ================
@@ -441,7 +491,7 @@ crossorigin="anonymous"></script>
         // ================
         
         // Currency Exchange Rates (example rates - should use real API)
-        let exchangeRates = {
+        const exchangeRates = {
             USD: 1,
             PKR: 278.50,
             AED: 3.67,
@@ -521,6 +571,12 @@ crossorigin="anonymous"></script>
         elements.currencyFlags.forEach(flag => {
             flag.addEventListener('click', () => selectCurrency(flag));
             flag.addEventListener('click', createSparkle);
+            flag.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    selectCurrency(flag);
+                    createSparkle(e);
+                }
+            });
         });
 
         elements.salaryInput.addEventListener('input', updateCalculations);
@@ -533,6 +589,11 @@ crossorigin="anonymous"></script>
 
         elements.frequencyBtns.forEach(btn => {
             btn.addEventListener('click', () => selectFrequency(btn));
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    selectFrequency(btn);
+                }
+            });
         });
 
         // Create floating coins on mouse move
@@ -558,8 +619,12 @@ crossorigin="anonymous"></script>
 
         // Currency Selection
         function selectCurrency(flag) {
-            elements.currencyFlags.forEach(f => f.classList.remove('active'));
+            elements.currencyFlags.forEach(f => {
+                f.classList.remove('active');
+                f.setAttribute('aria-selected', 'false');
+            });
             flag.classList.add('active');
+            flag.setAttribute('aria-selected', 'true');
             const currency = flag.dataset.currency;
             elements.currencySymbol.textContent = currencySymbols[currency] || '$';
             updateCalculations();
@@ -567,8 +632,12 @@ crossorigin="anonymous"></script>
 
         // Frequency Selection
         function selectFrequency(btn) {
-            elements.frequencyBtns.forEach(b => b.classList.remove('active'));
+            elements.frequencyBtns.forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-pressed', 'false');
+            });
             btn.classList.add('active');
+            btn.setAttribute('aria-pressed', 'true');
             currentFrequency = btn.dataset.frequency;
             updateCalculations();
         }
@@ -624,6 +693,8 @@ crossorigin="anonymous"></script>
                 const convertedValue = value * exchangeRates[currency];
                 const card = document.createElement('div');
                 card.className = 'result-card';
+                card.setAttribute('role', 'region');
+                card.setAttribute('aria-label', `Earnings per ${unit}`);
                 
                 // Format the amount to fit in the card
                 let displayValue;

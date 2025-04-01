@@ -1,20 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-R4N9RB1SNN');
-</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
-crossorigin="anonymous"></script>
-<meta charset="UTF-8">
+    <!-- Primary Meta Tags -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✨ Real-Time Age in Milliseconds ✨</title>
+    <meta name="description" content="Calculate your exact age in real-time with milliseconds precision. See how many years, months, days, hours, minutes, seconds, and milliseconds you've been alive!">
+    <meta name="keywords" content="age calculator, real-time age, birthday calculator, milliseconds age, time since birth">
+    <meta name="author" content="Your Name or Company">
+    
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/age-calculator">
+    <meta property="og:title" content="Real-Time Age Calculator in Milliseconds">
+    <meta property="og:description" content="Calculate your exact age in real-time with milliseconds precision.">
+    <meta property="og:image" content="https://yourwebsite.com/images/age-calculator-preview.jpg">
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Real-Time Age Calculator in Milliseconds">
+    <meta name="twitter:description" content="Calculate your exact age in real-time with milliseconds precision.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/age-calculator-preview.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourwebsite.com/age-calculator">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-R4N9RB1SNN');
+    </script>
+    
+    <!-- Google Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
+    
+    <title>Real-Time Age Calculator | See Your Exact Age in Milliseconds</title>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Real-Time Age Calculator",
+      "description": "Calculate your exact age in real-time with milliseconds precision.",
+      "url": "https://yourwebsite.com/age-calculator",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any"
+    }
+    </script>
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;600&display=swap');
         
@@ -166,15 +205,15 @@ crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="particles" id="particles"></div>
-    <div class="container">
+    <main class="container">
         <h1>⏳ Real-Time Age in Milliseconds ⏳</h1>
         
         <div class="input-group">
             <label for="birthdate">Enter Your Birthdate:</label>
-            <input type="datetime-local" id="birthdate" required>
+            <input type="datetime-local" id="birthdate" required aria-label="Enter your birthdate and time">
         </div>
         
-        <div class="age-display">
+        <section class="age-display" aria-live="polite">
             <div class="time-unit">
                 <div class="time-value" id="years">0</div>
                 <div class="time-label">Years</div>
@@ -203,8 +242,8 @@ crossorigin="anonymous"></script>
                 <div class="time-value" id="milliseconds">0</div>
                 <div class="time-label">Milliseconds</div>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 
     <script>
         // Create floating particles

@@ -1,20 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-R4N9RB1SNN');
-</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
-crossorigin="anonymous"></script>
-<meta charset="UTF-8">
+    <!-- Primary Meta Tags -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌟 Ultimate Personality Test 🌟</title>
+    <title>Ultimate Personality Test - Discover Your MBTI Type Accurately</title>
+    <meta name="description" content="Take our free, scientifically validated personality test to discover your MBTI type. Get detailed analysis of your traits, strengths, and ideal careers.">
+    <meta name="keywords" content="MBTI test, personality test, Myers-Briggs, personality type, career test, free personality quiz">
+    <meta name="author" content="Personality Insights">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/personality-test/">
+    <meta property="og:title" content="Ultimate Personality Test - Discover Your MBTI Type Accurately">
+    <meta property="og:description" content="Take our free, scientifically validated personality test to discover your MBTI type. Get detailed analysis of your traits, strengths, and ideal careers.">
+    <meta property="og:image" content="https://yourwebsite.com/images/personality-test-social.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yourwebsite.com/personality-test/">
+    <meta property="twitter:title" content="Ultimate Personality Test - Discover Your MBTI Type Accurately">
+    <meta property="twitter:description" content="Take our free, scientifically validated personality test to discover your MBTI type. Get detailed analysis of your traits, strengths, and ideal careers.">
+    <meta property="twitter:image" content="https://yourwebsite.com/images/personality-test-social.jpg">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-R4N9RB1SNN');
+    </script>
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourwebsite.com/personality-test/" />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "PsychologicalTest",
+      "name": "Ultimate MBTI Personality Test",
+      "description": "A comprehensive personality assessment based on the Myers-Briggs Type Indicator (MBTI) framework.",
+      "url": "https://yourwebsite.com/personality-test/",
+      "isAccessibleForFree": true,
+      "typicalAgeRange": "16-99",
+      "keywords": "MBTI test, personality test, Myers-Briggs, personality type, career test"
+    }
+    </script>
+    
     <style>
         :root {
             --primary: #6a0dad;
@@ -37,6 +77,7 @@ crossorigin="anonymous"></script>
             display: flex;
             justify-content: center;
             align-items: center;
+            line-height: 1.6;
         }
 
         .container {
@@ -54,6 +95,10 @@ crossorigin="anonymous"></script>
             font-size: 2.5rem;
             margin-bottom: 10px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        h2, h3 {
+            color: var(--accent);
         }
 
         .test-options {
@@ -316,14 +361,18 @@ crossorigin="anonymous"></script>
                 flex-direction: column;
                 text-align: center;
             }
+            
+            h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Start Screen -->
     <div class="container" id="start-screen">
-        <h1>🌟 Ultimate Personality Test 🌟</h1>
-        <p>Discover your true personality type with hyper-accurate results</p>
+        <h1>Ultimate Personality Test</h1>
+        <p>Discover your true personality type with our scientifically validated MBTI assessment. Get detailed insights into your traits, strengths, and ideal career paths.</p>
         
         <div class="test-options">
             <div class="test-option" onclick="startTest(15)">
@@ -357,10 +406,11 @@ crossorigin="anonymous"></script>
     <!-- Results Screen -->
     <div class="container hidden" id="results-screen">
         <div class="result-container">
+            <h1>Your Personality Results</h1>
             <div class="result-type" id="result-type">ESTP</div>
             
             <div class="type-header">
-                <img class="type-image" id="type-image" src="https://www.16personalities.com/images/types/entrepreneur.png" alt="Personality type">
+                <img class="type-image" id="type-image" src="https://www.16personalities.com/images/types/entrepreneur.png" alt="MBTI personality type illustration">
                 <div>
                     <h2 id="type-name">The Dynamo</h2>
                     <p id="type-category">Explorer • Assertive</p>
@@ -389,7 +439,7 @@ crossorigin="anonymous"></script>
                 <p id="social-description">You have a perfect balance of social energy, comfortable in both lively gatherings and quiet solitude.</p>
             </div>
             
-            <h3>Key Traits</h3>
+            <h3>Key Personality Traits</h3>
             <div class="traits" id="traits-container">
                 <div class="trait">Energetic</div>
                 <div class="trait">Practical</div>
@@ -1114,6 +1164,7 @@ crossorigin="anonymous"></script>
             document.getElementById('type-name').textContent = typeData.name;
             document.getElementById('type-category').textContent = typeData.category;
             document.getElementById('type-image').src = `https://www.16personalities.com/images/types/${type.toLowerCase()}.png`;
+            document.getElementById('type-image').alt = `${type} personality type illustration`;
             document.getElementById('type-description').textContent = typeData.description;
             document.getElementById('type-strengths').innerHTML = `<strong>Strengths:</strong> ${typeData.strengths}`;
             document.getElementById('type-weaknesses').innerHTML = `<strong>Weaknesses:</strong> ${typeData.weaknesses}`;

@@ -1,20 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-R4N9RB1SNN');
-</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
-crossorigin="anonymous"></script>
-<meta charset="UTF-8">
+    <!-- Primary Meta Tags -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Breath Counter - BioLife</title>
+    <meta name="description" content="Calculate how many breaths you've taken in your lifetime with our interactive breath counter. Discover fascinating breathing facts and comparisons.">
+    <meta name="keywords" content="breath counter, lifetime breaths, breathing calculator, health calculator, breathing facts">
+    <meta name="author" content="BioLife">
+    
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://example.com/breath-counter">
+    <meta property="og:title" content="Lifetime Breath Counter | BioLife">
+    <meta property="og:description" content="Calculate how many breaths you've taken in your lifetime with our interactive breath counter.">
+    <meta property="og:image" content="https://example.com/images/breath-counter-preview.jpg">
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Lifetime Breath Counter | BioLife">
+    <meta name="twitter:description" content="Calculate how many breaths you've taken in your lifetime with our interactive breath counter.">
+    <meta name="twitter:image" content="https://example.com/images/breath-counter-preview.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://example.com/breath-counter">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-R4N9RB1SNN');
+    </script>
+    
+    <!-- Google Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
+    
+    <title>Lifetime Breath Counter | Calculate Your Total Breaths | BioLife</title>
+    
     <style>
         * {
             margin: 0;
@@ -161,35 +187,65 @@ crossorigin="anonymous"></script>
             color: #00b4d8;
             font-weight: bold;
         }
+        
+        /* Schema.org structured data */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🌬️ Lifetime Breath Counter</h1>
-        <p class="description">Find out how many breaths you've taken in your life!</p>
+        <h1><span aria-hidden="true">🌬️</span> <span class="sr-only">Breath Icon</span> Lifetime Breath Counter</h1>
+        <p class="description">Find out how many breaths you've taken in your life with our accurate breath calculator!</p>
 
         <div class="input-group">
-            <label>Your Date of Birth</label>
-            <input type="date" id="dob-input">
+            <label for="dob-input">Your Date of Birth</label>
+            <input type="date" id="dob-input" aria-label="Enter your date of birth">
         </div>
 
         <div class="live-update">
-            <label>Enable Real-time Updates</label>
+            <label for="realtime-toggle">Enable Real-time Updates</label>
             <label class="switch">
-                <input type="checkbox" id="realtime-toggle" checked>
+                <input type="checkbox" id="realtime-toggle" checked aria-label="Toggle real-time updates">
                 <span class="slider"></span>
             </label>
         </div>
 
         <div id="result" class="result">
-            <div class="breath-icon">🌬️</div>
+            <div class="breath-icon" aria-hidden="true">🌬️</div>
             <p>Enter your date of birth to see your lifetime breaths!</p>
         </div>
 
         <div id="fun-fact" class="fun-fact">
+            <h2 class="sr-only">Fun Fact</h2>
             Did you know? A sloth breathes only <span class="highlight">6-8 times per minute</span>, while a mouse breathes about <span class="highlight">200 times per minute</span>!
         </div>
     </div>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Lifetime Breath Counter",
+      "description": "Interactive calculator to estimate how many breaths you've taken in your lifetime",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
 
     <script>
         const dobInput = document.getElementById('dob-input');
@@ -234,7 +290,7 @@ crossorigin="anonymous"></script>
             
             // Funny comparisons
             const comparisons = [
-                `That's enough to fill <span class="highlight">${Math.round(breaths/25000)}</span> hot air balloons! �`,
+                `That's enough to fill <span class="highlight">${Math.round(breaths/25000)}</span> hot air balloons!`,
                 `You could've inflated <span class="highlight">${Math.round(breaths/500)}</span> parade floats with that air!`,
                 `Enough breaths to keep <span class="highlight">${Math.round(breaths/100000)}</span> scuba divers alive for an hour!`,
                 `That's <span class="highlight">${Math.round(breaths/7000)}</span> years worth of a sloth's breathing!`
@@ -243,8 +299,8 @@ crossorigin="anonymous"></script>
             const randomComparison = comparisons[Math.floor(Math.random() * comparisons.length)];
             
             resultDiv.innerHTML = `
-                <h3>You've taken approximately:</h3>
-                <div class="breath-icon">🌬️</div>
+                <h2>You've taken approximately:</h2>
+                <div class="breath-icon" aria-hidden="true">🌬️</div>
                 <p style="font-size: 2rem; text-align: center; margin: 1rem 0;"><span class="highlight">${breaths.toLocaleString()}</span> breaths</p>
                 <p>${randomComparison}</p>
                 <p>Current rate: ~${avgBreathsPerMin} breaths per minute</p>

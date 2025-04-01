@@ -1,20 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-R4N9RB1SNN');
-</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
-crossorigin="anonymous"></script>
-<meta charset="UTF-8">
+    <!-- Primary Meta Tags -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌟 Ultimate BMI Calculator</title>
+    <meta name="description" content="Free online BMI calculator that provides accurate body mass index calculations, personalized health tips, and additional health metrics like waist-to-height ratio and ideal weight range.">
+    <meta name="keywords" content="BMI calculator, body mass index, health calculator, weight calculator, fitness tool, ideal weight calculator, health assessment">
+    <meta name="author" content="Ultimate Health Tools">
+    
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="🌟 Ultimate BMI Calculator | Accurate Body Mass Index Tool">
+    <meta property="og:description" content="Calculate your BMI instantly with our advanced calculator. Get personalized health tips and understand your weight status with our comprehensive tool.">
+    <meta property="og:url" content="https://yourwebsite.com/bmi-calculator">
+    <meta property="og:image" content="https://yourwebsite.com/images/bmi-calculator-preview.jpg">
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🌟 Ultimate BMI Calculator | Accurate Body Mass Index Tool">
+    <meta name="twitter:description" content="Calculate your BMI instantly with our advanced calculator. Get personalized health tips and understand your weight status.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/bmi-calculator-preview.jpg">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourwebsite.com/bmi-calculator">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-R4N9RB1SNN');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
+    
+    <title>🌟 Ultimate BMI Calculator | Accurate Body Mass Index Tool</title>
+    
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Ultimate BMI Calculator",
+      "url": "https://yourwebsite.com/bmi-calculator",
+      "description": "Advanced BMI calculator with personalized health recommendations and additional health metrics.",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    
     <style>
         :root {
             --primary: #6c63ff;
@@ -276,10 +319,27 @@ crossorigin="anonymous"></script>
         .dark-mode .dark-mode-toggle {
             color: #fff;
         }
+        
+        /* Accessibility improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+        input:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
     </style>
 </head>
 <body>
-    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌓</button>
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">🌓</button>
     <div class="calculator">
         <h1>🌟 Ultimate BMI Calculator</h1>
         
@@ -287,7 +347,7 @@ crossorigin="anonymous"></script>
             <div class="toggle-label">
                 <span>Metric (kg/cm)</span>
                 <label class="toggle-switch">
-                    <input type="checkbox" id="unit-toggle">
+                    <input type="checkbox" id="unit-toggle" aria-labelledby="unit-label">
                     <span class="slider"></span>
                 </label>
                 <span>Imperial (lbs/ft)</span>
@@ -296,12 +356,14 @@ crossorigin="anonymous"></script>
         
         <div class="input-group">
             <label for="weight">Weight</label>
-            <input type="number" id="weight" placeholder="Enter weight" step="0.1" min="20" max="300">
+            <input type="number" id="weight" placeholder="Enter weight" step="0.1" min="20" max="300" aria-describedby="weight-help">
+            <span id="weight-help" class="sr-only">Enter your weight in kilograms or pounds depending on selected unit system</span>
         </div>
         
         <div class="input-group">
             <label for="height">Height</label>
-            <input type="number" id="height" placeholder="Enter height" min="100" max="250">
+            <input type="number" id="height" placeholder="Enter height" min="100" max="250" aria-describedby="height-help">
+            <span id="height-help" class="sr-only">Enter your height in centimeters or feet depending on selected unit system</span>
         </div>
         
         <div class="input-group">
@@ -370,9 +432,15 @@ crossorigin="anonymous"></script>
         const idealWeight = document.getElementById('ideal-weight');
         const tipsContainer = document.getElementById('tips');
         
+        // Set initial focus on weight input for better UX
+        weightInput.focus();
+        
         // Event Listeners
         [weightInput, heightInput, ageInput, unitToggle].forEach(element => {
             element.addEventListener('input', calculateBMI);
+            element.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') calculateBMI();
+            });
         });
         
         document.querySelectorAll('input[name="gender"]').forEach(radio => {
@@ -451,6 +519,14 @@ crossorigin="anonymous"></script>
             
             // Show results
             resultContainer.style.display = 'block';
+            
+            // Track BMI calculation event
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'calculate_bmi', {
+                    'bmi_value': roundedBMI,
+                    'bmi_category': categoryClass
+                });
+            }
         }
         
         // Generate Personalized Tips
@@ -509,13 +585,63 @@ crossorigin="anonymous"></script>
         
         // Dark Mode Toggle
         function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+            
+            // Track dark mode toggle
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'toggle_dark_mode', {
+                    'dark_mode_enabled': isDarkMode
+                });
+            }
+        }
+        
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
         }
         
         // Share Result (simulated)
         function shareResult() {
-            alert("Screenshot this page to share your results!\n(Advanced: This could use the Web Share API)");
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My BMI Results',
+                    text: `My BMI is ${bmiValue.textContent} (${bmiCategory.textContent}). Check out this BMI calculator!`,
+                    url: window.location.href
+                }).catch(err => {
+                    console.log('Error sharing:', err);
+                    fallbackShare();
+                });
+            } else {
+                fallbackShare();
+            }
+            
+            // Track share event
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'share_results');
+            }
         }
+        
+        function fallbackShare() {
+            alert("Screenshot this page to share your results!\nOr copy this link: " + window.location.href);
+        }
+        
+        // Initialize calculator if URL has parameters
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            if (params.has('weight') && params.has('height')) {
+                weightInput.value = params.get('weight');
+                heightInput.value = params.get('height');
+                if (params.has('age')) ageInput.value = params.get('age');
+                if (params.has('gender')) {
+                    document.querySelector(`input[name="gender"][value="${params.get('gender')}"]`).checked = true;
+                }
+                if (params.has('unit')) {
+                    unitToggle.checked = params.get('unit') === 'imperial';
+                }
+                calculateBMI();
+            }
+        });
     </script>
 </body>
 </html>

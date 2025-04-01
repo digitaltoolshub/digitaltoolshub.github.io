@@ -1,22 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-R4N9RB1SNN');
-</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
-crossorigin="anonymous"></script>
-<meta charset="UTF-8">
+    <!-- Primary Meta Tags -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Tools Hub</title>
+    <meta name="description" content="Digital Tools Hub offers free interactive utilities for finance, health, productivity, and personal development. Try our crypto tracker, salary calculator, BMI tool, and more.">
+    <meta name="keywords" content="digital tools, online calculators, finance tools, health calculators, productivity apps, crypto tracker, salary calculator, BMI calculator, personality test">
+    <meta name="author" content="Digital Tools Hub">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Digital Tools Hub | Free Online Calculators & Utilities">
+    <meta property="og:description" content="Collection of free interactive digital tools for finance, health, productivity, and personal development.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/preview.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Digital Tools Hub | Free Online Calculators & Utilities">
+    <meta name="twitter:description" content="Collection of free interactive digital tools for finance, health, productivity, and personal development.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/preview.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourwebsite.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-R4N9RB1SNN');
+    </script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
+    
+    <title>Digital Tools Hub | Free Online Calculators & Utilities</title>
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<style>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Digital Tools Hub",
+      "url": "https://yourwebsite.com",
+      "description": "Collection of free interactive digital tools for finance, health, productivity, and personal development.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "Digital Tools Hub"
+      }
+    }
+    </script>
+    
+    <style>
         :root {
             --primary-color: #4158D0;
             --gradient-1: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #928469 100%);
@@ -38,7 +90,8 @@ crossorigin="anonymous"></script>
             --gradient-17: linear-gradient(90deg, #C471F5 0%, #FA71CD 100%);
             --gradient-18: linear-gradient(225deg, #FFD3A5 0%, #FD6585 100%);
             --gradient-19: linear-gradient(50deg, #43E97B 0%, #38F9D7 100%);
-            --gradient-20: linear-gradient(315deg, #F43B47 0%, #453A94 100%);            --bg-color: #f8f9fa;
+            --gradient-20: linear-gradient(315deg, #F43B47 0%, #453A94 100%);
+            --bg-color: #f8f9fa;
             --card-bg: white;
             --text-color: #333;
             --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -51,6 +104,7 @@ crossorigin="anonymous"></script>
             margin: 0;
             padding: 0;
             transition: all 0.3s ease;
+            line-height: 1.6;
         }
 
         .container {
@@ -245,6 +299,25 @@ crossorigin="anonymous"></script>
             border-radius: 50%;
             animation: float linear infinite;
         }
+        
+        /* Accessibility improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+        
+        /* Focus styles for accessibility */
+        a:focus, button:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
     </style>
 </head>
 <body>
@@ -255,164 +328,165 @@ crossorigin="anonymous"></script>
         <p class="tagline">Interactive utilities to make your digital life better</p>
     </header>
 
-    <div class="container">
+    <main class="container"> <!-- Changed div to main for better semantics -->
         <div class="card-grid">
             <div class="card">
                 <div class="card-header">
-                    <i class="fas fa-chart-line"></i>
+                    <i class="fas fa-chart-line" aria-hidden="true"></i>
                     <span class="badge">Finance</span>
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title">Crypto Tracker</h3>
-                    <p class="card-text">Track cryptocurrency prices, analyze trends, and get AI-powered investment suggestions.</p>
-                    <a href="../crypto/index.html" class="btn">Explore</a>
+                    <h2 class="card-title">Crypto Tracker</h2> <!-- Changed to h2 for better heading hierarchy -->
+                    <p class="card-text">Track cryptocurrency prices, analyze trends, and get AI-powered investment suggestions with our comprehensive crypto tracking tool.</p>
+                    <a href="../crypto/index.html" class="btn">Explore Crypto Tracker</a> <!-- More descriptive link text -->
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">
-                    <i class="fas fa-money-bill-wave"></i>
+                    <i class="fas fa-money-bill-wave" aria-hidden="true"></i>
                     <span class="badge">Finance</span>
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title">Salary Calculator</h3>
-                    <p class="card-text">Visualize your earnings per second, minute, hour, and day with customizable currency options.</p>
-                    <a href="salary.html" class="btn">Calculate</a>
+                    <h2 class="card-title">Salary Calculator</h2>
+                    <p class="card-text">Visualize your earnings per second, minute, hour, and day with customizable currency options in our interactive salary calculator.</p>
+                    <a href="salary.html" class="btn">Calculate Your Salary</a>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">
-                    <i class="fas fa-hourglass-half"></i>
+                    <i class="fas fa-hourglass-half" aria-hidden="true"></i>
                     <span class="badge">Planning</span>
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title">Retirement Countdown</h3>
-                    <p class="card-text">Plan your retirement and track progress with personalized savings goals and milestones.</p>
-                    <a href="retire.html" class="btn">Plan Now</a>
+                    <h2 class="card-title">Retirement Countdown</h2>
+                    <p class="card-text">Plan your retirement and track progress with personalized savings goals and milestones using our retirement planning tool.</p>
+                    <a href="retire.html" class="btn">Plan Your Retirement</a>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">
-                    <i class="fas fa-birthday-cake"></i>
+                    <i class="fas fa-birthday-cake" aria-hidden="true"></i>
                     <span class="badge">Life</span>
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title">Age Calculator</h3>
-                    <p class="card-text">Track your age down to the millisecond with a beautiful visualization and birthday celebration.</p>
-                    <a href="birthday.html" class="btn">Calculate Age</a>
+                    <h2 class="card-title">Age Calculator</h2>
+                    <p class="card-text">Track your age down to the millisecond with a beautiful visualization and birthday celebration in our precise age calculator.</p>
+                    <a href="birthday.html" class="btn">Calculate Your Age</a>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">
-                    <i class="fas fa-mobile-alt"></i>
+                    <i class="fas fa-mobile-alt" aria-hidden="true"></i>
                     <span class="badge">Wellness</span>
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title">Social Media Timer</h3>
-                    <p class="card-text">Track and visualize your social media usage with insights to help maintain digital wellbeing.</p>
-                    <a href="social.html" class="btn">Track Usage</a>
+                    <h2 class="card-title">Social Media Timer</h2>
+                    <p class="card-text">Track and visualize your social media usage with insights to help maintain digital wellbeing and reduce screen time.</p>
+                    <a href="social.html" class="btn">Track Social Usage</a>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">
-                    <i class="fas fa-brain"></i>
+                    <i class="fas fa-brain" aria-hidden="true"></i>
                     <span class="badge">Psychology</span>
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title">MBTI Personality Test</h3>
-                    <p class="card-text">Discover your personality type with our interactive Myers-Briggs Type Indicator test.</p>
-                    <a href="mbti.html" class="btn">Take Test</a>
+                    <h2 class="card-title">MBTI Personality Test</h2>
+                    <p class="card-text">Discover your personality type with our interactive Myers-Briggs Type Indicator test and detailed personality analysis.</p>
+                    <a href="mbti.html" class="btn">Take Personality Test</a>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">
-                    <i class="fas fa-brain"></i>
+                    <i class="fas fa-brain" aria-hidden="true"></i>
                     <span class="badge">Psychology</span>
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title">Brain Age Calculator</h3>
-                    <p class="card-text">Answer a few interesting questions to see the your brain age.</p>
-                    <a href="brain.html" class="btn">Take Test</a>
-                </div>
-            </div>
-
-
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-weight"></i>
-                    <span class="badge">Health</span>
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">BMI Calculator</h3>
-                    <p class="card-text">Calculate your Body Mass Index (BMI) and get personalized health insights based on your results.</p>
-                    <a href="bmi.html" class="btn">Calculate</a>
-                </div>
-            </div>
-
-
-
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-heartbeat"></i>
-                    <span class="badge">Health</span>
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Heartbeat Calculator</h3>
-                    <p class="card-text">Discover how many times your heart has beaten throughout your lifetime.</p>
-                    <a href="heartbeat.html" class="btn">Calculate</a>
+                    <h2 class="card-title">Brain Age Calculator</h2>
+                    <p class="card-text">Answer a few interesting questions to see your cognitive brain age compared to your chronological age.</p>
+                    <a href="brain.html" class="btn">Calculate Brain Age</a>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">
-                    <i class="fas fa-wind"></i>
+                    <i class="fas fa-weight" aria-hidden="true"></i>
                     <span class="badge">Health</span>
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title">Breath Calculator</h3>
-                    <p class="card-text">Find out how many breaths you've taken since you were born.</p>
-                    <a href="breath.html" class="btn">Calculate</a>
+                    <h2 class="card-title">BMI Calculator</h2>
+                    <p class="card-text">Calculate your Body Mass Index (BMI) and get personalized health insights and recommendations based on your results.</p>
+                    <a href="bmi.html" class="btn">Calculate BMI</a>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">
-                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-heartbeat" aria-hidden="true"></i>
                     <span class="badge">Health</span>
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title">Sleep Time Calculator</h3>
-                    <p class="card-text">Discover how much of your life you've spent sleeping and see fun comparisons.</p>
-                    <a href="sleep.html" class="btn">Calculate</a>
+                    <h2 class="card-title">Heartbeat Calculator</h2>
+                    <p class="card-text">Discover how many times your heart has beaten throughout your lifetime with our heart rate calculator.</p>
+                    <a href="heartbeat.html" class="btn">Calculate Heartbeats</a>
                 </div>
             </div>
 
-        <div class="card">
+            <div class="card">
                 <div class="card-header">
-                    <i class="fas fa-plus"></i>
+                    <i class="fas fa-wind" aria-hidden="true"></i>
+                    <span class="badge">Health</span>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">Breath Calculator</h2>
+                    <p class="card-text">Find out how many breaths you've taken since you were born with our respiratory calculator.</p>
+                    <a href="breath.html" class="btn">Calculate Breaths</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                    <span class="badge">Health</span>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">Sleep Time Calculator</h2>
+                    <p class="card-text">Discover how much of your life you've spent sleeping and see fun comparisons with our sleep duration calculator.</p>
+                    <a href="sleep.html" class="btn">Calculate Sleep Time</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-plus" aria-hidden="true"></i>
                     <span class="badge">Coming Soon</span>
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title">More Tools Coming</h3>
-                    <p class="card-text">We're constantly developing new tools to help you manage your digital life more effectively.</p>
+                    <h2 class="card-title">More Tools Coming</h2>
+                    <p class="card-text">We're constantly developing new tools to help you manage your digital life more effectively. Check back soon for updates!</p>
                     <a href="#" class="btn">Stay Tuned</a>
                 </div>
             </div>
-
         </div>
-    </div>
+    </main>
 
     <footer>
         <p>© 2025 Digital Tools Hub • All tools are for educational purposes</p>
+        <nav aria-label="Footer navigation">
+            <a href="/privacy.html" style="margin-right: 15px;">Privacy Policy</a>
+            <a href="/terms.html" style="margin-right: 15px;">Terms of Service</a>
+            <a href="/contact.html">Contact Us</a>
+        </nav>
     </footer>
 
-    <button class="theme-toggle" id="theme-toggle">
-        <i class="fas fa-moon"></i>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon" aria-hidden="true"></i>
     </button>
 
     <script>
@@ -424,6 +498,7 @@ crossorigin="anonymous"></script>
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
+                particle.setAttribute('aria-hidden', 'true');
                 
                 // Random size between 10px and 40px
                 const size = Math.random() * 30 + 10;
@@ -450,14 +525,26 @@ crossorigin="anonymous"></script>
             
             if (document.body.classList.contains('dark-theme')) {
                 themeIcon.className = 'fas fa-sun';
+                themeToggle.setAttribute('aria-label', 'Toggle light mode');
             } else {
                 themeIcon.className = 'fas fa-moon';
+                themeToggle.setAttribute('aria-label', 'Toggle dark mode');
             }
+            
+            // Save preference to localStorage
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-theme'));
         });
         
         // Initialize
         window.addEventListener('DOMContentLoaded', () => {
             createParticles();
+            
+            // Check for saved theme preference
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-theme');
+                themeIcon.className = 'fas fa-sun';
+                themeToggle.setAttribute('aria-label', 'Toggle light mode');
+            }
             
             // Add animation to float particles
             const style = document.createElement('style');

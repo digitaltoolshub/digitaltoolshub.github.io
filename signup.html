@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Sign Up</h1>
+        <form id="signupForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit" class="btn">Sign Up</button>
+        </form>
+        <button class="btn" onclick="history.back()">Back</button>
+    </main>
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Hash the password before sending it to the server
+            const hashedPassword = btoa(password); // Replace with a secure hashing method in production
+
+            // Save user data (example: localStorage, replace with a real backend API)
+            localStorage.setItem(username, hashedPassword);
+            alert('Sign-up successful!');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

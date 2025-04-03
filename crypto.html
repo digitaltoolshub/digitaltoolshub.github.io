@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free real-time cryptocurrency price predictions, technical analysis, and market sentiment. No signup required.">
+    <meta name="keywords" content="bitcoin, crypto, prediction, real-time, ethereum, trading, analysis">
+    <meta name="author" content="CryptoTrend Pro">
+    <meta property="og:title" content="CryptoTrend Pro - Real-Time Crypto Predictor">
+    <meta property="og:description" content="Free cryptocurrency price predictions and analysis using real-time data.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://digitaltoolshub.github.io">
+    <title>CryptoTrend Pro - Real-Time Crypto Price Predictions & Analysis</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="canonical" href="https://digitaltoolshub.github.io" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.18.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/danfojs@1.1.2/lib/bundle.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>CryptoTrend Pro</h1>
+            <p class="tagline">Real-time cryptocurrency predictions & analysis</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#predictions">Predictions</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="indicators.html">Indicator Guides</a></li>
+                <li><a href="case-studies.html">Case Studies</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="market-overview">
+            <h2>Market Overview</h2>
+            <div class="market-cards" id="top-cryptos">
+                <!-- Filled by JavaScript -->
+            </div>
+            <div class="heatmap-container">
+                <h3>24h Volatility Heatmap</h3>
+                <div id="volatility-heatmap"></div>
+            </div>
+        </section>
+
+        <section id="price-chart">
+            <h2>Live Price Chart</h2>
+            <div class="chart-controls">
+                <select id="crypto-selector">
+                    <option value="bitcoin">Bitcoin (BTC)</option>
+                    <option value="ethereum">Ethereum (ETH)</option>
+                    <option value="binancecoin">Binance Coin (BNB)</option>
+                    <option value="ripple">XRP</option>
+                    <option value="cardano">Cardano (ADA)</option>
+                </select>
+                <select id="timeframe">
+                    <option value="1">1 Day</option>
+                    <option value="7">1 Week</option>
+                    <option value="30" selected>1 Month</option>
+                    <option value="90">3 Months</option>
+                    <option value="365">1 Year</option>
+                </select>
+                <button id="add-indicator">Add Indicator</button>
+            </div>
+            <div class="chart-container">
+                <canvas id="priceChart"></canvas>
+            </div>
+            <div class="indicators-display">
+                <div id="rsi-display">RSI: <span class="value">-</span></div>
+                <div id="macd-display">MACD: <span class="value">-</span></div>
+                <div id="bollinger-display">Bollinger Bands: <span class="value">-</span></div>
+            </div>
+        </section>
+
+        <section id="sentiment-analysis">
+            <h2>Market Sentiment</h2>
+            <div class="sentiment-cards">
+                <div class="sentiment-card">
+                    <h3>Reddit Activity</h3>
+                    <div id="reddit-sentiment">Loading...</div>
+                </div>
+                <div class="sentiment-card">
+                    <h3>Twitter Trends</h3>
+                    <div id="twitter-sentiment">Loading...</div>
+                </div>
+                <div class="sentiment-card">
+                    <h3>Google Trends</h3>
+                    <div id="google-trends">Loading...</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="predictions">
+            <h2>Price Predictions</h2>
+            <div class="prediction-container">
+                <div class="prediction-model">
+                    <h3>ARIMA Model (7-day forecast)</h3>
+                    <canvas id="arimaChart"></canvas>
+                </div>
+                <div class="prediction-model">
+                    <h3>LSTM Neural Network</h3>
+                    <canvas id="lstmChart"></canvas>
+                </div>
+            </div>
+            <div class="pattern-recognition">
+                <h3>Pattern Recognition</h3>
+                <div id="pattern-output">No patterns detected</div>
+                <canvas id="patternCanvas"></canvas>
+            </div>
+        </section>
+
+        <section id="portfolio-tracker">
+            <h2>Portfolio Tracker</h2>
+            <div class="portfolio-controls">
+                <input type="text" id="crypto-input" placeholder="e.g. BTC">
+                <input type="number" id="amount-input" placeholder="Amount">
+                <input type="number" id="price-input" placeholder="Purchase Price (USD)">
+                <button id="add-to-portfolio">Add to Portfolio</button>
+            </div>
+            <div class="portfolio-list" id="portfolio-holdings">
+                <!-- Filled by JavaScript -->
+            </div>
+            <div class="portfolio-summary">
+                <div>Total Value: <span id="portfolio-total">$0.00</span></div>
+                <div>24h Change: <span id="portfolio-change">$0.00 (0.00%)</span></div>
+            </div>
+        </section>
+
+        <section id="alerts">
+            <h2>Price Alerts</h2>
+            <div class="alert-controls">
+                <select id="alert-crypto">
+                    <option value="bitcoin">Bitcoin (BTC)</option>
+                    <option value="ethereum">Ethereum (ETH)</option>
+                </select>
+                <select id="alert-condition">
+                    <option value="above">Price Above</option>
+                    <option value="below">Price Below</option>
+                    <option value="rsi-above">RSI Above</option>
+                    <option value="rsi-below">RSI Below</option>
+                </select>
+                <input type="number" id="alert-value" placeholder="Value">
+                <button id="add-alert">Set Alert</button>
+            </div>
+            <div class="alert-list" id="active-alerts">
+                <!-- Filled by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="indicators.html">Indicator Guides</a></li>
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Data Sources</h3>
+                    <p>All data provided by CoinGecko Public API, Binance Public API, and other public sources.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Disclaimer</h3>
+                    <p>This is not financial advice. Cryptocurrency markets are volatile. Predictions are experimental and may not be accurate.</p>
+                </div>
+            </div>
+            <div class="affiliate-links">
+                <p>Buy/Sell Crypto:</p>
+                <a href="https://www.binance.com/en/register?ref=EXAMPLE" target="_blank" rel="nofollow">Binance</a>
+                <a href="https://www.kraken.com/" target="_blank" rel="nofollow">Kraken</a>
+                <a href="https://www.coinbase.com/" target="_blank" rel="nofollow">Coinbase</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 CryptoTrend Pro. All data updates in real-time.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

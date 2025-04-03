@@ -1,0 +1,431 @@
+/* Base Styles */
+:root {
+    --primary-color: #2962ff;
+    --secondary-color: #00c853;
+    --danger-color: #ff3d00;
+    --dark-color: #263238;
+    --light-color: #eceff1;
+    --gray-color: #90a4ae;
+    --background-color: #f5f7fa;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--dark-color);
+    background-color: var(--background-color);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Header Styles */
+header {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: var(--card-shadow);
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.tagline {
+    color: var(--gray-color);
+    font-size: 1rem;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    margin-top: 1rem;
+}
+
+nav ul li {
+    margin-right: 1.5rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--secondary-color);
+}
+
+/* Section Styles */
+section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+}
+
+h2 {
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--light-color);
+    padding-bottom: 0.5rem;
+}
+
+h3 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: var(--dark-color);
+}
+
+/* Market Overview */
+.market-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.crypto-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s;
+}
+
+.crypto-card:hover {
+    transform: translateY(-5px);
+}
+
+.crypto-name {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.crypto-name img {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5rem;
+}
+
+.crypto-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+}
+
+.crypto-change {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.positive {
+    background-color: rgba(0, 200, 83, 0.1);
+    color: var(--secondary-color);
+}
+
+.negative {
+    background-color: rgba(255, 61, 0, 0.1);
+    color: var(--danger-color);
+}
+
+.heatmap-container {
+    margin-top: 2rem;
+}
+
+#volatility-heatmap {
+    height: 300px;
+    width: 100%;
+    background-color: var(--light-color);
+    border-radius: 8px;
+}
+
+/* Chart Styles */
+.chart-container {
+    position: relative;
+    height: 400px;
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.chart-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+select, button, input {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--gray-color);
+    border-radius: 4px;
+    background-color: white;
+    font-size: 1rem;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0039cb;
+}
+
+.indicators-display {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.indicators-display div {
+    padding: 0.5rem 1rem;
+    background-color: var(--light-color);
+    border-radius: 4px;
+}
+
+.indicators-display .value {
+    font-weight: bold;
+}
+
+/* Sentiment Analysis */
+.sentiment-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.sentiment-card {
+    background-color: var(--light-color);
+    padding: 1rem;
+    border-radius: 8px;
+    min-height: 150px;
+}
+
+/* Predictions */
+.prediction-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    .prediction-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.prediction-model {
+    background-color: var(--light-color);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.prediction-model canvas {
+    width: 100% !important;
+    height: 300px !important;
+}
+
+.pattern-recognition {
+    margin-top: 2rem;
+}
+
+#patternCanvas {
+    width: 100%;
+    height: 200px;
+    background-color: var(--light-color);
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+/* Portfolio Tracker */
+.portfolio-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.portfolio-controls input {
+    flex: 1;
+    min-width: 150px;
+}
+
+.portfolio-list {
+    margin: 1rem 0;
+}
+
+.holding-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--light-color);
+    align-items: center;
+}
+
+.holding-item:last-child {
+    border-bottom: none;
+}
+
+.holding-info {
+    display: flex;
+    align-items: center;
+}
+
+.holding-actions button {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    background-color: var(--danger-color);
+}
+
+.portfolio-summary {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: var(--light-color);
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* Alerts */
+.alert-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.alert-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--light-color);
+    align-items: center;
+}
+
+.alert-item:last-child {
+    border-bottom: none;
+}
+
+.alert-actions button {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    color: white;
+    margin-bottom: 1rem;
+    border-bottom: none;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+    color: var(--gray-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: white;
+}
+
+.footer-section p {
+    color: var(--gray-color);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.affiliate-links {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.affiliate-links a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.affiliate-links a:hover {
+    background-color: #0039cb;
+}
+
+.copyright {
+    text-align: center;
+    color: var(--gray-color);
+    font-size: 0.8rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+    
+    nav ul li {
+        margin-bottom: 0.5rem;
+        margin-right: 0;
+    }
+    
+    .chart-controls, .portfolio-controls, .alert-controls {
+        flex-direction: column;
+    }
+    
+    select, button, input {
+        width: 100%;
+    }
+}

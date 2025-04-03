@@ -121,18 +121,18 @@ async function updatePriceChart(cryptoId, days) {
     const response = await fetch(`https://api.coingecko.com/api/v3/coins/${cryptoId}/market_chart?vs_currency=usd&days=${days}`);
     const data = await response.json();
     
-    // Process data for Chart.js
+    // Process data for Chart.js - ensure dates are properly formatted
     const prices = data.prices.map(price => ({
-        x: new Date(price[0]),
+        x: price[0],  // Keep as timestamp
         y: price[1]
     }));
     
-    // Calculate indicators
+    // Calculate indicators (unchanged)
     const rsi = calculateRSI(prices.map(p => p.y), 14);
     const macd = calculateMACD(prices.map(p => p.y));
     const bollinger = calculateBollingerBands(prices.map(p => p.y), 20);
     
-    // Update indicator displays
+    // Update indicator displays (unchanged)
     document.getElementById('rsi-display').querySelector('.value').textContent = rsi[rsi.length - 1].toFixed(2);
     document.getElementById('macd-display').querySelector('.value').textContent = macd.histogram[macd.histogram.length - 1].toFixed(2);
     document.getElementById('bollinger-display').querySelector('.value').textContent = 
@@ -157,7 +157,7 @@ async function updatePriceChart(cryptoId, days) {
             }, {
                 label: 'RSI',
                 data: rsi.map((value, index) => ({
-                    x: prices[index].x,
+                    x: prices[index].x,  // Use same timestamp
                     y: value
                 })),
                 borderColor: 'rgb(255, 99, 132)',
@@ -166,35 +166,15 @@ async function updatePriceChart(cryptoId, days) {
             }]
         },
         options: {
-            responsive: true,
-            interaction: {
-                mode: 'index',
-                intersect: false,
-            },
-            scales: {
-                x: {
-                    type: 'time',
-                    time: {
-                        unit: 'day'
-                    }
-                },
-                y: {
-                    type: 'linear',
-                    display: true,
-                    position: 'left',
-                },
-                y1: {
-                    type: 'linear',
-                    display: true,
-                    position: 'right',
-                    min: 0,
-                    max: 100,
-                    grid: {
-                        drawOnChartArea: false,
-                    },
-                }
+    scales: {
+        x: {
+            type: 'time',
+            time: {
+                unit: 'day'
             }
         }
+    }
+}
     });
 }
 

@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-R4N9RB1SNN');
+    </script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Free real-time cryptocurrency price predictions, technical analysis, and market sentiment. No signup required.">
@@ -13,7 +24,12 @@
     <title>CryptoTrend Pro - Real-Time Crypto Price Predictions & Analysis</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="canonical" href="https://digitaltoolshub.github.io" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@4.1.0/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.min.js"></script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.18.0/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/danfojs@1.1.2/lib/bundle.js"></script>
     <script src="scripts.js" defer></script>
@@ -64,7 +80,7 @@
                     <option value="90">3 Months</option>
                     <option value="365">1 Year</option>
                 </select>
-                <button id="add-indicator">Add Indicator</button>
+                <!-- <button id="add-indicator">Add Indicator</button> -->
             </div>
             <div class="chart-container">
                 <canvas id="priceChart"></canvas>
@@ -94,24 +110,6 @@
             </div>
         </section>
 
-        <section id="predictions">
-            <h2>Price Predictions</h2>
-            <div class="prediction-container">
-                <div class="prediction-model">
-                    <h3>ARIMA Model (7-day forecast)</h3>
-                    <canvas id="arimaChart"></canvas>
-                </div>
-                <div class="prediction-model">
-                    <h3>LSTM Neural Network</h3>
-                    <canvas id="lstmChart"></canvas>
-                </div>
-            </div>
-            <div class="pattern-recognition">
-                <h3>Pattern Recognition</h3>
-                <div id="pattern-output">No patterns detected</div>
-                <canvas id="patternCanvas"></canvas>
-            </div>
-        </section>
 
         <section id="portfolio-tracker">
             <h2>Portfolio Tracker</h2>
@@ -158,8 +156,8 @@
                 <div class="footer-section">
                     <h3>Resources</h3>
                     <ul>
-                        <li><a href="indicators.html">Indicator Guides</a></li>
-                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="#">Indicator Guides</a></li>
+                        <li><a href="#">Case Studies</a></li>
                         <li><a href="#faq">FAQ</a></li>
                     </ul>
                 </div>

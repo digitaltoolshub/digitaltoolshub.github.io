@@ -5,37 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0093E9, #80D0C7);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        label {
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        input {
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        button {
+            padding: 0.8rem;
+            background: linear-gradient(90deg, #6A11CB, #2575FC);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-btn {
+            margin-top: 1rem;
+            background: #0093E9;
+        }
+    </style>
 </head>
 <body>
-    <main class="container">
-        <h1>Login</h1>
+    <div class="container">
+        <h1>Login to Your Account</h1>
         <form id="loginForm">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email">
+
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            
-            <button type="submit" class="btn">Login</button>
+            <input type="password" id="password" name="password" required placeholder="Enter your password">
+
+            <button type="submit">Login</button>
         </form>
-        <button class="btn" onclick="history.back()">Back</button>
-    </main>
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            // Retrieve hashed password from storage
-            const storedPassword = localStorage.getItem(username);
-
-            if (storedPassword && storedPassword === btoa(password)) {
-                alert('Login successful!');
-                window.location.href = 'index.html';
-            } else {
-                alert('Invalid username or password.');
-            }
-        });
-    </script>
+        <button class="back-btn" onclick="history.back()">Back</button>
+    </div>
 </body>
 </html>

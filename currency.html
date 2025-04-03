@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate World Currency Converter</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --success: #00b894;
+            --danger: #d63031;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .converter-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 900px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .converter-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: rotate 20s linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .converter-header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .converter-header h1 {
+            color: var(--dark);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .converter-header p {
+            color: var(--dark);
+            opacity: 0.8;
+        }
+        
+        .converter-body {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .amount-section, .from-section, .to-section, .result-section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .amount-section:hover, .from-section:hover, .to-section:hover {
+            transform: translateY(-5px);
+        }
+        
+        .section-title {
+            font-size: 0.9rem;
+            color: var(--dark);
+            opacity: 0.7;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .amount-input {
+            display: flex;
+            align-items: center;
+        }
+        
+        .amount-input input {
+            flex: 1;
+            border: none;
+            border-bottom: 2px solid var(--secondary);
+            font-size: 2rem;
+            padding: 10px 0;
+            outline: none;
+            background: transparent;
+            color: var(--dark);
+        }
+        
+        .currency-selector {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .currency-dropdown {
+            flex: 1;
+            position: relative;
+        }
+        
+        .currency-dropdown .search-box {
+            width: 100%;
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: 2px solid #dfe6e9;
+            font-size: 1rem;
+            margin-bottom: 5px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        .currency-dropdown .search-box:focus {
+            border-color: var(--primary);
+        }
+        
+        .currency-dropdown select {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #dfe6e9;
+            font-size: 1rem;
+            color: var(--dark);
+            background-color: white;
+            appearance: none;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.3s ease;
+            max-height: 50px;
+            overflow-y: auto;
+        }
+        
+        .currency-dropdown select:focus {
+            border-color: var(--primary);
+        }
+        
+        .currency-dropdown::after {
+            content: '▼';
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            color: var(--primary);
+            pointer-events: none;
+            font-size: 0.8rem;
+        }
+        
+        .result-section {
+            text-align: center;
+            padding: 30px;
+            background-color: var(--light);
+            border: 2px dashed var(--secondary);
+        }
+        
+        .converted-amount {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+        
+        .conversion-rate {
+            color: var(--dark);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        .swap-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .swap-btn:hover {
+            transform: scale(1.1) rotate(180deg);
+            background-color: var(--secondary);
+        }
+        
+        .last-updated {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: var(--dark);
+            opacity: 0.6;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .globe-animation {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #3498db, #2c3e50);
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+        
+        .globe-animation::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: transparent;
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            animation: spin 20s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .flags {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .flag {
+            width: 40px;
+            height: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .flag:hover {
+            transform: scale(1.2) translateY(-5px);
+        }
+        
+        @media (max-width: 768px) {
+            .converter-header h1 {
+                font-size: 2rem;
+            }
+            
+            .converted-amount {
+                font-size: 2rem;
+            }
+            
+            .currency-selector {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="converter-container">
+        <div class="globe-animation"></div>
+        
+        <div class="converter-header">
+            <h1>Ultimate World Currency Converter</h1>
+            <p>Real-time exchange rates for all world currencies with search</p>
+        </div>
+        
+        <div class="converter-body">
+            <div class="amount-section">
+                <span class="section-title">Amount</span>
+                <div class="amount-input">
+                    <input type="number" id="amount" value="1" min="0" step="0.01">
+                </div>
+            </div>
+
+            
+            <div class="result-section">
+                <span class="section-title">Converted Amount</span>
+                <div class="converted-amount" id="converted-amount">0.00</div>
+                <div class="conversion-rate" id="conversion-rate">1 USD = 1 USD</div>
+            </div>
+            
+            <div class="from-section">
+                <span class="section-title">From</span>
+                <div class="currency-selector">
+                    <div class="currency-dropdown">
+                        <input type="text" class="search-box" id="from-search" placeholder="Search currency...">
+                        <select id="from-currency" size="8"></select>
+                    </div>
+                    <div class="flag" id="from-flag"></div>
+                </div>
+            </div>
+            
+            <div class="swap-btn" id="swap-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="17 1 21 5 17 9"></polyline>
+                    <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                    <polyline points="7 23 3 19 7 15"></polyline>
+                    <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+                </svg>
+            </div>
+            
+            <div class="to-section">
+                <span class="section-title">To</span>
+                <div class="currency-selector">
+                    <div class="currency-dropdown">
+                        <input type="text" class="search-box" id="to-search" placeholder="Search currency...">
+                        <select id="to-currency" size="8"></select>
+                    </div>
+                    <div class="flag" id="to-flag"></div>
+                </div>
+            </div>
+            
+            <div class="flags" id="flags-container">
+                <!-- Flags will be added dynamically -->
+            </div>
+            
+            <div class="last-updated" id="last-updated">
+                Loading latest exchange rates...
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Complete currency data with all requested currencies
+        const currencies = [
+            // A - F
+            { code: 'AFN', name: 'Afghan Afghani', flag: 'https://flagcdn.com/w80/af.png' },
+            { code: 'ALL', name: 'Albanian Lek', flag: 'https://flagcdn.com/w80/al.png' },
+            { code: 'AMD', name: 'Armenian Dram', flag: 'https://flagcdn.com/w80/am.png' },
+            { code: 'ANG', name: 'Netherlands Antillean Guilder', flag: 'https://flagcdn.com/w80/cw.png' },
+            { code: 'AOA', name: 'Angolan Kwanza', flag: 'https://flagcdn.com/w80/ao.png' },
+            { code: 'AWG', name: 'Aruban Florin', flag: 'https://flagcdn.com/w80/aw.png' },
+            { code: 'AZN', name: 'Azerbaijani Manat', flag: 'https://flagcdn.com/w80/az.png' },
+            { code: 'BAM', name: 'Bosnia-Herzegovina Convertible Mark', flag: 'https://flagcdn.com/w80/ba.png' },
+            { code: 'BBD', name: 'Barbadian Dollar', flag: 'https://flagcdn.com/w80/bb.png' },
+            { code: 'BIF', name: 'Burundian Franc', flag: 'https://flagcdn.com/w80/bi.png' },
+            { code: 'BMD', name: 'Bermudian Dollar', flag: 'https://flagcdn.com/w80/bm.png' },
+            { code: 'BND', name: 'Brunei Dollar', flag: 'https://flagcdn.com/w80/bn.png' },
+            { code: 'BOB', name: 'Bolivian Boliviano', flag: 'https://flagcdn.com/w80/bo.png' },
+            { code: 'BSD', name: 'Bahamian Dollar', flag: 'https://flagcdn.com/w80/bs.png' },
+            { code: 'BTN', name: 'Bhutanese Ngultrum', flag: 'https://flagcdn.com/w80/bt.png' },
+            { code: 'BWP', name: 'Botswana Pula', flag: 'https://flagcdn.com/w80/bw.png' },
+            { code: 'BYN', name: 'Belarusian Ruble', flag: 'https://flagcdn.com/w80/by.png' },
+            { code: 'BZD', name: 'Belize Dollar', flag: 'https://flagcdn.com/w80/bz.png' },
+            { code: 'CDF', name: 'Congolese Franc', flag: 'https://flagcdn.com/w80/cd.png' },
+            { code: 'CUC', name: 'Cuban Convertible Peso', flag: 'https://flagcdn.com/w80/cu.png' },
+            { code: 'CUP', name: 'Cuban Peso', flag: 'https://flagcdn.com/w80/cu.png' },
+            { code: 'CVE', name: 'Cape Verdean Escudo', flag: 'https://flagcdn.com/w80/cv.png' },
+            { code: 'DJF', name: 'Djiboutian Franc', flag: 'https://flagcdn.com/w80/dj.png' },
+            { code: 'DZD', name: 'Algerian Dinar', flag: 'https://flagcdn.com/w80/dz.png' },
+            { code: 'ERN', name: 'Eritrean Nakfa', flag: 'https://flagcdn.com/w80/er.png' },
+            { code: 'ETB', name: 'Ethiopian Birr', flag: 'https://flagcdn.com/w80/et.png' },
+            { code: 'FJD', name: 'Fijian Dollar', flag: 'https://flagcdn.com/w80/fj.png' },
+            { code: 'FKP', name: 'Falkland Islands Pound', flag: 'https://flagcdn.com/w80/fk.png' },
+            
+            // G - L
+            { code: 'GEL', name: 'Georgian Lari', flag: 'https://flagcdn.com/w80/ge.png' },
+            { code: 'GGP', name: 'Guernsey Pound', flag: 'https://flagcdn.com/w80/gg.png' },
+            { code: 'GHS', name: 'Ghanaian Cedi', flag: 'https://flagcdn.com/w80/gh.png' },
+            { code: 'GIP', name: 'Gibraltar Pound', flag: 'https://flagcdn.com/w80/gi.png' },
+            { code: 'GMD', name: 'Gambian Dalasi', flag: 'https://flagcdn.com/w80/gm.png' },
+            { code: 'GNF', name: 'Guinean Franc', flag: 'https://flagcdn.com/w80/gn.png' },
+            { code: 'GYD', name: 'Guyanese Dollar', flag: 'https://flagcdn.com/w80/gy.png' },
+            { code: 'HNL', name: 'Honduran Lempira', flag: 'https://flagcdn.com/w80/hn.png' },
+            { code: 'HTG', name: 'Haitian Gourde', flag: 'https://flagcdn.com/w80/ht.png' },
+            { code: 'IMP', name: 'Isle of Man Pound', flag: 'https://flagcdn.com/w80/im.png' },
+            { code: 'IQD', name: 'Iraqi Dinar', flag: 'https://flagcdn.com/w80/iq.png' },
+            { code: 'IRR', name: 'Iranian Rial', flag: 'https://flagcdn.com/w80/ir.png' },
+            { code: 'JEP', name: 'Jersey Pound', flag: 'https://flagcdn.com/w80/je.png' },
+            { code: 'KES', name: 'Kenyan Shilling', flag: 'https://flagcdn.com/w80/ke.png' },
+            { code: 'KGS', name: 'Kyrgyzstani Som', flag: 'https://flagcdn.com/w80/kg.png' },
+            { code: 'KHR', name: 'Cambodian Riel', flag: 'https://flagcdn.com/w80/kh.png' },
+            { code: 'KID', name: 'Kiribati Dollar', flag: 'https://flagcdn.com/w80/ki.png' },
+            { code: 'KPW', name: 'North Korean Won', flag: 'https://flagcdn.com/w80/kp.png' },
+            { code: 'KYD', name: 'Cayman Islands Dollar', flag: 'https://flagcdn.com/w80/ky.png' },
+            { code: 'LAK', name: 'Lao Kip', flag: 'https://flagcdn.com/w80/la.png' },
+            { code: 'LBP', name: 'Lebanese Pound', flag: 'https://flagcdn.com/w80/lb.png' },
+            { code: 'LRD', name: 'Liberian Dollar', flag: 'https://flagcdn.com/w80/lr.png' },
+            { code: 'LSL', name: 'Lesotho Loti', flag: 'https://flagcdn.com/w80/ls.png' },
+            { code: 'LYD', name: 'Libyan Dinar', flag: 'https://flagcdn.com/w80/ly.png' },
+            
+            // M - R
+            { code: 'MDL', name: 'Moldovan Leu', flag: 'https://flagcdn.com/w80/md.png' },
+            { code: 'MGA', name: 'Malagasy Ariary', flag: 'https://flagcdn.com/w80/mg.png' },
+            { code: 'MKD', name: 'Macedonian Denar', flag: 'https://flagcdn.com/w80/mk.png' },
+            { code: 'MMK', name: 'Myanmar Kyat', flag: 'https://flagcdn.com/w80/mm.png' },
+            { code: 'MNT', name: 'Mongolian Tögrög', flag: 'https://flagcdn.com/w80/mn.png' },
+            { code: 'MOP', name: 'Macanese Pataca', flag: 'https://flagcdn.com/w80/mo.png' },
+            { code: 'MRU', name: 'Mauritanian Ouguiya', flag: 'https://flagcdn.com/w80/mr.png' },
+            { code: 'MUR', name: 'Mauritian Rupee', flag: 'https://flagcdn.com/w80/mu.png' },
+            { code: 'MVR', name: 'Maldivian Rufiyaa', flag: 'https://flagcdn.com/w80/mv.png' },
+            { code: 'MWK', name: 'Malawian Kwacha', flag: 'https://flagcdn.com/w80/mw.png' },
+            { code: 'MZN', name: 'Mozambican Metical', flag: 'https://flagcdn.com/w80/mz.png' },
+            { code: 'NAD', name: 'Namibian Dollar', flag: 'https://flagcdn.com/w80/na.png' },
+            { code: 'NIO', name: 'Nicaraguan Córdoba', flag: 'https://flagcdn.com/w80/ni.png' },
+            { code: 'NPR', name: 'Nepalese Rupee', flag: 'https://flagcdn.com/w80/np.png' },
+            { code: 'PAB', name: 'Panamanian Balboa', flag: 'https://flagcdn.com/w80/pa.png' },
+            { code: 'PGK', name: 'Papua New Guinean Kina', flag: 'https://flagcdn.com/w80/pg.png' },
+            { code: 'PRB', name: 'Transnistrian Ruble', flag: 'https://flagcdn.com/w80/md.png' }, // Transnistria uses same flag as Moldova
+            { code: 'PYG', name: 'Paraguayan Guaraní', flag: 'https://flagcdn.com/w80/py.png' },
+            { code: 'RWF', name: 'Rwandan Franc', flag: 'https://flagcdn.com/w80/rw.png' },
+            
+            // S - Z
+            { code: 'SBD', name: 'Solomon Islands Dollar', flag: 'https://flagcdn.com/w80/sb.png' },
+            { code: 'SCR', name: 'Seychellois Rupee', flag: 'https://flagcdn.com/w80/sc.png' },
+            { code: 'SDG', name: 'Sudanese Pound', flag: 'https://flagcdn.com/w80/sd.png' },
+            { code: 'SHP', name: 'Saint Helena Pound', flag: 'https://flagcdn.com/w80/sh.png' },
+            { code: 'SLE', name: 'Sierra Leonean Leone', flag: 'https://flagcdn.com/w80/sl.png' },
+            { code: 'SLL', name: 'Sierra Leonean Leone (old)', flag: 'https://flagcdn.com/w80/sl.png' },
+            { code: 'SOS', name: 'Somali Shilling', flag: 'https://flagcdn.com/w80/so.png' },
+            { code: 'SRD', name: 'Surinamese Dollar', flag: 'https://flagcdn.com/w80/sr.png' },
+            { code: 'SSP', name: 'South Sudanese Pound', flag: 'https://flagcdn.com/w80/ss.png' },
+            { code: 'STN', name: 'São Tomé & Príncipe Dobra', flag: 'https://flagcdn.com/w80/st.png' },
+            { code: 'SYP', name: 'Syrian Pound', flag: 'https://flagcdn.com/w80/sy.png' },
+            { code: 'SZL', name: 'Swazi Lilangeni', flag: 'https://flagcdn.com/w80/sz.png' },
+            { code: 'TJS', name: 'Tajikistani Somoni', flag: 'https://flagcdn.com/w80/tj.png' },
+            { code: 'TMT', name: 'Turkmenistani Manat', flag: 'https://flagcdn.com/w80/tm.png' },
+            { code: 'TND', name: 'Tunisian Dinar', flag: 'https://flagcdn.com/w80/tn.png' },
+            { code: 'TOP', name: 'Tongan Paʻanga', flag: 'https://flagcdn.com/w80/to.png' },
+            { code: 'TTD', name: 'Trinidad & Tobago Dollar', flag: 'https://flagcdn.com/w80/tt.png' },
+            { code: 'TVD', name: 'Tuvaluan Dollar', flag: 'https://flagcdn.com/w80/tv.png' },
+            { code: 'TZS', name: 'Tanzanian Shilling', flag: 'https://flagcdn.com/w80/tz.png' },
+            { code: 'UGX', name: 'Ugandan Shilling', flag: 'https://flagcdn.com/w80/ug.png' },
+            { code: 'UYU', name: 'Uruguayan Peso', flag: 'https://flagcdn.com/w80/uy.png' },
+            { code: 'UZS', name: 'Uzbekistani Som', flag: 'https://flagcdn.com/w80/uz.png' },
+            { code: 'VES', name: 'Venezuelan Bolívar', flag: 'https://flagcdn.com/w80/ve.png' },
+            { code: 'VUV', name: 'Vanuatu Vatu', flag: 'https://flagcdn.com/w80/vu.png' },
+            { code: 'WST', name: 'Samoan Tala', flag: 'https://flagcdn.com/w80/ws.png' },
+            { code: 'XAG', name: 'Silver (Troy Ounce)', flag: 'https://flagcdn.com/w80/un.png' },
+            { code: 'XAU', name: 'Gold (Troy Ounce)', flag: 'https://flagcdn.com/w80/un.png' },
+            { code: 'XDR', name: 'Special Drawing Rights (IMF)', flag: 'https://flagcdn.com/w80/un.png' },
+            { code: 'XPD', name: 'Palladium (Troy Ounce)', flag: 'https://flagcdn.com/w80/un.png' },
+            { code: 'XPT', name: 'Platinum (Troy Ounce)', flag: 'https://flagcdn.com/w80/un.png' },
+            { code: 'YER', name: 'Yemeni Rial', flag: 'https://flagcdn.com/w80/ye.png' },
+            { code: 'ZMW', name: 'Zambian Kwacha', flag: 'https://flagcdn.com/w80/zm.png' },
+            { code: 'ZWL', name: 'Zimbabwean Dollar (defunct)', flag: 'https://flagcdn.com/w80/zw.png' },
+            
+            // Previously included currencies
+            { code: 'USD', name: 'US Dollar', flag: 'https://flagcdn.com/w80/us.png' },
+            { code: 'EUR', name: 'Euro', flag: 'https://flagcdn.com/w80/eu.png' },
+            { code: 'GBP', name: 'British Pound', flag: 'https://flagcdn.com/w80/gb.png' },
+            { code: 'JPY', name: 'Japanese Yen', flag: 'https://flagcdn.com/w80/jp.png' },
+            { code: 'AUD', name: 'Australian Dollar', flag: 'https://flagcdn.com/w80/au.png' },
+            { code: 'CAD', name: 'Canadian Dollar', flag: 'https://flagcdn.com/w80/ca.png' },
+            { code: 'CHF', name: 'Swiss Franc', flag: 'https://flagcdn.com/w80/ch.png' },
+            { code: 'CNY', name: 'Chinese Yuan', flag: 'https://flagcdn.com/w80/cn.png' },
+            { code: 'HKD', name: 'Hong Kong Dollar', flag: 'https://flagcdn.com/w80/hk.png' },
+            { code: 'NZD', name: 'New Zealand Dollar', flag: 'https://flagcdn.com/w80/nz.png' },
+            { code: 'SEK', name: 'Swedish Krona', flag: 'https://flagcdn.com/w80/se.png' },
+            { code: 'KRW', name: 'South Korean Won', flag: 'https://flagcdn.com/w80/kr.png' },
+            { code: 'SGD', name: 'Singapore Dollar', flag: 'https://flagcdn.com/w80/sg.png' },
+            { code: 'NOK', name: 'Norwegian Krone', flag: 'https://flagcdn.com/w80/no.png' },
+            { code: 'MXN', name: 'Mexican Peso', flag: 'https://flagcdn.com/w80/mx.png' },
+            { code: 'INR', name: 'Indian Rupee', flag: 'https://flagcdn.com/w80/in.png' },
+            { code: 'RUB', name: 'Russian Ruble', flag: 'https://flagcdn.com/w80/ru.png' },
+            { code: 'ZAR', name: 'South African Rand', flag: 'https://flagcdn.com/w80/za.png' },
+            { code: 'TRY', name: 'Turkish Lira', flag: 'https://flagcdn.com/w80/tr.png' },
+            { code: 'BRL', name: 'Brazilian Real', flag: 'https://flagcdn.com/w80/br.png' },
+            { code: 'TWD', name: 'New Taiwan Dollar', flag: 'https://flagcdn.com/w80/tw.png' },
+            { code: 'DKK', name: 'Danish Krone', flag: 'https://flagcdn.com/w80/dk.png' },
+            { code: 'PLN', name: 'Polish Zloty', flag: 'https://flagcdn.com/w80/pl.png' },
+            { code: 'THB', name: 'Thai Baht', flag: 'https://flagcdn.com/w80/th.png' },
+            { code: 'IDR', name: 'Indonesian Rupiah', flag: 'https://flagcdn.com/w80/id.png' },
+            { code: 'HUF', name: 'Hungarian Forint', flag: 'https://flagcdn.com/w80/hu.png' },
+            { code: 'CZK', name: 'Czech Koruna', flag: 'https://flagcdn.com/w80/cz.png' },
+            { code: 'ILS', name: 'Israeli Shekel', flag: 'https://flagcdn.com/w80/il.png' },
+            { code: 'CLP', name: 'Chilean Peso', flag: 'https://flagcdn.com/w80/cl.png' },
+            { code: 'PHP', name: 'Philippine Peso', flag: 'https://flagcdn.com/w80/ph.png' },
+            { code: 'AED', name: 'UAE Dirham', flag: 'https://flagcdn.com/w80/ae.png' },
+            { code: 'COP', name: 'Colombian Peso', flag: 'https://flagcdn.com/w80/co.png' },
+            { code: 'SAR', name: 'Saudi Riyal', flag: 'https://flagcdn.com/w80/sa.png' },
+            { code: 'MYR', name: 'Malaysian Ringgit', flag: 'https://flagcdn.com/w80/my.png' },
+            { code: 'RON', name: 'Romanian Leu', flag: 'https://flagcdn.com/w80/ro.png' },
+            { code: 'BGN', name: 'Bulgarian Lev', flag: 'https://flagcdn.com/w80/bg.png' },
+            { code: 'ARS', name: 'Argentine Peso', flag: 'https://flagcdn.com/w80/ar.png' },
+            { code: 'PEN', name: 'Peruvian Sol', flag: 'https://flagcdn.com/w80/pe.png' },
+            { code: 'EGP', name: 'Egyptian Pound', flag: 'https://flagcdn.com/w80/eg.png' },
+            { code: 'NGN', name: 'Nigerian Naira', flag: 'https://flagcdn.com/w80/ng.png' },
+            { code: 'PKR', name: 'Pakistani Rupee', flag: 'https://flagcdn.com/w80/pk.png' },
+            { code: 'BDT', name: 'Bangladeshi Taka', flag: 'https://flagcdn.com/w80/bd.png' },
+            { code: 'VND', name: 'Vietnamese Dong', flag: 'https://flagcdn.com/w80/vn.png' },
+            { code: 'UAH', name: 'Ukrainian Hryvnia', flag: 'https://flagcdn.com/w80/ua.png' },
+            { code: 'KZT', name: 'Kazakhstani Tenge', flag: 'https://flagcdn.com/w80/kz.png' },
+            { code: 'QAR', name: 'Qatari Riyal', flag: 'https://flagcdn.com/w80/qa.png' },
+            { code: 'KWD', name: 'Kuwaiti Dinar', flag: 'https://flagcdn.com/w80/kw.png' },
+            { code: 'CRC', name: 'Costa Rican Colon', flag: 'https://flagcdn.com/w80/cr.png' },
+            { code: 'DOP', name: 'Dominican Peso', flag: 'https://flagcdn.com/w80/do.png' },
+            { code: 'JOD', name: 'Jordanian Dinar', flag: 'https://flagcdn.com/w80/jo.png' },
+            { code: 'LKR', name: 'Sri Lankan Rupee', flag: 'https://flagcdn.com/w80/lk.png' },
+            { code: 'MAD', name: 'Moroccan Dirham', flag: 'https://flagcdn.com/w80/ma.png' },
+            { code: 'OMR', name: 'Omani Rial', flag: 'https://flagcdn.com/w80/om.png' },
+            { code: 'BHD', name: 'Bahraini Dinar', flag: 'https://flagcdn.com/w80/bh.png' },
+            { code: 'GTQ', name: 'Guatemalan Quetzal', flag: 'https://flagcdn.com/w80/gt.png' },
+            { code: 'XAF', name: 'CFA Franc BEAC', flag: 'https://flagcdn.com/w80/cm.png' },
+            { code: 'XOF', name: 'CFA Franc BCEAO', flag: 'https://flagcdn.com/w80/sn.png' },
+            { code: 'XPF', name: 'CFP Franc', flag: 'https://flagcdn.com/w80/pf.png' },
+            { code: 'XCD', name: 'East Caribbean Dollar', flag: 'https://flagcdn.com/w80/ag.png' }
+        ];
+
+        // DOM elements
+        const amountInput = document.getElementById('amount');
+        const fromCurrency = document.getElementById('from-currency');
+        const toCurrency = document.getElementById('to-currency');
+        const fromSearch = document.getElementById('from-search');
+        const toSearch = document.getElementById('to-search');
+        const convertedAmount = document.getElementById('converted-amount');
+        const conversionRate = document.getElementById('conversion-rate');
+        const swapBtn = document.getElementById('swap-btn');
+        const fromFlag = document.getElementById('from-flag');
+        const toFlag = document.getElementById('to-flag');
+        const flagsContainer = document.getElementById('flags-container');
+        const lastUpdated = document.getElementById('last-updated');
+
+        // Exchange rates cache
+        let exchangeRates = {};
+        let baseCurrency = 'USD';
+        let lastUpdateTime = null;
+
+        // Initialize the app
+        function init() {
+            populateCurrencyDropdowns();
+            loadExchangeRates();
+            setupEventListeners();
+            displayPopularFlags();
+            convert(); // Initial conversion
+        }
+
+        // Populate currency dropdowns
+        function populateCurrencyDropdowns() {
+            // Clear existing options
+            fromCurrency.innerHTML = '';
+            toCurrency.innerHTML = '';
+            
+            // Sort currencies alphabetically by code
+            const sortedCurrencies = [...currencies].sort((a, b) => a.code.localeCompare(b.code));
+            
+            sortedCurrencies.forEach(currency => {
+                const option1 = document.createElement('option');
+                option1.value = currency.code;
+                option1.textContent = `${currency.code} - ${currency.name}`;
+                option1.setAttribute('data-flag', currency.flag);
+                fromCurrency.appendChild(option1);
+                
+                const option2 = document.createElement('option');
+                option2.value = currency.code;
+                option2.textContent = `${currency.code} - ${currency.name}`;
+                option2.setAttribute('data-flag', currency.flag);
+                toCurrency.appendChild(option2);
+            });
+            
+            // Set default values
+            fromCurrency.value = 'USD';
+            toCurrency.value = 'EUR';
+            updateFlags();
+        }
+
+        // Filter currencies based on search input
+        function filterCurrencies(searchInput, dropdown) {
+            const searchTerm = searchInput.value.toLowerCase();
+            const options = dropdown.options;
+            
+            for (let i = 0; i < options.length; i++) {
+                const option = options[i];
+                const text = option.text.toLowerCase();
+                
+                if (text.includes(searchTerm)) {
+                    option.style.display = '';
+                } else {
+                    option.style.display = 'none';
+                }
+            }
+        }
+
+        // Display popular flags
+        function displayPopularFlags() {
+            const popularCurrencies = ['USD', 'EUR', 'GBP', 'JPY', 'AUD', 'CAD', 'CNY', 'INR', 'AED', 'SGD'];
+            
+            popularCurrencies.forEach(code => {
+                const currency = currencies.find(c => c.code === code);
+                if (currency) {
+                    const flag = document.createElement('div');
+                    flag.className = 'flag';
+                    flag.style.backgroundImage = `url(${currency.flag})`;
+                    flag.title = `${currency.code} - ${currency.name}`;
+                    flag.addEventListener('click', () => {
+                        fromCurrency.value = 'USD';
+                        toCurrency.value = currency.code;
+                        updateFlags();
+                        convert();
+                    });
+                    flagsContainer.appendChild(flag);
+                }
+            });
+        }
+
+        // Update flag displays
+        function updateFlags() {
+            const fromCode = fromCurrency.value;
+            const toCode = toCurrency.value;
+            
+            const fromCurrencyData = currencies.find(c => c.code === fromCode);
+            const toCurrencyData = currencies.find(c => c.code === toCode);
+            
+            if (fromCurrencyData) {
+                fromFlag.style.backgroundImage = `url(${fromCurrencyData.flag})`;
+                fromFlag.title = `${fromCurrencyData.code} - ${fromCurrencyData.name}`;
+            } else {
+                fromFlag.style.backgroundImage = '';
+                fromFlag.title = '';
+            }
+            
+            if (toCurrencyData) {
+                toFlag.style.backgroundImage = `url(${toCurrencyData.flag})`;
+                toFlag.title = `${toCurrencyData.code} - ${toCurrencyData.name}`;
+            } else {
+                toFlag.style.backgroundImage = '';
+                toFlag.title = '';
+            }
+        }
+
+        // Load exchange rates from API
+        async function loadExchangeRates() {
+            try {
+                lastUpdated.textContent = 'Loading latest exchange rates...';
+                
+                // Using ExchangeRate-API (replace with a real API in production)
+                const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${baseCurrency}`);
+                const data = await response.json();
+                
+                if (data && data.rates) {
+                    exchangeRates = data.rates;
+                    lastUpdateTime = new Date(data.time_last_updated * 1000);
+                    updateLastUpdatedText();
+                    convert();
+                } else {
+                    throw new Error('Invalid data received');
+                }
+            } catch (error) {
+                console.error('Error fetching exchange rates:', error);
+                lastUpdated.textContent = 'Failed to load latest rates. Using fallback data.';
+                
+                // Fallback rates if API fails
+                exchangeRates = {};
+                currencies.forEach(currency => {
+                    // Generate random exchange rates for demo purposes
+                    // In a real app, you would use actual fallback rates
+                    if (currency.code === 'USD') {
+                        exchangeRates[currency.code] = 1;
+                    } else {
+                        exchangeRates[currency.code] = (Math.random() * 10 + 0.1).toFixed(4);
+                    }
+                });
+                
+                lastUpdateTime = new Date();
+                updateLastUpdatedText();
+                convert();
+            }
+        }
+
+        // Update last updated text
+        function updateLastUpdatedText() {
+            if (lastUpdateTime) {
+                const options = { 
+                    year: 'numeric', 
+                    month: 'short', 
+                    day: 'numeric', 
+                    hour: '2-digit', 
+                    minute: '2-digit',
+                    second: '2-digit'
+                };
+                const formattedTime = lastUpdateTime.toLocaleDateString('en-US', options);
+                lastUpdated.textContent = `Rates updated: ${formattedTime}`;
+            }
+        }
+
+        // Convert currencies
+        function convert() {
+            const amount = parseFloat(amountInput.value);
+            if (isNaN(amount) || amount < 0) {
+                convertedAmount.textContent = '0.00';
+                return;
+            }
+            
+            const fromCode = fromCurrency.value;
+            const toCode = toCurrency.value;
+            
+            // If both currencies are the same
+            if (fromCode === toCode) {
+                convertedAmount.textContent = amount.toFixed(2);
+                conversionRate.textContent = `1 ${fromCode} = 1 ${toCode}`;
+                return;
+            }
+            
+            // If we have the exchange rates
+            if (exchangeRates[fromCode] && exchangeRates[toCode]) {
+                // Convert from base currency (USD) to target currency
+                const fromRate = exchangeRates[fromCode];
+                const toRate = exchangeRates[toCode];
+                
+                // Calculate the converted amount
+                const result = (amount / fromRate) * toRate;
+                convertedAmount.textContent = result.toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+                
+                // Calculate and display the conversion rate
+                const rate = (1 / fromRate) * toRate;
+                conversionRate.textContent = `1 ${fromCode} = ${rate.toLocaleString(undefined, {
+                    minimumFractionDigits: 6,
+                    maximumFractionDigits: 6
+                })} ${toCode}`;
+            } else {
+                convertedAmount.textContent = 'N/A';
+                conversionRate.textContent = 'Exchange rate not available';
+            }
+        }
+
+        // Swap currencies
+        function swapCurrencies() {
+            const temp = fromCurrency.value;
+            fromCurrency.value = toCurrency.value;
+            toCurrency.value = temp;
+            updateFlags();
+            convert();
+        }
+
+        // Set up event listeners
+        function setupEventListeners() {
+            amountInput.addEventListener('input', convert);
+            fromCurrency.addEventListener('change', () => {
+                updateFlags();
+                convert();
+            });
+            toCurrency.addEventListener('change', () => {
+                updateFlags();
+                convert();
+            });
+            swapBtn.addEventListener('click', swapCurrencies);
+            
+            // Search functionality
+            fromSearch.addEventListener('input', () => {
+                filterCurrencies(fromSearch, fromCurrency);
+            });
+            
+            toSearch.addEventListener('input', () => {
+                filterCurrencies(toSearch, toCurrency);
+            });
+        }
+
+        // Initialize the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

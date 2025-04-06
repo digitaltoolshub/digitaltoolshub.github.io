@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Analytics -->
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -10,9 +10,7 @@
       gtag('config', 'G-R4N9RB1SNN');
     </script>
     
-    <!-- Google Ads -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" type="text/javascript" async></script>    <meta charset="UTF-8">
     
     <!-- Primary Meta Tags -->
     <meta charset="UTF-8">
@@ -24,17 +22,17 @@
     <!-- Open Graph / Facebook Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://yourwebsite.com/retirement-planner">
-    <meta property="og:title" content="🌍 Ultimate Global Retirement Planner with Multi-Currency Support">
-    <meta property="og:description" content="Plan your perfect retirement anywhere in the world with our comprehensive retirement calculator. Compare costs in USD, EUR, INR, PKR, AED and more.">
+    <meta property="og:title" content="🌍 Ultimate Global Retirement Planner with Accurate Multi-Currency Support">
+    <meta property="og:description" content="Plan your perfect retirement anywhere in the world with our comprehensive retirement calculator. Compare costs in USD, EUR, INR, PKR, AED and more with accurate local values.">
     <meta property="og:image" content="https://yourwebsite.com/images/retirement-planner-preview.jpg">
     
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="🌍 Ultimate Global Retirement Planner with Multi-Currency Support">
-    <meta name="twitter:description" content="Plan your perfect retirement anywhere in the world with our comprehensive retirement calculator. Compare costs in multiple currencies.">
+    <meta name="twitter:title" content="🌍 Ultimate Global Retirement Planner with Accurate Multi-Currency Support">
+    <meta name="twitter:description" content="Plan your perfect retirement anywhere in the world with our comprehensive retirement calculator. Compare costs in multiple currencies with accurate local values.">
     <meta name="twitter:image" content="https://yourwebsite.com/images/retirement-planner-preview.jpg">
     
-    <title>Global Retirement Planner | Multi-Currency Retirement Calculator Worldwide</title>
+    <title>Global Retirement Planner | Accurate Multi-Currency Retirement Calculator</title>
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://yourwebsite.com/retirement-planner">
@@ -48,7 +46,7 @@
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "Global Retirement Planner",
-      "description": "Interactive multi-currency retirement planning calculator that helps users visualize their retirement savings and explore ideal retirement locations worldwide.",
+      "description": "Interactive multi-currency retirement planning calculator with accurate local values that helps users visualize their retirement savings and explore ideal retirement locations worldwide.",
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Web",
       "offers": {
@@ -74,6 +72,7 @@
             --basic: #1dd1a1;
             --input-bg: rgba(255, 255, 255, 0.1);
             --input-border: rgba(109, 213, 237, 0.3);
+            --custom: #b197fc;
         }
         
         * {
@@ -266,10 +265,12 @@
             display: flex;
             gap: 1rem;
             margin: 1.5rem 0;
+            flex-wrap: wrap;
         }
         
         .lifestyle-option {
             flex: 1;
+            min-width: 120px;
             padding: 1rem;
             text-align: center;
             border-radius: 10px;
@@ -298,6 +299,21 @@
         
         .lifestyle-option.luxury {
             color: var(--luxury);
+        }
+        
+        .lifestyle-option.custom {
+            color: var(--custom);
+        }
+        
+        /* Custom Lifestyle Input */
+        .custom-lifestyle-input {
+            display: none;
+            margin-top: 1rem;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .custom-lifestyle-input.active {
+            display: block;
         }
         
         /* Results Section */
@@ -514,7 +530,7 @@
     <div class="container">
         <div class="header">
             <h1>🌍 GLOBAL RETIREMENT PLANNER</h1>
-            <p class="subtitle">Plan your perfect retirement anywhere in the world with multi-currency support. Compare costs in USD, EUR, INR, PKR, AED and more.</p>
+            <p class="subtitle">Plan your perfect retirement anywhere in the world with accurate local cost estimates</p>
         </div>
         
         <!-- Currency Selector -->
@@ -600,16 +616,24 @@
                     <div class="lifestyle-options">
                         <div class="lifestyle-option basic active" data-value="basic" role="button" aria-label="Basic retirement lifestyle option">
                             <div>🏡 Basic</div>
-                            <small><span class="lifestyle-cost" data-base="40000">$40k</span>/year</small>
+                            <small><span class="lifestyle-cost" data-base="120000" data-pkr="150000" data-inr="120000" data-aed="12000" data-eur="11000">$40k</span>/year</small>
                         </div>
                         <div class="lifestyle-option comfortable" data-value="comfortable" role="button" aria-label="Comfortable retirement lifestyle option">
                             <div>✈️ Comfortable</div>
-                            <small><span class="lifestyle-cost" data-base="70000">$70k</span>/year</small>
+                            <small><span class="lifestyle-cost" data-base="70000" data-pkr="300000" data-inr="250000" data-aed="25000" data-eur="22000">$70k</span>/year</small>
                         </div>
                         <div class="lifestyle-option luxury" data-value="luxury" role="button" aria-label="Luxury retirement lifestyle option">
                             <div>🏖️ Luxury</div>
-                            <small><span class="lifestyle-cost" data-base="120000">$120k+</span>/year</small>
+                            <small><span class="lifestyle-cost" data-base="120000" data-pkr="600000" data-inr="500000" data-aed="45000" data-eur="40000">$120k+</span>/year</small>
                         </div>
+                        <div class="lifestyle-option custom" data-value="custom" role="button" aria-label="Custom retirement lifestyle option">
+                            <div>🛠️ Custom</div>
+                            <small>Set your own</small>
+                        </div>
+                    </div>
+                    <div class="custom-lifestyle-input" id="custom-lifestyle-input">
+                        <label for="custom-annual-cost">Annual Living Cost (<span class="currency-display" id="custom-cost-currency">USD</span>)</label>
+                        <input type="number" id="custom-annual-cost" min="0" value="50000" aria-label="Enter your custom annual living cost">
                     </div>
                 </div>
                 
@@ -684,7 +708,7 @@
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
-        // Retirement data with currency conversion rates (as of sample date)
+        // Retirement data with accurate local values
         const retirementData = {
             exchangeRates: {
                 USD: 1,    // Base currency
@@ -722,39 +746,53 @@
             },
             
             lifestyles: {
-                basic: { annualCost: 40000, color: '#1dd1a1' },
-                comfortable: { annualCost: 70000, color: '#48dbfb' },
-                luxury: { annualCost: 120000, color: '#ff9ff3' }
+                basic: { color: '#1dd1a1' },
+                comfortable: { color: '#48dbfb' },
+                luxury: { color: '#ff9ff3' },
+                custom: { color: '#b197fc' }
             },
             
-            locations: {
-                us: [
-                    { name: "Florida, USA", lat: 27.6648, lng: -81.5158, cost: 3500, healthcare: "Excellent" },
-                    { name: "Arizona, USA", lat: 34.0489, lng: -111.0937, cost: 3200, healthcare: "Excellent" }
-                ],
-                europe: [
-                    { name: "Algarve, Portugal", lat: 37.1028, lng: -8.6730, cost: 2500, healthcare: "Excellent" },
-                    { name: "Malaga, Spain", lat: 36.7213, lng: -4.4213, cost: 2200, healthcare: "Excellent" }
-                ],
-                asia: [
-                    { name: "Chiang Mai, Thailand", lat: 18.7061, lng: 98.9817, cost: 1500, healthcare: "Good" },
-                    { name: "Penang, Malaysia", lat: 5.4164, lng: 100.3327, cost: 1800, healthcare: "Good" }
-                ],
-                latin: [
-                    { name: "Medellín, Colombia", lat: 6.2442, lng: -75.5812, cost: 1600, healthcare: "Good" },
-                    { name: "Cuenca, Ecuador", lat: -2.9006, lng: -79.0045, cost: 1400, healthcare: "Fair" }
-                ]
+            // Location-specific annual costs in local currency
+            locationCosts: {
+                us: {
+                    basic: 40000,
+                    comfortable: 70000,
+                    luxury: 120000
+                },
+                europe: {
+                    basic: 36000,
+                    comfortable: 60000,
+                    luxury: 100000
+                },
+                asia: {
+                    basic: 15000,
+                    comfortable: 30000,
+                    luxury: 60000
+                },
+                latin: {
+                    basic: 18000,
+                    comfortable: 35000,
+                    luxury: 70000
+                }
             },
             
-            averageSavings: {
-                30: 45000,
-                35: 90000,
-                40: 135000,
-                45: 210000,
-                50: 300000,
-                55: 400000,
-                60: 500000,
-                65: 600000
+            // Country-specific average savings at retirement age (65)
+            averageSavingsByCurrency: {
+                USD: 500000,
+                EUR: 420000,
+                GBP: 380000,
+                JPY: 55000000,
+                AUD: 680000,
+                CAD: 600000,
+                INR: 4000000,
+                PKR: 6000000,  // ~$21,500 USD equivalent
+                AED: 800000,
+                SAR: 750000,
+                BRL: 2500000,
+                MXN: 8500000,
+                ZAR: 7500000,
+                SGD: 650000,
+                // Add more currencies as needed
             },
             
             tips: [
@@ -771,8 +809,8 @@
                     content: "Countries like Portugal and Malaysia offer excellent healthcare at 1/3 the US cost. Factor this into location decisions."
                 },
                 {
-                    title: "🔄 Tax Optimization",
-                    content: "Panama and Costa Rica offer special retiree visas with tax breaks on foreign-earned income and pensions."
+                    title: "💵 Local Cost Adjustments",
+                    content: "Remember that lifestyle costs vary dramatically by country. A comfortable life in Pakistan costs much less than in the US."
                 },
                 {
                     title: "🏠 Housing Options",
@@ -800,6 +838,7 @@
         let currentLifestyle = 'basic';
         let retirementNumber = 0;
         let currentCurrency = 'USD';
+        let customAnnualCost = 50000;
 
         // Initialize the application
         function init() {
@@ -884,6 +923,15 @@
                         opt.classList.remove('active'));
                     this.classList.add('active');
                     currentLifestyle = this.dataset.value;
+                    
+                    // Show/hide custom input
+                    if (currentLifestyle === 'custom') {
+                        document.getElementById('custom-lifestyle-input').classList.add('active');
+                        document.getElementById('custom-annual-cost').focus();
+                    } else {
+                        document.getElementById('custom-lifestyle-input').classList.remove('active');
+                    }
+                    
                     calculateRetirement();
                 });
                 
@@ -894,6 +942,12 @@
                         this.click();
                     }
                 });
+            });
+            
+            // Custom lifestyle cost input
+            document.getElementById('custom-annual-cost').addEventListener('input', function() {
+                customAnnualCost = parseFloat(this.value) || 0;
+                calculateRetirement();
             });
             
             // Location selection
@@ -914,11 +968,21 @@
                 el.textContent = currentCurrency;
             });
             
-            // Update lifestyle cost displays
+            // Update lifestyle cost displays based on currency
             document.querySelectorAll('.lifestyle-cost').forEach(el => {
-                const baseValue = parseFloat(el.dataset.base);
-                const convertedValue = convertCurrency(baseValue, 'USD', currentCurrency);
-                const formattedValue = formatCurrency(convertedValue, currentCurrency);
+                let cost;
+                
+                // Use currency-specific value if available
+                if (el.dataset[currentCurrency.toLowerCase()]) {
+                    cost = parseFloat(el.dataset[currentCurrency.toLowerCase()]);
+                } 
+                // Otherwise use the base USD value and convert
+                else {
+                    const baseValue = parseFloat(el.dataset.base);
+                    cost = convertCurrency(baseValue, 'USD', currentCurrency);
+                }
+                
+                const formattedValue = formatCurrency(cost, currentCurrency);
                 el.textContent = formattedValue;
             });
         }
@@ -958,6 +1022,15 @@
                 }).format(amount);
             }
             
+            // Special case for PKR (Pakistani Rupee)
+            if (currency === 'PKR') {
+                return new Intl.NumberFormat('en-PK', {
+                    style: 'currency',
+                    currency: currency,
+                    maximumFractionDigits: 0
+                }).format(amount);
+            }
+            
             // Default formatting for most currencies
             return new Intl.NumberFormat(undefined, {
                 style: 'currency',
@@ -986,8 +1059,15 @@
             
             // Add new markers
             retirementData.locations[currentLocation].forEach(location => {
-                const convertedCost = convertCurrency(location.cost, 'USD', currentCurrency);
-                const formattedCost = formatCurrency(convertedCost, currentCurrency);
+                // Calculate cost in selected currency
+                let cost;
+                if (currentCurrency === 'USD') {
+                    cost = location.cost;
+                } else {
+                    cost = convertCurrency(location.cost, 'USD', currentCurrency);
+                }
+                
+                const formattedCost = formatCurrency(cost, currentCurrency);
                 
                 const marker = L.marker([location.lat, location.lng])
                     .addTo(map)
@@ -1010,8 +1090,16 @@
         // Show location details
         function showLocationDetails(location) {
             const info = document.getElementById('location-info');
-            const convertedCost = convertCurrency(location.cost, 'USD', currentCurrency);
-            const formattedCost = formatCurrency(convertedCost, currentCurrency);
+            
+            // Calculate cost in selected currency
+            let cost;
+            if (currentCurrency === 'USD') {
+                cost = location.cost;
+            } else {
+                cost = convertCurrency(location.cost, 'USD', currentCurrency);
+            }
+            
+            const formattedCost = formatCurrency(cost, currentCurrency);
             
             document.getElementById('location-name').textContent = location.name;
             document.getElementById('location-cost').textContent = `${formattedCost}/month`;
@@ -1070,19 +1158,33 @@
             document.getElementById('retirement-amount').textContent = formattedValue;
             document.getElementById('user-savings').textContent = formattedValue;
             
-            // Calculate retirement number based on lifestyle (in USD)
-            const lifestyle = retirementData.lifestyles[currentLifestyle];
-            retirementNumber = lifestyle.annualCost * 25; // Using 4% rule
-            
-            // Convert retirement number to selected currency for display
-            const convertedRetirementNumber = convertCurrency(retirementNumber, 'USD', currentCurrency);
-            const formattedRetirementNumber = formatCurrency(convertedRetirementNumber, currentCurrency);
+            // Calculate retirement number based on lifestyle
+            if (currentLifestyle === 'custom') {
+                // Use user-defined custom amount
+                retirementNumber = customAnnualCost * 25; // Using 4% rule
+            } else {
+                // Get lifestyle cost in selected currency
+                let annualCost;
+                
+                // Use currency-specific value if available
+                const lifestyleElement = document.querySelector(`.lifestyle-option.${currentLifestyle} .lifestyle-cost`);
+                if (lifestyleElement.dataset[currentCurrency.toLowerCase()]) {
+                    annualCost = parseFloat(lifestyleElement.dataset[currentCurrency.toLowerCase()]);
+                } 
+                // Otherwise use the base USD value and convert
+                else {
+                    const baseValue = parseFloat(lifestyleElement.dataset.base);
+                    annualCost = convertCurrency(baseValue, 'USD', currentCurrency);
+                }
+                
+                retirementNumber = annualCost * 25; // Using 4% rule
+            }
             
             // Update comparison
-            updateComparison(retirementAge, futureValue, convertedRetirementNumber, formattedRetirementNumber);
+            updateComparison(retirementAge, futureValue, retirementNumber);
             
             // Play success sound if savings are above target
-            if (futureValue >= convertedRetirementNumber) {
+            if (futureValue >= retirementNumber) {
                 playSound('success-sound');
             }
         }
@@ -1109,10 +1211,16 @@
         }
 
         // Update comparison section
-        function updateComparison(retirementAge, userSavings, targetSavings, formattedTarget) {
-            // Get average savings in selected currency
-            const avgSavingsUSD = getAverageSavings(retirementAge);
-            const avgSavings = convertCurrency(avgSavingsUSD, 'USD', currentCurrency);
+        function updateComparison(retirementAge, userSavings, targetSavings) {
+            // Get average savings for selected currency
+            let avgSavings;
+            if (retirementData.averageSavingsByCurrency[currentCurrency]) {
+                avgSavings = retirementData.averageSavingsByCurrency[currentCurrency];
+            } else {
+                // Default to USD average converted to selected currency
+                const usdAvg = retirementData.averageSavingsByCurrency['USD'];
+                avgSavings = convertCurrency(usdAvg, 'USD', currentCurrency);
+            }
             
             document.getElementById('average-savings').textContent = 
                 formatCurrency(avgSavings, currentCurrency);
@@ -1132,6 +1240,9 @@
                 progressBar.style.background = 'linear-gradient(to right, #F44336, #E91E63)';
             }
             
+            // Format target savings for display
+            const formattedTarget = formatCurrency(targetSavings, currentCurrency);
+            
             // Update comparison text
             const shortfall = targetSavings - userSavings;
             if (shortfall > 0) {
@@ -1141,20 +1252,6 @@
                 document.querySelector('.comparison-title').textContent = 
                     `You've reached your ${currentLifestyle} lifestyle target (${formattedTarget})!`;
             }
-        }
-
-        // Get average savings for age (in USD)
-        function getAverageSavings(age) {
-            const ages = Object.keys(retirementData.averageSavings).map(Number).sort((a,b) => a-b);
-            let closestAge = ages[0];
-            
-            for (let a of ages) {
-                if (Math.abs(a - age) < Math.abs(closestAge - age)) {
-                    closestAge = a;
-                }
-            }
-            
-            return retirementData.averageSavings[closestAge];
         }
 
         // Display random tip

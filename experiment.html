@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Analysis Tool</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .results {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        .result-item {
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        .result-item strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Text Analysis Tool</h1>
+        <textarea id="inputText" rows="10" placeholder="Paste or type your text here..."></textarea>
+        <button onclick="analyzeText()">Analyze Text</button>
+        <div class="results" id="analysisResults" style="display: none;">
+            <h2>Analysis Results</h2>
+            <div class="result-item"><strong>Word Count:</strong> <span id="wordCount"></span></div>
+            <div class="result-item"><strong>Character Count:</strong> <span id="charCount"></span></div>
+            <div class="result-item"><strong>Average Word Length:</strong> <span id="avgWordLength"></span></div>
+            <div class="result-item"><strong>Sentence Count:</strong> <span id="sentenceCount"></span></div>
+            <div class="result-item"><strong>Reading Time:</strong> <span id="readingTime"></span></div>
+        </div>
+    </div>
+
+    <script>
+        function analyzeText() {
+            const text = document.getElementById("inputText").value;
+            const wordCountElement = document.getElementById("wordCount");
+            const charCountElement = document.getElementById("charCount");
+            const avgWordLengthElement = document.getElementById("avgWordLength");
+            const sentenceCountElement = document.getElementById("sentenceCount");
+            const readingTimeElement = document.getElementById("readingTime");
+            const resultsContainer = document.getElementById("analysisResults");
+
+            // Basic word count (split by spaces)
+            const words = text.trim().split(/\s+/).filter(word => word !== "");
+            const wordCount = words.length;
+            wordCountElement.textContent = wordCount;
+
+            // Character count
+            const charCount = text.length;
+            charCountElement.textContent = charCount;
+
+            // Average word length
+            const totalWordLength = words.reduce((sum, word) => sum + word.length, 0);
+            const avgWordLength = wordCount > 0 ? (totalWordLength / wordCount).toFixed(2) : 0;
+            avgWordLengthElement.textContent = avgWordLength;
+
+            // Basic sentence count (split by common sentence endings)
+            const sentences = text.split(/[.?!]/).filter(sentence => sentence.trim() !== "");
+            const sentenceCount = sentences.length;
+            sentenceCountElement.textContent = sentenceCount;
+
+            // Basic reading time estimate (assuming 200 words per minute)
+            const wordsPerMinute = 200;
+            const readingTimeMinutes = wordCount / wordsPerMinute;
+            const readingTime = readingTimeMinutes < 1 ? "< 1 minute" : `${Math.ceil(readingTimeMinutes)} minutes`;
+            readingTimeElement.textContent = readingTime;
+
+            resultsContainer.style.display = "block";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Adventure Awaits! - Your Personalized Trip Cost Estimator ✨</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; /* Hide potential overflow from animations */
+        }
+
+        .estimator-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #ff6b6b;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+            position: relative; /* For autocomplete dropdown */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+            animation: slideInLabel 0.5s ease-out forwards;
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+
+        @keyframes slideInLabel {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            border-color: #ff6b6b;
+            outline: none;
+            box-shadow: 0 0 8px rgba(255, 107, 107, 0.3);
+        }
+
+        #destination-suggestions {
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            width: 100%;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            display: none;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .suggestion-item {
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .suggestion-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        #distance-input-group {
+            display: none;
+        }
+
+        .options-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .option-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .option-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .option-card label {
+            font-weight: normal;
+            display: block;
+            margin-top: 5px;
+        }
+
+        button {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #e04f4f;
+        }
+
+        .result-area {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            font-size: 1.1em;
+            color: #444;
+            display: none;
+            animation: slideUp 0.5s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Creative Animation - Floating Elements */
+        .floating-plane {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-image: url('plane.png'); /* Replace with your plane icon */
+            background-size: contain;
+            animation: float 5s infinite alternate, moveAcross 20s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+
+        @keyframes moveAcross {
+            0% { left: -60px; }
+            50% { transform: rotate(15deg); }
+            100% { left: calc(100% + 60px); transform: rotate(0deg); }
+        }
+
+        .floating-star {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: yellow;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: twinkle 3s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            from { opacity: 0.8; transform: scale(1); }
+            to { opacity: 0.4; transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="estimator-container">
+        <h1>🗺️ Plan Your Dream Trip! ✈️</h1>
+
+        <div class="input-group" style="animation-delay: 0.2s;">
+            <label for="destination">📍 Destination:</label>
+            <input type="text" id="destination" placeholder="Enter destination or 'Other'">
+            <div id="destination-suggestions"></div>
+        </div>
+
+        <div class="input-group" id="distance-input-group" style="animation-delay: 0.3s;">
+            <label for="distance">📏 Estimated Distance (km):</label>
+            <input type="number" id="distance" min="0" placeholder="Enter distance in kilometers">
+        </div>
+
+        <div class="input-group" style="animation-delay: 0.4s;">
+            <label for="duration">🗓️ Trip Duration (Days):</label>
+            <input type="number" id="duration" min="1" value="7">
+        </div>
+
+        <div class="input-group" style="animation-delay: 0.6s;">
+            <label for="travelers">🧑‍🤝‍🧑 Number of Travelers:</label>
+            <input type="number" id="travelers" min="1" value="1">
+        </div>
+
+        <div class="input-group" style="animation-delay: 0.8s;">
+            <label for="currency">💰 Preferred Currency:</label>
+            <select id="currency">
+                <option value="USD">United States Dollar (USD)</option>
+                <option value="EUR">Euro (EUR)</option>
+                <option value="GBP">British Pound (GBP)</option>
+                <option value="JPY">Japanese Yen (JPY)</option>
+                <option value="AED">United Arab Emirates Dirham (AED)</option>
+                <option value="AFN">Afghan Afghani (AFN)</option>
+                <option value="ALL">Albanian Lek (ALL)</option>
+                <option value="AMD">Armenian Dram (AMD)</option>
+                <option value="ANG">Netherlands Antillean Guilder (ANG)</option>
+                <option value="AOA">Angolan Kwanza (AOA)</option>
+                <option value="ARS">Argentine Peso (ARS)</option>
+                <option value="AUD">Australian Dollar (AUD)</option>
+                <option value="AWG">Aruban Florin (AWG)</option>
+                <option value="AZN">Azerbaijani Manat (AZN)</option>
+                <option value="BAM">Bosnia and Herzegovina Convertible Mark (BAM)</option>
+                <option value="BBD">Barbadian Dollar (BBD)</option>
+                <option value="BDT">Bangladeshi Taka (BDT)</option>
+                <option value="BGN">Bulgarian Lev (BGN)</option>
+                <option value="BHD">Bahraini Dinar (BHD)</option>
+                <option value="BIF">Burundian Franc (BIF)</option>
+                <option value="BMD">Bermudian Dollar (BMD)</option>
+                <option value="BND">Brunei Dollar (BND)</option>
+                <option value="BOB">Bolivian Boliviano (BOB)</option>
+                <option value="BRL">Brazilian Real (BRL)</option>
+                <option value="BSD">Bahamian Dollar (BSD)</option>
+                <option value="BTN">Bhutanese Ngultrum (BTN)</option>
+                <option value="BWP">Botswanan Pula (BWP)</option>
+                <option value="BYN">Belarusian Ruble (BYN)</option>
+                <option value="BZD">Belize Dollar (BZD)</option>
+                <option value="CAD">Canadian Dollar (CAD)</option>
+                <option value="CDF">Congolese Franc (CDF)</option>
+                <option value="CHF">Swiss Franc (CHF)</option>
+                <option value="CLP">Chilean Peso (CLP)</option>
+                <option value="CNY">Chinese Yuan (CNY)</option>
+                <option value="COP">Colombian Peso (COP)</option>
+                <option value="CRC">Costa Rican Colón (CRC)</option>
+                <option value="CUP">Cuban Peso (CUP)</option>
+                <option value="CVE">Cape Verdean Escudo (CVE)</option>
+                <option value="CZK">Czech Koruna (CZK)</option>
+                <option value="DJF">Djiboutian Franc (DJF)</option>
+                <option value="DKK">Danish Krone (DKK)</option>
+                <option value="DOP">Dominican Peso (DOP)</option>
+                <option value="DZD">Algerian Dinar (DZD)</option>
+                <option value="EGP">Egyptian Pound (EGP)</option>
+                <option value="ERN">Eritrean Nakfa (ERN)</option>
+                <option value="ETB">Ethiopian Birr (ETB)</option>
+                <option value="FJD">Fijian Dollar (FJD)</option>
+                <option value="FKP">Falkland Islands Pound (FKP)</option>
+                <option value="GEL">Georgian Lari (GEL)</option>
+                <option value="GHS">Ghanaian Cedi (GHS)</option>
+                <option value="GIP">Gibraltarian Pound (GIP)</option>
+                <option value="GMD">Gambian Dalasi (GMD)</option>
+                <option value="GNF">Guinean Franc (GNF)</option>
+                <option value="GTQ">Guatemalan Quetzal (GTQ)</option>
+                <option value="GYD">Guyanese Dollar (GYD)</option>
+                <option value="HKD">Hong Kong Dollar (HKD)</option>
+                <option value="HNL">Honduran Lempira (HNL)</option>
+                <option value="HRK">Croatian Kuna (HRK)</option>
+                <option value="HTG">Haitian Gourde (HTG)</option>
+                <option value="HUF">Hungarian Forint (HUF)</option>
+                <option value="IDR">Indonesian Rupiah (IDR)</option>
+                <option value="ILS">Israeli New Shekel (ILS)</option>
+                <option value="INR">Indian Rupee (INR)</option>
+                <option value="IQD">Iraqi Dinar (IQD)</option>
+                <option value="IRR">Iranian Rial (IRR)</option>
+                <option value="ISK">Icelandic Króna (ISK)</option>
+                <option value="JMD">Jamaican Dollar (JMD)</option>
+                <option value="JOD">Jordanian Dinar (JOD)</option>
+                <option value="KES">Kenyan Shilling (KES)</option>
+                <option value="KGS">Kyrgyzstani Som (KGS)</option>
+                <option value="KHR">Cambodian Riel (KHR)</option>
+                <option value="KMF">Comorian Franc (KMF)</option>
+                <option value="KPW">North Korean Won (KPW)</option>
+                <option value="KRW">South Korean Won (KRW)</option>
+                <option value="KWD">Kuwaiti Dinar (KWD)</option>
+                <option value="KYD">Cayman Islands Dollar (KYD)</option>
+                <option value="KZT">Kazakhstani Tenge (KZT)</option>
+                <option value="LAK">Lao Kip (LAK)</option>
+                <option value="LBP">Lebanese Pound (LBP)</option>
+                <option value="LKR">Sri Lankan Rupee (LKR)</option>
+                <option value="LRD">Liberian Dollar (LRD)</option>
+                <option value="LSL">Lesotho Loti (LSL)</option>
+                <option value="LYD">Libyan Dinar (LYD)</option>
+                <option value="MAD">Moroccan Dirham (MAD)</option>
+                <option value="MDL">Moldovan Leu (MDL)</option>
+                <option value="MGA">Malagasy Ariary (MGA)</option>
+                <option value="MKD">Macedonian Denar (MKD)</option>
+                <option value="MMK">Burmese Kyat (MMK)</option>
+                <option value="MNT">Mongolian Tögrög (MNT)</option>
+                <option value="MOP">Macanese Pataca (MOP)</option>
+                <option value="MRU">Mauritanian Ouguiya (MRU)</option>
+                <option value="MUR">Mauritian Rupee (MUR)</option>
+                <option value="MVR">Maldivian Rufiyaa (MVR)</option>
+                <option value="MWK">Malawian Kwacha (MWK)</option>
+                <option value="MXN">Mexican Peso (MXN)</option>
+                <option value="MYR">Malaysian Ringgit (MYR)</option>
+                <option value="MZN">Mozambican Metical (MZN)</option>
+                <option value="NAD">Namibian Dollar (NAD)</option>
+                <option value="NGN">Nigerian Naira (NGN)</option>
+                <option value="NIO">Nicaraguan Córdoba (NIO)</option>
+                <option value="NOK">Norwegian Krone (NOK)</option>
+                <option value="NPR">Nepalese Rupee (NPR)</option>
+                <option value="NZD">New Zealand Dollar (NZD)</option>
+                <option value="OMR">Omani Rial (OMR)</option>
+                <option value="PAB">Panamanian Balboa (PAB)</option>
+                <option value="PEN">Peruvian Sol (PEN)</option>
+                <option value="PGK">Papua New Guinean Kina (PGK)</option>
+                <option value="PHP">Philippine Peso (PHP)</option>
+                <option value="PKR">Pakistani Rupee (PKR)</option>
+                <option value="PLN">Polish Złoty (PLN)</option>
+                <option value="PYG">Paraguayan Guaraní (PYG)</option>
+                <option value="QAR">Qatari Riyal (QAR)</option>
+                <option value="RON">Romanian Leu (RON)</option>
+                <option value="RSD">Serbian Dinar (RSD)</option>
+                <option value="RUB">Russian Ruble (RUB)</option>
+                <option value="RWF">Rwandan Franc (RWF)</option>
+                <option value="SAR">Saudi Riyal (SAR)</option>
+                <option value="SBD">Solomon Islands Dollar (SBD)</option>
+                <option value="SCR">Seychellois Rupee (SCR)</option>
+                <option value="SDG">Sudanese Pound (SDG)</option>
+                <option value="SEK">Swedish Krona (SEK)</option>
+                <option value="SGD">Singapore Dollar (SGD)</option>
+                <option value="SHP">Saint Helena Pound (SHP)</option>
+                <option value="SLL">Sierra Leonean Leone (SLL)</option>
+                <option value="SOS">Somali Shilling (SOS)</option>
+                <option value="SRD">Surinamese Dollar (SRD)</option>
+                <option value="SSP">South Sudanese Pound (SSP)</option>
+                <option value="STN">São Tomé and Príncipe Dobra (STN)</option>
+                <option value="SYP">Syrian Pound (SYP)</option>
+                <option value="SZL">Swazi Lilangeni (SZL)</option>
+                <option value="THB">Thai Baht (THB)</option>
+                <option value="TJS">Tajikistani Somoni (TJS)</option>
+                <option value="TMT">Turkmenistani Manat (TMT)</option>
+                <option value="TND">Tunisian Dinar (TND)</option>
+                <option value="TOP">Tongan Paʻanga (TOP)</option>
+                <option value="TRY">Turkish Lira (TRY)</option>
+                <option value="TTD">Trinidad and Tobago Dollar (TTD)</option>
+                <option value="TVD">Tuvaluan Dollar (TVD)</option>
+                <option value="TWD">New Taiwan Dollar (TWD)</option>
+                <option value="TZS">Tanzanian Shilling (TZS)</option>
+                <option value="UAH">Ukrainian Hryvnia (UAH)</option>
+                <option value="UGX">Ugandan Shilling (UGX)</option>
+                <option value="UYU">Uruguayan Peso (UYU)</option>
+                <option value="UZS">Uzbekistani Som (UZS)</option>
+                <option value="VES">Venezuelan Bolívar Soberano (VES)</option>
+                <option value="VND">Vietnamese Đồng (VND)</option>
+                <option value="VUV">Vanuatu Vatu (VUV)</option>
+                <option value="WST">Samoan Tala (WST)</option>
+                <option value="XAF">Central African CFA Franc (XAF)</option>
+                <option value="XCD">East Caribbean Dollar (XCD)</option>
+                <option value="XOF">West African CFA Franc (XOF)</option>
+                <option value="XPF">CFP Franc (XPF)</option>
+                <option value="YER">Yemeni Rial (YER)</option>
+                <option value="ZAR">South African Rand (ZAR)</option>
+                <option value="ZMW">Zambian Kwacha (ZMW)</option>
+                <option value="ZWL">Zimbabwean Dollar (ZWL)</option>
+            </select>
+        </div>
+
+        <div class="options-container" style="animation-delay: 1s;">
+            <div class="option-card">
+                <input type="checkbox" id="flight">
+                <label for="flight">✈️ Flights</label>
+            </div>
+            <div class="option-card">
+                <input type="checkbox" id="hotel" checked>
+                <label for="hotel">🏨 Accommodation</label>
+            </div>
+            <div class="option-card">
+                <input type="checkbox" id="activities">
+                <label for="activities">🏞️ Activities</label>
+            </div>
+            <div class="option-card">
+                <input type="checkbox" id="food">
+                <label for="food">🍔 Food & Drinks</label>
+            </div>
+            <div class="option-card">
+                <input type="checkbox" id="transport">
+                <label for="transport">🚗 Local Transport</label>
+            </div>
+            <div class="option-card">
+                <input type="checkbox" id="shopping">
+                <label for="shopping">🛍️ Shopping</label>
+            </div>
+        </div>
+
+        <button onclick="estimateCost()">✨ Get Estimated Cost! ✨</button>
+
+        <div class="result-area" id="result">
+            <h3>💰 Your Estimated Trip Cost:</h3>
+            <p id="estimated-amount"></p>
+            <p id="breakdown"></p>
+        </div>
+    </div>
+
+    <div class="floating-plane" style="top: 10%; left: 15%; animation-delay: 2s;"></div>
+    <div class="floating-star" style="top: 30%; right: 10%; animation-delay: 1s;"></div>
+    <div class="floating-plane" style="bottom: 20%; right: 25%; animation-delay: 4s; transform: scaleX(-1);"></div>
+    <div class="floating-star" style="bottom: 5%; left: 35%; animation-delay: 0.5s;"></div>
+
+    <script>
+        const destinations = [
+            "Paris, France", "Tokyo, Japan", "New York City, USA", "London, UK", "Rome, Italy",
+            "Sydney, Australia", "Barcelona, Spain", "Kyoto, Japan", "Amsterdam, Netherlands", "Berlin, Germany",
+            "Rio de Janeiro, Brazil", "Cape Town, South Africa", "Bangkok, Thailand", "Istanbul, Turkey", "Mexico City, Mexico",
+            "Toronto, Canada", "Vancouver, Canada", "Los Angeles, USA", "Chicago, USA", "San Francisco, USA",
+            "Singapore", "Seoul, South Korea", "Shanghai, China", "Beijing, China", "Dubai, UAE",
+            "Hong Kong", "Kuala Lumpur, Malaysia", "Mumbai, India", "Delhi, India", "Cairo, Egypt",
+            "Marrakech, Morocco", "Buenos Aires, Argentina", "Santiago, Chile", "Lima, Peru", "Bogotá, Colombia",
+            "Moscow, Russia", "Saint Petersburg, Russia", "Stockholm, Sweden", "Copenhagen, Denmark", "Oslo, Norway",
+            "Helsinki, Finland", "Dublin, Ireland", "Edinburgh, Scotland", "Vienna, Austria", "Prague, Czech Republic",
+            "Budapest, Hungary", "Lisbon, Portugal", "Seville, Spain", "Athens, Greece", "Zurich, Switzerland",
+            "Munich, Germany", "Milan, Italy", "Florence, Italy", "Venice, Italy", "Naples, Italy",
+            "Cologne, Germany", "Hamburg, Germany", "Warsaw, Poland", "Krakow, Poland", "Bucharest, Romania",
+            "Sofia, Bulgaria", "Zagreb, Croatia", "Belgrade, Serbia", "Sarajevo, Bosnia and Herzegovina", "Tirana, Albania",
+            "Reykjavik, Iceland", "Auckland, New Zealand", "Wellington, New Zealand", "Perth, Australia", "Melbourne, Australia",
+            "Brisbane, Australia", "Adelaide, Australia", "Montreal, Canada", "Ottawa, Canada", "Calgary, Canada",
+            "Edmonton, Canada", "Quebec City, Canada", "Halifax, Canada", "Winnipeg, Canada", "Hamilton, Canada",
+            "San Diego, USA", "Seattle, USA", "Boston, USA", "Philadelphia, USA", "Atlanta, USA",
+            "Miami, USA", "Dallas, USA", "Houston, USA", "Phoenix, USA", "Denver, USA",
+            "Las Vegas, USA", "Orlando, USA", "Tampa, USA", "Minneapolis, USA", "St. Louis, USA",
+            "Austin, USA", "Charlotte, USA", "Jacksonville, USA", "Indianapolis, USA", "Columbus, USA",
+            "Nashville, USA", "Milwaukee, USA", "Oklahoma City, USA", "Portland, USA", "Memphis, USA",
+            "Louisville, USA", "Richmond, USA", "New Orleans, USA", "Salt Lake City, USA", "Hartford, USA",
+            "Providence, USA", "Baltimore, USA", "Cincinnati, USA", "Kansas City, USA", "Omaha, USA",
+            "Albuquerque, USA", "Tucson, USA", "Sacramento, USA", "Fresno, USA", "Long Beach, USA",
+            "Oakland, USA", "Anaheim, USA", "Santa Ana, USA", "Riverside, USA", "Bakersfield, USA",
+            "Stockton, USA", "Aurora, USA", "Buffalo, USA", "Raleigh, USA", "Plano, USA",
+            "Fort Wayne, USA", "Greensboro, USA", "Durham, USA", "Chandler, USA", "Scottsdale, USA",
+            "North Hempstead, USA", " Hempstead, USA", "Yonkers, USA", "Syracuse, USA", "Albany, USA",
+            "Rochester, USA", "New Rochelle, USA", "Mount Vernon, USA", "Schenectady, USA", "Utica, USA",
+            "White Plains, USA", "Niagara Falls, USA", "Troy, USA", "Binghamton, USA", "Poughkeepsie, USA",
+            "Newburgh, USA", "Middletown, USA", "Kingston, USA", "Jamestown, USA", "Ithaca, USA",
+            "Corning, USA", "Elmira, USA", "Watertown, USA", "Auburn, USA", "Oswego, USA",
+            "Cortland, USA", "Plattsburgh, USA", "Glens Falls, USA", "Saratoga Springs, USA", "Amsterdam, USA",
+            "Cohoes, USA", "Watervliet, USA", "Rensselaer, USA", "Mechanicville, USA", "Hudson, USA",
+            "Peekskill, USA", "Beacon, USA", "Glen Cove, USA", "Long Beach, USA", "Oyster Bay, USA",
+            "Babylon, USA", "Islip, USA", "Huntington, USA", "Smithtown, USA", "Brookhaven, USA",
+            "Riverhead, USA", "Southampton, USA", "East Hampton, USA", "Shelter Island, USA", "Northport, USA",
+            "Patchogue, USA", "Port Jefferson, USA", "Sag Harbor, USA", "Amagansett, USA", "Montauk, USA",
+            "Greenport, USA", "Orient, USA", "Mattituck, USA", "Cutchogue, USA", "Jamesport, USA",
+            "Westhampton Beach, USA", "Quogue, USA", "Southold, USA", "Fishers Island, USA", "Fire Island, USA",
+            "Jones Beach, USA", "Robert Moses State Park, USA", "Sunken Meadow State Park, USA", "Wildwood State Park, USA",
+            "Hither Hills State Park, USA", "Montauk Point State Park, USA", "Orient Beach State Park, USA", "Sears Bellows County Park, USA",
+            "Cedar Point County Park, USA", "Meschutt Beach County Park, USA", "Shin Pond State Park, USA", "Hallock State Park Preserve, USA",
+            "Nissequogue River State Park, USA", "Caleb Smith State Park Preserve, USA", "Sunken Forest Preserve, USA", "Connetquot River State Park Preserve, USA",
+            "Planting Fields Arboretum State Historic Park, USA", "Old Westbury Gardens, USA", "Bayard Cutting Arboretum, USA", "Bailey Arboretum, USA",
+            "Clark Botanic Garden, USA", "Wertheim National Wildlife Refuge, USA", "Seatuck National Wildlife Refuge, USA", "Amagansett National Wildlife Refuge, USA",
+            "Morton National Wildlife Refuge, USA", "Target Rock National Wildlife Refuge, USA", "Oka National Wildlife Refuge, USA", "Elizabeth A. Morton National Wildlife Refuge, USA",
+            "Wertheim National Wildlife Refuge, USA", "Seatuck National Wildlife Refuge, USA", "Amagansett National Wildlife Refuge, USA", "Morton National Wildlife Refuge, USA",
+            "Target Rock National Wildlife Refuge, USA", "Oka National Wildlife Refuge, USA", "Elizabeth A. Morton National Wildlife Refuge, USA", "Wertheim National Wildlife Refuge, USA",
+            "Seatuck National Wildlife Refuge, USA", "Amagansett National Wildlife Refuge, USA", "Morton National Wildlife Refuge, USA", "Target Rock National Wildlife Refuge, USA",
+            "Oka National Wildlife Refuge, USA", "Elizabeth A. Morton National Wildlife Refuge, USA", "Wertheim National Wildlife Refuge, USA", "Seatuck National Wildlife Refuge, USA",
+            "Amagansett National Wildlife Refuge, USA", "Morton National Wildlife Refuge, USA", "Target Rock National Wildlife Refuge, USA", "Oka National Wildlife Refuge, USA",
+            "Elizabeth A. Morton National Wildlife Refuge, USA", "Wertheim National Wildlife Refuge, USA", "Seatuck National Wildlife Refuge, USA", "Amagansett National Wildlife Refuge, USA",
+            "Morton National Wildlife Refuge, USA", "Target Rock National Wildlife Refuge, USA", "Oka National Wildlife Refuge, USA",
+            "Other (Please specify distance)"
+        ];
+
+        const destinationInput = document.getElementById('destination');
+        const suggestionsDiv = document.getElementById('destination-suggestions');
+        const distanceInputGroup = document.getElementById('distance-input-group');
+        const distanceInput = document.getElementById('distance');
+        const resultDiv = document.getElementById('result');
+        const estimatedAmount = document.getElementById('estimated-amount');
+        const breakdown = document.getElementById('breakdown');
+
+        destinationInput.addEventListener('input', function() {
+            const inputText = this.value.toLowerCase();
+            suggestionsDiv.innerHTML = '';
+            distanceInputGroup.style.display = 'none';
+
+            if (inputText === 'other') {
+                distanceInputGroup.style.display = 'block';
+                suggestionsDiv.style.display = 'none';
+                return;
+            }
+
+            const filteredDestinations = destinations.filter(dest =>
+                dest.toLowerCase().includes(inputText)
+            );
+
+            if (inputText && filteredDestinations.length > 0) {
+                suggestionsDiv.style.display = 'block';
+                filteredDestinations.forEach(dest => {
+                    const suggestionItem = document.createElement('div');
+                    suggestionItem.classList.add('suggestion-item');
+                    suggestionItem.textContent = dest;
+                    suggestionItem.addEventListener('click', function() {
+                        destinationInput.value = dest;
+                        suggestionsDiv.style.display = 'none';
+                        if (dest === 'Other (Please specify distance)') {
+                            distanceInputGroup.style.display = 'block';
+                        } else {
+                            distanceInputGroup.style.display = 'none';
+                        }
+                    });
+                    suggestionsDiv.appendChild(suggestionItem);
+                });
+            } else {
+                suggestionsDiv.style.display = 'none';
+            }
+        });
+
+        function estimateCost() {
+            const destination = document.getElementById('destination').value;
+            const duration = parseInt(document.getElementById('duration').value);
+            const travelers = parseInt(document.getElementById('travelers').value);
+            const currency = document.getElementById('currency').value;
+            const includeFlights = document.getElementById('flight').checked;
+            const includeHotel = document.getElementById('hotel').checked;
+            const includeActivities = document.getElementById('activities').checked;
+            const includeFood = document.getElementById('food').checked;
+            const includeTransport = document.getElementById('transport').checked;
+            const includeShopping = document.getElementById('shopping').checked;
+            const enteredDistance = parseFloat(document.getElementById('distance').value);
+
+            let baseCostPerDay = 50; // Placeholder
+            let flightCostPerPerson = 300; // Placeholder
+            let distanceFactor = 0.1; // Placeholder cost per km
+
+            if (destination.toLowerCase().includes('paris')) baseCostPerDay = 150;
+            else if (destination.toLowerCase().includes('bali')) baseCostPerDay = 70;
+            else if (destination === 'Other (Please specify distance)' && !isNaN(enteredDistance)) {
+                flightCostPerPerson = enteredDistance * distanceFactor;
+            } else if (includeFlights) {
+                // Basic fallback if destination doesn't trigger a specific flight cost
+            } else {
+                flightCostPerPerson = 0; // No flights selected
+            }
+
+            let totalCost = baseCostPer
+            totalCost += baseCostPerDay * duration * travelers;
+
+            let breakdownText = "Based on your selections:";
+
+            if (includeFlights) {
+                totalCost += flightCostPerPerson * travelers;
+                breakdownText += `<br>- Flights (estimated): ${currency} ${(flightCostPerPerson * travelers).toFixed(2)}`;
+            }
+            if (includeHotel) {
+                const hotelCostPerDayPerPerson = 100; // Placeholder
+                totalCost += hotelCostPerDayPerPerson * duration * travelers;
+                breakdownText += `<br>- Accommodation (estimated): ${currency} ${(hotelCostPerDayPerPerson * duration * travelers).toFixed(2)}`;
+            }
+            if (includeActivities) {
+                const activitiesCostPerDayPerPerson = 30; // Placeholder
+                totalCost += activitiesCostPerDayPerPerson * duration * travelers;
+                breakdownText += `<br>- Activities (estimated): ${currency} ${(activitiesCostPerDayPerPerson * duration * travelers).toFixed(2)}`;
+            }
+            if (includeFood) {
+                const foodCostPerDayPerPerson = 40; // Placeholder
+                totalCost += foodCostPerDayPerPerson * duration * travelers;
+                breakdownText += `<br>- Food & Drinks (estimated): ${currency} ${(foodCostPerDayPerPerson * duration * travelers).toFixed(2)}`;
+            }
+            if (includeTransport) {
+                const transportCostPerDayPerPerson = 20; // Placeholder
+                totalCost += transportCostPerDayPerPerson * duration * travelers;
+                breakdownText += `<br>- Local Transport (estimated): ${currency} ${(transportCostPerDayPerPerson * duration * travelers).toFixed(2)}`;
+            }
+            if (includeShopping) {
+                const shoppingBudgetPerPerson = 50; // Placeholder
+                totalCost += shoppingBudgetPerPerson * travelers;
+                breakdownText += `<br>- Shopping (estimated): ${currency} ${(shoppingBudgetPerPerson * travelers).toFixed(2)}`;
+            }
+
+            estimatedAmount.textContent = `${currency} ${totalCost.toFixed(2)}`;
+            breakdown.innerHTML = breakdownText;
+            resultDiv.style.display = 'block';
+
+            // Add a slight delay for the slide-up animation
+            setTimeout(() => {
+                resultDiv.style.opacity = 1;
+                resultDiv.style.transform = 'translateY(0)';
+            }, 50);
+        }
+    </script>
+</body>
+</html>

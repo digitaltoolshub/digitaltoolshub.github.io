@@ -10,176 +10,712 @@
       gtag('config', 'G-R4N9RB1SNN');
     </script>
     
-    <!-- Google AdSense -->
+    <!-- Google Ads -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" type="text/javascript" async></script>    <meta charset="UTF-8">
+    
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" type="text/javascript" async></script>    
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free real-time cryptocurrency price predictions, technical analysis, and market sentiment. No signup required.">
-    <meta name="keywords" content="bitcoin, crypto, prediction, real-time, ethereum, trading, analysis">
-    <meta name="author" content="CryptoTrend Pro">
-    <meta property="og:title" content="CryptoTrend Pro - Real-Time Crypto Predictor">
-    <meta property="og:description" content="Free cryptocurrency price predictions and analysis using real-time data.">
+    <title>CryptoVision Pro | Binance & CoinGecko Data | Real-Time Crypto Charts</title>
+    <meta name="description" content="Track 50+ cryptocurrencies with Binance and CoinGecko data. Real-time prices, trading pairs, historical charts, and portfolio management for BTC, ETH, SOL, DOGE and more.">
+    <meta name="keywords" content="binance prices, coingecko charts, bitcoin tracker, ethereum price, solana chart, dogecoin live price">
+    <meta property="og:title" content="CryptoVision Pro - Binance & CoinGecko Crypto Tracker">
+    <meta property="og:description" content="Real-time cryptocurrency prices with Binance trading pairs and CoinGecko historical data">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://digitaltoolshub.github.io">
-    <title>CryptoTrend Pro - Real-Time Crypto Price Predictions & Analysis</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="canonical" href="https://digitaltoolshub.github.io" />
-
-    <script src="https://cdn.jsdelivr.net/npm/date-fns@4.1.0/cdn.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.min.js"></script>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.18.0/dist/tf.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/danfojs@1.1.2/lib/bundle.js"></script>
-    <script src="scripts.js" defer></script>
+    <meta property="og:url" content="https://cryptovisionpro.example.com">
+    <meta name="theme-color" content="#6e45e2">
+    <link rel="preconnect" href="https://api.coingecko.com">
+    <link rel="preconnect" href="https://api.binance.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.3.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.2.0"></script>
+    <style>
+        :root {
+            --primary: #6e45e2;
+            --secondary: #88d3ce;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --text: #ffffff;
+        }
+        [data-theme="light"] {
+            --primary: #6e45e2;
+            --secondary: #88d3ce;
+            --dark: #f8f9fa;
+            --light: #1a1a2e;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text: #1a1a2e;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background 0.3s, color 0.3s;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--dark), #16213e);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+        header {
+            padding: 2rem 1rem;
+            text-align: center;
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .theme-toggle {
+            position: absolute;
+            top: 1.5rem;
+            right: 1rem;
+            background: var(--card-bg);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .card h2 {
+            margin-bottom: 1.25rem;
+            font-size: 1.4rem;
+            position: relative;
+            display: inline-block;
+        }
+        .card h2::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            min-height: 300px;
+        }
+        #priceChart {
+            width: 100% !important;
+            height: 100% !important;
+        }
+        input, select, button {
+            padding: 0.75rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            font-size: 1rem;
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+        button {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .coin-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .timeframe-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        .timeframe-buttons button {
+            flex: 1;
+            padding: 0.5rem;
+            font-size: 0.85rem;
+            min-width: 60px;
+        }
+        .timeframe-buttons button.active {
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+        }
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+            backdrop-filter: blur(10px);
+        }
+        .seo-content {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .tab-buttons {
+            display: flex;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .tab-button {
+            padding: 0.5rem 1rem;
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            opacity: 0.7;
+        }
+        .tab-button.active {
+            opacity: 1;
+            border-bottom: 2px solid var(--primary);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .exchange-link {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>CryptoTrend Pro</h1>
-            <p class="tagline">Real-time cryptocurrency predictions & analysis</p>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#dashboard">Dashboard</a></li>
-                <li><a href="#predictions">Predictions</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="indicators.html">Indicator Guides</a></li>
-                <li><a href="case-studies.html">Case Studies</a></li>
-            </ul>
-        </nav>
+        <h1>🚀 CryptoVision Pro</h1>
+        <p>Binance & CoinGecko cryptocurrency data with real-time charts</p>
+        <button class="theme-toggle" id="themeToggle">🌓</button>
     </header>
 
-    <main class="container">
-        <section id="market-overview">
-            <h2>Market Overview</h2>
-            <div class="market-cards" id="top-cryptos">
-                <!-- Filled by JavaScript -->
+    <div class="container">
+        <div class="card">
+            <h2>📊 Market Data</h2>
+            <div class="tab-buttons">
+                <button class="tab-button active" data-tab="gecko">CoinGecko</button>
+                <button class="tab-button" data-tab="binance">Binance</button>
             </div>
-            <div class="heatmap-container">
-                <h3>24h Volatility Heatmap</h3>
-                <div id="volatility-heatmap"></div>
-            </div>
-        </section>
+            <div class="tab-content active" id="geckoData">Loading CoinGecko data...</div>
+            <div class="tab-content" id="binanceData">Loading Binance data...</div>
+        </div>
 
-        <section id="price-chart">
-            <h2>Live Price Chart</h2>
-            <div class="chart-controls">
-                <select id="crypto-selector">
-                    <option value="bitcoin">Bitcoin (BTC)</option>
-                    <option value="ethereum">Ethereum (ETH)</option>
-                    <option value="binancecoin">Binance Coin (BNB)</option>
-                    <option value="ripple">XRP</option>
-                    <option value="cardano">Cardano (ADA)</option>
-                </select>
-                <select id="timeframe">
-                    <option value="1">1 Day</option>
-                    <option value="7">1 Week</option>
-                    <option value="30" selected>1 Month</option>
-                    <option value="90">3 Months</option>
-                    <option value="365">1 Year</option>
-                </select>
-                <!-- <button id="add-indicator">Add Indicator</button> -->
-            </div>
+        <div class="card">
+            <h2>📈 Price Chart</h2>
+            <select id="chartCoinSelect">
+                <option value="bitcoin">Bitcoin (BTC)</option>
+                <option value="ethereum">Ethereum (ETH)</option>
+                <option value="binancecoin">BNB (BNB)</option>
+                <option value="solana">Solana (SOL)</option>
+                <option value="ripple">XRP (XRP)</option>
+                <option value="cardano">Cardano (ADA)</option>
+                <option value="dogecoin">Dogecoin (DOGE)</option>
+                <option value="shiba-inu">Shiba Inu (SHIB)</option>
+                <option value="polkadot">Polkadot (DOT)</option>
+                <option value="polygon">Polygon (MATIC)</option>
+                <option value="litecoin">Litecoin (LTC)</option>
+                <option value="avalanche-2">Avalanche (AVAX)</option>
+                <option value="chainlink">Chainlink (LINK)</option>
+            </select>
             <div class="chart-container">
                 <canvas id="priceChart"></canvas>
             </div>
-            <div class="indicators-display">
-                <div id="rsi-display">RSI: <span class="value">-</span></div>
-                <div id="macd-display">MACD: <span class="value">-</span></div>
-                <div id="bollinger-display">Bollinger Bands: <span class="value">-</span></div>
-            </div>
-        </section>
-
-        <section id="sentiment-analysis">
-            <h2>Market Sentiment</h2>
-            <div class="sentiment-cards">
-                <div class="sentiment-card">
-                    <h3>Reddit Activity</h3>
-                    <div id="reddit-sentiment">Loading...</div>
-                </div>
-                <div class="sentiment-card">
-                    <h3>Twitter Trends</h3>
-                    <div id="twitter-sentiment">Loading...</div>
-                </div>
-                <div class="sentiment-card">
-                    <h3>Google Trends</h3>
-                    <div id="google-trends">Loading...</div>
-                </div>
-            </div>
-        </section>
-
-
-        <section id="portfolio-tracker">
-            <h2>Portfolio Tracker</h2>
-            <div class="portfolio-controls">
-                <input type="text" id="crypto-input" placeholder="e.g. BTC">
-                <input type="number" id="amount-input" placeholder="Amount">
-                <input type="number" id="price-input" placeholder="Purchase Price (USD)">
-                <button id="add-to-portfolio">Add to Portfolio</button>
-            </div>
-            <div class="portfolio-list" id="portfolio-holdings">
-                <!-- Filled by JavaScript -->
-            </div>
-            <div class="portfolio-summary">
-                <div>Total Value: <span id="portfolio-total">$0.00</span></div>
-                <div>24h Change: <span id="portfolio-change">$0.00 (0.00%)</span></div>
-            </div>
-        </section>
-
-        <section id="alerts">
-            <h2>Price Alerts</h2>
-            <div class="alert-controls">
-                <select id="alert-crypto">
-                    <option value="bitcoin">Bitcoin (BTC)</option>
-                    <option value="ethereum">Ethereum (ETH)</option>
-                </select>
-                <select id="alert-condition">
-                    <option value="above">Price Above</option>
-                    <option value="below">Price Below</option>
-                    <option value="rsi-above">RSI Above</option>
-                    <option value="rsi-below">RSI Below</option>
-                </select>
-                <input type="number" id="alert-value" placeholder="Value">
-                <button id="add-alert">Set Alert</button>
-            </div>
-            <div class="alert-list" id="active-alerts">
-                <!-- Filled by JavaScript -->
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><a href="#">Indicator Guides</a></li>
-                        <li><a href="#">Case Studies</a></li>
-                        <li><a href="#faq">FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Data Sources</h3>
-                    <p>All data provided by CoinGecko Public API, Binance Public API, and other public sources.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Disclaimer</h3>
-                    <p>This is not financial advice. Cryptocurrency markets are volatile. Predictions are experimental and may not be accurate.</p>
-                </div>
-            </div>
-            <div class="affiliate-links">
-                <p>Buy/Sell Crypto:</p>
-                <a href="https://www.binance.com/en/register?ref=EXAMPLE" target="_blank" rel="nofollow">Binance</a>
-                <a href="https://www.kraken.com/" target="_blank" rel="nofollow">Kraken</a>
-                <a href="https://www.coinbase.com/" target="_blank" rel="nofollow">Coinbase</a>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2023 CryptoTrend Pro. All data updates in real-time.</p>
+            <div class="timeframe-buttons">
+                <button id="btn1d">1D</button>
+                <button id="btn7d">7D</button>
+                <button id="btn30d">30D</button>
+                <button id="btn90d">90D</button>
+                <button id="btn1y" class="active">1Y</button>
             </div>
         </div>
+
+        <div class="card">
+            <h2>🔔 Price Alerts</h2>
+            <form id="alertForm">
+                <select id="coinSelect"></select>
+                <input type="number" id="alertPrice" step="0.01" placeholder="Alert Price (USD)">
+                <button type="submit">Set Alert</button>
+            </form>
+            <div id="alertsList" style="margin-top: 1rem;"></div>
+        </div>
+
+        <div class="card">
+            <h2>💼 Portfolio</h2>
+            <form id="portfolioForm">
+                <select id="coinId"></select>
+                <input type="number" id="amount" placeholder="Amount">
+                <button type="submit">Add to Portfolio</button>
+            </form>
+            <div id="portfolioValue" style="margin-top: 1rem;"></div>
+        </div>
+    </div>
+
+    <section class="seo-content">
+        <h2>Comprehensive Cryptocurrency Tracking</h2>
+        <p>CryptoVision Pro combines data from <a href="https://www.coingecko.com" class="exchange-link" target="_blank" rel="noopener noreferrer">CoinGecko</a> and <a href="https://www.binance.com" class="exchange-link" target="_blank" rel="noopener noreferrer">Binance</a> to provide the most accurate cryptocurrency prices and charts. Track all major coins including:</p>
+        
+        <h3>Top Cryptocurrencies</h3>
+        <ul>
+            <li><strong>Bitcoin (BTC):</strong> The original cryptocurrency with the largest market cap</li>
+            <li><strong>Ethereum (ETH):</strong> Smart contract platform powering decentralized apps</li>
+            <li><strong>Binance Coin (BNB):</strong> Native token of the Binance ecosystem</li>
+        </ul>
+
+        <h3>Popular Altcoins</h3>
+        <ul>
+            <li><strong>Solana (SOL):</strong> High-performance blockchain for fast transactions</li>
+            <li><strong>Dogecoin (DOGE):</strong> The original meme coin with strong community</li>
+            <li><strong>Shiba Inu (SHIB):</strong> Ethereum-based token with growing utility</li>
+        </ul>
+
+        <p>Start trading today on <a href="https://www.binance.com" class="exchange-link" target="_blank" rel="noopener noreferrer">Binance</a>, the world's leading cryptocurrency exchange.</p>
+    </section>
+
+    <footer>
+        <p>© 2023 CryptoVision Pro | Data from <a href="https://www.coingecko.com" class="exchange-link" target="_blank" rel="noopener noreferrer">CoinGecko</a> & <a href="https://www.binance.com" class="exchange-link" target="_blank" rel="noopener noreferrer">Binance</a> APIs</p>
+        <p style="opacity: 0.7; margin-top: 0.5rem; font-size: 0.9rem;">Cryptocurrency trading involves risk. Only invest what you can afford to lose.</p>
     </footer>
+
+<script>
+// ====== Configuration ======
+const COINS = [
+    {id: 'bitcoin', symbol: 'BTC', name: 'Bitcoin', binanceSymbol: 'BTCUSDT'},
+    {id: 'ethereum', symbol: 'ETH', name: 'Ethereum', binanceSymbol: 'ETHUSDT'},
+    {id: 'binancecoin', symbol: 'BNB', name: 'BNB', binanceSymbol: 'BNBUSDT'},
+    {id: 'solana', symbol: 'SOL', name: 'Solana', binanceSymbol: 'SOLUSDT'},
+    {id: 'ripple', symbol: 'XRP', name: 'XRP', binanceSymbol: 'XRPUSDT'},
+    {id: 'cardano', symbol: 'ADA', name: 'Cardano', binanceSymbol: 'ADAUSDT'},
+    {id: 'dogecoin', symbol: 'DOGE', name: 'Dogecoin', binanceSymbol: 'DOGEUSDT'},
+    {id: 'shiba-inu', symbol: 'SHIB', name: 'Shiba Inu', binanceSymbol: 'SHIBUSDT'},
+    {id: 'polkadot', symbol: 'DOT', name: 'Polkadot', binanceSymbol: 'DOTUSDT'},
+    {id: 'polygon', symbol: 'MATIC', name: 'Polygon', binanceSymbol: 'MATICUSDT'},
+    {id: 'litecoin', symbol: 'LTC', name: 'Litecoin', binanceSymbol: 'LTCUSDT'},
+    {id: 'avalanche-2', symbol: 'AVAX', name: 'Avalanche', binanceSymbol: 'AVAXUSDT'},
+    {id: 'chainlink', symbol: 'LINK', name: 'Chainlink', binanceSymbol: 'LINKUSDT'}
+];
+
+// ====== State Management ======
+let state = {
+    theme: localStorage.getItem('theme') || 'dark',
+    currentCoin: 'bitcoin',
+    currentTimeframe: '1y',
+    portfolio: JSON.parse(localStorage.getItem('portfolio')) || {},
+    alerts: JSON.parse(localStorage.getItem('alerts')) || [],
+    marketData: null,
+    binanceData: null,
+    chart: null,
+    activeTab: 'gecko'
+};
+
+// ====== Initialize App ======
+function init() {
+    setupTheme();
+    populateSelects();
+    setupEventListeners();
+    fetchMarketData();
+    fetchBinanceData();
+}
+
+// ====== Theme Management ======
+function setupTheme() {
+    document.body.dataset.theme = state.theme;
+    document.getElementById('themeToggle').textContent = state.theme === 'light' ? '🌙' : '🌓';
+    
+    document.getElementById('themeToggle').addEventListener('click', () => {
+        state.theme = state.theme === 'light' ? 'dark' : 'light';
+        document.body.dataset.theme = state.theme;
+        document.getElementById('themeToggle').textContent = state.theme === 'light' ? '🌙' : '🌓';
+        localStorage.setItem('theme', state.theme);
+    });
+}
+
+// ====== DOM Population ======
+function populateSelects() {
+    const coinSelect = document.getElementById('coinSelect');
+    const portfolioSelect = document.getElementById('coinId');
+    
+    COINS.forEach(coin => {
+        const option1 = document.createElement('option');
+        option1.value = coin.id;
+        option1.textContent = `${coin.name} (${coin.symbol})`;
+        coinSelect.appendChild(option1);
+        
+        const option2 = document.createElement('option');
+        option2.value = coin.id;
+        option2.textContent = `${coin.name} (${coin.symbol})`;
+        portfolioSelect.appendChild(option2);
+    });
+}
+
+// ====== Data Fetching ======
+async function fetchMarketData() {
+    try {
+        const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${COINS.map(c => c.id).join(',')}&order=market_cap_desc`);
+        state.marketData = await response.json();
+        updateMarketOverview();
+        fetchHistoricalData();
+        updatePortfolioValue();
+        updateAlertsList();
+    } catch (error) {
+        console.error('Failed to fetch CoinGecko data:', error);
+        document.getElementById('geckoData').innerHTML = '<p style="color: #ff6b6b;">Failed to load CoinGecko data. Please refresh.</p>';
+    }
+}
+
+async function fetchBinanceData() {
+    try {
+        const response = await fetch('https://api.binance.com/api/v3/ticker/24hr');
+        const allBinanceData = await response.json();
+        
+        // Filter for our coins and USDT pairs
+        state.binanceData = COINS.map(coin => {
+            const binanceCoin = allBinanceData.find(b => b.symbol === coin.binanceSymbol);
+            return binanceCoin ? {
+                symbol: coin.symbol,
+                name: coin.name,
+                price: parseFloat(binanceCoin.lastPrice),
+                change: parseFloat(binanceCoin.priceChangePercent),
+                volume: parseFloat(binanceCoin.quoteVolume)
+            } : null;
+        }).filter(Boolean);
+        
+        updateBinanceOverview();
+    } catch (error) {
+        console.error('Failed to fetch Binance data:', error);
+        document.getElementById('binanceData').innerHTML = '<p style="color: #ff6b6b;">Failed to load Binance data. Please refresh.</p>';
+    }
+}
+
+async function fetchHistoricalData() {
+    try {
+        const coin = COINS.find(c => c.id === state.currentCoin);
+        let endpoint, params;
+        
+        if (state.currentTimeframe === '1d') {
+            // Use Binance for 1D chart (more granular)
+            endpoint = 'https://api.binance.com/api/v3/klines';
+            params = `symbol=${coin.binanceSymbol}&interval=1h&limit=24`;
+        } else {
+            // Use CoinGecko for longer timeframes
+            let days;
+            switch(state.currentTimeframe) {
+                case '7d': days = 7; break;
+                case '30d': days = 30; break;
+                case '90d': days = 90; break;
+                case '1y': days = 365; break;
+            }
+            endpoint = `https://api.coingecko.com/api/v3/coins/${coin.id}/market_chart`;
+            params = `vs_currency=usd&days=${days}`;
+        }
+        
+        const response = await fetch(`${endpoint}?${params}`);
+        const data = await response.json();
+        
+        if (state.currentTimeframe === '1d') {
+            // Process Binance data
+            const prices = data.map(d => ({
+                time: d[0],
+                price: parseFloat(d[4])
+            }));
+            renderChart(prices, true);
+        } else {
+            // Process CoinGecko data
+            const prices = data.prices.map(p => ({
+                time: p[0],
+                price: p[1]
+            }));
+            renderChart(prices, false);
+        }
+    } catch (error) {
+        console.error('Failed to fetch historical data:', error);
+        renderChartError();
+    }
+}
+
+// ====== Chart Rendering ======
+function renderChart(prices, isBinanceData) {
+    const ctx = document.getElementById('priceChart').getContext('2d');
+    
+    // Destroy previous chart if exists
+    if (state.chart) {
+        state.chart.destroy();
+    }
+    
+    // Prepare data
+    const coin = COINS.find(c => c.id === state.currentCoin);
+    const chartData = {
+        labels: prices.map(p => new Date(p.time)),
+        datasets: [{
+            label: `${coin.name} Price (USD)`,
+            data: prices.map(p => p.price),
+            borderColor: 'rgba(110, 69, 226, 0.8)',
+            backgroundColor: 'rgba(110, 69, 226, 0.1)',
+            borderWidth: 2,
+            tension: 0.1,
+            fill: true,
+            pointRadius: 0
+        }]
+    };
+    
+    // Create chart
+    state.chart = new Chart(ctx, {
+        type: 'line',
+        data: chartData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: ctx => `${coin.name}: $${ctx.parsed.y.toFixed(2)}`,
+                        title: items => {
+                            return new Date(items[0].parsed.x).toLocaleString();
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    type: 'time',
+                    time: {
+                        unit: isBinanceData ? 'hour' : 'day',
+                        tooltipFormat: 'MMM d, yyyy h:mm a'
+                    },
+                    grid: { display: false }
+                },
+                y: {
+                    beginAtZero: false,
+                    ticks: { callback: value => '$' + value.toLocaleString() }
+                }
+            }
+        }
+    });
+}
+
+function renderChartError() {
+    const canvas = document.getElementById('priceChart');
+    canvas.innerHTML = '<p style="color: #ff6b6b; text-align: center; padding: 2rem;">Failed to load chart data. Please try again.</p>';
+    if (state.chart) {
+        state.chart.destroy();
+        state.chart = null;
+    }
+}
+
+// ====== UI Updates ======
+function updateMarketOverview() {
+    const geckoDataElement = document.getElementById('geckoData');
+    geckoDataElement.innerHTML = state.marketData.map(coin => `
+        <div class="coin-item">
+            <div>
+                <strong>${coin.symbol.toUpperCase()}</strong>
+                <span style="opacity: 0.7; font-size: 0.9rem;">${coin.name}</span>
+            </div>
+            <div style="text-align: right;">
+                <strong>$${coin.current_price.toLocaleString()}</strong>
+                <span style="color: ${coin.price_change_percentage_24h >= 0 ? '#4ade80' : '#f87171'}; font-size: 0.9rem;">
+                    ${coin.price_change_percentage_24h >= 0 ? '↑' : '↓'} ${Math.abs(coin.price_change_percentage_24h).toFixed(2)}%
+                </span>
+            </div>
+        </div>
+    `).join('');
+}
+
+function updateBinanceOverview() {
+    const binanceDataElement = document.getElementById('binanceData');
+    binanceDataElement.innerHTML = state.binanceData.map(coin => `
+        <div class="coin-item">
+            <div>
+                <strong>${coin.symbol}</strong>
+                <span style="opacity: 0.7; font-size: 0.9rem;">${coin.name}</span>
+            </div>
+            <div style="text-align: right;">
+                <strong>$${coin.price.toLocaleString()}</strong>
+                <span style="color: ${coin.change >= 0 ? '#4ade80' : '#f87171'}; font-size: 0.9rem;">
+                    ${coin.change >= 0 ? '↑' : '↓'} ${Math.abs(coin.change).toFixed(2)}%
+                </span>
+            </div>
+        </div>
+    `).join('');
+}
+
+function updatePortfolioValue() {
+    let totalValue = 0;
+    let portfolioHTML = '';
+    
+    for (const [coinId, amount] of Object.entries(state.portfolio)) {
+        const coin = state.marketData?.find(c => c.id === coinId);
+        if (coin) {
+            const value = amount * coin.current_price;
+            totalValue += value;
+            
+            portfolioHTML += `
+                <div class="coin-item">
+                    <div>
+                        <strong>${coin.symbol.toUpperCase()}</strong>
+                        <span>${amount.toFixed(4)}</span>
+                    </div>
+                    <div style="text-align: right;">
+                        <strong>$${value.toFixed(2)}</strong>
+                        <span style="opacity: 0.7; font-size: 0.9rem;">$${coin.current_price.toFixed(2)} each</span>
+                    </div>
+                </div>
+            `;
+        }
+    }
+    
+    document.getElementById('portfolioValue').innerHTML = portfolioHTML || '<p style="opacity: 0.7;">Your portfolio is empty</p>';
+    if (totalValue > 0) {
+        document.getElementById('portfolioValue').innerHTML += `
+            <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
+                <strong>Total Value:</strong> $${totalValue.toFixed(2)}
+            </div>
+        `;
+    }
+}
+
+function updateAlertsList() {
+    document.getElementById('alertsList').innerHTML = state.alerts.map((alert, index) => {
+        const coin = COINS.find(c => c.id === alert.coin);
+        return `
+            <div class="coin-item" style="${alert.triggered ? 'opacity: 0.6;' : ''}">
+                <div>
+                    <strong>${coin.symbol.toUpperCase()}</strong>
+                    <span>Alert at $${alert.price}</span>
+                </div>
+                <button onclick="removeAlert(${index})" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;">✕</button>
+            </div>
+        `;
+    }).join('') || '<p style="opacity: 0.7;">No alerts set</p>';
+}
+
+// ====== Event Handlers ======
+function setupEventListeners() {
+    // Tab switching
+    document.querySelectorAll('.tab-button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            btn.classList.add('active');
+            document.getElementById(`${btn.dataset.tab}Data`).classList.add('active');
+            state.activeTab = btn.dataset.tab;
+        });
+    });
+    
+    // Chart coin selection
+    document.getElementById('chartCoinSelect').addEventListener('change', (e) => {
+        state.currentCoin = e.target.value;
+        fetchHistoricalData();
+    });
+    
+    // Timeframe buttons
+    document.querySelectorAll('.timeframe-buttons button').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            document.querySelector('.timeframe-buttons .active').classList.remove('active');
+            e.target.classList.add('active');
+            state.currentTimeframe = e.target.id.replace('btn', '').toLowerCase();
+            fetchHistoricalData();
+        });
+    });
+    
+    // Alert form
+    document.getElementById('alertForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const coin = document.getElementById('coinSelect').value;
+        const price = parseFloat(document.getElementById('alertPrice').value);
+        
+        if (!coin || isNaN(price)) return;
+        
+        state.alerts.push({ coin, price, triggered: false });
+        localStorage.setItem('alerts', JSON.stringify(state.alerts));
+        updateAlertsList();
+        document.getElementById('alertPrice').value = '';
+    });
+    
+    // Portfolio form
+    document.getElementById('portfolioForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const coin = document.getElementById('coinId').value;
+        const amount = parseFloat(document.getElementById('amount').value);
+        
+        if (!coin || isNaN(amount)) return;
+        
+        state.portfolio[coin] = (state.portfolio[coin] || 0) + amount;
+        localStorage.setItem('portfolio', JSON.stringify(state.portfolio));
+        updatePortfolioValue();
+        document.getElementById('amount').value = '';
+    });
+    
+    // Window resize
+    window.addEventListener('resize', () => {
+        if (state.chart) {
+            state.chart.resize();
+        }
+    });
+}
+
+// ====== Helper Functions ======
+function removeAlert(index) {
+    state.alerts.splice(index, 1);
+    localStorage.setItem('alerts', JSON.stringify(state.alerts));
+    updateAlertsList();
+}
+
+// ====== Initialize ======
+init();
+setInterval(() => {
+    if (state.activeTab === 'gecko') {
+        fetchMarketData();
+    } else {
+        fetchBinanceData();
+    }
+}, 60000); // Refresh every minute
+</script>
 </body>
 </html>

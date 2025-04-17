@@ -3,31 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Accurate pet cost calculator for dogs, cats, birds, fish, reptiles and more. Get personalized monthly expense estimates based on breed, age, lifestyle and location.">
-    <meta name="keywords" content="pet cost calculator, dog expenses, cat budget, bird care costs, reptile ownership costs, fish tank maintenance, pet budget planner, pet financial planning">
+    <meta name="description" content="Calculate accurate pet ownership costs for dogs, cats, birds, fish, reptiles, farm animals and more. Compare prices across countries and get money-saving tips.">
+    <meta name="keywords" content="pet cost calculator, dog ownership costs, cat expenses, bird care costs, farm animal expenses, pet budget planner, pet care guide, pet personality quiz">
     <meta name="author" content="Ultimate Pet Cost Analyzer">
     <meta property="og:title" content="Ultimate Pet Cost Analyzer | Accurate Pet Ownership Calculator">
-    <meta property="og:description" content="Calculate accurate monthly costs for any pet based on type, breed, lifestyle and location with our comprehensive pet expense calculator.">
+    <meta property="og:description" content="Calculate how much any pet will cost monthly based on type, breed, lifestyle and location.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://petcostanalyzer.com">
     <meta property="og:image" content="https://petcostanalyzer.com/images/pet-cost-social-share.jpg">
-    <meta property="og:site_name" content="Ultimate Pet Cost Analyzer">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Ultimate Pet Cost Analyzer">
-    <meta name="twitter:description" content="Calculate accurate pet ownership costs for any animal with our comprehensive calculator.">
-    <meta name="twitter:image" content="https://petcostanalyzer.com/images/pet-cost-social-share.jpg">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Ultimate Pet Cost Analyzer",
-      "url": "https://petcostanalyzer.com",
-      "description": "Comprehensive pet ownership cost calculator for all types of animals",
-      "applicationCategory": "FinanceApplication",
-      "operatingSystem": "Web Browser"
-    }
-    </script>
-    <title>Ultimate Pet Cost Analyzer | Global Pet Expense Calculator</title>
+    <title>Ultimate Pet Cost Analyzer | Global Pet Expense Calculator & Care Guides</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fredoka+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -118,6 +102,48 @@
             line-height: 1.6;
         }
 
+        /* Tab Navigation */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tab-btn {
+            padding: 12px 25px;
+            background: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            color: var(--dark-gray);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: var(--light-gray);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
         .pet-icon-container {
             display: flex;
             justify-content: center;
@@ -179,39 +205,6 @@
         .pet-analyzer:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Tab system */
-        .tabs {
-            display: flex;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--light-gray);
-        }
-
-        .tab {
-            padding: 12px 25px;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--dark-gray);
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s;
-        }
-
-        .tab:hover {
-            color: var(--primary);
-        }
-
-        .tab.active {
-            color: var(--primary);
-            border-bottom-color: var(--primary);
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
         }
 
         .form-group {
@@ -759,41 +752,6 @@
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
 
-        .video-generator {
-            text-align: center;
-            margin: 30px 0;
-        }
-
-        .video-preview {
-            width: 100%;
-            max-width: 400px;
-            height: 200px;
-            background: var(--light-gray);
-            border-radius: 10px;
-            margin: 20px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .video-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .video-preview-text {
-            position: absolute;
-            color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-            text-align: center;
-            padding: 20px;
-        }
-
         .ai-advice {
             background: var(--light);
             border-radius: 15px;
@@ -825,18 +783,20 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
+        /* Updated Quiz Styles */
         .quiz-container {
-            background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent-light) 100%);
+            background: white;
             border-radius: 15px;
             padding: 30px;
             margin: 30px 0;
-            color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .quiz-question {
             font-size: 1.2rem;
             margin-bottom: 20px;
             font-weight: 600;
+            color: var(--dark);
         }
 
         .quiz-options {
@@ -846,21 +806,49 @@
         }
 
         .quiz-option {
-            background: rgba(255,255,255,0.2);
+            background: #f8f9fa;
             padding: 15px;
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s;
+            border: 2px solid #e0e0e0;
+            color: var(--dark);
+            font-weight: 500;
         }
 
         .quiz-option:hover {
-            background: rgba(255,255,255,0.3);
+            background: var(--primary-light);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .quiz-option.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .quiz-result {
             text-align: center;
             margin-top: 30px;
             display: none;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .quiz-result h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .quiz-result img {
+            max-width: 200px;
+            border-radius: 10px;
+            margin: 15px auto;
+            display: block;
         }
 
         .pet-mascot {
@@ -924,49 +912,42 @@
             margin-right: 15px;
         }
 
-        /* Resources section */
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .resource-card {
+        .pet-care-resources {
             background: white;
             border-radius: 15px;
             padding: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin: 30px 0;
+        }
+
+        .resource-category {
+            margin-bottom: 20px;
+        }
+
+        .resource-item {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin: 10px 0;
+            cursor: pointer;
             transition: all 0.3s;
         }
 
-        .resource-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        .resource-item:hover {
+            background: var(--primary-light);
+            color: white;
         }
 
-        .resource-card h3 {
-            margin-bottom: 10px;
-            color: var(--primary);
+        .resource-content {
+            display: none;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            margin-top: 10px;
+            border-left: 4px solid var(--primary);
         }
 
-        .resource-card p {
-            color: var(--dark-gray);
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-        }
-
-        .resource-card a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .resource-card a:hover {
-            text-decoration: underline;
+        .resource-content.active {
+            display: block;
         }
 
         @media (max-width: 768px) {
@@ -1001,16 +982,8 @@
                 right: 10px;
             }
 
-            .tabs {
-                flex-wrap: wrap;
-            }
-
-            .tab {
-                flex: 1;
-                min-width: 120px;
-                text-align: center;
-                padding: 10px;
-                font-size: 0.9rem;
+            .quiz-options {
+                flex-direction: column;
             }
         }
     </style>
@@ -1055,15 +1028,16 @@
             </div>
         </div>
 
-        <!-- Tab System -->
+        <!-- Tab Navigation -->
         <div class="tabs">
-            <div class="tab active" data-tab="calculator">Cost Calculator</div>
-            <div class="tab" data-tab="comparison">Pet Comparisons</div>
-            <div class="tab" data-tab="resources">Pet Care Resources</div>
+            <button class="tab-btn active" data-tab="calculator">Cost Calculator</button>
+            <button class="tab-btn" data-tab="quiz">Pet Personality Quiz</button>
+            <button class="tab-btn" data-tab="resources">Pet Care Resources</button>
+            <button class="tab-btn" data-tab="guides">Care Guides</button>
         </div>
 
         <!-- Calculator Tab -->
-        <div class="tab-content active" id="calculator-tab">
+        <div class="tab-content active" id="calculator">
             <div class="pet-analyzer animate__animated animate__fadeInUp animate__delay-1s">
                 <div class="form-group">
                     <label for="pet-type">Pet Type <span class="tooltip"><i class="fas fa-info-circle"></i>
@@ -1173,11 +1147,11 @@
                     </select>
                 </div>
 
-                <div class="form-group" id="zip-group">
+                <div class="form-group" id="zip-group" style="display: none;">
                     <label for="zip-code">ZIP/Postal Code <span class="tooltip"><i class="fas fa-info-circle"></i>
                         <span class="tooltiptext">Enter your ZIP code for hyper-local pricing</span>
                     </span></label>
-                    <input type="text" id="zip-code" placeholder="Enter your ZIP code (optional)">
+                    <input type="text" id="zip-code" placeholder="Enter your ZIP code">
                 </div>
 
                 <button id="calculate-btn" class="btn btn-lg btn-block">
@@ -1307,60 +1281,6 @@
                     </div>
                 </div>
 
-                <div class="video-generator">
-                    <h3><i class="fas fa-video"></i> Create Shareable Video</h3>
-                    <p>Generate a fun video to share your pet's cost breakdown on social media</p>
-                    <div class="video-preview" id="video-preview">
-                        <div class="video-preview-text" id="video-text">My pet costs $0/month!</div>
-                    </div>
-                    <button id="generate-video" class="btn">
-                        <i class="fas fa-film"></i> Generate Video
-                    </button>
-                    <button id="download-video" class="btn btn-secondary" style="display: none; margin-top: 10px;">
-                        <i class="fas fa-download"></i> Download Video
-                    </button>
-                </div>
-
-                <div class="quiz-container">
-                    <h3><i class="fas fa-question-circle"></i> Pet Personality Quiz</h3>
-                    <p>Find out which pet fits your budget and lifestyle</p>
-                    
-                    <div id="quiz-questions">
-                        <div class="quiz-question">1. What's your ideal monthly pet budget?</div>
-                        <div class="quiz-options">
-                            <div class="quiz-option" data-value="low">Under $50</div>
-                            <div class="quiz-option" data-value="medium">$50-$150</div>
-                            <div class="quiz-option" data-value="high">$150+</div>
-                        </div>
-                        
-                        <div class="quiz-question" style="display: none;">2. How much time can you spend daily on pet care?</div>
-                        <div class="quiz-options" style="display: none;">
-                            <div class="quiz-option" data-value="low">Less than 30 minutes</div>
-                            <div class="quiz-option" data-value="medium">30 minutes to 2 hours</div>
-                            <div class="quiz-option" data-value="high">2+ hours</div>
-                        </div>
-                        
-                        <div class="quiz-question" style="display: none;">3. What type of pet experience do you prefer?</div>
-                        <div class="quiz-options" style="display: none;">
-                            <div class="quiz-option" data-value="independent">Independent and low-maintenance</div>
-                            <div class="quiz-option" data-value="interactive">Interactive and playful</div>
-                            <div class="quiz-option" data-value="companion">Companion and affectionate</div>
-                        </div>
-                    </div>
-                    
-                    <div class="quiz-result" id="quiz-result">
-                        <h3>Your Perfect Pet Is...</h3>
-                        <p id="quiz-pet-result">Loading recommendation...</p>
-                        <button id="share-quiz" class="btn btn-secondary" style="margin-top: 15px;">
-                            <i class="fas fa-share-alt"></i> Share Your Result
-                        </button>
-                    </div>
-                    
-                    <button id="next-question" class="btn" style="margin-top: 20px;">
-                        Next Question <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-
                 <div class="testimonial">
                     <h3><i class="fas fa-quote-left"></i> Real User Stories</h3>
                     <p>"This tool helped me realize I could afford a cat by showing me exactly where I could save on costs. I've had my rescue cat for 6 months now and the estimates were spot on!"</p>
@@ -1382,113 +1302,292 @@
             </div>
         </div>
 
-        <!-- Comparison Tab -->
-        <div class="tab-content" id="comparison-tab">
-            <div class="pet-analyzer">
-                <h2>Compare Pet Costs</h2>
-                <p>See how different pets stack up against each other in terms of monthly expenses</p>
+        <!-- Quiz Tab -->
+        <div class="tab-content" id="quiz">
+            <div class="quiz-container">
+                <h2><i class="fas fa-question-circle"></i> Pet Personality Quiz</h2>
+                <p class="subtitle">Find out which pet fits your budget and lifestyle</p>
                 
-                <div class="form-group">
-                    <label>Compare Up to 3 Pets</label>
-                    <div id="comparison-pets-container">
-                        <!-- Comparison pets will be added here dynamically -->
+                <div id="quiz-questions">
+                    <div class="quiz-question">1. What's your ideal monthly pet budget?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-value="low">Under $50</div>
+                        <div class="quiz-option" data-value="medium">$50-$150</div>
+                        <div class="quiz-option" data-value="high">$150+</div>
                     </div>
-                    <button id="add-comparison-pet" class="btn btn-secondary" style="margin-top: 10px;">
-                        <i class="fas fa-plus"></i> Add Pet to Compare
+                    
+                    <div class="quiz-question" style="display: none;">2. How much time can you spend daily on pet care?</div>
+                    <div class="quiz-options" style="display: none;">
+                        <div class="quiz-option" data-value="low">Less than 30 minutes</div>
+                        <div class="quiz-option" data-value="medium">30 minutes to 2 hours</div>
+                        <div class="quiz-option" data-value="high">2+ hours</div>
+                    </div>
+                    
+                    <div class="quiz-question" style="display: none;">3. What type of pet experience do you prefer?</div>
+                    <div class="quiz-options" style="display: none;">
+                        <div class="quiz-option" data-value="independent">Independent and low-maintenance</div>
+                        <div class="quiz-option" data-value="interactive">Interactive and playful</div>
+                        <div class="quiz-option" data-value="companion">Companion and affectionate</div>
+                    </div>
+                    
+                    <div class="quiz-question" style="display: none;">4. How much space do you have available for a pet?</div>
+                    <div class="quiz-options" style="display: none;">
+                        <div class="quiz-option" data-value="small">Small apartment (under 500 sq ft)</div>
+                        <div class="quiz-option" data-value="medium">Medium home (500-1500 sq ft)</div>
+                        <div class="quiz-option" data-value="large">Large home or yard (1500+ sq ft)</div>
+                    </div>
+                    
+                    <div class="quiz-question" style="display: none;">5. What's your experience level with pets?</div>
+                    <div class="quiz-options" style="display: none;">
+                        <div class="quiz-option" data-value="beginner">First-time pet owner</div>
+                        <div class="quiz-option" data-value="intermediate">Some experience</div>
+                        <div class="quiz-option" data-value="expert">Very experienced</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-result" id="quiz-result">
+                    <h3>Your Perfect Pet Is...</h3>
+                    <div id="quiz-pet-result">Loading recommendation...</div>
+                    <button id="share-quiz" class="btn" style="margin-top: 15px;">
+                        <i class="fas fa-share-alt"></i> Share Your Result
                     </button>
                 </div>
                 
-                <button id="compare-pets-btn" class="btn btn-lg btn-block">
-                    <i class="fas fa-chart-bar"></i> Compare Pets
+                <button id="next-question" class="btn" style="margin-top: 20px;">
+                    Next Question <i class="fas fa-arrow-right"></i>
                 </button>
+            </div>
+        </div>
+
+        <!-- Resources Tab -->
+        <div class="tab-content" id="resources">
+            <div class="pet-care-resources">
+                <h2><i class="fas fa-book-open"></i> Pet Care Resources</h2>
+                <p class="subtitle">Essential information and tools for pet owners</p>
                 
-                <div class="results" id="comparison-results" style="display: none;">
-                    <h2>Pet Cost Comparison</h2>
-                    <div class="chart-container">
-                        <canvas id="comparison-chart"></canvas>
+                <div class="resource-category">
+                    <h3><i class="fas fa-utensils"></i> Nutrition Guides</h3>
+                    <div class="resource-item" data-resource="dog-nutrition">
+                        Dog Nutrition Guide
+                    </div>
+                    <div class="resource-content" id="dog-nutrition">
+                        <h4>Dog Nutrition Essentials</h4>
+                        <p>Dogs require a balanced diet of proteins, fats, carbohydrates, vitamins, and minerals. The exact amounts depend on age, size, and activity level:</p>
+                        <ul>
+                            <li><strong>Puppies:</strong> Need food with 22-32% protein and 10-25% fat</li>
+                            <li><strong>Adult dogs:</strong> 18-25% protein and 10-15% fat</li>
+                            <li><strong>Senior dogs:</strong> May need lower calorie food with joint supplements</li>
+                        </ul>
+                        <p>Feed 2-3 meals per day for most dogs. Always provide fresh water. Avoid toxic foods like chocolate, grapes, onions, and xylitol.</p>
                     </div>
                     
-                    <div class="analytics-section">
-                        <div class="analytics-card">
-                            <h3><i class="fas fa-dollar-sign"></i> Most Affordable</h3>
-                            <p id="most-affordable">-</p>
-                            <p>Lowest monthly cost among compared pets</p>
-                        </div>
-                        <div class="analytics-card">
-                            <h3><i class="fas fa-crown"></i> Most Expensive</h3>
-                            <p id="most-expensive">-</p>
-                            <p>Highest monthly cost among compared pets</p>
-                        </div>
-                        <div class="analytics-card">
-                            <h3><i class="fas fa-lightbulb"></i> Best Value</h3>
-                            <p id="best-value">-</p>
-                            <p>Best balance of cost and features</p>
-                        </div>
+                    <div class="resource-item" data-resource="cat-nutrition">
+                        Cat Nutrition Guide
+                    </div>
+                    <div class="resource-content" id="cat-nutrition">
+                        <h4>Cat Nutrition Essentials</h4>
+                        <p>Cats are obligate carnivores and require high-protein diets with specific nutrients:</p>
+                        <ul>
+                            <li><strong>Protein:</strong> Should be 30-45% of diet (higher for kittens)</li>
+                            <li><strong>Taurine:</strong> Essential amino acid found only in animal tissue</li>
+                            <li><strong>Water:</strong> Cats have low thirst drive - wet food helps hydration</li>
+                        </ul>
+                        <p>Feed measured amounts 2-3 times daily. Avoid dog food, milk, and raw fish. Provide clean water at all times.</p>
+                    </div>
+                </div>
+                
+                <div class="resource-category">
+                    <h3><i class="fas fa-home"></i> Housing & Environment</h3>
+                    <div class="resource-item" data-resource="small-pet-housing">
+                        Small Pet Housing Guide
+                    </div>
+                    <div class="resource-content" id="small-pet-housing">
+                        <h4>Creating the Perfect Home for Small Pets</h4>
+                        <p>Small mammals like rabbits, guinea pigs, and hamsters need appropriate housing:</p>
+                        <ul>
+                            <li><strong>Size:</strong> Minimum 4 square feet for rabbits/guinea pigs, 2 square feet for hamsters</li>
+                            <li><strong>Bedding:</strong> Use paper-based or aspen shavings (avoid cedar/pine)</li>
+                            <li><strong>Enrichment:</strong> Hideouts, tunnels, chew toys, and exercise wheels</li>
+                            <li><strong>Temperature:</strong> Keep between 65-75°F (18-24°C) away from drafts</li>
+                        </ul>
+                        <p>Clean cages weekly and spot clean daily. Provide separate areas for sleeping, eating, and toileting.</p>
                     </div>
                     
-                    <div class="share-buttons">
-                        <div class="share-btn facebook"><i class="fab fa-facebook-f"></i></div>
-                        <div class="share-btn twitter"><i class="fab fa-twitter"></i></div>
-                        <div class="share-btn instagram"><i class="fab fa-instagram"></i></div>
-                        <div class="share-btn pinterest"><i class="fab fa-pinterest-p"></i></div>
+                    <div class="resource-item" data-resource="aquarium-setup">
+                        Aquarium Setup Guide
+                    </div>
+                    <div class="resource-content" id="aquarium-setup">
+                        <h4>Setting Up a Healthy Aquarium</h4>
+                        <p>Proper aquarium setup is crucial for fish health:</p>
+                        <ul>
+                            <li><strong>Tank size:</strong> Minimum 10 gallons for small fish, larger for active species</li>
+                            <li><strong>Filtration:</strong> Choose a filter rated for your tank size</li>
+                            <li><strong>Heating:</strong> Most tropical fish need 75-80°F (24-27°C)</li>
+                            <li><strong>Cycling:</strong> Establish beneficial bacteria before adding fish (2-6 weeks)</li>
+                        </ul>
+                        <p>Perform 25% water changes weekly. Test water regularly for ammonia, nitrites, nitrates, pH, and hardness.</p>
+                    </div>
+                </div>
+                
+                <div class="resource-category">
+                    <h3><i class="fas fa-heartbeat"></i> Health & Wellness</h3>
+                    <div class="resource-item" data-resource="vaccination-schedule">
+                        Vaccination Schedules
+                    </div>
+                    <div class="resource-content" id="vaccination-schedule">
+                        <h4>Essential Vaccinations for Pets</h4>
+                        <p><strong>Dogs:</strong></p>
+                        <ul>
+                            <li><strong>Core vaccines:</strong> Rabies, Distemper, Parvovirus, Adenovirus</li>
+                            <li><strong>Non-core:</strong> Bordetella, Leptospirosis, Lyme disease</li>
+                            <li><strong>Puppy schedule:</strong> Every 3-4 weeks from 6-16 weeks</li>
+                            <li><strong>Adult boosters:</strong> Every 1-3 years depending on vaccine</li>
+                        </ul>
+                        <p><strong>Cats:</strong></p>
+                        <ul>
+                            <li><strong>Core vaccines:</strong> Rabies, FVRCP (Feline Viral Rhinotracheitis, Calicivirus, Panleukopenia)</li>
+                            <li><strong>Non-core:</strong> FeLV (for outdoor cats), FIP</li>
+                            <li><strong>Kitten schedule:</strong> Every 3-4 weeks from 6-16 weeks</li>
+                            <li><strong>Adult boosters:</strong> Every 1-3 years</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="resource-item" data-resource="grooming-guide">
+                        Grooming Guide
+                    </div>
+                    <div class="resource-content" id="grooming-guide">
+                        <h4>Pet Grooming Essentials</h4>
+                        <p><strong>Dogs:</strong></p>
+                        <ul>
+                            <li><strong>Brushing:</strong> Daily for long-haired breeds, weekly for short-haired</li>
+                            <li><strong>Bathing:</strong> Every 4-6 weeks with dog shampoo</li>
+                            <li><strong>Nail trimming:</strong> Every 3-4 weeks</li>
+                            <li><strong>Ear cleaning:</strong> Weekly for floppy-eared breeds</li>
+                        </ul>
+                        <p><strong>Cats:</strong></p>
+                        <ul>
+                            <li><strong>Brushing:</strong> Weekly for short-haired, daily for long-haired</li>
+                            <li><strong>Bathing:</strong> Rarely needed unless medically necessary</li>
+                            <li><strong>Nail trimming:</strong> Every 2-3 weeks</li>
+                            <li><strong>Dental care:</strong> Brush teeth daily or use dental treats</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Resources Tab -->
-        <div class="tab-content" id="resources-tab">
-            <div class="pet-analyzer">
-                <h2>Pet Care Resources</h2>
-                <p>Helpful guides, articles and tools for pet owners</p>
+        <!-- Guides Tab -->
+        <div class="tab-content" id="guides">
+            <div class="pet-care-resources">
+                <h2><i class="fas fa-book"></i> Comprehensive Pet Care Guides</h2>
+                <p class="subtitle">Detailed guides for specific pet types and breeds</p>
                 
-                <div class="resources-grid">
-                    <div class="resource-card">
-                        <h3>Budgeting for Your First Pet</h3>
-                        <p>Learn how to prepare financially for bringing home a new pet with our comprehensive guide.</p>
-                        <a href="#">Read Guide <i class="fas fa-arrow-right"></i></a>
+                <div class="resource-category">
+                    <h3><i class="fas fa-dog"></i> Dog Breed Guides</h3>
+                    <div class="resource-item" data-resource="labrador-guide">
+                        Labrador Retriever Guide
+                    </div>
+                    <div class="resource-content" id="labrador-guide">
+                        <h4>Labrador Retriever Complete Care Guide</h4>
+                        <img src="https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Labrador Retriever" style="width: 100%; max-width: 300px; border-radius: 10px; float: right; margin: 0 0 15px 15px;">
+                        <p><strong>Temperament:</strong> Friendly, outgoing, high-energy</p>
+                        <p><strong>Size:</strong> 55-80 lbs (25-36 kg), 21.5-24.5 inches (55-62 cm) tall</p>
+                        <p><strong>Lifespan:</strong> 10-12 years</p>
+                        <p><strong>Exercise Needs:</strong> High - at least 1 hour vigorous exercise daily</p>
+                        <p><strong>Grooming:</strong> Weekly brushing, more during shedding seasons</p>
+                        <p><strong>Health Concerns:</strong> Hip/elbow dysplasia, obesity, ear infections</p>
+                        <p><strong>Training:</strong> Highly trainable but needs consistency. Excellent family dogs.</p>
+                        <p><strong>Diet:</strong> 2.5-3 cups high-quality dry food daily, divided into 2 meals</p>
                     </div>
                     
-                    <div class="resource-card">
-                        <h3>Pet Insurance Comparison</h3>
-                        <p>Understand the different types of pet insurance and how to choose the best one for your needs.</p>
-                        <a href="#">Compare Plans <i class="fas fa-arrow-right"></i></a>
+                    <div class="resource-item" data-resource="poodle-guide">
+                        Poodle Guide
                     </div>
-                    
-                    <div class="resource-card">
-                        <h3>DIY Pet Grooming Tips</h3>
-                        <p>Save money by learning how to groom your pet at home with these professional techniques.</p>
-                        <a href="#">View Tips <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                    
-                    <div class="resource-card">
-                        <h3>Pet Food Calculator</h3>
-                        <p>Determine exactly how much food your pet needs based on size, age and activity level.</p>
-                        <a href="#">Calculate Needs <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                    
-                    <div class="resource-card">
-                        <h3>Vet Visit Checklist</h3>
-                        <p>Be prepared for your next vet appointment with our comprehensive checklist.</p>
-                        <a href="#">Download Checklist <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                    
-                    <div class="resource-card">
-                        <h3>Pet Emergency Fund Guide</h3>
-                        <p>Learn how to set up and maintain an emergency fund for unexpected pet expenses.</p>
-                        <a href="#">Read Guide <i class="fas fa-arrow-right"></i></a>
+                    <div class="resource-content" id="poodle-guide">
+                        <h4>Poodle Complete Care Guide</h4>
+                        <img src="https://images.unsplash.com/photo-1594149929911-78975a43d4f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Poodle" style="width: 100%; max-width: 300px; border-radius: 10px; float: right; margin: 0 0 15px 15px;">
+                        <p><strong>Temperament:</strong> Intelligent, active, proud</p>
+                        <p><strong>Size:</strong> 
+                            Toy: under 10 lbs (4.5 kg), 
+                            Miniature: 10-15 lbs (4.5-7 kg), 
+                            Standard: 45-70 lbs (20-32 kg)
+                        </p>
+                        <p><strong>Lifespan:</strong> 10-18 years (smaller varieties live longer)</p>
+                        <p><strong>Exercise Needs:</strong> Moderate to high - daily walks and play</p>
+                        <p><strong>Grooming:</strong> High maintenance - professional grooming every 4-6 weeks</p>
+                        <p><strong>Health Concerns:</strong> Hip dysplasia, eye disorders, skin conditions</p>
+                        <p><strong>Training:</strong> Highly intelligent and eager to please. Excel in obedience.</p>
+                        <p><strong>Diet:</strong> Varies by size - consult your vet for portion guidance</p>
                     </div>
                 </div>
                 
-                <div class="testimonial" style="margin-top: 40px;">
-                    <h3><i class="fas fa-quote-left"></i> Pet Owner Success Story</h3>
-                    <p>"The budgeting guide helped me save over $500 in the first year with my dog by showing me where I could cut costs without sacrificing quality of care."</p>
-                    <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael T.">
-                        <div>
-                            <strong>Michael T.</strong>
-                            <div>Dog Owner, Chicago</div>
-                        </div>
+                <div class="resource-category">
+                    <h3><i class="fas fa-cat"></i> Cat Breed Guides</h3>
+                    <div class="resource-item" data-resource="siamese-guide">
+                        Siamese Cat Guide
+                    </div>
+                    <div class="resource-content" id="siamese-guide">
+                        <h4>Siamese Cat Complete Care Guide</h4>
+                        <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Siamese Cat" style="width: 100%; max-width: 300px; border-radius: 10px; float: right; margin: 0 0 15px 15px;">
+                        <p><strong>Temperament:</strong> Vocal, social, intelligent</p>
+                        <p><strong>Size:</strong> 8-15 lbs (3.5-7 kg)</p>
+                        <p><strong>Lifespan:</strong> 15-20 years</p>
+                        <p><strong>Exercise Needs:</strong> Moderate - enjoys interactive play</p>
+                        <p><strong>Grooming:</strong> Low - weekly brushing sufficient</p>
+                        <p><strong>Health Concerns:</strong> Dental issues, respiratory conditions, amyloidosis</p>
+                        <p><strong>Personality:</strong> Very people-oriented, can be demanding. Not ideal for quiet homes.</p>
+                        <p><strong>Diet:</strong> High-quality protein sources. Prone to obesity if overfed.</p>
+                    </div>
+                    
+                    <div class="resource-item" data-resource="persian-guide">
+                        Persian Cat Guide
+                    </div>
+                    <div class="resource-content" id="persian-guide">
+                        <h4>Persian Cat Complete Care Guide</h4>
+                        <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Persian Cat" style="width: 100%; max-width: 300px; border-radius: 10px; float: right; margin: 0 0 15px 15px;">
+                        <p><strong>Temperament:</strong> Calm, affectionate, quiet</p>
+                        <p><strong>Size:</strong> 7-12 lbs (3-5.5 kg)</p>
+                        <p><strong>Lifespan:</strong> 12-16 years</p>
+                        <p><strong>Exercise Needs:</strong> Low - enjoys gentle play</p>
+                        <p><strong>Grooming:</strong> High - daily brushing required to prevent mats</p>
+                        <p><strong>Health Concerns:</strong> Breathing difficulties, eye discharge, polycystic kidney disease</p>
+                        <p><strong>Personality:</strong> Gentle and docile. Prefers calm environments.</p>
+                        <p><strong>Diet:</strong> May need special formulations for coat health and to prevent hairballs.</p>
+                    </div>
+                </div>
+                
+                <div class="resource-category">
+                    <h3><i class="fas fa-dove"></i> Exotic Pet Guides</h3>
+                    <div class="resource-item" data-resource="bearded-dragon-guide">
+                        Bearded Dragon Guide
+                    </div>
+                    <div class="resource-content" id="bearded-dragon-guide">
+                        <h4>Bearded Dragon Complete Care Guide</h4>
+                        <img src="https://images.unsplash.com/photo-1497752531616-c3afd9760b11?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Bearded Dragon" style="width: 100%; max-width: 300px; border-radius: 10px; float: right; margin: 0 0 15px 15px;">
+                        <p><strong>Temperament:</strong> Generally docile, can be hand-tamed</p>
+                        <p><strong>Size:</strong> 16-24 inches (40-60 cm) including tail</p>
+                        <p><strong>Lifespan:</strong> 8-12 years in captivity</p>
+                        <p><strong>Housing:</strong> Minimum 40-gallon tank for adults, with basking area</p>
+                        <p><strong>Temperature:</strong> Basking spot 95-110°F (35-43°C), cool side 75-85°F (24-29°C)</p>
+                        <p><strong>Lighting:</strong> UVB lighting essential for 10-12 hours daily</p>
+                        <p><strong>Diet:</strong> Omnivorous - mix of insects (crickets, roaches) and vegetables</p>
+                        <p><strong>Health Concerns:</strong> Metabolic bone disease, impaction, respiratory infections</p>
+                    </div>
+                    
+                    <div class="resource-item" data-resource="parrot-guide">
+                        Parrot Care Guide
+                    </div>
+                    <div class="resource-content" id="parrot-guide">
+                        <h4>Parrot Complete Care Guide</h4>
+                        <img src="https://images.unsplash.com/photo-1551085254-e96b210db58a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Parrot" style="width: 100%; max-width: 300px; border-radius: 10px; float: right; margin: 0 0 15px 15px;">
+                        <p><strong>Temperament:</strong> Intelligent, social, can be noisy</p>
+                        <p><strong>Size:</strong> Varies by species from 5 inches to 3 feet</p>
+                        <p><strong>Lifespan:</strong> 15-80 years depending on species</p>
+                        <p><strong>Housing:</strong> Largest cage possible with horizontal bars for climbing</p>
+                        <p><strong>Diet:</strong> High-quality pellets supplemented with fresh fruits/vegetables</p>
+                        <p><strong>Enrichment:</strong> Requires daily interaction and mental stimulation</p>
+                        <p><strong>Health Concerns:</strong> Feather plucking, nutritional deficiencies, psittacosis</p>
+                        <p><strong>Note:</strong> Parrots are long-term commitments requiring significant time and attention.</p>
                     </div>
                 </div>
             </div>
@@ -1505,7 +1604,6 @@
             <a href="#" style="color: var(--primary); text-decoration: none; margin: 0 10px;">About Us</a>
             <a href="#" style="color: var(--primary); text-decoration: none; margin: 0 10px;">Vet Partners</a>
             <a href="#" style="color: var(--primary); text-decoration: none; margin: 0 10px;">API</a>
-            <a href="#" style="color: var(--primary); text-decoration: none; margin: 0 10px;">Contact</a>
         </p>
     </footer>
 
@@ -1543,7 +1641,7 @@
             'other': ['Other']
         };
 
-        // Pet images with more variety
+        // Pet images with more variety and working URLs
         const petImages = {
             'dog': 'https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
             'cat': 'https://images.unsplash.com/photo-1519052537078-e6302a4968d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
@@ -1554,157 +1652,159 @@
             'exotic': 'https://images.unsplash.com/photo-1559253664-ca249d4608c6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
             'farm': 'https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
             'amphibian': 'https://images.unsplash.com/photo-1559253664-ca249d4608c6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-            'invertebrate': 'https://images.unsplash.com/photo-1561037404-61cd46aa615b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+            'invertebrate': 'https://images.unsplash.com/photo-1566228015668-4c45dbc4e2f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
             'other': 'https://images.unsplash.com/photo-1555169062-013468b47731?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
         };
 
         // Enhanced base costs for different pet types with more realistic pricing
         const baseCosts = {
             'dog': {
-                'food': 80,
-                'healthcare': 60,
-                'grooming': 40,
-                'supplies': 45,
-                'insurance': 70,
-                'training': 35,
-                'boarding': 50
-            },
-            'cat': {
-                'food': 50,
-                'healthcare': 45,
-                'grooming': 30,
-                'supplies': 40,
-                'insurance': 50,
-                'training': 25,
-                'boarding': 40
-            },
-            'bird': {
-                'food': 25,
-                'healthcare': 35,
-                'grooming': 20,
-                'supplies': 45,
-                'insurance': 30,
-                'training': 15,
-                'boarding': 30
-            },
-            'fish': {
-                'food': 20,
-                'healthcare': 15,
-                'grooming': 10,
-                'supplies': 60,
-                'insurance': 0,
-                'training': 0,
-                'boarding': 20
-            },
-            'reptile': {
-                'food': 35,
-                'healthcare': 30,
-                'grooming': 15,
-                'supplies': 70,
-                'insurance': 25,
-                'training': 10,
-                'boarding': 35
-            },
-            'small-mammal': {
-                'food': 25,
-                'healthcare': 25,
-                'grooming': 15,
-                'supplies': 40,
-                'insurance': 25,
-                'training': 10,
-                'boarding': 30
-            },
-            'exotic': {
                 'food': 40,
                 'healthcare': 50,
-                'grooming': 25,
-                'supplies': 80,
+                'grooming': 35,
+                'supplies': 25,
+                'insurance': 45,
+                'training': 30,
+                'boarding': 40
+            },
+            'cat': {
+                'food': 25,
+                'healthcare': 40,
+                'grooming': 20,
+                'supplies': 20,
                 'insurance': 35,
                 'training': 15,
-                'boarding': 45
+                'boarding': 25
+            },
+            'bird': {
+                'food': 15,
+                'healthcare': 30,
+                'grooming': 10,
+                'supplies': 25,
+                'insurance': 15,
+                'training': 10,
+                'boarding': 15
+            },
+            'fish': {
+                'food': 10,
+                'healthcare': 15,
+                'grooming': 5,
+                'supplies': 30,
+                'insurance': 0,
+                'training': 0,
+                'boarding': 10
+            },
+            'reptile': {
+                'food': 20,
+                'healthcare': 25,
+                'grooming': 5,
+                'supplies': 40,
+                'insurance': 10,
+                'training': 5,
+                'boarding': 20
+            },
+            'small-mammal': {
+                'food': 15,
+                'healthcare': 20,
+                'grooming': 5,
+                'supplies': 25,
+                'insurance': 10,
+                'training': 5,
+                'boarding': 15
+            },
+            'exotic': {
+                'food': 25,
+                'healthcare': 45,
+                'grooming': 10,
+                'supplies': 50,
+                'insurance': 20,
+                'training': 10,
+                'boarding': 30
             },
             'farm': {
+                // Farm animals have very different costs
                 'Chicken': {
-                    'food': 20,
+                    'food': 10,
                     'healthcare': 15,
-                    'grooming': 10,
-                    'supplies': 30,
-                    'insurance': 10,
+                    'grooming': 5,
+                    'supplies': 15,
+                    'insurance': 5,
                     'training': 0,
-                    'boarding': 15
+                    'boarding': 10
                 },
                 'Horse': {
-                    'food': 250,
-                    'healthcare': 180,
-                    'grooming': 70,
-                    'supplies': 120,
-                    'insurance': 150,
-                    'training': 100,
-                    'boarding': 350
-                },
-                'Goat': {
-                    'food': 50,
-                    'healthcare': 40,
-                    'grooming': 20,
-                    'supplies': 60,
-                    'insurance': 35,
-                    'training': 15,
-                    'boarding': 70
-                },
-                'Pig': {
-                    'food': 100,
-                    'healthcare': 80,
-                    'grooming': 30,
-                    'supplies': 90,
-                    'insurance': 50,
-                    'training': 20,
-                    'boarding': 120
-                },
-                'Cow': {
-                    'food': 180,
+                    'food': 150,
                     'healthcare': 120,
                     'grooming': 40,
-                    'supplies': 150,
+                    'supplies': 80,
                     'insurance': 100,
-                    'training': 30,
+                    'training': 60,
                     'boarding': 250
                 },
-                'default': {
+                'Goat': {
+                    'food': 30,
+                    'healthcare': 25,
+                    'grooming': 10,
+                    'supplies': 40,
+                    'insurance': 20,
+                    'training': 10,
+                    'boarding': 50
+                },
+                'Pig': {
                     'food': 60,
-                    'healthcare': 55,
-                    'grooming': 35,
-                    'supplies': 70,
-                    'insurance': 45,
-                    'training': 25,
-                    'boarding': 60
+                    'healthcare': 50,
+                    'grooming': 15,
+                    'supplies': 50,
+                    'insurance': 30,
+                    'training': 10,
+                    'boarding': 80
+                },
+                'Cow': {
+                    'food': 120,
+                    'healthcare': 90,
+                    'grooming': 25,
+                    'supplies': 100,
+                    'insurance': 70,
+                    'training': 15,
+                    'boarding': 180
+                },
+                // Default for other farm animals
+                'default': {
+                    'food': 40,
+                    'healthcare': 35,
+                    'grooming': 20,
+                    'supplies': 50,
+                    'insurance': 25,
+                    'training': 15,
+                    'boarding': 40
                 }
             },
             'amphibian': {
-                'food': 25,
+                'food': 15,
                 'healthcare': 20,
-                'grooming': 10,
-                'supplies': 50,
-                'insurance': 15,
+                'grooming': 5,
+                'supplies': 30,
+                'insurance': 5,
                 'training': 0,
-                'boarding': 20
+                'boarding': 10
             },
             'invertebrate': {
-                'food': 20,
+                'food': 10,
                 'healthcare': 15,
-                'grooming': 10,
-                'supplies': 45,
-                'insurance': 10,
+                'grooming': 5,
+                'supplies': 25,
+                'insurance': 0,
                 'training': 0,
-                'boarding': 15
+                'boarding': 5
             },
             'other': {
-                'food': 35,
-                'healthcare': 35,
-                'grooming': 20,
-                'supplies': 50,
-                'insurance': 30,
-                'training': 15,
-                'boarding': 35
+                'food': 20,
+                'healthcare': 25,
+                'grooming': 10,
+                'supplies': 30,
+                'insurance': 15,
+                'training': 5,
+                'boarding': 20
             }
         };
 
@@ -1729,13 +1829,13 @@
                 'boarding': 1.0
             },
             'premium': {
-                'food': 1.4,
-                'healthcare': 1.3,
-                'grooming': 1.4,
-                'supplies': 1.5,
-                'insurance': 1.3,
-                'training': 1.2,
-                'boarding': 1.4
+                'food': 1.3,
+                'healthcare': 1.2,
+                'grooming': 1.3,
+                'supplies': 1.4,
+                'insurance': 1.2,
+                'training': 1.1,
+                'boarding': 1.3
             },
             'luxury': {
                 'food': 2.0,
@@ -1743,28 +1843,28 @@
                 'grooming': 2.0,
                 'supplies': 2.2,
                 'insurance': 1.8,
-                'training': 1.6,
+                'training': 1.5,
                 'boarding': 2.0
             }
         };
 
         // Size multipliers (for dogs/cats)
         const sizeMultipliers = {
-            'small': 0.8,
+            'small': 0.7,
             'medium': 1.0,
-            'large': 1.3,
-            'xlarge': 1.6
+            'large': 1.5,
+            'xlarge': 2.0
         };
 
         // Age multipliers with more detail
         const ageMultipliers = {
             'young': {
-                'food': 1.1,
+                'food': 1.2,
                 'healthcare': 1.4,
                 'grooming': 1.0,
-                'supplies': 1.2,
+                'supplies': 1.3,
                 'insurance': 1.3,
-                'training': 1.5,
+                'training': 1.6,
                 'boarding': 1.0
             },
             'adult': {
@@ -1778,12 +1878,12 @@
             },
             'senior': {
                 'food': 0.9,
-                'healthcare': 1.7,
-                'grooming': 1.1,
+                'healthcare': 1.8,
+                'grooming': 1.2,
                 'supplies': 1.0,
-                'insurance': 1.6,
+                'insurance': 1.7,
                 'training': 0.6,
-                'boarding': 1.1
+                'boarding': 1.2
             }
         };
 
@@ -1791,20 +1891,20 @@
         const countryMultipliers = {
             'us': 1.0,      // United States
             'ca': 0.95,     // Canada
-            'mx': 0.65,     // Mexico
-            'uk': 0.92,     // United Kingdom
-            'de': 0.88,     // Germany
-            'fr': 0.9,      // France
-            'it': 0.85,     // Italy
-            'es': 0.82,     // Spain
-            'jp': 1.05,     // Japan
-            'cn': 0.7,      // China
-            'in': 0.55,     // India
-            'au': 1.02,     // Australia
-            'br': 0.6,      // Brazil
-            'za': 0.65,     // South Africa
-            'ae': 0.98,     // UAE
-            'other': 0.85   // Other countries
+            'mx': 0.6,      // Mexico
+            'uk': 0.9,      // United Kingdom
+            'de': 0.85,     // Germany
+            'fr': 0.88,     // France
+            'it': 0.82,     // Italy
+            'es': 0.78,     // Spain
+            'jp': 1.1,      // Japan
+            'cn': 0.65,     // China
+            'in': 0.5,      // India
+            'au': 1.05,     // Australia
+            'br': 0.55,     // Brazil
+            'za': 0.6,      // South Africa
+            'ae': 0.95,     // UAE
+            'other': 0.8    // Other countries
         };
 
         // Country flag mapping (using ISO country codes)
@@ -1826,82 +1926,59 @@
             'ae': '🇦🇪'
         };
 
-        // Quiz results mapping
+        // Enhanced quiz results mapping with more combinations
         const quizResults = {
-            'low-independent': {
-                pet: 'Fish or Small Rodent',
-                description: 'Based on your budget and preferences, a low-maintenance pet like a fish or hamster would be perfect for you!',
+            'low-independent-small-beginner': {
+                pet: 'Fish or Hamster',
+                description: 'Based on your answers, a low-maintenance pet like a fish or hamster would be perfect for your small space and beginner experience level! These pets are affordable and don\'t require much interaction.',
                 image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
             },
-            'low-interactive': {
-                pet: 'Bird or Rabbit',
-                description: 'A small bird or rabbit would fit your budget while still providing interactive companionship.',
+            'low-interactive-small-beginner': {
+                pet: 'Budgie or Small Bird',
+                description: 'A small bird like a budgie would fit your budget while still providing interactive companionship. They\'re relatively easy to care for and can be quite social.',
                 image: 'https://images.unsplash.com/photo-1551085254-e96b210db58a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
             },
-            'low-companion': {
-                pet: 'Cat or Small Dog',
-                description: 'Consider adopting an adult cat or small dog from a shelter - they can be very affordable and loving companions!',
+            'low-companion-small-beginner': {
+                pet: 'Cat or Guinea Pig',
+                description: 'Consider adopting an adult cat or guinea pig from a shelter - they can be very affordable and loving companions that don\'t need much space!',
                 image: 'https://images.unsplash.com/photo-1519052537078-e6302a4968d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
             },
-            'medium-independent': {
+            'medium-independent-medium-intermediate': {
                 pet: 'Reptile or Amphibian',
-                description: 'A reptile or amphibian would suit your lifestyle - fascinating to watch but not needing constant attention.',
+                description: 'A reptile like a leopard gecko or amphibian would suit your lifestyle - fascinating to watch but not needing constant attention. Your intermediate experience level makes these good options.',
                 image: 'https://images.unsplash.com/photo-1497752531616-c3afd9760b11?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
             },
-            'medium-interactive': {
+            'medium-interactive-medium-intermediate': {
                 pet: 'Cat or Small Dog',
-                description: 'A cat or small dog would be perfect for your budget and the amount of interaction you want.',
+                description: 'A cat or small dog would be perfect for your budget and the amount of interaction you want. Your medium space and experience level can accommodate these pets well.',
                 image: 'https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
             },
-            'medium-companion': {
+            'medium-companion-medium-intermediate': {
                 pet: 'Medium Dog or Pair of Rabbits',
-                description: 'A medium-sized dog or a pair of bonded rabbits would make great companions for you.',
+                description: 'A medium-sized dog or a pair of bonded rabbits would make great companions for you. They fit your budget and desire for companionship.',
                 image: 'https://images.unsplash.com/photo-1551651656-10a2c4a3a7fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
             },
-            'high-independent': {
+            'high-independent-large-expert': {
                 pet: 'Exotic Pet or Aquarium',
-                description: 'With your budget, you could consider an exotic pet or a beautiful aquarium setup.',
+                description: 'With your budget and experience, you could consider an exotic pet like a sugar glider or a beautiful aquarium setup with multiple fish species.',
                 image: 'https://images.unsplash.com/photo-1559253664-ca249d4608c6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
             },
-            'high-interactive': {
+            'high-interactive-large-expert': {
                 pet: 'Large Dog or Multiple Pets',
-                description: 'You could comfortably afford a large dog or even multiple pets with your budget!',
+                description: 'You could comfortably afford a large dog or even multiple pets with your budget! Your space and experience level can handle more demanding pets.',
                 image: 'https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
             },
-            'high-companion': {
-                pet: 'Dog from Special Breed',
-                description: 'Consider a special breed dog that matches your personality - you have the budget for proper care!',
+            'high-companion-large-expert': {
+                pet: 'Special Breed Dog or Parrot',
+                description: 'Consider a special breed dog that matches your personality or a parrot - you have the budget and experience for these more demanding but rewarding companions!',
                 image: 'https://images.unsplash.com/photo-1561037404-61cd46aa615b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
+            },
+            // Default fallback
+            'default': {
+                pet: 'Cat or Small Dog',
+                description: 'Based on your answers, a cat or small dog would be a great fit for your lifestyle! They offer a good balance of companionship and manageable care requirements.',
+                image: 'https://images.unsplash.com/photo-1519052537078-e6302a4968d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'
             }
-        };
-
-        // AI responses based on question keywords
-        const aiResponses = {
-            'save money': [
-                "To save money on your pet's food, consider buying in bulk or looking for store brand alternatives that meet nutritional standards.",
-                "Many pet owners save on veterinary costs by establishing a relationship with a local vet who offers discounts for regular checkups.",
-                "DIY grooming between professional sessions can significantly reduce costs. Invest in quality brushes and nail clippers to maintain your pet at home."
-            ],
-            'food': [
-                "The amount of food your pet needs depends on their size, age and activity level. As a general rule, adult dogs need about 30 calories per pound of body weight daily.",
-                "Premium pet foods often have higher quality ingredients but may not always be necessary. Look for foods that meet AAFCO standards for your pet's life stage.",
-                "Consider rotating protein sources in your pet's diet to provide variety and potentially reduce food sensitivities."
-            ],
-            'insurance': [
-                "Pet insurance typically costs between $30-$70 per month for dogs and $15-$40 for cats, depending on coverage level and your pet's age/breed.",
-                "When comparing pet insurance, look at the deductible, reimbursement percentage, and annual maximums - not just the monthly premium.",
-                "Most pet insurance plans don't cover pre-existing conditions, so it's best to enroll your pet while they're young and healthy."
-            ],
-            'health': [
-                "Regular preventive care (vaccinations, dental cleanings) can save money in the long run by avoiding more serious health issues.",
-                "Some common signs your pet needs veterinary attention: changes in appetite, energy level, bathroom habits, or unusual lumps/bumps.",
-                "Many human foods are toxic to pets including chocolate, grapes, onions, and xylitol (found in sugar-free products)."
-            ],
-            'default': [
-                "The first year with a new pet is often the most expensive due to initial setup costs and vaccinations.",
-                "Consider setting aside a pet emergency fund with 3-6 months of estimated expenses for unexpected veterinary costs.",
-                "Many pet supply stores offer loyalty programs that can lead to significant savings over time."
-            ]
         };
 
         // DOM elements
@@ -1925,10 +2002,6 @@
         const aiQuestion = document.getElementById('ai-question');
         const askAiBtn = document.getElementById('ask-ai');
         const aiResponse = document.getElementById('ai-response');
-        const generateVideoBtn = document.getElementById('generate-video');
-        const downloadVideoBtn = document.getElementById('download-video');
-        const videoPreview = document.getElementById('video-preview');
-        const videoText = document.getElementById('video-text');
         const nextQuestionBtn = document.getElementById('next-question');
         const quizResult = document.getElementById('quiz-result');
         const quizPetResult = document.getElementById('quiz-pet-result');
@@ -1937,251 +2010,9 @@
         const trupanionCost = document.getElementById('trupanion-cost');
         const nationwideCost = document.getElementById('nationwide-cost');
         const petMascot = document.getElementById('pet-mascot');
-        const tabs = document.querySelectorAll('.tab');
+        const tabBtns = document.querySelectorAll('.tab-btn');
         const tabContents = document.querySelectorAll('.tab-content');
-        const addComparisonPetBtn = document.getElementById('add-comparison-pet');
-        const comparePetsBtn = document.getElementById('compare-pets-btn');
-        const comparisonPetsContainer = document.getElementById('comparison-pets-container');
-        const comparisonResults = document.getElementById('comparison-results');
-        const mostAffordable = document.getElementById('most-affordable');
-        const mostExpensive = document.getElementById('most-expensive');
-        const bestValue = document.getElementById('best-value');
-
-        // Tab system
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const tabId = tab.getAttribute('data-tab');
-                
-                // Update active tab
-                tabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                
-                // Show corresponding content
-                tabContents.forEach(content => {
-                    content.classList.remove('active');
-                    if (content.id === `${tabId}-tab`) {
-                        content.classList.add('active');
-                    }
-                });
-            });
-        });
-
-        // Comparison pets array
-        let comparisonPets = [];
-
-        // Add comparison pet
-        function addComparisonPet() {
-            if (comparisonPets.length >= 3) {
-                alert('You can compare up to 3 pets at a time');
-                return;
-            }
-            
-            const petId = `pet-compare-${comparisonPets.length + 1}`;
-            const petDiv = document.createElement('div');
-            petDiv.className = 'form-group';
-            petDiv.id = petId;
-            petDiv.innerHTML = `
-                <label>Pet ${comparisonPets.length + 1}</label>
-                <div style="display: flex; gap: 10px;">
-                    <select class="compare-pet-type" style="flex: 2;">
-                        <option value="">-- Select Pet Type --</option>
-                        <option value="dog">Dog</option>
-                        <option value="cat">Cat</option>
-                        <option value="bird">Bird</option>
-                        <option value="fish">Fish</option>
-                        <option value="reptile">Reptile</option>
-                        <option value="small-mammal">Small Mammal</option>
-                    </select>
-                    <select class="compare-pet-breed" style="flex: 2;" disabled>
-                        <option value="">-- Select Breed --</option>
-                    </select>
-                    <select class="compare-pet-lifestyle" style="flex: 1.5;">
-                        <option value="basic">Basic</option>
-                        <option value="standard" selected>Standard</option>
-                        <option value="premium">Premium</option>
-                    </select>
-                    <button class="btn btn-secondary remove-pet" style="flex: 0.5; min-width: 40px;">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            `;
-            
-            comparisonPetsContainer.appendChild(petDiv);
-            comparisonPets.push({
-                id: petId,
-                type: '',
-                breed: '',
-                lifestyle: 'standard'
-            });
-            
-            // Add event listeners
-            const petTypeSelect = petDiv.querySelector('.compare-pet-type');
-            const petBreedSelect = petDiv.querySelector('.compare-pet-breed');
-            const lifestyleSelect = petDiv.querySelector('.compare-pet-lifestyle');
-            const removeBtn = petDiv.querySelector('.remove-pet');
-            
-            petTypeSelect.addEventListener('change', function() {
-                const petIndex = comparisonPets.findIndex(p => p.id === petId);
-                comparisonPets[petIndex].type = this.value;
-                
-                // Update breeds
-                if (this.value) {
-                    petBreedSelect.disabled = false;
-                    petBreedSelect.innerHTML = '<option value="">-- Select Breed --</option>';
-                    
-                    breedData[this.value].forEach(breed => {
-                        const option = document.createElement('option');
-                        option.value = breed.toLowerCase().replace(' ', '-');
-                        option.textContent = breed;
-                        petBreedSelect.appendChild(option);
-                    });
-                } else {
-                    petBreedSelect.disabled = true;
-                }
-            });
-            
-            petBreedSelect.addEventListener('change', function() {
-                const petIndex = comparisonPets.findIndex(p => p.id === petId);
-                comparisonPets[petIndex].breed = this.value;
-            });
-            
-            lifestyleSelect.addEventListener('change', function() {
-                const petIndex = comparisonPets.findIndex(p => p.id === petId);
-                comparisonPets[petIndex].lifestyle = this.value;
-            });
-            
-            removeBtn.addEventListener('click', function() {
-                const petIndex = comparisonPets.findIndex(p => p.id === petId);
-                comparisonPets.splice(petIndex, 1);
-                petDiv.remove();
-                
-                // Renumber remaining pets
-                document.querySelectorAll('#comparison-pets-container > div').forEach((div, index) => {
-                    div.querySelector('label').textContent = `Pet ${index + 1}`;
-                });
-            });
-        }
-
-        // Compare pets
-        function comparePets() {
-            if (comparisonPets.length < 2) {
-                alert('Please add at least 2 pets to compare');
-                return;
-            }
-            
-            // Calculate costs for each pet
-            const petCosts = comparisonPets.map(pet => {
-                if (!pet.type || !pet.breed) {
-                    return null;
-                }
-                
-                // Get base costs - special handling for farm animals
-                let baseCost;
-                if (pet.type === 'farm') {
-                    const breedName = document.querySelector(`#${pet.id} .compare-pet-breed option:checked`).text;
-                    baseCost = baseCosts[pet.type][breedName] || baseCosts[pet.type]['default'];
-                } else {
-                    baseCost = baseCosts[pet.type];
-                }
-                
-                const lifestyleMultiplier = lifestyleMultipliers[pet.lifestyle];
-                const countryMultiplier = countryMultipliers[locationSelect.value] || 1.0;
-                
-                // Calculate total cost
-                let totalCost = 0;
-                for (const category in baseCost) {
-                    totalCost += baseCost[category] * lifestyleMultiplier[category] * countryMultiplier;
-                }
-                
-                return {
-                    name: `${pet.type} (${document.querySelector(`#${pet.id} .compare-pet-breed option:checked`).text})`,
-                    cost: totalCost,
-                    lifestyle: pet.lifestyle
-                };
-            }).filter(pet => pet !== null);
-            
-            if (petCosts.length < 2) {
-                alert('Please make sure all pets have type and breed selected');
-                return;
-            }
-            
-            // Sort by cost
-            petCosts.sort((a, b) => a.cost - b.cost);
-            
-            // Update comparison results
-            mostAffordable.textContent = `${petCosts[0].name} at ${formatCurrency(petCosts[0].cost, locationSelect.value)}/month`;
-            mostExpensive.textContent = `${petCosts[petCosts.length - 1].name} at ${formatCurrency(petCosts[petCosts.length - 1].cost, locationSelect.value)}/month`;
-            
-            // Determine best value (middle ground)
-            const bestValuePet = petCosts[Math.floor(petCosts.length / 2)];
-            bestValue.textContent = `${bestValuePet.name} at ${formatCurrency(bestValuePet.cost, locationSelect.value)}/month (${bestValuePet.lifestyle} care)`;
-            
-            // Update chart
-            updateComparisonChart(
-                petCosts.map(pet => pet.name),
-                petCosts.map(pet => pet.cost),
-                locationSelect.value
-            );
-            
-            // Show results
-            comparisonResults.style.display = 'block';
-            comparisonResults.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Update comparison chart
-        function updateComparisonChart(labels, data, country) {
-            const ctx = document.getElementById('comparison-chart').getContext('2d');
-            const currencySymbol = formatCurrency(1, country).charAt(0);
-            
-            if (window.comparisonChart) {
-                window.comparisonChart.destroy();
-            }
-            
-            window.comparisonChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: `Monthly Cost (${currencySymbol})`,
-                        data: data,
-                        backgroundColor: [
-                            '#6c5ce7',
-                            '#00b894',
-                            '#fd79a8',
-                            '#fdcb6e',
-                            '#0984e3'
-                        ],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return `${currencySymbol}${context.raw.toLocaleString()}`;
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function(value) {
-                                    return currencySymbol + value;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        }
+        const resourceItems = document.querySelectorAll('.resource-item');
 
         // Quiz state
         let currentQuestion = 1;
@@ -2202,16 +2033,51 @@
         // Event listeners
         petTypeSelect.addEventListener('change', updateBreeds);
         calculateBtn.addEventListener('click', calculateCosts);
+        locationSelect.addEventListener('change', toggleZipField);
         shareComparisonBtn.addEventListener('click', shareComparison);
         askAiBtn.addEventListener('click', getAIAdvice);
-        generateVideoBtn.addEventListener('click', generateVideo);
-        downloadVideoBtn.addEventListener('click', downloadVideo);
         nextQuestionBtn.addEventListener('click', nextQuizQuestion);
         shareQuizBtn.addEventListener('click', shareQuizResult);
         petMascot.addEventListener('click', animateMascot);
-        addComparisonPetBtn.addEventListener('click', addComparisonPet);
-        comparePetsBtn.addEventListener('click', comparePets);
         
+        // Tab switching
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+                
+                // Update active tab button
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Show corresponding tab content
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === tabId) {
+                        content.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // Resource item click handlers
+        resourceItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const resourceId = this.getAttribute('data-resource');
+                const content = document.getElementById(resourceId);
+                
+                // Toggle content visibility
+                if (content.classList.contains('active')) {
+                    content.classList.remove('active');
+                } else {
+                    // Close all other resources first
+                    document.querySelectorAll('.resource-content').forEach(c => {
+                        c.classList.remove('active');
+                    });
+                    content.classList.add('active');
+                }
+            });
+        });
+
         // Pet icon click handlers
         petIcons.forEach(icon => {
             icon.addEventListener('click', () => {
@@ -2225,13 +2091,13 @@
         // Quiz option click handlers
         document.querySelectorAll('.quiz-option').forEach(option => {
             option.addEventListener('click', function() {
-                // Remove active class from all options in this question
+                // Remove selected class from all options in this question
                 this.parentNode.querySelectorAll('.quiz-option').forEach(opt => {
-                    opt.style.backgroundColor = 'rgba(255,255,255,0.2)';
+                    opt.classList.remove('selected');
                 });
                 
-                // Highlight selected option
-                this.style.backgroundColor = 'rgba(255,255,255,0.4)';
+                // Add selected class to clicked option
+                this.classList.add('selected');
                 
                 // Store answer
                 if (currentQuestion === 1) {
@@ -2240,6 +2106,10 @@
                     quizAnswers.time = this.getAttribute('data-value');
                 } else if (currentQuestion === 3) {
                     quizAnswers.type = this.getAttribute('data-value');
+                } else if (currentQuestion === 4) {
+                    quizAnswers.space = this.getAttribute('data-value');
+                } else if (currentQuestion === 5) {
+                    quizAnswers.experience = this.getAttribute('data-value');
                 }
             });
         });
@@ -2270,6 +2140,16 @@
                 petImg.src = petImages[petType];
             } else {
                 breedGroup.style.display = 'none';
+            }
+        }
+
+        // Toggle ZIP code field based on country
+        function toggleZipField() {
+            const country = locationSelect.value;
+            if (country === 'us' || country === 'ca' || country === 'uk') {
+                zipGroup.style.display = 'block';
+            } else {
+                zipGroup.style.display = 'none';
             }
         }
 
@@ -2337,9 +2217,6 @@
                 lemonadeCost.textContent = formatCurrency(costs.insurance * 0.9, country); // 10% cheaper
                 trupanionCost.textContent = formatCurrency(costs.insurance * 1.1, country); // 10% more expensive
                 nationwideCost.textContent = formatCurrency(costs.insurance, country); // Same as estimate
-                
-                // Update video text
-                videoText.textContent = `My ${petType} costs ${formatCurrency(totalCost, country)}/month!`;
                 
                 // Set gamification badge based on lifestyle
                 costBadge.style.display = 'block';
@@ -2480,7 +2357,7 @@
             }
         }
 
-        // Get AI advice - now with better question analysis
+        // Get AI advice with better question analysis
         function getAIAdvice() {
             const question = aiQuestion.value.trim();
             if (!question) {
@@ -2488,76 +2365,109 @@
                 return;
             }
             
-            aiResponse.textContent = 'Analyzing your question...';
+            aiResponse.textContent = 'Thinking...';
+            askAiBtn.disabled = true;
+            askAiBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Thinking...';
             
-            // Simulate AI response with better question analysis
+            // Analyze the question
+            const petType = petTypeSelect.value;
+            const lifestyle = document.querySelector('input[name="lifestyle"]:checked').value;
+            const country = document.getElementById('location').value;
+            
+            // Keywords to detect in questions
+            const costKeywords = ['cost', 'price', 'expensive', 'cheap', 'affordable', 'budget'];
+            const foodKeywords = ['food', 'feed', 'diet', 'nutrition', 'eat'];
+            const healthKeywords = ['health', 'vet', 'medical', 'illness', 'vaccine'];
+            const careKeywords = ['care', 'groom', 'maintain', 'look after', 'keep'];
+            const saveKeywords = ['save', 'reduce', 'lower', 'cut', 'spend less'];
+            
+            // Determine question type
+            let questionType = 'general';
+            let isCostQuestion = costKeywords.some(kw => question.toLowerCase().includes(kw));
+            let isFoodQuestion = foodKeywords.some(kw => question.toLowerCase().includes(kw));
+            let isHealthQuestion = healthKeywords.some(kw => question.toLowerCase().includes(kw));
+            let isCareQuestion = careKeywords.some(kw => question.toLowerCase().includes(kw));
+            let isSaveQuestion = saveKeywords.some(kw => question.toLowerCase().includes(kw));
+            
+            if (!isCostQuestion && !isFoodQuestion && !isHealthQuestion && !isCareQuestion && !isSaveQuestion) {
+                // If the question doesn't make sense for our AI
+                setTimeout(() => {
+                    aiResponse.textContent = "I'm sorry, I can only answer questions about pet costs and care. Please ask me something about pet expenses, food, health care, or how to save money on pet ownership.";
+                    askAiBtn.disabled = false;
+                    askAiBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Ask AI';
+                }, 1500);
+                return;
+            }
+            
+            // Simulate AI response with better analysis (in a real app, this would call an API)
             setTimeout(() => {
-                const petType = petTypeSelect.value;
-                const lifestyle = document.querySelector('input[name="lifestyle"]:checked').value;
-                const country = document.getElementById('location').value;
+                const advice = [];
                 
-                // Analyze question for keywords
-                let responseKey = 'default';
-                const questionLower = question.toLowerCase();
-                
-                if (questionLower.includes('save') || questionLower.includes('cheap') || questionLower.includes('afford')) {
-                    responseKey = 'save money';
-                } else if (questionLower.includes('food') || questionLower.includes('diet') || questionLower.includes('feed')) {
-                    responseKey = 'food';
-                } else if (questionLower.includes('insurance') || questionLower.includes('cover')) {
-                    responseKey = 'insurance';
-                } else if (questionLower.includes('health') || questionLower.includes('vet') || questionLower.includes('sick')) {
-                    responseKey = 'health';
-                }
-                
-                // Get random response for the category
-                const possibleResponses = aiResponses[responseKey] || aiResponses['default'];
-                const randomResponse = possibleResponses[Math.floor(Math.random() * possibleResponses.length)];
-                
-                // Personalize the response
-                let personalizedResponse = randomResponse;
+                // General advice applicable to all questions
                 if (petType) {
-                    personalizedResponse = personalizedResponse.replace(/your pet/g, `your ${petType}`);
+                    advice.push(`For your ${petType} in ${country}, `);
+                } else {
+                    advice.push(`For pets in ${country}, `);
                 }
                 
-                if (lifestyle === 'luxury' || lifestyle === 'premium') {
-                    personalizedResponse = personalizedResponse.replace(/cost-effective/g, 'premium');
-                    personalizedResponse = personalizedResponse.replace(/save money/g, 'get the best value');
+                // Specific advice based on question type
+                if (isSaveQuestion) {
+                    advice.push(`here are ways to save money:`);
+                    advice.push(`- Buy food and supplies in bulk to save 10-20%`);
+                    advice.push(`- Consider pet insurance to manage unexpected vet costs`);
+                    advice.push(`- Groom at home between professional sessions`);
+                    advice.push(`- Look for seasonal sales on pet products`);
+                } else if (isFoodQuestion) {
+                    advice.push(`here's food advice:`);
+                    advice.push(`- High-quality food can reduce vet bills long-term`);
+                    if (petType === 'dog' || petType === 'cat') {
+                        advice.push(`- ${petType === 'dog' ? 'Dogs' : 'Cats'} need protein-rich diets`);
+                    }
+                    advice.push(`- Measure portions to prevent overfeeding`);
+                    advice.push(`- Store food properly to maintain freshness`);
+                } else if (isHealthQuestion) {
+                    advice.push(`here's health advice:`);
+                    advice.push(`- Preventive care saves money long-term`);
+                    advice.push(`- Annual checkups catch problems early`);
+                    if (petType === 'dog' || petType === 'cat') {
+                        advice.push(`- Keep up with ${petType === 'dog' ? 'dog' : 'cat'} vaccinations`);
+                    }
+                    advice.push(`- Pet insurance can offset unexpected costs`);
+                } else if (isCareQuestion) {
+                    advice.push(`here's care advice:`);
+                    if (petType === 'dog') {
+                        advice.push(`- Regular brushing reduces grooming costs`);
+                        advice.push(`- Dental care prevents expensive procedures`);
+                    } else if (petType === 'cat') {
+                        advice.push(`- Scratching posts protect your furniture`);
+                        advice.push(`- Litter box maintenance prevents issues`);
+                    }
+                    advice.push(`- Mental stimulation prevents behavior problems`);
+                } else if (isCostQuestion) {
+                    advice.push(`here's cost advice:`);
+                    advice.push(`- Initial costs are often higher than monthly`);
+                    advice.push(`- Larger pets typically cost more for food/supplies`);
+                    advice.push(`- Premium brands may not always be better`);
+                    advice.push(`- DIY toys can be just as fun as store-bought`);
                 }
                 
-                aiResponse.textContent = personalizedResponse;
+                // Lifestyle-specific advice
+                if (lifestyle === 'basic') {
+                    advice.push(`Since you've selected basic care, focus on essentials first.`);
+                } else if (lifestyle === 'luxury') {
+                    advice.push(`With your luxury lifestyle, consider premium services that save you time.`);
+                }
+                
+                // Join all advice points with line breaks
+                aiResponse.innerHTML = advice.join('<br>');
+                askAiBtn.disabled = false;
+                askAiBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Ask AI';
             }, 2000);
-        }
-
-        // Generate shareable video
-        function generateVideo() {
-            generateVideoBtn.disabled = true;
-            generateVideoBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
-            
-            // Simulate video generation (in a real app, this would use a proper video API)
-            setTimeout(() => {
-                // Create a preview image
-                const petType = petTypeSelect.value;
-                const totalCost = document.getElementById('total-cost').textContent;
-                
-                // In a real implementation, you would use a proper video generation API
-                // Here we just create a static image preview
-                videoPreview.style.backgroundImage = `url('${petImages[petType]}')`;
-                videoText.textContent = `My ${petType} costs ${totalCost}/month! 🐾`;
-                
-                generateVideoBtn.disabled = false;
-                generateVideoBtn.innerHTML = '<i class="fas fa-film"></i> Generate Video';
-                downloadVideoBtn.style.display = 'inline-block';
-            }, 3000);
-        }
-
-        // Download video (simulated)
-        function downloadVideo() {
-            alert('In a real implementation, this would download the generated video. For now, you can screenshot the preview.');
         }
 
         // Next quiz question
         function nextQuizQuestion() {
+            // Validate current question has an answer
             if (currentQuestion === 1 && !quizAnswers.budget) {
                 alert('Please select an answer');
                 return;
@@ -2573,7 +2483,17 @@
                 return;
             }
             
-            if (currentQuestion < 3) {
+            if (currentQuestion === 4 && !quizAnswers.space) {
+                alert('Please select an answer');
+                return;
+            }
+            
+            if (currentQuestion === 5 && !quizAnswers.experience) {
+                alert('Please select an answer');
+                return;
+            }
+            
+            if (currentQuestion < 5) {
                 // Hide current question and show next
                 document.querySelector(`.quiz-question:nth-child(${currentQuestion * 2 - 1})`).style.display = 'none';
                 document.querySelector(`.quiz-options:nth-child(${currentQuestion * 2})`).style.display = 'none';
@@ -2582,7 +2502,7 @@
                 document.querySelector(`.quiz-question:nth-child(${currentQuestion * 2 - 1})`).style.display = 'block';
                 document.querySelector(`.quiz-options:nth-child(${currentQuestion * 2})`).style.display = 'flex';
                 
-                if (currentQuestion === 3) {
+                if (currentQuestion === 5) {
                     nextQuestionBtn.textContent = 'See Results';
                 }
             } else {
@@ -2592,8 +2512,8 @@
                 quizResult.style.display = 'block';
                 
                 // Determine result
-                const resultKey = `${quizAnswers.budget}-${quizAnswers.type}`;
-                const result = quizResults[resultKey] || quizResults['medium-independent'];
+                const resultKey = `${quizAnswers.budget}-${quizAnswers.type}-${quizAnswers.space}-${quizAnswers.experience}`;
+                const result = quizResults[resultKey] || quizResults['default'];
                 
                 quizPetResult.innerHTML = `
                     <h4 style="font-size: 1.5rem; margin: 10px 0;">${result.pet}</h4>
@@ -2720,9 +2640,6 @@
         // Initialize the app
         function init() {
             addCountryFlags();
-            
-            // Add first comparison pet by default
-            addComparisonPet();
             
             // Check if PWA is installed
             if (window.matchMedia('(display-mode: standalone)').matches) {

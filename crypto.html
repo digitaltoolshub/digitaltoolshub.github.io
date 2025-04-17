@@ -27,9 +27,8 @@
     <link rel="preconnect" href="https://api.coingecko.com">
     <link rel="preconnect" href="https://api.binance.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/luxon@3.3.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.2.0"></script>
+    <!-- TradingView Charting Library -->
+    <script src="https://s3.tradingview.com/tv.js"></script>
     <style>
         :root {
             --primary: #6e45e2;
@@ -134,11 +133,12 @@
         .chart-container {
             position: relative;
             width: 100%;
-            min-height: 300px;
+            min-height: 500px;
+            height: 500px;
         }
-        #priceChart {
-            width: 100% !important;
-            height: 100% !important;
+        #tradingview-chart {
+            width: 100%;
+            height: 100%;
         }
         input, select, button {
             padding: 0.75rem;
@@ -164,11 +164,33 @@
             margin-bottom: 0.5rem;
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.05);
+            position: relative;
+            padding-left: 2.5rem;
+        }
+        .watchlist-star {
+            position: absolute;
+            left: 0.8rem;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.5);
+            transition: color 0.2s ease;
+        }
+        .watchlist-star.active {
+            color: #facc15;
+        }
+        .watchlist-star:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .watchlist-star.active:hover {
+            color: #eab308;
         }
         .timeframe-buttons {
             display: flex;
             gap: 0.5rem;
             margin-top: 1rem;
+            margin-bottom: 1rem;
             flex-wrap: wrap;
         }
         .timeframe-buttons button {
@@ -176,9 +198,19 @@
             padding: 0.5rem;
             font-size: 0.85rem;
             min-width: 60px;
+            width: auto;
+            margin-bottom: 0;
         }
         .timeframe-buttons button.active {
             background: linear-gradient(90deg, var(--secondary), var(--primary));
+        }
+        .profit {
+            color: #4ade80;
+            font-weight: bold;
+        }
+        .loss {
+            color: #f87171;
+            font-weight: bold;
         }
         footer {
             background: rgba(0, 0, 0, 0.3);
@@ -224,6 +256,10 @@
             .container {
                 grid-template-columns: 1fr;
             }
+            .chart-container {
+                min-height: 400px;
+                height: 400px;
+            }
         }
     </style>
 </head>
@@ -246,31 +282,30 @@
         </div>
 
         <div class="card">
-            <h2>📈 Price Chart</h2>
+            <h2>📈 Advanced Trading Chart</h2>
             <select id="chartCoinSelect">
-                <option value="bitcoin">Bitcoin (BTC)</option>
-                <option value="ethereum">Ethereum (ETH)</option>
-                <option value="binancecoin">BNB (BNB)</option>
-                <option value="solana">Solana (SOL)</option>
-                <option value="ripple">XRP (XRP)</option>
-                <option value="cardano">Cardano (ADA)</option>
-                <option value="dogecoin">Dogecoin (DOGE)</option>
-                <option value="shiba-inu">Shiba Inu (SHIB)</option>
-                <option value="polkadot">Polkadot (DOT)</option>
-                <option value="polygon">Polygon (MATIC)</option>
-                <option value="litecoin">Litecoin (LTC)</option>
-                <option value="avalanche-2">Avalanche (AVAX)</option>
-                <option value="chainlink">Chainlink (LINK)</option>
+                <option value="BTCUSDT">Bitcoin (BTC/USDT)</option>
+                <option value="ETHUSDT">Ethereum (ETH/USDT)</option>
+                <option value="BNBUSDT">BNB (BNB/USDT)</option>
+                <option value="SOLUSDT">Solana (SOL/USDT)</option>
+                <option value="XRPUSDT">XRP (XRP/USDT)</option>
+                <option value="ADAUSDT">Cardano (ADA/USDT)</option>
+                <option value="DOGEUSDT">Dogecoin (DOGE/USDT)</option>
+                <option value="SHIBUSDT">Shiba Inu (SHIB/USDT)</option>
+                <option value="DOTUSDT">Polkadot (DOT/USDT)</option>
+                <option value="MATICUSDT">Polygon (MATIC/USDT)</option>
+                <option value="LTCUSDT">Litecoin (LTC/USDT)</option>
+                <option value="AVAXUSDT">Avalanche (AVAX/USDT)</option>
+                <option value="LINKUSDT">Chainlink (LINK/USDT)</option>
             </select>
-            <div class="chart-container">
-                <canvas id="priceChart"></canvas>
+            <div class="timeframe-buttons" id="chartTimeframeButtons">
+                <button data-interval="1H">1H</button>
+                <button data-interval="4H">4H</button>
+                <button data-interval="1D" class="active">1D</button>
+                <button data-interval="1W">1W</button>
             </div>
-            <div class="timeframe-buttons">
-                <button id="btn1d">1D</button>
-                <button id="btn7d">7D</button>
-                <button id="btn30d">30D</button>
-                <button id="btn90d">90D</button>
-                <button id="btn1y" class="active">1Y</button>
+            <div class="chart-container">
+                <div id="tradingview-chart"></div>
             </div>
         </div>
 
@@ -288,10 +323,28 @@
             <h2>💼 Portfolio</h2>
             <form id="portfolioForm">
                 <select id="coinId"></select>
-                <input type="number" id="amount" placeholder="Amount">
-                <button type="submit">Add to Portfolio</button>
+                <input type="number" id="amount" step="any" placeholder="Amount" required>
+                <input type="number" id="purchasePrice" step="any" placeholder="Avg Purchase Price (USD per coin)">
+                <button type="submit">Add/Update Holding</button>
             </form>
-            <div id="portfolioValue" style="margin-top: 1rem;"></div>
+            <div id="portfolioDisplay" style="margin-top: 1rem;"></div>
+        </div>
+
+        <div class="card">
+            <h2>💡 Trend Indicator</h2>
+            <div id="trendIndicatorContent">
+                <p>Select a coin from the chart dropdown to see its recent trend.</p>
+            </div>
+            <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 1rem;">
+                <strong>Disclaimer:</strong> This indicator is based solely on the past 24-hour price change and is not financial advice or a prediction of future performance. Cryptocurrency markets are highly volatile.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>⭐ Watchlist</h2>
+            <div id="watchlistContent">
+                <p style="opacity: 0.7;">Click the star icon next to a coin to add it here.</p>
+            </div>
         </div>
     </div>
 
@@ -342,14 +395,15 @@ const COINS = [
 // ====== State Management ======
 let state = {
     theme: localStorage.getItem('theme') || 'dark',
-    currentCoin: 'bitcoin',
-    currentTimeframe: '1y',
+    currentCoin: 'BTCUSDT',
     portfolio: JSON.parse(localStorage.getItem('portfolio')) || {},
     alerts: JSON.parse(localStorage.getItem('alerts')) || [],
     marketData: null,
     binanceData: null,
-    chart: null,
-    activeTab: 'gecko'
+    activeTab: 'gecko',
+    tvWidget: null,
+    watchlist: JSON.parse(localStorage.getItem('watchlist')) || [],
+    chartInterval: '1D'
 };
 
 // ====== Initialize App ======
@@ -357,8 +411,14 @@ function init() {
     setupTheme();
     populateSelects();
     setupEventListeners();
-    fetchMarketData();
+    fetchMarketData().then(() => {
+        updateTrendAnalysis(state.currentCoin);
+        updateWatchlistCard();
+        updatePortfolioValue();
+    });
     fetchBinanceData();
+    initTradingViewChart();
+    updateActiveTimeframeButton();
 }
 
 // ====== Theme Management ======
@@ -371,6 +431,64 @@ function setupTheme() {
         document.body.dataset.theme = state.theme;
         document.getElementById('themeToggle').textContent = state.theme === 'light' ? '🌙' : '🌓';
         localStorage.setItem('theme', state.theme);
+        
+        if (state.tvWidget) {
+            state.tvWidget.changeTheme(state.theme === 'light' ? 'light' : 'dark');
+        }
+    });
+}
+
+// ====== TradingView Chart ======
+function initTradingViewChart() {
+    const widgetOptions = {
+        symbol: state.currentCoin,
+        interval: state.chartInterval,
+        container_id: 'tradingview-chart',
+        library_path: 'https://s3.tradingview.com/tv.js',
+        locale: 'en',
+        disabled_features: ['header_symbol_search', 'header_compare', 'header_screenshot', 'header_undo_redo'],
+        enabled_features: ['study_templates', 'save_chart_properties_to_local_storage'],
+        charts_storage_url: 'https://saveload.tradingview.com',
+        charts_storage_api_version: '1.1',
+        client_id: 'tradingview.com',
+        user_id: 'public_user_id',
+        fullscreen: false,
+        autosize: true,
+        theme: state.theme === 'light' ? 'light' : 'dark',
+        overrides: {
+            "paneProperties.background": state.theme === 'light' ? '#f8f9fa' : '#1a1a2e',
+            "paneProperties.vertGridProperties.color": state.theme === 'light' ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.06)',
+            "paneProperties.horzGridProperties.color": state.theme === 'light' ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.06)',
+            "symbolWatermarkProperties.transparency": 90,
+            "scalesProperties.textColor": state.theme === 'light' ? '#1a1a2e' : '#ffffff',
+        },
+        studies_overrides: {
+            "volume.volume.color.0": state.theme === 'light' ? '#f87171' : '#f87171',
+            "volume.volume.color.1": state.theme === 'light' ? '#4ade80' : '#4ade80',
+            "volume.volume.transparency": 70,
+        },
+    };
+
+    state.tvWidget = new TradingView.widget(widgetOptions);
+}
+
+function updateTradingViewChart(symbol) {
+    if (state.tvWidget) {
+        state.tvWidget.chart().setSymbol(symbol);
+    }
+}
+
+function changeChartTimeframe(interval) {
+    if (state.tvWidget && state.chartInterval !== interval) {
+        state.chartInterval = interval;
+        state.tvWidget.chart().setResolution(interval);
+        updateActiveTimeframeButton();
+    }
+}
+
+function updateActiveTimeframeButton() {
+    document.querySelectorAll('#chartTimeframeButtons button').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.interval === state.chartInterval);
     });
 }
 
@@ -398,9 +516,9 @@ async function fetchMarketData() {
         const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${COINS.map(c => c.id).join(',')}&order=market_cap_desc`);
         state.marketData = await response.json();
         updateMarketOverview();
-        fetchHistoricalData();
         updatePortfolioValue();
         updateAlertsList();
+        updateWatchlistCard();
     } catch (error) {
         console.error('Failed to fetch CoinGecko data:', error);
         document.getElementById('geckoData').innerHTML = '<p style="color: #ff6b6b;">Failed to load CoinGecko data. Please refresh.</p>';
@@ -412,7 +530,6 @@ async function fetchBinanceData() {
         const response = await fetch('https://api.binance.com/api/v3/ticker/24hr');
         const allBinanceData = await response.json();
         
-        // Filter for our coins and USDT pairs
         state.binanceData = COINS.map(coin => {
             const binanceCoin = allBinanceData.find(b => b.symbol === coin.binanceSymbol);
             return binanceCoin ? {
@@ -431,127 +548,18 @@ async function fetchBinanceData() {
     }
 }
 
-async function fetchHistoricalData() {
-    try {
-        const coin = COINS.find(c => c.id === state.currentCoin);
-        let endpoint, params;
-        
-        if (state.currentTimeframe === '1d') {
-            // Use Binance for 1D chart (more granular)
-            endpoint = 'https://api.binance.com/api/v3/klines';
-            params = `symbol=${coin.binanceSymbol}&interval=1h&limit=24`;
-        } else {
-            // Use CoinGecko for longer timeframes
-            let days;
-            switch(state.currentTimeframe) {
-                case '7d': days = 7; break;
-                case '30d': days = 30; break;
-                case '90d': days = 90; break;
-                case '1y': days = 365; break;
-            }
-            endpoint = `https://api.coingecko.com/api/v3/coins/${coin.id}/market_chart`;
-            params = `vs_currency=usd&days=${days}`;
-        }
-        
-        const response = await fetch(`${endpoint}?${params}`);
-        const data = await response.json();
-        
-        if (state.currentTimeframe === '1d') {
-            // Process Binance data
-            const prices = data.map(d => ({
-                time: d[0],
-                price: parseFloat(d[4])
-            }));
-            renderChart(prices, true);
-        } else {
-            // Process CoinGecko data
-            const prices = data.prices.map(p => ({
-                time: p[0],
-                price: p[1]
-            }));
-            renderChart(prices, false);
-        }
-    } catch (error) {
-        console.error('Failed to fetch historical data:', error);
-        renderChartError();
-    }
-}
-
-// ====== Chart Rendering ======
-function renderChart(prices, isBinanceData) {
-    const ctx = document.getElementById('priceChart').getContext('2d');
-    
-    // Destroy previous chart if exists
-    if (state.chart) {
-        state.chart.destroy();
-    }
-    
-    // Prepare data
-    const coin = COINS.find(c => c.id === state.currentCoin);
-    const chartData = {
-        labels: prices.map(p => new Date(p.time)),
-        datasets: [{
-            label: `${coin.name} Price (USD)`,
-            data: prices.map(p => p.price),
-            borderColor: 'rgba(110, 69, 226, 0.8)',
-            backgroundColor: 'rgba(110, 69, 226, 0.1)',
-            borderWidth: 2,
-            tension: 0.1,
-            fill: true,
-            pointRadius: 0
-        }]
-    };
-    
-    // Create chart
-    state.chart = new Chart(ctx, {
-        type: 'line',
-        data: chartData,
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    callbacks: {
-                        label: ctx => `${coin.name}: $${ctx.parsed.y.toFixed(2)}`,
-                        title: items => {
-                            return new Date(items[0].parsed.x).toLocaleString();
-                        }
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    type: 'time',
-                    time: {
-                        unit: isBinanceData ? 'hour' : 'day',
-                        tooltipFormat: 'MMM d, yyyy h:mm a'
-                    },
-                    grid: { display: false }
-                },
-                y: {
-                    beginAtZero: false,
-                    ticks: { callback: value => '$' + value.toLocaleString() }
-                }
-            }
-        }
-    });
-}
-
-function renderChartError() {
-    const canvas = document.getElementById('priceChart');
-    canvas.innerHTML = '<p style="color: #ff6b6b; text-align: center; padding: 2rem;">Failed to load chart data. Please try again.</p>';
-    if (state.chart) {
-        state.chart.destroy();
-        state.chart = null;
-    }
-}
-
 // ====== UI Updates ======
 function updateMarketOverview() {
     const geckoDataElement = document.getElementById('geckoData');
     geckoDataElement.innerHTML = state.marketData.map(coin => `
         <div class="coin-item">
+            <span
+                class="watchlist-star ${state.watchlist.includes(coin.id) ? 'active' : ''}"
+                data-coin-id="${coin.id}"
+                onclick="toggleWatchlist('${coin.id}')"
+                title="Add/Remove from Watchlist"
+                aria-label="Toggle Watchlist"
+            >⭐</span>
             <div>
                 <strong>${coin.symbol.toUpperCase()}</strong>
                 <span style="opacity: 0.7; font-size: 0.9rem;">${coin.name}</span>
@@ -568,52 +576,101 @@ function updateMarketOverview() {
 
 function updateBinanceOverview() {
     const binanceDataElement = document.getElementById('binanceData');
-    binanceDataElement.innerHTML = state.binanceData.map(coin => `
-        <div class="coin-item">
-            <div>
-                <strong>${coin.symbol}</strong>
-                <span style="opacity: 0.7; font-size: 0.9rem;">${coin.name}</span>
+    const getGeckoId = (symbol) => COINS.find(c => c.symbol === symbol)?.id;
+
+    binanceDataElement.innerHTML = state.binanceData.map(coin => {
+        const geckoId = getGeckoId(coin.symbol);
+        const starHtml = geckoId ? `
+            <span
+                class="watchlist-star ${state.watchlist.includes(geckoId) ? 'active' : ''}"
+                data-coin-id="${geckoId}"
+                onclick="toggleWatchlist('${geckoId}')"
+                title="Add/Remove from Watchlist"
+                aria-label="Toggle Watchlist"
+            >⭐</span>` : '<span class="watchlist-star" style="opacity:0.2;">⭐</span>';
+
+        return `
+            <div class="coin-item">
+                ${starHtml}
+                <div>
+                    <strong>${coin.symbol}</strong>
+                    <span style="opacity: 0.7; font-size: 0.9rem;">${coin.name}</span>
+                </div>
+                <div style="text-align: right;">
+                    <strong>$${coin.price.toLocaleString()}</strong>
+                    <span style="color: ${coin.change >= 0 ? '#4ade80' : '#f87171'}; font-size: 0.9rem;">
+                        ${coin.change >= 0 ? '↑' : '↓'} ${Math.abs(coin.change).toFixed(2)}%
+                    </span>
+                </div>
             </div>
-            <div style="text-align: right;">
-                <strong>$${coin.price.toLocaleString()}</strong>
-                <span style="color: ${coin.change >= 0 ? '#4ade80' : '#f87171'}; font-size: 0.9rem;">
-                    ${coin.change >= 0 ? '↑' : '↓'} ${Math.abs(coin.change).toFixed(2)}%
-                </span>
-            </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 function updatePortfolioValue() {
     let totalValue = 0;
+    let totalCost = 0;
     let portfolioHTML = '';
-    
-    for (const [coinId, amount] of Object.entries(state.portfolio)) {
-        const coin = state.marketData?.find(c => c.id === coinId);
-        if (coin) {
-            const value = amount * coin.current_price;
-            totalValue += value;
-            
+    const portfolioDisplay = document.getElementById('portfolioDisplay');
+
+    if (!state.marketData) {
+        portfolioDisplay.innerHTML = '<p style="opacity: 0.7;">Loading market data...</p>';
+        return;
+    }
+
+    for (const [coinId, holding] of Object.entries(state.portfolio)) {
+        const coin = state.marketData.find(c => c.id === coinId);
+        if (coin && holding.amount > 0) {
+            const currentValue = holding.amount * coin.current_price;
+            totalValue += currentValue;
+            totalCost += holding.totalCost || 0;
+
+            let pl = 0;
+            let plPercent = 0;
+            let plClass = '';
+            let plText = '<span style="font-size: 0.8rem; opacity: 0.6;"> (P/L N/A)</span>';
+
+            if (holding.totalCost > 0) {
+                pl = currentValue - holding.totalCost;
+                plPercent = (pl / holding.totalCost) * 100;
+                plClass = pl >= 0 ? 'profit' : 'loss';
+                plText = ` <span class="${plClass}" style="font-size: 0.8rem;">(${pl >= 0 ? '+' : ''}${pl.toFixed(2)} / ${plPercent.toFixed(1)}%)</span>`;
+            }
+
             portfolioHTML += `
                 <div class="coin-item">
+                    <span
+                        class="watchlist-star ${state.watchlist.includes(coin.id) ? 'active' : ''}"
+                        data-coin-id="${coin.id}"
+                        onclick="toggleWatchlist('${coin.id}')"
+                        title="Add/Remove from Watchlist"
+                        aria-label="Toggle Watchlist"
+                    >⭐</span>
                     <div>
                         <strong>${coin.symbol.toUpperCase()}</strong>
-                        <span>${amount.toFixed(4)}</span>
+                        <span>${holding.amount.toLocaleString()}</span>
                     </div>
                     <div style="text-align: right;">
-                        <strong>$${value.toFixed(2)}</strong>
-                        <span style="opacity: 0.7; font-size: 0.9rem;">$${coin.current_price.toFixed(2)} each</span>
+                        <strong>$${currentValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>
+                        ${plText}
+                        <br><span style="opacity: 0.7; font-size: 0.9rem;">@ $${coin.current_price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                     </div>
                 </div>
             `;
         }
     }
-    
-    document.getElementById('portfolioValue').innerHTML = portfolioHTML || '<p style="opacity: 0.7;">Your portfolio is empty</p>';
+
+    portfolioDisplay.innerHTML = portfolioHTML || '<p style="opacity: 0.7;">Your portfolio is empty</p>';
+
     if (totalValue > 0) {
-        document.getElementById('portfolioValue').innerHTML += `
+        let totalPl = totalValue - totalCost;
+        let totalPlPercent = totalCost > 0 ? (totalPl / totalCost) * 100 : 0;
+        let totalPlClass = totalPl >= 0 ? 'profit' : 'loss';
+        let totalPlText = totalCost > 0 ? `<span class="${totalPlClass}">(${totalPl >= 0 ? '+' : ''}${totalPl.toFixed(2)} / ${totalPlPercent.toFixed(1)}%)</span>` : '';
+
+        portfolioDisplay.innerHTML += `
             <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
-                <strong>Total Value:</strong> $${totalValue.toFixed(2)}
+                <strong>Total Value: $${totalValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong> ${totalPlText}
             </div>
         `;
     }
@@ -634,9 +691,82 @@ function updateAlertsList() {
     }).join('') || '<p style="opacity: 0.7;">No alerts set</p>';
 }
 
+function updateTrendAnalysis(binanceSymbol) {
+    const indicatorContent = document.getElementById('trendIndicatorContent');
+    const coinInfo = COINS.find(c => c.binanceSymbol === binanceSymbol);
+
+    if (!coinInfo) {
+        indicatorContent.innerHTML = '<p>Could not find coin information.</p>';
+        return;
+    }
+
+    const geckoData = state.marketData?.find(c => c.id === coinInfo.id);
+
+    if (!geckoData) {
+        indicatorContent.innerHTML = `<p>Trend data for ${coinInfo.name} (${coinInfo.symbol}) is currently unavailable.</p>`;
+        return;
+    }
+
+    const change24h = geckoData.price_change_percentage_24h;
+    let trendText = '';
+    let trendColor = 'var(--text)';
+
+    if (change24h > 1) {
+        trendText = 'Positive Trend';
+        trendColor = '#4ade80';
+    } else if (change24h < -1) {
+        trendText = 'Negative Trend';
+        trendColor = '#f87171';
+    } else {
+        trendText = 'Neutral / Sideways';
+    }
+
+    indicatorContent.innerHTML = `
+        <p><strong>${coinInfo.name} (${coinInfo.symbol})</strong></p>
+        <p>24h Change: <span style="color: ${change24h >= 0 ? '#4ade80' : '#f87171'};">${change24h.toFixed(2)}%</span></p>
+        <p>Recent Trend: <strong style="color: ${trendColor};">${trendText}</strong></p>
+    `;
+}
+
+function updateWatchlistCard() {
+    const watchlistContent = document.getElementById('watchlistContent');
+    if (!state.marketData) {
+        watchlistContent.innerHTML = '<p style="opacity: 0.7;">Loading market data...</p>';
+        return;
+    }
+
+    const watchedCoins = state.marketData.filter(coin => state.watchlist.includes(coin.id));
+
+    if (watchedCoins.length === 0) {
+        watchlistContent.innerHTML = '<p style="opacity: 0.7;">Click the star icon next to a coin to add it here.</p>';
+        return;
+    }
+
+    watchlistContent.innerHTML = watchedCoins.map(coin => `
+        <div class="coin-item">
+             <span
+                class="watchlist-star active"
+                data-coin-id="${coin.id}"
+                onclick="toggleWatchlist('${coin.id}')"
+                title="Remove from Watchlist"
+                aria-label="Toggle Watchlist"
+            >⭐</span>
+            <div>
+                <strong>${coin.symbol.toUpperCase()}</strong>
+                <span style="opacity: 0.7; font-size: 0.9rem;">${coin.name}</span>
+            </div>
+            <div style="text-align: right;">
+                <strong>$${coin.current_price.toLocaleString()}</strong>
+                <span style="color: ${coin.price_change_percentage_24h >= 0 ? '#4ade80' : '#f87171'}; font-size: 0.9rem;">
+                    ${coin.price_change_percentage_24h >= 0 ? '↑' : '↓'} ${Math.abs(coin.price_change_percentage_24h).toFixed(2)}%
+                </span>
+            </div>
+        </div>
+    `).join('');
+}
+
 // ====== Event Handlers ======
 function setupEventListeners() {
-    // Tab switching
     document.querySelectorAll('.tab-button').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
@@ -648,23 +778,12 @@ function setupEventListeners() {
         });
     });
     
-    // Chart coin selection
     document.getElementById('chartCoinSelect').addEventListener('change', (e) => {
         state.currentCoin = e.target.value;
-        fetchHistoricalData();
+        updateTradingViewChart(e.target.value);
+        updateTrendAnalysis(e.target.value);
     });
     
-    // Timeframe buttons
-    document.querySelectorAll('.timeframe-buttons button').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            document.querySelector('.timeframe-buttons .active').classList.remove('active');
-            e.target.classList.add('active');
-            state.currentTimeframe = e.target.id.replace('btn', '').toLowerCase();
-            fetchHistoricalData();
-        });
-    });
-    
-    // Alert form
     document.getElementById('alertForm').addEventListener('submit', (e) => {
         e.preventDefault();
         const coin = document.getElementById('coinSelect').value;
@@ -678,24 +797,54 @@ function setupEventListeners() {
         document.getElementById('alertPrice').value = '';
     });
     
-    // Portfolio form
     document.getElementById('portfolioForm').addEventListener('submit', (e) => {
         e.preventDefault();
-        const coin = document.getElementById('coinId').value;
+        const coinId = document.getElementById('coinId').value;
         const amount = parseFloat(document.getElementById('amount').value);
-        
-        if (!coin || isNaN(amount)) return;
-        
-        state.portfolio[coin] = (state.portfolio[coin] || 0) + amount;
+        const purchasePriceInput = document.getElementById('purchasePrice').value;
+        const purchasePrice = purchasePriceInput ? parseFloat(purchasePriceInput) : null;
+
+        if (!coinId || isNaN(amount) || amount < 0) {
+             alert("Please enter a valid coin and a positive amount.");
+             return;
+        }
+        if (purchasePrice !== null && (isNaN(purchasePrice) || purchasePrice < 0)) {
+            alert("Please enter a valid positive purchase price or leave it blank.");
+            return;
+        }
+
+        let holding = state.portfolio[coinId] || { amount: 0, totalCost: 0 };
+
+        if (purchasePrice !== null) {
+             const newTotalAmount = holding.amount + amount;
+             const newTotalCost = holding.totalCost + (amount * purchasePrice);
+             holding.amount = newTotalAmount;
+             holding.totalCost = newTotalCost;
+        } else {
+            holding.amount += amount;
+        }
+
+        state.portfolio[coinId] = holding;
+
+        if (state.portfolio[coinId].amount <= 0) {
+            delete state.portfolio[coinId];
+        }
+
         localStorage.setItem('portfolio', JSON.stringify(state.portfolio));
         updatePortfolioValue();
+
         document.getElementById('amount').value = '';
+        document.getElementById('purchasePrice').value = '';
     });
-    
-    // Window resize
+
+    document.getElementById('chartTimeframeButtons').addEventListener('click', (e) => {
+        if (e.target.tagName === 'BUTTON' && e.target.dataset.interval) {
+            changeChartTimeframe(e.target.dataset.interval);
+        }
+    });
+
     window.addEventListener('resize', () => {
-        if (state.chart) {
-            state.chart.resize();
+        if (state.tvWidget) {
         }
     });
 }
@@ -707,15 +856,33 @@ function removeAlert(index) {
     updateAlertsList();
 }
 
+function toggleWatchlist(coinId) {
+    const index = state.watchlist.indexOf(coinId);
+    if (index > -1) {
+        state.watchlist.splice(index, 1);
+    } else {
+        state.watchlist.push(coinId);
+    }
+    localStorage.setItem('watchlist', JSON.stringify(state.watchlist));
+
+    document.querySelectorAll(`.watchlist-star[data-coin-id="${coinId}"]`).forEach(star => {
+        star.classList.toggle('active', index === -1);
+    });
+
+    updateWatchlistCard();
+}
+
 // ====== Initialize ======
 init();
 setInterval(() => {
-    if (state.activeTab === 'gecko') {
-        fetchMarketData();
-    } else {
-        fetchBinanceData();
-    }
-}, 60000); // Refresh every minute
+    const geckoPromise = fetchMarketData();
+    const binancePromise = fetchBinanceData();
+
+    geckoPromise.then(() => {
+        updateTrendAnalysis(state.currentCoin);
+    });
+
+}, 60000);
 </script>
 </body>
 </html>

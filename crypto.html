@@ -425,16 +425,15 @@ function init() {
 function setupTheme() {
     document.body.dataset.theme = state.theme;
     document.getElementById('themeToggle').textContent = state.theme === 'light' ? '🌙' : '🌓';
-    
+
     document.getElementById('themeToggle').addEventListener('click', () => {
         state.theme = state.theme === 'light' ? 'dark' : 'light';
         document.body.dataset.theme = state.theme;
         document.getElementById('themeToggle').textContent = state.theme === 'light' ? '🌙' : '🌓';
         localStorage.setItem('theme', state.theme);
-        
-        if (state.tvWidget) {
-            state.tvWidget.changeTheme(state.theme === 'light' ? 'light' : 'dark');
-        }
+
+        // Apply theme changes to the chart using the helper function
+        applyThemeOverrides();
     });
 }
 
@@ -455,6 +454,7 @@ function initTradingViewChart() {
         fullscreen: false,
         autosize: true,
         theme: state.theme === 'light' ? 'light' : 'dark',
+        // Initial overrides are set here, but applyThemeOverrides will handle dynamic changes
         overrides: {
             "paneProperties.background": state.theme === 'light' ? '#f8f9fa' : '#1a1a2e',
             "paneProperties.vertGridProperties.color": state.theme === 'light' ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.06)',
@@ -469,27 +469,88 @@ function initTradingViewChart() {
         },
     };
 
-    state.tvWidget = new TradingView.widget(widgetOptions);
+    // Create the widget instance
+    const tvWidget = new TradingView.widget(widgetOptions);
+
+    // Use onChartReady to ensure the chart is ready before assigning to state and applying overrides
+    tvWidget.onChartReady(function() {
+        console.log("TradingView Chart Ready");
+        state.tvWidget = tvWidget; // Assign the widget instance to the state *after* it's ready
+        applyThemeOverrides(); // Apply initial theme/overrides correctly
+    });
+}
+
+// Helper function to apply theme and overrides
+function applyThemeOverrides() {
+    if (!state.tvWidget) {
+        console.log("applyThemeOverrides called but tvWidget is not ready.");
+        return;
+    }
+    try {
+        // Change the theme
+        state.tvWidget.changeTheme(state.theme === 'light' ? 'light' : 'dark');
+
+        // Apply overrides
+        state.tvWidget.applyOverrides({
+            "paneProperties.background": state.theme === 'light' ? '#f8f9fa' : '#1a1a2e',
+            "paneProperties.vertGridProperties.color": state.theme === 'light' ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.06)',
+            "paneProperties.horzGridProperties.color": state.theme === 'light' ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.06)',
+            "symbolWatermarkProperties.transparency": 90,
+            "scalesProperties.textColor": state.theme === 'light' ? '#1a1a2e' : '#ffffff',
+        });
+
+        // Apply studies overrides
+        state.tvWidget.applyStudiesOverrides({
+            "volume.volume.color.0": state.theme === 'light' ? '#f87171' : '#f87171',
+            "volume.volume.color.1": state.theme === 'light' ? '#4ade80' : '#4ade80',
+            "volume.volume.transparency": 70,
+        });
+        console.log("Theme and overrides applied.");
+    } catch (error) {
+        console.error("Error applying theme overrides:", error);
+    }
 }
 
 function updateTradingViewChart(symbol) {
-    if (state.tvWidget) {
-        state.tvWidget.chart().setSymbol(symbol);
+    // Ensure widget and chart() method are available before calling setSymbol
+    if (state.tvWidget && typeof state.tvWidget.chart === 'function') {
+         try {
+            const chart = state.tvWidget.chart();
+            if (chart && typeof chart.setSymbol === 'function') {
+                chart.setSymbol(symbol);
+            } else {
+                console.error("updateTradingViewChart: chart object or setSymbol method not available.");
+            }
+         } catch (error) {
+             console.error("Error setting chart symbol:", error);
+         }
+    } else {
+         console.log("updateTradingViewChart: tvWidget or chart method not ready.");
     }
 }
 
 function changeChartTimeframe(interval) {
-    if (state.tvWidget && state.chartInterval !== interval) {
+    // Ensure widget and chart() method are available before changing resolution
+    if (state.tvWidget && typeof state.tvWidget.chart === 'function' && state.chartInterval !== interval) {
+        console.log(`Attempting to change timeframe to: ${interval}`);
         state.chartInterval = interval;
-        state.tvWidget.chart().setResolution(interval);
-        updateActiveTimeframeButton();
+        try {
+            const chart = state.tvWidget.chart();
+            if (chart && typeof chart.setResolution === 'function') {
+                chart.setResolution(interval);
+                updateActiveTimeframeButton();
+                console.log(`Successfully set timeframe to: ${interval}`);
+            } else {
+                 console.error("changeChartTimeframe: chart object or setResolution method not available.");
+            }
+        } catch (error) {
+            console.error("Error setting chart resolution:", error);
+        }
+    } else if (state.chartInterval === interval) {
+         console.log(`Timeframe already set to: ${interval}`);
+    } else {
+         console.log("changeChartTimeframe: tvWidget or chart method not ready.");
     }
-}
-
-function updateActiveTimeframeButton() {
-    document.querySelectorAll('#chartTimeframeButtons button').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.interval === state.chartInterval);
-    });
 }
 
 // ====== DOM Population ======

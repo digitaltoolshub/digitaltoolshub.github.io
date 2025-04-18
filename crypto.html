@@ -201,6 +201,9 @@
             margin-top: 3rem;
             backdrop-filter: blur(10px);
         }
+        #trading-chart {
+            grid-column: 1 / -1;
+        }
         .seo-content {
             max-width: 800px;
             margin: 2rem auto;
@@ -314,20 +317,8 @@
     </header>
 
     <div class="container">
-        <div class="card">
-            <h2>📊 Market Data</h2>
-            <div class="tab-buttons">
-                <button class="tab-button active" data-tab="gecko">CoinGecko</button>
-                <button class="tab-button" data-tab="binance">Binance</button>
-            </div>
-            <div class="tab-content active" id="geckoData">Loading CoinGecko data...</div>
-            <div class="tab-content" id="binanceData">Loading Binance data...</div>
-            
-            <!-- Market Overview Widget -->
-            <div id="marketOverview" style="margin-top: 1rem;"></div>
-        </div>
 
-        <div class="card">
+        <div class="card" id="trading-chart">
             <h2>📈 Advanced Trading Chart</h2>
             <select id="chartCoinSelect">
                 <option value="BTCUSDT">Bitcoin (BTC/USDT)</option>
@@ -369,6 +360,20 @@
                     <button onclick="copyChartLink()">Copy Link</button>
                 </div>
             </div>
+        </div>
+
+
+        <div class="card">
+            <h2>📊 Market Data</h2>
+            <div class="tab-buttons">
+                <button class="tab-button active" data-tab="gecko">CoinGecko</button>
+                <button class="tab-button" data-tab="binance">Binance</button>
+            </div>
+            <div class="tab-content active" id="geckoData">Loading CoinGecko data...</div>
+            <div class="tab-content" id="binanceData">Loading Binance data...</div>
+            
+            <!-- Market Overview Widget -->
+            <div id="marketOverview" style="margin-top: 1rem;"></div>
         </div>
 
         <div class="card">

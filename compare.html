@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive age comparison calculator that shows real-time difference between two birthdays with fun facts and visualizations">
+    <meta name="keywords" content="age calculator, birthday comparison, age difference, how much older, time difference calculator">
+    <title>Ultimate Age Comparison Calculator | Real-Time Difference</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fredoka+One&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #a29bfe;
+            --accent-color: #fd79a8;
+            --accent-color2: #00cec9;
+            --text-color: #2d3436;
+            --light-color: #f5f6fa;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --border-radius: 16px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #dfe6f0 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 1000px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--accent-color2));
+            animation: rainbow 8s linear infinite;
+            background-size: 400% 100%;
+        }
+        
+        @keyframes rainbow {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 2.8rem;
+            position: relative;
+            font-family: 'Fredoka One', cursive;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-color2));
+            border-radius: 3px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #666;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .person-input {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--light-color);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+        
+        .person-input:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-color: var(--secondary-color);
+        }
+        
+        .person-input::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color2));
+        }
+        
+        .person-input h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .person-input h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+        
+        input[type="date"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+        
+        input[type="text"]:focus, input[type="date"]:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+        }
+        
+        /* Custom date picker styling */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            background-color: var(--light-color);
+            transition: all 0.2s ease;
+        }
+        
+        input[type="date"]::-webkit-calendar-picker-indicator:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+            padding: 2px;
+        }
+        
+        input[type="date"]::-webkit-datetime-edit-text {
+            color: var(--primary-color);
+            padding: 0 4px;
+        }
+        
+        .compare-btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 30px 0;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+        }
+        
+        .compare-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(108, 92, 231, 0.3);
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color2));
+        }
+        
+        .compare-btn:active {
+            transform: translateY(0);
+        }
+        
+        .compare-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+        
+        .compare-btn:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+        
+        .result-container {
+            background: linear-gradient(135deg, #f5f7fa 0%, #dfe6f0 100%);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .result-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--accent-color2));
+            animation: rainbow 8s linear infinite;
+            background-size: 400% 100%;
+        }
+        
+        .result-container.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .result {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-weight: bold;
+            line-height: 1.4;
+            font-family: 'Fredoka One', cursive;
+        }
+        
+        .detailed-result {
+            font-size: 1.4rem;
+            color: var(--text-color);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .breakdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .time-unit {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            min-width: 120px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .time-unit:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-color: var(--secondary-color);
+        }
+        
+        .time-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            line-height: 1;
+            margin-bottom: 5px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .time-label {
+            font-size: 1rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        
+        .real-time-counter {
+            font-size: 1.1rem;
+            color: #666;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(108, 92, 231, 0.1);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .fun-fact {
+            font-style: italic;
+            color: var(--accent-color);
+            margin-top: 20px;
+            font-size: 1.2rem;
+            padding: 15px;
+            background: rgba(253, 121, 168, 0.1);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .visualization {
+            margin: 25px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .bar-container {
+            width: 100%;
+            height: 30px;
+            background: #f1f1f1;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 15px 0;
+            position: relative;
+        }
+        
+        .bar {
+            height: 100%;
+            border-radius: 15px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color2));
+            transition: width 1s ease;
+            position: relative;
+        }
+        
+        .bar-label {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 10px;
+            color: white;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: var(--accent-color);
+            opacity: 0;
+            z-index: 10;
+        }
+        
+        /* Animation classes */
+        .bounce {
+            animation: bounce 0.5s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .pulse {
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .tada {
+            animation: tada 1s ease;
+        }
+        
+        @keyframes tada {
+            0% { transform: scale(1); }
+            10%, 20% { transform: scale(0.9) rotate(-3deg); }
+            30%, 50%, 70%, 90% { transform: scale(1.1) rotate(3deg); }
+            40%, 60%, 80% { transform: scale(1.1) rotate(-3deg); }
+            100% { transform: scale(1) rotate(0); }
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .input-group {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .person-input {
+                min-width: 100%;
+            }
+            
+            .result {
+                font-size: 1.6rem;
+            }
+            
+            .detailed-result {
+                font-size: 1.1rem;
+            }
+            
+            .time-unit {
+                min-width: 100px;
+                padding: 15px;
+            }
+            
+            .time-value {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌟 Ultimate Age Comparison</h1>
+        <p class="subtitle">Discover the exact age difference between you and anyone else in real-time!</p>
+        
+        <div class="input-group">
+            <div class="person-input" id="person1">
+                <h2>Person A</h2>
+                <div class="form-group">
+                    <label for="name1">Name</label>
+                    <input type="text" id="name1" placeholder="Enter your name" value="You">
+                </div>
+                <div class="form-group">
+                    <label for="dob1">Birthday</label>
+                    <input type="date" id="dob1">
+                </div>
+            </div>
+            
+            <div class="person-input" id="person2">
+                <h2>Person B</h2>
+                <div class="form-group">
+                    <label for="name2">Name</label>
+                    <input type="text" id="name2" placeholder="Enter friend/family name" value="Friend">
+                </div>
+                <div class="form-group">
+                    <label for="dob2">Birthday</label>
+                    <input type="date" id="dob2">
+                </div>
+            </div>
+        </div>
+        
+        <button class="compare-btn pulse" id="compareBtn">Calculate Age Difference 🚀</button>
+        
+        <div class="result-container" id="resultContainer">
+            <div class="result" id="result"></div>
+            <div class="detailed-result" id="detailedResult"></div>
+            
+            <div class="real-time-counter" id="realTimeCounter">
+                The age difference is increasing by 1 second every second...
+            </div>
+            
+            <div class="breakdown" id="breakdown">
+                <div class="time-unit">
+                    <div class="time-value" id="yearsDiff">0</div>
+                    <div class="time-label">Years</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value" id="monthsDiff">0</div>
+                    <div class="time-label">Months</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value" id="daysDiff">0</div>
+                    <div class="time-label">Days</div>
+                </div>
+                <div class="time-unit">
+                    <div class="time-value" id="hoursDiff">0</div>
+                    <div class="time-label">Hours</div>
+                </div>
+            </div>
+            
+            <div class="visualization">
+                <h3>Age Difference Visualization</h3>
+                <p>Percentage of a year difference:</p>
+                <div class="bar-container">
+                    <div class="bar" id="ageBar" style="width: 0%">
+                        <div class="bar-label" id="barLabel">0%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="fun-fact" id="funFact"></div>
+        </div>
+        
+        <div class="footer">
+            <p>Ultimate Age Comparison Calculator &copy; <span id="currentYear"></span> | Watch the difference grow in real-time!</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Set default dates (current date and 1 year ago)
+            const today = new Date();
+            const oneYearAgo = new Date(new Date().setFullYear(today.getFullYear() - 1));
+            
+            // Format dates for input fields (YYYY-MM-DD)
+            document.getElementById('dob1').valueAsDate = oneYearAgo;
+            document.getElementById('dob2').valueAsDate = today;
+            
+            const compareBtn = document.getElementById('compareBtn');
+            const resultContainer = document.getElementById('resultContainer');
+            const resultElement = document.getElementById('result');
+            const detailedResultElement = document.getElementById('detailedResult');
+            const realTimeCounter = document.getElementById('realTimeCounter');
+            const funFactElement = document.getElementById('funFact');
+            const yearsDiffElement = document.getElementById('yearsDiff');
+            const monthsDiffElement = document.getElementById('monthsDiff');
+            const daysDiffElement = document.getElementById('daysDiff');
+            const hoursDiffElement = document.getElementById('hoursDiff');
+            const ageBar = document.getElementById('ageBar');
+            const barLabel = document.getElementById('barLabel');
+            
+            let updateInterval;
+            let lastDiff = {};
+            
+            // Add event listener for compare button
+            compareBtn.addEventListener('click', function() {
+                // Add bounce animation to button
+                this.classList.add('bounce');
+                setTimeout(() => {
+                    this.classList.remove('bounce');
+                }, 500);
+                
+                startComparison();
+            });
+            
+            // Also compare ages when Enter key is pressed in input fields
+            document.getElementById('name1').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') startComparison();
+            });
+            
+            document.getElementById('dob1').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') startComparison();
+            });
+            
+            document.getElementById('name2').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') startComparison();
+            });
+            
+            document.getElementById('dob2').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') startComparison();
+            });
+            
+            function startComparison() {
+                const name1 = document.getElementById('name1').value.trim() || 'Person A';
+                const name2 = document.getElementById('name2').value.trim() || 'Person B';
+                const dob1 = new Date(document.getElementById('dob1').value);
+                const dob2 = new Date(document.getElementById('dob2').value);
+                
+                // Validate inputs
+                if (isNaN(dob1.getTime())) {
+                    showError('Please enter a valid date for Person A');
+                    return;
+                }
+                
+                if (isNaN(dob2.getTime())) {
+                    showError('Please enter a valid date for Person B');
+                    return;
+                }
+                
+                // Clear any existing interval
+                if (updateInterval) {
+                    clearInterval(updateInterval);
+                }
+                
+                // Initial calculation
+                updateAgeDifference(name1, name2, dob1, dob2);
+                
+                // Set up real-time updates
+                updateInterval = setInterval(() => {
+                    updateAgeDifference(name1, name2, dob1, dob2);
+                }, 1000); // Update every second
+                
+                // Show result with animation
+                resultContainer.classList.add('show');
+                
+                // Create confetti effect
+                createConfetti();
+            }
+            
+            function updateAgeDifference(name1, name2, dob1, dob2) {
+                const now = new Date();
+                const diff = calculateAgeDifference(dob1, dob2, now);
+                lastDiff = diff;
+                
+                // Update the visual breakdown
+                yearsDiffElement.textContent = diff.years;
+                monthsDiffElement.textContent = diff.months;
+                daysDiffElement.textContent = diff.days;
+                hoursDiffElement.textContent = diff.hours;
+                
+                // Update the real-time counter
+                realTimeCounter.textContent = `Right now, the age difference is increasing by 1 second every second (${diff.totalSeconds.toLocaleString()} seconds total)`;
+                
+                // Update the visualization bar
+                const percentage = Math.min(100, (diff.totalDays / 365) * 100).toFixed(1);
+                ageBar.style.width = `${percentage}%`;
+                barLabel.textContent = `${percentage}%`;
+                
+                // Display results
+                if (diff.years === 0 && diff.months === 0 && diff.days === 0) {
+                    resultElement.textContent = `${name1} and ${name2} were born on the same day!`;
+                    detailedResultElement.textContent = 'What an amazing coincidence!';
+                    detailedResultElement.classList.add('tada');
+                    setTimeout(() => detailedResultElement.classList.remove('tada'), 1000);
+                } else if (dob1 < dob2) {
+                    resultElement.textContent = `${name1} is older than ${name2}`;
+                    detailedResultElement.textContent = `The age difference is:`;
+                } else {
+                    resultElement.textContent = `${name2} is older than ${name1}`;
+                    detailedResultElement.textContent = `The age difference is:`;
+                }
+                
+                // Add a fun fact (only update occasionally to prevent flickering)
+                if (Math.random() < 0.1 || !funFactElement.textContent) {
+                    addFunFact(diff, name1, name2);
+                }
+            }
+            
+            function showError(message) {
+                resultElement.textContent = 'Error';
+                detailedResultElement.textContent = message;
+                funFactElement.textContent = 'Please correct the dates and try again';
+                resultContainer.classList.add('show');
+                
+                // Clear any existing interval
+                if (updateInterval) {
+                    clearInterval(updateInterval);
+                }
+            }
+            
+            function calculateAgeDifference(dob1, dob2, now = new Date()) {
+                // We want the absolute difference, so we'll always subtract the earlier date from the later date
+                let startDate, endDate;
+                if (dob1 < dob2) {
+                    startDate = new Date(dob1);
+                    endDate = new Date(dob2);
+                } else {
+                    startDate = new Date(dob2);
+                    endDate = new Date(dob1);
+                }
+                
+                // Calculate years
+                let years = endDate.getFullYear() - startDate.getFullYear();
+                
+                // Check if birthday has occurred this year
+                const monthDiff = endDate.getMonth() - startDate.getMonth();
+                if (monthDiff < 0 || (monthDiff === 0 && endDate.getDate() < startDate.getDate())) {
+                    years--;
+                }
+                
+                // Calculate months
+                let months;
+                if (endDate.getMonth() >= startDate.getMonth()) {
+                    months = endDate.getMonth() - startDate.getMonth();
+                } else {
+                    months = 12 + endDate.getMonth() - startDate.getMonth();
+                }
+                
+                // Adjust months if the end day is before the start day
+                if (endDate.getDate() < startDate.getDate()) {
+                    months--;
+                    if (months < 0) {
+                        months = 11;
+                    }
+                }
+                
+                // Calculate days
+                let days;
+                const tempDate = new Date(startDate);
+                tempDate.setFullYear(endDate.getFullYear());
+                tempDate.setMonth(startDate.getMonth() + months);
+                
+                if (endDate.getDate() >= startDate.getDate()) {
+                    days = endDate.getDate() - startDate.getDate();
+                } else {
+                    const lastDayOfMonth = new Date(
+                        endDate.getFullYear(),
+                        endDate.getMonth(),
+                        0
+                    ).getDate();
+                    days = lastDayOfMonth - startDate.getDate() + endDate.getDate();
+                }
+                
+                // Calculate hours difference from now
+                const timeDiff = Math.abs(now - (dob1 < dob2 ? dob2 : dob1));
+                const totalSeconds = Math.floor(timeDiff / 1000);
+                const totalMinutes = Math.floor(totalSeconds / 60);
+                const totalHours = Math.floor(totalMinutes / 60);
+                const totalDays = Math.floor(totalHours / 24);
+                
+                // Calculate current hours difference
+                const hours = totalHours % 24;
+                
+                return {
+                    years,
+                    months,
+                    days,
+                    hours,
+                    totalDays,
+                    totalHours,
+                    totalMinutes,
+                    totalSeconds
+                };
+            }
+            
+            function addFunFact(diff, name1, name2) {
+                const facts = [];
+                
+                if (diff.totalDays === 0) {
+                    facts.push("You're birthday twins! What are the odds?");
+                    facts.push("Same birthday means you can celebrate together every year!");
+                } else if (diff.years >= 50) {
+                    facts.push(`That's over half a century difference! ${name1} could be ${name2}'s grandparent!`);
+                    facts.push(`A ${diff.years}-year gap spans multiple generations!`);
+                } else if (diff.years >= 30) {
+                    facts.push(`That's a parent-child age difference! ${diff.years} years is a whole generation apart.`);
+                    facts.push(`Different eras, different life experiences with ${diff.years} years between you!`);
+                } else if (diff.years >= 18) {
+                    facts.push(`That's old enough to be ${diff.years >= 25 ? 'a parent and child' : 'siblings'}!`);
+                    facts.push(`${diff.years} years difference means you grew up in different times!`);
+                } else if (diff.years >= 10) {
+                    facts.push("That's a whole generation gap!");
+                    facts.push("You probably have very different childhood memories!");
+                } else if (diff.years >= 5) {
+                    facts.push("You grew up in slightly different times!");
+                    facts.push("Different school generations but similar experiences!");
+                } else if (diff.years > 0) {
+                    facts.push("Close in age, but not quite the same!");
+                    facts.push("Almost the same age, but not quite!");
+                } else if (diff.months >= 6) {
+                    facts.push("Half a year apart - almost birthday buddies!");
+                    facts.push("Born in the same year but different seasons!");
+                } else if (diff.months > 0) {
+                    facts.push("Just a few months apart - you're practically the same age!");
+                    facts.push("Same year babies with slightly different birthdays!");
+                } else if (diff.days === 1) {
+                    facts.push("Just one day apart! You almost shared a birthday!");
+                    facts.push("Born on consecutive days - how special!");
+                } else if (diff.days < 7) {
+                    facts.push("Less than a week apart - that's amazingly close!");
+                    facts.push("Same week birthdays - almost twins!");
+                } else if (diff.days < 30) {
+                    facts.push("Same month birthdays! Almost twins!");
+                    facts.push("Born in the same month - similar zodiac signs!");
+                }
+                
+                // Add some generic facts based on total days
+                if (diff.totalDays > 0) {
+                    facts.push(
+                        `That's ${Math.floor(diff.totalDays / 7).toLocaleString()} weeks difference!`,
+                        `In hours, that's about ${diff.totalHours.toLocaleString()} hours apart!`,
+                        `You're separated by approximately ${Math.floor(diff.totalDays / 30)} full months.`,
+                        `That's ${diff.totalMinutes.toLocaleString()} minutes of life experience difference!`,
+                        `In seconds, that's ${diff.totalSeconds.toLocaleString()} seconds apart!`
+                    );
+                    
+                    // Special facts for certain day counts
+                    if (diff.totalDays === 100) {
+                        facts.push("Exactly 100 days apart - a century in days!");
+                    } else if (diff.totalDays === 365) {
+                        facts.push("Exactly one year apart - next year you'll be the same age for one day!");
+                    } else if (diff.totalDays === 366) {
+                        facts.push("One year and one day apart - thanks to a leap year!");
+                    }
+                    
+                    // Percentage facts
+                    const percentage = (diff.totalDays / 365) * 100;
+                    if (percentage > 100) {
+                        facts.push(`The age difference is ${Math.floor(percentage/100)}x a full year!`);
+                    } else {
+                        facts.push(`The age difference is ${percentage.toFixed(1)}% of a year`);
+                    }
+                }
+                
+                // Select a random fact
+                if (facts.length > 0) {
+                    funFactElement.textContent = "✨ Fun Fact: " + facts[Math.floor(Math.random() * facts.length)];
+                    funFactElement.classList.add('tada');
+                    setTimeout(() => funFactElement.classList.remove('tada'), 1000);
+                } else {
+                    funFactElement.textContent = "";
+                }
+            }
+            
+            function createConfetti() {
+                const container = document.querySelector('.container');
+                const colors = ['#6c5ce7', '#fd79a8', '#00cec9', '#55efc4', '#ffeaa7'];
+                
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = -10 + 'px';
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    confetti.style.width = `${Math.random() * 10 + 6}px`;
+                    confetti.style.height = `${Math.random() * 10 + 6}px`;
+                    
+                    container.appendChild(confetti);
+                    
+                    const animationDuration = Math.random() * 3 + 2;
+                    
+                    // Create keyframes dynamically for each confetti piece
+                    const keyframes = `
+                        @keyframes confettiFall-${i} {
+                            to {
+                                transform: translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg);
+                                opacity: 0;
+                                left: ${Math.random() * 100}%;
+                            }
+                        }
+                    `;
+                    
+                    // Add style if not already added
+                    if (!document.getElementById(`confettiAnimation-${i}`)) {
+                        const style = document.createElement('style');
+                        style.id = `confettiAnimation-${i}`;
+                        style.innerHTML = keyframes;
+                        document.head.appendChild(style);
+                    }
+                    
+                    confetti.style.animation = `confettiFall-${i} ${animationDuration}s ease-in forwards`;
+                    
+                    // Remove confetti after animation
+                    setTimeout(() => {
+                        if (confetti.parentNode) {
+                            confetti.parentNode.removeChild(confetti);
+                        }
+                    }, animationDuration * 1000);
+                }
+            }
+            
+            // Start with a default comparison
+            startComparison();
+        });
+    </script>
+</body>
+</html>

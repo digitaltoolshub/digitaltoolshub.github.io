@@ -1,34 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-R4N9RB1SNN');
-    </script>
-    
-    <!-- Google Ads -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
-    
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" type="text/javascript" async></script>    
+    <!-- Enhanced Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CryptoVision Pro | Binance & CoinGecko Data | Real-Time Crypto Charts</title>
     <meta name="description" content="Track 50+ cryptocurrencies with Binance and CoinGecko data. Real-time prices, trading pairs, historical charts, and portfolio management for BTC, ETH, SOL, DOGE and more.">
-    <meta name="keywords" content="binance prices, coingecko charts, bitcoin tracker, ethereum price, solana chart, dogecoin live price">
+    <meta name="keywords" content="binance prices, coingecko charts, bitcoin tracker, ethereum price, solana chart, dogecoin live price, crypto trading tools, free crypto charts">
     <meta property="og:title" content="CryptoVision Pro - Binance & CoinGecko Crypto Tracker">
     <meta property="og:description" content="Real-time cryptocurrency prices with Binance trading pairs and CoinGecko historical data">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://cryptovisionpro.example.com">
+    <meta property="og:image" content="https://cryptovisionpro.example.com/preview.jpg">
     <meta name="theme-color" content="#6e45e2">
+    
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "CryptoVision Pro",
+      "description": "Free cryptocurrency tracking tool with real-time charts from Binance and CoinGecko",
+      "url": "https://cryptovisionpro.example.com",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    
+    <!-- Preconnects -->
     <link rel="preconnect" href="https://api.coingecko.com">
     <link rel="preconnect" href="https://api.binance.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://cryptovisionpro.example.com/favicon.ico" type="image/x-icon">
+    
     <!-- TradingView Charting Library -->
     <script src="https://s3.tradingview.com/tv.js"></script>
+    
     <style>
         :root {
             --primary: #6e45e2;
@@ -164,33 +178,11 @@
             margin-bottom: 0.5rem;
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.05);
-            position: relative;
-            padding-left: 2.5rem;
-        }
-        .watchlist-star {
-            position: absolute;
-            left: 0.8rem;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.5);
-            transition: color 0.2s ease;
-        }
-        .watchlist-star.active {
-            color: #facc15;
-        }
-        .watchlist-star:hover {
-            color: rgba(255, 255, 255, 0.8);
-        }
-        .watchlist-star.active:hover {
-            color: #eab308;
         }
         .timeframe-buttons {
             display: flex;
             gap: 0.5rem;
             margin-top: 1rem;
-            margin-bottom: 1rem;
             flex-wrap: wrap;
         }
         .timeframe-buttons button {
@@ -198,19 +190,9 @@
             padding: 0.5rem;
             font-size: 0.85rem;
             min-width: 60px;
-            width: auto;
-            margin-bottom: 0;
         }
         .timeframe-buttons button.active {
             background: linear-gradient(90deg, var(--secondary), var(--primary));
-        }
-        .profit {
-            color: #4ade80;
-            font-weight: bold;
-        }
-        .loss {
-            color: #f87171;
-            font-weight: bold;
         }
         footer {
             background: rgba(0, 0, 0, 0.3);
@@ -252,6 +234,56 @@
             text-decoration: none;
             font-weight: bold;
         }
+        
+        /* New Elements */
+        .social-share {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            justify-content: center;
+        }
+        .social-share button {
+            width: auto;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .achievement-badge {
+            display: inline-block;
+            padding: 0.3rem 0.6rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .login-streak {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 0.5rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .referral-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+        .referral-input {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        .referral-input input {
+            margin-bottom: 0;
+        }
+        .referral-input button {
+            width: auto;
+        }
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: 1fr;
@@ -259,6 +291,11 @@
             .chart-container {
                 min-height: 400px;
                 height: 400px;
+            }
+            .timeframe-buttons button {
+                min-width: 40px;
+                font-size: 0.75rem;
+                padding: 0.3rem;
             }
         }
     </style>
@@ -268,6 +305,12 @@
         <h1>🚀 CryptoVision Pro</h1>
         <p>Binance & CoinGecko cryptocurrency data with real-time charts</p>
         <button class="theme-toggle" id="themeToggle">🌓</button>
+        
+        <!-- Social Share Buttons -->
+        <div class="social-share">
+            <button onclick="shareOnTwitter()">🐦 Share on Twitter</button>
+            <button onclick="shareOnReddit()">📱 Share on Reddit</button>
+        </div>
     </header>
 
     <div class="container">
@@ -279,6 +322,9 @@
             </div>
             <div class="tab-content active" id="geckoData">Loading CoinGecko data...</div>
             <div class="tab-content" id="binanceData">Loading Binance data...</div>
+            
+            <!-- Market Overview Widget -->
+            <div id="marketOverview" style="margin-top: 1rem;"></div>
         </div>
 
         <div class="card">
@@ -298,14 +344,30 @@
                 <option value="AVAXUSDT">Avalanche (AVAX/USDT)</option>
                 <option value="LINKUSDT">Chainlink (LINK/USDT)</option>
             </select>
-            <div class="timeframe-buttons" id="chartTimeframeButtons">
-                <button data-interval="1H">1H</button>
-                <button data-interval="4H">4H</button>
-                <button data-interval="1D" class="active">1D</button>
-                <button data-interval="1W">1W</button>
+            
+            <!-- Timeframe Selection -->
+            <div class="timeframe-buttons">
+                <button data-timeframe="1" class="active">1m</button>
+                <button data-timeframe="5">5m</button>
+                <button data-timeframe="15">15m</button>
+                <button data-timeframe="60">1h</button>
+                <button data-timeframe="240">4h</button>
+                <button data-timeframe="1D">1D</button>
+                <button data-timeframe="1W">1W</button>
+                <button data-timeframe="1M">1M</button>
             </div>
+            
             <div class="chart-container">
                 <div id="tradingview-chart"></div>
+            </div>
+            
+            <!-- Chart Sharing Feature -->
+            <div class="referral-box">
+                <p>Share this chart with your analysis:</p>
+                <div class="referral-input">
+                    <input type="text" id="chartShareLink" readonly value="Loading...">
+                    <button onclick="copyChartLink()">Copy Link</button>
+                </div>
             </div>
         </div>
 
@@ -320,30 +382,34 @@
         </div>
 
         <div class="card">
-            <h2>💼 Portfolio</h2>
+            <h2>💼 Portfolio Tracker</h2>
             <form id="portfolioForm">
                 <select id="coinId"></select>
-                <input type="number" id="amount" step="any" placeholder="Amount" required>
-                <input type="number" id="purchasePrice" step="any" placeholder="Avg Purchase Price (USD per coin)">
-                <button type="submit">Add/Update Holding</button>
+                <input type="number" id="amount" placeholder="Amount">
+                <button type="submit">Add to Portfolio</button>
             </form>
-            <div id="portfolioDisplay" style="margin-top: 1rem;"></div>
-        </div>
-
-        <div class="card">
-            <h2>💡 Trend Indicator</h2>
-            <div id="trendIndicatorContent">
-                <p>Select a coin from the chart dropdown to see its recent trend.</p>
+            <div id="portfolioValue" style="margin-top: 1rem;"></div>
+            
+            <!-- Achievements and Login Streak -->
+            <div id="achievements" style="margin-top: 1rem;"></div>
+            <div class="login-streak" id="loginStreak">
+                🔥 <span id="streakCount">0</span> day login streak
             </div>
-            <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 1rem;">
-                <strong>Disclaimer:</strong> This indicator is based solely on the past 24-hour price change and is not financial advice or a prediction of future performance. Cryptocurrency markets are highly volatile.
-            </p>
         </div>
-
+        
+        <!-- Educational Resources Card -->
         <div class="card">
-            <h2>⭐ Watchlist</h2>
-            <div id="watchlistContent">
-                <p style="opacity: 0.7;">Click the star icon next to a coin to add it here.</p>
+            <h2>📚 Learn Crypto Trading</h2>
+            <div id="educationalResources">
+                <div class="coin-item" onclick="openTutorial('reading-charts')">
+                    📊 How to Read Crypto Charts
+                </div>
+                <div class="coin-item" onclick="openTutorial('technical-analysis')">
+                    🔍 Beginner's Guide to Technical Analysis
+                </div>
+                <div class="coin-item" onclick="openTutorial('risk-management')">
+                    ⚖️ Crypto Risk Management 101
+                </div>
             </div>
         </div>
     </div>
@@ -365,6 +431,15 @@
             <li><strong>Dogecoin (DOGE):</strong> The original meme coin with strong community</li>
             <li><strong>Shiba Inu (SHIB):</strong> Ethereum-based token with growing utility</li>
         </ul>
+        
+        <h3>Free Crypto Trading Tools</h3>
+        <p>CryptoVision Pro offers completely free tools for cryptocurrency traders:</p>
+        <ul>
+            <li>Real-time price charts with multiple timeframes (1m, 5m, 15m, 1h, 4h, 1D, 1W, 1M)</li>
+            <li>Portfolio tracking across multiple exchanges</li>
+            <li>Custom price alerts for any cryptocurrency</li>
+            <li>Educational resources for beginner traders</li>
+        </ul>
 
         <p>Start trading today on <a href="https://www.binance.com" class="exchange-link" target="_blank" rel="noopener noreferrer">Binance</a>, the world's leading cryptocurrency exchange.</p>
     </section>
@@ -372,6 +447,11 @@
     <footer>
         <p>© 2023 CryptoVision Pro | Data from <a href="https://www.coingecko.com" class="exchange-link" target="_blank" rel="noopener noreferrer">CoinGecko</a> & <a href="https://www.binance.com" class="exchange-link" target="_blank" rel="noopener noreferrer">Binance</a> APIs</p>
         <p style="opacity: 0.7; margin-top: 0.5rem; font-size: 0.9rem;">Cryptocurrency trading involves risk. Only invest what you can afford to lose.</p>
+        
+        <!-- Affiliate Disclaimer -->
+        <p style="opacity: 0.7; margin-top: 0.5rem; font-size: 0.8rem;">
+            Some links may be affiliate links that help support this free service.
+        </p>
     </footer>
 
 <script>
@@ -392,18 +472,30 @@ const COINS = [
     {id: 'chainlink', symbol: 'LINK', name: 'Chainlink', binanceSymbol: 'LINKUSDT'}
 ];
 
+// Achievement system
+const ACHIEVEMENTS = [
+    { id: 'first_alert', name: 'Alert Setter', description: 'Set your first price alert' },
+    { id: 'portfolio_add', name: 'Portfolio Starter', description: 'Added your first crypto to portfolio' },
+    { id: 'three_coins', name: 'Diversifier', description: 'Track 3+ coins in your portfolio' },
+    { id: 'streak_3', name: 'Hot Streak', description: '3-day login streak' },
+    { id: 'streak_7', name: 'Week Warrior', description: '7-day login streak' },
+    { id: 'shared_chart', name: 'Chart Sharer', description: 'Shared a chart analysis' }
+];
+
 // ====== State Management ======
 let state = {
     theme: localStorage.getItem('theme') || 'dark',
     currentCoin: 'BTCUSDT',
+    currentTimeframe: '1D',
     portfolio: JSON.parse(localStorage.getItem('portfolio')) || {},
     alerts: JSON.parse(localStorage.getItem('alerts')) || [],
     marketData: null,
     binanceData: null,
     activeTab: 'gecko',
     tvWidget: null,
-    watchlist: JSON.parse(localStorage.getItem('watchlist')) || [],
-    chartInterval: '1D'
+    achievements: JSON.parse(localStorage.getItem('achievements')) || [],
+    lastLogin: localStorage.getItem('lastLogin') || null,
+    streak: parseInt(localStorage.getItem('streak')) || 0
 };
 
 // ====== Initialize App ======
@@ -411,37 +503,42 @@ function init() {
     setupTheme();
     populateSelects();
     setupEventListeners();
-    fetchMarketData().then(() => {
-        updateTrendAnalysis(state.currentCoin);
-        updateWatchlistCard();
-        updatePortfolioValue();
-    });
+    fetchMarketData();
     fetchBinanceData();
     initTradingViewChart();
-    updateActiveTimeframeButton();
+    checkLoginStreak();
+    updateAchievements();
+    updateChartShareLink();
 }
 
 // ====== Theme Management ======
 function setupTheme() {
     document.body.dataset.theme = state.theme;
     document.getElementById('themeToggle').textContent = state.theme === 'light' ? '🌙' : '🌓';
-
+    
     document.getElementById('themeToggle').addEventListener('click', () => {
         state.theme = state.theme === 'light' ? 'dark' : 'light';
         document.body.dataset.theme = state.theme;
         document.getElementById('themeToggle').textContent = state.theme === 'light' ? '🌙' : '🌓';
         localStorage.setItem('theme', state.theme);
-
-        // Apply theme changes to the chart using the helper function
-        applyThemeOverrides();
+        
+        if (state.tvWidget) {
+            state.tvWidget.changeTheme(state.theme === 'light' ? 'light' : 'dark');
+        }
     });
 }
 
 // ====== TradingView Chart ======
 function initTradingViewChart() {
+    // Destroy existing widget if it exists
+    if (state.tvWidget !== null) {
+        state.tvWidget.remove();
+        state.tvWidget = null;
+    }
+    
     const widgetOptions = {
         symbol: state.currentCoin,
-        interval: state.chartInterval,
+        interval: state.currentTimeframe,
         container_id: 'tradingview-chart',
         library_path: 'https://s3.tradingview.com/tv.js',
         locale: 'en',
@@ -454,7 +551,6 @@ function initTradingViewChart() {
         fullscreen: false,
         autosize: true,
         theme: state.theme === 'light' ? 'light' : 'dark',
-        // Initial overrides are set here, but applyThemeOverrides will handle dynamic changes
         overrides: {
             "paneProperties.background": state.theme === 'light' ? '#f8f9fa' : '#1a1a2e',
             "paneProperties.vertGridProperties.color": state.theme === 'light' ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.06)',
@@ -469,88 +565,12 @@ function initTradingViewChart() {
         },
     };
 
-    // Create the widget instance
-    const tvWidget = new TradingView.widget(widgetOptions);
-
-    // Use onChartReady to ensure the chart is ready before assigning to state and applying overrides
-    tvWidget.onChartReady(function() {
-        console.log("TradingView Chart Ready");
-        state.tvWidget = tvWidget; // Assign the widget instance to the state *after* it's ready
-        applyThemeOverrides(); // Apply initial theme/overrides correctly
-    });
+    state.tvWidget = new TradingView.widget(widgetOptions);
 }
 
-// Helper function to apply theme and overrides
-function applyThemeOverrides() {
-    if (!state.tvWidget) {
-        console.log("applyThemeOverrides called but tvWidget is not ready.");
-        return;
-    }
-    try {
-        // Change the theme
-        state.tvWidget.changeTheme(state.theme === 'light' ? 'light' : 'dark');
-
-        // Apply overrides
-        state.tvWidget.applyOverrides({
-            "paneProperties.background": state.theme === 'light' ? '#f8f9fa' : '#1a1a2e',
-            "paneProperties.vertGridProperties.color": state.theme === 'light' ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.06)',
-            "paneProperties.horzGridProperties.color": state.theme === 'light' ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.06)',
-            "symbolWatermarkProperties.transparency": 90,
-            "scalesProperties.textColor": state.theme === 'light' ? '#1a1a2e' : '#ffffff',
-        });
-
-        // Apply studies overrides
-        state.tvWidget.applyStudiesOverrides({
-            "volume.volume.color.0": state.theme === 'light' ? '#f87171' : '#f87171',
-            "volume.volume.color.1": state.theme === 'light' ? '#4ade80' : '#4ade80',
-            "volume.volume.transparency": 70,
-        });
-        console.log("Theme and overrides applied.");
-    } catch (error) {
-        console.error("Error applying theme overrides:", error);
-    }
-}
-
-function updateTradingViewChart(symbol) {
-    // Ensure widget and chart() method are available before calling setSymbol
-    if (state.tvWidget && typeof state.tvWidget.chart === 'function') {
-         try {
-            const chart = state.tvWidget.chart();
-            if (chart && typeof chart.setSymbol === 'function') {
-                chart.setSymbol(symbol);
-            } else {
-                console.error("updateTradingViewChart: chart object or setSymbol method not available.");
-            }
-         } catch (error) {
-             console.error("Error setting chart symbol:", error);
-         }
-    } else {
-         console.log("updateTradingViewChart: tvWidget or chart method not ready.");
-    }
-}
-
-function changeChartTimeframe(interval) {
-    // Ensure widget and chart() method are available before changing resolution
-    if (state.tvWidget && typeof state.tvWidget.chart === 'function' && state.chartInterval !== interval) {
-        console.log(`Attempting to change timeframe to: ${interval}`);
-        state.chartInterval = interval;
-        try {
-            const chart = state.tvWidget.chart();
-            if (chart && typeof chart.setResolution === 'function') {
-                chart.setResolution(interval);
-                updateActiveTimeframeButton();
-                console.log(`Successfully set timeframe to: ${interval}`);
-            } else {
-                 console.error("changeChartTimeframe: chart object or setResolution method not available.");
-            }
-        } catch (error) {
-            console.error("Error setting chart resolution:", error);
-        }
-    } else if (state.chartInterval === interval) {
-         console.log(`Timeframe already set to: ${interval}`);
-    } else {
-         console.log("changeChartTimeframe: tvWidget or chart method not ready.");
-    }
+function updateChart() {
+    // Completely reinitialize the chart with new settings
+    initTradingViewChart();
 }
 
 // ====== DOM Population ======
@@ -579,7 +599,7 @@ async function fetchMarketData() {
         updateMarketOverview();
         updatePortfolioValue();
         updateAlertsList();
-        updateWatchlistCard();
+        updateMarketOverviewWidget();
     } catch (error) {
         console.error('Failed to fetch CoinGecko data:', error);
         document.getElementById('geckoData').innerHTML = '<p style="color: #ff6b6b;">Failed to load CoinGecko data. Please refresh.</p>';
@@ -603,6 +623,7 @@ async function fetchBinanceData() {
         }).filter(Boolean);
         
         updateBinanceOverview();
+        updateMarketOverviewWidget();
     } catch (error) {
         console.error('Failed to fetch Binance data:', error);
         document.getElementById('binanceData').innerHTML = '<p style="color: #ff6b6b;">Failed to load Binance data. Please refresh.</p>';
@@ -614,13 +635,6 @@ function updateMarketOverview() {
     const geckoDataElement = document.getElementById('geckoData');
     geckoDataElement.innerHTML = state.marketData.map(coin => `
         <div class="coin-item">
-            <span
-                class="watchlist-star ${state.watchlist.includes(coin.id) ? 'active' : ''}"
-                data-coin-id="${coin.id}"
-                onclick="toggleWatchlist('${coin.id}')"
-                title="Add/Remove from Watchlist"
-                aria-label="Toggle Watchlist"
-            >⭐</span>
             <div>
                 <strong>${coin.symbol.toUpperCase()}</strong>
                 <span style="opacity: 0.7; font-size: 0.9rem;">${coin.name}</span>
@@ -637,103 +651,121 @@ function updateMarketOverview() {
 
 function updateBinanceOverview() {
     const binanceDataElement = document.getElementById('binanceData');
-    const getGeckoId = (symbol) => COINS.find(c => c.symbol === symbol)?.id;
+    binanceDataElement.innerHTML = state.binanceData.map(coin => `
+        <div class="coin-item">
+            <div>
+                <strong>${coin.symbol}</strong>
+                <span style="opacity: 0.7; font-size: 0.9rem;">${coin.name}</span>
+            </div>
+            <div style="text-align: right;">
+                <strong>$${coin.price.toLocaleString()}</strong>
+                <span style="color: ${coin.change >= 0 ? '#4ade80' : '#f87171'}; font-size: 0.9rem;">
+                    ${coin.change >= 0 ? '↑' : '↓'} ${Math.abs(coin.change).toFixed(2)}%
+                </span>
+            </div>
+        </div>
+    `).join('');
+}
 
-    binanceDataElement.innerHTML = state.binanceData.map(coin => {
-        const geckoId = getGeckoId(coin.symbol);
-        const starHtml = geckoId ? `
-            <span
-                class="watchlist-star ${state.watchlist.includes(geckoId) ? 'active' : ''}"
-                data-coin-id="${geckoId}"
-                onclick="toggleWatchlist('${geckoId}')"
-                title="Add/Remove from Watchlist"
-                aria-label="Toggle Watchlist"
-            >⭐</span>` : '<span class="watchlist-star" style="opacity:0.2;">⭐</span>';
-
-        return `
-            <div class="coin-item">
-                ${starHtml}
+function updateMarketOverviewWidget() {
+    const data = state.activeTab === 'gecko' ? state.marketData : state.binanceData;
+    if (!data) return;
+    
+    // Calculate total market stats
+    let totalMarketCap = 0;
+    let totalVolume = 0;
+    let topGainer = { change: -Infinity };
+    let topLoser = { change: Infinity };
+    
+    if (state.activeTab === 'gecko') {
+        data.forEach(coin => {
+            totalMarketCap += coin.market_cap || 0;
+            totalVolume += coin.total_volume || 0;
+            if (coin.price_change_percentage_24h > topGainer.change) {
+                topGainer = { symbol: coin.symbol, name: coin.name, change: coin.price_change_percentage_24h };
+            }
+            if (coin.price_change_percentage_24h < topLoser.change) {
+                topLoser = { symbol: coin.symbol, name: coin.name, change: coin.price_change_percentage_24h };
+            }
+        });
+    } else {
+        data.forEach(coin => {
+            totalVolume += coin.volume || 0;
+            if (coin.change > topGainer.change) {
+                topGainer = { symbol: coin.symbol, name: coin.name, change: coin.change };
+            }
+            if (coin.change < topLoser.change) {
+                topLoser = { symbol: coin.symbol, name: coin.name, change: coin.change };
+            }
+        });
+    }
+    
+    document.getElementById('marketOverview').innerHTML = `
+        <div style="margin-top: 1rem; background: rgba(255, 255, 255, 0.05); padding: 1rem; border-radius: 10px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span style="opacity: 0.7;">Total ${state.activeTab === 'gecko' ? 'Market Cap' : 'Volume'}:</span>
+                <strong>$${(state.activeTab === 'gecko' ? totalMarketCap : totalVolume).toLocaleString()}</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
                 <div>
-                    <strong>${coin.symbol}</strong>
-                    <span style="opacity: 0.7; font-size: 0.9rem;">${coin.name}</span>
+                    <span style="opacity: 0.7;">Top Gainer:</span>
+                    <div style="color: #4ade80;">
+                        ${topGainer.symbol} ↑ ${Math.abs(topGainer.change).toFixed(2)}%
+                    </div>
                 </div>
-                <div style="text-align: right;">
-                    <strong>$${coin.price.toLocaleString()}</strong>
-                    <span style="color: ${coin.change >= 0 ? '#4ade80' : '#f87171'}; font-size: 0.9rem;">
-                        ${coin.change >= 0 ? '↑' : '↓'} ${Math.abs(coin.change).toFixed(2)}%
-                    </span>
+                <div>
+                    <span style="opacity: 0.7;">Top Loser:</span>
+                    <div style="color: #f87171;">
+                        ${topLoser.symbol} ↓ ${Math.abs(topLoser.change).toFixed(2)}%
+                    </div>
                 </div>
             </div>
-        `;
-    }).join('');
+        </div>
+    `;
 }
 
 function updatePortfolioValue() {
     let totalValue = 0;
-    let totalCost = 0;
     let portfolioHTML = '';
-    const portfolioDisplay = document.getElementById('portfolioDisplay');
-
-    if (!state.marketData) {
-        portfolioDisplay.innerHTML = '<p style="opacity: 0.7;">Loading market data...</p>';
-        return;
-    }
-
-    for (const [coinId, holding] of Object.entries(state.portfolio)) {
-        const coin = state.marketData.find(c => c.id === coinId);
-        if (coin && holding.amount > 0) {
-            const currentValue = holding.amount * coin.current_price;
-            totalValue += currentValue;
-            totalCost += holding.totalCost || 0;
-
-            let pl = 0;
-            let plPercent = 0;
-            let plClass = '';
-            let plText = '<span style="font-size: 0.8rem; opacity: 0.6;"> (P/L N/A)</span>';
-
-            if (holding.totalCost > 0) {
-                pl = currentValue - holding.totalCost;
-                plPercent = (pl / holding.totalCost) * 100;
-                plClass = pl >= 0 ? 'profit' : 'loss';
-                plText = ` <span class="${plClass}" style="font-size: 0.8rem;">(${pl >= 0 ? '+' : ''}${pl.toFixed(2)} / ${plPercent.toFixed(1)}%)</span>`;
-            }
-
+    let coinCount = 0;
+    
+    for (const [coinId, amount] of Object.entries(state.portfolio)) {
+        const coin = state.marketData?.find(c => c.id === coinId);
+        if (coin) {
+            coinCount++;
+            const value = amount * coin.current_price;
+            totalValue += value;
+            
             portfolioHTML += `
                 <div class="coin-item">
-                    <span
-                        class="watchlist-star ${state.watchlist.includes(coin.id) ? 'active' : ''}"
-                        data-coin-id="${coin.id}"
-                        onclick="toggleWatchlist('${coin.id}')"
-                        title="Add/Remove from Watchlist"
-                        aria-label="Toggle Watchlist"
-                    >⭐</span>
                     <div>
                         <strong>${coin.symbol.toUpperCase()}</strong>
-                        <span>${holding.amount.toLocaleString()}</span>
+                        <span>${amount.toFixed(4)}</span>
                     </div>
                     <div style="text-align: right;">
-                        <strong>$${currentValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>
-                        ${plText}
-                        <br><span style="opacity: 0.7; font-size: 0.9rem;">@ $${coin.current_price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                        <strong>$${value.toFixed(2)}</strong>
+                        <span style="opacity: 0.7; font-size: 0.9rem;">$${coin.current_price.toFixed(2)} each</span>
                     </div>
                 </div>
             `;
         }
     }
-
-    portfolioDisplay.innerHTML = portfolioHTML || '<p style="opacity: 0.7;">Your portfolio is empty</p>';
-
+    
+    document.getElementById('portfolioValue').innerHTML = portfolioHTML || '<p style="opacity: 0.7;">Your portfolio is empty</p>';
     if (totalValue > 0) {
-        let totalPl = totalValue - totalCost;
-        let totalPlPercent = totalCost > 0 ? (totalPl / totalCost) * 100 : 0;
-        let totalPlClass = totalPl >= 0 ? 'profit' : 'loss';
-        let totalPlText = totalCost > 0 ? `<span class="${totalPlClass}">(${totalPl >= 0 ? '+' : ''}${totalPl.toFixed(2)} / ${totalPlPercent.toFixed(1)}%)</span>` : '';
-
-        portfolioDisplay.innerHTML += `
+        document.getElementById('portfolioValue').innerHTML += `
             <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
-                <strong>Total Value: $${totalValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong> ${totalPlText}
+                <strong>Total Value:</strong> $${totalValue.toFixed(2)}
             </div>
         `;
+    }
+    
+    // Check for achievements
+    if (coinCount >= 1 && !state.achievements.includes('portfolio_add')) {
+        unlockAchievement('portfolio_add');
+    }
+    if (coinCount >= 3 && !state.achievements.includes('three_coins')) {
+        unlockAchievement('three_coins');
     }
 }
 
@@ -752,82 +784,125 @@ function updateAlertsList() {
     }).join('') || '<p style="opacity: 0.7;">No alerts set</p>';
 }
 
-function updateTrendAnalysis(binanceSymbol) {
-    const indicatorContent = document.getElementById('trendIndicatorContent');
-    const coinInfo = COINS.find(c => c.binanceSymbol === binanceSymbol);
-
-    if (!coinInfo) {
-        indicatorContent.innerHTML = '<p>Could not find coin information.</p>';
+function updateAchievements() {
+    const achievementsElement = document.getElementById('achievements');
+    if (state.achievements.length === 0) {
+        achievementsElement.innerHTML = '<p style="opacity: 0.7;">Complete actions to unlock achievements</p>';
         return;
     }
-
-    const geckoData = state.marketData?.find(c => c.id === coinInfo.id);
-
-    if (!geckoData) {
-        indicatorContent.innerHTML = `<p>Trend data for ${coinInfo.name} (${coinInfo.symbol}) is currently unavailable.</p>`;
-        return;
-    }
-
-    const change24h = geckoData.price_change_percentage_24h;
-    let trendText = '';
-    let trendColor = 'var(--text)';
-
-    if (change24h > 1) {
-        trendText = 'Positive Trend';
-        trendColor = '#4ade80';
-    } else if (change24h < -1) {
-        trendText = 'Negative Trend';
-        trendColor = '#f87171';
-    } else {
-        trendText = 'Neutral / Sideways';
-    }
-
-    indicatorContent.innerHTML = `
-        <p><strong>${coinInfo.name} (${coinInfo.symbol})</strong></p>
-        <p>24h Change: <span style="color: ${change24h >= 0 ? '#4ade80' : '#f87171'};">${change24h.toFixed(2)}%</span></p>
-        <p>Recent Trend: <strong style="color: ${trendColor};">${trendText}</strong></p>
+    
+    achievementsElement.innerHTML = `
+        <p style="margin-bottom: 0.5rem;"><strong>Your Achievements:</strong></p>
+        ${state.achievements.map(achId => {
+            const achievement = ACHIEVEMENTS.find(a => a.id === achId);
+            return achievement ? `<span class="achievement-badge">${achievement.name}</span>` : '';
+        }).join('')}
     `;
 }
 
-function updateWatchlistCard() {
-    const watchlistContent = document.getElementById('watchlistContent');
-    if (!state.marketData) {
-        watchlistContent.innerHTML = '<p style="opacity: 0.7;">Loading market data...</p>';
-        return;
+function updateChartShareLink() {
+    const url = new URL(window.location.href);
+    url.searchParams.set('chart', state.currentCoin);
+    url.searchParams.set('timeframe', state.currentTimeframe);
+    document.getElementById('chartShareLink').value = url.toString();
+}
+
+function updateLoginStreak() {
+    document.getElementById('streakCount').textContent = state.streak;
+    
+    // Check for streak achievements
+    if (state.streak >= 3 && !state.achievements.includes('streak_3')) {
+        unlockAchievement('streak_3');
     }
-
-    const watchedCoins = state.marketData.filter(coin => state.watchlist.includes(coin.id));
-
-    if (watchedCoins.length === 0) {
-        watchlistContent.innerHTML = '<p style="opacity: 0.7;">Click the star icon next to a coin to add it here.</p>';
-        return;
+    if (state.streak >= 7 && !state.achievements.includes('streak_7')) {
+        unlockAchievement('streak_7');
     }
+}
 
-    watchlistContent.innerHTML = watchedCoins.map(coin => `
-        <div class="coin-item">
-             <span
-                class="watchlist-star active"
-                data-coin-id="${coin.id}"
-                onclick="toggleWatchlist('${coin.id}')"
-                title="Remove from Watchlist"
-                aria-label="Toggle Watchlist"
-            >⭐</span>
-            <div>
-                <strong>${coin.symbol.toUpperCase()}</strong>
-                <span style="opacity: 0.7; font-size: 0.9rem;">${coin.name}</span>
-            </div>
-            <div style="text-align: right;">
-                <strong>$${coin.current_price.toLocaleString()}</strong>
-                <span style="color: ${coin.price_change_percentage_24h >= 0 ? '#4ade80' : '#f87171'}; font-size: 0.9rem;">
-                    ${coin.price_change_percentage_24h >= 0 ? '↑' : '↓'} ${Math.abs(coin.price_change_percentage_24h).toFixed(2)}%
-                </span>
-            </div>
-        </div>
-    `).join('');
+// ====== New Features ======
+function checkLoginStreak() {
+    const today = new Date().toDateString();
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const yesterdayStr = yesterday.toDateString();
+    
+    if (state.lastLogin === today) {
+        return; // Already logged in today
+    }
+    
+    if (state.lastLogin === yesterdayStr) {
+        // Continuing streak
+        state.streak++;
+    } else if (state.lastLogin && state.lastLogin !== yesterdayStr) {
+        // Broken streak
+        state.streak = 1;
+    } else {
+        // First login or no previous login
+        state.streak = state.streak || 1;
+    }
+    
+    state.lastLogin = today;
+    localStorage.setItem('lastLogin', today);
+    localStorage.setItem('streak', state.streak);
+    updateLoginStreak();
+}
+
+function unlockAchievement(achievementId) {
+    if (!state.achievements.includes(achievementId)) {
+        state.achievements.push(achievementId);
+        localStorage.setItem('achievements', JSON.stringify(state.achievements));
+        updateAchievements();
+        
+        // Show notification
+        const achievement = ACHIEVEMENTS.find(a => a.id === achievementId);
+        if (achievement) {
+            alert(`🎉 Achievement Unlocked: ${achievement.name}\n${achievement.description}`);
+        }
+    }
+}
+
+function shareOnTwitter() {
+    const text = `Check out real-time crypto charts on ${document.title} - free tool for tracking Bitcoin, Ethereum, and more!`;
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(window.location.href)}`;
+    window.open(url, '_blank', 'width=550,height=420');
+}
+
+function shareOnReddit() {
+    const url = `https://www.reddit.com/submit?url=${encodeURIComponent(window.location.href)}&title=${encodeURIComponent(document.title)}`;
+    window.open(url, '_blank', 'width=550,height=420');
+}
+
+function copyChartLink() {
+    const input = document.getElementById('chartShareLink');
+    input.select();
+    document.execCommand('copy');
+    
+    // Show copied notification
+    const originalText = input.value;
+    input.value = 'Copied to clipboard!';
+    setTimeout(() => {
+        input.value = originalText;
+    }, 2000);
+    
+    // Unlock achievement if not already
+    if (!state.achievements.includes('shared_chart')) {
+        unlockAchievement('shared_chart');
+    }
+}
+
+function openTutorial(tutorialId) {
+    const tutorials = {
+        'reading-charts': 'https://www.investopedia.com/articles/technical/02/010702.asp',
+        'technical-analysis': 'https://www.coindesk.com/learn/crypto-technical-analysis-for-beginners/',
+        'risk-management': 'https://academy.binance.com/en/articles/crypto-trading-risk-management-strategies'
+    };
+    
+    window.open(tutorials[tutorialId], '_blank');
 }
 
 // ====== Event Handlers ======
 function setupEventListeners() {
+    // Tab switching
     document.querySelectorAll('.tab-button').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
@@ -836,15 +911,30 @@ function setupEventListeners() {
             btn.classList.add('active');
             document.getElementById(`${btn.dataset.tab}Data`).classList.add('active');
             state.activeTab = btn.dataset.tab;
+            updateMarketOverviewWidget();
         });
     });
     
+    // Chart coin selection
     document.getElementById('chartCoinSelect').addEventListener('change', (e) => {
         state.currentCoin = e.target.value;
-        updateTradingViewChart(e.target.value);
-        updateTrendAnalysis(e.target.value);
+        updateChart();
+        updateChartShareLink();
     });
     
+    // Timeframe selection
+    document.querySelectorAll('.timeframe-buttons button').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelectorAll('.timeframe-buttons button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            state.currentTimeframe = btn.dataset.timeframe;
+            updateChart();
+            updateChartShareLink();
+        });
+    });
+    
+    // Alert form
     document.getElementById('alertForm').addEventListener('submit', (e) => {
         e.preventDefault();
         const coin = document.getElementById('coinSelect').value;
@@ -856,56 +946,62 @@ function setupEventListeners() {
         localStorage.setItem('alerts', JSON.stringify(state.alerts));
         updateAlertsList();
         document.getElementById('alertPrice').value = '';
+        
+        // Check for first alert achievement
+        if (!state.achievements.includes('first_alert')) {
+            unlockAchievement('first_alert');
+        }
     });
     
+    // Portfolio form
     document.getElementById('portfolioForm').addEventListener('submit', (e) => {
         e.preventDefault();
-        const coinId = document.getElementById('coinId').value;
+        const coin = document.getElementById('coinId').value;
         const amount = parseFloat(document.getElementById('amount').value);
-        const purchasePriceInput = document.getElementById('purchasePrice').value;
-        const purchasePrice = purchasePriceInput ? parseFloat(purchasePriceInput) : null;
-
-        if (!coinId || isNaN(amount) || amount < 0) {
-             alert("Please enter a valid coin and a positive amount.");
-             return;
-        }
-        if (purchasePrice !== null && (isNaN(purchasePrice) || purchasePrice < 0)) {
-            alert("Please enter a valid positive purchase price or leave it blank.");
-            return;
-        }
-
-        let holding = state.portfolio[coinId] || { amount: 0, totalCost: 0 };
-
-        if (purchasePrice !== null) {
-             const newTotalAmount = holding.amount + amount;
-             const newTotalCost = holding.totalCost + (amount * purchasePrice);
-             holding.amount = newTotalAmount;
-             holding.totalCost = newTotalCost;
-        } else {
-            holding.amount += amount;
-        }
-
-        state.portfolio[coinId] = holding;
-
-        if (state.portfolio[coinId].amount <= 0) {
-            delete state.portfolio[coinId];
-        }
-
+        
+        if (!coin || isNaN(amount)) return;
+        
+        state.portfolio[coin] = (state.portfolio[coin] || 0) + amount;
         localStorage.setItem('portfolio', JSON.stringify(state.portfolio));
         updatePortfolioValue();
-
         document.getElementById('amount').value = '';
-        document.getElementById('purchasePrice').value = '';
     });
-
-    document.getElementById('chartTimeframeButtons').addEventListener('click', (e) => {
-        if (e.target.tagName === 'BUTTON' && e.target.dataset.interval) {
-            changeChartTimeframe(e.target.dataset.interval);
-        }
-    });
-
+    
+    // Window resize
     window.addEventListener('resize', () => {
         if (state.tvWidget) {
+            state.tvWidget.resize();
+        }
+    });
+    
+    // Check for chart and timeframe parameters in URL
+    window.addEventListener('load', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const chartSymbol = urlParams.get('chart');
+        const timeframe = urlParams.get('timeframe');
+        
+        if (chartSymbol) {
+            const select = document.getElementById('chartCoinSelect');
+            const option = Array.from(select.options).find(opt => opt.value === chartSymbol);
+            if (option) {
+                select.value = chartSymbol;
+                state.currentCoin = chartSymbol;
+            }
+        }
+        
+        if (timeframe) {
+            const buttons = document.querySelectorAll('.timeframe-buttons button');
+            const button = Array.from(buttons).find(btn => btn.dataset.timeframe === timeframe);
+            if (button) {
+                buttons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                state.currentTimeframe = timeframe;
+            }
+        }
+        
+        // Update chart with any URL parameters
+        if (chartSymbol || timeframe) {
+            updateChart();
         }
     });
 }
@@ -917,33 +1013,20 @@ function removeAlert(index) {
     updateAlertsList();
 }
 
-function toggleWatchlist(coinId) {
-    const index = state.watchlist.indexOf(coinId);
-    if (index > -1) {
-        state.watchlist.splice(index, 1);
-    } else {
-        state.watchlist.push(coinId);
-    }
-    localStorage.setItem('watchlist', JSON.stringify(state.watchlist));
-
-    document.querySelectorAll(`.watchlist-star[data-coin-id="${coinId}"]`).forEach(star => {
-        star.classList.toggle('active', index === -1);
-    });
-
-    updateWatchlistCard();
-}
-
 // ====== Initialize ======
 init();
 setInterval(() => {
-    const geckoPromise = fetchMarketData();
-    const binancePromise = fetchBinanceData();
-
-    geckoPromise.then(() => {
-        updateTrendAnalysis(state.currentCoin);
-    });
-
-}, 60000);
+    if (state.activeTab === 'gecko') {
+        fetchMarketData();
+    } else {
+        fetchBinanceData();
+    }
+    
+    // Update portfolio value periodically
+    if (state.marketData) {
+        updatePortfolioValue();
+    }
+}, 60000); // Refresh every minute
 </script>
 </body>
 </html>

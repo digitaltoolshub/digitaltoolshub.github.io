@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -9,12 +8,33 @@
       gtag('js', new Date());
       gtag('config', 'G-R4N9RB1SNN');
     </script>
-    
-    <!-- Google Ads -->
+
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" type="text/javascript" async></script>    <meta charset="UTF-8">
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" type="text/javascript" async></script>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate World Currency Converter</title>
+    <title>Ultimate World Currency Converter - digitaltoolshub</title>
+
+    <meta name="description" content="Convert currencies instantly with the Ultimate World Currency Converter from digitaltoolshub. Get real-time exchange rates for all major and minor currencies. Easy to use and reliable tool for international transactions and travel.">
+    <meta name="keywords" content="currency converter, exchange rate, foreign exchange, forex, currency calculator, world currencies, live rates, free currency converter, online currency tool, digitaltoolshub">
+    <meta name="author" content="digitaltoolshub">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://digitaltoolshub.github.io/currency.html">
+
+    <meta property="og:title" content="Ultimate World Currency Converter - digitaltoolshub">
+    <meta property="og:description" content="Convert currencies instantly with the Ultimate World Currency Converter from digitaltoolshub. Get real-time exchange rates for all major and minor currencies. Easy to use and reliable tool for international transactions and travel.">
+    <meta property="og:image" content="[Link to a relevant image for your tool, e.g., a screenshot]">
+    <meta property="og:url" content="https://digitaltoolshub.github.io/currency.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="digitaltoolshub">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ultimate World Currency Converter - digitaltoolshub">
+    <meta name="twitter:description" content="Convert currencies instantly with the Ultimate World Currency Converter from digitaltoolshub. Get real-time exchange rates for all major and minor currencies. Easy to use and reliable tool for international transactions and travel.">
+    <meta name="twitter:image" content="[Link to a relevant image for your tool, e.g., a screenshot]">
+    <meta name="twitter:site" content="@[YourTwitterHandle if you have one]">
+
+
     <style>
         :root {
             --primary: #6c5ce7;
@@ -24,14 +44,14 @@
             --success: #00b894;
             --danger: #d63031;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             min-height: 100vh;
@@ -40,7 +60,7 @@
             align-items: center;
             padding: 20px;
         }
-        
+
         .converter-container {
             background-color: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
@@ -51,7 +71,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .converter-container::before {
             content: '';
             position: absolute;
@@ -63,19 +83,19 @@
             animation: rotate 20s linear infinite;
             z-index: 0;
         }
-        
+
         @keyframes rotate {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        
+
         .converter-header {
             text-align: center;
             margin-bottom: 30px;
             position: relative;
             z-index: 1;
         }
-        
+
         .converter-header h1 {
             color: var(--dark);
             font-size: 2.5rem;
@@ -84,12 +104,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
+
         .converter-header p {
             color: var(--dark);
             opacity: 0.8;
         }
-        
+
         .converter-body {
             display: flex;
             flex-direction: column;
@@ -97,7 +117,7 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .amount-section, .from-section, .to-section, .result-section {
             background-color: white;
             border-radius: 15px;
@@ -105,11 +125,11 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
         }
-        
+
         .amount-section:hover, .from-section:hover, .to-section:hover {
             transform: translateY(-5px);
         }
-        
+
         .section-title {
             font-size: 0.9rem;
             color: var(--dark);
@@ -117,12 +137,12 @@
             margin-bottom: 10px;
             display: block;
         }
-        
+
         .amount-input {
             display: flex;
             align-items: center;
         }
-        
+
         .amount-input input {
             flex: 1;
             border: none;
@@ -133,18 +153,18 @@
             background: transparent;
             color: var(--dark);
         }
-        
+
         .currency-selector {
             display: flex;
             gap: 15px;
             align-items: center;
         }
-        
+
         .currency-dropdown {
             flex: 1;
             position: relative;
         }
-        
+
         .currency-dropdown .search-box {
             width: 100%;
             padding: 10px 15px;
@@ -155,11 +175,11 @@
             outline: none;
             transition: border-color 0.3s ease;
         }
-        
+
         .currency-dropdown .search-box:focus {
             border-color: var(--primary);
         }
-        
+
         .currency-dropdown select {
             width: 100%;
             padding: 15px;
@@ -175,11 +195,11 @@
             max-height: 50px;
             overflow-y: auto;
         }
-        
+
         .currency-dropdown select:focus {
             border-color: var(--primary);
         }
-        
+
         .currency-dropdown::after {
             content: '▼';
             position: absolute;
@@ -190,27 +210,27 @@
             pointer-events: none;
             font-size: 0.8rem;
         }
-        
+
         .result-section {
             text-align: center;
             padding: 30px;
             background-color: var(--light);
             border: 2px dashed var(--secondary);
         }
-        
+
         .converted-amount {
             font-size: 3rem;
             font-weight: bold;
             color: var(--primary);
             margin: 10px 0;
         }
-        
+
         .conversion-rate {
             color: var(--dark);
             opacity: 0.7;
             font-size: 0.9rem;
         }
-        
+
         .swap-btn {
             background-color: var(--primary);
             color: white;
@@ -228,12 +248,12 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .swap-btn:hover {
             transform: scale(1.1) rotate(180deg);
             background-color: var(--secondary);
         }
-        
+
         .last-updated {
             text-align: center;
             margin-top: 20px;
@@ -243,7 +263,7 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .globe-animation {
             position: absolute;
             width: 150px;
@@ -257,7 +277,7 @@
             transform: translate(-50%, -50%);
             z-index: 0;
         }
-        
+
         .globe-animation::after {
             content: '';
             position: absolute;
@@ -268,12 +288,12 @@
             border: 2px dashed rgba(255, 255, 255, 0.2);
             animation: spin 20s linear infinite;
         }
-        
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        
+
         .flags {
             display: flex;
             justify-content: space-around;
@@ -283,7 +303,7 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .flag {
             width: 40px;
             height: 30px;
@@ -294,20 +314,20 @@
             transition: transform 0.3s ease;
             cursor: pointer;
         }
-        
+
         .flag:hover {
             transform: scale(1.2) translateY(-5px);
         }
-        
+
         @media (max-width: 768px) {
             .converter-header h1 {
                 font-size: 2rem;
             }
-            
+
             .converted-amount {
                 font-size: 2rem;
             }
-            
+
             .currency-selector {
                 flex-direction: column;
             }
@@ -317,12 +337,12 @@
 <body>
     <div class="converter-container">
         <div class="globe-animation"></div>
-        
+
         <div class="converter-header">
             <h1>Ultimate World Currency Converter</h1>
             <p>Real-time exchange rates for all world currencies with search</p>
         </div>
-        
+
         <div class="converter-body">
             <div class="amount-section">
                 <span class="section-title">Amount</span>
@@ -331,13 +351,13 @@
                 </div>
             </div>
 
-            
+
             <div class="result-section">
                 <span class="section-title">Converted Amount</span>
                 <div class="converted-amount" id="converted-amount">0.00</div>
                 <div class="conversion-rate" id="conversion-rate">1 USD = 1 USD</div>
             </div>
-            
+
             <div class="from-section">
                 <span class="section-title">From</span>
                 <div class="currency-selector">
@@ -348,7 +368,7 @@
                     <div class="flag" id="from-flag"></div>
                 </div>
             </div>
-            
+
             <div class="swap-btn" id="swap-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="17 1 21 5 17 9"></polyline>
@@ -357,7 +377,7 @@
                     <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
                 </svg>
             </div>
-            
+
             <div class="to-section">
                 <span class="section-title">To</span>
                 <div class="currency-selector">
@@ -368,11 +388,10 @@
                     <div class="flag" id="to-flag"></div>
                 </div>
             </div>
-            
+
             <div class="flags" id="flags-container">
-                <!-- Flags will be added dynamically -->
-            </div>
-            
+                </div>
+
             <div class="last-updated" id="last-updated">
                 Loading latest exchange rates...
             </div>
@@ -411,7 +430,7 @@
             { code: 'ETB', name: 'Ethiopian Birr', flag: 'https://flagcdn.com/w80/et.png' },
             { code: 'FJD', name: 'Fijian Dollar', flag: 'https://flagcdn.com/w80/fj.png' },
             { code: 'FKP', name: 'Falkland Islands Pound', flag: 'https://flagcdn.com/w80/fk.png' },
-            
+
             // G - L
             { code: 'GEL', name: 'Georgian Lari', flag: 'https://flagcdn.com/w80/ge.png' },
             { code: 'GGP', name: 'Guernsey Pound', flag: 'https://flagcdn.com/w80/gg.png' },
@@ -437,7 +456,7 @@
             { code: 'LRD', name: 'Liberian Dollar', flag: 'https://flagcdn.com/w80/lr.png' },
             { code: 'LSL', name: 'Lesotho Loti', flag: 'https://flagcdn.com/w80/ls.png' },
             { code: 'LYD', name: 'Libyan Dinar', flag: 'https://flagcdn.com/w80/ly.png' },
-            
+
             // M - R
             { code: 'MDL', name: 'Moldovan Leu', flag: 'https://flagcdn.com/w80/md.png' },
             { code: 'MGA', name: 'Malagasy Ariary', flag: 'https://flagcdn.com/w80/mg.png' },
@@ -458,7 +477,7 @@
             { code: 'PRB', name: 'Transnistrian Ruble', flag: 'https://flagcdn.com/w80/md.png' }, // Transnistria uses same flag as Moldova
             { code: 'PYG', name: 'Paraguayan Guaraní', flag: 'https://flagcdn.com/w80/py.png' },
             { code: 'RWF', name: 'Rwandan Franc', flag: 'https://flagcdn.com/w80/rw.png' },
-            
+
             // S - Z
             { code: 'SBD', name: 'Solomon Islands Dollar', flag: 'https://flagcdn.com/w80/sb.png' },
             { code: 'SCR', name: 'Seychellois Rupee', flag: 'https://flagcdn.com/w80/sc.png' },
@@ -493,7 +512,7 @@
             { code: 'YER', name: 'Yemeni Rial', flag: 'https://flagcdn.com/w80/ye.png' },
             { code: 'ZMW', name: 'Zambian Kwacha', flag: 'https://flagcdn.com/w80/zm.png' },
             { code: 'ZWL', name: 'Zimbabwean Dollar (defunct)', flag: 'https://flagcdn.com/w80/zw.png' },
-            
+
             // Previously included currencies
             { code: 'USD', name: 'US Dollar', flag: 'https://flagcdn.com/w80/us.png' },
             { code: 'EUR', name: 'Euro', flag: 'https://flagcdn.com/w80/eu.png' },
@@ -589,24 +608,24 @@
             // Clear existing options
             fromCurrency.innerHTML = '';
             toCurrency.innerHTML = '';
-            
+
             // Sort currencies alphabetically by code
             const sortedCurrencies = [...currencies].sort((a, b) => a.code.localeCompare(b.code));
-            
+
             sortedCurrencies.forEach(currency => {
                 const option1 = document.createElement('option');
                 option1.value = currency.code;
                 option1.textContent = `${currency.code} - ${currency.name}`;
                 option1.setAttribute('data-flag', currency.flag);
                 fromCurrency.appendChild(option1);
-                
+
                 const option2 = document.createElement('option');
                 option2.value = currency.code;
                 option2.textContent = `${currency.code} - ${currency.name}`;
                 option2.setAttribute('data-flag', currency.flag);
                 toCurrency.appendChild(option2);
             });
-            
+
             // Set default values
             fromCurrency.value = 'USD';
             toCurrency.value = 'EUR';
@@ -617,11 +636,11 @@
         function filterCurrencies(searchInput, dropdown) {
             const searchTerm = searchInput.value.toLowerCase();
             const options = dropdown.options;
-            
+
             for (let i = 0; i < options.length; i++) {
                 const option = options[i];
                 const text = option.text.toLowerCase();
-                
+
                 if (text.includes(searchTerm)) {
                     option.style.display = '';
                 } else {
@@ -633,7 +652,7 @@
         // Display popular flags
         function displayPopularFlags() {
             const popularCurrencies = ['USD', 'EUR', 'GBP', 'JPY', 'AUD', 'CAD', 'CNY', 'INR', 'AED', 'SGD'];
-            
+
             popularCurrencies.forEach(code => {
                 const currency = currencies.find(c => c.code === code);
                 if (currency) {
@@ -656,10 +675,10 @@
         function updateFlags() {
             const fromCode = fromCurrency.value;
             const toCode = toCurrency.value;
-            
+
             const fromCurrencyData = currencies.find(c => c.code === fromCode);
             const toCurrencyData = currencies.find(c => c.code === toCode);
-            
+
             if (fromCurrencyData) {
                 fromFlag.style.backgroundImage = `url(${fromCurrencyData.flag})`;
                 fromFlag.title = `${fromCurrencyData.code} - ${fromCurrencyData.name}`;
@@ -667,7 +686,7 @@
                 fromFlag.style.backgroundImage = '';
                 fromFlag.title = '';
             }
-            
+
             if (toCurrencyData) {
                 toFlag.style.backgroundImage = `url(${toCurrencyData.flag})`;
                 toFlag.title = `${toCurrencyData.code} - ${toCurrencyData.name}`;
@@ -681,11 +700,11 @@
         async function loadExchangeRates() {
             try {
                 lastUpdated.textContent = 'Loading latest exchange rates...';
-                
+
                 // Using ExchangeRate-API (replace with a real API in production)
                 const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${baseCurrency}`);
                 const data = await response.json();
-                
+
                 if (data && data.rates) {
                     exchangeRates = data.rates;
                     lastUpdateTime = new Date(data.time_last_updated * 1000);
@@ -697,7 +716,7 @@
             } catch (error) {
                 console.error('Error fetching exchange rates:', error);
                 lastUpdated.textContent = 'Failed to load latest rates. Using fallback data.';
-                
+
                 // Fallback rates if API fails
                 exchangeRates = {};
                 currencies.forEach(currency => {
@@ -709,7 +728,7 @@
                         exchangeRates[currency.code] = (Math.random() * 10 + 0.1).toFixed(4);
                     }
                 });
-                
+
                 lastUpdateTime = new Date();
                 updateLastUpdatedText();
                 convert();
@@ -719,11 +738,11 @@
         // Update last updated text
         function updateLastUpdatedText() {
             if (lastUpdateTime) {
-                const options = { 
-                    year: 'numeric', 
-                    month: 'short', 
-                    day: 'numeric', 
-                    hour: '2-digit', 
+                const options = {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
                     minute: '2-digit',
                     second: '2-digit'
                 };
@@ -739,30 +758,30 @@
                 convertedAmount.textContent = '0.00';
                 return;
             }
-            
+
             const fromCode = fromCurrency.value;
             const toCode = toCurrency.value;
-            
+
             // If both currencies are the same
             if (fromCode === toCode) {
                 convertedAmount.textContent = amount.toFixed(2);
                 conversionRate.textContent = `1 ${fromCode} = 1 ${toCode}`;
                 return;
             }
-            
+
             // If we have the exchange rates
             if (exchangeRates[fromCode] && exchangeRates[toCode]) {
                 // Convert from base currency (USD) to target currency
                 const fromRate = exchangeRates[fromCode];
                 const toRate = exchangeRates[toCode];
-                
+
                 // Calculate the converted amount
                 const result = (amount / fromRate) * toRate;
                 convertedAmount.textContent = result.toLocaleString(undefined, {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2
                 });
-                
+
                 // Calculate and display the conversion rate
                 const rate = (1 / fromRate) * toRate;
                 conversionRate.textContent = `1 ${fromCode} = ${rate.toLocaleString(undefined, {
@@ -796,12 +815,12 @@
                 convert();
             });
             swapBtn.addEventListener('click', swapCurrencies);
-            
+
             // Search functionality
             fromSearch.addEventListener('input', () => {
                 filterCurrencies(fromSearch, fromCurrency);
             });
-            
+
             toSearch.addEventListener('input', () => {
                 filterCurrencies(toSearch, toCurrency);
             });

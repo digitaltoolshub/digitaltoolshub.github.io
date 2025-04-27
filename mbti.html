@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -9,52 +8,47 @@
       gtag('js', new Date());
       gtag('config', 'G-R4N9RB1SNN');
     </script>
-    
+
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" type="text/javascript" async></script>    <!-- Primary Meta Tags -->
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" type="text/javascript" async></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Personality Test - Discover Your MBTI Type Accurately</title>
-    <meta name="description" content="Take our free, scientifically validated personality test to discover your MBTI type. Get detailed analysis of your traits, strengths, and ideal careers.">
-    <meta name="keywords" content="MBTI test, personality test, Myers-Briggs, personality type, career test, free personality quiz">
-    <meta name="author" content="Personality Insights">
-    
-    <!-- Open Graph / Facebook -->
+    <title>Ultimate Personality Test - Free MBTI & Digital Tools Hub</title>
+    <meta name="description" content="Discover your MBTI type with our free, scientifically validated personality test. Explore detailed analysis, strengths, careers, and other digital tools on Digital Tools Hub.">
+    <meta name="keywords" content="MBTI test, personality test, Myers-Briggs, personality type, career test, free personality quiz, digital tools, online tools, free tools, self-improvement tools, personal development tools, online assessment, personality assessment">
+    <meta name="author" content="Digital Tools Hub">
+
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://digitaltoolshub.github.io/personality-test/">
-    <meta property="og:title" content="Ultimate Personality Test - Discover Your MBTI Type Accurately">
-    <meta property="og:description" content="Take our free, scientifically validated personality test to discover your MBTI type. Get detailed analysis of your traits, strengths, and ideal careers.">
+    <meta property="og:title" content="Ultimate Personality Test - Free MBTI & Digital Tools Hub">
+    <meta property="og:description" content="Discover your MBTI type with our free, scientifically validated personality test. Explore detailed analysis, strengths, careers, and other digital tools on Digital Tools Hub.">
     <meta property="og:image" content="https://digitaltoolshub.github.io/images/personality-test-social.jpg">
-    
-    <!-- Twitter -->
+
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://digitaltoolshub.github.io/personality-test/">
-    <meta property="twitter:title" content="Ultimate Personality Test - Discover Your MBTI Type Accurately">
-    <meta property="twitter:description" content="Take our free, scientifically validated personality test to discover your MBTI type. Get detailed analysis of your traits, strengths, and ideal careers.">
+    <meta property="twitter:title" content="Ultimate Personality Test - Free MBTI & Digital Tools Hub">
+    <meta property="twitter:description" content="Discover your MBTI type with our free, scientifically validated personality test. Explore detailed analysis, strengths, careers, and other digital tools on Digital Tools Hub.">
     <meta property="twitter:image" content="https://digitaltoolshub.github.io/images/personality-test-social.jpg">
-    
-    
-    <!-- Canonical URL -->
+
+
     <link rel="canonical" href="https://digitaltoolshub.github.io/personality-test/" />
-    
-    <!-- Favicon -->
+
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    
-    <!-- Structured Data -->
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "PsychologicalTest",
       "name": "Ultimate MBTI Personality Test",
-      "description": "A comprehensive personality assessment based on the Myers-Briggs Type Indicator (MBTI) framework.",
+      "description": "A comprehensive personality assessment based on the Myers-Briggs Type Indicator (MBTI) framework, available on Digital Tools Hub.",
       "url": "https://digitaltoolshub.github.io/personality-test/",
       "isAccessibleForFree": true,
       "typicalAgeRange": "16-99",
-      "keywords": "MBTI test, personality test, Myers-Briggs, personality type, career test"
+      "keywords": "MBTI test, personality test, Myers-Briggs, personality type, career test, online assessment, digital tool"
     }
     </script>
-    
+
     <style>
         :root {
             --primary: #6a0dad;
@@ -351,7 +345,7 @@
                 flex-direction: column;
                 align-items: center;
             }
-            
+
             .test-option {
                 width: 100%;
                 max-width: none;
@@ -361,7 +355,7 @@
                 flex-direction: column;
                 text-align: center;
             }
-            
+
             h1 {
                 font-size: 2rem;
             }
@@ -369,11 +363,10 @@
     </style>
 </head>
 <body>
-    <!-- Start Screen -->
     <div class="container" id="start-screen">
         <h1>Ultimate Personality Test</h1>
         <p>Discover your true personality type with our scientifically validated MBTI assessment. Get detailed insights into your traits, strengths, and ideal career paths.</p>
-        
+
         <div class="test-options">
             <div class="test-option" onclick="startTest(15)">
                 <h2>Quick Test</h2>
@@ -381,7 +374,7 @@
                 <p><em>Faster but less detailed</em></p>
                 <button class="btn">Start Quick Test</button>
             </div>
-            
+
             <div class="test-option" onclick="startTest(70)">
                 <h2>Full Analysis</h2>
                 <p>70 comprehensive questions</p>
@@ -391,7 +384,6 @@
         </div>
     </div>
 
-    <!-- Test Screen -->
     <div class="container hidden" id="test-screen">
         <div class="progress-container">
             <div class="progress-steps" id="progress-steps"></div>
@@ -403,12 +395,11 @@
         <button class="btn" id="next-btn" onclick="nextQuestion()" disabled>Next Question</button>
     </div>
 
-    <!-- Results Screen -->
     <div class="container hidden" id="results-screen">
         <div class="result-container">
             <h1>Your Personality Results</h1>
             <div class="result-type" id="result-type">ESTP</div>
-            
+
             <div class="type-header">
                 <img class="type-image" id="type-image" src="https://www.16personalities.com/images/types/entrepreneur.png" alt="MBTI personality type illustration">
                 <div>
@@ -416,7 +407,7 @@
                     <p id="type-category">Explorer • Assertive</p>
                 </div>
             </div>
-            
+
             <div class="type-description">
                 <p id="type-description">ESTPs are energetic thrill-seekers who are pragmatic and results-oriented. They excel in situations requiring quick action and adaptability.</p>
                 <p id="type-strengths"><strong>Strengths:</strong> Bold, practical, spontaneous, observant, direct</p>
@@ -438,7 +429,7 @@
                 </div>
                 <p id="social-description">You have a perfect balance of social energy, comfortable in both lively gatherings and quiet solitude.</p>
             </div>
-            
+
             <h3>Key Personality Traits</h3>
             <div class="traits" id="traits-container">
                 <div class="trait">Energetic</div>
@@ -447,7 +438,7 @@
                 <div class="trait">Observant</div>
                 <div class="trait">Direct</div>
             </div>
-            
+
             <h3>Your Personality Dimensions</h3>
             <div class="dimension">
                 <div class="dimension-name">
@@ -485,10 +476,10 @@
                     <div class="dimension-fill" id="p-bar" style="width: 80%"></div>
                 </div>
             </div>
-            
+
             <h3>Famous People with This Type</h3>
             <p id="famous-people">Ernest Hemingway, Madonna, Theodore Roosevelt, James Bond (fictional)</p>
-            
+
             <h3>Best Career Matches</h3>
             <p id="careers">Entrepreneurs, Athletes, Detectives, Marketing Professionals, Emergency Responders</p>
         </div>
@@ -858,9 +849,9 @@
 
         // Personality Type Descriptions
         const personalityTypes = {
-            "ISTJ": { 
-                name: "The Inspector", 
-                description: "Practical and fact-minded individuals whose reliability cannot be doubted. They value tradition, order, and have a strong sense of duty.", 
+            "ISTJ": {
+                name: "The Inspector",
+                description: "Practical and fact-minded individuals whose reliability cannot be doubted. They value tradition, order, and have a strong sense of duty.",
                 strengths: "Honest, direct, responsible, organized, practical",
                 weaknesses: "Inflexible, judgmental, resistant to change, overly serious",
                 traits: ["Reliable", "Organized", "Practical", "Logical", "Traditional"],
@@ -868,9 +859,9 @@
                 careers: "Accountants, Military officers, Judges, Bankers, Administrators",
                 category: "Sentinel • Confident"
             },
-            "ISFJ": { 
-                name: "The Protector", 
-                description: "Warm-hearted and dedicated protectors who are always ready to defend their loved ones. They have a strong sense of responsibility and loyalty.", 
+            "ISFJ": {
+                name: "The Protector",
+                description: "Warm-hearted and dedicated protectors who are always ready to defend their loved ones. They have a strong sense of responsibility and loyalty.",
                 strengths: "Supportive, reliable, patient, practical, thorough",
                 weaknesses: "Overly humble, resistant to change, repress feelings",
                 traits: ["Loyal", "Supportive", "Practical", "Caring", "Reliable"],
@@ -878,9 +869,9 @@
                 careers: "Nurses, Teachers, Social workers, Counselors, Administrators",
                 category: "Sentinel • Confident"
             },
-            "INFJ": { 
-                name: "The Advocate", 
-                description: "Quietly forceful, original and sensitive individuals who pursue their ideals with conviction. They have deep insight into human nature.", 
+            "INFJ": {
+                name: "The Advocate",
+                description: "Quietly forceful, original and sensitive individuals who pursue their ideals with conviction. They have deep insight into human nature.",
                 strengths: "Creative, insightful, principled, passionate, altruistic",
                 weaknesses: "Perfectionist, sensitive to criticism, private",
                 traits: ["Insightful", "Idealistic", "Compassionate", "Determined", "Visionary"],
@@ -888,9 +879,9 @@
                 careers: "Counselors, Psychologists, Writers, Clergy, Humanitarians",
                 category: "Diplomat • Turbulent"
             },
-            "INTJ": { 
-                name: "The Architect", 
-                description: "Innovative thinkers with an unquenchable thirst for knowledge. They have strong analytical skills and strategic mindset.", 
+            "INTJ": {
+                name: "The Architect",
+                description: "Innovative thinkers with an unquenchable thirst for knowledge. They have strong analytical skills and strategic mindset.",
                 strengths: "Rational, independent, determined, insightful, original",
                 weaknesses: "Arrogant, dismissive of emotions, overly critical",
                 traits: ["Strategic", "Independent", "Analytical", "Determined", "Visionary"],
@@ -898,9 +889,9 @@
                 careers: "Scientists, Engineers, Judges, Strategic Planners, Programmers",
                 category: "Analyst • Assertive"
             },
-            "ISTP": { 
-                name: "The Craftsman", 
-                description: "Bold and practical experimenters who excel at using tools and solving problems with hands-on approach.", 
+            "ISTP": {
+                name: "The Craftsman",
+                description: "Bold and practical experimenters who excel at using tools and solving problems with hands-on approach.",
                 strengths: "Optimistic, practical, spontaneous, logical, action-oriented",
                 weaknesses: "Insensitive, private, risk-taking, easily bored",
                 traits: ["Practical", "Logical", "Spontaneous", "Adaptable", "Independent"],
@@ -908,9 +899,9 @@
                 careers: "Mechanics, Engineers, Athletes, Police, Firefighters",
                 category: "Explorer • Assertive"
             },
-            "ISFP": { 
-                name: "The Composer", 
-                description: "Flexible and charming artists who live in the present moment. They value aesthetics and seek harmony in life.", 
+            "ISFP": {
+                name: "The Composer",
+                description: "Flexible and charming artists who live in the present moment. They value aesthetics and seek harmony in life.",
                 strengths: "Charming, sensitive to others, artistic, curious, practical",
                 weaknesses: "Overly competitive, unpredictable, avoid conflict",
                 traits: ["Artistic", "Sensitive", "Adaptable", "Harmonious", "Independent"],
@@ -918,9 +909,9 @@
                 careers: "Artists, Musicians, Designers, Chefs, Physical Therapists",
                 category: "Explorer • Turbulent"
             },
-            "INFP": { 
-                name: "The Healer", 
-                description: "Poetic, kind and altruistic individuals who are guided by their values. They seek meaning and authenticity in life.", 
+            "INFP": {
+                name: "The Healer",
+                description: "Poetic, kind and altruistic individuals who are guided by their values. They seek meaning and authenticity in life.",
                 strengths: "Empathetic, creative, idealistic, passionate, open-minded",
                 weaknesses: "Unrealistic, self-critical, emotionally intense",
                 traits: ["Idealistic", "Compassionate", "Creative", "Authentic", "Empathetic"],
@@ -928,9 +919,9 @@
                 careers: "Writers, Counselors, Psychologists, Teachers, Artists",
                 category: "Diplomat • Turbulent"
             },
-            "INTP": { 
-                name: "The Thinker", 
-                description: "Innovative inventors with an unquenchable thirst for knowledge. They love analyzing complex problems and finding solutions.", 
+            "INTP": {
+                name: "The Thinker",
+                description: "Innovative inventors with an unquenchable thirst for knowledge. They love analyzing complex problems and finding solutions.",
                 strengths: "Logical, original, open-minded, independent, curious",
                 weaknesses: "Insensitive, absent-minded, skeptical, private",
                 traits: ["Analytical", "Logical", "Innovative", "Independent", "Theoretical"],
@@ -938,9 +929,9 @@
                 careers: "Scientists, Philosophers, Programmers, Architects, Mathematicians",
                 category: "Analyst • Turbulent"
             },
-            "ESTP": { 
-                name: "The Dynamo", 
-                description: "Smart, energetic and very perceptive people who truly enjoy living on the edge. They're spontaneous problem-solvers.", 
+            "ESTP": {
+                name: "The Dynamo",
+                description: "Smart, energetic and very perceptive people who truly enjoy living on the edge. They're spontaneous problem-solvers.",
                 strengths: "Bold, practical, observant, direct, energetic",
                 weaknesses: "Impatient, insensitive, risk-taking, easily bored",
                 traits: ["Energetic", "Practical", "Spontaneous", "Observant", "Direct"],
@@ -948,9 +939,9 @@
                 careers: "Entrepreneurs, Athletes, Detectives, Marketing Professionals, Emergency Responders",
                 category: "Explorer • Assertive"
             },
-            "ESFP": { 
-                name: "The Performer", 
-                description: "Spontaneous, energetic and enthusiastic people who love life and enjoy being the center of attention.", 
+            "ESFP": {
+                name: "The Performer",
+                description: "Spontaneous, energetic and enthusiastic people who love life and enjoy being the center of attention.",
                 strengths: "Enthusiastic, friendly, practical, observant, spontaneous",
                 weaknesses: "Dramatic, unfocused, approval-seeking, sensitive",
                 traits: ["Enthusiastic", "Sociable", "Spontaneous", "Observant", "Playful"],
@@ -958,9 +949,9 @@
                 careers: "Actors, Artists, Musicians, Event Planners, Sales Representatives",
                 category: "Explorer • Turbulent"
             },
-            "ENFP": { 
-                name: "The Champion", 
-                description: "Enthusiastic, creative and sociable free spirits who can always find a reason to smile. They see life as full of possibilities.", 
+            "ENFP": {
+                name: "The Champion",
+                description: "Enthusiastic, creative and sociable free spirits who can always find a reason to smile. They see life as full of possibilities.",
                 strengths: "Curious, perceptive, enthusiastic, communicative, imaginative",
                 weaknesses: "Overly idealistic, scattered, approval-seeking",
                 traits: ["Enthusiastic", "Creative", "Sociable", "Optimistic", "Empathetic"],
@@ -968,9 +959,9 @@
                 careers: "Counselors, Actors, Journalists, Entrepreneurs, Teachers",
                 category: "Diplomat • Assertive"
             },
-            "ENTP": { 
-                name: "The Debater", 
-                description: "Smart and curious thinkers who cannot resist an intellectual challenge. They're innovative problem-solvers.", 
+            "ENTP": {
+                name: "The Debater",
+                description: "Smart and curious thinkers who cannot resist an intellectual challenge. They're innovative problem-solvers.",
                 strengths: "Quick-witted, curious, innovative, entrepreneurial, charismatic",
                 weaknesses: "Argumentative, insensitive, intolerant of routine",
                 traits: ["Innovative", "Curious", "Charismatic", "Logical", "Entrepreneurial"],
@@ -978,9 +969,9 @@
                 careers: "Entrepreneurs, Lawyers, Inventors, Engineers, Scientists",
                 category: "Analyst • Assertive"
             },
-            "ESTJ": { 
-                name: "The Supervisor", 
-                description: "Excellent administrators who value tradition and order. They are practical, realistic and dependable.", 
+            "ESTJ": {
+                name: "The Supervisor",
+                description: "Excellent administrators who value tradition and order. They are practical, realistic and dependable.",
                 strengths: "Dedicated, strong-willed, direct, organized, practical",
                 weaknesses: "Inflexible, judgmental, controlling, impatient",
                 traits: ["Organized", "Practical", "Direct", "Responsible", "Traditional"],
@@ -988,9 +979,9 @@
                 careers: "Military officers, Managers, Police officers, Administrators, Judges",
                 category: "Sentinel • Assertive"
             },
-            "ESFJ": { 
-                name: "The Caregiver", 
-                description: "Extremely caring and social individuals who are always eager to help. They value harmony and cooperation.", 
+            "ESFJ": {
+                name: "The Caregiver",
+                description: "Extremely caring and social individuals who are always eager to help. They value harmony and cooperation.",
                 strengths: "Supportive, reliable, sociable, practical, caring",
                 weaknesses: "Overly sensitive, approval-seeking, inflexible",
                 traits: ["Sociable", "Supportive", "Practical", "Harmonious", "Responsible"],
@@ -998,9 +989,9 @@
                 careers: "Nurses, Teachers, Social workers, Customer service, Event planners",
                 category: "Sentinel • Turbulent"
             },
-            "ENFJ": { 
-                name: "The Mentor", 
-                description: "Charismatic and inspiring leaders who can motivate others toward growth. They have strong people skills.", 
+            "ENFJ": {
+                name: "The Mentor",
+                description: "Charismatic and inspiring leaders who can motivate others toward growth. They have strong people skills.",
                 strengths: "Charismatic, empathetic, inspiring, diplomatic, organized",
                 weaknesses: "Overly idealistic, approval-seeking, sensitive",
                 traits: ["Charismatic", "Empathetic", "Inspiring", "Diplomatic", "Organized"],
@@ -1008,9 +999,9 @@
                 careers: "Teachers, Counselors, Managers, Human resources, Coaches",
                 category: "Diplomat • Assertive"
             },
-            "ENTJ": { 
-                name: "The Commander", 
-                description: "Bold, imaginative and strong-willed leaders who find solutions to problems. They're natural strategic thinkers.", 
+            "ENTJ": {
+                name: "The Commander",
+                description: "Bold, imaginative and strong-willed leaders who find solutions to problems. They're natural strategic thinkers.",
                 strengths: "Efficient, confident, strategic, charismatic, logical",
                 weaknesses: "Impatient, stubborn, intolerant, controlling",
                 traits: ["Strategic", "Confident", "Logical", "Charismatic", "Efficient"],
@@ -1042,10 +1033,10 @@
             testLength = length;
             currentQuestion = 0;
             for (let key in scores) scores[key] = 0;
-            
+
             // Select questions based on test length
             questions = length === 15 ? [...quickTestQuestions] : [...fullTestQuestions];
-            
+
             initProgressSteps();
             document.getElementById('start-screen').classList.add('hidden');
             document.getElementById('test-screen').classList.remove('hidden');
@@ -1056,16 +1047,16 @@
         function showQuestion() {
             const question = questions[currentQuestion];
             document.getElementById('question-text').textContent = `${currentQuestion + 1}. ${question.text}`;
-            
+
             // Update progress steps
             document.querySelectorAll('.step').forEach((step, i) => {
                 step.classList.toggle('active', i === currentQuestion);
             });
-            
+
             // Clear previous options
             const optionsContainer = document.getElementById('options-container');
             optionsContainer.innerHTML = '';
-            
+
             // Add new options
             question.options.forEach((option, index) => {
                 const optionElement = document.createElement('label');
@@ -1079,7 +1070,7 @@
                 });
                 optionsContainer.appendChild(optionElement);
             });
-            
+
             // Reset next button
             document.getElementById('next-btn').disabled = true;
         }
@@ -1091,7 +1082,7 @@
             if (selectedOption && selectedOption.value !== 'N') {
                 scores[selectedOption.value]++;
             }
-            
+
             // Move to next question or show results
             currentQuestion++;
             if (currentQuestion < questions.length) {
@@ -1105,7 +1096,7 @@
         function showResults() {
             document.getElementById('test-screen').classList.add('hidden');
             document.getElementById('results-screen').classList.remove('hidden');
-            
+
             // Determine personality type
             const type = [
                 scores.E > scores.I ? 'E' : 'I',
@@ -1113,25 +1104,25 @@
                 scores.T > scores.F ? 'T' : 'F',
                 scores.J > scores.P ? 'J' : 'P'
             ].join('');
-            
+
             // Get type data
             const typeData = personalityTypes[type] || personalityTypes["ESTP"];
-            
+
             // Calculate percentages
             const totalEI = Math.max(1, scores.E + scores.I);
             const totalSN = Math.max(1, scores.S + scores.N);
             const totalTF = Math.max(1, scores.T + scores.F);
             const totalJP = Math.max(1, scores.J + scores.P);
-            
+
             const ePercent = Math.round((scores.E / totalEI) * 100);
             const sPercent = Math.round((scores.S / totalSN) * 100);
             const tPercent = Math.round((scores.T / totalTF) * 100);
             const pPercent = Math.round((scores.P / totalJP) * 100);
-            
+
             // Calculate social spectrum
             const extrovertScore = Math.round((scores.E / (scores.E + scores.I)) * 100);
             let socialType, socialDescription;
-            
+
             if (extrovertScore >= 70) {
                 socialType = `<span class="extrovert">Strong Extrovert</span> (${extrovertScore}% Extrovert, ${100-extrovertScore}% Introvert)`;
                 socialDescription = "You thrive in social situations and gain energy from being around others. Large gatherings energize you, and you're comfortable being the center of attention.";
@@ -1154,11 +1145,11 @@
                 socialType = `<span class="introvert">Strong Introvert</span> (${100-extrovertScore}% Introvert, ${extrovertScore}% Extrovert)`;
                 socialDescription = "You gain energy from solitude and prefer deep, meaningful conversations over small talk. While you can socialize when necessary, it drains your energy significantly.";
             }
-            
+
             // Position the spectrum marker
             const markerPosition = extrovertScore;
             document.getElementById('spectrum-marker').style.left = `${markerPosition}%`;
-            
+
             // Update results
             document.getElementById('result-type').textContent = type;
             document.getElementById('type-name').textContent = typeData.name;
@@ -1172,14 +1163,14 @@
             document.getElementById('careers').textContent = typeData.careers;
             document.getElementById('social-type').innerHTML = `You are a ${socialType}`;
             document.getElementById('social-description').textContent = socialDescription;
-            
+
             // Update traits
             const traitsContainer = document.getElementById('traits-container');
             traitsContainer.innerHTML = '';
             typeData.traits.forEach(trait => {
                 traitsContainer.innerHTML += `<div class="trait">${trait}</div>`;
             });
-            
+
             // Update dimension bars
             document.getElementById('e-score').textContent = `${ePercent}%`;
             document.getElementById('e-bar').style.width = `${ePercent}%`;

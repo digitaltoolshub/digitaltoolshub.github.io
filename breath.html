@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -9,39 +8,22 @@
       gtag('js', new Date());
       gtag('config', 'G-R4N9RB1SNN');
     </script>
-    
-    <!-- Google Ads -->
+
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" type="text/javascript" async></script>    <!-- Primary Meta Tags -->
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" type="text/javascript" async></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Calculate how many breaths you've taken in your lifetime with our interactive breath counter. Discover fascinating breathing facts and comparisons.">
-    <meta name="keywords" content="breath counter, lifetime breaths, breathing calculator, health calculator, breathing facts">
-    <meta name="author" content="BioLife">
-    
-    <!-- Open Graph / Facebook Meta Tags -->
+    <meta name="title" content="Lifetime Breath Counter - Calculate Your Total Breaths | DigitalToolsHub">
+    <meta name="description" content="Calculate how many breaths you've taken in your lifetime with our interactive breath counter. Discover fascinating breathing facts and comparisons on DigitalToolsHub.">
+    <meta name="keywords" content="breath counter, lifetime breaths, breathing calculator, health calculator, breathing facts, human breaths per minute, estimated lifetime breaths, calculate breaths, digital tool, online calculator, health and fitness tool, biology facts, body facts, how many times do humans breathe">
+    <meta name="author" content="DigitalToolsHub">
+
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://example.com/breath-counter">
-    <meta property="og:title" content="Lifetime Breath Counter | BioLife">
-    <meta property="og:description" content="Calculate how many breaths you've taken in your lifetime with our interactive breath counter.">
-    <meta property="og:image" content="https://example.com/images/breath-counter-preview.jpg">
-    
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Lifetime Breath Counter | BioLife">
-    <meta name="twitter:description" content="Calculate how many breaths you've taken in your lifetime with our interactive breath counter.">
-    <meta name="twitter:image" content="https://example.com/images/breath-counter-preview.jpg">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://example.com/breath-counter">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    
-    
-    <title>Lifetime Breath Counter | Calculate Your Total Breaths | BioLife</title>
-    
-    <style>
+    <meta property="og:url" content="https://digitaltoolshub.github.io/breath-counter.html"> <meta property="og:title" content="Lifetime Breath Counter | DigitalToolsHub"> <meta property="og:description" content="Calculate how many breaths you've taken in your lifetime with our interactive breath counter on DigitalToolsHub."> <meta property="og:image" content="https://digitaltoolshub.github.io/images/breath-counter-preview.jpg"> <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://digitaltoolshub.github.io/breath-counter.html"> <meta name="twitter:title" content="Lifetime Breath Counter | DigitalToolsHub"> <meta name="twitter:description" content="Calculate how many breaths you've taken in your lifetime with our interactive breath counter on DigitalToolsHub."> <meta name="twitter:image" content="https://digitaltoolshub.github.io/images/breath-counter-preview.jpg"> <link rel="canonical" href="https://digitaltoolshub.github.io/breath-counter.html"> <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <title>Lifetime Breath Counter | Calculate Your Total Breaths | DigitalToolsHub</title> <style>
         * {
             margin: 0;
             padding: 0;
@@ -187,7 +169,7 @@
             color: #00b4d8;
             font-weight: bold;
         }
-        
+
         /* Schema.org structured data */
         .sr-only {
             position: absolute;
@@ -229,7 +211,7 @@
             <h2 class="sr-only">Fun Fact</h2>
             Did you know? A sloth breathes only <span class="highlight">6-8 times per minute</span>, while a mouse breathes about <span class="highlight">200 times per minute</span>!
         </div>
-        
+
     </div>
 
     <script type="application/ld+json">
@@ -244,6 +226,10 @@
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "DigitalToolsHub"
       }
     }
     </script>
@@ -252,7 +238,7 @@
         const dobInput = document.getElementById('dob-input');
         const realtimeToggle = document.getElementById('realtime-toggle');
         const resultDiv = document.getElementById('result');
-        const funFactDiv = document.getElementById('fun-fact');
+        const funFactDiv = document('fun-fact'); // Corrected ID
         let updateInterval;
         const avgBreathsPerMin = 16;
 
@@ -288,17 +274,17 @@
             const diffMs = now - dob;
             const minutes = diffMs / (1000 * 60);
             const breaths = Math.round(minutes * avgBreathsPerMin);
-            
+
             // Funny comparisons
             const comparisons = [
-                `That's enough to fill <span class="highlight">${Math.round(breaths/25000)}</span> hot air balloons!`,
-                `You could've inflated <span class="highlight">${Math.round(breaths/500)}</span> parade floats with that air!`,
-                `Enough breaths to keep <span class="highlight">${Math.round(breaths/100000)}</span> scuba divers alive for an hour!`,
-                `That's <span class="highlight">${Math.round(breaths/7000)}</span> years worth of a sloth's breathing!`
+                `That's enough to fill <span class="highlight">${Math.round(breaths/25000).toLocaleString()}</span> hot air balloons!`, // Added toLocaleString()
+                `You could've inflated <span class="highlight">${Math.round(breaths/500).toLocaleString()}</span> parade floats with that air!`, // Added toLocaleString()
+                `Enough breaths to keep <span class="highlight">${Math.round(breaths/100000).toLocaleString()}</span> scuba divers alive for an hour!`, // Added toLocaleString()
+                `That's <span class="highlight">${Math.round(breaths/7000).toLocaleString()}</span> years worth of a sloth's breathing!` // Added toLocaleString()
             ];
-            
+
             const randomComparison = comparisons[Math.floor(Math.random() * comparisons.length)];
-            
+
             resultDiv.innerHTML = `
                 <h2>You've taken approximately:</h2>
                 <div class="breath-icon" aria-hidden="true">🌬️</div>

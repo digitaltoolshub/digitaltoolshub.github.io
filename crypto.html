@@ -330,6 +330,82 @@
             align-items: center;
             margin-bottom: 0.5rem;
         }
+        .demo-account {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+        }
+        .demo-balance {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .demo-badge {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.9);
+            color: #000;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .trade-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .trade-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .trade-buttons button {
+            flex: 1;
+        }
+        .buy-btn {
+            background: linear-gradient(90deg, #4ade80, #22c55e) !important;
+        }
+        .sell-btn {
+            background: linear-gradient(90deg, #f87171, #ef4444) !important;
+        }
+        .holdings-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .holding-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid var(--primary);
+        }
+        .profit {
+            color: #4ade80;
+        }
+        .loss {
+            color: #f87171;
+        }
+        .transaction-history {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 1rem;
+        }
+        .transaction-item {
+            padding: 0.5rem;
+            margin-bottom: 0.3rem;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.03);
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: 1fr;
@@ -422,6 +498,58 @@
                 <button type="submit">Set Alert</button>
             </form>
             <div id="alertsList" style="margin-top: 1rem;"></div>
+        </div>
+
+        <div class="card">
+            <h2>🎮 Demo Trading Account</h2>
+            <span class="demo-badge">🎓 PRACTICE MODE - RISK FREE</span>
+            
+            <div class="demo-account">
+                <div style="opacity: 0.9; font-size: 0.9rem; margin-bottom: 0.3rem;">Demo Balance</div>
+                <div class="demo-balance">$<span id="demoBalance">50.00</span></div>
+                <div style="opacity: 0.8; font-size: 0.85rem; margin-top: 0.5rem;">
+                    Portfolio Value: $<span id="demoPortfolioValue">0.00</span>
+                </div>
+                <div style="opacity: 0.8; font-size: 0.85rem;">
+                    Total Value: $<span id="demoTotalValue">50.00</span>
+                    <span id="demoProfitLoss" style="margin-left: 0.5rem;"></span>
+                </div>
+            </div>
+
+            <div class="trade-form">
+                <select id="demoTradeSelect">
+                    <option value="">Select a coin to trade</option>
+                </select>
+                <div style="display: flex; gap: 0.5rem;">
+                    <input type="number" id="demoTradeAmount" placeholder="Amount in USD" step="0.01" min="0.01" style="flex: 1;">
+                    <button onclick="setMaxAmount()" style="width: auto; padding: 0.75rem 1rem;">MAX</button>
+                </div>
+                <div id="tradePreview" style="background: rgba(255, 255, 255, 0.05); padding: 0.8rem; border-radius: 8px; display: none; font-size: 0.9rem;">
+                    <!-- Trade preview will be shown here -->
+                </div>
+                <div class="trade-buttons">
+                    <button class="buy-btn" onclick="executeDemoTrade('buy')">🟢 Buy</button>
+                    <button class="sell-btn" onclick="executeDemoTrade('sell')">🔴 Sell</button>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.5rem;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.8rem;">Your Holdings</h3>
+                <div id="demoHoldings" class="holdings-list">
+                    <p style="opacity: 0.7; text-align: center;">No holdings yet. Start trading!</p>
+                </div>
+            </div>
+
+            <div class="transaction-history">
+                <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">Recent Transactions</h3>
+                <div id="demoTransactions">
+                    <p style="opacity: 0.7; text-align: center; font-size: 0.9rem;">No transactions yet</p>
+                </div>
+            </div>
+
+            <button onclick="resetDemoAccount()" style="margin-top: 1rem; background: linear-gradient(90deg, #f59e0b, #d97706); width: 100%;">
+                🔄 Reset Demo Account
+            </button>
         </div>
 
         <div class="card">
@@ -809,7 +937,12 @@ let state = {
     tvWidget: null,
     achievements: JSON.parse(localStorage.getItem('achievements')) || [],
     lastLogin: localStorage.getItem('lastLogin') || null,
-    streak: parseInt(localStorage.getItem('streak')) || 0
+    streak: parseInt(localStorage.getItem('streak')) || 0,
+    // Demo Trading State
+    demoBalance: parseFloat(localStorage.getItem('demoBalance')) || 50.00,
+    demoHoldings: JSON.parse(localStorage.getItem('demoHoldings')) || {},
+    demoTransactions: JSON.parse(localStorage.getItem('demoTransactions')) || [],
+    demoPurchasePrices: JSON.parse(localStorage.getItem('demoPurchasePrices')) || {}
 };
 
 // ====== Initialize App ======
@@ -823,6 +956,7 @@ function init() {
     checkLoginStreak();
     updateAchievements();
     updateChartShareLink();
+    updateDemoDisplay();
     // Load initial tab content
     document.getElementById(`${state.activeTab}Data`).classList.add('active');
 }
@@ -912,6 +1046,23 @@ function populateSelects() {
     
     // Populate chart coin dropdown
     populateChartCoins();
+    
+    // Populate demo trading select
+    populateDemoTradeSelect();
+}
+
+// Populate demo trading select
+function populateDemoTradeSelect() {
+    const demoSelect = document.getElementById('demoTradeSelect');
+    demoSelect.innerHTML = '<option value="">Select a coin to trade</option>';
+    
+    COINS.forEach(coin => {
+        const option = document.createElement('option');
+        option.value = coin.id;
+        option.textContent = `${coin.name} (${coin.symbol})`;
+        option.dataset.symbol = coin.symbol;
+        demoSelect.appendChild(option);
+    });
 }
 
 // Populate chart coin dropdown with search
@@ -964,6 +1115,7 @@ async function fetchMarketData() {
         updatePortfolioValue();
         updateAlertsList();
         updateMarketOverviewWidget();
+        updateDemoDisplay(); // Update demo trading display with new prices
     } catch (error) {
         console.error('Failed to fetch CoinGecko data:', error);
         document.getElementById('geckoData').innerHTML = '<p style="color: #ff6b6b;">Failed to load CoinGecko data. Please refresh or check API.</p>';
@@ -972,6 +1124,7 @@ async function fetchMarketData() {
         updatePortfolioValue();
         updateAlertsList();
         updateMarketOverviewWidget();
+        updateDemoDisplay(); // Update demo display even on error
     }
 }
 
@@ -1348,6 +1501,305 @@ function openTutorial(tutorialId) {
     }
 }
 
+// ====== Demo Trading Functions ======
+function updateDemoDisplay() {
+    // Update balance
+    document.getElementById('demoBalance').textContent = state.demoBalance.toFixed(2);
+    
+    // Calculate portfolio value
+    let portfolioValue = 0;
+    let initialInvestment = 0;
+    
+    for (const [coinId, amount] of Object.entries(state.demoHoldings)) {
+        const coin = state.marketData?.find(c => c.id === coinId);
+        if (coin && coin.current_price) {
+            const currentValue = amount * coin.current_price;
+            portfolioValue += currentValue;
+            
+            // Calculate initial investment
+            if (state.demoPurchasePrices[coinId]) {
+                initialInvestment += amount * state.demoPurchasePrices[coinId];
+            }
+        }
+    }
+    
+    document.getElementById('demoPortfolioValue').textContent = portfolioValue.toFixed(2);
+    
+    const totalValue = state.demoBalance + portfolioValue;
+    document.getElementById('demoTotalValue').textContent = totalValue.toFixed(2);
+    
+    // Show profit/loss
+    const profitLoss = totalValue - 50; // Starting balance was $50
+    const profitLossElement = document.getElementById('demoProfitLoss');
+    if (profitLoss !== 0) {
+        const percentage = ((profitLoss / 50) * 100).toFixed(2);
+        profitLossElement.textContent = `(${profitLoss >= 0 ? '+' : ''}$${profitLoss.toFixed(2)} / ${profitLoss >= 0 ? '+' : ''}${percentage}%)`;
+        profitLossElement.className = profitLoss >= 0 ? 'profit' : 'loss';
+    } else {
+        profitLossElement.textContent = '';
+    }
+    
+    // Update holdings display
+    updateDemoHoldings();
+    
+    // Update transactions
+    updateDemoTransactions();
+}
+
+function updateDemoHoldings() {
+    const holdingsDiv = document.getElementById('demoHoldings');
+    
+    if (Object.keys(state.demoHoldings).length === 0) {
+        holdingsDiv.innerHTML = '<p style="opacity: 0.7; text-align: center;">No holdings yet. Start trading!</p>';
+        return;
+    }
+    
+    let holdingsHTML = '';
+    for (const [coinId, amount] of Object.entries(state.demoHoldings)) {
+        const coin = COINS.find(c => c.id === coinId);
+        const marketCoin = state.marketData?.find(c => c.id === coinId);
+        
+        if (coin && marketCoin && marketCoin.current_price) {
+            const currentValue = amount * marketCoin.current_price;
+            const purchasePrice = state.demoPurchasePrices[coinId] || marketCoin.current_price;
+            const purchaseValue = amount * purchasePrice;
+            const profitLoss = currentValue - purchaseValue;
+            const profitLossPercent = ((profitLoss / purchaseValue) * 100).toFixed(2);
+            
+            holdingsHTML += `
+                <div class="holding-item">
+                    <div>
+                        <strong>${coin.symbol.toUpperCase()}</strong>
+                        <div style="font-size: 0.85rem; opacity: 0.8;">
+                            ${amount.toFixed(amount > 1 ? 4 : 8)} coins
+                        </div>
+                        <div style="font-size: 0.8rem; opacity: 0.7;">
+                            Avg Buy: $${purchasePrice.toFixed(2)}
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <strong>$${currentValue.toFixed(2)}</strong>
+                        <div class="${profitLoss >= 0 ? 'profit' : 'loss'}" style="font-size: 0.85rem;">
+                            ${profitLoss >= 0 ? '+' : ''}$${profitLoss.toFixed(2)}
+                        </div>
+                        <div class="${profitLoss >= 0 ? 'profit' : 'loss'}" style="font-size: 0.8rem;">
+                            ${profitLoss >= 0 ? '+' : ''}${profitLossPercent}%
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+    }
+    
+    holdingsDiv.innerHTML = holdingsHTML;
+}
+
+function updateDemoTransactions() {
+    const transactionsDiv = document.getElementById('demoTransactions');
+    
+    if (state.demoTransactions.length === 0) {
+        transactionsDiv.innerHTML = '<p style="opacity: 0.7; text-align: center; font-size: 0.9rem;">No transactions yet</p>';
+        return;
+    }
+    
+    // Show last 10 transactions
+    const recentTransactions = state.demoTransactions.slice(-10).reverse();
+    
+    transactionsDiv.innerHTML = recentTransactions.map(tx => {
+        const coin = COINS.find(c => c.id === tx.coinId);
+        const typeColor = tx.type === 'buy' ? '#4ade80' : '#f87171';
+        const typeSymbol = tx.type === 'buy' ? '🟢' : '🔴';
+        
+        return `
+            <div class="transaction-item">
+                <div>
+                    ${typeSymbol} <strong>${tx.type.toUpperCase()}</strong> ${coin?.symbol.toUpperCase() || 'Unknown'}
+                    <div style="font-size: 0.8rem; opacity: 0.7;">
+                        ${tx.amount.toFixed(tx.amount > 1 ? 4 : 8)} @ $${tx.price.toFixed(2)}
+                    </div>
+                </div>
+                <div style="text-align: right; color: ${typeColor};">
+                    ${tx.type === 'buy' ? '-' : '+'}$${tx.total.toFixed(2)}
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+function setMaxAmount() {
+    const select = document.getElementById('demoTradeSelect');
+    if (!select.value) {
+        alert('Please select a coin first');
+        return;
+    }
+    
+    document.getElementById('demoTradeAmount').value = state.demoBalance.toFixed(2);
+    updateTradePreview();
+}
+
+function updateTradePreview() {
+    const select = document.getElementById('demoTradeSelect');
+    const amountInput = document.getElementById('demoTradeAmount');
+    const preview = document.getElementById('tradePreview');
+    
+    if (!select.value || !amountInput.value || parseFloat(amountInput.value) <= 0) {
+        preview.style.display = 'none';
+        return;
+    }
+    
+    const coinId = select.value;
+    const usdAmount = parseFloat(amountInput.value);
+    const coin = COINS.find(c => c.id === coinId);
+    const marketCoin = state.marketData?.find(c => c.id === coinId);
+    
+    if (!marketCoin || !marketCoin.current_price) {
+        preview.innerHTML = '<p style="opacity: 0.7;">Price data not available</p>';
+        preview.style.display = 'block';
+        return;
+    }
+    
+    const currentPrice = marketCoin.current_price;
+    const coinAmount = usdAmount / currentPrice;
+    
+    preview.innerHTML = `
+        <div><strong>${coin.symbol.toUpperCase()}</strong> Current Price: <strong>$${currentPrice.toLocaleString()}</strong></div>
+        <div style="margin-top: 0.3rem;">You will get: <strong>${coinAmount.toFixed(coinAmount > 1 ? 4 : 8)}</strong> ${coin.symbol.toUpperCase()}</div>
+    `;
+    preview.style.display = 'block';
+}
+
+function executeDemoTrade(type) {
+    const select = document.getElementById('demoTradeSelect');
+    const amountInput = document.getElementById('demoTradeAmount');
+    
+    if (!select.value) {
+        alert('Please select a coin to trade');
+        return;
+    }
+    
+    const usdAmount = parseFloat(amountInput.value);
+    if (!usdAmount || usdAmount <= 0) {
+        alert('Please enter a valid amount');
+        return;
+    }
+    
+    const coinId = select.value;
+    const coin = COINS.find(c => c.id === coinId);
+    const marketCoin = state.marketData?.find(c => c.id === coinId);
+    
+    if (!marketCoin || !marketCoin.current_price) {
+        alert('Price data not available for this coin. Please try again.');
+        return;
+    }
+    
+    const currentPrice = marketCoin.current_price;
+    const coinAmount = usdAmount / currentPrice;
+    
+    if (type === 'buy') {
+        // Check if user has enough balance
+        if (usdAmount > state.demoBalance) {
+            alert(`Insufficient balance! You have $${state.demoBalance.toFixed(2)} available.`);
+            return;
+        }
+        
+        // Execute buy
+        state.demoBalance -= usdAmount;
+        state.demoHoldings[coinId] = (state.demoHoldings[coinId] || 0) + coinAmount;
+        
+        // Track purchase price (weighted average)
+        if (state.demoPurchasePrices[coinId]) {
+            const oldAmount = state.demoHoldings[coinId] - coinAmount;
+            const oldValue = oldAmount * state.demoPurchasePrices[coinId];
+            const newValue = coinAmount * currentPrice;
+            state.demoPurchasePrices[coinId] = (oldValue + newValue) / state.demoHoldings[coinId];
+        } else {
+            state.demoPurchasePrices[coinId] = currentPrice;
+        }
+        
+        // Record transaction
+        state.demoTransactions.push({
+            type: 'buy',
+            coinId: coinId,
+            amount: coinAmount,
+            price: currentPrice,
+            total: usdAmount,
+            timestamp: new Date().toISOString()
+        });
+        
+        alert(`✅ Bought ${coinAmount.toFixed(coinAmount > 1 ? 4 : 8)} ${coin.symbol.toUpperCase()} for $${usdAmount.toFixed(2)}`);
+        
+    } else if (type === 'sell') {
+        // Check if user has the coin
+        const holding = state.demoHoldings[coinId] || 0;
+        
+        if (holding <= 0) {
+            alert(`You don't own any ${coin.symbol.toUpperCase()} to sell!`);
+            return;
+        }
+        
+        // Check if trying to sell more than owned
+        if (coinAmount > holding) {
+            alert(`You only have ${holding.toFixed(holding > 1 ? 4 : 8)} ${coin.symbol.toUpperCase()}. Maximum sell value: $${(holding * currentPrice).toFixed(2)}`);
+            return;
+        }
+        
+        // Execute sell
+        state.demoBalance += usdAmount;
+        state.demoHoldings[coinId] -= coinAmount;
+        
+        // Remove from holdings if zero
+        if (state.demoHoldings[coinId] <= 0.00000001) {
+            delete state.demoHoldings[coinId];
+            delete state.demoPurchasePrices[coinId];
+        }
+        
+        // Record transaction
+        state.demoTransactions.push({
+            type: 'sell',
+            coinId: coinId,
+            amount: coinAmount,
+            price: currentPrice,
+            total: usdAmount,
+            timestamp: new Date().toISOString()
+        });
+        
+        alert(`✅ Sold ${coinAmount.toFixed(coinAmount > 1 ? 4 : 8)} ${coin.symbol.toUpperCase()} for $${usdAmount.toFixed(2)}`);
+    }
+    
+    // Save to localStorage
+    localStorage.setItem('demoBalance', state.demoBalance);
+    localStorage.setItem('demoHoldings', JSON.stringify(state.demoHoldings));
+    localStorage.setItem('demoTransactions', JSON.stringify(state.demoTransactions));
+    localStorage.setItem('demoPurchasePrices', JSON.stringify(state.demoPurchasePrices));
+    
+    // Update display
+    updateDemoDisplay();
+    
+    // Clear inputs
+    amountInput.value = '';
+    document.getElementById('tradePreview').style.display = 'none';
+}
+
+function resetDemoAccount() {
+    if (!confirm('Are you sure you want to reset your demo account? All your holdings and transaction history will be lost.')) {
+        return;
+    }
+    
+    state.demoBalance = 50.00;
+    state.demoHoldings = {};
+    state.demoTransactions = [];
+    state.demoPurchasePrices = {};
+    
+    localStorage.setItem('demoBalance', state.demoBalance);
+    localStorage.setItem('demoHoldings', JSON.stringify(state.demoHoldings));
+    localStorage.setItem('demoTransactions', JSON.stringify(state.demoTransactions));
+    localStorage.setItem('demoPurchasePrices', JSON.stringify(state.demoPurchasePrices));
+    
+    updateDemoDisplay();
+    
+    alert('✅ Demo account reset! You have $50.00 to start trading again.');
+}
+
 
 // ====== Event Handlers ======
 function setupEventListeners() {
@@ -1397,6 +1849,10 @@ function setupEventListeners() {
             updateChartShareLink();
         });
     });
+
+    // Demo trading events
+    document.getElementById('demoTradeSelect').addEventListener('change', updateTradePreview);
+    document.getElementById('demoTradeAmount').addEventListener('input', updateTradePreview);
 
     // Alert form
     document.getElementById('alertForm').addEventListener('submit', (e) => {
@@ -1488,6 +1944,7 @@ setInterval(() => {
     // Update portfolio value periodically if market data is available
     if (state.marketData) {
         updatePortfolioValue();
+        updateDemoDisplay(); // Update demo trading display with live prices
     }
 
     // You might also want to check alerts against current prices periodically

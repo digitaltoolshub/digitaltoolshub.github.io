@@ -474,15 +474,19 @@
         <h3>Learn Crypto Trading</h3>
         <p>New to crypto? Our educational resources provide guides on **how to read crypto charts**, **beginner technical analysis**, and essential **crypto risk management** strategies to help you get started in **crypto trading**.</p>
 
-        <h4>Supported Cryptocurrencies include:</h4>
+        <h4>Supported Cryptocurrencies (100+ coins):</h4>
         <ul>
-            <li>**Bitcoin (BTC):** The leading cryptocurrency</li>
-            <li>**Ethereum (ETH):** The main altcoin for dApps and smart contracts</li>
-            <li>**Binance Coin (BNB):** The utility token of the Binance ecosystem</li>
-            <li>**Solana (SOL):** Known for its high speed and low transaction costs</li>
-            <li>**Dogecoin (DOGE):** A popular meme cryptocurrency</li>
-            <li>**Shiba Inu (SHIB):** An Ethereum-based meme coin</li>
-             <li>... and many more altcoins!</li>
+            <li>**Major Coins:** Bitcoin (BTC), Ethereum (ETH), BNB, XRP, Cardano (ADA), Solana (SOL), Dogecoin (DOGE)</li>
+            <li>**DeFi Tokens:** Uniswap (UNI), Aave (AAVE), Maker (MKR), Compound (COMP), Curve (CRV), SushiSwap (SUSHI), PancakeSwap (CAKE)</li>
+            <li>**Layer 1 Blockchains:** Avalanche (AVAX), Polkadot (DOT), Cosmos (ATOM), NEAR, Algorand (ALGO), Fantom (FTM), Aptos (APT), Sui (SUI)</li>
+            <li>**Layer 2 Solutions:** Polygon (MATIC), Arbitrum (ARB), Optimism (OP), Immutable X (IMX)</li>
+            <li>**Meme Coins:** Shiba Inu (SHIB), Pepe (PEPE), Floki (FLOKI), Bonk (BONK)</li>
+            <li>**Web3 & Metaverse:** The Sandbox (SAND), Decentraland (MANA), Axie Infinity (AXS), Gala (GALA), ApeCoin (APE)</li>
+            <li>**Infrastructure:** Chainlink (LINK), The Graph (GRT), Filecoin (FIL), Render (RNDR)</li>
+            <li>**AI Tokens:** Fetch.ai (FET), SingularityNET (AGIX), Ocean Protocol (OCEAN)</li>
+            <li>**Privacy Coins:** Monero (XMR), Zcash (ZEC)</li>
+            <li>**Legacy Coins:** Litecoin (LTC), Bitcoin Cash (BCH), Ethereum Classic (ETC), Stellar (XLM)</li>
+            <li>**...and 100+ more cryptocurrencies available for tracking!**</li>
         </ul>
 
         <p>Whether you're looking for **free crypto chart analysis**, a reliable **crypto price tracker**, or tools to manage your **crypto portfolio**, CryptoVision Pro aims to be your go-to **online digital tool** for the cryptocurrency market. Start using our **free crypto analyzer** today!</p>
@@ -502,20 +506,136 @@
 <script>
 // ====== Configuration ======
 const COINS = [
+    // Top Market Cap Coins
     {id: 'bitcoin', symbol: 'BTC', name: 'Bitcoin', binanceSymbol: 'BTCUSDT'},
     {id: 'ethereum', symbol: 'ETH', name: 'Ethereum', binanceSymbol: 'ETHUSDT'},
+    {id: 'tether', symbol: 'USDT', name: 'Tether', binanceSymbol: 'USDCUSDT'},
     {id: 'binancecoin', symbol: 'BNB', name: 'BNB', binanceSymbol: 'BNBUSDT'},
     {id: 'solana', symbol: 'SOL', name: 'Solana', binanceSymbol: 'SOLUSDT'},
+    {id: 'usd-coin', symbol: 'USDC', name: 'USD Coin', binanceSymbol: 'USDCUSDT'},
     {id: 'ripple', symbol: 'XRP', name: 'XRP', binanceSymbol: 'XRPUSDT'},
     {id: 'cardano', symbol: 'ADA', name: 'Cardano', binanceSymbol: 'ADAUSDT'},
     {id: 'dogecoin', symbol: 'DOGE', name: 'Dogecoin', binanceSymbol: 'DOGEUSDT'},
-    {id: 'shiba-inu', symbol: 'SHIB', name: 'Shiba Inu', binanceSymbol: 'SHIBUSDT'},
+    {id: 'tron', symbol: 'TRX', name: 'Tron', binanceSymbol: 'TRXUSDT'},
+    
+    // DeFi & Layer 1 Blockchains
+    {id: 'avalanche-2', symbol: 'AVAX', name: 'Avalanche', binanceSymbol: 'AVAXUSDT'},
     {id: 'polkadot', symbol: 'DOT', name: 'Polkadot', binanceSymbol: 'DOTUSDT'},
     {id: 'polygon', symbol: 'MATIC', name: 'Polygon', binanceSymbol: 'MATICUSDT'},
+    {id: 'chainlink', symbol: 'LINK', name: 'Chainlink', binanceSymbol: 'LINKUSDT'},
+    {id: 'wrapped-bitcoin', symbol: 'WBTC', name: 'Wrapped Bitcoin', binanceSymbol: 'WBTCUSDT'},
+    {id: 'uniswap', symbol: 'UNI', name: 'Uniswap', binanceSymbol: 'UNIUSDT'},
     {id: 'litecoin', symbol: 'LTC', name: 'Litecoin', binanceSymbol: 'LTCUSDT'},
-    {id: 'avalanche-2', symbol: 'AVAX', name: 'Avalanche', binanceSymbol: 'AVAXUSDT'},
-    {id: 'chainlink', symbol: 'LINK', name: 'Chainlink', binanceSymbol: 'LINKUSDT'}
-    // Add more coins here if your site supports them
+    {id: 'cosmos', symbol: 'ATOM', name: 'Cosmos', binanceSymbol: 'ATOMUSDT'},
+    {id: 'ethereum-classic', symbol: 'ETC', name: 'Ethereum Classic', binanceSymbol: 'ETCUSDT'},
+    {id: 'stellar', symbol: 'XLM', name: 'Stellar', binanceSymbol: 'XLMUSDT'},
+    
+    // Meme Coins & Popular Alts
+    {id: 'shiba-inu', symbol: 'SHIB', name: 'Shiba Inu', binanceSymbol: 'SHIBUSDT'},
+    {id: 'pepe', symbol: 'PEPE', name: 'Pepe', binanceSymbol: 'PEPEUSDT'},
+    {id: 'floki', symbol: 'FLOKI', name: 'Floki Inu', binanceSymbol: 'FLOKIUSDT'},
+    {id: 'bonk', symbol: 'BONK', name: 'Bonk', binanceSymbol: 'BONKUSDT'},
+    
+    // Layer 2 & Scaling Solutions
+    {id: 'arbitrum', symbol: 'ARB', name: 'Arbitrum', binanceSymbol: 'ARBUSDT'},
+    {id: 'optimism', symbol: 'OP', name: 'Optimism', binanceSymbol: 'OPUSDT'},
+    {id: 'immutable-x', symbol: 'IMX', name: 'Immutable X', binanceSymbol: 'IMXUSDT'},
+    
+    // DeFi Tokens
+    {id: 'aave', symbol: 'AAVE', name: 'Aave', binanceSymbol: 'AAVEUSDT'},
+    {id: 'maker', symbol: 'MKR', name: 'Maker', binanceSymbol: 'MKRUSDT'},
+    {id: 'compound', symbol: 'COMP', name: 'Compound', binanceSymbol: 'COMPUSDT'},
+    {id: 'curve-dao-token', symbol: 'CRV', name: 'Curve DAO', binanceSymbol: 'CRVUSDT'},
+    {id: 'pancakeswap-token', symbol: 'CAKE', name: 'PancakeSwap', binanceSymbol: 'CAKEUSDT'},
+    {id: 'sushi', symbol: 'SUSHI', name: 'SushiSwap', binanceSymbol: 'SUSHIUSDT'},
+    
+    // Web3 & Metaverse
+    {id: 'the-sandbox', symbol: 'SAND', name: 'The Sandbox', binanceSymbol: 'SANDUSDT'},
+    {id: 'decentraland', symbol: 'MANA', name: 'Decentraland', binanceSymbol: 'MANAUSDT'},
+    {id: 'axie-infinity', symbol: 'AXS', name: 'Axie Infinity', binanceSymbol: 'AXSUSDT'},
+    {id: 'gala', symbol: 'GALA', name: 'Gala', binanceSymbol: 'GALAUSDT'},
+    {id: 'enjincoin', symbol: 'ENJ', name: 'Enjin Coin', binanceSymbol: 'ENJUSDT'},
+    
+    // Smart Contract Platforms
+    {id: 'near', symbol: 'NEAR', name: 'NEAR Protocol', binanceSymbol: 'NEARUSDT'},
+    {id: 'aptos', symbol: 'APT', name: 'Aptos', binanceSymbol: 'APTUSDT'},
+    {id: 'sui', symbol: 'SUI', name: 'Sui', binanceSymbol: 'SUIUSDT'},
+    {id: 'algorand', symbol: 'ALGO', name: 'Algorand', binanceSymbol: 'ALGOUSDT'},
+    {id: 'hedera-hashgraph', symbol: 'HBAR', name: 'Hedera', binanceSymbol: 'HBARUSDT'},
+    {id: 'vechain', symbol: 'VET', name: 'VeChain', binanceSymbol: 'VETUSDT'},
+    {id: 'fantom', symbol: 'FTM', name: 'Fantom', binanceSymbol: 'FTMUSDT'},
+    {id: 'elrond-erd-2', symbol: 'EGLD', name: 'MultiversX', binanceSymbol: 'EGLDUSDT'},
+    {id: 'flow', symbol: 'FLOW', name: 'Flow', binanceSymbol: 'FLOWUSDT'},
+    {id: 'tezos', symbol: 'XTZ', name: 'Tezos', binanceSymbol: 'XTZUSDT'},
+    
+    // Exchange Tokens
+    {id: 'crypto-com-chain', symbol: 'CRO', name: 'Cronos', binanceSymbol: 'CROUSDT'},
+    {id: 'okb', symbol: 'OKB', name: 'OKB', binanceSymbol: 'OKBUSDT'},
+    {id: 'kucoin-shares', symbol: 'KCS', name: 'KuCoin Token', binanceSymbol: 'KCSUSDT'},
+    
+    // Storage & Infrastructure
+    {id: 'filecoin', symbol: 'FIL', name: 'Filecoin', binanceSymbol: 'FILUSDT'},
+    {id: 'the-graph', symbol: 'GRT', name: 'The Graph', binanceSymbol: 'GRTUSDT'},
+    {id: 'theta-token', symbol: 'THETA', name: 'Theta Network', binanceSymbol: 'THETAUSDT'},
+    {id: 'render-token', symbol: 'RNDR', name: 'Render', binanceSymbol: 'RNDRUSDT'},
+    
+    // AI & Data Tokens
+    {id: 'fetch-ai', symbol: 'FET', name: 'Fetch.ai', binanceSymbol: 'FETUSDT'},
+    {id: 'singularitynet', symbol: 'AGIX', name: 'SingularityNET', binanceSymbol: 'AGIXUSDT'},
+    {id: 'ocean-protocol', symbol: 'OCEAN', name: 'Ocean Protocol', binanceSymbol: 'OCEANUSDT'},
+    
+    // Privacy Coins
+    {id: 'monero', symbol: 'XMR', name: 'Monero', binanceSymbol: 'XMRUSDT'},
+    {id: 'zcash', symbol: 'ZEC', name: 'Zcash', binanceSymbol: 'ZECUSDT'},
+    
+    // Stablecoins & Wrapped Assets
+    {id: 'dai', symbol: 'DAI', name: 'Dai', binanceSymbol: 'DAIUSDT'},
+    {id: 'true-usd', symbol: 'TUSD', name: 'TrueUSD', binanceSymbol: 'TUSDUSDT'},
+    {id: 'paxos-standard', symbol: 'USDP', name: 'Pax Dollar', binanceSymbol: 'USDPUSDT'},
+    
+    // Gaming & NFT
+    {id: 'immutable-x', symbol: 'IMX', name: 'Immutable X', binanceSymbol: 'IMXUSDT'},
+    {id: 'apecoin', symbol: 'APE', name: 'ApeCoin', binanceSymbol: 'APEUSDT'},
+    {id: 'smooth-love-potion', symbol: 'SLP', name: 'Smooth Love Potion', binanceSymbol: 'SLPUSDT'},
+    
+    // Miscellaneous Popular Coins
+    {id: 'quant-network', symbol: 'QNT', name: 'Quant', binanceSymbol: 'QNTUSDT'},
+    {id: 'leo-token', symbol: 'LEO', name: 'LEO Token', binanceSymbol: 'LEOUSDT'},
+    {id: 'bitdao', symbol: 'BIT', name: 'BitDAO', binanceSymbol: 'BITUSDT'},
+    {id: 'injective-protocol', symbol: 'INJ', name: 'Injective', binanceSymbol: 'INJUSDT'},
+    {id: 'lido-dao', symbol: 'LDO', name: 'Lido DAO', binanceSymbol: 'LDOUSDT'},
+    {id: '1inch', symbol: '1INCH', name: '1inch Network', binanceSymbol: '1INCHUSDT'},
+    {id: 'chiliz', symbol: 'CHZ', name: 'Chiliz', binanceSymbol: 'CHZUSDT'},
+    {id: 'conflux-token', symbol: 'CFX', name: 'Conflux', binanceSymbol: 'CFXUSDT'},
+    {id: 'eos', symbol: 'EOS', name: 'EOS', binanceSymbol: 'EOSUSDT'},
+    {id: 'iota', symbol: 'IOTA', name: 'IOTA', binanceSymbol: 'IOTAUSDT'},
+    {id: 'neo', symbol: 'NEO', name: 'Neo', binanceSymbol: 'NEOUSDT'},
+    {id: 'dash', symbol: 'DASH', name: 'Dash', binanceSymbol: 'DASHUSDT'},
+    {id: 'bitcoin-cash', symbol: 'BCH', name: 'Bitcoin Cash', binanceSymbol: 'BCHUSDT'},
+    {id: 'bitcoin-sv', symbol: 'BSV', name: 'Bitcoin SV', binanceSymbol: 'BSVUSDT'},
+    {id: 'basic-attention-token', symbol: 'BAT', name: 'Basic Attention Token', binanceSymbol: 'BATUSDT'},
+    {id: 'zilliqa', symbol: 'ZIL', name: 'Zilliqa', binanceSymbol: 'ZILUSDT'},
+    {id: 'ontology', symbol: 'ONT', name: 'Ontology', binanceSymbol: 'ONTUSDT'},
+    {id: 'ravencoin', symbol: 'RVN', name: 'Ravencoin', binanceSymbol: 'RVNUSDT'},
+    {id: 'decred', symbol: 'DCR', name: 'Decred', binanceSymbol: 'DCRUSDT'},
+    {id: 'icon', symbol: 'ICX', name: 'ICON', binanceSymbol: 'ICXUSDT'},
+    {id: 'qtum', symbol: 'QTUM', name: 'Qtum', binanceSymbol: 'QTUMUSDT'},
+    {id: 'harmony', symbol: 'ONE', name: 'Harmony', binanceSymbol: 'ONEUSDT'},
+    {id: 'celo', symbol: 'CELO', name: 'Celo', binanceSymbol: 'CELOUSDT'},
+    {id: 'kava', symbol: 'KAVA', name: 'Kava', binanceSymbol: 'KAVAUSDT'},
+    {id: 'band-protocol', symbol: 'BAND', name: 'Band Protocol', binanceSymbol: 'BANDUSDT'},
+    {id: 'kusama', symbol: 'KSM', name: 'Kusama', binanceSymbol: 'KSMUSDT'},
+    {id: 'thorchain', symbol: 'RUNE', name: 'THORChain', binanceSymbol: 'RUNEUSDT'},
+    {id: 'synthetix-network-token', symbol: 'SNX', name: 'Synthetix', binanceSymbol: 'SNXUSDT'},
+    {id: 'yearn-finance', symbol: 'YFI', name: 'yearn.finance', binanceSymbol: 'YFIUSDT'},
+    {id: 'uma', symbol: 'UMA', name: 'UMA', binanceSymbol: 'UMAUSDT'},
+    {id: 'loopring', symbol: 'LRC', name: 'Loopring', binanceSymbol: 'LRCUSDT'},
+    {id: 'ren', symbol: 'REN', name: 'Ren', binanceSymbol: 'RENUSDT'},
+    {id: 'balancer', symbol: 'BAL', name: 'Balancer', binanceSymbol: 'BALUSDT'},
+    {id: 'nervos-network', symbol: 'CKB', name: 'Nervos Network', binanceSymbol: 'CKBUSDT'},
+    {id: 'storj', symbol: 'STORJ', name: 'Storj', binanceSymbol: 'STORJUSDT'},
+    {id: 'ankr', symbol: 'ANKR', name: 'Ankr', binanceSymbol: 'ANKRUSDT'},
+    {id: 'energy-web-token', symbol: 'EWT', name: 'Energy Web Token', binanceSymbol: 'EWTUSDT'}
 ];
 
 // Achievement system

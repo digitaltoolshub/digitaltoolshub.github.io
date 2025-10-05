@@ -281,6 +281,55 @@
         .referral-input button {
             width: auto;
         }
+        .search-container {
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+        .search-container input {
+            padding-right: 2.5rem;
+        }
+        .search-icon {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .coin-dropdown {
+            max-height: 0;
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: max-height 0.3s ease;
+            margin-bottom: 0.5rem;
+        }
+        .coin-dropdown.show {
+            max-height: 250px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .coin-option {
+            padding: 0.75rem;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background 0.2s;
+        }
+        .coin-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .coin-option:last-child {
+            border-bottom: none;
+        }
+        .selected-coin {
+            padding: 0.75rem;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: 1fr;
@@ -313,21 +362,20 @@
 
         <div class="card" id="trading-chart">
             <h2>📈 Advanced Trading Chart</h2>
-            <select id="chartCoinSelect">
-                <option value="BTCUSDT">Bitcoin (BTC/USDT)</option>
-                <option value="ETHUSDT">Ethereum (ETH/USDT)</option>
-                <option value="BNBUSDT">BNB (BNB/USDT)</option>
-                <option value="SOLUSDT">Solana (SOL/USDT)</option>
-                <option value="XRPUSDT">XRP (XRP/USDT)</option>
-                <option value="ADAUSDT">Cardano (ADA/USDT)</option>
-                <option value="DOGEUSDT">Dogecoin (DOGE/USDT)</option>
-                <option value="SHIBUSDT">Shiba Inu (SHIB/USDT)</option>
-                <option value="DOTUSDT">Polkadot (DOT/USDT)</option>
-                <option value="MATICUSDT">Polygon (MATIC/USDT)</option>
-                <option value="LTCUSDT">Litecoin (LTC/USDT)</option>
-                <option value="AVAXUSDT">Avalanche (AVAX/USDT)</option>
-                <option value="LINKUSDT">Chainlink (LINK/USDT)</option>
-            </select>
+            
+            <div class="search-container">
+                <input type="text" id="coinSearch" placeholder="🔍 Search for a coin (e.g., Bitcoin, ETH, SOL)..." autocomplete="off">
+                <span class="search-icon">🔍</span>
+            </div>
+            
+            <div class="selected-coin" id="selectedCoin" onclick="toggleCoinDropdown()">
+                <span id="selectedCoinText">Bitcoin (BTC/USDT)</span>
+                <span>▼</span>
+            </div>
+            
+            <div class="coin-dropdown" id="coinDropdown">
+                <!-- Populated dynamically -->
+            </div>
 
             <div class="timeframe-buttons">
                 <button data-timeframe="1" class="active">1m</button>
@@ -593,6 +641,47 @@ function populateSelects() {
         option2.textContent = `${coin.name} (${coin.symbol})`;
         portfolioSelect.appendChild(option2);
     });
+    
+    // Populate chart coin dropdown
+    populateChartCoins();
+}
+
+// Populate chart coin dropdown with search
+function populateChartCoins(searchTerm = '') {
+    const dropdown = document.getElementById('coinDropdown');
+    const filteredCoins = COINS.filter(coin => {
+        const search = searchTerm.toLowerCase();
+        return coin.name.toLowerCase().includes(search) || 
+               coin.symbol.toLowerCase().includes(search) ||
+               coin.binanceSymbol.toLowerCase().includes(search);
+    });
+    
+    dropdown.innerHTML = filteredCoins.map(coin => `
+        <div class="coin-option" onclick="selectChartCoin('${coin.binanceSymbol}', '${coin.name} (${coin.symbol}/USDT)')">
+            <strong>${coin.name}</strong> <span style="opacity: 0.7;">(${coin.symbol}/USDT)</span>
+        </div>
+    `).join('');
+    
+    if (filteredCoins.length === 0) {
+        dropdown.innerHTML = '<div class="coin-option" style="opacity: 0.7; cursor: default;">No coins found</div>';
+    }
+}
+
+// Toggle coin dropdown visibility
+function toggleCoinDropdown() {
+    const dropdown = document.getElementById('coinDropdown');
+    dropdown.classList.toggle('show');
+}
+
+// Select a chart coin
+function selectChartCoin(binanceSymbol, displayText) {
+    state.currentCoin = binanceSymbol;
+    document.getElementById('selectedCoinText').textContent = displayText;
+    document.getElementById('coinDropdown').classList.remove('show');
+    document.getElementById('coinSearch').value = '';
+    updateChart();
+    updateChartShareLink();
+    populateChartCoins(); // Reset the dropdown
 }
 
 // ====== Data Fetching ======
@@ -1007,11 +1096,26 @@ function setupEventListeners() {
         });
     });
 
-    // Chart coin selection
-    document.getElementById('chartCoinSelect').addEventListener('change', (e) => {
-        state.currentCoin = e.target.value;
-        updateChart();
-        updateChartShareLink();
+    // Chart coin search
+    document.getElementById('coinSearch').addEventListener('input', (e) => {
+        const searchTerm = e.target.value;
+        populateChartCoins(searchTerm);
+        if (searchTerm.length > 0) {
+            document.getElementById('coinDropdown').classList.add('show');
+        } else {
+            document.getElementById('coinDropdown').classList.remove('show');
+        }
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        const dropdown = document.getElementById('coinDropdown');
+        const searchInput = document.getElementById('coinSearch');
+        const selectedCoin = document.getElementById('selectedCoin');
+        
+        if (!dropdown.contains(e.target) && !searchInput.contains(e.target) && !selectedCoin.contains(e.target)) {
+            dropdown.classList.remove('show');
+        }
     });
 
     // Timeframe selection
@@ -1134,15 +1238,14 @@ setInterval(() => {
      let timeframeUpdatedFromUrl = false;
 
      if (chartSymbol) {
-         const select = document.getElementById('chartCoinSelect');
-         // Find if the symbol exists in the options
-         const optionExists = Array.from(select.options).some(opt => opt.value === chartSymbol);
-         if (optionExists) {
-             select.value = chartSymbol;
+         // Find if the symbol exists in COINS
+         const coin = COINS.find(c => c.binanceSymbol === chartSymbol);
+         if (coin) {
              state.currentCoin = chartSymbol;
+             document.getElementById('selectedCoinText').textContent = `${coin.name} (${coin.symbol}/USDT)`;
              chartUpdatedFromUrl = true;
          } else {
-             console.warn(`Chart symbol "${chartSymbol}" from URL not found in select options.`);
+             console.warn(`Chart symbol "${chartSymbol}" from URL not found in coin list.`);
          }
      }
 

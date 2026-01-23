@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-R4N9RB1SNN');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macronutrient Blueprint - Peak Physical Engineering | Digital Tools Hub</title>
+    <meta name="description"
+        content="Calculate your optimal macronutrient ratios with the Blueprint. Precise engineering for body composition, athletic performance, and nutritional dominance.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --protein: #f43f5e;
+            --carbs: #3b82f6;
+            --fats: #fbbf24;
+            --dark: #0f172a;
+            --glass: rgba(15, 23, 42, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+        }
+
+        .main-card {
+            background: var(--glass);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            border-radius: 40px;
+            padding: 50px;
+            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.6);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            background: linear-gradient(to right, white, #94a3b8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #94a3b8;
+            margin-bottom: 10px;
+        }
+
+        .input-style {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 15px 20px;
+            color: white;
+            font-size: 1.1rem;
+            outline: none;
+        }
+
+        .input-style:focus {
+            border-color: var(--carbs);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .goal-tabs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .goal-tab {
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .goal-tab.active {
+            background: var(--carbs);
+            border-color: var(--carbs);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .result-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 30px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .macro-stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .macro-stat:last-child {
+            border: none;
+        }
+
+        .protein-dot {
+            color: var(--protein);
+        }
+
+        .carb-dot {
+            color: var(--carbs);
+        }
+
+        .fat-dot {
+            color: var(--fats);
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <main class="main-card">
+            <h1>Macro Blueprint</h1>
+
+            <div class="goal-tabs">
+                <div class="goal-tab active" onclick="setGoal('maintenance', this)">Maintain</div>
+                <div class="goal-tab" onclick="setGoal('cutting', this)">Cutting</div>
+                <div class="goal-tab" onclick="setGoal('bulking', this)">Bulking</div>
+            </div>
+
+            <div class="calc-grid">
+                <div class="input-group">
+                    <label>Gender</label>
+                    <select id="gender" class="input-style" onchange="calculate()">
+                        <option value="male">Alpha (Male)</option>
+                        <option value="female">Omega (Female)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Activity Level</label>
+                    <select id="activity" class="input-style" onchange="calculate()">
+                        <option value="1.2">Sedentary</option>
+                        <option value="1.375">Lightly Active</option>
+                        <option value="1.55">Moderately Active</option>
+                        <option value="1.725">Very Active</option>
+                        <option value="1.9">Elite Athletic</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Weight (kg)</label>
+                    <input type="number" id="weight" class="input-style" value="80" oninput="calculate()">
+                </div>
+                <div class="input-group">
+                    <label>Height (cm)</label>
+                    <input type="number" id="height" class="input-style" value="180" oninput="calculate()">
+                </div>
+                <div class="input-group">
+                    <label>Age</label>
+                    <input type="number" id="age" class="input-style" value="25" oninput="calculate()">
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <canvas id="macroChart" style="max-height: 250px;"></canvas>
+            </div>
+        </main>
+
+        <aside class="result-panel">
+            <h2 style="font-size: 1.5rem; margin-bottom: 30px;">Blueprint Targets</h2>
+            <div style="margin-bottom: 40px;">
+                <div style="font-size: 3rem; font-weight: 800;" id="total-calories">0</div>
+                <div style="color: #94a3b8; font-size: 0.8rem; text-transform: uppercase;">Total Daily Calories</div>
+            </div>
+
+            <div class="macro-stat">
+                <span><i class="fas fa-circle protein-dot"></i> Protein</span>
+                <span id="protein-val">0g</span>
+            </div>
+            <div class="macro-stat">
+                <span><i class="fas fa-circle carb-dot"></i> Carbohydrates</span>
+                <span id="carb-val">0g</span>
+            </div>
+            <div class="macro-stat">
+                <span><i class="fas fa-circle fat-dot"></i> Fats</span>
+                <span id="fat-val">0g</span>
+            </div>
+
+            <a href="index.html"
+                style="color: var(--carbs); text-decoration: none; display: inline-block; margin-top: 40px; font-weight: 600; font-size: 0.9rem;">
+                <i class="fas fa-arrow-left"></i> Back to Hub
+            </a>
+        </aside>
+    </div>
+
+    <script>
+        let myChart = null;
+        let currentGoal = 'maintenance';
+
+        function setGoal(goal, el) {
+            currentGoal = goal;
+            document.querySelectorAll('.goal-tab').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            calculate();
+        }
+
+        function calculate() {
+            const gender = document.getElementById('gender').value;
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const age = parseFloat(document.getElementById('age').value);
+            const activity = parseFloat(document.getElementById('activity').value);
+
+            // BMR Calculation (Mifflin-St Jeor Equation)
+            let bmr;
+            if (gender === 'male') {
+                bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+            } else {
+                bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+            }
+
+            let calories = bmr * activity;
+            if (currentGoal === 'cutting') calories -= 500;
+            if (currentGoal === 'bulking') calories += 500;
+
+            document.getElementById('total-calories').textContent = Math.round(calories);
+
+            // Calculate Macros
+            // Protein: 2.2g per kg
+            // Fats: 25% of calories
+            // Carbs: Remainder
+            const protein = weight * 2.2;
+            const fats = (calories * 0.25) / 9;
+            const carbs = (calories - (protein * 4) - (fats * 9)) / 4;
+
+            document.getElementById('protein-val').textContent = Math.round(protein) + 'g';
+            document.getElementById('carb-val').textContent = Math.round(carbs) + 'g';
+            document.getElementById('fat-val').textContent = Math.round(fats) + 'g';
+
+            updateChart(protein, carbs, fats);
+        }
+
+        function updateChart(p, c, f) {
+            const ctx = document.getElementById('macroChart').getContext('2d');
+
+            if (myChart) myChart.destroy();
+
+            myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Protein', 'Carbs', 'Fats'],
+                    datasets: [{
+                        data: [p, c, f],
+                        backgroundColor: ['#f43f5e', '#3b82f6', '#fbbf24'],
+                        borderWidth: 0,
+                        hoverOffset: 20
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    cutout: '70%',
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        window.onload = calculate;
+    </script>
+</body>
+
+</html>

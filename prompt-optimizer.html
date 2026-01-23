@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Prompt Genius | Optimize Your AI Prompts for Better Results</title>
+    <meta name="description"
+        content="Free tool to optimize your AI prompts. Use the RTF (Role, Task, Format) framework to get high-quality results from ChatGPT, Claude, and Gemini.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4158D0;
+            --gradient: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --card-bg: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            color: #333;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--gradient);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            border-radius: 0 0 50px 50px;
+            box-shadow: var(--shadow);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: -50px auto 50px;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #555;
+        }
+
+        textarea,
+        select,
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e4e8;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        textarea:focus,
+        select:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(65, 88, 208, 0.1);
+        }
+
+        .grid-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .output-area {
+            margin-top: 2rem;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 5px solid var(--primary);
+            position: relative;
+            display: none;
+        }
+
+        .output-area.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .copy-btn:hover {
+            background: #eee;
+        }
+
+        .explainer {
+            margin-top: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .explainer h3 {
+            color: var(--primary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        @media (max-width: 600px) {
+            .grid-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1><i class="fas fa-magic"></i> AI Prompt Genius</h1>
+        <p>Transform weak prompts into expert-level AI instructions</p>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <div class="input-group">
+                <label for="basic-prompt">What do you want the AI to do?</label>
+                <textarea id="basic-prompt" rows="4"
+                    placeholder="e.g., Write a blog post about healthy eating"></textarea>
+            </div>
+
+            <div class="grid-options">
+                <div class="input-group">
+                    <label for="role">Expert Role</label>
+                    <select id="role">
+                        <option value="Professional Copywriter">Professional Copywriter (Persuasive & Engaging)</option>
+                        <option value="Senior Software Engineer">Senior Software Engineer (Clean Code & Architecture)
+                        </option>
+                        <option value="Advanced Prompt Engineer">Advanced Prompt Engineer (LLM Optimization)</option>
+                        <option value="Data Scientist">Data Scientist (Analytical & Insightful)</option>
+                        <option value="Business Strategy Consultant">Business Strategy Consultant (Structured &
+                            Strategic)</option>
+                        <option value="Creative Storyteller & Worldbuilder">Creative Storyteller & Worldbuilder</option>
+                        <option value="UX/UI Design Critic">UX/UI Design Critic (User-Centric Feedback)</option>
+                        <option value="Legal & Compliance Expert">Legal & Compliance Expert (Precise & Cautious)
+                        </option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="format">Output Format</label>
+                    <select id="format">
+                        <option value="Markdown with Advanced Headings">Markdown with Advanced Headings</option>
+                        <option value="Detailed Comparison Table">Detailed Comparison Table</option>
+                        <option value="Executive Summary & Bullet Points">Executive Summary & Bullet Points</option>
+                        <option value="Step-by-Step Implementation Guide">Step-by-Step Implementation Guide</option>
+                        <option value="Python/JS/HTML Code Snippet">Technical Code Snippet</option>
+                        <option value="Interactive Q&A Session">Interactive Q&A Session</option>
+                        <option value="Formal Report (Whitepaper Style)">Formal Report (Whitepaper Style)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid-options">
+                <div class="input-group">
+                    <label for="tone">Tone of Voice</label>
+                    <select id="tone">
+                        <option value="Professional & Authoritative">Professional & Authoritative</option>
+                        <option value="Friendly & Encouraging">Friendly & Encouraging</option>
+                        <option value="Academic & Technical">Academic & Technical</option>
+                        <option value="Witty & Irreverent">Witty & Irreverent</option>
+                        <option value="Minimalist & Direct">Minimalist & Direct</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="length">Target Length</label>
+                    <select id="length">
+                        <option value="Concise (under 200 words)">Concise</option>
+                        <option value="Comprehensive (500-800 words)">Comprehensive</option>
+                        <option value="Long-form (1500+ words)">Long-form</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn" onclick="optimizePrompt()">Generate Ultimate Prompt <i
+                    class="fas fa-rocket"></i></button>
+
+            <div id="output-area" class="output-area">
+                <button class="copy-btn" onclick="copyPrompt()">Copy <i class="far fa-copy"></i></button>
+                <label>Your Engineering-Grade Prompt:</label>
+                <div id="optimized-result"
+                    style="white-space: pre-wrap; margin-top: 10px; font-family: 'Consolas', monospace; font-size: 0.95rem; color: #2d3748; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                </div>
+            </div>
+        </div>
+
+        <div class="explainer">
+            <h3>🚀 Ultimate AI Techniques Used:</h3>
+            <ul>
+                <li><strong>Role Prompting:</strong> Sets a high-performance persona to bypass "lazy" responses.</li>
+                <li><strong>Few-Shot Framing:</strong> Priming the AI for specific output structures.</li>
+                <li><strong>Step-by-Step Chain of Thought (CoT):</strong> Forcing the AI to reason before concluding.
+                </li>
+                <li><strong>Negative Constraints:</strong> Telling the AI what *not* to do for better focus.</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="index.html" style="color: var(--primary); text-decoration: none; font-weight: bold;"><i
+                    class="fas fa-arrow-left"></i> Back to Hub Home</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Digital Tools Hub • Engineered for Professional AI Interaction</p>
+    </footer>
+
+    <script>
+        function optimizePrompt() {
+            const basic = document.getElementById('basic-prompt').value.trim();
+            if (!basic) {
+                alert("Please enter a basic task first!");
+                return;
+            }
+
+            const role = document.getElementById('role').value;
+            const format = document.getElementById('format').value;
+            const tone = document.getElementById('tone').value;
+            const length = document.getElementById('length').value;
+
+            const optimized = `[SYSTEM ROLE]
+Act as a ${role}. You have over 15 years of world-class experience in this specific domain. Your goal is to provide the highest utility output possible.
+
+[TASK]
+Main Objective: ${basic}.
+
+[CONSTRAINTS & SPECIFICATIONS]
+1. OUTPUT FORMAT: All responses must be formatted strictly as a ${format}.
+2. TONE: Maintain a ${tone} tone.
+3. DEPTH/LENGTH: Aim for a ${length} response.
+4. QUALITY CONTROL: 
+   - Think step-by-step before providing the final answer.
+   - Avoid generic fluff or repetitive introductory phrases (e.g., "As an AI...").
+   - If citing facts, prioritize accuracy. If making creative choices, prioritize unique and original ideas.
+
+[STRUCTURAL REQUIREMENTS]
+- Begin with a brief "Context Overview".
+- Ensure all major sections are clearly demarcated.
+- End with a "Next Steps" or "Key Takeaways" section to ensure actionable results.
+
+Execute this task with extreme attention to detail.`;
+
+            const resultDiv = document.getElementById('optimized-result');
+            const outputArea = document.getElementById('output-area');
+
+            resultDiv.textContent = optimized;
+            outputArea.classList.add('show');
+            outputArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function copyPrompt() {
+            const result = document.getElementById('optimized-result').textContent;
+            navigator.clipboard.writeText(result).then(() => {
+                const copyBtn = document.querySelector('.copy-btn');
+                copyBtn.innerHTML = 'Copied! <i class="fas fa-check"></i>';
+                setTimeout(() => {
+                    copyBtn.innerHTML = 'Copy <i class="far fa-copy"></i>';
+                }, 2000);
+            });
+        }
+    </script>
+
+</body>
+
+</html>

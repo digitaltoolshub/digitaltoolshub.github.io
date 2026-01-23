@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-R4N9RB1SNN');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-R4N9RB1SNN');
     </script>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" type="text/javascript" async></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
+        crossorigin="anonymous"></script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f"
+        type="text/javascript" async></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ultimate Personality Test - Free MBTI & Digital Tools Hub</title>
-    <meta name="description" content="Discover your MBTI type with our free, scientifically validated personality test. Explore detailed analysis, strengths, careers, and other digital tools on Digital Tools Hub.">
-    <meta name="keywords" content="MBTI test, personality test, Myers-Briggs, personality type, career test, free personality quiz, digital tools, online tools, free tools, self-improvement tools, personal development tools, online assessment, personality assessment">
+    <meta name="description"
+        content="Discover your MBTI type with our free, scientifically validated personality test. Explore detailed analysis, strengths, careers, and other digital tools on Digital Tools Hub.">
+    <meta name="keywords"
+        content="MBTI test, personality test, Myers-Briggs, personality type, career test, free personality quiz, digital tools, online tools, free tools, self-improvement tools, personal development tools, online assessment, personality assessment">
     <meta name="author" content="Digital Tools Hub">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://digitaltoolshub.github.io/personality-test/">
     <meta property="og:title" content="Ultimate Personality Test - Free MBTI & Digital Tools Hub">
-    <meta property="og:description" content="Discover your MBTI type with our free, scientifically validated personality test. Explore detailed analysis, strengths, careers, and other digital tools on Digital Tools Hub.">
+    <meta property="og:description"
+        content="Discover your MBTI type with our free, scientifically validated personality test. Explore detailed analysis, strengths, careers, and other digital tools on Digital Tools Hub.">
     <meta property="og:image" content="https://digitaltoolshub.github.io/images/personality-test-social.jpg">
 
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://digitaltoolshub.github.io/personality-test/">
     <meta property="twitter:title" content="Ultimate Personality Test - Free MBTI & Digital Tools Hub">
-    <meta property="twitter:description" content="Discover your MBTI type with our free, scientifically validated personality test. Explore detailed analysis, strengths, careers, and other digital tools on Digital Tools Hub.">
+    <meta property="twitter:description"
+        content="Discover your MBTI type with our free, scientifically validated personality test. Explore detailed analysis, strengths, careers, and other digital tools on Digital Tools Hub.">
     <meta property="twitter:image" content="https://digitaltoolshub.github.io/images/personality-test-social.jpg">
 
 
@@ -49,802 +56,809 @@
     }
     </script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --primary: #6a0dad;
-            --secondary: #ff6b6b;
-            --accent: #4ecdc4;
-            --dark: #2d3436;
-            --light: #f5f6fa;
-            --extrovert: #FF9E4F;
-            --introvert: #4F8AFF;
-            --ambivert: #9B59B6;
+            --primary: #8b5cf6;
+            --primary-glow: rgba(139, 92, 246, 0.4);
+            --secondary: #ec4899;
+            --accent: #06b6d4;
+            --dark: #0f172a;
+            --glass: rgba(15, 23, 42, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #2d3436, #000000);
-            color: var(--light);
+            font-family: 'Outfit', sans-serif;
+            background: radial-gradient(circle at top right, #1e1b4b, #0f172a);
+            color: #f8fafc;
             margin: 0;
-            padding: 20px;
+            padding: 40px 20px;
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
-            line-height: 1.6;
+            align-items: flex-start;
+            /* Changed from center to allow scrolling from top */
         }
 
         .container {
-            max-width: 800px;
-            width: 90%;
-            background: rgba(45, 52, 54, 0.9);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 900px;
+            width: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            border-radius: 40px;
+            padding: 60px 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             text-align: center;
+            position: relative;
+            overflow: visible;
+            /* Changed from hidden to avoid clipping */
+            margin-bottom: 40px;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
         }
 
         h1 {
-            color: var(--accent);
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        h2, h3 {
-            color: var(--accent);
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
         }
 
         .test-options {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 30px 0;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+            position: relative;
         }
 
         .test-option {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            width: 100%;
-            max-width: 300px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            padding: 40px 30px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .test-option:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px -10px var(--primary-glow);
         }
 
-        .test-option h2 {
-            color: var(--accent);
-            margin-top: 0;
-        }
-
-        .btn {
+        .btn-premium {
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: white;
             border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
+            padding: 18px 40px;
+            border-radius: 20px;
             font-size: 1.1rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            margin-top: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px -5px var(--primary-glow);
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        .btn-premium:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px -5px var(--primary-glow);
         }
 
-        /* Question Screen */
-        .question-container {
+        .question-text {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            color: #fff;
+        }
+
+        .option-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .option-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent);
+            transform: translateX(10px);
+        }
+
+        .option-card span {
+            flex: 1;
+            line-height: 1.4;
+        }
+
+        .result-badge {
+            font-size: 6rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            background: linear-gradient(to bottom, #fff, var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            margin: 20px 0;
+        }
+
+        .dimension-row {
+            margin: 24px 0;
+        }
+
+        .dim-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .dim-bar {
+            height: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .dim-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            box-shadow: 0 0 20px var(--primary-glow);
+            transition: width 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .archetype-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 30px;
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
             text-align: left;
         }
 
-        .question {
-            font-size: 1.3rem;
+        .archetype-item h4 {
             color: var(--accent);
-            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
         }
 
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 30px;
+        .archetype-item p {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            line-height: 1.5;
         }
 
-        .option {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            padding: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-        }
-
-        .option:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .neutral-option {
-            background: rgba(255, 255, 255, 0.05);
+        .famous-list {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #fff;
+            opacity: 0.8;
             font-style: italic;
         }
 
-        .option input {
-            margin-right: 10px;
-        }
-
-        /* Progress Bar */
-        .progress-container {
-            margin: 20px 0;
-            overflow-x: auto;
-            white-space: nowrap;
-            padding-bottom: 10px;
-        }
-
-        .progress-steps {
-            display: inline-flex;
-            gap: 5px;
-        }
-
-        .step {
-            width: 10px;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        .step.active {
-            background: var(--accent);
-        }
-
-        /* Results Screen */
-        .result-container {
-            text-align: left;
-        }
-
-        .result-type {
-            font-size: 3rem;
-            color: var(--secondary);
-            margin: 20px 0;
-            text-align: center;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .type-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .type-image {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--accent);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-
-        .type-description {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--accent);
-        }
-
-        .traits {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
-        .trait {
-            background: rgba(78, 205, 196, 0.2);
-            border: 1px solid var(--accent);
-            border-radius: 20px;
-            padding: 8px 15px;
-            font-size: 0.9rem;
-        }
-
-        .dimension {
-            margin: 15px 0;
-        }
-
-        .dimension-name {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-        }
-
-        .dimension-bar {
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .dimension-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            border-radius: 4px;
-        }
-
-        .social-spectrum {
-            margin: 30px 0;
-            padding: 20px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 10px;
-            border-left: 4px solid var(--ambivert);
-        }
-
-        .spectrum-container {
-            display: flex;
-            height: 30px;
-            background: linear-gradient(90deg, var(--introvert), var(--ambivert), var(--extrovert));
-            border-radius: 15px;
-            margin: 15px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .spectrum-marker {
-            position: absolute;
-            width: 4px;
-            height: 40px;
-            background: white;
-            top: -5px;
-            transform: translateX(-50%);
-            box-shadow: 0 0 5px rgba(255,255,255,0.8);
-        }
-
-        .spectrum-labels {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 5px;
-            font-size: 0.9rem;
-        }
-
-        .social-type {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 1.2rem;
-            padding: 10px;
-            border-radius: 8px;
-            background: rgba(0,0,0,0.2);
-        }
-
-        .extrovert { color: var(--extrovert); }
-        .introvert { color: var(--introvert); }
-        .ambivert { color: var(--ambivert); }
-
-        .hidden {
-            display: none;
-        }
-
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .test-options {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .test-option {
-                width: 100%;
-                max-width: none;
-            }
-
-            .type-header {
-                flex-direction: column;
-                text-align: center;
+                grid-template-columns: 1fr;
             }
 
             h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container" id="start-screen">
-        <h1>Ultimate Personality Test</h1>
-        <p>Discover your true personality type with our scientifically validated MBTI assessment. Get detailed insights into your traits, strengths, and ideal career paths.</p>
+        <h1 class="animate__animated animate__fadeInDown">The Essence of You</h1>
+        <p style="font-size: 1.2rem; color: #94a3b8; margin-bottom: 40px;">Deep dive into your psyche with the ultimate
+            MBTI analysis engine.</p>
 
         <div class="test-options">
             <div class="test-option" onclick="startTest(15)">
-                <h2>Quick Test</h2>
-                <p>15 unique questions</p>
-                <p><em>Faster but less detailed</em></p>
-                <button class="btn">Start Quick Test</button>
+                <h2 style="color: var(--accent);">Rapid Insight</h2>
+                <p style="margin: 20px 0;">15 core metrics distilled for quick typing.</p>
+                <button class="btn-premium">Express</button>
             </div>
 
             <div class="test-option" onclick="startTest(70)">
-                <h2>Full Analysis</h2>
-                <p>70 comprehensive questions</p>
-                <p><em>Detailed and hyper-accurate</em></p>
-                <button class="btn">Start Full Analysis</button>
+                <h2 style="color: var(--secondary);">Total Deep Dive</h2>
+                <p style="margin: 20px 0;">70 detailed behavioral benchmarks for high precision.</p>
+                <button class="btn-premium">Full Scan</button>
             </div>
         </div>
     </div>
 
     <div class="container hidden" id="test-screen">
-        <div class="progress-container">
-            <div class="progress-steps" id="progress-steps"></div>
+        <div id="progress-indicator" style="margin-bottom: 30px; font-weight: 800; color: var(--accent);">0% COMPLETE
         </div>
-        <div class="question-container">
-            <div class="question" id="question-text"></div>
-            <div class="options" id="options-container"></div>
-        </div>
-        <button class="btn" id="next-btn" onclick="nextQuestion()" disabled>Next Question</button>
+        <div class="question-text" id="question-text"></div>
+        <div id="options-container"></div>
     </div>
 
     <div class="container hidden" id="results-screen">
-        <div class="result-container">
-            <h1>Your Personality Results</h1>
-            <div class="result-type" id="result-type">ESTP</div>
+        <div class="result-badge" id="result-type">----</div>
+        <h2 id="type-name" style="font-size: 2rem; margin-bottom: 10px;">The Architect</h2>
+        <p id="type-category"
+            style="color: var(--accent); text-transform: uppercase; letter-spacing: 2px; font-weight: 800; margin-bottom: 40px;">
+            Rationals • Independent</p>
 
-            <div class="type-header">
-                <img class="type-image" id="type-image" src="https://www.16personalities.com/images/types/entrepreneur.png" alt="MBTI personality type illustration">
-                <div>
-                    <h2 id="type-name">The Dynamo</h2>
-                    <p id="type-category">Explorer • Assertive</p>
-                </div>
-            </div>
-
-            <div class="type-description">
-                <p id="type-description">ESTPs are energetic thrill-seekers who are pragmatic and results-oriented. They excel in situations requiring quick action and adaptability.</p>
-                <p id="type-strengths"><strong>Strengths:</strong> Bold, practical, spontaneous, observant, direct</p>
-                <p id="type-weaknesses"><strong>Weaknesses:</strong> Impatient, risk-taking, insensitive, easily bored</p>
-            </div>
-
-            <div class="social-spectrum">
-                <h3>Your Social Energy Spectrum</h3>
-                <div class="spectrum-container" id="spectrum-container">
-                    <div class="spectrum-marker" id="spectrum-marker"></div>
-                </div>
-                <div class="spectrum-labels">
-                    <span>Introvert</span>
-                    <span>Ambivert</span>
-                    <span>Extrovert</span>
-                </div>
-                <div class="social-type" id="social-type">
-                    You are a <span class="ambivert">True Ambivert</span> (52% Extrovert, 48% Introvert)
-                </div>
-                <p id="social-description">You have a perfect balance of social energy, comfortable in both lively gatherings and quiet solitude.</p>
-            </div>
-
-            <h3>Key Personality Traits</h3>
-            <div class="traits" id="traits-container">
-                <div class="trait">Energetic</div>
-                <div class="trait">Practical</div>
-                <div class="trait">Spontaneous</div>
-                <div class="trait">Observant</div>
-                <div class="trait">Direct</div>
-            </div>
-
-            <h3>Your Personality Dimensions</h3>
-            <div class="dimension">
-                <div class="dimension-name">
-                    <span>Extraversion (E)</span>
-                    <span id="e-score">72%</span>
-                </div>
-                <div class="dimension-bar">
-                    <div class="dimension-fill" id="e-bar" style="width: 72%"></div>
-                </div>
-            </div>
-            <div class="dimension">
-                <div class="dimension-name">
-                    <span>Sensing (S)</span>
-                    <span id="s-score">68%</span>
-                </div>
-                <div class="dimension-bar">
-                    <div class="dimension-fill" id="s-bar" style="width: 68%"></div>
-                </div>
-            </div>
-            <div class="dimension">
-                <div class="dimension-name">
-                    <span>Thinking (T)</span>
-                    <span id="t-score">65%</span>
-                </div>
-                <div class="dimension-bar">
-                    <div class="dimension-fill" id="t-bar" style="width: 65%"></div>
-                </div>
-            </div>
-            <div class="dimension">
-                <div class="dimension-name">
-                    <span>Perceiving (P)</span>
-                    <span id="p-score">80%</span>
-                </div>
-                <div class="dimension-bar">
-                    <div class="dimension-fill" id="p-bar" style="width: 80%"></div>
-                </div>
-            </div>
-
-            <h3>Famous People with This Type</h3>
-            <p id="famous-people">Ernest Hemingway, Madonna, Theodore Roosevelt, James Bond (fictional)</p>
-
-            <h3>Best Career Matches</h3>
-            <p id="careers">Entrepreneurs, Athletes, Detectives, Marketing Professionals, Emergency Responders</p>
+        <div
+            style="background: rgba(255,255,255,0.03); padding: 30px; border-radius: 24px; text-align: left; margin-bottom: 40px;">
+            <p id="type-description" style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;"></p>
+            <div id="traits-container" style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
         </div>
-        <button class="btn" onclick="restartTest()">Take Test Again</button>
+
+        <div id="dimensions-container">
+            <!-- Populated by JS -->
+        </div>
+
+        <div class="archetype-box">
+            <div class="archetype-item">
+                <h4>Primary Strength</h4>
+                <p id="type-strengths"></p>
+            </div>
+            <div class="archetype-item">
+                <h4>Growth Path</h4>
+                <p id="type-weaknesses"></p>
+            </div>
+        </div>
+
+        <div class="archetype-box">
+            <div class="archetype-item" style="grid-column: span 2;">
+                <h4>Career Ecosystem</h4>
+                <p id="type-careers"></p>
+            </div>
+        </div>
+
+        <div class="famous-list">
+            Famous Matches: <span id="type-famous"></span>
+        </div>
+
+        <div style="margin-top: 50px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <button class="btn-premium" onclick="restartTest()">Retake Journey</button>
+            <button class="btn-premium" onclick="location.href='index.html'"
+                style="background: rgba(255,255,255,0.1); box-shadow: none;">Hub Home</button>
+        </div>
     </div>
 
     <script>
         // ========== ALL QUESTIONS ========== //
         const quickTestQuestions = [
-            { text: "At a party, you usually:", options: [
-                { text: "Talk to many people, including strangers", type: "E" },
-                { text: "Stay with a few close friends", type: "I" },
-                { text: "Neutral / Depends", type: "N" }
-            ]},
-            { text: "When learning something new, you prefer:", options: [
-                { text: "Practical, hands-on information", type: "S" },
-                { text: "Theoretical concepts and big-picture ideas", type: "N" },
-                { text: "Neutral / Depends", type: "N" }
-            ]},
-            { text: "When making important decisions, you rely more on:", options: [
-                { text: "Logical analysis and objective facts", type: "T" },
-                { text: "Personal values and how others might be affected", type: "F" },
-                { text: "Neutral / Depends", type: "N" }
-            ]},
-            { text: "In your daily life, you prefer:", options: [
-                { text: "Having a planned schedule and clear deadlines", type: "J" },
-                { text: "Keeping your options open and being spontaneous", type: "P" },
-                { text: "Neutral / Depends", type: "N" }
-            ]},
-            { text: "People would describe you as more:", options: [
-                { text: "Outgoing and enthusiastic", type: "E" },
-                { text: "Reserved and thoughtful", type: "I" },
-                { text: "Neutral / Balanced", type: "N" }
-            ]},
-            { text: "Your workspace is typically:", options: [
-                { text: "Organized and tidy", type: "J" },
-                { text: "Flexible and sometimes messy", type: "P" },
-                { text: "Neutral / Depends", type: "N" }
-            ]},
-            { text: "You enjoy social events that are:", options: [
-                { text: "Large gatherings with many people", type: "E" },
-                { text: "Small, intimate gatherings with close friends", type: "I" },
-                { text: "Neutral / Depends", type: "N" }
-            ]},
-            { text: "When considering information, you focus more on:", options: [
-                { text: "Concrete facts and details", type: "S" },
-                { text: "Patterns and future possibilities", type: "N" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "In arguments, you prioritize:", options: [
-                { text: "Objective truth and logical consistency", type: "T" },
-                { text: "Harmony and people's feelings", type: "F" },
-                { text: "Neutral / Depends", type: "N" }
-            ]},
-            { text: "You prefer work environments with:", options: [
-                { text: "Clear structure and expectations", type: "J" },
-                { text: "Flexibility and adaptability", type: "P" },
-                { text: "Neutral / Balanced", type: "N" }
-            ]},
-            { text: "When meeting new people, you:", options: [
-                { text: "Easily start conversations", type: "E" },
-                { text: "Prefer to observe first", type: "I" },
-                { text: "Neutral / Depends", type: "N" }
-            ]},
-            { text: "You learn best through:", options: [
-                { text: "Practical experience and examples", type: "S" },
-                { text: "Theories and conceptual frameworks", type: "N" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "When giving feedback, you focus on:", options: [
-                { text: "What's objectively correct or incorrect", type: "T" },
-                { text: "How the person might feel about it", type: "F" },
-                { text: "Neutral / Depends", type: "N" }
-            ]},
-            { text: "Your vacation planning style is:", options: [
-                { text: "Detailed itineraries", type: "J" },
-                { text: "Go with the flow", type: "P" },
-                { text: "Neutral / Depends", type: "N" }
-            ]},
-            { text: "In group discussions, you:", options: [
-                { text: "Frequently share your thoughts", type: "E" },
-                { text: "Listen more than speak", type: "I" },
-                { text: "Neutral / Balanced", type: "N" }
-            ]}
+            {
+                text: "At a party, you usually:", options: [
+                    { text: "Talk to many people, including strangers", type: "E" },
+                    { text: "Stay with a few close friends", type: "I" },
+                    { text: "Neutral / Depends", type: "N" }
+                ]
+            },
+            {
+                text: "When learning something new, you prefer:", options: [
+                    { text: "Practical, hands-on information", type: "S" },
+                    { text: "Theoretical concepts and big-picture ideas", type: "N" },
+                    { text: "Neutral / Depends", type: "N" }
+                ]
+            },
+            {
+                text: "When making important decisions, you rely more on:", options: [
+                    { text: "Logical analysis and objective facts", type: "T" },
+                    { text: "Personal values and how others might be affected", type: "F" },
+                    { text: "Neutral / Depends", type: "N" }
+                ]
+            },
+            {
+                text: "In your daily life, you prefer:", options: [
+                    { text: "Having a planned schedule and clear deadlines", type: "J" },
+                    { text: "Keeping your options open and being spontaneous", type: "P" },
+                    { text: "Neutral / Depends", type: "N" }
+                ]
+            },
+            {
+                text: "People would describe you as more:", options: [
+                    { text: "Outgoing and enthusiastic", type: "E" },
+                    { text: "Reserved and thoughtful", type: "I" },
+                    { text: "Neutral / Balanced", type: "N" }
+                ]
+            },
+            {
+                text: "Your workspace is typically:", options: [
+                    { text: "Organized and tidy", type: "J" },
+                    { text: "Flexible and sometimes messy", type: "P" },
+                    { text: "Neutral / Depends", type: "N" }
+                ]
+            },
+            {
+                text: "You enjoy social events that are:", options: [
+                    { text: "Large gatherings with many people", type: "E" },
+                    { text: "Small, intimate gatherings with close friends", type: "I" },
+                    { text: "Neutral / Depends", type: "N" }
+                ]
+            },
+            {
+                text: "When considering information, you focus more on:", options: [
+                    { text: "Concrete facts and details", type: "S" },
+                    { text: "Patterns and future possibilities", type: "N" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "In arguments, you prioritize:", options: [
+                    { text: "Objective truth and logical consistency", type: "T" },
+                    { text: "Harmony and people's feelings", type: "F" },
+                    { text: "Neutral / Depends", type: "N" }
+                ]
+            },
+            {
+                text: "You prefer work environments with:", options: [
+                    { text: "Clear structure and expectations", type: "J" },
+                    { text: "Flexibility and adaptability", type: "P" },
+                    { text: "Neutral / Balanced", type: "N" }
+                ]
+            },
+            {
+                text: "When meeting new people, you:", options: [
+                    { text: "Easily start conversations", type: "E" },
+                    { text: "Prefer to observe first", type: "I" },
+                    { text: "Neutral / Depends", type: "N" }
+                ]
+            },
+            {
+                text: "You learn best through:", options: [
+                    { text: "Practical experience and examples", type: "S" },
+                    { text: "Theories and conceptual frameworks", type: "N" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "When giving feedback, you focus on:", options: [
+                    { text: "What's objectively correct or incorrect", type: "T" },
+                    { text: "How the person might feel about it", type: "F" },
+                    { text: "Neutral / Depends", type: "N" }
+                ]
+            },
+            {
+                text: "Your vacation planning style is:", options: [
+                    { text: "Detailed itineraries", type: "J" },
+                    { text: "Go with the flow", type: "P" },
+                    { text: "Neutral / Depends", type: "N" }
+                ]
+            },
+            {
+                text: "In group discussions, you:", options: [
+                    { text: "Frequently share your thoughts", type: "E" },
+                    { text: "Listen more than speak", type: "I" },
+                    { text: "Neutral / Balanced", type: "N" }
+                ]
+            }
         ];
 
         const fullTestQuestions = [
             ...quickTestQuestions,
             // Additional questions for full test
-            { text: "When solving problems, you tend to:", options: [
-                { text: "Follow established methods", type: "S" },
-                { text: "Try innovative approaches", type: "N" },
-                { text: "Neutral / Depends", type: "N" }
-            ]},
-            { text: "Your energy level is highest when:", options: [
-                { text: "You're around other people", type: "E" },
-                { text: "You have time alone", type: "I" },
-                { text: "Neutral / Depends", type: "N" }
-            ]},
-            { text: "When remembering events, you recall:", options: [
-                { text: "Specific details and facts", type: "S" },
-                { text: "The overall impression and meaning", type: "N" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "When evaluating others, you focus on:", options: [
-                { text: "Their competence and achievements", type: "T" },
-                { text: "Their character and values", type: "F" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "You prefer tasks that:", options: [
-                { text: "Have clear completion points", type: "J" },
-                { text: "Are open-ended and evolving", type: "P" },
-                { text: "Neutral / Depends", type: "N" }
-            ]},
-            { text: "In stressful situations, you tend to:", options: [
-                { text: "Seek support from others", type: "E" },
-                { text: "Withdraw to process alone", type: "I" },
-                { text: "Neutral / Depends", type: "N" }
-            ]},
-            { text: "You're more interested in:", options: [
-                { text: "What is actual and concrete", type: "S" },
-                { text: "What is possible and theoretical", type: "N" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "When criticized, you focus on:", options: [
-                { text: "The validity of the critique", type: "T" },
-                { text: "The relationship with the critic", type: "F" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "Your approach to deadlines is:", options: [
-                { text: "Work steadily to finish early", type: "J" },
-                { text: "Work best under last-minute pressure", type: "P" },
-                { text: "Neutral / Depends", type: "N" }
-            ]},
-            { text: "You feel more comfortable:", options: [
-                { text: "Expressing thoughts aloud", type: "E" },
-                { text: "Thinking before speaking", type: "I" },
-                { text: "Neutral / Balanced", type: "N" }
-            ]},
-            { text: "You prefer conversations about:", options: [
-                { text: "Current realities and practical matters", type: "S" },
-                { text: "Ideas and future possibilities", type: "N" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "When making moral judgments, you consider:", options: [
-                { text: "Justice and fairness", type: "T" },
-                { text: "Compassion and circumstances", type: "F" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "Your approach to rules is:", options: [
-                { text: "Follow them unless there's a good reason not to", type: "J" },
-                { text: "Bend them when they don't make sense", type: "P" },
-                { text: "Neutral / Depends", type: "N" }
-            ]},
-            { text: "You prefer to communicate:", options: [
-                { text: "Verbally and through discussion", type: "E" },
-                { text: "In writing or after reflection", type: "I" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "You notice more:", options: [
-                { text: "What's right in front of you", type: "S" },
-                { text: "Hidden meanings and patterns", type: "N" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "When helping others, you focus on:", options: [
-                { text: "Solving their problems", type: "T" },
-                { text: "Supporting their feelings", type: "F" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "Your approach to life is more:", options: [
-                { text: "Structured and planned", type: "J" },
-                { text: "Flexible and spontaneous", type: "P" },
-                { text: "Neutral / Balanced", type: "N" }
-            ]},
-            { text: "You feel more energized after:", options: [
-                { text: "Social interactions", type: "E" },
-                { text: "Time alone or with close friends", type: "I" },
-                { text: "Neutral / Depends", type: "N" }
-            ]},
-            { text: "You trust more:", options: [
-                { text: "Experience and proven methods", type: "S" },
-                { text: "Inspiration and innovation", type: "N" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "When evaluating ideas, you consider:", options: [
-                { text: "Logic and effectiveness", type: "T" },
-                { text: "Impact on people", type: "F" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "You prefer to:", options: [
-                { text: "Make decisions quickly", type: "J" },
-                { text: "Keep options open", type: "P" },
-                { text: "Neutral / Depends", type: "N" }
-            ]},
-            { text: "You're more likely to:", options: [
-                { text: "Speak without thinking", type: "E" },
-                { text: "Think without speaking", type: "I" },
-                { text: "Neutral / Balanced", type: "N" }
-            ]},
-            { text: "You focus more on:", options: [
-                { text: "The present moment", type: "S" },
-                { text: "Future possibilities", type: "N" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "When resolving conflicts, you prioritize:", options: [
-                { text: "Finding the right solution", type: "T" },
-                { text: "Maintaining relationships", type: "F" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "Your approach to projects is:", options: [
-                { text: "Plan carefully before starting", type: "J" },
-                { text: "Dive in and adjust as you go", type: "P" },
-                { text: "Neutral / Depends", type: "N" }
-            ]},
-            { text: "You prefer work that involves:", options: [
-                { text: "Action and variety", type: "E" },
-                { text: "Concentration and depth", type: "I" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "You're more interested in:", options: [
-                { text: "How things work", type: "S" },
-                { text: "Why things work", type: "N" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "When making choices, you consider:", options: [
-                { text: "Objective criteria", type: "T" },
-                { text: "Personal values", type: "F" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "You prefer to have things:", options: [
-                { text: "Decided and settled", type: "J" },
-                { text: "Open for change", type: "P" },
-                { text: "Neutral / Depends", type: "N" }
-            ]},
-            { text: "You're more comfortable with:", options: [
-                { text: "Breadth of knowledge", type: "E" },
-                { text: "Depth of knowledge", type: "I" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "You notice more:", options: [
-                { text: "What people do", type: "S" },
-                { text: "What people mean", type: "N" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "You value more:", options: [
-                { text: "Truth and accuracy", type: "T" },
-                { text: "Tact and diplomacy", type: "F" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "Your approach to time is:", options: [
-                { text: "Punctual and scheduled", type: "J" },
-                { text: "Flexible and fluid", type: "P" },
-                { text: "Neutral / Balanced", type: "N" }
-            ]},
-            { text: "You prefer to work:", options: [
-                { text: "In teams with others", type: "E" },
-                { text: "Independently", type: "I" },
-                { text: "Neutral / Depends", type: "N" }
-            ]},
-            { text: "You focus more on:", options: [
-                { text: "Reality as it is", type: "S" },
-                { text: "Possibilities for improvement", type: "N" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "When evaluating art, you consider:", options: [
-                { text: "Technical skill and execution", type: "T" },
-                { text: "Emotional impact and meaning", type: "F" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "Your approach to tasks is:", options: [
-                { text: "Finish one before starting another", type: "J" },
-                { text: "Work on multiple things at once", type: "P" },
-                { text: "Neutral / Depends", type: "N" }
-            ]},
-            { text: "You prefer to socialize:", options: [
-                { text: "Frequently with many people", type: "E" },
-                { text: "Occasionally with close friends", type: "I" },
-                { text: "Neutral / Balanced", type: "N" }
-            ]},
-            { text: "You trust more:", options: [
-                { text: "Your experience", type: "S" },
-                { text: "Your intuition", type: "N" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "When teaching, you emphasize:", options: [
-                { text: "Facts and knowledge", type: "T" },
-                { text: "Values and motivation", type: "F" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "Your approach to new information is:", options: [
-                { text: "Organize and categorize it", type: "J" },
-                { text: "Explore and play with possibilities", type: "P" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "You prefer to express yourself through:", options: [
-                { text: "Speech and action", type: "E" },
-                { text: "Writing and reflection", type: "I" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "You're more likely to notice:", options: [
-                { text: "What's changed in a familiar place", type: "S" },
-                { text: "Symbolic meanings in your surroundings", type: "N" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "When leading, you focus on:", options: [
-                { text: "Efficiency and results", type: "T" },
-                { text: "Team morale and relationships", type: "F" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "Your approach to commitments is:", options: [
-                { text: "Reliable and consistent", type: "J" },
-                { text: "Adaptable to circumstances", type: "P" },
-                { text: "Neutral / Balanced", type: "N" }
-            ]},
-            { text: "You prefer to learn by:", options: [
-                { text: "Doing and experiencing", type: "E" },
-                { text: "Reading and researching", type: "I" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "You're more interested in:", options: [
-                { text: "Practical applications", type: "S" },
-                { text: "Theoretical foundations", type: "N" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "When evaluating products, you consider:", options: [
-                { text: "Features and specifications", type: "T" },
-                { text: "Design and user experience", type: "F" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "Your approach to change is:", options: [
-                { text: "Prefer stability and routine", type: "J" },
-                { text: "Welcome variety and novelty", type: "P" },
-                { text: "Neutral / Balanced", type: "N" }
-            ]},
-            { text: "You prefer conversations that:", options: [
-                { text: "Cover many topics", type: "E" },
-                { text: "Explore topics in depth", type: "I" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "You trust more:", options: [
-                { text: "What you can see and measure", type: "S" },
-                { text: "Your instincts and hunches", type: "N" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "When solving problems, you consider:", options: [
-                { text: "Logical consequences", type: "T" },
-                { text: "Human impact", type: "F" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "Your approach to goals is:", options: [
-                { text: "Set clear targets and work toward them", type: "J" },
-                { text: "Stay open to new opportunities", type: "P" },
-                { text: "Neutral / Balanced", type: "N" }
-            ]},
+            {
+                text: "When solving problems, you tend to:", options: [
+                    { text: "Follow established methods", type: "S" },
+                    { text: "Try innovative approaches", type: "N" },
+                    { text: "Neutral / Depends", type: "N" }
+                ]
+            },
+            {
+                text: "Your energy level is highest when:", options: [
+                    { text: "You're around other people", type: "E" },
+                    { text: "You have time alone", type: "I" },
+                    { text: "Neutral / Depends", type: "N" }
+                ]
+            },
+            {
+                text: "When remembering events, you recall:", options: [
+                    { text: "Specific details and facts", type: "S" },
+                    { text: "The overall impression and meaning", type: "N" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "When evaluating others, you focus on:", options: [
+                    { text: "Their competence and achievements", type: "T" },
+                    { text: "Their character and values", type: "F" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "You prefer tasks that:", options: [
+                    { text: "Have clear completion points", type: "J" },
+                    { text: "Are open-ended and evolving", type: "P" },
+                    { text: "Neutral / Depends", type: "N" }
+                ]
+            },
+            {
+                text: "In stressful situations, you tend to:", options: [
+                    { text: "Seek support from others", type: "E" },
+                    { text: "Withdraw to process alone", type: "I" },
+                    { text: "Neutral / Depends", type: "N" }
+                ]
+            },
+            {
+                text: "You're more interested in:", options: [
+                    { text: "What is actual and concrete", type: "S" },
+                    { text: "What is possible and theoretical", type: "N" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "When criticized, you focus on:", options: [
+                    { text: "The validity of the critique", type: "T" },
+                    { text: "The relationship with the critic", type: "F" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "Your approach to deadlines is:", options: [
+                    { text: "Work steadily to finish early", type: "J" },
+                    { text: "Work best under last-minute pressure", type: "P" },
+                    { text: "Neutral / Depends", type: "N" }
+                ]
+            },
+            {
+                text: "You feel more comfortable:", options: [
+                    { text: "Expressing thoughts aloud", type: "E" },
+                    { text: "Thinking before speaking", type: "I" },
+                    { text: "Neutral / Balanced", type: "N" }
+                ]
+            },
+            {
+                text: "You prefer conversations about:", options: [
+                    { text: "Current realities and practical matters", type: "S" },
+                    { text: "Ideas and future possibilities", type: "N" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "When making moral judgments, you consider:", options: [
+                    { text: "Justice and fairness", type: "T" },
+                    { text: "Compassion and circumstances", type: "F" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "Your approach to rules is:", options: [
+                    { text: "Follow them unless there's a good reason not to", type: "J" },
+                    { text: "Bend them when they don't make sense", type: "P" },
+                    { text: "Neutral / Depends", type: "N" }
+                ]
+            },
+            {
+                text: "You prefer to communicate:", options: [
+                    { text: "Verbally and through discussion", type: "E" },
+                    { text: "In writing or after reflection", type: "I" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "You notice more:", options: [
+                    { text: "What's right in front of you", type: "S" },
+                    { text: "Hidden meanings and patterns", type: "N" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "When helping others, you focus on:", options: [
+                    { text: "Solving their problems", type: "T" },
+                    { text: "Supporting their feelings", type: "F" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "Your approach to life is more:", options: [
+                    { text: "Structured and planned", type: "J" },
+                    { text: "Flexible and spontaneous", type: "P" },
+                    { text: "Neutral / Balanced", type: "N" }
+                ]
+            },
+            {
+                text: "You feel more energized after:", options: [
+                    { text: "Social interactions", type: "E" },
+                    { text: "Time alone or with close friends", type: "I" },
+                    { text: "Neutral / Depends", type: "N" }
+                ]
+            },
+            {
+                text: "You trust more:", options: [
+                    { text: "Experience and proven methods", type: "S" },
+                    { text: "Inspiration and innovation", type: "N" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "When evaluating ideas, you consider:", options: [
+                    { text: "Logic and effectiveness", type: "T" },
+                    { text: "Impact on people", type: "F" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "You prefer to:", options: [
+                    { text: "Make decisions quickly", type: "J" },
+                    { text: "Keep options open", type: "P" },
+                    { text: "Neutral / Depends", type: "N" }
+                ]
+            },
+            {
+                text: "You're more likely to:", options: [
+                    { text: "Speak without thinking", type: "E" },
+                    { text: "Think without speaking", type: "I" },
+                    { text: "Neutral / Balanced", type: "N" }
+                ]
+            },
+            {
+                text: "You focus more on:", options: [
+                    { text: "The present moment", type: "S" },
+                    { text: "Future possibilities", type: "N" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "When resolving conflicts, you prioritize:", options: [
+                    { text: "Finding the right solution", type: "T" },
+                    { text: "Maintaining relationships", type: "F" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "Your approach to projects is:", options: [
+                    { text: "Plan carefully before starting", type: "J" },
+                    { text: "Dive in and adjust as you go", type: "P" },
+                    { text: "Neutral / Depends", type: "N" }
+                ]
+            },
+            {
+                text: "You prefer work that involves:", options: [
+                    { text: "Action and variety", type: "E" },
+                    { text: "Concentration and depth", type: "I" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "You're more interested in:", options: [
+                    { text: "How things work", type: "S" },
+                    { text: "Why things work", type: "N" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "When making choices, you consider:", options: [
+                    { text: "Objective criteria", type: "T" },
+                    { text: "Personal values", type: "F" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "You prefer to have things:", options: [
+                    { text: "Decided and settled", type: "J" },
+                    { text: "Open for change", type: "P" },
+                    { text: "Neutral / Depends", type: "N" }
+                ]
+            },
+            {
+                text: "You're more comfortable with:", options: [
+                    { text: "Breadth of knowledge", type: "E" },
+                    { text: "Depth of knowledge", type: "I" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "You notice more:", options: [
+                    { text: "What people do", type: "S" },
+                    { text: "What people mean", type: "N" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "You value more:", options: [
+                    { text: "Truth and accuracy", type: "T" },
+                    { text: "Tact and diplomacy", type: "F" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "Your approach to time is:", options: [
+                    { text: "Punctual and scheduled", type: "J" },
+                    { text: "Flexible and fluid", type: "P" },
+                    { text: "Neutral / Balanced", type: "N" }
+                ]
+            },
+            {
+                text: "You prefer to work:", options: [
+                    { text: "In teams with others", type: "E" },
+                    { text: "Independently", type: "I" },
+                    { text: "Neutral / Depends", type: "N" }
+                ]
+            },
+            {
+                text: "You focus more on:", options: [
+                    { text: "Reality as it is", type: "S" },
+                    { text: "Possibilities for improvement", type: "N" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "When evaluating art, you consider:", options: [
+                    { text: "Technical skill and execution", type: "T" },
+                    { text: "Emotional impact and meaning", type: "F" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "Your approach to tasks is:", options: [
+                    { text: "Finish one before starting another", type: "J" },
+                    { text: "Work on multiple things at once", type: "P" },
+                    { text: "Neutral / Depends", type: "N" }
+                ]
+            },
+            {
+                text: "You prefer to socialize:", options: [
+                    { text: "Frequently with many people", type: "E" },
+                    { text: "Occasionally with close friends", type: "I" },
+                    { text: "Neutral / Balanced", type: "N" }
+                ]
+            },
+            {
+                text: "You trust more:", options: [
+                    { text: "Your experience", type: "S" },
+                    { text: "Your intuition", type: "N" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "When teaching, you emphasize:", options: [
+                    { text: "Facts and knowledge", type: "T" },
+                    { text: "Values and motivation", type: "F" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "Your approach to new information is:", options: [
+                    { text: "Organize and categorize it", type: "J" },
+                    { text: "Explore and play with possibilities", type: "P" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "You prefer to express yourself through:", options: [
+                    { text: "Speech and action", type: "E" },
+                    { text: "Writing and reflection", type: "I" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "You're more likely to notice:", options: [
+                    { text: "What's changed in a familiar place", type: "S" },
+                    { text: "Symbolic meanings in your surroundings", type: "N" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "When leading, you focus on:", options: [
+                    { text: "Efficiency and results", type: "T" },
+                    { text: "Team morale and relationships", type: "F" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "Your approach to commitments is:", options: [
+                    { text: "Reliable and consistent", type: "J" },
+                    { text: "Adaptable to circumstances", type: "P" },
+                    { text: "Neutral / Balanced", type: "N" }
+                ]
+            },
+            {
+                text: "You prefer to learn by:", options: [
+                    { text: "Doing and experiencing", type: "E" },
+                    { text: "Reading and researching", type: "I" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "You're more interested in:", options: [
+                    { text: "Practical applications", type: "S" },
+                    { text: "Theoretical foundations", type: "N" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "When evaluating products, you consider:", options: [
+                    { text: "Features and specifications", type: "T" },
+                    { text: "Design and user experience", type: "F" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "Your approach to change is:", options: [
+                    { text: "Prefer stability and routine", type: "J" },
+                    { text: "Welcome variety and novelty", type: "P" },
+                    { text: "Neutral / Balanced", type: "N" }
+                ]
+            },
+            {
+                text: "You prefer conversations that:", options: [
+                    { text: "Cover many topics", type: "E" },
+                    { text: "Explore topics in depth", type: "I" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "You trust more:", options: [
+                    { text: "What you can see and measure", type: "S" },
+                    { text: "Your instincts and hunches", type: "N" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "When solving problems, you consider:", options: [
+                    { text: "Logical consequences", type: "T" },
+                    { text: "Human impact", type: "F" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "Your approach to goals is:", options: [
+                    { text: "Set clear targets and work toward them", type: "J" },
+                    { text: "Stay open to new opportunities", type: "P" },
+                    { text: "Neutral / Balanced", type: "N" }
+                ]
+            },
             // New unique questions added for 70-question version
-            { text: "When meeting someone new, your first impression is based on:", options: [
-                { text: "Their energy and how they carry themselves", type: "S" },
-                { text: "Their potential and what they might become", type: "N" },
-                { text: "Neutral / Both", type: "N" }
-            ]},
-            { text: "Your ideal weekend involves:", options: [
-                { text: "Trying new activities with friends", type: "E" },
-                { text: "Deep diving into personal projects alone", type: "I" },
-                { text: "A balanced mix of both", type: "N" }
-            ]}
+            {
+                text: "When meeting someone new, your first impression is based on:", options: [
+                    { text: "Their energy and how they carry themselves", type: "S" },
+                    { text: "Their potential and what they might become", type: "N" },
+                    { text: "Neutral / Both", type: "N" }
+                ]
+            },
+            {
+                text: "Your ideal weekend involves:", options: [
+                    { text: "Trying new activities with friends", type: "E" },
+                    { text: "Deep diving into personal projects alone", type: "I" },
+                    { text: "A balanced mix of both", type: "N" }
+                ]
+            }
         ];
 
         // Personality Type Descriptions
@@ -1015,18 +1029,8 @@
         let currentQuestion = 0;
         let testLength = 70;
         let questions = [];
-        const scores = { E:0, I:0, S:0, N:0, T:0, F:0, J:0, P:0 };
+        const scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
 
-        // Initialize Progress Steps
-        function initProgressSteps() {
-            const progressSteps = document.getElementById('progress-steps');
-            progressSteps.innerHTML = '';
-            for (let i = 0; i < questions.length; i++) {
-                const step = document.createElement('div');
-                step.className = `step ${i === 0 ? 'active' : ''}`;
-                progressSteps.appendChild(step);
-            }
-        }
 
         // Start Test
         function startTest(length) {
@@ -1037,7 +1041,6 @@
             // Select questions based on test length
             questions = length === 15 ? [...quickTestQuestions] : [...fullTestQuestions];
 
-            initProgressSteps();
             document.getElementById('start-screen').classList.add('hidden');
             document.getElementById('test-screen').classList.remove('hidden');
             showQuestion();
@@ -1046,50 +1049,32 @@
         // Show Current Question
         function showQuestion() {
             const question = questions[currentQuestion];
-            document.getElementById('question-text').textContent = `${currentQuestion + 1}. ${question.text}`;
+            document.getElementById('question-text').textContent = question.text;
 
-            // Update progress steps
-            document.querySelectorAll('.step').forEach((step, i) => {
-                step.classList.toggle('active', i === currentQuestion);
-            });
+            const progress = Math.round(((currentQuestion + 1) / questions.length) * 100);
+            document.getElementById('progress-indicator').textContent = `${progress}% COMPLETE`;
 
-            // Clear previous options
             const optionsContainer = document.getElementById('options-container');
             optionsContainer.innerHTML = '';
 
-            // Add new options
             question.options.forEach((option, index) => {
-                const optionElement = document.createElement('label');
-                optionElement.className = `option ${option.type === 'N' ? 'neutral-option' : ''}`;
-                optionElement.innerHTML = `
-                    <input type="radio" name="q${currentQuestion}" value="${option.type}">
-                    ${option.text}
+                const card = document.createElement('div');
+                card.className = 'option-card';
+                card.innerHTML = `
+                    <div style="width: 24px; height: 24px; border: 2px solid var(--accent); border-radius: 50%;"></div>
+                    <span>${option.text}</span>
                 `;
-                optionElement.addEventListener('click', function() {
-                    document.getElementById('next-btn').disabled = false;
-                });
-                optionsContainer.appendChild(optionElement);
+                card.onclick = () => {
+                    if (option.type !== 'N') scores[option.type]++;
+                    currentQuestion++;
+                    if (currentQuestion < questions.length) {
+                        showQuestion();
+                    } else {
+                        showResults();
+                    }
+                };
+                optionsContainer.appendChild(card);
             });
-
-            // Reset next button
-            document.getElementById('next-btn').disabled = true;
-        }
-
-        // Next Question
-        function nextQuestion() {
-            // Save answer
-            const selectedOption = document.querySelector(`input[name="q${currentQuestion}"]:checked`);
-            if (selectedOption && selectedOption.value !== 'N') {
-                scores[selectedOption.value]++;
-            }
-
-            // Move to next question or show results
-            currentQuestion++;
-            if (currentQuestion < questions.length) {
-                showQuestion();
-            } else {
-                showResults();
-            }
         }
 
         // Calculate Results
@@ -1097,7 +1082,6 @@
             document.getElementById('test-screen').classList.add('hidden');
             document.getElementById('results-screen').classList.remove('hidden');
 
-            // Determine personality type
             const type = [
                 scores.E > scores.I ? 'E' : 'I',
                 scores.S > scores.N ? 'S' : 'N',
@@ -1105,81 +1089,50 @@
                 scores.J > scores.P ? 'J' : 'P'
             ].join('');
 
-            // Get type data
-            const typeData = personalityTypes[type] || personalityTypes["ESTP"];
+            const typeData = personalityTypes[type] || personalityTypes["INTJ"];
 
-            // Calculate percentages
-            const totalEI = Math.max(1, scores.E + scores.I);
-            const totalSN = Math.max(1, scores.S + scores.N);
-            const totalTF = Math.max(1, scores.T + scores.F);
-            const totalJP = Math.max(1, scores.J + scores.P);
-
-            const ePercent = Math.round((scores.E / totalEI) * 100);
-            const sPercent = Math.round((scores.S / totalSN) * 100);
-            const tPercent = Math.round((scores.T / totalTF) * 100);
-            const pPercent = Math.round((scores.P / totalJP) * 100);
-
-            // Calculate social spectrum
-            const extrovertScore = Math.round((scores.E / (scores.E + scores.I)) * 100);
-            let socialType, socialDescription;
-
-            if (extrovertScore >= 70) {
-                socialType = `<span class="extrovert">Strong Extrovert</span> (${extrovertScore}% Extrovert, ${100-extrovertScore}% Introvert)`;
-                socialDescription = "You thrive in social situations and gain energy from being around others. Large gatherings energize you, and you're comfortable being the center of attention.";
-            } else if (extrovertScore >= 60) {
-                socialType = `<span class="extrovert">Moderate Extrovert</span> (${extrovertScore}% Extrovert, ${100-extrovertScore}% Introvert)`;
-                socialDescription = "You enjoy socializing but also value your alone time. You're comfortable in groups but may need occasional breaks to recharge.";
-            } else if (extrovertScore >= 55) {
-                socialType = `<span class="extrovert">Mild Extrovert</span> (${extrovertScore}% Extrovert, ${100-extrovertScore}% Introvert)`;
-                socialDescription = "You lean slightly toward extroversion but have strong ambivert tendencies. You adapt well to different social situations.";
-            } else if (extrovertScore >= 45) {
-                socialType = `<span class="ambivert">True Ambivert</span> (${extrovertScore}% Extrovert, ${100-extrovertScore}% Introvert)`;
-                socialDescription = "You have a perfect balance of social energy, comfortable in both lively gatherings and quiet solitude. You adapt effortlessly to different social contexts.";
-            } else if (extrovertScore >= 40) {
-                socialType = `<span class="introvert">Mild Introvert</span> (${100-extrovertScore}% Introvert, ${extrovertScore}% Extrovert)`;
-                socialDescription = "You lean slightly toward introversion but have strong ambivert tendencies. You enjoy meaningful social interactions but need alone time to recharge.";
-            } else if (extrovertScore >= 30) {
-                socialType = `<span class="introvert">Moderate Introvert</span> (${100-extrovertScore}% Introvert, ${extrovertScore}% Extrovert)`;
-                socialDescription = "You prefer smaller gatherings and meaningful one-on-one conversations. While you can socialize when needed, you require substantial alone time to recharge.";
-            } else {
-                socialType = `<span class="introvert">Strong Introvert</span> (${100-extrovertScore}% Introvert, ${extrovertScore}% Extrovert)`;
-                socialDescription = "You gain energy from solitude and prefer deep, meaningful conversations over small talk. While you can socialize when necessary, it drains your energy significantly.";
-            }
-
-            // Position the spectrum marker
-            const markerPosition = extrovertScore;
-            document.getElementById('spectrum-marker').style.left = `${markerPosition}%`;
-
-            // Update results
             document.getElementById('result-type').textContent = type;
             document.getElementById('type-name').textContent = typeData.name;
             document.getElementById('type-category').textContent = typeData.category;
-            document.getElementById('type-image').src = `https://www.16personalities.com/images/types/${type.toLowerCase()}.png`;
-            document.getElementById('type-image').alt = `${type} personality type illustration`;
             document.getElementById('type-description').textContent = typeData.description;
-            document.getElementById('type-strengths').innerHTML = `<strong>Strengths:</strong> ${typeData.strengths}`;
-            document.getElementById('type-weaknesses').innerHTML = `<strong>Weaknesses:</strong> ${typeData.weaknesses}`;
-            document.getElementById('famous-people').textContent = typeData.famous;
-            document.getElementById('careers').textContent = typeData.careers;
-            document.getElementById('social-type').innerHTML = `You are a ${socialType}`;
-            document.getElementById('social-description').textContent = socialDescription;
+            document.getElementById('type-strengths').textContent = typeData.strengths;
+            document.getElementById('type-weaknesses').textContent = typeData.weaknesses;
+            document.getElementById('type-careers').textContent = typeData.careers;
+            document.getElementById('type-famous').textContent = typeData.famous;
 
-            // Update traits
             const traitsContainer = document.getElementById('traits-container');
             traitsContainer.innerHTML = '';
             typeData.traits.forEach(trait => {
-                traitsContainer.innerHTML += `<div class="trait">${trait}</div>`;
+                const badge = document.createElement('span');
+                badge.style.cssText = "background: var(--primary-glow); padding: 5px 15px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; color: var(--accent);";
+                badge.textContent = trait;
+                traitsContainer.appendChild(badge);
             });
 
-            // Update dimension bars
-            document.getElementById('e-score').textContent = `${ePercent}%`;
-            document.getElementById('e-bar').style.width = `${ePercent}%`;
-            document.getElementById('s-score').textContent = `${sPercent}%`;
-            document.getElementById('s-bar').style.width = `${sPercent}%`;
-            document.getElementById('t-score').textContent = `${tPercent}%`;
-            document.getElementById('t-bar').style.width = `${tPercent}%`;
-            document.getElementById('p-score').textContent = `${pPercent}%`;
-            document.getElementById('p-bar').style.width = `${pPercent}%`;
+            const dimensions = [
+                { label: 'Energy', code: 'E', score: scores.E, total: scores.E + scores.I, left: 'Extrovert', right: 'Introvert' },
+                { label: 'Mind', code: 'S', score: scores.S, total: scores.S + scores.N, left: 'Sensing', right: 'Intuitive' },
+                { label: 'Nature', code: 'T', score: scores.T, total: scores.T + scores.F, left: 'Thinking', right: 'Feeling' },
+                { label: 'Tactics', code: 'J', score: scores.J, total: scores.J + scores.P, left: 'Judging', right: 'Perceiving' }
+            ];
+
+            const dimsContainer = document.getElementById('dimensions-container');
+            dimsContainer.innerHTML = '';
+            dimensions.forEach(dim => {
+                const pct = dim.total > 0 ? Math.round((dim.score / dim.total) * 100) : 50;
+                dimsContainer.innerHTML += `
+                    <div class="dimension-row">
+                        <div class="dim-label">
+                            <span>${dim.left}</span>
+                            <span>${pct}% / ${100 - pct}%</span>
+                            <span>${dim.right}</span>
+                        </div>
+                        <div class="dim-bar">
+                            <div class="dim-progress" style="width: ${pct}%"></div>
+                        </div>
+                    </div>
+                `;
+            });
         }
 
         // Restart Test
@@ -1189,4 +1142,5 @@
         }
     </script>
 </body>
+
 </html>

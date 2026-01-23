@@ -1,433 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-R4N9RB1SNN');
-    </script>
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
-
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" type="text/javascript" async></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-R4N9RB1SNN');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Time Wasted on Social Media Calculator | Track & Reduce Usage - DigitalToolsHub</title>
-  <meta name="description" content="Calculate how much time you waste on social media with our free online tool. Discover strategies to reduce screen time, improve productivity, and reclaim your life. Part of DigitalToolsHub.github.io.">
-  <meta name="keywords" content="social media calculator, time wasted, screen time, productivity, digital detox, time management, online calculator, free tool, digital wellbeing, internet usage, social media addiction, time tracking, life calculator, digitaltoolshub">
-  <meta name="author" content="DigitalToolsHub">
-  <meta name="robots" content="index, follow">
-  <meta name="language" content="English">
-  <meta name="revisit-after" content="7 days">
+  <title>Digital Minimalism Analyzer - Reclaim Your Human Life | Digital Tools Hub</title>
+  <meta name="description"
+    content="Analyze your digital footprint with the Ultimate Minimalism Analyzer. Calculate active vs passive screen time, audit your social life, and get a professional detox roadmap.">
 
-
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://digitaltoolshub.github.io/social-media-calculator">
-  <meta property="og:title" content="Time Wasted on Social Media Calculator | Track & Reduce Usage - DigitalToolsHub">
-  <meta property="og:description" content="Calculate how much time you waste on social media with our free online tool. Discover strategies to reduce screen time, improve productivity, and reclaim your life. Part of DigitalToolsHub.github.io.">
-  <meta property="og:image" content="https://digitaltoolshub.github.io/images/social-media-calculator-preview.jpg">
-  <meta property="og:site_name" content="DigitalToolsHub">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://digitaltoolshub.github.io/social-media-calculator">
-  <meta name="twitter:title" content="Time Wasted on Social Media Calculator | Track & Reduce Usage - DigitalToolsHub">
-  <meta name="twitter:description" content="Calculate how much time you waste on social media with our free online tool. Discover strategies to reduce screen time, improve productivity, and reclaim your life. Part of DigitalToolsHub.github.io.">
-  <meta name="twitter:image" content="https://digitaltoolshub.github.io/images/social-media-calculator-preview.jpg">
-  <meta name="twitter:site" content="@YourTwitterHandleIfYouHaveOne"> <link rel="canonical" href="https://digitaltoolshub.github.io/social-media-calculator">
-
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Time Wasted on Social Media Calculator",
-    "description": "Calculate how much time you waste on social media and discover ways to be more productive. A free online tool by DigitalToolsHub.",
-    "url": "https://digitaltoolshub.github.io/social-media-calculator",
-    "applicationCategory": "ProductivityApplication",
-    "operatingSystem": "Web Browser",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "DigitalToolsHub",
-      "url": "https://digitaltoolshub.github.io"
-    }
-  }
-  </script>
-
   <style>
+    :root {
+      --primary: #f43f5e;
+      --secondary: #ec4899;
+      --accent: #06b6d4;
+      --dark: #0f172a;
+      --glass: rgba(15, 23, 42, 0.8);
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Outfit', sans-serif;
+    }
+
     body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: #fff;
+      background: radial-gradient(circle at top right, #1e1b4b, #0f172a);
+      color: #f8fafc;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      padding: 20px;
-      line-height: 1.6;
+      align-items: flex-start;
+      padding: 40px 20px;
     }
+
     .container {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(10px);
+      max-width: 1000px;
+      width: 100%;
+      background: var(--glass);
+      backdrop-filter: blur(30px);
+      border: 1px solid var(--glass-border);
+      border-radius: 40px;
+      padding: 60px 40px;
+      box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.5);
       text-align: center;
-      max-width: 800px;
-      width: 100%;
     }
+
     h1 {
-      font-size: 28px;
-      margin-bottom: 20px;
-      animation: fadeIn 2s ease-in-out;
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-style: italic;
+      margin-bottom: 10px;
+      background: linear-gradient(to right, white, #94a3b8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    label {
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #94a3b8;
+      margin-bottom: 50px;
+    }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .app-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 25px;
+      text-align: left;
+      transition: all 0.3s;
+    }
+
+    .app-card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--primary);
+    }
+
+    .app-card i {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
       display: block;
+    }
+
+    .app-card label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #94a3b8;
       margin-bottom: 10px;
-      font-weight: bold;
-      font-size: 18px;
+      display: block;
     }
-    input {
-      width: 80%;
-      padding: 12px;
-      margin-bottom: 20px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      background: rgba(255, 255, 255, 0.8);
-      transition: transform 0.3s ease;
-    }
-    input:focus {
-      transform: scale(1.05);
-      outline: none;
-    }
-    button {
-      background: #ff6f61;
-      color: #fff;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-    button:hover {
-      background: #ff3b2f;
-      transform: scale(1.05);
-    }
-    .result {
-      margin-top: 20px;
-      font-size: 18px;
-      font-weight: bold;
-      animation: fadeIn 2s ease-in-out;
-    }
-    .comparison {
-      margin-top: 20px;
-      font-size: 16px;
-      animation: fadeIn 2s ease-in-out;
-    }
-    .progress {
-      margin-top: 20px;
-      font-size: 16px;
-    }
-    .progress-bar {
+
+    .app-card input {
       width: 100%;
-      height: 20px;
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 10px;
-      overflow: hidden;
-      margin-top: 10px;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 700;
+      outline: none;
+      padding-bottom: 5px;
     }
-    .progress-bar-fill {
-      height: 100%;
-      background: #ff6f61;
-      width: 0;
-      transition: width 0.5s ease;
+
+    .app-card input:focus {
+      border-color: var(--primary);
     }
-    .challenge {
-      margin-top: 20px;
-      font-size: 16px;
-      animation: fadeIn 2s ease-in-out;
+
+    .results-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 50px;
     }
-    .tips {
+
+    .minimalism-score {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 30px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .score-circle {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 8px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .score-value {
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .score-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #94a3b8;
+      text-transform: uppercase;
+    }
+
+    .stats-panel {
+      text-align: left;
+    }
+
+    .stat-row {
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .stat-row:last-child {
+      border: none;
+    }
+
+    .stat-row h4 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 5px;
+    }
+
+    .stat-row p {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .btn-premium {
+      padding: 15px 30px;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       margin-top: 30px;
-      text-align: left;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      border-radius: 10px;
-    }
-    .tips h2 {
-      font-size: 22px;
-      margin-bottom: 15px;
-    }
-    .tips ul {
-      list-style-type: disc;
-      padding-left: 20px;
-    }
-    .tips li {
-      margin-bottom: 10px;
-    }
-    .resources {
-      margin-top: 20px;
-      text-align: left;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      border-radius: 10px;
-    }
-    .resources h2 {
-      font-size: 22px;
-      margin-bottom: 15px;
-    }
-    .resources a {
-      color: #ff6f61;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .resources a:hover {
-      text-decoration: underline;
-    }
-    canvas {
-      margin-top: 20px;
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 8px;
-      padding: 10px;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
     }
 
-    /* Semantic HTML improvements */
-    main {
-      display: contents; /* Allows the container to be treated as main content */
-    }
-
-    /* Accessibility improvements */
-    a:focus, button:focus {
-      outline: 2px solid #ff6f61;
-      outline-offset: 2px;
-    }
-
-    /* Print styles */
-    @media print {
-      body {
-        background: white;
-        color: black;
-      }
-      .container {
-        background: white;
-        box-shadow: none;
-        backdrop-filter: none;
-      }
-      .tips, .resources {
-        background: #f9f9f9;
-      }
-      a::after {
-        content: " (" attr(href) ")";
-        font-size: smaller;
+    @media (max-width: 800px) {
+      .results-section {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
+
 <body>
   <div class="container">
-    <main>
-      <h1>⏳ Time Wasted on Social Media Calculator</h1>
-      <p>Discover how much of your life you're spending on social platforms and learn how to reclaim your time.</p>
+    <h1>Digital Minimalism Analyzer</h1>
+    <p class="subtitle">Audit your digital attention. Reclaim your biological life.</p>
 
-      <form onsubmit="calculateTimeWasted(); return false;">
-        <label for="hours">Daily Social Media Usage (in hours):</label>
-        <input type="number" id="hours" placeholder="Enter hours per day" aria-label="Enter your daily social media usage in hours">
-        <button type="submit">Calculate</button>
-      </form>
+    <div class="app-grid">
+      <div class="app-card" style="color: #1877F2;">
+        <i class="fab fa-facebook"></i>
+        <label>Facebook / Socials</label>
+        <input type="number" id="facebook" value="1.5" step="0.5" oninput="analyze()">
+      </div>
+      <div class="app-card" style="color: #E4405F;">
+        <i class="fab fa-instagram"></i>
+        <label>Insta / TikTok / Shorts</label>
+        <input type="number" id="instagram" value="2.0" step="0.5" oninput="analyze()">
+      </div>
+      <div class="app-card" style="color: #FF0000;">
+        <i class="fab fa-youtube"></i>
+        <label>YouTube / Streaming</label>
+        <input type="number" id="youtube" value="1.0" step="0.5" oninput="analyze()">
+      </div>
+      <div class="app-card" style="color: #1DA1F2;">
+        <i class="fab fa-twitter"></i>
+        <label>X / News / Browsing</label>
+        <input type="number" id="twitter" value="0.5" step="0.5" oninput="analyze()">
+      </div>
+      <div class="app-card" style="color: #0088CC;">
+        <i class="fab fa-telegram"></i>
+        <label>Messaging / WhatsApp</label>
+        <input type="number" id="messaging" value="1.0" step="0.5" oninput="analyze()">
+      </div>
+      <div class="app-card" style="color: #10b981;">
+        <i class="fas fa-brain"></i>
+        <label>Active Work / Creation</label>
+        <input type="number" id="active" value="3.0" step="0.5" oninput="analyze()">
+      </div>
+    </div>
 
-      <section class="result" id="result" aria-live="polite"></section>
-      <section class="comparison" id="comparison" aria-live="polite"></section>
-
-      <section class="progress">
-        <h2>Your Progress Toward Reducing Time:</h2>
-        <div class="progress-bar">
-          <div class="progress-bar-fill" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="results-section">
+      <div class="minimalism-score">
+        <div class="score-circle" id="score-circle">
+          <span class="score-value" id="score-val">0</span>
+          <span class="score-label">Minimalism Score</span>
         </div>
-      </section>
+        <h3 id="score-desc" style="font-size: 1.5rem; color: white;">Analysis Pending</h3>
+      </div>
 
-      <section class="challenge" id="challenge" aria-live="polite"></section>
+      <div class="stats-panel">
+        <div class="stat-row">
+          <h4>Passive consumption (Yearly)</h4>
+          <p id="passive-year">0 Hours</p>
+        </div>
+        <div class="stat-row">
+          <h4>Life Opportunity Cost</h4>
+          <p id="life-cost">0 Days of life / Year</p>
+        </div>
+        <div class="stat-row">
+          <h4>Passive vs Active Ratio</h4>
+          <p id="ratio">0:0</p>
+        </div>
+        <div class="stat-row">
+          <h4>Minimalist Recommendation</h4>
+          <p id="recommendation" style="font-size: 1rem; color: #94a3b8;"></p>
+        </div>
+      </div>
+    </div>
 
-      <figure>
-        <canvas id="timeChart" aria-label="Visual representation of time wasted on social media"></canvas>
-        <figcaption>Visual breakdown of time spent on social media</figcaption>
-      </figure>
-
-      <section class="tips">
-        <h2>📌 Why Excessive Social Media Usage is Harmful:</h2>
-        <ul>
-          <li>📉 <strong>Reduces Productivity:</strong> Hours spent scrolling could be used for learning or achieving goals.</li>
-          <li>😔 <strong>Increases Anxiety and Depression:</strong> Constant comparison with others can harm mental health.</li>
-          <li>🛑 <strong>Disrupts Sleep:</strong> Blue light from screens affects sleep quality.</li>
-          <li>👥 <strong>Weakens Real-Life Relationships:</strong> Overuse can lead to neglecting face-to-face interactions.</li>
-          <li>🧠 <strong>Impairs Focus:</strong> Constant notifications reduce attention span.</li>
-        </ul>
-      </section>
-
-      <section class="resources">
-        <h2>🚀 Learn Useful Skills Instead:</h2>
-        <ul>
-          <li>🎓 <a href="https://www.coursera.org" target="_blank" rel="noopener noreferrer">Coursera</a> - Learn from top universities and organizations.</li>
-          <li>💻 <a href="https://www.udemy.com" target="_blank" rel="noopener noreferrer">Udemy</a> - Affordable courses on a wide range of topics.</li>
-          <li>📚 <a href="https://www.khanacademy.org" target="_blank" rel="noopener noreferrer">Khan Academy</a> - Free educational resources for all ages.</li>
-          <li>🎨 <a href="https://www.skillshare.com" target="_blank" rel="noopener noreferrer">Skillshare</a> - Creative courses on design, art, and more.</li>
-          <li>🌐 <a href="https://www.freecodecamp.org" target="_blank" rel="noopener noreferrer">freeCodeCamp</a> - Learn coding for free.</li>
-          <li>🧠 <a href="https://www.duolingo.com" target="_blank" rel="noopener noreferrer">Duolingo</a> - Learn a new language for free.</li>
-        </ul>
-      </section>
-    </main>
+    <div style="margin-top: 50px; display: flex; gap: 20px; justify-content: center;">
+      <button class="btn-premium" onclick="window.print()">Export Audit</button>
+      <a href="index.html"
+        style="color: #94a3b8; text-decoration: none; padding: 15px 30px; font-weight: 700; text-transform: uppercase;">Back
+        to Hub</a>
+    </div>
   </div>
 
   <script>
-    let myChart;
-    let totalHoursWasted = 0;
-    let progress = 0;
+    function analyze() {
+      const fb = parseFloat(document.getElementById('facebook').value) || 0;
+      const insta = parseFloat(document.getElementById('instagram').value) || 0;
+      const yt = parseFloat(document.getElementById('youtube').value) || 0;
+      const tw = parseFloat(document.getElementById('twitter').value) || 0;
+      const msg = parseFloat(document.getElementById('messaging').value) || 0;
+      const active = parseFloat(document.getElementById('active').value) || 0;
 
-    function calculateTimeWasted() {
-      const hoursPerDay = parseFloat(document.getElementById('hours').value);
-      if (isNaN(hoursPerDay) || hoursPerDay < 0) {
-        alert("Please enter a valid number of hours.");
-        return;
+      const totalPassive = fb + insta + yt + tw + msg;
+      const totalHours = totalPassive + active;
+
+      // Score logic: 100 is perfect minimalism (0 passive, high active)
+      // Penalty for passive over 2 hours
+      let score = 100 - (totalPassive * 15);
+      if (active > 0) score += (active * 5);
+
+      score = Math.max(0, Math.min(100, Math.round(score)));
+
+      document.getElementById('score-val').textContent = score;
+
+      const circle = document.getElementById('score-circle');
+      const desc = document.getElementById('score-desc');
+      const rec = document.getElementById('recommendation');
+
+      if (score > 80) {
+        circle.style.borderColor = "#10b981";
+        desc.textContent = "Digital Zen";
+        desc.style.color = "#10b981";
+        rec.textContent = "You are a master of your attention. Keep your passive consumption low.";
+      } else if (score > 50) {
+        circle.style.borderColor = "#fbbf24";
+        desc.textContent = "Standard User";
+        desc.style.color = "#fbbf24";
+        rec.textContent = "You have a balanced digital life, but passive scrolling is eating your potential.";
+      } else {
+        circle.style.borderColor = "#f43f5e";
+        desc.textContent = "Attention Debt";
+        desc.style.color = "#f43f5e";
+        rec.textContent = "High priority: Reduce background socials and switch to active creation.";
       }
 
-      const daysPerYear = 365;
-      const years = 5; // Example: Calculate for 5 years
-      totalHoursWasted = hoursPerDay * daysPerYear * years;
+      // Stats
+      document.getElementById('passive-year').textContent = Math.round(totalPassive * 365) + " Hours / Year";
+      document.getElementById('life-cost').textContent = Math.round((totalPassive * 365) / 24) + " Full Days / Year";
 
-      // Convert hours to more relatable units
-      const hoursInADay = 24;
-      const daysWasted = totalHoursWasted / hoursInADay;
-      const monthsWasted = daysWasted / 30;
-      const yearsWasted = daysWasted / 365;
-
-      // Generate the result message
-      const resultMessage = `
-        In ${years} years, you will waste:
-        <br>• ${totalHoursWasted.toFixed(1)} hours
-        <br>• ${daysWasted.toFixed(1)} days
-        <br>• ${monthsWasted.toFixed(1)} months
-        <br>• ${yearsWasted.toFixed(1)} years
-      `;
-
-      // Generate comparison message
-      const comparisonMessage = `
-        <br><br>💡 Did you know? You could have:
-        <br>• Watched ${Math.round(totalHoursWasted / 2)} movies 🎬
-        <br>• Traveled ${Math.round(totalHoursWasted / 8)} times around the world 🌍
-        <br>• Learned ${Math.round(totalHoursWasted / 20)} new skills 🎓
-      `;
-
-      // Display the result and comparison
-      document.getElementById('result').innerHTML = resultMessage;
-      document.getElementById('comparison').innerHTML = comparisonMessage;
-
-      // Update the chart
-      updateChart(totalHoursWasted, daysWasted, monthsWasted, yearsWasted);
-
-      // Update progress and challenge
-      updateProgress(hoursPerDay);
-      generateChallenge();
+      const ratio = active === 0 ? "Passive Only" : (totalPassive / active).toFixed(1) + ":1";
+      document.getElementById('ratio').textContent = ratio;
     }
 
-    function updateProgress(hoursPerDay) {
-      const maxHours = 10; // Assume 10 hours is the max for progress calculation
-      progress = ((maxHours - hoursPerDay) / maxHours) * 100;
-      if (progress < 0) progress = 0;
-      const progressBar = document.getElementById('progressBar');
-      progressBar.style.width = `${progress}%`;
-      progressBar.setAttribute('aria-valuenow', progress);
-    }
-
-    function generateChallenge() {
-      const challenges = [
-        "Try reducing your daily usage by 1 hour this week!",
-        "Spend 30 minutes less on social media today and read a book instead.",
-        "Challenge yourself to a social media-free day this week!",
-        "Replace 1 hour of social media with a workout or walk.",
-        "Track your usage daily and aim to reduce it by 10%."
-      ];
-      const randomChallenge = challenges[Math.floor(Math.random() * challenges.length)];
-      document.getElementById('challenge').innerHTML = `🎯 Challenge: ${randomChallenge}`;
-    }
-
-    function updateChart(hours, days, months, years) {
-      const ctx = document.getElementById('timeChart').getContext('2d');
-      if (myChart) {
-        myChart.destroy(); // Destroy existing chart
-      }
-      myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['Hours', 'Days', 'Months', 'Years'],
-          datasets: [{
-            label: 'Time Wasted',
-            data: [hours, days, months, years],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.8)',
-              'rgba(54, 162, 235, 0.8)',
-              'rgba(255, 206, 86, 0.8)',
-              'rgba(75, 192, 192, 0.8)'
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)'
-            ],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true,
-              grid: {
-                color: 'rgba(255, 255, 255, 0.2)'
-              },
-              ticks: {
-                color: '#fff'
-              }
-            },
-            x: {
-              grid: {
-                color: 'rgba(255, 255, 255, 0.2)'
-              },
-              ticks: {
-                color: '#fff'
-              }
-            }
-          },
-          plugins: {
-            legend: {
-              labels: {
-                color: '#fff'
-              }
-            }
-          }
-        }
-      });
-    }
-
-    // Initialize with default values for better SEO
-    document.addEventListener('DOMContentLoaded', function() {
-      document.getElementById('hours').value = '2'; // Default value
-      calculateTimeWasted();
-    });
+    window.onload = analyze;
   </script>
 </body>
+
 </html>

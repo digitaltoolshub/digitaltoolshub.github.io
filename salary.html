@@ -1,46 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-R4N9RB1SNN');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-R4N9RB1SNN');
     </script>
-    
+
     <!-- Ads -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
-    
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" type="text/javascript" async></script>    <!-- Primary Meta Tags -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
+        crossorigin="anonymous"></script>
+
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f"
+        type="text/javascript" async></script> <!-- Primary Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Convert your salary across 18 currencies and see your earnings per year, month, week, day, hour, minute, and second. Global earnings calculator for financial planning.">
-    <meta name="keywords" content="salary calculator, currency converter, earnings calculator, income calculator, financial planning, money converter">
+    <meta name="description"
+        content="Convert your salary across 18 currencies and see your earnings per year, month, week, day, hour, minute, and second. Global earnings calculator for financial planning.">
+    <meta name="keywords"
+        content="salary calculator, currency converter, earnings calculator, income calculator, financial planning, money converter">
     <meta name="author" content="Global Earnings Calculator">
-    
+
     <!-- Open Graph / Facebook Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="🌍 Multi-Currency Earnings Calculator | Convert Your Salary">
-    <meta property="og:description" content="See what your salary equals in different currencies and time periods. Calculate earnings per second to per year in 18 global currencies.">
+    <meta property="og:description"
+        content="See what your salary equals in different currencies and time periods. Calculate earnings per second to per year in 18 global currencies.">
     <meta property="og:url" content="https://yourapp.com">
     <meta property="og:image" content="https://yourapp.com/preview-image.jpg">
-    
+
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="🌍 Multi-Currency Earnings Calculator | Convert Your Salary">
-    <meta name="twitter:description" content="See what your salary equals in different currencies and time periods. Calculate earnings per second to per year in 18 global currencies.">
+    <meta name="twitter:description"
+        content="See what your salary equals in different currencies and time periods. Calculate earnings per second to per year in 18 global currencies.">
     <meta name="twitter:image" content="https://yourapp.com/preview-image.jpg">
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://yourapp.com">
-    
+
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    
+
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
@@ -59,15 +66,17 @@
     }
     </script>
     <title>🌍 Multi-Currency Earnings Calculator | Convert Salary to 18 Currencies</title>
-    
+
     <!-- Preload critical resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;600&display=swap" as="style">
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;600&display=swap"
+        as="style">
     <link rel="preload" href="https://flagcdn.com/24x18/us.png" as="image">
-    
+
     <style>
         /* Base Styles */
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;600&display=swap');
-        
+
         * {
             margin: 0;
             padding: 0;
@@ -88,9 +97,17 @@
         }
 
         @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         /* Container Styles */
@@ -110,8 +127,15 @@
         }
 
         @keyframes containerEntrance {
-            0% { transform: scale(0.95); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+            0% {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         /* Header Styles */
@@ -124,6 +148,7 @@
             font-family: 'Orbitron', sans-serif;
             background: linear-gradient(90deg, #00ff87, #60efff);
             -webkit-background-clip: text;
+            background-clip: text;
             background-clip: text;
             color: transparent;
             text-shadow: 0 0 15px rgba(0, 255, 135, 0.3);
@@ -184,9 +209,17 @@
         }
 
         @keyframes pulse {
-            0% { box-shadow: 0 0 10px #00ff87; }
-            50% { box-shadow: 0 0 25px #00ff87; }
-            100% { box-shadow: 0 0 10px #00ff87; }
+            0% {
+                box-shadow: 0 0 10px #00ff87;
+            }
+
+            50% {
+                box-shadow: 0 0 25px #00ff87;
+            }
+
+            100% {
+                box-shadow: 0 0 10px #00ff87;
+            }
         }
 
         /* Input Section */
@@ -372,10 +405,23 @@
         }
 
         @keyframes floatUp {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
-            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.8;
+            }
+
+            90% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         /* Responsive Adjustments */
@@ -383,11 +429,11 @@
             h1 {
                 font-size: 1.8rem;
             }
-            
+
             .results-grid {
                 grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             }
-            
+
             .currency-flag {
                 width: 40px;
                 height: 40px;
@@ -398,11 +444,11 @@
             .container {
                 padding: 1.5rem;
             }
-            
+
             .results-grid {
                 grid-template-columns: 1fr 1fr;
             }
-            
+
             .amount {
                 font-size: 1rem;
             }
@@ -421,75 +467,128 @@
         }
 
         @keyframes sparkle {
-            0% { transform: scale(0); opacity: 0; }
-            50% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(0); opacity: 0; }
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="progress-bar" id="progressBar"></div>
-    
+
     <!-- Floating coins background -->
     <div class="floating-coins" id="floatingCoins"></div>
-    
+
     <div class="container">
         <div class="header">
-            <h1>💸 Global Earnings Calculator 🌐</h1>
-            
-            <!-- Currency Selector -->
+            <h1>💸 Ultimate Global Earnings Engine 🌐</h1>
+
             <div class="currency-selector" id="currencySelector">
-                <img src="https://flagcdn.com/24x18/us.png" class="currency-flag active" data-currency="USD" alt="USD" title="US Dollar">
-                <img src="https://flagcdn.com/24x18/pk.png" class="currency-flag" data-currency="PKR" alt="PKR" title="Pakistani Rupee">
-                <img src="https://flagcdn.com/24x18/ae.png" class="currency-flag" data-currency="AED" alt="AED" title="UAE Dirham">
-                <img src="https://flagcdn.com/24x18/jp.png" class="currency-flag" data-currency="JPY" alt="JPY" title="Japanese Yen">
-                <img src="https://flagcdn.com/24x18/gb.png" class="currency-flag" data-currency="GBP" alt="GBP" title="British Pound">
-                <img src="https://flagcdn.com/24x18/eu.png" class="currency-flag" data-currency="EUR" alt="EUR" title="Euro">
-                <img src="https://flagcdn.com/24x18/ca.png" class="currency-flag" data-currency="CAD" alt="CAD" title="Canadian Dollar">
-                <img src="https://flagcdn.com/24x18/au.png" class="currency-flag" data-currency="AUD" alt="AUD" title="Australian Dollar">
-                <img src="https://flagcdn.com/24x18/in.png" class="currency-flag" data-currency="INR" alt="INR" title="Indian Rupee">
-                <img src="https://flagcdn.com/24x18/cn.png" class="currency-flag" data-currency="CNY" alt="CNY" title="Chinese Yuan">
-                <img src="https://flagcdn.com/24x18/sg.png" class="currency-flag" data-currency="SGD" alt="SGD" title="Singapore Dollar">
-                <img src="https://flagcdn.com/24x18/ch.png" class="currency-flag" data-currency="CHF" alt="CHF" title="Swiss Franc">
-                <img src="https://flagcdn.com/24x18/nz.png" class="currency-flag" data-currency="NZD" alt="NZD" title="New Zealand Dollar">
-                <img src="https://flagcdn.com/24x18/br.png" class="currency-flag" data-currency="BRL" alt="BRL" title="Brazilian Real">
-                <img src="https://flagcdn.com/24x18/za.png" class="currency-flag" data-currency="ZAR" alt="ZAR" title="South African Rand">
-                <img src="https://flagcdn.com/24x18/ru.png" class="currency-flag" data-currency="RUB" alt="RUB" title="Russian Ruble">
-                <img src="https://flagcdn.com/24x18/mx.png" class="currency-flag" data-currency="MXN" alt="MXN" title="Mexican Peso">
-                <img src="https://flagcdn.com/24x18/kr.png" class="currency-flag" data-currency="KRW" alt="KRW" title="South Korean Won">
+                <!-- Flags populated as before -->
+                <img src="https://flagcdn.com/24x18/us.png" class="currency-flag active" data-currency="USD" alt="USD"
+                    title="US Dollar">
+                <img src="https://flagcdn.com/24x18/pk.png" class="currency-flag" data-currency="PKR" alt="PKR"
+                    title="Pakistani Rupee">
+                <img src="https://flagcdn.com/24x18/ae.png" class="currency-flag" data-currency="AED" alt="AED"
+                    title="UAE Dirham">
+                <img src="https://flagcdn.com/24x18/jp.png" class="currency-flag" data-currency="JPY" alt="JPY"
+                    title="Japanese Yen">
+                <img src="https://flagcdn.com/24x18/gb.png" class="currency-flag" data-currency="GBP" alt="GBP"
+                    title="British Pound">
+                <img src="https://flagcdn.com/24x18/eu.png" class="currency-flag" data-currency="EUR" alt="EUR"
+                    title="Euro">
+                <img src="https://flagcdn.com/24x18/ca.png" class="currency-flag" data-currency="CAD" alt="CAD"
+                    title="Canadian Dollar">
+                <img src="https://flagcdn.com/24x18/au.png" class="currency-flag" data-currency="AUD" alt="AUD"
+                    title="Australian Dollar">
+                <img src="https://flagcdn.com/24x18/in.png" class="currency-flag" data-currency="INR" alt="INR"
+                    title="Indian Rupee">
+                <img src="https://flagcdn.com/24x18/cn.png" class="currency-flag" data-currency="CNY" alt="CNY"
+                    title="Chinese Yuan">
+                <img src="https://flagcdn.com/24x18/sg.png" class="currency-flag" data-currency="SGD" alt="SGD"
+                    title="Singapore Dollar">
+                <img src="https://flagcdn.com/24x18/ch.png" class="currency-flag" data-currency="CHF" alt="CHF"
+                    title="Swiss Franc">
+                <img src="https://flagcdn.com/24x18/nz.png" class="currency-flag" data-currency="NZD" alt="NZD"
+                    title="New Zealand Dollar">
+                <img src="https://flagcdn.com/24x18/br.png" class="currency-flag" data-currency="BRL" alt="BRL"
+                    title="Brazilian Real">
+                <img src="https://flagcdn.com/24x18/za.png" class="currency-flag" data-currency="ZAR" alt="ZAR"
+                    title="South African Rand">
+                <img src="https://flagcdn.com/24x18/ru.png" class="currency-flag" data-currency="RUB" alt="RUB"
+                    title="Russian Ruble">
+                <img src="https://flagcdn.com/24x18/mx.png" class="currency-flag" data-currency="MXN" alt="MXN"
+                    title="Mexican Peso">
+                <img src="https://flagcdn.com/24x18/kr.png" class="currency-flag" data-currency="KRW" alt="KRW"
+                    title="South Korean Won">
             </div>
 
-            <!-- Salary Input -->
             <div class="input-section">
                 <div class="salary-input-container">
                     <span class="currency-symbol" id="currencySymbol">$</span>
-                    <input type="number" class="salary-input" id="salaryInput" 
-                           placeholder="Enter your salary" step="100" min="0" aria-label="Enter your salary amount">
+                    <input type="number" class="salary-input" id="salaryInput"
+                        placeholder="Enter your baseline earnings" step="100" min="0">
                 </div>
-                
-                <div class="frequency-selector" role="group" aria-label="Salary frequency selection">
-                    <button class="frequency-btn active" data-frequency="yearly" aria-pressed="true">Yearly</button>
-                    <button class="frequency-btn" data-frequency="monthly" aria-pressed="false">Monthly</button>
-                    <button class="frequency-btn" data-frequency="weekly" aria-pressed="false">Weekly</button>
-                    <button class="frequency-btn" data-frequency="hourly" aria-pressed="false">Hourly</button>
+
+                <div class="frequency-selector">
+                    <button class="frequency-btn active" data-frequency="yearly">Yearly</button>
+                    <button class="frequency-btn" data-frequency="monthly">Monthly</button>
+                    <button class="frequency-btn" data-frequency="weekly">Weekly</button>
+                    <button class="frequency-btn" data-frequency="hourly">Hourly</button>
+                </div>
+
+                <div style="margin-top: 20px; display: flex; justify-content: center; gap: 20px;">
+                    <div style="text-align: left;">
+                        <label style="font-size: 0.75rem; color: #60efff;">Est. Tax Rate (%)</label>
+                        <input type="number" id="taxRate" value="0" min="0" max="100"
+                            style="width: 80px; padding: 5px; background: rgba(255,255,255,0.1); border: 1px solid #00ff87; border-radius: 5px; color: white;">
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Results Display -->
-        <div class="results-grid" id="resultsGrid" aria-live="polite">
-            <!-- Generated by JavaScript -->
+        <!-- Live Ticker Section -->
+        <div id="live-ticker-card"
+            style="background: rgba(0, 255, 135, 0.05); border: 1px solid #00ff87; border-radius: 15px; padding: 20px; margin-bottom: 30px; text-align: center; display: none;">
+            <div style="color: #00ff87; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px;">Live Session
+                Earnings</div>
+            <div id="live-amount"
+                style="font-family: 'Orbitron', sans-serif; font-size: 2.5rem; color: #60efff; margin: 10px 0;">$0.0000
+            </div>
+            <div style="font-size: 0.7rem; color: #888;">Updated in real-time while you stay on this page</div>
+        </div>
+
+        <div class="results-grid" id="resultsGrid" aria-live="polite"></div>
+
+        <div style="margin-top: 40px; text-align: center;">
+            <a href="index.html"
+                style="color: #60efff; text-decoration: none; font-family: 'Orbitron'; font-size: 0.8rem; border-bottom: 1px solid #60efff;">
+                <i class="fas fa-arrow-left"></i> BACK TO HUB
+            </a>
         </div>
     </div>
 
     <!-- Engagement Elements -->
-    <div class="fortune-cookie" id="fortuneCookie" onclick="showFortune()" role="button" aria-label="Click for money wisdom">🎉 Click for Money Wisdom!</div>
+    <div class="fortune-cookie" id="fortuneCookie" onclick="showFortune()" role="button"
+        aria-label="Click for money wisdom">🎉 Click for Money Wisdom!</div>
 
     <script>
         // ================
         // INITIALIZATION
         // ================
-        
+
         // Currency Exchange Rates (example rates - should use real API)
         const exchangeRates = {
             USD: 1,
@@ -564,138 +663,86 @@
 
         // State
         let currentFrequency = 'yearly';
+        let sessionStartTime = Date.now();
+        let liveTickerInterval;
 
-        // ================
-        // EVENT LISTENERS
-        // ================
-        elements.currencyFlags.forEach(flag => {
-            flag.addEventListener('click', () => selectCurrency(flag));
-            flag.addEventListener('click', createSparkle);
-            flag.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    selectCurrency(flag);
-                    createSparkle(e);
-                }
-            });
-        });
-
-        elements.salaryInput.addEventListener('input', updateCalculations);
-        elements.salaryInput.addEventListener('focus', () => {
-            elements.salaryInput.style.boxShadow = '0 0 20px #00ff87';
-        });
-        elements.salaryInput.addEventListener('blur', () => {
-            elements.salaryInput.style.boxShadow = 'none';
-        });
-
-        elements.frequencyBtns.forEach(btn => {
-            btn.addEventListener('click', () => selectFrequency(btn));
-            btn.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    selectFrequency(btn);
-                }
-            });
-        });
-
-        // Create floating coins on mouse move
-        document.addEventListener('mousemove', (e) => {
-            if (Math.random() > 0.9) {
-                createFloatingCoin(e.clientX, e.clientY);
-            }
-        });
-
-        // Create initial floating coins
-        for (let i = 0; i < 20; i++) {
-            setTimeout(() => {
-                createFloatingCoin(
-                    Math.random() * window.innerWidth,
-                    Math.random() * window.innerHeight
-                );
-            }, i * 300);
-        }
+        const taxRateInput = document.getElementById('taxRate');
+        const liveTickerCard = document.getElementById('live-ticker-card');
+        const liveAmountEl = document.getElementById('live-amount');
 
         // ================
         // CORE FUNCTIONS
         // ================
 
-        // Currency Selection
-        function selectCurrency(flag) {
-            elements.currencyFlags.forEach(f => {
-                f.classList.remove('active');
-                f.setAttribute('aria-selected', 'false');
-            });
-            flag.classList.add('active');
-            flag.setAttribute('aria-selected', 'true');
-            const currency = flag.dataset.currency;
-            elements.currencySymbol.textContent = currencySymbols[currency] || '$';
-            updateCalculations();
-        }
-
-        // Frequency Selection
-        function selectFrequency(btn) {
-            elements.frequencyBtns.forEach(b => {
-                b.classList.remove('active');
-                b.setAttribute('aria-pressed', 'false');
-            });
-            btn.classList.add('active');
-            btn.setAttribute('aria-pressed', 'true');
-            currentFrequency = btn.dataset.frequency;
-            updateCalculations();
-        }
-
-        // Main Calculation Function
         function updateCalculations() {
             const salary = parseFloat(elements.salaryInput.value) || 0;
+            const taxRate = parseFloat(taxRateInput.value) || 0;
             const currency = document.querySelector('.currency-flag.active').dataset.currency;
-            
-            // Convert to USD first
-            const usdAmount = salary / exchangeRates[currency];
-            
+
+            // Apply Tax
+            const netSalary = salary * (1 - (taxRate / 100));
+
+            // Convert to USD first (internal consistency)
+            const usdAmount = netSalary / exchangeRates[currency];
+
             // Adjust based on frequency
             let annualUsdAmount;
-            switch(currentFrequency) {
-                case 'yearly':
-                    annualUsdAmount = usdAmount;
-                    break;
-                case 'monthly':
-                    annualUsdAmount = usdAmount * 12;
-                    break;
-                case 'weekly':
-                    annualUsdAmount = usdAmount * 52;
-                    break;
-                case 'hourly':
-                    annualUsdAmount = usdAmount * 2080; // 40 hours/week * 52 weeks
-                    break;
-                default:
-                    annualUsdAmount = usdAmount;
+            switch (currentFrequency) {
+                case 'yearly': annualUsdAmount = usdAmount; break;
+                case 'monthly': annualUsdAmount = usdAmount * 12; break;
+                case 'weekly': annualUsdAmount = usdAmount * 52; break;
+                case 'hourly': annualUsdAmount = usdAmount * 2080; break;
+                default: annualUsdAmount = usdAmount;
             }
 
-            // Calculate time-based values
             const calculations = {
-                'Year': annualUsdAmount,
-                'Month': annualUsdAmount / 12,
-                'Week': annualUsdAmount / 52,
-                'Day': annualUsdAmount / 365,
-                'Hour': (annualUsdAmount / 365) / 24,
-                'Minute': ((annualUsdAmount / 365) / 24) / 60,
-                'Second': (((annualUsdAmount / 365) / 24) / 60) / 60
+                'Year (Net)': annualUsdAmount,
+                'Month (Net)': annualUsdAmount / 12,
+                'Week (Net)': annualUsdAmount / 52,
+                'Day (Net)': annualUsdAmount / 365,
+                'Hour (Net)': (annualUsdAmount / 365) / 24,
+                'Minute (Net)': ((annualUsdAmount / 365) / 24) / 60,
+                'Second (Net)': (((annualUsdAmount / 365) / 24) / 60) / 60
             };
 
-            // Update Display
             updateResults(calculations, currency);
             updateProgressBar(salary);
+            startLiveTicker(calculations['Second (Net)'], currency);
         }
+
+        function startLiveTicker(perSecondUsd, currency) {
+            if (perSecondUsd <= 0) {
+                liveTickerCard.style.display = 'none';
+                clearInterval(liveTickerInterval);
+                return;
+            }
+
+            liveTickerCard.style.display = 'block';
+            clearInterval(liveTickerInterval);
+
+            const perSecondLocal = perSecondUsd * exchangeRates[currency];
+            const symbol = currencySymbols[currency];
+
+            liveTickerInterval = setInterval(() => {
+                const elapsedSeconds = (Date.now() - sessionStartTime) / 1000;
+                const earned = elapsedSeconds * perSecondLocal;
+                liveAmountEl.textContent = `${symbol}${earned.toFixed(4)}`;
+            }, 100);
+        }
+
+        taxRateInput.addEventListener('input', updateCalculations);
 
         // Update Results Display
         function updateResults(data, currency) {
             elements.resultsGrid.innerHTML = '';
-            
+
             Object.entries(data).forEach(([unit, value]) => {
                 const convertedValue = value * exchangeRates[currency];
                 const card = document.createElement('div');
                 card.className = 'result-card';
                 card.setAttribute('role', 'region');
                 card.setAttribute('aria-label', `Earnings per ${unit}`);
-                
+
                 // Format the amount to fit in the card
                 let displayValue;
                 if (convertedValue >= 1000000) {
@@ -703,13 +750,13 @@
                 } else {
                     displayValue = formatCurrency(convertedValue, currency);
                 }
-                
+
                 card.innerHTML = `
                     <div class="time-unit">Per ${unit}</div>
                     <div class="amount">${displayValue}</div>
                 `;
                 elements.resultsGrid.appendChild(card);
-                
+
                 // Add hover animation
                 card.addEventListener('mouseenter', () => {
                     createSparkleOnElement(card);
@@ -723,12 +770,12 @@
 
         // Progress Bar Animation
         function updateProgressBar(salary) {
-            const maxSalary = currentFrequency === 'yearly' ? 1000000 : 
-                             currentFrequency === 'monthly' ? 100000 : 
-                             currentFrequency === 'weekly' ? 25000 : 500;
+            const maxSalary = currentFrequency === 'yearly' ? 1000000 :
+                currentFrequency === 'monthly' ? 100000 :
+                    currentFrequency === 'weekly' ? 25000 : 500;
             const widthPercentage = Math.min((salary / maxSalary) * 100, 100);
             elements.progressBar.style.width = `${widthPercentage}%`;
-            
+
             // Change color based on percentage
             if (widthPercentage > 80) {
                 elements.progressBar.style.background = 'linear-gradient(90deg, #00ff87, #ff5e62)';
@@ -744,14 +791,14 @@
             const message = fortunes[Math.floor(Math.random() * fortunes.length)];
             elements.fortuneCookie.textContent = message;
             elements.fortuneCookie.style.backgroundColor = 'rgba(0, 255, 135, 0.3)';
-            
+
             // Create sparkles
             for (let i = 0; i < 5; i++) {
                 setTimeout(() => {
                     createSparkleOnElement(elements.fortuneCookie);
                 }, i * 200);
             }
-            
+
             setTimeout(() => {
                 elements.fortuneCookie.textContent = "🎉 Click for More Wisdom!";
                 elements.fortuneCookie.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
@@ -766,7 +813,7 @@
             coin.style.top = `${y}px`;
             coin.style.animationDelay = `${Math.random() * 2}s`;
             elements.floatingCoins.appendChild(coin);
-            
+
             // Remove coin after animation
             setTimeout(() => {
                 coin.remove();
@@ -781,7 +828,7 @@
             sparkle.style.top = `${e.clientY}px`;
             sparkle.style.backgroundColor = `hsl(${Math.random() * 60 + 150}, 100%, 70%)`;
             document.body.appendChild(sparkle);
-            
+
             // Remove sparkle after animation
             setTimeout(() => {
                 sparkle.remove();
@@ -797,7 +844,7 @@
                 sparkle.style.top = `${rect.top + Math.random() * rect.height}px`;
                 sparkle.style.backgroundColor = `hsl(${Math.random() * 60 + 150}, 100%, 70%)`;
                 document.body.appendChild(sparkle);
-                
+
                 // Remove sparkle after animation
                 setTimeout(() => {
                     sparkle.remove();
@@ -841,8 +888,51 @@
         // Initial Calculation
         updateCalculations();
 
-        // Real-time Updates
-        setInterval(updateCalculations, 1000);
+        // Helper: Currency Selection
+        function selectCurrency(flag) {
+            elements.currencyFlags.forEach(f => {
+                f.classList.remove('active');
+                f.setAttribute('aria-selected', 'false');
+            });
+            flag.classList.add('active');
+            flag.setAttribute('aria-selected', 'true');
+            const currency = flag.dataset.currency;
+            elements.currencySymbol.textContent = currencySymbols[currency] || '$';
+            sessionStartTime = Date.now(); // Reset ticker on currency change
+            updateCalculations();
+        }
+
+        // Helper: Frequency Selection
+        function selectFrequency(btn) {
+            elements.frequencyBtns.forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-pressed', 'false');
+            });
+            btn.classList.add('active');
+            btn.setAttribute('aria-pressed', 'true');
+            currentFrequency = btn.dataset.frequency;
+            updateCalculations();
+        }
+
+        // Event Listeners
+        elements.currencyFlags.forEach(flag => {
+            flag.addEventListener('click', () => selectCurrency(flag));
+            flag.addEventListener('click', createSparkle);
+        });
+
+        elements.frequencyBtns.forEach(btn => {
+            btn.addEventListener('click', () => selectFrequency(btn));
+        });
+
+        elements.salaryInput.addEventListener('input', updateCalculations);
+
+        // Create floating coins on mouse move
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.95) {
+                createFloatingCoin(e.clientX, e.clientY);
+            }
+        });
     </script>
 </body>
+
 </html>

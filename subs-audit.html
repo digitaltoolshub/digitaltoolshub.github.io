@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SubScout | Audit & Optimize Your Monthly Subscriptions</title>
+    <meta name="description"
+        content="Free tool to track and audit your monthly subscriptions. Visualize your spending and find ways to save money on Netflix, Spotify, and more.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4158D0;
+            --accent: #FF9A8B;
+            --gradient: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%);
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #1e293b;
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: -40px auto 50px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.2rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .btn-add {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-add:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .summary-box {
+            background: var(--gradient);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            text-align: center;
+        }
+
+        .summary-item h3 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .summary-item p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .sub-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sub-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+            border: 1px solid #f1f5f9;
+            transition: transform 0.2s;
+        }
+
+        .sub-item:hover {
+            transform: scale(1.02);
+        }
+
+        .sub-info h4 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .sub-info p {
+            margin: 0;
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+
+        .sub-price {
+            text-align: right;
+        }
+
+        .sub-price .amt {
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            padding: 5px;
+            margin-left: 1rem;
+        }
+
+        @media (max-width: 800px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1 style="font-weight: 900; letter-spacing: -1px;"><i class="fas fa-search-dollar"></i> SubScout</h1>
+        <p>The smartest way to audit your digital recurring costs</p>
+    </header>
+
+    <div class="container">
+        <div class="side-panel">
+            <div class="card">
+                <h2>Add Subscription</h2>
+                <div class="input-group">
+                    <label>Name</label>
+                    <input type="text" id="sub-name" placeholder="Netflix, Spotify, etc.">
+                </div>
+                <div class="input-group">
+                    <label>Price ($)</label>
+                    <input type="number" id="sub-price" placeholder="9.99" step="0.01">
+                </div>
+                <div class="input-group">
+                    <label>Billing Cycle</label>
+                    <select id="sub-cycle">
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Category</label>
+                    <select id="sub-category">
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Work/Productivity">Work/Productivity</option>
+                        <option value="Health/Fitness">Health/Fitness</option>
+                        <option value="Utilities/Bills">Utilities/Bills</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <button class="btn-add" onclick="addSub()">Add to Audit <i class="fas fa-plus"></i></button>
+            </div>
+        </div>
+
+        <div class="main-panel">
+            <div class="summary-box">
+                <div class="summary-item">
+                    <p>Monthly Total</p>
+                    <h3 id="total-monthly">$0.00</h3>
+                </div>
+                <div class="summary-item" style="border-left: 1px solid rgba(255,255,255,0.2);">
+                    <p>Annual Total</p>
+                    <h3 id="total-yearly">$0.00</h3>
+                </div>
+            </div>
+
+            <div class="card" style="min-height: 400px;">
+                <h2>Your Subscriptions</h2>
+                <div id="empty-state" style="text-align: center; color: #94a3b8; margin-top: 5rem;">
+                    <i class="fas fa-receipt fa-3x" style="margin-bottom: 1rem; opacity: 0.3;"></i>
+                    <p>No subscriptions added yet.<br>Start auditing to see where your money goes!</p>
+                </div>
+                <ul id="sub-list" class="sub-list"></ul>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="index.html" style="color: var(--text); text-decoration: none; font-weight: 600;"><i
+                        class="fas fa-arrow-left"></i> Hub Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let subscriptions = JSON.parse(localStorage.getItem('my_subs')) || [];
+
+        function renderSubs() {
+            const list = document.getElementById('sub-list');
+            const empty = document.getElementById('empty-state');
+            list.innerHTML = '';
+
+            if (subscriptions.length === 0) {
+                empty.style.display = 'block';
+            } else {
+                empty.style.display = 'none';
+            }
+
+            let monthlyTotal = 0;
+
+            subscriptions.forEach((sub, index) => {
+                const price = parseFloat(sub.price);
+                const displayPrice = sub.cycle === 'yearly' ? (price / 12) : price;
+                monthlyTotal += displayPrice;
+
+                const li = document.createElement('li');
+                li.className = 'sub-item';
+                li.innerHTML = `
+                <div class="sub-info">
+                    <h4>${sub.name} <span style="font-size: 0.7rem; background: #e2e8f0; padding: 2px 6px; border-radius: 4px; margin-left: 5px; color: #475569;">${sub.category || 'General'}</span></h4>
+                    <p>${sub.cycle.charAt(0).toUpperCase() + sub.cycle.slice(1)} billing</p>
+                </div>
+                <div class="sub-price">
+                    <span class="amt">$${price.toFixed(2)}</span>
+                    <button class="delete-btn" onclick="deleteSub(${index})"><i class="fas fa-trash"></i></button>
+                </div>
+            `;
+                list.appendChild(li);
+            });
+
+            const monthlyEl = document.getElementById('total-monthly');
+            const yearlyEl = document.getElementById('total-yearly');
+
+            // Animated counter effect
+            animateValue(monthlyEl, parseFloat(monthlyEl.innerText.replace('$', '')), monthlyTotal, 500);
+            animateValue(yearlyEl, parseFloat(yearlyEl.innerText.replace('$', '')), monthlyTotal * 12, 500);
+
+            localStorage.setItem('my_subs', JSON.stringify(subscriptions));
+        }
+
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = `$${(progress * (end - start) + start).toFixed(2)}`;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        function addSub() {
+            const name = document.getElementById('sub-name').value;
+            const price = document.getElementById('sub-price').value;
+            const cycle = document.getElementById('sub-cycle').value;
+            const category = document.getElementById('sub-category').value;
+
+            if (!name || !price) return alert("Please fill in all fields (Name and Price are required)");
+
+            subscriptions.push({ name, price, cycle, category });
+            renderSubs();
+
+            // Clear inputs
+            document.getElementById('sub-name').value = '';
+            document.getElementById('sub-price').value = '';
+        }
+
+        function deleteSub(index) {
+            subscriptions.splice(index, 1);
+            renderSubs();
+        }
+
+        // Initial render
+        renderSubs();
+    </script>
+
+</body>
+
+</html>

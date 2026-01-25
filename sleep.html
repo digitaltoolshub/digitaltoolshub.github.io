@@ -1,31 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-R4N9RB1SNN');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-R4N9RB1SNN');
     </script>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
+        crossorigin="anonymous"></script>
 
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" type="text/javascript" async></script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f"
+        type="text/javascript" async></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Calculate how much of your life you've spent sleeping with the Sleep Time Calculator on Digital Tools Hub. Discover interesting sleep facts, lifetime sleep duration, and track your sleep over time.">
-    <meta name="keywords" content="sleep calculator, lifetime sleep, sleep time, sleep statistics, life sleeping, sleep duration, sleep tracker, calculate sleep, digital tools hub, online sleep calculator, free sleep calculator, how much have I slept">
+    <title>Sleep Time Calculator | Lifetime Sleep Statistics</title>
+    <meta name="title" content="Sleep Time Calculator | Lifetime Sleep Statistics">
+    <meta name="description"
+        content="Calculate how much of your life you've spent sleeping. Discover sleep facts and visualize your sleep data with our interactive calculator.">
+    <meta name="keywords"
+        content="sleep calculator, lifetime sleep, sleep time, sleep statistics, life sleeping, sleep duration, sleep tracker, calculate sleep, digital tools hub, online sleep calculator, free sleep calculator, how much have I slept">
     <meta name="author" content="Digital Tools Hub">
     <meta name="robots" content="index, follow">
 
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Sleep Time Calculator | Digital Tools Hub">
-    <meta property="og:description" content="Calculate how much of your life you've spent sleeping with our Sleep Time Calculator. Discover interesting sleep facts and statistics.">
-    <meta property="og:image" content="https://digitaltoolshub.github.io/images/sleep-calculator-preview.jpg"> <meta property="og:url" content="https://digitaltoolshub.github.io/sleep-calculator"> <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Sleep Time Calculator | Digital Tools Hub">
-    <meta name="twitter:description" content="Calculate how much of your life you've spent sleeping with our Sleep Time Calculator.">
-    <meta name="twitter:image" content="https://digitaltoolshub.github.io/images/sleep-calculator-preview.jpg"> <link rel="canonical" href="https://digitaltoolshub.github.io/sleep-calculator"> <link rel="icon" href="https://digitaltoolshub.github.io/favicon.ico" type="image/x-icon"> <title>Sleep Time Calculator | Calculate Your Lifetime Sleep Duration - Digital Tools Hub</title>
+    <meta property="og:url" content="https://digitaltoolshub.github.io/sleep-calculator">
+    <meta property="og:title" content="Sleep Time Calculator | Lifetime Sleep Statistics">
+    <meta property="og:description"
+        content="Calculate how much of your life you've spent sleeping. Discover sleep facts and visualize your sleep data.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://digitaltoolshub.github.io/sleep-calculator">
+    <meta property="twitter:title" content="Sleep Time Calculator | Lifetime Sleep Statistics">
+    <meta property="twitter:description"
+        content="Calculate how much of your life you've spent sleeping. Discover sleep facts and visualize your sleep data.">
+    <meta property="twitter:image" content="https://digitaltoolshub.github.io/preview.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://digitaltoolshub.github.io/sleep-calculator">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     <style>
         * {
@@ -97,8 +121,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .sleep-icon {
@@ -109,8 +140,15 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
         }
 
         .fun-fact {
@@ -152,10 +190,12 @@
     }
     </script>
 </head>
+
 <body>
     <div class="container">
         <h1>嫌 Sleep Time Calculator</h1>
-        <p class="description">Discover how much of your life you've spent sleeping and learn interesting sleep facts!</p>
+        <p class="description">Discover how much of your life you've spent sleeping and learn interesting sleep facts!
+        </p>
 
         <div class="input-group">
             <label for="dob-input">Your Date of Birth</label>
@@ -164,7 +204,8 @@
 
         <div class="sleep-input">
             <label for="sleep-hours">Average Daily Sleep (hours)</label>
-            <input type="number" id="sleep-hours" min="0" max="24" step="0.5" value="8" aria-label="Enter your average daily sleep hours">
+            <input type="number" id="sleep-hours" min="0" max="24" step="0.5" value="8"
+                aria-label="Enter your average daily sleep hours">
         </div>
 
         <div id="result" class="result" role="region" aria-live="polite">
@@ -174,7 +215,8 @@
 
         <div id="fun-fact" class="fun-fact">
             <h2>Did you know?</h2>
-            <p>Giraffes sleep only <span class="highlight">30 minutes to 2 hours</span> per day, while koalas sleep up to <span class="highlight">20 hours</span> daily!</p>
+            <p>Giraffes sleep only <span class="highlight">30 minutes to 2 hours</span> per day, while koalas sleep up
+                to <span class="highlight">20 hours</span> daily!</p>
         </div>
     </div>
 
@@ -201,7 +243,7 @@
             }
         });
 
-        dobInput.addEventListener('change', function() {
+        dobInput.addEventListener('change', function () {
             if (new Date(this.value) > new Date()) {
                 alert("You can't sleep before you're born! Enter a valid date.");
                 this.value = '';
@@ -218,7 +260,7 @@
             }
         });
 
-        sleepHoursInput.addEventListener('input', function() {
+        sleepHoursInput.addEventListener('input', function () {
             calculateSleep();
 
             // Track sleep hours input event
@@ -248,10 +290,10 @@
 
             // Funny comparisons
             const comparisons = [
-                `You could've watched <span class="highlight">${Math.round(totalSleepHours/2)}</span> full-length movies!`,
+                `You could've watched <span class="highlight">${Math.round(totalSleepHours / 2)}</span> full-length movies!`,
                 `That's like sleeping through <span class="highlight">${Math.round(diffYears)}</span> Christmases!`,
-                `Enough sleep to dream about <span class="highlight">${Math.round(totalSleepHours*4)}</span> different dreams!`,
-                `You've slept through <span class="highlight">${Math.round(totalSleepHours/8)}</span> work weeks! 直`
+                `Enough sleep to dream about <span class="highlight">${Math.round(totalSleepHours * 4)}</span> different dreams!`,
+                `You've slept through <span class="highlight">${Math.round(totalSleepHours / 8)}</span> work weeks! 直`
             ];
 
             const randomComparison = comparisons[Math.floor(Math.random() * comparisons.length)];
@@ -264,7 +306,7 @@
                     <span class="highlight">${Math.floor(months)}</span> months
                     <span class="highlight">${Math.round(days)}</span> days
                 </p>
-                <p>That's <span class="highlight">${(totalSleepHours/24).toLocaleString()}</span> full days sleeping!</p>
+                <p>That's <span class="highlight">${(totalSleepHours / 24).toLocaleString()}</span> full days sleeping!</p>
                 <p>You've spent <span class="highlight">${percentage}%</span> of your life asleep</p>
                 <p>${randomComparison}</p>
             `;
@@ -280,4 +322,5 @@
         }
     </script>
 </body>
+
 </html>

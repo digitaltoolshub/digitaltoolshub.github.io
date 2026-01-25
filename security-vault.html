@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-R4N9RB1SNN');
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
+        crossorigin="anonymous"></script>
+
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f"
+        type="text/javascript" async></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cipher Shield | Password Strength Tester & Secure Key Generator</title>
+    <meta name="title" content="Cipher Shield | Password Strength Tester & Secure Key Generator">
+    <meta name="description"
+        content="Test your password strength and generate military-grade secure keys with Cipher Shield. Analyze entropy, crack time, and create uncrackable passwords.">
+    <meta name="keywords"
+        content="password strength tester, secure password generator, random key generator, entropy analyzer, password security, cybersecurity tool, digital tools hub">
+    <meta name="author" content="Digital Tools Hub">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://digitaltoolshub.github.io/security-vault.html">
+    <meta property="og:title" content="Cipher Shield | Password Strength Tester & Secure Key Generator">
+    <meta property="og:description"
+        content="Test your password strength and generate military-grade secure keys with Cipher Shield. Analyze entropy, crack time, and create uncrackable passwords.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://digitaltoolshub.github.io/security-vault.html">
+    <meta property="twitter:title" content="Cipher Shield | Password Strength Tester & Secure Key Generator">
+    <meta property="twitter:description"
+        content="Test your password strength and generate military-grade secure keys with Cipher Shield. Analyze entropy, crack time, and create uncrackable passwords.">
+    <meta property="twitter:image" content="https://digitaltoolshub.github.io/preview.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://digitaltoolshub.github.io/security-vault.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Cipher Shield",
+      "url": "https://digitaltoolshub.github.io/security-vault.html",
+      "description": "A comprehensive security suite featuring password strength analysis, entropy calculation, and secure random key generation.",
+      "applicationCategory": "SecurityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": "Password Strength Analyzer, Random Key Generator, SHA-256 Hasher"
+    }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --neon-green: #00ff41;
+            --neon-glow: rgba(0, 255, 65, 0.4);
+            --bg-obsidian: #050505;
+            --surface-glass: rgba(20, 20, 25, 0.9);
+            --danger: #ff4141;
+            --warning: #ffb700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-obsidian);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background-image:
+                linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        header {
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-glow);
+        }
+
+        main {
+            flex: 1;
+            padding: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .card {
+            background: var(--surface-glass);
+            border: 1px solid rgba(0, 255, 65, 0.1);
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-green), transparent);
+        }
+
+        h2 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--neon-green);
+        }
+
+        .input-group {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #444;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="number"] {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            padding: 1.2rem;
+            border-radius: 12px;
+            color: white;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
+        }
+
+        /* Password Strength Meter */
+        .strength-meter {
+            height: 6px;
+            background: #222;
+            border-radius: 3px;
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+
+        .strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: all 0.5s ease;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        .stat-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-val {
+            display: block;
+            font-weight: 700;
+            color: var(--neon-green);
+            margin-top: 5px;
+        }
+
+        /* Generator Controls */
+        .gen-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+        }
+
+        .checkbox-group input {
+            display: none;
+        }
+
+        .custom-check {
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--neon-green);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .checkbox-group input:checked+.custom-check::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            font-size: 10px;
+            color: var(--neon-green);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1.2rem;
+            border-radius: 12px;
+            background: var(--neon-green);
+            color: black;
+            border: none;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            box-shadow: 0 5px 20px var(--neon-glow);
+        }
+
+        .btn:hover {
+            transform: scale(1.02);
+            filter: brightness(1.2);
+        }
+
+        /* Modal / Hash result */
+        .hash-result {
+            margin-top: 1.5rem;
+            background: #000;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            word-break: break-all;
+            color: var(--neon-green);
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: 0.3s;
+        }
+
+        .copy-btn:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 900px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">CIPHER_SHIELD // v2.0</div>
+        <a href="index.html" class="btn"
+            style="width: auto; padding: 0.6rem 1.2rem; background: transparent; border: 1px solid var(--neon-green); color: var(--neon-green); box-shadow: none;">EXIT</a>
+    </header>
+
+    <main>
+        <!-- Strength Analyzer -->
+        <section class="card">
+            <h2><i class="fas fa-microchip"></i> Entropy Analyzer</h2>
+            <div class="input-group">
+                <label>Input Password for Analysis</label>
+                <input type="text" id="passInput" placeholder="Analyze complexity..." autocomplete="off">
+                <div class="strength-meter">
+                    <div class="strength-bar" id="strengthBar"></div>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-item">Complexity <span class="stat-val" id="complexityLabel">WEAK</span></div>
+                <div class="stat-item">Crack Time <span class="stat-val" id="crackTime">INSTANT</span></div>
+                <div class="stat-item">Bits <span class="stat-val" id="bitsLabel">0-bit</span></div>
+                <div class="stat-item">Score <span class="stat-val" id="scoreLabel">0/100</span></div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <p style="font-size: 0.8rem; color: #666; font-style: italic;">Note: Analysis is performed locally. No
+                    data is transmitted.</p>
+            </div>
+        </section>
+
+        <!-- Generator -->
+        <section class="card">
+            <h2><i class="fas fa-cog"></i> Random Key Generator</h2>
+            <div class="input-group">
+                <label>Generated Result</label>
+                <div style="display: flex; gap: 0.5rem;">
+                    <input type="text" id="genResult" readonly style="color: var(--neon-green)">
+                    <button class="btn" style="width: auto; padding: 0 1.5rem;" onclick="copyGen()"><i
+                            class="fas fa-copy"></i></button>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <label style="display: block; margin-bottom: 1rem; font-size: 0.8rem; color: #444;">LENGTH: <span
+                        id="lengthVal" style="color: var(--neon-green)">16</span></label>
+                <input type="range" id="lengthSlider" min="8" max="64" value="16"
+                    style="width: 100%; accent-color: var(--neon-green);">
+            </div>
+
+            <div class="gen-controls">
+                <label class="checkbox-group">
+                    <input type="checkbox" id="checkNumbers" checked>
+                    <div class="custom-check"></div> Numbers (0-9)
+                </label>
+                <label class="checkbox-group">
+                    <input type="checkbox" id="checkSymbols" checked>
+                    <div class="custom-check"></div> Special Char (@#$)
+                </label>
+                <label class="checkbox-group">
+                    <input type="checkbox" id="checkUppercase" checked>
+                    <div class="custom-check"></div> Uppercase (A-Z)
+                </label>
+                <label class="checkbox-group">
+                    <input type="checkbox" id="checkAmbient">
+                    <div class="custom-check"></div> Ambiguous (Il1O0)
+                </label>
+            </div>
+
+            <button class="btn" style="margin-top: 2rem;" onclick="generateKey()">REGENERATE KEY</button>
+        </section>
+
+        <!-- Hash Utility -->
+        <section class="card" style="grid-column: 1 / -1">
+            <h2><i class="fas fa-fingerprint"></i> Digital Fingerprint Suite (SHA-256)</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <div class="input-group" style="margin: 0">
+                    <label>String Data</label>
+                    <input type="text" id="hashInput" placeholder="Input data to hash...">
+                </div>
+                <div class="hash-result">
+                    <i class="far fa-copy copy-btn" onclick="copyHash()"></i>
+                    <code id="hashOutput">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</code>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const passInput = document.getElementById('passInput');
+        const strengthBar = document.getElementById('strengthBar');
+        const crackTimeLabel = document.getElementById('crackTime');
+        const complexityLabel = document.getElementById('complexityLabel');
+        const bitsLabel = document.getElementById('bitsLabel');
+        const scoreLabel = document.getElementById('scoreLabel');
+
+        const genResult = document.getElementById('genResult');
+        const lengthSlider = document.getElementById('lengthSlider');
+        const lengthVal = document.getElementById('lengthVal');
+
+        // --- Analyzer Engine ---
+        passInput.oninput = () => {
+            const val = passInput.value;
+            const entropy = calculateEntropy(val);
+            const score = Math.min(100, (entropy / 128) * 100);
+
+            bitsLabel.innerText = Math.floor(entropy) + '-bit';
+            scoreLabel.innerText = Math.floor(score) + '/100';
+            strengthBar.style.width = score + '%';
+
+            if (score < 30) {
+                strengthBar.style.background = '#ff4141';
+                complexityLabel.innerText = 'WEAK';
+                complexityLabel.style.color = '#ff4141';
+                crackTimeLabel.innerText = 'INSTANT';
+            } else if (score < 60) {
+                strengthBar.style.background = '#ffb700';
+                complexityLabel.innerText = 'FAIR';
+                complexityLabel.style.color = '#ffb700';
+                crackTimeLabel.innerText = 'DAYS';
+            } else {
+                strengthBar.style.background = '#00ff41';
+                complexityLabel.innerText = 'SECURE';
+                complexityLabel.style.color = '#00ff41';
+                crackTimeLabel.innerText = 'CENTURIES';
+            }
+        };
+
+        function calculateEntropy(str) {
+            if (!str) return 0;
+            let pool = 0;
+            if (/[a-z]/.test(str)) pool += 26;
+            if (/[A-Z]/.test(str)) pool += 26;
+            if (/[0-9]/.test(str)) pool += 10;
+            if (/[^a-zA-Z0-9]/.test(str)) pool += 32;
+            return Math.log2(Math.pow(pool, str.length));
+        }
+
+        // --- Generator Engine ---
+        lengthSlider.oninput = () => lengthVal.innerText = lengthSlider.value;
+
+        window.generateKey = () => {
+            const length = lengthSlider.value;
+            let charset = "abcdefghijklmnopqrstuvwxyz";
+            if (document.getElementById('checkNumbers').checked) charset += "0123456789";
+            if (document.getElementById('checkSymbols').checked) charset += "!@#$%^&*()_+~`|}{[]:;?><,./-=";
+            if (document.getElementById('checkUppercase').checked) charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            if (!document.getElementById('checkAmbient').checked) {
+                charset = charset.replace(/[Il1O0]/g, "");
+            }
+
+            let result = "";
+            const array = new Uint32Array(length);
+            window.crypto.getRandomValues(array);
+            for (let i = 0; i < length; i++) {
+                result += charset.charAt(array[i] % charset.length);
+            }
+            genResult.value = result;
+        };
+
+        window.copyGen = () => navigator.clipboard.writeText(genResult.value);
+
+        // --- Hash Engine ---
+        const hashInput = document.getElementById('hashInput');
+        const hashOutput = document.getElementById('hashOutput');
+
+        hashInput.oninput = async () => {
+            if (!hashInput.value) return;
+            const msgBuffer = new TextEncoder().encode(hashInput.value);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            hashOutput.innerText = hashHex;
+        };
+
+        window.copyHash = () => navigator.clipboard.writeText(hashOutput.innerText);
+
+        // Init
+        generateKey();
+
+    </script>
+</body>
+
+</html>

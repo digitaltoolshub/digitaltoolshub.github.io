@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-R4N9RB1SNN');
+    </script>
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
+        crossorigin="anonymous"></script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f"
+        type="text/javascript" async></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataForge | Free Mock Data Generator for Developers</title>
+    <meta name="title" content="DataForge | Free Mock Data Generator for Developers">
+    <meta name="description"
+        content="Generate realistic mock data for your projects. Create custom schemas for names, emails, addresses, and more. Export to JSON or CSV. Free developer tool.">
+    <meta name="keywords"
+        content="mock data generator, random data generator, dummy data, json generator, csv generator, developer tools, test data, dataforge, digital tools hub">
+    <meta name="author" content="Digital Tools Hub">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://digitaltoolshub.github.io/data-generator.html">
+    <meta property="og:title" content="DataForge | Free Mock Data Generator for Developers">
+    <meta property="og:description"
+        content="Generate realistic mock data for your projects. Export to JSON or CSV. Free developer tool.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://digitaltoolshub.github.io/data-generator.html">
+    <meta property="twitter:title" content="DataForge | Free Mock Data Generator for Developers">
+    <meta property="twitter:description"
+        content="Generate realistic mock data for your projects. Export to JSON or CSV. Free developer tool.">
+    <meta property="twitter:image" content="https://digitaltoolshub.github.io/preview.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://digitaltoolshub.github.io/data-generator.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "DataForge Mock Data Generator",
+      "url": "https://digitaltoolshub.github.io/data-generator.html",
+      "description": "A powerful tool for developers to generate realistic mock data (JSON/CSV) for testing and prototyping.",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": "Custom Schema Definition, JSON Export, CSV Export, Realistic Data Types"
+    }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --surface: #0f172a;
+            --panel: #1e293b;
+            --border: #334155;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--surface);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo i {
+            color: var(--primary);
+        }
+
+        main {
+            flex: 1;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Configuration Panel */
+        .config-pane {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            height: fit-content;
+        }
+
+        .section-header {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .field-row {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .field-row .remove-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #ef4444;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: 0.3s;
+        }
+
+        .field-row .remove-btn:hover {
+            opacity: 1;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        select,
+        input {
+            width: 100%;
+            background: #0f172a;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.6rem;
+            color: white;
+            margin-top: 0.5rem;
+            font-family: inherit;
+        }
+
+        /* Preview Area */
+        .preview-pane {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--panel);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .table-container {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: auto;
+            max-height: 600px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background: #1e293b;
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 2px solid var(--border);
+            color: var(--text-muted);
+            position: sticky;
+            top: 0;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .code-view {
+            background: #000;
+            border-radius: 12px;
+            padding: 1.5rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            color: #10b981;
+            overflow: auto;
+            max-height: 400px;
+            border: 1px solid var(--border);
+            display: none;
+        }
+
+        /* Mobile */
+        @media (max-width: 1000px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo"><i class="fas fa-database"></i> DataForge</div>
+        <div style="display: flex; gap: 1rem;">
+            <a href="index.html" class="btn btn-ghost" style="width: auto;"><i class="fas fa-home"></i></a>
+        </div>
+    </header>
+
+    <main>
+        <aside class="config-pane">
+            <div class="section-header">
+                Schema Definition
+                <button class="btn" style="width: auto; padding: 0.3rem 0.6rem;" onclick="addField()"><i
+                        class="fas fa-plus"></i></button>
+            </div>
+
+            <div id="fieldsContainer">
+                <!-- Fields injected here -->
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <label class="section-header">Generation Parameters</label>
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <span style="font-size: 0.8rem; color: var(--text-muted)">Rows:</span>
+                    <input type="number" id="rowCount" value="10" min="1" max="1000" style="margin:0; flex:1">
+                </div>
+            </div>
+
+            <button class="btn" style="margin-top: 2rem;" onclick="generateData()"><i class="fas fa-magic"></i> Generate
+                Dataset</button>
+        </aside>
+
+        <section class="preview-pane">
+            <div class="toolbar">
+                <div style="display: flex; gap: 1rem;">
+                    <button class="btn btn-ghost" id="viewTableBtn" onclick="switchView('table')">Table View</button>
+                    <button class="btn btn-ghost" id="viewJsonBtn" onclick="switchView('json')">Raw JSON</button>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button class="btn" style="width: auto;" onclick="downloadData('json')">Export JSON</button>
+                    <button class="btn" style="width: auto; background: #10b981;" onclick="downloadData('csv')">Export
+                        CSV</button>
+                </div>
+            </div>
+
+            <div class="table-container" id="tableView">
+                <table id="dataTable">
+                    <thead>
+                        <tr id="tableHead"></tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+
+            <pre class="code-view" id="jsonView"></pre>
+        </section>
+    </main>
+
+    <script>
+        /**
+         * DATAFORGE ENGINE
+         * Generators and data logic
+         */
+
+        const fieldsContainer = document.getElementById('fieldsContainer');
+        const dataTable = document.getElementById('tableBody');
+        const tableHead = document.getElementById('tableHead');
+        const jsonView = document.getElementById('jsonView');
+        const rowCountInput = document.getElementById('rowCount');
+
+        const generatorTypes = {
+            id: () => Math.floor(Math.random() * 900000) + 100000,
+            name: () => {
+                const first = ["John", "Jane", "Alice", "Bob", "Charlie", "Diana", "Elon", "Fiona"];
+                const last = ["Doe", "Smith", "Johnson", "Brown", "Miller", "Wilson", "Taylor"];
+                return first[Math.floor(Math.random() * first.length)] + " " + last[Math.floor(Math.random() * last.length)];
+            },
+            email: () => {
+                const domains = ["gmail.com", "outlook.com", "example.io", "dataforge.dev"];
+                return "user_" + Math.random().toString(36).substring(7) + "@" + domains[Math.floor(Math.random() * domains.length)];
+            },
+            amount: () => "$" + (Math.random() * 5000).toFixed(2),
+            city: () => ["London", "New York", "Tokyo", "Berlin", "Paris", "San Francisco", "Sydney"][Math.floor(Math.random() * 7)],
+            bool: () => Math.random() > 0.5 ? "true" : "false",
+            date: () => new Date(Date.now() - Math.floor(Math.random() * 10000000000)).toISOString().split('T')[0],
+            sku: () => "SKU-" + Math.random().toString(36).substring(7).toUpperCase()
+        };
+
+        function addField(name = "Field", type = "name") {
+            const id = 'f' + Date.now();
+            const div = document.createElement('div');
+            div.className = 'field-row';
+            div.id = id;
+            div.innerHTML = `
+                <i class="fas fa-times remove-btn" onclick="document.getElementById('${id}').remove()"></i>
+                <label style="font-size: 0.7rem; color: var(--text-muted)">KEY NAME</label>
+                <input type="text" value="${name}" class="field-name">
+                <label style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.5rem; display:block">DATA TYPE</label>
+                <select class="field-type">
+                    <option value="id" ${type === 'id' ? 'selected' : ''}>Numeric ID</option>
+                    <option value="name" ${type === 'name' ? 'selected' : ''}>Full Name</option>
+                    <option value="email" ${type === 'email' ? 'selected' : ''}>Email Address</option>
+                    <option value="amount" ${type === 'amount' ? 'selected' : ''}>Currency Amount</option>
+                    <option value="city" ${type === 'city' ? 'selected' : ''}>City Name</option>
+                    <option value="date" ${type === 'date' ? 'selected' : ''}>ISO Date</option>
+                    <option value="sku" ${type === 'sku' ? 'selected' : ''}>Product SKU</option>
+                    <option value="bool" ${type === 'bool' ? 'selected' : ''}>Boolean Value</option>
+                </select>
+            `;
+            fieldsContainer.appendChild(div);
+        }
+
+        let currentData = [];
+
+        function generateData() {
+            const fields = Array.from(document.querySelectorAll('.field-row')).map(row => ({
+                name: row.querySelector('.field-name').value,
+                type: row.querySelector('.field-type').value
+            }));
+
+            if (fields.length === 0) { alert("Add at least one field."); return; }
+
+            const count = parseInt(rowCountInput.value);
+            currentData = [];
+
+            for (let i = 0; i < count; i++) {
+                const row = {};
+                fields.forEach(f => {
+                    row[f.name] = generatorTypes[f.type]();
+                });
+                currentData.push(row);
+            }
+
+            renderView(fields);
+        }
+
+        function renderView(fields) {
+            // Render Head
+            tableHead.innerHTML = fields.map(f => `<th>${f.name}</th>`).join('');
+
+            // Render Body
+            dataTable.innerHTML = currentData.map(row => `
+                <tr>${fields.map(f => `<td>${row[f.name]}</td>`).join('')}</tr>
+            `).join('');
+
+            jsonView.innerText = JSON.stringify(currentData, null, 2);
+        }
+
+        function switchView(type) {
+            if (type === 'table') {
+                document.getElementById('tableView').style.display = 'block';
+                jsonView.style.display = 'none';
+            } else {
+                document.getElementById('tableView').style.display = 'none';
+                jsonView.style.display = 'block';
+            }
+        }
+
+        function downloadData(format) {
+            let blob, filename;
+            if (format === 'json') {
+                blob = new Blob([JSON.stringify(currentData, null, 2)], { type: 'application/json' });
+                filename = 'data.json';
+            } else {
+                const keys = Object.keys(currentData[0]);
+                const csv = [keys.join(','), ...currentData.map(row => keys.map(k => row[k]).join(','))].join('\n');
+                blob = new Blob([csv], { type: 'text/csv' });
+                filename = 'data.csv';
+            }
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+        }
+
+        // Init
+        addField("id", "id");
+        addField("full_name", "name");
+        addField("email", "email");
+        addField("location", "city");
+        generateData();
+
+    </script>
+</body>
+
+</html>

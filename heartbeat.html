@@ -1,66 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-R4N9RB1SNN');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-R4N9RB1SNN');
     </script>
+
+    <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
-    crossorigin="anonymous"></script>
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" type="text/javascript" async></script>  
+        crossorigin="anonymous"></script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f"
+        type="text/javascript" async></script>
+
     <!-- Primary Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Calculate how many times your heart has beaten since birth with our Heartbeat Calculator. Discover fascinating heart facts and comparisons.">
-    <meta name="keywords" content="heartbeat calculator, heart rate, bpm calculator, lifetime heartbeats, health calculator">
-    <meta name="author" content="BioLife">
+    <title>Heartbeat Calculator | Lifetime Heartbeats & Pulse</title>
+    <meta name="title" content="Heartbeat Calculator | Lifetime Heartbeats & Pulse">
+    <meta name="description"
+        content="Calculate how many times your heart has beaten since birth. Discover fascinating heart facts and visualize your lifetime heartbeat count.">
+    <meta name="keywords"
+        content="heartbeat calculator, lifetime heartbeats, total heartbeats, heart rate calculator, pulse counter, health facts, biology tool, digital tools hub">
+    <meta name="author" content="Digital Tools Hub">
     <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:title" content="Heartbeat Calculator - BioLife">
-    <meta property="og:description" content="Discover how many times your heart has beaten since birth with our interactive Heartbeat Calculator.">
+
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://biolife.example.com/heartbeat-calculator">
-    <meta property="og:image" content="https://biolife.example.com/images/heartbeat-calculator-preview.jpg">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Heartbeat Calculator - BioLife">
-    <meta name="twitter:description" content="Calculate your lifetime heartbeats with our interactive tool and discover fascinating heart facts.">
-    <meta name="twitter:image" content="https://biolife.example.com/images/heartbeat-calculator-preview.jpg">
-    
+    <meta property="og:url" content="https://digitaltoolshub.github.io/heartbeat.html">
+    <meta property="og:title" content="Heartbeat Calculator | Lifetime Heartbeats & Pulse">
+    <meta property="og:description"
+        content="Calculate how many times your heart has beaten since birth. Discover fascinating heart facts.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://digitaltoolshub.github.io/heartbeat.html">
+    <meta property="twitter:title" content="Heartbeat Calculator | Lifetime Heartbeats & Pulse">
+    <meta property="twitter:description"
+        content="Calculate how many times your heart has beaten since birth. Discover fascinating heart facts.">
+    <meta property="twitter:image" content="https://digitaltoolshub.github.io/preview.png">
+
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://biolife.example.com/heartbeat-calculator">
-    
+    <link rel="canonical" href="https://digitaltoolshub.github.io/heartbeat.html">
+
     <!-- Favicon -->
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    
-    <!-- Structured Data / Schema.org -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "Heartbeat Calculator",
-      "description": "Interactive calculator to determine how many times your heart has beaten since birth",
-      "url": "https://biolife.example.com/heartbeat-calculator",
+      "url": "https://digitaltoolshub.github.io/heartbeat.html",
+      "description": "Interactive calculator to determine how many times your heart has beaten since birth.",
       "applicationCategory": "HealthApplication",
-      "operatingSystem": "Web",
+      "operatingSystem": "Any",
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
-      }
+      },
+      "featureList": "Lifetime Heartbeat Calculation, Real-time Pulse Simulation, Comparative Health Facts"
     }
     </script>
-    
-    <title>Heartbeat Calculator - Calculate Your Lifetime Heartbeats | BioLife</title>
-    
-  
+
+
     <style>
         * {
             margin: 0;
@@ -168,7 +181,7 @@
             border-radius: 50%;
         }
 
-        input:checked + .slider {
+        input:checked+.slider {
             background-color: #e94560;
         }
 
@@ -181,8 +194,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .heart-animation {
@@ -195,11 +215,25 @@
         }
 
         @keyframes heartbeat {
-            0% { transform: scale(1); }
-            15% { transform: scale(1.3); }
-            30% { transform: scale(1); }
-            45% { transform: scale(1.15); }
-            60% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            15% {
+                transform: scale(1.3);
+            }
+
+            30% {
+                transform: scale(1);
+            }
+
+            45% {
+                transform: scale(1.15);
+            }
+
+            60% {
+                transform: scale(1);
+            }
         }
 
         .fun-fact {
@@ -215,25 +249,29 @@
             color: #e94560;
             font-weight: bold;
         }
-        
+
         /* Improved semantic HTML styling */
-        h2, h3 {
+        h2,
+        h3 {
             margin-bottom: 1rem;
             color: #fff;
             text-align: center;
         }
-        
+
         p {
             line-height: 1.6;
             margin-bottom: 0.8rem;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <header>
             <h1>❤️ Heartbeat Calculator</h1>
-            <p class="description">Discover how many times your heart has beaten since birth with our interactive calculator. This tool estimates your lifetime heartbeats based on your date of birth and an average heart rate of 75 beats per minute.</p>
+            <p class="description">Discover how many times your heart has beaten since birth with our interactive
+                calculator. This tool estimates your lifetime heartbeats based on your date of birth and an average
+                heart rate of 75 beats per minute.</p>
         </header>
 
         <main>
@@ -259,7 +297,9 @@
 
             <aside id="fun-fact" class="fun-fact">
                 <h2>Did You Know?</h2>
-                <p>A blue whale's heart beats only <span class="highlight">5-10 times per minute</span>, while a hummingbird's heart can beat up to <span class="highlight">1,200 times per minute</span>! The human heart beats about 100,000 times a day, pumping approximately 2,000 gallons of blood.</p>
+                <p>A blue whale's heart beats only <span class="highlight">5-10 times per minute</span>, while a
+                    hummingbird's heart can beat up to <span class="highlight">1,200 times per minute</span>! The human
+                    heart beats about 100,000 times a day, pumping approximately 2,000 gallons of blood.</p>
             </aside>
         </main>
     </div>
@@ -279,12 +319,12 @@
             dobInput.valueAsDate = defaultDate;
             calculateHeartbeats();
             startRealTimeUpdates();
-            
+
             // Set focus to date input for better accessibility
             dobInput.focus();
         });
 
-        dobInput.addEventListener('change', function() {
+        dobInput.addEventListener('change', function () {
             if (new Date(this.value) > new Date()) {
                 alert("Wait a minute... you haven't been born yet! Please enter a valid date of birth.");
                 this.value = '';
@@ -293,7 +333,7 @@
             calculateHeartbeats();
         });
 
-        realtimeToggle.addEventListener('change', function() {
+        realtimeToggle.addEventListener('change', function () {
             if (this.checked) {
                 startRealTimeUpdates();
             } else {
@@ -304,26 +344,26 @@
         function calculateHeartbeats() {
             const dob = new Date(dobInput.value);
             const now = new Date();
-            
+
             if (isNaN(dob.getTime())) {
                 return; // Invalid date
             }
-            
+
             const diffMs = now - dob;
             const minutes = diffMs / (1000 * 60);
             const beats = Math.round(minutes * avgBpm);
-            
+
             // Funny comparisons with more descriptive text
             const comparisons = [
-                `That's like listening to <span class="highlight">${Math.round(beats/1000)}</span> three-minute songs on the radio!`,
-                `Enough beats to power <span class="highlight">${Math.round(beats/100000)}</span> artificial pacemakers for an entire year!`,
-                `More than all the applause at <span class="highlight">${Math.round(beats/5000)}</span> sold-out rock concerts!`,
-                `Your heart could've powered <span class="highlight">${Math.round(beats/2000000)}</span> superhero runs like The Flash!`,
-                `Equivalent to <span class="highlight">${Math.round(beats/42000)}</span> hours of drumming at 700 beats per minute!`
+                `That's like listening to <span class="highlight">${Math.round(beats / 1000)}</span> three-minute songs on the radio!`,
+                `Enough beats to power <span class="highlight">${Math.round(beats / 100000)}</span> artificial pacemakers for an entire year!`,
+                `More than all the applause at <span class="highlight">${Math.round(beats / 5000)}</span> sold-out rock concerts!`,
+                `Your heart could've powered <span class="highlight">${Math.round(beats / 2000000)}</span> superhero runs like The Flash!`,
+                `Equivalent to <span class="highlight">${Math.round(beats / 42000)}</span> hours of drumming at 700 beats per minute!`
             ];
-            
+
             const randomComparison = comparisons[Math.floor(Math.random() * comparisons.length)];
-            
+
             resultDiv.innerHTML = `
                 <h2>Your Lifetime Heartbeats</h2>
                 <div class="heart-animation" aria-hidden="true">❤️</div>
@@ -339,4 +379,5 @@
         }
     </script>
 </body>
+
 </html>

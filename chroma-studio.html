@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chroma Studio | Free Color Palette Generator & Contrast Checker</title>
+    <meta name="title" content="Chroma Studio | Free Color Palette Generator & Contrast Checker">
+    <meta name="description"
+        content="Professional free online color palette generator and contrast checker. Extract colors from images, check WCAG accessibility, and export to CSS/JSON.">
+    <meta name="keywords"
+        content="color palette generator, color picker, contrast checker, wcag accessibility, image color extractor, design tool, digital tools hub, color scheme creator, hex code finder">
+    <meta name="author" content="Digital Tools Hub">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://digitaltoolshub.github.io/chroma-studio.html">
+    <meta property="og:title" content="Chroma Studio | Free Color Palette Generator & Contrast Checker">
+    <meta property="og:description"
+        content="Generate beautiful color palettes, check contrast for accessibility, and extract colors from images. Free design tool.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://digitaltoolshub.github.io/chroma-studio.html">
+    <meta property="twitter:title" content="Chroma Studio | Free Color Palette Generator & Contrast Checker">
+    <meta property="twitter:description"
+        content="Generate beautiful color palettes, check contrast for accessibility, and extract colors from images.">
+    <meta property="twitter:image" content="https://digitaltoolshub.github.io/preview.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://digitaltoolshub.github.io/chroma-studio.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Chroma Studio",
+      "url": "https://digitaltoolshub.github.io/chroma-studio.html",
+      "description": "Professional free online color palette generator and contrast checker. Extract colors from images and check WCAG accessibility.",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": "Palette Generation, Color Extraction, WCAG Contrast Checker, CSS Export"
+    }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Lexend:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --surface: #1e293b;
+            --accent: #6366f1;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 1.5rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Lexend', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo i {
+            color: var(--accent);
+        }
+
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2rem;
+        }
+
+        /* Sidebar Controls */
+        .controls-panel {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .drop-zone {
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            padding: 2rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .drop-zone:hover {
+            border-color: var(--accent);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .drop-zone img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        select,
+        input {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border);
+            padding: 0.8rem;
+            border-radius: 8px;
+            color: white;
+            font-family: inherit;
+        }
+
+        .btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Palette Canvas */
+        .workspace {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .color-card {
+            background: var(--surface);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+        }
+
+        .color-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .color-preview {
+            height: 150px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .color-card .info {
+            padding: 1.2rem;
+        }
+
+        .color-card .hex {
+            font-family: monospace;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .color-card .rgb {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .copy-hint {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .color-preview:hover .copy-hint {
+            opacity: 1;
+        }
+
+        /* Contrast Checker */
+        .contrast-panel {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .contrast-example {
+            padding: 1rem;
+            border-radius: 8px;
+            flex: 1;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .contrast-score {
+            text-align: center;
+        }
+
+        .score-val {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .badge-pass {
+            background: #10b981;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+        }
+
+        /* Export Options */
+        .export-section {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .code-block {
+            background: #000;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #10b981;
+            overflow-x: auto;
+            margin-top: 1rem;
+            max-height: 200px;
+        }
+
+        /* Mobile */
+        @media (max-width: 900px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <i class="fas fa-palette"></i> Chroma Studio
+        </div>
+        <div class="actions">
+            <a href="index.html" class="btn" style="background:transparent; border: 1px solid var(--border)"><i
+                    class="fas fa-home"></i> Home</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="controls-panel">
+            <div class="control-group">
+                <p class="section-title">Color Extraction</p>
+                <div class="drop-zone" id="dropZone">
+                    <i class="fas fa-cloud-upload-alt fa-2x" style="color: var(--accent)"></i>
+                    <p style="margin-top: 0.5rem; font-size: 0.9rem;">Drop image or click to upload</p>
+                    <input type="file" id="fileInput" hidden accept="image/*">
+                    <img id="previewImg" src="" alt="Preview">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <p class="section-title">Generation Mode</p>
+                <select id="modeSelect">
+                    <option value="analogous">Analogous</option>
+                    <option value="monochromatic">Monochromatic</option>
+                    <option value="complementary">Complementary</option>
+                    <option value="split-complementary">Split Complementary</option>
+                    <option value="triadic">Triadic</option>
+                    <option value="tetradic">Tetradic</option>
+                </select>
+                <button class="btn" id="randomizeBtn"><i class="fas fa-random"></i> Randomize Palette</button>
+            </div>
+
+            <div class="control-group">
+                <p class="section-title">Export Format</p>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button class="btn" style="flex:1" onclick="exportPalette('css')">CSS</button>
+                    <button class="btn" style="flex:1" onclick="exportPalette('json')">JSON</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="workspace">
+            <div class="palette-grid" id="paletteGrid">
+                <!-- Color cards injected here -->
+            </div>
+
+            <div class="contrast-panel" id="contrastPanel">
+                <div class="score-val" style="font-size: 1rem; color: var(--text-muted)">ACCESSIBILITY CHECK</div>
+                <div class="contrast-example" id="contrastPreview">
+                    Contrast Testing Preview Text
+                </div>
+                <div class="contrast-score">
+                    <div class="score-val" id="contrastRatio">4.5:1</div>
+                    <span class="badge-pass" id="contrastStatus">PASS (AA)</span>
+                </div>
+            </div>
+
+            <div class="export-section">
+                <p class="section-title">Export Output</p>
+                <pre class="code-block" id="exportOutput">/* Select format to see code */</pre>
+                <button class="btn" style="margin-top: 1rem; width: 100%;" onclick="copyCode()"><i
+                        class="fas fa-copy"></i> Copy to Clipboard</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        /**
+         * CHROMA STUDIO CORE
+         * Handling Palette generation, extraction, and UI
+         */
+
+        const paletteGrid = document.getElementById('paletteGrid');
+        const modeSelect = document.getElementById('modeSelect');
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const previewImg = document.getElementById('previewImg');
+        const contrastPreview = document.getElementById('contrastPreview');
+        const contrastRatio = document.getElementById('contrastRatio');
+        const contrastStatus = document.getElementById('contrastStatus');
+        const exportOutput = document.getElementById('exportOutput');
+
+        let currentPalette = [];
+
+        // --- Core Generation ---
+
+        function generatePalette() {
+            const mode = modeSelect.value;
+            const baseHue = Math.random() * 360;
+            currentPalette = [];
+
+            switch (mode) {
+                case 'analogous':
+                    for (let i = -2; i <= 2; i++) currentPalette.push(hslToHex(baseHue + i * 20, 60, 55));
+                    break;
+                case 'monochromatic':
+                    for (let i = 1; i <= 5; i++) currentPalette.push(hslToHex(baseHue, 60, 20 + i * 15));
+                    break;
+                case 'complementary':
+                    currentPalette.push(hslToHex(baseHue, 60, 55));
+                    currentPalette.push(hslToHex(baseHue, 60, 40));
+                    currentPalette.push(hslToHex(baseHue + 180, 60, 55));
+                    currentPalette.push(hslToHex(baseHue + 180, 60, 40));
+                    break;
+                case 'triadic':
+                    for (let i = 0; i < 3; i++) currentPalette.push(hslToHex(baseHue + i * 120, 60, 55));
+                    break;
+                default:
+                    for (let i = 0; i < 5; i++) currentPalette.push(hslToHex(Math.random() * 360, 60, 55));
+            }
+
+            renderPalette();
+        }
+
+        function hslToHex(h, s, l) {
+            h = (h % 360 + 360) % 360;
+            l /= 100;
+            const a = s * Math.min(l, 1 - l) / 100;
+            const f = n => {
+                const k = (n + h / 30) % 12;
+                const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+                return Math.round(255 * color).toString(16).padStart(2, '0');
+            };
+            return `#${f(0)}${f(8)}${f(4)}`;
+        }
+
+        // --- UI Rendering ---
+
+        function renderPalette() {
+            paletteGrid.innerHTML = '';
+            currentPalette.forEach((hex, index) => {
+                const card = document.createElement('div');
+                card.className = 'color-card';
+                card.innerHTML = `
+                    <div class="color-preview" style="background: ${hex}" onclick="copyToClipboard('${hex}')">
+                        <div class="copy-hint">Click to Copy</div>
+                    </div>
+                    <div class="info">
+                        <div class="hex" onclick="copyToClipboard('${hex}')">${hex.toUpperCase()} <i class="far fa-clone" style="font-size: 0.8rem"></i></div>
+                        <div class="rgb">${hexToRgb(hex)}</div>
+                    </div>
+                `;
+                paletteGrid.appendChild(card);
+            });
+            updateContrast(currentPalette[0], currentPalette[currentPalette.length - 1]);
+        }
+
+        function hexToRgb(hex) {
+            const r = parseInt(hex.slice(1, 3), 16);
+            const g = parseInt(hex.slice(3, 5), 16);
+            const b = parseInt(hex.slice(5, 7), 16);
+            return `RGB(${r}, ${g}, ${b})`;
+        }
+
+        // --- Contrast Logic ---
+
+        function updateContrast(bg, fg) {
+            contrastPreview.style.backgroundColor = bg;
+            contrastPreview.style.color = fg;
+
+            const ratio = calculateContrast(bg, fg);
+            contrastRatio.innerText = ratio.toFixed(2) + ':1';
+
+            if (ratio >= 4.5) {
+                contrastStatus.innerText = 'PASS (AA)';
+                contrastStatus.style.background = '#10b981';
+            } else {
+                contrastStatus.innerText = 'FAIL (Low)';
+                contrastStatus.style.background = '#f43f5e';
+            }
+        }
+
+        function calculateContrast(hex1, hex2) {
+            const lux1 = getLuminance(hex1);
+            const lux2 = getLuminance(hex2);
+            return (Math.max(lux1, lux2) + 0.05) / (Math.min(lux1, lux2) + 0.05);
+        }
+
+        function getLuminance(hex) {
+            const rgb = [
+                parseInt(hex.slice(1, 3), 16) / 255,
+                parseInt(hex.slice(3, 5), 16) / 255,
+                parseInt(hex.slice(5, 7), 16) / 255
+            ].map(v => v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4));
+            return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
+        }
+
+        // --- Image Extraction ---
+
+        dropZone.onclick = () => fileInput.click();
+
+        fileInput.onchange = (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                previewImg.src = event.target.result;
+                previewImg.style.display = 'block';
+                extractColors(event.target.result);
+            };
+            reader.readAsDataURL(file);
+        };
+
+        function extractColors(imgData) {
+            const img = new Image();
+            img.src = imgData;
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+
+                // Sample some zones
+                const zones = [
+                    [0.2, 0.2], [0.5, 0.5], [0.8, 0.8], [0.2, 0.8], [0.8, 0.2]
+                ];
+                currentPalette = zones.map(z => {
+                    const data = ctx.getImageData(img.width * z[0], img.height * z[1], 1, 1).data;
+                    return rgbToHex(data[0], data[1], data[2]);
+                });
+                renderPalette();
+            };
+        }
+
+        function rgbToHex(r, g, b) {
+            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+        }
+
+        // --- Utilities ---
+
+        window.copyToClipboard = (text) => {
+            navigator.clipboard.writeText(text);
+            const originalTitle = document.title;
+            document.title = "COPIED!";
+            setTimeout(() => document.title = originalTitle, 1000);
+        };
+
+        window.exportPalette = (format) => {
+            let output = "";
+            if (format === 'css') {
+                output = ":root {\n";
+                currentPalette.forEach((hex, i) => output += `  --color-${i + 1}: ${hex};\n`);
+                output += "}";
+            } else {
+                output = JSON.stringify({ palette: currentPalette }, null, 2);
+            }
+            exportOutput.innerText = output;
+        };
+
+        window.copyCode = () => {
+            copyToClipboard(exportOutput.innerText);
+        };
+
+        document.getElementById('randomizeBtn').onclick = generatePalette;
+        modeSelect.onchange = generatePalette;
+
+        // Init
+        generatePalette();
+
+    </script>
+</body>
+
+</html>

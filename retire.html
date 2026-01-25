@@ -1,534 +1,589 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <head>
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
         <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-R4N9RB1SNN');
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-R4N9RB1SNN');
         </script>
-    
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
-    
-        <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" type="text/javascript" async></script>
-    
+
+        <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
+            crossorigin="anonymous"></script>
+
+        <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js"
+            data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" type="text/javascript" async></script>
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Use the ultimate Global Retirement Planner to calculate your retirement savings, explore worldwide retirement locations, and compare costs in multiple currencies (USD, EUR, INR, PKR, AED, etc.). Plan your financial independence and retire early or comfortably abroad.">
-        <meta name="keywords" content="retirement calculator, retirement planning, financial planning, retirement savings, retirement locations, expat retirement, multi-currency retirement planner, retirement cost calculator, how much to retire, retirement savings goal, retirement age calculator, retirement income calculator, early retirement calculator, international retirement planning, retire abroad calculator, cost of living retirement, best countries to retire, retirement budget, financial independence calculator, FIRE calculator, pension calculator, investment calculator retirement, currency exchange retirement, retirement withdrawal strategies, expat financial planning">
+        <title>Global Retirement Planner | International Retirement Calculator</title>
+        <meta name="title" content="Global Retirement Planner | International Retirement Calculator">
+        <meta name="description"
+            content="Plan your retirement anywhere in the world. Calculate savings, compare cost of living in different countries, and find your perfect retirement destination.">
+        <meta name="keywords"
+            content="retirement planner, retirement calculator, retire abroad, international retirement, cost of living calculator, expat retirement, financial independence, fire calculator, digital tools hub">
         <meta name="author" content="Digital Tools Hub">
-    
+        <meta name="robots" content="index, follow">
+
+        <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
-        <meta property="og:url" content="https://digitaltoolshub.github.io/retirement-planner">
-        <meta property="og:title" content="🌍 Global Retirement Planner | Accurate Multi-Currency Retirement Calculator">
-        <meta property="og:description" content="Use the ultimate Global Retirement Planner to calculate your retirement savings, explore worldwide retirement locations, and compare costs in multiple currencies (USD, EUR, INR, PKR, AED, etc.). Plan your financial independence and retire early or comfortably abroad.">
-        <meta property="og:image" content="https://digitaltoolshub.github.io/images/retirement-planner-preview.jpg">
-    
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="🌍 Global Retirement Planner | Accurate Multi-Currency Retirement Calculator">
-        <meta name="twitter:description" content="Use the ultimate Global Retirement Planner to calculate your retirement savings, explore worldwide retirement locations, and compare costs in multiple currencies. Plan your financial independence and retire early or comfortably abroad.">
-        <meta name="twitter:image" content="https://digitaltoolshub.github.io/images/retirement-planner-preview.jpg">
-    
-        <title>Global Retirement Planner | Accurate Multi-Currency Retirement Calculator</title>
-    
-        <link rel="canonical" href="https://digitaltoolshub.github.io/retirement-planner">
-    
-        <link rel="icon" href="https://digitaltoolshub.github.io/favicon.ico" type="image/x-icon">
-    
+        <meta property="og:url" content="https://digitaltoolshub.github.io/retire.html">
+        <meta property="og:title" content="Global Retirement Planner | International Retirement Calculator">
+        <meta property="og:description"
+            content="Plan your retirement anywhere in the world. Calculate savings, compare cost of living in different countries.">
+        <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="https://digitaltoolshub.github.io/retire.html">
+        <meta property="twitter:title" content="Global Retirement Planner | International Retirement Calculator">
+        <meta property="twitter:description"
+            content="Plan your retirement anywhere in the world. Calculate savings, compare cost of living in different countries.">
+        <meta property="twitter:image" content="https://digitaltoolshub.github.io/preview.png">
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href="https://digitaltoolshub.github.io/retire.html">
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+        <!-- Structured Data -->
         <script type="application/ld+json">
         {
           "@context": "https://schema.org",
           "@type": "WebApplication",
           "name": "Global Retirement Planner",
-          "description": "Interactive multi-currency retirement planning calculator with accurate local values that helps users visualize their retirement savings and explore ideal retirement locations worldwide.",
+          "description": "Interactive multi-currency retirement planning calculator with accurate local values.",
+          "url": "https://digitaltoolshub.github.io/retire.html",
           "applicationCategory": "FinanceApplication",
-          "operatingSystem": "Web",
+          "operatingSystem": "Any",
           "offers": {
             "@type": "Offer",
             "price": "0",
             "priceCurrency": "USD"
-      }
-    }
-    </script>
-    
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <style>
-        /* Modern Gradient Background */
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Orbitron:wght@700&display=swap');
-        
-        :root {
-            --primary: #6dd5ed;
-            --secondary: #2193b0;
-            --accent: #ff758c;
-            --tip-color: #f9f871;
-            --luxury: #ff9ff3;
-            --comfortable: #48dbfb;
-            --basic: #1dd1a1;
-            --input-bg: rgba(255, 255, 255, 0.1);
-            --input-border: rgba(109, 213, 237, 0.3);
-            --custom: #b197fc;
+          },
+          "featureList": "Multi-Currency Support, International Cost Comparison, Savings Projection"
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            min-height: 100vh;
-            color: white;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-        
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        /* Floating Particles */
-        .particle {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 50%;
-            animation: float linear infinite;
-            z-index: 1;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0) translateX(0); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
-        }
-        
-        /* Main Container */
-        .container {
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 3rem;
-            width: 90%;
-            max-width: 1200px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            position: relative;
-            z-index: 2;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin: 2rem auto;
-        }
-        
-        /* Header */
-        .header {
-            text-align: center;
-            margin-bottom: 2.5rem;
-            position: relative;
-        }
-        
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 20px rgba(109, 213, 237, 0.3);
-        }
-        
-        .subtitle {
-            font-weight: 300;
-            opacity: 0.8;
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        /* Grid Layout */
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-        
-        @media (max-width: 1000px) {
-            .grid {
-                grid-template-columns: 1fr;
+        </script>
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+        <style>
+            /* Modern Gradient Background */
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Orbitron:wght@700&display=swap');
+
+            :root {
+                --primary: #6dd5ed;
+                --secondary: #2193b0;
+                --accent: #ff758c;
+                --tip-color: #f9f871;
+                --luxury: #ff9ff3;
+                --comfortable: #48dbfb;
+                --basic: #1dd1a1;
+                --input-bg: rgba(255, 255, 255, 0.1);
+                --input-border: rgba(109, 213, 237, 0.3);
+                --custom: #b197fc;
             }
-        }
-        
-        /* Input Section */
-        .input-section {
-            margin-bottom: 2rem;
-        }
-        
-        .input-group {
-            position: relative;
-            margin-bottom: 1.5rem;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--primary);
-        }
-        
-        input, select {
-            width: 100%;
-            padding: 1rem;
-            background: var(--input-bg);
-            border: 2px solid var(--input-border);
-            border-radius: 10px;
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-        
-        input:focus, select:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 15px rgba(255, 117, 140, 0.5);
-        }
-        
-        /* Number input controls */
-        .number-controls {
-            position: relative;
-        }
-        
-        .number-controls input {
-            padding-right: 60px;
-        }
-        
-        .number-buttons {
-            position: absolute;
-            right: 5px;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-        
-        .number-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
-            width: 25px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border-radius: 3px;
-            transition: all 0.2s;
-        }
-        
-        .number-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        .number-btn:active {
-            transform: scale(0.9);
-        }
-        
-        /* Currency Selector */
-        .currency-selector {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 1.5rem;
-        }
-        
-        .currency-selector label {
-            margin-bottom: 0;
-            white-space: nowrap;
-        }
-        
-        .currency-selector select {
-            flex: 1;
-            padding: 0.8rem;
-        }
-        
-        /* Lifestyle Selector */
-        .lifestyle-options {
-            display: flex;
-            gap: 1rem;
-            margin: 1.5rem 0;
-            flex-wrap: wrap;
-        }
-        
-        .lifestyle-option {
-            flex: 1;
-            min-width: 120px;
-            padding: 1rem;
-            text-align: center;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid transparent;
-        }
-        
-        .lifestyle-option:hover {
-            transform: translateY(-3px);
-        }
-        
-        .lifestyle-option.active {
-            border-color: currentColor;
-            box-shadow: 0 0 15px currentColor;
-        }
-        
-        .lifestyle-option.basic {
-            color: var(--basic);
-        }
-        
-        .lifestyle-option.comfortable {
-            color: var(--comfortable);
-        }
-        
-        .lifestyle-option.luxury {
-            color: var(--luxury);
-        }
-        
-        .lifestyle-option.custom {
-            color: var(--custom);
-        }
-        
-        /* Custom Lifestyle Input */
-        .custom-lifestyle-input {
-            display: none;
-            margin-top: 1rem;
-            animation: fadeIn 0.5s ease-out;
-        }
-        
-        .custom-lifestyle-input.active {
-            display: block;
-        }
-        
-        /* Results Section */
-        .results {
-            text-align: center;
-        }
-        
-        .countdown {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem;
-            margin: 1.5rem 0;
-            color: var(--primary);
-            text-shadow: 0 0 10px rgba(109, 213, 237, 0.5);
-            animation: pulse 2s infinite alternate;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.05); }
-        }
-        
-        .result-text {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-        
-        .highlight {
-            color: var(--accent);
-            font-weight: 600;
-        }
-        
-        /* Hourglass Visualization */
-        .hourglass-container {
-            width: 150px;
-            height: 200px;
-            margin: 2rem auto;
-            position: relative;
-        }
-        
-        .hourglass {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-        
-        .glass {
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px 10px 50px 50px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .sand {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            background: linear-gradient(to bottom, var(--accent), var(--primary));
-            transition: height 1s ease-out;
-            border-radius: 0 0 50px 50px;
-        }
-        
-        /* Comparison Section */
-        .comparison {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            text-align: left;
-        }
-        
-        .comparison-title {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-        
-        .comparison-bar {
-            height: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            margin: 0.5rem 0;
-            overflow: hidden;
-        }
-        
-        .comparison-progress {
-            height: 100%;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            border-radius: 10px;
-            transition: width 1s ease-out;
-        }
-        
-        /* Location Explorer */
-        .location-explorer {
-            margin-top: 2rem;
-            height: 400px;
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        #map {
-            height: 100%;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.5);
-        }
-        
-        .location-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 1rem;
-            display: none;
-        }
-        
-        /* Tips Section */
-        .tips-container {
-            margin-top: 2rem;
-        }
-        
-        .tip {
-            background: rgba(255, 255, 255, 0.05);
-            border-left: 4px solid var(--tip-color);
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 0 8px 8px 0;
-            animation: fadeIn 0.5s ease-out;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        
-        .tip:hover {
-            transform: translateX(5px);
-        }
-        
-        .tip-title {
-            color: var(--tip-color);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Share Button */
-        .share-btn {
-            background: linear-gradient(to right, #25aae1, #4481eb);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(37, 170, 225, 0.3);
-        }
-        
-        .share-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 170, 225, 0.4);
-        }
-        
-        /* Currency Display */
-        .currency-display {
-            font-weight: 700;
-            color: var(--primary);
-        }
-        
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Montserrat', sans-serif;
+                background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+                background-size: 400% 400%;
+                animation: gradientBG 15s ease infinite;
+                min-height: 100vh;
+                color: white;
+                overflow-x: hidden;
+                line-height: 1.6;
+            }
+
+            @keyframes gradientBG {
+                0% {
+                    background-position: 0% 50%;
+                }
+
+                50% {
+                    background-position: 100% 50%;
+                }
+
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+
+            /* Floating Particles */
+            .particle {
+                position: absolute;
+                background: rgba(255, 255, 255, 0.6);
+                border-radius: 50%;
+                animation: float linear infinite;
+                z-index: 1;
+            }
+
+            @keyframes float {
+                0% {
+                    transform: translateY(0) translateX(0);
+                    opacity: 0;
+                }
+
+                50% {
+                    opacity: 1;
+                }
+
+                100% {
+                    transform: translateY(-100vh) translateX(100px);
+                    opacity: 0;
+                }
+            }
+
+            /* Main Container */
             .container {
-                padding: 2rem;
+                background: rgba(0, 0, 0, 0.7);
+                backdrop-filter: blur(10px);
+                border-radius: 20px;
+                padding: 3rem;
+                width: 90%;
+                max-width: 1200px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+                position: relative;
+                z-index: 2;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                margin: 2rem auto;
             }
-            
+
+            /* Header */
+            .header {
+                text-align: center;
+                margin-bottom: 2.5rem;
+                position: relative;
+            }
+
             h1 {
-                font-size: 2rem;
-            }
-            
-            .countdown {
+                font-family: 'Orbitron', sans-serif;
                 font-size: 2.5rem;
+                margin-bottom: 1rem;
+                background: linear-gradient(to right, var(--primary), var(--accent));
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                text-shadow: 0 0 20px rgba(109, 213, 237, 0.3);
             }
-            
-            .lifestyle-options {
-                flex-direction: column;
+
+            .subtitle {
+                font-weight: 300;
+                opacity: 0.8;
+                font-size: 1.1rem;
+                max-width: 700px;
+                margin: 0 auto;
             }
-            
-            .currency-selector {
-                flex-direction: column;
-                align-items: flex-start;
+
+            /* Grid Layout */
+            .grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
             }
-            
-            .currency-selector select {
+
+            @media (max-width: 1000px) {
+                .grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            /* Input Section */
+            .input-section {
+                margin-bottom: 2rem;
+            }
+
+            .input-group {
+                position: relative;
+                margin-bottom: 1.5rem;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: 600;
+                color: var(--primary);
+            }
+
+            input,
+            select {
                 width: 100%;
+                padding: 1rem;
+                background: var(--input-bg);
+                border: 2px solid var(--input-border);
+                border-radius: 10px;
+                color: white;
+                font-size: 1rem;
+                transition: all 0.3s;
             }
-        }
-    </style>
-</head>
+
+            input:focus,
+            select:focus {
+                outline: none;
+                border-color: var(--accent);
+                box-shadow: 0 0 15px rgba(255, 117, 140, 0.5);
+            }
+
+            /* Number input controls */
+            .number-controls {
+                position: relative;
+            }
+
+            .number-controls input {
+                padding-right: 60px;
+            }
+
+            .number-buttons {
+                position: absolute;
+                right: 5px;
+                top: 50%;
+                transform: translateY(-50%);
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .number-btn {
+                background: rgba(255, 255, 255, 0.1);
+                border: none;
+                color: white;
+                width: 25px;
+                height: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                border-radius: 3px;
+                transition: all 0.2s;
+            }
+
+            .number-btn:hover {
+                background: rgba(255, 255, 255, 0.2);
+            }
+
+            .number-btn:active {
+                transform: scale(0.9);
+            }
+
+            /* Currency Selector */
+            .currency-selector {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 1.5rem;
+            }
+
+            .currency-selector label {
+                margin-bottom: 0;
+                white-space: nowrap;
+            }
+
+            .currency-selector select {
+                flex: 1;
+                padding: 0.8rem;
+            }
+
+            /* Lifestyle Selector */
+            .lifestyle-options {
+                display: flex;
+                gap: 1rem;
+                margin: 1.5rem 0;
+                flex-wrap: wrap;
+            }
+
+            .lifestyle-option {
+                flex: 1;
+                min-width: 120px;
+                padding: 1rem;
+                text-align: center;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: all 0.3s;
+                background: rgba(255, 255, 255, 0.05);
+                border: 2px solid transparent;
+            }
+
+            .lifestyle-option:hover {
+                transform: translateY(-3px);
+            }
+
+            .lifestyle-option.active {
+                border-color: currentColor;
+                box-shadow: 0 0 15px currentColor;
+            }
+
+            .lifestyle-option.basic {
+                color: var(--basic);
+            }
+
+            .lifestyle-option.comfortable {
+                color: var(--comfortable);
+            }
+
+            .lifestyle-option.luxury {
+                color: var(--luxury);
+            }
+
+            .lifestyle-option.custom {
+                color: var(--custom);
+            }
+
+            /* Custom Lifestyle Input */
+            .custom-lifestyle-input {
+                display: none;
+                margin-top: 1rem;
+                animation: fadeIn 0.5s ease-out;
+            }
+
+            .custom-lifestyle-input.active {
+                display: block;
+            }
+
+            /* Results Section */
+            .results {
+                text-align: center;
+            }
+
+            .countdown {
+                font-family: 'Orbitron', sans-serif;
+                font-size: 3.5rem;
+                margin: 1.5rem 0;
+                color: var(--primary);
+                text-shadow: 0 0 10px rgba(109, 213, 237, 0.5);
+                animation: pulse 2s infinite alternate;
+            }
+
+            @keyframes pulse {
+                0% {
+                    transform: scale(1);
+                }
+
+                100% {
+                    transform: scale(1.05);
+                }
+            }
+
+            .result-text {
+                font-size: 1.2rem;
+                margin-bottom: 1.5rem;
+                line-height: 1.6;
+            }
+
+            .highlight {
+                color: var(--accent);
+                font-weight: 600;
+            }
+
+            /* Hourglass Visualization */
+            .hourglass-container {
+                width: 150px;
+                height: 200px;
+                margin: 2rem auto;
+                position: relative;
+            }
+
+            .hourglass {
+                width: 100%;
+                height: 100%;
+                position: relative;
+            }
+
+            .glass {
+                width: 100%;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.05);
+                border: 2px solid rgba(255, 255, 255, 0.1);
+                border-radius: 10px 10px 50px 50px;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .sand {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                background: linear-gradient(to bottom, var(--accent), var(--primary));
+                transition: height 1s ease-out;
+                border-radius: 0 0 50px 50px;
+            }
+
+            /* Comparison Section */
+            .comparison {
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 10px;
+                padding: 1.5rem;
+                margin: 2rem 0;
+                text-align: left;
+            }
+
+            .comparison-title {
+                color: var(--primary);
+                margin-bottom: 1rem;
+                font-weight: 600;
+            }
+
+            .comparison-bar {
+                height: 20px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 10px;
+                margin: 0.5rem 0;
+                overflow: hidden;
+            }
+
+            .comparison-progress {
+                height: 100%;
+                background: linear-gradient(to right, var(--primary), var(--accent));
+                border-radius: 10px;
+                transition: width 1s ease-out;
+            }
+
+            /* Location Explorer */
+            .location-explorer {
+                margin-top: 2rem;
+                height: 400px;
+                border-radius: 10px;
+                overflow: hidden;
+                position: relative;
+            }
+
+            #map {
+                height: 100%;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.5);
+            }
+
+            .location-info {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.8);
+                padding: 1rem;
+                display: none;
+            }
+
+            /* Tips Section */
+            .tips-container {
+                margin-top: 2rem;
+            }
+
+            .tip {
+                background: rgba(255, 255, 255, 0.05);
+                border-left: 4px solid var(--tip-color);
+                padding: 1rem;
+                margin: 1rem 0;
+                border-radius: 0 8px 8px 0;
+                animation: fadeIn 0.5s ease-out;
+                cursor: pointer;
+                transition: transform 0.3s;
+            }
+
+            .tip:hover {
+                transform: translateX(5px);
+            }
+
+            .tip-title {
+                color: var(--tip-color);
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(10px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* Share Button */
+            .share-btn {
+                background: linear-gradient(to right, #25aae1, #4481eb);
+                color: white;
+                border: none;
+                padding: 0.8rem 1.5rem;
+                border-radius: 50px;
+                font-weight: 600;
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-top: 1rem;
+                transition: all 0.3s;
+                box-shadow: 0 4px 15px rgba(37, 170, 225, 0.3);
+            }
+
+            .share-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(37, 170, 225, 0.4);
+            }
+
+            /* Currency Display */
+            .currency-display {
+                font-weight: 700;
+                color: var(--primary);
+            }
+
+            /* Responsive Adjustments */
+            @media (max-width: 768px) {
+                .container {
+                    padding: 2rem;
+                }
+
+                h1 {
+                    font-size: 2rem;
+                }
+
+                .countdown {
+                    font-size: 2.5rem;
+                }
+
+                .lifestyle-options {
+                    flex-direction: column;
+                }
+
+                .currency-selector {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+                .currency-selector select {
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
+
 <body>
     <!-- Floating Particles Background -->
     <div id="particles"></div>
-    
+
     <!-- Main Calculator Container -->
     <div class="container">
         <div class="header">
             <h1>🌍 GLOBAL RETIREMENT PLANNER</h1>
-            <p class="subtitle">Plan your perfect retirement anywhere in the world with accurate local cost estimates</p>
+            <p class="subtitle">Plan your perfect retirement anywhere in the world with accurate local cost estimates
+            </p>
         </div>
-        
+
         <!-- Currency Selector -->
         <div class="currency-selector">
             <label for="currency">Select Currency:</label>
@@ -567,72 +622,92 @@
                 <option value="KES">Kenyan Shilling (KES)</option>
             </select>
         </div>
-        
+
         <div class="grid">
             <div class="input-section">
                 <div class="input-group">
                     <label for="current-age">Current Age</label>
                     <div class="number-controls">
-                        <input type="number" id="current-age" min="18" max="100" value="30" aria-label="Enter your current age">
+                        <input type="number" id="current-age" min="18" max="100" value="30"
+                            aria-label="Enter your current age">
                         <div class="number-buttons">
-                            <button class="number-btn" aria-label="Increase current age" data-target="current-age" data-change="1">+</button>
-                            <button class="number-btn" aria-label="Decrease current age" data-target="current-age" data-change="-1">−</button>
+                            <button class="number-btn" aria-label="Increase current age" data-target="current-age"
+                                data-change="1">+</button>
+                            <button class="number-btn" aria-label="Decrease current age" data-target="current-age"
+                                data-change="-1">−</button>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="input-group">
                     <label for="retirement-age">Planned Retirement Age</label>
                     <div class="number-controls">
-                        <input type="number" id="retirement-age" min="25" max="100" value="65" aria-label="Enter your planned retirement age">
+                        <input type="number" id="retirement-age" min="25" max="100" value="65"
+                            aria-label="Enter your planned retirement age">
                         <div class="number-buttons">
-                            <button class="number-btn" aria-label="Increase retirement age" data-target="retirement-age" data-change="1">+</button>
-                            <button class="number-btn" aria-label="Decrease retirement age" data-target="retirement-age" data-change="-1">−</button>
+                            <button class="number-btn" aria-label="Increase retirement age" data-target="retirement-age"
+                                data-change="1">+</button>
+                            <button class="number-btn" aria-label="Decrease retirement age" data-target="retirement-age"
+                                data-change="-1">−</button>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="input-group">
-                    <label for="current-savings">Current Savings (<span class="currency-display" id="current-savings-currency">USD</span>)</label>
-                    <input type="number" id="current-savings" min="0" value="50000" aria-label="Enter your current retirement savings">
+                    <label for="current-savings">Current Savings (<span class="currency-display"
+                            id="current-savings-currency">USD</span>)</label>
+                    <input type="number" id="current-savings" min="0" value="50000"
+                        aria-label="Enter your current retirement savings">
                 </div>
-                
+
                 <div class="input-group">
-                    <label for="monthly-contribution">Monthly Contribution (<span class="currency-display" id="monthly-contribution-currency">USD</span>)</label>
-                    <input type="number" id="monthly-contribution" min="0" value="1000" aria-label="Enter your monthly retirement contribution">
+                    <label for="monthly-contribution">Monthly Contribution (<span class="currency-display"
+                            id="monthly-contribution-currency">USD</span>)</label>
+                    <input type="number" id="monthly-contribution" min="0" value="1000"
+                        aria-label="Enter your monthly retirement contribution">
                 </div>
-                
+
                 <div class="input-group">
                     <label for="return-rate">Expected Return Rate (%)</label>
-                    <input type="number" id="return-rate" min="0" max="20" step="0.1" value="7" aria-label="Enter expected investment return rate">
+                    <input type="number" id="return-rate" min="0" max="20" step="0.1" value="7"
+                        aria-label="Enter expected investment return rate">
                 </div>
-                
+
                 <div class="input-group">
                     <label>Retirement Lifestyle</label>
                     <div class="lifestyle-options">
-                        <div class="lifestyle-option basic active" data-value="basic" role="button" aria-label="Basic retirement lifestyle option">
+                        <div class="lifestyle-option basic active" data-value="basic" role="button"
+                            aria-label="Basic retirement lifestyle option">
                             <div>🏡 Basic</div>
-                            <small><span class="lifestyle-cost" data-base="120000" data-pkr="150000" data-inr="120000" data-aed="12000" data-eur="11000">$40k</span>/year</small>
+                            <small><span class="lifestyle-cost" data-base="120000" data-pkr="150000" data-inr="120000"
+                                    data-aed="12000" data-eur="11000">$40k</span>/year</small>
                         </div>
-                        <div class="lifestyle-option comfortable" data-value="comfortable" role="button" aria-label="Comfortable retirement lifestyle option">
+                        <div class="lifestyle-option comfortable" data-value="comfortable" role="button"
+                            aria-label="Comfortable retirement lifestyle option">
                             <div>✈️ Comfortable</div>
-                            <small><span class="lifestyle-cost" data-base="70000" data-pkr="300000" data-inr="250000" data-aed="25000" data-eur="22000">$70k</span>/year</small>
+                            <small><span class="lifestyle-cost" data-base="70000" data-pkr="300000" data-inr="250000"
+                                    data-aed="25000" data-eur="22000">$70k</span>/year</small>
                         </div>
-                        <div class="lifestyle-option luxury" data-value="luxury" role="button" aria-label="Luxury retirement lifestyle option">
+                        <div class="lifestyle-option luxury" data-value="luxury" role="button"
+                            aria-label="Luxury retirement lifestyle option">
                             <div>🏖️ Luxury</div>
-                            <small><span class="lifestyle-cost" data-base="120000" data-pkr="600000" data-inr="500000" data-aed="45000" data-eur="40000">$120k+</span>/year</small>
+                            <small><span class="lifestyle-cost" data-base="120000" data-pkr="600000" data-inr="500000"
+                                    data-aed="45000" data-eur="40000">$120k+</span>/year</small>
                         </div>
-                        <div class="lifestyle-option custom" data-value="custom" role="button" aria-label="Custom retirement lifestyle option">
+                        <div class="lifestyle-option custom" data-value="custom" role="button"
+                            aria-label="Custom retirement lifestyle option">
                             <div>🛠️ Custom</div>
                             <small>Set your own</small>
                         </div>
                     </div>
                     <div class="custom-lifestyle-input" id="custom-lifestyle-input">
-                        <label for="custom-annual-cost">Annual Living Cost (<span class="currency-display" id="custom-cost-currency">USD</span>)</label>
-                        <input type="number" id="custom-annual-cost" min="0" value="50000" aria-label="Enter your custom annual living cost">
+                        <label for="custom-annual-cost">Annual Living Cost (<span class="currency-display"
+                                id="custom-cost-currency">USD</span>)</label>
+                        <input type="number" id="custom-annual-cost" min="0" value="50000"
+                            aria-label="Enter your custom annual living cost">
                     </div>
                 </div>
-                
+
                 <div class="input-group">
                     <label for="retirement-location">Preferred Retirement Region</label>
                     <select id="retirement-location" aria-label="Select preferred retirement region">
@@ -643,7 +718,7 @@
                     </select>
                 </div>
             </div>
-            
+
             <div class="results">
                 <div class="hourglass-container">
                     <div class="hourglass">
@@ -652,33 +727,36 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="countdown" id="countdown" aria-live="polite">00:00:00</div>
                 <p class="result-text">
                     You have <span class="highlight" id="years-left">35 years</span> until retirement.<br>
                     At this rate, you'll have <span class="highlight" id="retirement-amount">$1,200,000</span> saved.
                 </p>
-                
+
                 <!-- Comparison Section -->
                 <div class="comparison">
                     <div class="comparison-title">How You Compare</div>
                     <div>Your projected savings: <span id="user-savings">$1,200,000</span></div>
                     <div class="comparison-bar">
-                        <div class="comparison-progress" id="savings-comparison" style="width: 50%" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="comparison-progress" id="savings-comparison" style="width: 50%" role="progressbar"
+                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <div>Average retirement savings at 65: <span id="average-savings">$500,000</span></div>
                 </div>
-                
+
                 <!-- Share Button -->
                 <button class="share-btn" id="share-btn" aria-label="Share your retirement plan">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z" />
                     </svg>
                     Share Your Plan
                 </button>
             </div>
         </div>
-        
+
         <!-- Location Explorer -->
         <section class="location-explorer" aria-label="Retirement location explorer">
             <h2 class="visually-hidden">Retirement Locations Map</h2>
@@ -689,7 +767,7 @@
                 <p>Healthcare quality: <span id="location-healthcare">Excellent</span></p>
             </div>
         </section>
-        
+
         <!-- Tips Section -->
         <section class="tips-container" id="tips-container" aria-label="Retirement planning tips">
             <h2 class="tip-title">💡 Retirement Strategy Tips</h2>
@@ -698,9 +776,12 @@
     </div>
 
     <!-- Sound Effects (hidden audio elements) -->
-    <audio id="tick-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3" preload="auto"></audio>
-    <audio id="success-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3" preload="auto"></audio>
-    <audio id="location-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3" preload="auto"></audio>
+    <audio id="tick-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3"
+        preload="auto"></audio>
+    <audio id="success-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3"
+        preload="auto"></audio>
+    <audio id="location-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3"
+        preload="auto"></audio>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
@@ -740,14 +821,14 @@
                 NGN: 1400.00,
                 KES: 130.50
             },
-            
+
             lifestyles: {
                 basic: { color: '#1dd1a1' },
                 comfortable: { color: '#48dbfb' },
                 luxury: { color: '#ff9ff3' },
                 custom: { color: '#b197fc' }
             },
-            
+
             // Location-specific annual costs in local currency
             locationCosts: {
                 us: {
@@ -771,7 +852,7 @@
                     luxury: 70000
                 }
             },
-            
+
             // Country-specific average savings at retirement age (65)
             averageSavingsByCurrency: {
                 USD: 500000,
@@ -790,7 +871,7 @@
                 SGD: 650000,
                 // Add more currencies as needed
             },
-            
+
             tips: [
                 {
                     title: "💰 The Power of Compounding",
@@ -844,10 +925,10 @@
             updateCurrencyDisplay();
             calculateRetirement();
             showRandomTip();
-            
+
             // Rotate tips every 15 seconds
             setInterval(showRandomTip, 15000);
-            
+
             // Animate hourglass
             setInterval(() => {
                 const hourglass = document.querySelector('.hourglass');
@@ -864,18 +945,18 @@
             for (let i = 0; i < 30; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
-                
+
                 const size = Math.random() * 4 + 2;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
-                
+
                 particle.style.left = `${Math.random() * 100}vw`;
                 particle.style.bottom = `-10px`;
-                
+
                 const duration = Math.random() * 10 + 10;
                 particle.style.animationDuration = `${duration}s`;
                 particle.style.animationDelay = `${Math.random() * 5}s`;
-                
+
                 container.appendChild(particle);
             }
         }
@@ -886,40 +967,40 @@
             document.querySelectorAll('input, select').forEach(input => {
                 input.addEventListener('input', calculateRetirement);
             });
-            
+
             // Number controls
             document.querySelectorAll('.number-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function () {
                     const targetId = this.dataset.target;
                     const change = parseInt(this.dataset.change);
                     const input = document.getElementById(targetId);
                     let value = parseInt(input.value) || 0;
-                    
+
                     // Apply change with bounds checking
                     value += change;
                     if (input.hasAttribute('min')) value = Math.max(value, parseInt(input.min));
                     if (input.hasAttribute('max')) value = Math.min(value, parseInt(input.max));
-                    
+
                     input.value = value;
                     input.dispatchEvent(new Event('input'));
                 });
             });
-            
+
             // Currency selection
-            document.getElementById('currency').addEventListener('change', function() {
+            document.getElementById('currency').addEventListener('change', function () {
                 currentCurrency = this.value;
                 updateCurrencyDisplay();
                 calculateRetirement();
             });
-            
+
             // Lifestyle selection
             document.querySelectorAll('.lifestyle-option').forEach(option => {
-                option.addEventListener('click', function() {
-                    document.querySelectorAll('.lifestyle-option').forEach(opt => 
+                option.addEventListener('click', function () {
+                    document.querySelectorAll('.lifestyle-option').forEach(opt =>
                         opt.classList.remove('active'));
                     this.classList.add('active');
                     currentLifestyle = this.dataset.value;
-                    
+
                     // Show/hide custom input
                     if (currentLifestyle === 'custom') {
                         document.getElementById('custom-lifestyle-input').classList.add('active');
@@ -927,32 +1008,32 @@
                     } else {
                         document.getElementById('custom-lifestyle-input').classList.remove('active');
                     }
-                    
+
                     calculateRetirement();
                 });
-                
+
                 // Add keyboard accessibility
-                option.addEventListener('keydown', function(e) {
+                option.addEventListener('keydown', function (e) {
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
                         this.click();
                     }
                 });
             });
-            
+
             // Custom lifestyle cost input
-            document.getElementById('custom-annual-cost').addEventListener('input', function() {
+            document.getElementById('custom-annual-cost').addEventListener('input', function () {
                 customAnnualCost = parseFloat(this.value) || 0;
                 calculateRetirement();
             });
-            
+
             // Location selection
-            document.getElementById('retirement-location').addEventListener('change', function() {
+            document.getElementById('retirement-location').addEventListener('change', function () {
                 currentLocation = this.value;
                 updateMap();
                 calculateRetirement();
             });
-            
+
             // Share button
             document.getElementById('share-btn').addEventListener('click', shareResults);
         }
@@ -963,21 +1044,21 @@
             document.querySelectorAll('.currency-display').forEach(el => {
                 el.textContent = currentCurrency;
             });
-            
+
             // Update lifestyle cost displays based on currency
             document.querySelectorAll('.lifestyle-cost').forEach(el => {
                 let cost;
-                
+
                 // Use currency-specific value if available
                 if (el.dataset[currentCurrency.toLowerCase()]) {
                     cost = parseFloat(el.dataset[currentCurrency.toLowerCase()]);
-                } 
+                }
                 // Otherwise use the base USD value and convert
                 else {
                     const baseValue = parseFloat(el.dataset.base);
                     cost = convertCurrency(baseValue, 'USD', currentCurrency);
                 }
-                
+
                 const formattedValue = formatCurrency(cost, currentCurrency);
                 el.textContent = formattedValue;
             });
@@ -986,15 +1067,15 @@
         // Convert between currencies
         function convertCurrency(amount, fromCurrency, toCurrency) {
             if (fromCurrency === toCurrency) return amount;
-            
+
             // First convert to USD if needed
-            const usdAmount = fromCurrency === 'USD' ? 
-                amount : 
+            const usdAmount = fromCurrency === 'USD' ?
+                amount :
                 amount / retirementData.exchangeRates[fromCurrency];
-            
+
             // Then convert to target currency if needed
-            return toCurrency === 'USD' ? 
-                usdAmount : 
+            return toCurrency === 'USD' ?
+                usdAmount :
                 usdAmount * retirementData.exchangeRates[toCurrency];
         }
 
@@ -1008,7 +1089,7 @@
                     maximumFractionDigits: 0
                 }).format(amount);
             }
-            
+
             // Special case for INR (Indian Rupee)
             if (currency === 'INR') {
                 return new Intl.NumberFormat('en-IN', {
@@ -1017,7 +1098,7 @@
                     maximumFractionDigits: 0
                 }).format(amount);
             }
-            
+
             // Special case for PKR (Pakistani Rupee)
             if (currency === 'PKR') {
                 return new Intl.NumberFormat('en-PK', {
@@ -1026,7 +1107,7 @@
                     maximumFractionDigits: 0
                 }).format(amount);
             }
-            
+
             // Default formatting for most currencies
             return new Intl.NumberFormat(undefined, {
                 style: 'currency',
@@ -1039,11 +1120,11 @@
         // Initialize the map
         function initMap() {
             map = L.map('map').setView([20, 0], 2);
-            
+
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
-            
+
             updateMap();
         }
 
@@ -1052,7 +1133,7 @@
             // Clear existing markers
             markers.forEach(marker => map.removeLayer(marker));
             markers = [];
-            
+
             // Add new markers
             retirementData.locations[currentLocation].forEach(location => {
                 // Calculate cost in selected currency
@@ -1062,20 +1143,20 @@
                 } else {
                     cost = convertCurrency(location.cost, 'USD', currentCurrency);
                 }
-                
+
                 const formattedCost = formatCurrency(cost, currentCurrency);
-                
+
                 const marker = L.marker([location.lat, location.lng])
                     .addTo(map)
                     .bindPopup(`<b>${location.name}</b><br>Cost: ~${formattedCost}/month`)
-                    .on('click', function() {
+                    .on('click', function () {
                         showLocationDetails(location);
                         playSound('location-sound');
                     });
-                
+
                 markers.push(marker);
             });
-            
+
             // Fit map to show all markers
             if (markers.length > 0) {
                 const group = new L.featureGroup(markers);
@@ -1086,7 +1167,7 @@
         // Show location details
         function showLocationDetails(location) {
             const info = document.getElementById('location-info');
-            
+
             // Calculate cost in selected currency
             let cost;
             if (currentCurrency === 'USD') {
@@ -1094,14 +1175,14 @@
             } else {
                 cost = convertCurrency(location.cost, 'USD', currentCurrency);
             }
-            
+
             const formattedCost = formatCurrency(cost, currentCurrency);
-            
+
             document.getElementById('location-name').textContent = location.name;
             document.getElementById('location-cost').textContent = `${formattedCost}/month`;
             document.getElementById('location-healthcare').textContent = location.healthcare;
             info.style.display = 'block';
-            
+
             // Hide after 5 seconds
             setTimeout(() => {
                 info.style.display = 'none';
@@ -1118,42 +1199,42 @@
         // Calculate retirement numbers
         function calculateRetirement() {
             playSound('tick-sound');
-            
+
             // Get input values
             const currentAge = parseInt(document.getElementById('current-age').value);
             const retirementAge = parseInt(document.getElementById('retirement-age').value);
             const currentSavings = parseFloat(document.getElementById('current-savings').value);
             const monthlyContribution = parseFloat(document.getElementById('monthly-contribution').value);
             const returnRate = parseFloat(document.getElementById('return-rate').value) / 100;
-            
+
             // Validate inputs
             if (currentAge >= retirementAge) {
                 document.getElementById('retirement-age').value = currentAge + 1;
                 return calculateRetirement();
             }
-            
+
             // Calculate time until retirement
             const yearsLeft = retirementAge - currentAge;
             const monthsLeft = yearsLeft * 12;
-            
+
             // Calculate future value of savings
             let futureValue = currentSavings;
             for (let i = 0; i < yearsLeft; i++) {
                 futureValue = (futureValue + monthlyContribution * 12) * (1 + returnRate);
             }
-            
+
             // Update display
             updateCountdown(yearsLeft);
             updateHourglass(currentAge, retirementAge);
-            
+
             // Format currency
             const formattedValue = formatCurrency(futureValue, currentCurrency);
-            
+
             // Update result text
             document.getElementById('years-left').textContent = `${yearsLeft} years`;
             document.getElementById('retirement-amount').textContent = formattedValue;
             document.getElementById('user-savings').textContent = formattedValue;
-            
+
             // Calculate retirement number based on lifestyle
             if (currentLifestyle === 'custom') {
                 // Use user-defined custom amount
@@ -1161,24 +1242,24 @@
             } else {
                 // Get lifestyle cost in selected currency
                 let annualCost;
-                
+
                 // Use currency-specific value if available
                 const lifestyleElement = document.querySelector(`.lifestyle-option.${currentLifestyle} .lifestyle-cost`);
                 if (lifestyleElement.dataset[currentCurrency.toLowerCase()]) {
                     annualCost = parseFloat(lifestyleElement.dataset[currentCurrency.toLowerCase()]);
-                } 
+                }
                 // Otherwise use the base USD value and convert
                 else {
                     const baseValue = parseFloat(lifestyleElement.dataset.base);
                     annualCost = convertCurrency(baseValue, 'USD', currentCurrency);
                 }
-                
+
                 retirementNumber = annualCost * 25; // Using 4% rule
             }
-            
+
             // Update comparison
             updateComparison(retirementAge, futureValue, retirementNumber);
-            
+
             // Play success sound if savings are above target
             if (futureValue >= retirementNumber) {
                 playSound('success-sound');
@@ -1190,8 +1271,8 @@
             const monthsLeft = yearsLeft * 12;
             const remainingMonths = monthsLeft % 12;
             const remainingDays = Math.floor(yearsLeft * 365.25) % 30;
-            
-            document.getElementById('countdown').textContent = 
+
+            document.getElementById('countdown').textContent =
                 `${String(yearsLeft).padStart(2, '0')}:${String(remainingMonths).padStart(2, '0')}:${String(remainingDays).padStart(2, '0')}`;
         }
 
@@ -1201,7 +1282,7 @@
             const totalYears = retirementAge - currentAge;
             const yearsPassed = currentAge - 18; // Assuming working age starts at 18
             const totalWorkingYears = retirementAge - 18;
-            
+
             const percentageRemaining = (totalYears / totalWorkingYears) * 100;
             sand.style.height = `${percentageRemaining}%`;
         }
@@ -1217,16 +1298,16 @@
                 const usdAvg = retirementData.averageSavingsByCurrency['USD'];
                 avgSavings = convertCurrency(usdAvg, 'USD', currentCurrency);
             }
-            
-            document.getElementById('average-savings').textContent = 
+
+            document.getElementById('average-savings').textContent =
                 formatCurrency(avgSavings, currentCurrency);
-            
+
             // Calculate comparison to target
             const comparisonPct = Math.min((userSavings / targetSavings) * 100, 200);
             const progressBar = document.getElementById('savings-comparison');
             progressBar.style.width = `${comparisonPct}%`;
             progressBar.setAttribute('aria-valuenow', Math.round(comparisonPct));
-            
+
             // Color code based on comparison to target
             if (userSavings >= targetSavings) {
                 progressBar.style.background = 'linear-gradient(to right, #4CAF50, #8BC34A)';
@@ -1235,17 +1316,17 @@
             } else {
                 progressBar.style.background = 'linear-gradient(to right, #F44336, #E91E63)';
             }
-            
+
             // Format target savings for display
             const formattedTarget = formatCurrency(targetSavings, currentCurrency);
-            
+
             // Update comparison text
             const shortfall = targetSavings - userSavings;
             if (shortfall > 0) {
-                document.querySelector('.comparison-title').textContent = 
+                document.querySelector('.comparison-title').textContent =
                     `You're ${formatCurrency(shortfall, currentCurrency)} short of your ${currentLifestyle} lifestyle target (${formattedTarget})`;
             } else {
-                document.querySelector('.comparison-title').textContent = 
+                document.querySelector('.comparison-title').textContent =
                     `You've reached your ${currentLifestyle} lifestyle target (${formattedTarget})!`;
             }
         }
@@ -1253,16 +1334,16 @@
         // Display random tip
         function showRandomTip() {
             const tipsContainer = document.getElementById('tips-container');
-            
+
             // Clear previous tips (keep the title)
             while (tipsContainer.children.length > 1) {
                 tipsContainer.removeChild(tipsContainer.lastChild);
             }
-            
+
             // Get 2 unique random tips
             const shuffled = [...retirementData.tips].sort(() => 0.5 - Math.random());
             const selectedTips = shuffled.slice(0, 2);
-            
+
             // Create tip elements
             selectedTips.forEach(tip => {
                 const tipElement = document.createElement('div');
@@ -1280,10 +1361,10 @@
             const yearsLeft = document.getElementById('years-left').textContent;
             const retirementAmount = document.getElementById('retirement-amount').textContent;
             const lifestyle = document.querySelector('.lifestyle-option.active').textContent.trim();
-            
+
             const shareText = `My retirement plan: ${yearsLeft} left to save ${retirementAmount} for ${lifestyle} lifestyle in ${currentCurrency}. Plan yours!`;
             const shareUrl = window.location.href;
-            
+
             if (navigator.share) {
                 navigator.share({
                     title: 'Retirement Plan',
@@ -1306,7 +1387,7 @@
             input.select();
             document.execCommand('copy');
             document.body.removeChild(input);
-            
+
             alert('Copied to clipboard! Paste to share.');
         }
 
@@ -1333,6 +1414,7 @@
         createVisuallyHiddenStyles();
         init();
     </script>
-    
+
 </body>
+
 </html>

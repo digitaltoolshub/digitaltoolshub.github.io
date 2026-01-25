@@ -1,22 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-R4N9RB1SNN');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-R4N9RB1SNN');
     </script>
-    
-    <!-- Google Ads -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
-    
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" type="text/javascript" async></script>    
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
+        crossorigin="anonymous"></script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f"
+        type="text/javascript" async></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✨ Adventure Awaits! - Your Personalized Trip Cost Estimator ✨</title>
+    <title>Trip Cost Estimator | Calculate Travel Expenses</title>
+    <meta name="title" content="Trip Cost Estimator | Calculate Travel Expenses">
+    <meta name="description"
+        content="Estimate the cost of your next trip including flights, accommodation, food, and activities. Plan your travel budget with our free calculator.">
+    <meta name="keywords"
+        content="trip cost estimator, travel budget calculator, vacation cost, flight cost estimator, travel planner, holiday budget, digital tools hub">
+    <meta name="author" content="Digital Tools Hub">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://digitaltoolshub.github.io/flight.html">
+    <meta property="og:title" content="Trip Cost Estimator | Calculate Travel Expenses">
+    <meta property="og:description"
+        content="Estimate the cost of your next trip including flights, accommodation, food, and activities. Plan your travel budget with our free calculator.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://digitaltoolshub.github.io/flight.html">
+    <meta property="twitter:title" content="Trip Cost Estimator | Calculate Travel Expenses">
+    <meta property="twitter:description"
+        content="Estimate the cost of your next trip including flights, accommodation, food, and activities. Plan your travel budget with our free calculator.">
+    <meta property="twitter:image" content="https://digitaltoolshub.github.io/preview.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://digitaltoolshub.github.io/flight.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Trip Cost Estimator",
+      "url": "https://digitaltoolshub.github.io/flight.html",
+      "description": "A calculator to estimate travel expenses including flights, hotels, and daily costs.",
+      "applicationCategory": "TravelApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": "Flight Cost Estimation, Accommodation Budgeting, Daily Expenses Calculator"
+    }
+    </script>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -27,7 +81,8 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden; /* Hide potential overflow from animations */
+            overflow: hidden;
+            /* Hide potential overflow from animations */
         }
 
         .estimator-container {
@@ -40,8 +95,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         h1 {
@@ -53,14 +115,20 @@
         }
 
         @keyframes pulse {
-            from { transform: scale(1); }
-            to { transform: scale(1.05); }
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.05);
+            }
         }
 
         .input-group {
             margin-bottom: 20px;
             text-align: left;
-            position: relative; /* For autocomplete dropdown */
+            position: relative;
+            /* For autocomplete dropdown */
         }
 
         label {
@@ -74,7 +142,10 @@
         }
 
         @keyframes slideInLabel {
-            to { opacity: 1; transform: translateX(0); }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         input[type="text"],
@@ -183,7 +254,10 @@
         }
 
         @keyframes slideUp {
-            to { opacity: 1; transform: translateY(0); }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Creative Animation - Floating Elements */
@@ -191,21 +265,36 @@
             position: absolute;
             width: 50px;
             height: 50px;
-            background-image: url('plane.png'); /* Replace with your plane icon */
+            background-image: url('plane.png');
+            /* Replace with your plane icon */
             background-size: contain;
             animation: float 5s infinite alternate, moveAcross 20s linear infinite;
             opacity: 0.7;
         }
 
         @keyframes float {
-            from { transform: translateY(0); }
-            to { transform: translateY(-10px); }
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-10px);
+            }
         }
 
         @keyframes moveAcross {
-            0% { left: -60px; }
-            50% { transform: rotate(15deg); }
-            100% { left: calc(100% + 60px); transform: rotate(0deg); }
+            0% {
+                left: -60px;
+            }
+
+            50% {
+                transform: rotate(15deg);
+            }
+
+            100% {
+                left: calc(100% + 60px);
+                transform: rotate(0deg);
+            }
         }
 
         .floating-star {
@@ -219,11 +308,19 @@
         }
 
         @keyframes twinkle {
-            from { opacity: 0.8; transform: scale(1); }
-            to { opacity: 0.4; transform: scale(1.1); }
+            from {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+
+            to {
+                opacity: 0.4;
+                transform: scale(1.1);
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="estimator-container">
         <h1>🗺️ Plan Your Dream Trip! ✈️</h1>
@@ -519,7 +616,7 @@
         const estimatedAmount = document.getElementById('estimated-amount');
         const breakdown = document.getElementById('breakdown');
 
-        destinationInput.addEventListener('input', function() {
+        destinationInput.addEventListener('input', function () {
             const inputText = this.value.toLowerCase();
             suggestionsDiv.innerHTML = '';
             distanceInputGroup.style.display = 'none';
@@ -540,7 +637,7 @@
                     const suggestionItem = document.createElement('div');
                     suggestionItem.classList.add('suggestion-item');
                     suggestionItem.textContent = dest;
-                    suggestionItem.addEventListener('click', function() {
+                    suggestionItem.addEventListener('click', function () {
                         destinationInput.value = dest;
                         suggestionsDiv.style.display = 'none';
                         if (dest === 'Other (Please specify distance)') {
@@ -630,4 +727,5 @@
         }
     </script>
 </body>
+
 </html>

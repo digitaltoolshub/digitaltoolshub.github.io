@@ -1,40 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>CryptoVision Pro | Real-Time Crypto Charts, Prices, & Tracker (Binance & CoinGecko Data)</title>
+    <title>CryptoVision Pro | Real-Time Crypto Charts & Tracker</title>
+    <meta name="title" content="CryptoVision Pro | Real-Time Crypto Charts & Tracker">
+    <meta name="description"
+        content="Track live crypto prices, view advanced trading charts, and manage your portfolio with Binance & CoinGecko data. Free crypto tracker for Bitcoin, Ethereum, and 200+ coins.">
+    <meta name="keywords"
+        content="crypto charts, cryptocurrency tracker, live crypto prices, binance data, coingecko data, free crypto tools, bitcoin price, portfolio tracker, digital tools hub">
+    <meta name="author" content="Digital Tools Hub">
+    <meta name="robots" content="index, follow">
 
-    <meta name="description" content="Get live cryptocurrency prices, advanced trading charts, portfolio tracking, and price alerts using Binance and CoinGecko data. Track BTC, ETH, SOL, DOGE, and 50+ other coins for free.">
-
-    <meta name="keywords" content="crypto charts, real-time crypto prices, cryptocurrency tracker, live crypto data, Binance prices, CoinGecko data, Bitcoin chart, Ethereum price, Solana price, Dogecoin price, crypto trading tools, free crypto charts, crypto price analysis, altcoin prices, crypto portfolio tracker, crypto alerts, BTC price, ETH price, SOL price, DOGE price, BNB price, XRP price, ADA price, SHIB price, DOT price, MATIC price, LTC price, AVAX price, LINK price, crypto market data, online crypto tools">
-
-    <meta name="robots" content="index, follow"> <link rel="canonical" href="https://digitaltoolshub.github.io/crypto.html"> <meta property="og:title" content="CryptoVision Pro - Real-Time Crypto Charts & Tracker">
-    <meta property="og:description" content="Track live crypto prices, charts, and manage your portfolio with Binance & CoinGecko data.">
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://digitaltoolshub.github.io/crypto.html"> <meta property="og:image" content="https://digitaltoolshub.github.io/preview.jpg"> <meta name="theme-color" content="#6e45e2">
+    <meta property="og:url" content="https://digitaltoolshub.github.io/crypto.html">
+    <meta property="og:title" content="CryptoVision Pro | Real-Time Crypto Charts & Tracker">
+    <meta property="og:description"
+        content="Track live crypto prices, charts, and manage your portfolio with Binance & CoinGecko data. Free advanced crypto tools.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
 
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://digitaltoolshub.github.io/crypto.html">
+    <meta property="twitter:title" content="CryptoVision Pro | Real-Time Crypto Charts & Tracker">
+    <meta property="twitter:description"
+        content="Track live crypto prices, charts, and manage your portfolio with Binance & CoinGecko data. Free advanced crypto tools.">
+    <meta property="twitter:image" content="https://digitaltoolshub.github.io/preview.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://digitaltoolshub.github.io/crypto.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <meta name="theme-color" content="#6e45e2">
+
+    <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "CryptoVision Pro",
+      "url": "https://digitaltoolshub.github.io/crypto.html",
       "description": "Free cryptocurrency tracking tool with real-time charts from Binance and CoinGecko, including price tracking, alerts, and portfolio management.",
-      "url": "https://digitaltoolshub.github.io/crypto.html", "applicationCategory": "FinanceApplication",
-      "operatingSystem": "Web",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
       "offers": {
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
-      }
+      },
+      "featureList": "Real-time Charts, Portfolio Tracker, Price Alerts, Market Data"
     }
     </script>
 
     <link rel="preconnect" href="https://api.coingecko.com">
     <link rel="preconnect" href="https://api.binance.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://s3.tradingview.com"> <link rel="icon" href="https://digitaltoolshub.github.io/favicon.ico" type="image/x-icon"> <script src="https://s3.tradingview.com/tv.js"></script>
+    <link rel="preconnect" href="https://s3.tradingview.com">
+    <link rel="icon" href="https://digitaltoolshub.github.io/favicon.ico" type="image/x-icon">
+    <script src="https://s3.tradingview.com/tv.js"></script>
 
     <style>
         /* Your existing CSS styles go here */
@@ -46,6 +77,7 @@
             --card-bg: rgba(255, 255, 255, 0.1);
             --text: #ffffff;
         }
+
         [data-theme="light"] {
             --primary: #6e45e2;
             --secondary: #88d3ce;
@@ -54,12 +86,14 @@
             --card-bg: rgba(255, 255, 255, 0.9);
             --text: #1a1a2e;
         }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             transition: background 0.3s, color 0.3s;
         }
+
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, var(--dark), #16213e);
@@ -69,6 +103,7 @@
             position: relative;
             line-height: 1.6;
         }
+
         header {
             padding: 2rem 1rem;
             text-align: center;
@@ -76,6 +111,7 @@
             max-width: 1200px;
             margin: 0 auto;
         }
+
         header h1 {
             font-size: clamp(2rem, 5vw, 3rem);
             background: linear-gradient(90deg, var(--primary), var(--secondary));
@@ -84,12 +120,14 @@
             color: transparent;
             margin-bottom: 0.5rem;
         }
+
         header p {
             font-size: clamp(1rem, 2vw, 1.2rem);
             opacity: 0.9;
             max-width: 800px;
             margin: 0 auto;
         }
+
         .theme-toggle {
             position: absolute;
             top: 1.5rem;
@@ -106,6 +144,7 @@
             justify-content: center;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -114,6 +153,7 @@
             gap: 1.5rem;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         }
+
         .card {
             background: var(--card-bg);
             border-radius: 16px;
@@ -122,12 +162,14 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
         .card h2 {
             margin-bottom: 1.25rem;
             font-size: 1.4rem;
             position: relative;
             display: inline-block;
         }
+
         .card h2::after {
             content: "";
             position: absolute;
@@ -138,17 +180,22 @@
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             border-radius: 3px;
         }
+
         .chart-container {
             position: relative;
             width: 100%;
             min-height: 500px;
             height: 500px;
         }
+
         #tradingview-chart {
             width: 100%;
             height: 100%;
         }
-        input, select, button {
+
+        input,
+        select,
+        button {
             padding: 0.75rem;
             border: none;
             border-radius: 10px;
@@ -158,12 +205,14 @@
             width: 100%;
             margin-bottom: 0.5rem;
         }
+
         button {
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             color: white;
             font-weight: bold;
             cursor: pointer;
         }
+
         .coin-item {
             display: flex;
             justify-content: space-between;
@@ -173,21 +222,25 @@
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.05);
         }
+
         .timeframe-buttons {
             display: flex;
             gap: 0.5rem;
             margin-top: 1rem;
             flex-wrap: wrap;
         }
+
         .timeframe-buttons button {
             flex: 1;
             padding: 0.5rem;
             font-size: 0.85rem;
             min-width: 60px;
         }
+
         .timeframe-buttons button.active {
             background: linear-gradient(90deg, var(--secondary), var(--primary));
         }
+
         footer {
             background: rgba(0, 0, 0, 0.3);
             text-align: center;
@@ -195,19 +248,23 @@
             margin-top: 3rem;
             backdrop-filter: blur(10px);
         }
+
         #trading-chart {
             grid-column: 1 / -1;
         }
+
         .seo-content {
             max-width: 800px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
+
         .tab-buttons {
             display: flex;
             margin-bottom: 1rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
+
         .tab-button {
             padding: 0.5rem 1rem;
             background: none;
@@ -216,16 +273,20 @@
             cursor: pointer;
             opacity: 0.7;
         }
+
         .tab-button.active {
             opacity: 1;
             border-bottom: 2px solid var(--primary);
         }
+
         .tab-content {
             display: none;
         }
+
         .tab-content.active {
             display: block;
         }
+
         .exchange-link {
             color: var(--secondary);
             text-decoration: none;
@@ -239,6 +300,7 @@
             margin: 1rem 0;
             justify-content: center;
         }
+
         .social-share button {
             width: auto;
             padding: 0.5rem 1rem;
@@ -246,6 +308,7 @@
             align-items: center;
             gap: 0.5rem;
         }
+
         .achievement-badge {
             display: inline-block;
             padding: 0.3rem 0.6rem;
@@ -255,6 +318,7 @@
             margin-right: 0.5rem;
             margin-bottom: 0.5rem;
         }
+
         .login-streak {
             background: rgba(255, 215, 0, 0.2);
             padding: 0.5rem;
@@ -264,30 +328,37 @@
             gap: 0.5rem;
             margin-top: 1rem;
         }
+
         .referral-box {
             background: rgba(255, 255, 255, 0.05);
             padding: 1rem;
             border-radius: 10px;
             margin-top: 1rem;
         }
+
         .referral-input {
             display: flex;
             gap: 0.5rem;
             margin-top: 0.5rem;
         }
+
         .referral-input input {
             margin-bottom: 0;
         }
+
         .referral-input button {
             width: auto;
         }
+
         .search-container {
             position: relative;
             margin-bottom: 0.5rem;
         }
+
         .search-container input {
             padding-right: 2.5rem;
         }
+
         .search-icon {
             position: absolute;
             right: 0.75rem;
@@ -296,6 +367,7 @@
             opacity: 0.5;
             pointer-events: none;
         }
+
         .coin-dropdown {
             max-height: 0;
             overflow-y: auto;
@@ -304,22 +376,27 @@
             transition: max-height 0.3s ease;
             margin-bottom: 0.5rem;
         }
+
         .coin-dropdown.show {
             max-height: 250px;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
+
         .coin-option {
             padding: 0.75rem;
             cursor: pointer;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             transition: background 0.2s;
         }
+
         .coin-option:hover {
             background: rgba(255, 255, 255, 0.1);
         }
+
         .coin-option:last-child {
             border-bottom: none;
         }
+
         .selected-coin {
             padding: 0.75rem;
             border-radius: 10px;
@@ -330,6 +407,7 @@
             align-items: center;
             margin-bottom: 0.5rem;
         }
+
         .demo-account {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 1.5rem;
@@ -337,12 +415,14 @@
             margin-bottom: 1rem;
             box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
         }
+
         .demo-balance {
             font-size: 2rem;
             font-weight: bold;
             color: #fff;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
+
         .demo-badge {
             display: inline-block;
             background: rgba(255, 215, 0, 0.9);
@@ -353,28 +433,35 @@
             font-weight: bold;
             margin-bottom: 0.5rem;
         }
+
         .trade-form {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
         }
+
         .trade-buttons {
             display: flex;
             gap: 0.5rem;
         }
+
         .trade-buttons button {
             flex: 1;
         }
+
         .buy-btn {
             background: linear-gradient(90deg, #4ade80, #22c55e) !important;
         }
+
         .sell-btn {
             background: linear-gradient(90deg, #f87171, #ef4444) !important;
         }
+
         .holdings-list {
             max-height: 300px;
             overflow-y: auto;
         }
+
         .holding-item {
             display: flex;
             justify-content: space-between;
@@ -385,17 +472,21 @@
             background: rgba(255, 255, 255, 0.05);
             border-left: 3px solid var(--primary);
         }
+
         .profit {
             color: #4ade80;
         }
+
         .loss {
             color: #f87171;
         }
+
         .transaction-history {
             max-height: 200px;
             overflow-y: auto;
             margin-top: 1rem;
         }
+
         .transaction-item {
             padding: 0.5rem;
             margin-bottom: 0.3rem;
@@ -406,14 +497,17 @@
             justify-content: space-between;
             align-items: center;
         }
+
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: 1fr;
             }
+
             .chart-container {
                 min-height: 400px;
                 height: 400px;
             }
+
             .timeframe-buttons button {
                 min-width: 40px;
                 font-size: 0.75rem;
@@ -422,6 +516,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <h1>🚀 CryptoVision Pro</h1>
@@ -438,17 +533,18 @@
 
         <div class="card" id="trading-chart">
             <h2>📈 Advanced Trading Chart</h2>
-            
+
             <div class="search-container">
-                <input type="text" id="coinSearch" placeholder="🔍 Search for a coin (e.g., Bitcoin, ETH, SOL)..." autocomplete="off">
+                <input type="text" id="coinSearch" placeholder="🔍 Search for a coin (e.g., Bitcoin, ETH, SOL)..."
+                    autocomplete="off">
                 <span class="search-icon">🔍</span>
             </div>
-            
+
             <div class="selected-coin" id="selectedCoin" onclick="toggleCoinDropdown()">
                 <span id="selectedCoinText">Bitcoin (BTC/USDT)</span>
                 <span>▼</span>
             </div>
-            
+
             <div class="coin-dropdown" id="coinDropdown">
                 <!-- Populated dynamically -->
             </div>
@@ -503,7 +599,7 @@
         <div class="card">
             <h2>🎮 Demo Trading Account</h2>
             <span class="demo-badge">🎓 PRACTICE MODE - RISK FREE</span>
-            
+
             <div class="demo-account">
                 <div style="opacity: 0.9; font-size: 0.9rem; margin-bottom: 0.3rem;">Demo Balance</div>
                 <div class="demo-balance">$<span id="demoBalance">50.00</span></div>
@@ -521,10 +617,12 @@
                     <option value="">Select a coin to trade</option>
                 </select>
                 <div style="display: flex; gap: 0.5rem;">
-                    <input type="number" id="demoTradeAmount" placeholder="Amount in USD" step="0.01" min="0.01" style="flex: 1;">
+                    <input type="number" id="demoTradeAmount" placeholder="Amount in USD" step="0.01" min="0.01"
+                        style="flex: 1;">
                     <button onclick="setMaxAmount()" style="width: auto; padding: 0.75rem 1rem;">MAX</button>
                 </div>
-                <div id="tradePreview" style="background: rgba(255, 255, 255, 0.05); padding: 0.8rem; border-radius: 8px; display: none; font-size: 0.9rem;">
+                <div id="tradePreview"
+                    style="background: rgba(255, 255, 255, 0.05); padding: 0.8rem; border-radius: 8px; display: none; font-size: 0.9rem;">
                     <!-- Trade preview will be shown here -->
                 </div>
                 <div class="trade-buttons">
@@ -547,7 +645,8 @@
                 </div>
             </div>
 
-            <button onclick="resetDemoAccount()" style="margin-top: 1rem; background: linear-gradient(90deg, #f59e0b, #d97706); width: 100%;">
+            <button onclick="resetDemoAccount()"
+                style="margin-top: 1rem; background: linear-gradient(90deg, #f59e0b, #d97706); width: 100%;">
                 🔄 Reset Demo Account
             </button>
         </div>
@@ -585,588 +684,616 @@
 
     <section class="seo-content">
         <h2>Comprehensive Cryptocurrency Tracking and Analysis Tools</h2>
-        <p>CryptoVision Pro offers a suite of **free online crypto tools** to help you track, analyze, and manage your cryptocurrency investments. Get **real-time crypto prices** and **live market data** directly from leading exchanges like **Binance** and data providers like **CoinGecko**.</p>
+        <p>CryptoVision Pro offers a suite of **free online crypto tools** to help you track, analyze, and manage your
+            cryptocurrency investments. Get **real-time crypto prices** and **live market data** directly from leading
+            exchanges like **Binance** and data providers like **CoinGecko**.</p>
 
         <h3>Advanced Real-Time Crypto Charts</h3>
-        <p>Our platform provides **advanced trading charts** powered by TradingView, allowing you to visualize **historical crypto data** and **live price movements** for a wide range of **cryptocurrency pairs** like **BTC/USDT, ETH/USDT, SOL/USDT**, and many more. Customize timeframes (1m, 5m, 1h, 1D, etc.) and use various indicators for in-depth **crypto price analysis**.</p>
+        <p>Our platform provides **advanced trading charts** powered by TradingView, allowing you to visualize
+            **historical crypto data** and **live price movements** for a wide range of **cryptocurrency pairs** like
+            **BTC/USDT, ETH/USDT, SOL/USDT**, and many more. Customize timeframes (1m, 5m, 1h, 1D, etc.) and use various
+            indicators for in-depth **crypto price analysis**.</p>
 
         <h3>Up-to-Date Market Data</h3>
-        <p>Stay informed with the latest **crypto market data**, including prices, volume, and 24-hour changes. Easily switch between data feeds from CoinGecko and Binance to compare information and get a comprehensive **crypto market overview**.</p>
+        <p>Stay informed with the latest **crypto market data**, including prices, volume, and 24-hour changes. Easily
+            switch between data feeds from CoinGecko and Binance to compare information and get a comprehensive **crypto
+            market overview**.</p>
 
         <h3>Crypto Price Alerts</h3>
-        <p>Never miss a price movement. Set custom **crypto price alerts** for any supported cryptocurrency to be notified when it reaches your target price.</p>
+        <p>Never miss a price movement. Set custom **crypto price alerts** for any supported cryptocurrency to be
+            notified when it reaches your target price.</p>
 
         <h3>Simple Portfolio Tracker</h3>
-        <p>Keep track of your **cryptocurrency portfolio** value in one place. Add your crypto holdings to our **free portfolio tracker** to monitor your total investment value based on current market prices.</p>
+        <p>Keep track of your **cryptocurrency portfolio** value in one place. Add your crypto holdings to our **free
+            portfolio tracker** to monitor your total investment value based on current market prices.</p>
 
         <h3>Learn Crypto Trading</h3>
-        <p>New to crypto? Our educational resources provide guides on **how to read crypto charts**, **beginner technical analysis**, and essential **crypto risk management** strategies to help you get started in **crypto trading**.</p>
+        <p>New to crypto? Our educational resources provide guides on **how to read crypto charts**, **beginner
+            technical analysis**, and essential **crypto risk management** strategies to help you get started in
+            **crypto trading**.</p>
 
         <h4>Supported Cryptocurrencies (200+ coins):</h4>
         <ul>
-            <li>**Major Coins:** Bitcoin (BTC), Ethereum (ETH), BNB, XRP, Cardano (ADA), Solana (SOL), Dogecoin (DOGE), Toncoin (TON)</li>
-            <li>**DeFi Tokens:** Uniswap (UNI), Aave (AAVE), Maker (MKR), Compound (COMP), Curve (CRV), SushiSwap (SUSHI), PancakeSwap (CAKE), GMX, Pendle (PENDLE), Ethena (ENA)</li>
-            <li>**Layer 1 Blockchains:** Avalanche (AVAX), Polkadot (DOT), Cosmos (ATOM), NEAR, Algorand (ALGO), Fantom (FTM), Aptos (APT), Sui (SUI), Sei (SEI), Celestia (TIA), Kaspa (KAS), Internet Computer (ICP)</li>
-            <li>**Layer 2 Solutions:** Polygon (MATIC), Arbitrum (ARB), Optimism (OP), Immutable X (IMX), Starknet (STRK), Mantle (MNT), Manta (MANTA)</li>
-            <li>**Trending Meme Coins:** Shiba Inu (SHIB), Pepe (PEPE), Floki (FLOKI), Bonk (BONK), Neiro (NEIRO), dogwifhat (WIF), Book of Meme (BOME), Popcat (POPCAT), Turbo (TURBO), Myro (MYRO)</li>
-            <li>**Web3 & Metaverse:** The Sandbox (SAND), Decentraland (MANA), Axie Infinity (AXS), Gala (GALA), ApeCoin (APE), Ronin (RON), Pixels (PIXEL), Illuvium (ILV), Big Time (BIGTIME)</li>
-            <li>**AI & Tech:** Worldcoin (WLD), Bittensor (TAO), Arkham (ARKM), Fetch.ai (FET), SingularityNET (AGIX), Ocean Protocol (OCEAN), Akash (AKT)</li>
-            <li>**Infrastructure:** Chainlink (LINK), The Graph (GRT), Filecoin (FIL), Render (RNDR), Pyth (PYTH), Wormhole (W), Arweave (AR), Helium (HNT)</li>
-            <li>**Gaming:** STEPN (GMT), Axie Infinity (AXS), Gala (GALA), Illuvium (ILV), Magic (MAGIC), Portal (PORTAL), Xai (XAI), SuperVerse (SUPER)</li>
+            <li>**Major Coins:** Bitcoin (BTC), Ethereum (ETH), BNB, XRP, Cardano (ADA), Solana (SOL), Dogecoin (DOGE),
+                Toncoin (TON)</li>
+            <li>**DeFi Tokens:** Uniswap (UNI), Aave (AAVE), Maker (MKR), Compound (COMP), Curve (CRV), SushiSwap
+                (SUSHI), PancakeSwap (CAKE), GMX, Pendle (PENDLE), Ethena (ENA)</li>
+            <li>**Layer 1 Blockchains:** Avalanche (AVAX), Polkadot (DOT), Cosmos (ATOM), NEAR, Algorand (ALGO), Fantom
+                (FTM), Aptos (APT), Sui (SUI), Sei (SEI), Celestia (TIA), Kaspa (KAS), Internet Computer (ICP)</li>
+            <li>**Layer 2 Solutions:** Polygon (MATIC), Arbitrum (ARB), Optimism (OP), Immutable X (IMX), Starknet
+                (STRK), Mantle (MNT), Manta (MANTA)</li>
+            <li>**Trending Meme Coins:** Shiba Inu (SHIB), Pepe (PEPE), Floki (FLOKI), Bonk (BONK), Neiro (NEIRO),
+                dogwifhat (WIF), Book of Meme (BOME), Popcat (POPCAT), Turbo (TURBO), Myro (MYRO)</li>
+            <li>**Web3 & Metaverse:** The Sandbox (SAND), Decentraland (MANA), Axie Infinity (AXS), Gala (GALA), ApeCoin
+                (APE), Ronin (RON), Pixels (PIXEL), Illuvium (ILV), Big Time (BIGTIME)</li>
+            <li>**AI & Tech:** Worldcoin (WLD), Bittensor (TAO), Arkham (ARKM), Fetch.ai (FET), SingularityNET (AGIX),
+                Ocean Protocol (OCEAN), Akash (AKT)</li>
+            <li>**Infrastructure:** Chainlink (LINK), The Graph (GRT), Filecoin (FIL), Render (RNDR), Pyth (PYTH),
+                Wormhole (W), Arweave (AR), Helium (HNT)</li>
+            <li>**Gaming:** STEPN (GMT), Axie Infinity (AXS), Gala (GALA), Illuvium (ILV), Magic (MAGIC), Portal
+                (PORTAL), Xai (XAI), SuperVerse (SUPER)</li>
             <li>**Solana Ecosystem:** Jupiter (JUP), Jito (JTO), Raydium (RAY), Orca (ORCA), Marinade (MNDE)</li>
             <li>**Ordinals & BRC-20:** ORDI, SATS, RATS</li>
             <li>**Exchange Tokens:** Cronos (CRO), OKB, KuCoin (KCS), WOO Network (WOO), Bitget (BGB), MEXC (MX)</li>
             <li>**Privacy & Security:** Monero (XMR), Zcash (ZEC), Secret (SCRT), Oasis Network (ROSE)</li>
             <li>**Interoperability:** LayerZero (ZRO), Axelar (AXL), Wormhole (W)</li>
-            <li>**Legacy Coins:** Litecoin (LTC), Bitcoin Cash (BCH), Ethereum Classic (ETC), Stellar (XLM), EOS, NEO, Dash</li>
+            <li>**Legacy Coins:** Litecoin (LTC), Bitcoin Cash (BCH), Ethereum Classic (ETC), Stellar (XLM), EOS, NEO,
+                Dash</li>
             <li>**New Listings:** INIT, NOMI, and many more trending tokens!</li>
             <li>**...and 200+ more cryptocurrencies available for tracking!**</li>
         </ul>
 
-        <p>Whether you're looking for **free crypto chart analysis**, a reliable **crypto price tracker**, or tools to manage your **crypto portfolio**, CryptoVision Pro aims to be your go-to **online digital tool** for the cryptocurrency market. Start using our **free crypto analyzer** today!</p>
+        <p>Whether you're looking for **free crypto chart analysis**, a reliable **crypto price tracker**, or tools to
+            manage your **crypto portfolio**, CryptoVision Pro aims to be your go-to **online digital tool** for the
+            cryptocurrency market. Start using our **free crypto analyzer** today!</p>
 
-        <p>Consider exploring **Binance**, one of the world's largest cryptocurrency exchanges, for your trading needs <a href="https://www.binance.com" class="exchange-link" target="_blank" rel="noopener noreferrer">[external link]</a>.</p>
+        <p>Consider exploring **Binance**, one of the world's largest cryptocurrency exchanges, for your trading needs
+            <a href="https://www.binance.com" class="exchange-link" target="_blank" rel="noopener noreferrer">[external
+                link]</a>.</p>
     </section>
 
     <footer>
-        <p>© 2023 CryptoVision Pro | Data from <a href="https://www.coingecko.com" class="exchange-link" target="_blank" rel="noopener noreferrer">CoinGecko</a> & <a href="https://www.binance.com" class="exchange-link" target="_blank" rel="noopener noreferrer">Binance</a> APIs</p>
-        <p style="opacity: 0.7; margin-top: 0.5rem; font-size: 0.9rem;">Cryptocurrency trading involves risk. Only invest what you can afford to lose.</p>
+        <p>© 2023 CryptoVision Pro | Data from <a href="https://www.coingecko.com" class="exchange-link" target="_blank"
+                rel="noopener noreferrer">CoinGecko</a> & <a href="https://www.binance.com" class="exchange-link"
+                target="_blank" rel="noopener noreferrer">Binance</a> APIs</p>
+        <p style="opacity: 0.7; margin-top: 0.5rem; font-size: 0.9rem;">Cryptocurrency trading involves risk. Only
+            invest what you can afford to lose.</p>
 
         <p style="opacity: 0.7; margin-top: 0.5rem; font-size: 0.8rem;">
             Some links may be affiliate links that help support this free service.
         </p>
     </footer>
 
-<script>
-// ====== Configuration ======
-const COINS = [
-    // Top Market Cap Coins
-    {id: 'bitcoin', symbol: 'BTC', name: 'Bitcoin', binanceSymbol: 'BTCUSDT'},
-    {id: 'ethereum', symbol: 'ETH', name: 'Ethereum', binanceSymbol: 'ETHUSDT'},
-    {id: 'tether', symbol: 'USDT', name: 'Tether', binanceSymbol: 'USDCUSDT'},
-    {id: 'binancecoin', symbol: 'BNB', name: 'BNB', binanceSymbol: 'BNBUSDT'},
-    {id: 'solana', symbol: 'SOL', name: 'Solana', binanceSymbol: 'SOLUSDT'},
-    {id: 'usd-coin', symbol: 'USDC', name: 'USD Coin', binanceSymbol: 'USDCUSDT'},
-    {id: 'ripple', symbol: 'XRP', name: 'XRP', binanceSymbol: 'XRPUSDT'},
-    {id: 'cardano', symbol: 'ADA', name: 'Cardano', binanceSymbol: 'ADAUSDT'},
-    {id: 'dogecoin', symbol: 'DOGE', name: 'Dogecoin', binanceSymbol: 'DOGEUSDT'},
-    {id: 'tron', symbol: 'TRX', name: 'Tron', binanceSymbol: 'TRXUSDT'},
-    
-    // DeFi & Layer 1 Blockchains
-    {id: 'avalanche-2', symbol: 'AVAX', name: 'Avalanche', binanceSymbol: 'AVAXUSDT'},
-    {id: 'polkadot', symbol: 'DOT', name: 'Polkadot', binanceSymbol: 'DOTUSDT'},
-    {id: 'polygon', symbol: 'MATIC', name: 'Polygon', binanceSymbol: 'MATICUSDT'},
-    {id: 'chainlink', symbol: 'LINK', name: 'Chainlink', binanceSymbol: 'LINKUSDT'},
-    {id: 'wrapped-bitcoin', symbol: 'WBTC', name: 'Wrapped Bitcoin', binanceSymbol: 'WBTCUSDT'},
-    {id: 'uniswap', symbol: 'UNI', name: 'Uniswap', binanceSymbol: 'UNIUSDT'},
-    {id: 'litecoin', symbol: 'LTC', name: 'Litecoin', binanceSymbol: 'LTCUSDT'},
-    {id: 'cosmos', symbol: 'ATOM', name: 'Cosmos', binanceSymbol: 'ATOMUSDT'},
-    {id: 'ethereum-classic', symbol: 'ETC', name: 'Ethereum Classic', binanceSymbol: 'ETCUSDT'},
-    {id: 'stellar', symbol: 'XLM', name: 'Stellar', binanceSymbol: 'XLMUSDT'},
-    
-    // Meme Coins & Popular Alts
-    {id: 'shiba-inu', symbol: 'SHIB', name: 'Shiba Inu', binanceSymbol: 'SHIBUSDT'},
-    {id: 'pepe', symbol: 'PEPE', name: 'Pepe', binanceSymbol: 'PEPEUSDT'},
-    {id: 'floki', symbol: 'FLOKI', name: 'Floki Inu', binanceSymbol: 'FLOKIUSDT'},
-    {id: 'bonk', symbol: 'BONK', name: 'Bonk', binanceSymbol: 'BONKUSDT'},
-    
-    // Layer 2 & Scaling Solutions
-    {id: 'arbitrum', symbol: 'ARB', name: 'Arbitrum', binanceSymbol: 'ARBUSDT'},
-    {id: 'optimism', symbol: 'OP', name: 'Optimism', binanceSymbol: 'OPUSDT'},
-    {id: 'immutable-x', symbol: 'IMX', name: 'Immutable X', binanceSymbol: 'IMXUSDT'},
-    
-    // DeFi Tokens
-    {id: 'aave', symbol: 'AAVE', name: 'Aave', binanceSymbol: 'AAVEUSDT'},
-    {id: 'maker', symbol: 'MKR', name: 'Maker', binanceSymbol: 'MKRUSDT'},
-    {id: 'compound', symbol: 'COMP', name: 'Compound', binanceSymbol: 'COMPUSDT'},
-    {id: 'curve-dao-token', symbol: 'CRV', name: 'Curve DAO', binanceSymbol: 'CRVUSDT'},
-    {id: 'pancakeswap-token', symbol: 'CAKE', name: 'PancakeSwap', binanceSymbol: 'CAKEUSDT'},
-    {id: 'sushi', symbol: 'SUSHI', name: 'SushiSwap', binanceSymbol: 'SUSHIUSDT'},
-    
-    // Web3 & Metaverse
-    {id: 'the-sandbox', symbol: 'SAND', name: 'The Sandbox', binanceSymbol: 'SANDUSDT'},
-    {id: 'decentraland', symbol: 'MANA', name: 'Decentraland', binanceSymbol: 'MANAUSDT'},
-    {id: 'axie-infinity', symbol: 'AXS', name: 'Axie Infinity', binanceSymbol: 'AXSUSDT'},
-    {id: 'gala', symbol: 'GALA', name: 'Gala', binanceSymbol: 'GALAUSDT'},
-    {id: 'enjincoin', symbol: 'ENJ', name: 'Enjin Coin', binanceSymbol: 'ENJUSDT'},
-    
-    // Smart Contract Platforms
-    {id: 'near', symbol: 'NEAR', name: 'NEAR Protocol', binanceSymbol: 'NEARUSDT'},
-    {id: 'aptos', symbol: 'APT', name: 'Aptos', binanceSymbol: 'APTUSDT'},
-    {id: 'sui', symbol: 'SUI', name: 'Sui', binanceSymbol: 'SUIUSDT'},
-    {id: 'algorand', symbol: 'ALGO', name: 'Algorand', binanceSymbol: 'ALGOUSDT'},
-    {id: 'hedera-hashgraph', symbol: 'HBAR', name: 'Hedera', binanceSymbol: 'HBARUSDT'},
-    {id: 'vechain', symbol: 'VET', name: 'VeChain', binanceSymbol: 'VETUSDT'},
-    {id: 'fantom', symbol: 'FTM', name: 'Fantom', binanceSymbol: 'FTMUSDT'},
-    {id: 'elrond-erd-2', symbol: 'EGLD', name: 'MultiversX', binanceSymbol: 'EGLDUSDT'},
-    {id: 'flow', symbol: 'FLOW', name: 'Flow', binanceSymbol: 'FLOWUSDT'},
-    {id: 'tezos', symbol: 'XTZ', name: 'Tezos', binanceSymbol: 'XTZUSDT'},
-    
-    // Exchange Tokens
-    {id: 'crypto-com-chain', symbol: 'CRO', name: 'Cronos', binanceSymbol: 'CROUSDT'},
-    {id: 'okb', symbol: 'OKB', name: 'OKB', binanceSymbol: 'OKBUSDT'},
-    {id: 'kucoin-shares', symbol: 'KCS', name: 'KuCoin Token', binanceSymbol: 'KCSUSDT'},
-    
-    // Storage & Infrastructure
-    {id: 'filecoin', symbol: 'FIL', name: 'Filecoin', binanceSymbol: 'FILUSDT'},
-    {id: 'the-graph', symbol: 'GRT', name: 'The Graph', binanceSymbol: 'GRTUSDT'},
-    {id: 'theta-token', symbol: 'THETA', name: 'Theta Network', binanceSymbol: 'THETAUSDT'},
-    {id: 'render-token', symbol: 'RNDR', name: 'Render', binanceSymbol: 'RNDRUSDT'},
-    
-    // AI & Data Tokens
-    {id: 'fetch-ai', symbol: 'FET', name: 'Fetch.ai', binanceSymbol: 'FETUSDT'},
-    {id: 'singularitynet', symbol: 'AGIX', name: 'SingularityNET', binanceSymbol: 'AGIXUSDT'},
-    {id: 'ocean-protocol', symbol: 'OCEAN', name: 'Ocean Protocol', binanceSymbol: 'OCEANUSDT'},
-    
-    // Privacy Coins
-    {id: 'monero', symbol: 'XMR', name: 'Monero', binanceSymbol: 'XMRUSDT'},
-    {id: 'zcash', symbol: 'ZEC', name: 'Zcash', binanceSymbol: 'ZECUSDT'},
-    
-    // Stablecoins & Wrapped Assets
-    {id: 'dai', symbol: 'DAI', name: 'Dai', binanceSymbol: 'DAIUSDT'},
-    {id: 'true-usd', symbol: 'TUSD', name: 'TrueUSD', binanceSymbol: 'TUSDUSDT'},
-    {id: 'paxos-standard', symbol: 'USDP', name: 'Pax Dollar', binanceSymbol: 'USDPUSDT'},
-    
-    // Gaming & NFT
-    {id: 'immutable-x', symbol: 'IMX', name: 'Immutable X', binanceSymbol: 'IMXUSDT'},
-    {id: 'apecoin', symbol: 'APE', name: 'ApeCoin', binanceSymbol: 'APEUSDT'},
-    {id: 'smooth-love-potion', symbol: 'SLP', name: 'Smooth Love Potion', binanceSymbol: 'SLPUSDT'},
-    
-    // Miscellaneous Popular Coins
-    {id: 'quant-network', symbol: 'QNT', name: 'Quant', binanceSymbol: 'QNTUSDT'},
-    {id: 'leo-token', symbol: 'LEO', name: 'LEO Token', binanceSymbol: 'LEOUSDT'},
-    {id: 'bitdao', symbol: 'BIT', name: 'BitDAO', binanceSymbol: 'BITUSDT'},
-    {id: 'injective-protocol', symbol: 'INJ', name: 'Injective', binanceSymbol: 'INJUSDT'},
-    {id: 'lido-dao', symbol: 'LDO', name: 'Lido DAO', binanceSymbol: 'LDOUSDT'},
-    {id: '1inch', symbol: '1INCH', name: '1inch Network', binanceSymbol: '1INCHUSDT'},
-    {id: 'chiliz', symbol: 'CHZ', name: 'Chiliz', binanceSymbol: 'CHZUSDT'},
-    {id: 'conflux-token', symbol: 'CFX', name: 'Conflux', binanceSymbol: 'CFXUSDT'},
-    {id: 'eos', symbol: 'EOS', name: 'EOS', binanceSymbol: 'EOSUSDT'},
-    {id: 'iota', symbol: 'IOTA', name: 'IOTA', binanceSymbol: 'IOTAUSDT'},
-    {id: 'neo', symbol: 'NEO', name: 'Neo', binanceSymbol: 'NEOUSDT'},
-    {id: 'dash', symbol: 'DASH', name: 'Dash', binanceSymbol: 'DASHUSDT'},
-    {id: 'bitcoin-cash', symbol: 'BCH', name: 'Bitcoin Cash', binanceSymbol: 'BCHUSDT'},
-    {id: 'bitcoin-sv', symbol: 'BSV', name: 'Bitcoin SV', binanceSymbol: 'BSVUSDT'},
-    {id: 'basic-attention-token', symbol: 'BAT', name: 'Basic Attention Token', binanceSymbol: 'BATUSDT'},
-    {id: 'zilliqa', symbol: 'ZIL', name: 'Zilliqa', binanceSymbol: 'ZILUSDT'},
-    {id: 'ontology', symbol: 'ONT', name: 'Ontology', binanceSymbol: 'ONTUSDT'},
-    {id: 'ravencoin', symbol: 'RVN', name: 'Ravencoin', binanceSymbol: 'RVNUSDT'},
-    {id: 'decred', symbol: 'DCR', name: 'Decred', binanceSymbol: 'DCRUSDT'},
-    {id: 'icon', symbol: 'ICX', name: 'ICON', binanceSymbol: 'ICXUSDT'},
-    {id: 'qtum', symbol: 'QTUM', name: 'Qtum', binanceSymbol: 'QTUMUSDT'},
-    {id: 'harmony', symbol: 'ONE', name: 'Harmony', binanceSymbol: 'ONEUSDT'},
-    {id: 'celo', symbol: 'CELO', name: 'Celo', binanceSymbol: 'CELOUSDT'},
-    {id: 'kava', symbol: 'KAVA', name: 'Kava', binanceSymbol: 'KAVAUSDT'},
-    {id: 'band-protocol', symbol: 'BAND', name: 'Band Protocol', binanceSymbol: 'BANDUSDT'},
-    {id: 'kusama', symbol: 'KSM', name: 'Kusama', binanceSymbol: 'KSMUSDT'},
-    {id: 'thorchain', symbol: 'RUNE', name: 'THORChain', binanceSymbol: 'RUNEUSDT'},
-    {id: 'synthetix-network-token', symbol: 'SNX', name: 'Synthetix', binanceSymbol: 'SNXUSDT'},
-    {id: 'yearn-finance', symbol: 'YFI', name: 'yearn.finance', binanceSymbol: 'YFIUSDT'},
-    {id: 'uma', symbol: 'UMA', name: 'UMA', binanceSymbol: 'UMAUSDT'},
-    {id: 'loopring', symbol: 'LRC', name: 'Loopring', binanceSymbol: 'LRCUSDT'},
-    {id: 'ren', symbol: 'REN', name: 'Ren', binanceSymbol: 'RENUSDT'},
-    {id: 'balancer', symbol: 'BAL', name: 'Balancer', binanceSymbol: 'BALUSDT'},
-    {id: 'nervos-network', symbol: 'CKB', name: 'Nervos Network', binanceSymbol: 'CKBUSDT'},
-    {id: 'storj', symbol: 'STORJ', name: 'Storj', binanceSymbol: 'STORJUSDT'},
-    {id: 'ankr', symbol: 'ANKR', name: 'Ankr', binanceSymbol: 'ANKRUSDT'},
-    {id: 'energy-web-token', symbol: 'EWT', name: 'Energy Web Token', binanceSymbol: 'EWTUSDT'},
-    
-    // Trending & New Meme Coins
-    {id: 'neiro', symbol: 'NEIRO', name: 'Neiro', binanceSymbol: 'NEIROUSDT'},
-    {id: 'book-of-meme', symbol: 'BOME', name: 'Book of Meme', binanceSymbol: 'BOMEUSDT'},
-    {id: 'dogwifhat', symbol: 'WIF', name: 'dogwifhat', binanceSymbol: 'WIFUSDT'},
-    {id: 'mog-coin', symbol: 'MOG', name: 'Mog Coin', binanceSymbol: 'MOGUSDT'},
-    {id: 'popcat', symbol: 'POPCAT', name: 'Popcat', binanceSymbol: 'POPCATUSDT'},
-    {id: 'baby-doge-coin', symbol: 'BABYDOGE', name: 'Baby Doge Coin', binanceSymbol: 'BABYDOGEUSDT'},
-    {id: 'meme', symbol: 'MEME', name: 'Memecoin', binanceSymbol: 'MEMEUSDT'},
-    {id: 'turbo', symbol: 'TURBO', name: 'Turbo', binanceSymbol: 'TURBOUSDT'},
-    {id: 'mew', symbol: 'MEW', name: 'Cat in a dogs world', binanceSymbol: 'MEWUSDT'},
-    {id: 'myro', symbol: 'MYRO', name: 'Myro', binanceSymbol: 'MYROUSDT'},
-    {id: 'slerf', symbol: 'SLERF', name: 'Slerf', binanceSymbol: 'SLERFUSDT'},
-    {id: 'ponke', symbol: 'PONKE', name: 'Ponke', binanceSymbol: 'PONKEUSDT'},
-    
-    // AI & Technology Tokens  
-    {id: 'worldcoin-wld', symbol: 'WLD', name: 'Worldcoin', binanceSymbol: 'WLDUSDT'},
-    {id: 'bittensor', symbol: 'TAO', name: 'Bittensor', binanceSymbol: 'TAOUSDT'},
-    {id: 'arkham', symbol: 'ARKM', name: 'Arkham', binanceSymbol: 'ARKMUSDT'},
-    {id: 'akash-network', symbol: 'AKT', name: 'Akash Network', binanceSymbol: 'AKTUSDT'},
-    {id: 'artificial-superintelligence-alliance', symbol: 'FET', name: 'ASI Alliance', binanceSymbol: 'FETUSDT'},
-    
-    // New Layer 1 & 2 Projects
-    {id: 'celestia', symbol: 'TIA', name: 'Celestia', binanceSymbol: 'TIAUSDT'},
-    {id: 'sei-network', symbol: 'SEI', name: 'Sei', binanceSymbol: 'SEIUSDT'},
-    {id: 'starknet', symbol: 'STRK', name: 'Starknet', binanceSymbol: 'STRKUSDT'},
-    {id: 'blur', symbol: 'BLUR', name: 'Blur', binanceSymbol: 'BLURUSDT'},
-    {id: 'mantle', symbol: 'MNT', name: 'Mantle', binanceSymbol: 'MNTUSDT'},
-    {id: 'pyth-network', symbol: 'PYTH', name: 'Pyth Network', binanceSymbol: 'PYTHUSDT'},
-    {id: 'wormhole', symbol: 'W', name: 'Wormhole', binanceSymbol: 'WUSDT'},
-    {id: 'jupiter-exchange-solana', symbol: 'JUP', name: 'Jupiter', binanceSymbol: 'JUPUSDT'},
-    {id: 'ondo-finance', symbol: 'ONDO', name: 'Ondo', binanceSymbol: 'ONDOUSDT'},
-    {id: 'jito', symbol: 'JTO', name: 'Jito', binanceSymbol: 'JTOUSDT'},
-    {id: 'dydx', symbol: 'DYDX', name: 'dYdX', binanceSymbol: 'DYDXUSDT'},
-    {id: 'manta-network', symbol: 'MANTA', name: 'Manta Network', binanceSymbol: 'MANTAUSDT'},
-    {id: 'beam-2', symbol: 'BEAM', name: 'Beam', binanceSymbol: 'BEAMUSDT'},
-    {id: 'maverick-protocol', symbol: 'MAV', name: 'Maverick Protocol', binanceSymbol: 'MAVUSDT'},
-    {id: 'pendle', symbol: 'PENDLE', name: 'Pendle', binanceSymbol: 'PENDLEUSDT'},
-    
-    // Gaming & Metaverse Expansion
-    {id: 'ronin', symbol: 'RON', name: 'Ronin', binanceSymbol: 'RONUSDT'},
-    {id: 'pixels', symbol: 'PIXEL', name: 'Pixels', binanceSymbol: 'PIXELUSDT'},
-    {id: 'portal', symbol: 'PORTAL', name: 'Portal', binanceSymbol: 'PORTALUSDT'},
-    {id: 'xai-blockchain', symbol: 'XAI', name: 'Xai', binanceSymbol: 'XAIUSDT'},
-    {id: 'super', symbol: 'SUPER', name: 'SuperVerse', binanceSymbol: 'SUPERUSDT'},
-    {id: 'illuvium', symbol: 'ILV', name: 'Illuvium', binanceSymbol: 'ILVUSDT'},
-    {id: 'magic', symbol: 'MAGIC', name: 'Magic', binanceSymbol: 'MAGICUSDT'},
-    {id: 'bigtime', symbol: 'BIGTIME', name: 'Big Time', binanceSymbol: 'BIGTIMEUSDT'},
-    {id: 'mythos', symbol: 'MYTH', name: 'Mythos', binanceSymbol: 'MYTHUSDT'},
-    {id: 'gmt', symbol: 'GMT', name: 'STEPN', binanceSymbol: 'GMTUSDT'},
-    
-    // DeFi Protocol Expansion
-    {id: 'ethena', symbol: 'ENA', name: 'Ethena', binanceSymbol: 'ENAUSDT'},
-    {id: 'convex-finance', symbol: 'CVX', name: 'Convex Finance', binanceSymbol: 'CVXUSDT'},
-    {id: 'frax-share', symbol: 'FXS', name: 'Frax Share', binanceSymbol: 'FXSUSDT'},
-    {id: 'ribbon-finance', symbol: 'RBN', name: 'Ribbon Finance', binanceSymbol: 'RBNUSDT'},
-    {id: 'gmx', symbol: 'GMX', name: 'GMX', binanceSymbol: 'GMXUSDT'},
-    {id: 'joe', symbol: 'JOE', name: 'JoeToken', binanceSymbol: 'JOEUSDT'},
-    {id: 'radiant-capital', symbol: 'RDNT', name: 'Radiant Capital', binanceSymbol: 'RDNTUSDT'},
-    {id: 'magic-internet-money', symbol: 'MIM', name: 'Magic Internet Money', binanceSymbol: 'MIMUSDT'},
-    
-    // Exchange & Platform Tokens
-    {id: 'woo-network', symbol: 'WOO', name: 'WOO Network', binanceSymbol: 'WOOUSDT'},
-    {id: 'gate-token', symbol: 'GT', name: 'Gate Token', binanceSymbol: 'GTUSDT'},
-    {id: 'bitget-token', symbol: 'BGB', name: 'Bitget Token', binanceSymbol: 'BGBUSDT'},
-    {id: 'mexc-token', symbol: 'MX', name: 'MEXC Token', binanceSymbol: 'MXUSDT'},
-    
-    // RWA & Stablecoins
-    {id: 'maker', symbol: 'MKR', name: 'Maker', binanceSymbol: 'MKRUSDT'},
-    {id: 'polymesh', symbol: 'POLYX', name: 'Polymesh', binanceSymbol: 'POLYXUSDT'},
-    {id: 'reserve-rights', symbol: 'RSR', name: 'Reserve Rights', binanceSymbol: 'RSRUSDT'},
-    {id: 'frax', symbol: 'FRAX', name: 'Frax', binanceSymbol: 'FRAXUSDT'},
-    
-    // Social & Community Tokens
-    {id: 'friend-tech', symbol: 'FRIEND', name: 'Friend.tech', binanceSymbol: 'FRIENDUSDT'},
-    {id: 'sats-ordinals', symbol: 'SATS', name: 'SATS', binanceSymbol: 'SATSUSDT'},
-    {id: 'ordi', symbol: 'ORDI', name: 'ORDI', binanceSymbol: 'ORDIUSDT'},
-    {id: 'inscribe', symbol: 'INS', name: 'Inscribe', binanceSymbol: 'INSUSDT'},
-    {id: 'rats', symbol: 'RATS', name: 'Rats', binanceSymbol: 'RATSUSDT'},
-    
-    // Infrastructure & Oracle Expansion
-    {id: 'api3', symbol: 'API3', name: 'API3', binanceSymbol: 'API3USDT'},
-    {id: 'tellor', symbol: 'TRB', name: 'Tellor', binanceSymbol: 'TRBUSDT'},
-    {id: 'chainlink', symbol: 'LINK', name: 'Chainlink', binanceSymbol: 'LINKUSDT'},
-    {id: 'redstone', symbol: 'RED', name: 'RedStone', binanceSymbol: 'REDUSDT'},
-    
-    // Polygon Ecosystem
-    {id: 'quickswap', symbol: 'QUICK', name: 'QuickSwap', binanceSymbol: 'QUICKUSDT'},
-    {id: 'gains-network', symbol: 'GNS', name: 'Gains Network', binanceSymbol: 'GNSUSDT'},
-    
-    // Solana Ecosystem
-    {id: 'marinade', symbol: 'MNDE', name: 'Marinade', binanceSymbol: 'MNDEUSDT'},
-    {id: 'orca', symbol: 'ORCA', name: 'Orca', binanceSymbol: 'ORCAUSDT'},
-    {id: 'raydium', symbol: 'RAY', name: 'Raydium', binanceSymbol: 'RAYUSDT'},
-    {id: 'solend', symbol: 'SLND', name: 'Solend', binanceSymbol: 'SLNDUSDT'},
-    
-    // BSC Ecosystem
-    {id: 'venus', symbol: 'XVS', name: 'Venus', binanceSymbol: 'XVSUSDT'},
-    {id: 'alpaca-finance', symbol: 'ALPACA', name: 'Alpaca Finance', binanceSymbol: 'ALPACAUSDT'},
-    {id: 'biswap', symbol: 'BSW', name: 'Biswap', binanceSymbol: 'BSWUSDT'},
-    
-    // Ethereum Ecosystem
-    {id: 'rocket-pool', symbol: 'RPL', name: 'Rocket Pool', binanceSymbol: 'RPLUSDT'},
-    {id: 'lido-staked-ether', symbol: 'STETH', name: 'Lido Staked ETH', binanceSymbol: 'ETHUSDT'},
-    {id: 'frax-ether', symbol: 'FRXETH', name: 'Frax Ether', binanceSymbol: 'ETHUSDT'},
-    
-    // Privacy & Security
-    {id: 'secret', symbol: 'SCRT', name: 'Secret', binanceSymbol: 'SCRTUSDT'},
-    {id: 'oasis-network', symbol: 'ROSE', name: 'Oasis Network', binanceSymbol: 'ROSEUSDT'},
-    
-    // Interoperability
-    {id: 'axelar', symbol: 'AXL', name: 'Axelar', binanceSymbol: 'AXLUSDT'},
-    {id: 'layerzero', symbol: 'ZRO', name: 'LayerZero', binanceSymbol: 'ZROUSDT'},
-    
-    // Additional Popular Tokens
-    {id: 'toncoin', symbol: 'TON', name: 'Toncoin', binanceSymbol: 'TONUSDT'},
-    {id: 'kaspa', symbol: 'KAS', name: 'Kaspa', binanceSymbol: 'KASUSDT'},
-    {id: 'render-token', symbol: 'RNDR', name: 'Render', binanceSymbol: 'RNDRUSDT'},
-    {id: 'internet-computer', symbol: 'ICP', name: 'Internet Computer', binanceSymbol: 'ICPUSDT'},
-    {id: 'stacks', symbol: 'STX', name: 'Stacks', binanceSymbol: 'STXUSDT'},
-    {id: 'immutable-x', symbol: 'IMX', name: 'Immutable X', binanceSymbol: 'IMXUSDT'},
-    {id: 'the-sandbox', symbol: 'SAND', name: 'The Sandbox', binanceSymbol: 'SANDUSDT'},
-    {id: 'theta-token', symbol: 'THETA', name: 'Theta Network', binanceSymbol: 'THETAUSDT'},
-    {id: 'helium', symbol: 'HNT', name: 'Helium', binanceSymbol: 'HNTUSDT'},
-    {id: 'arweave', symbol: 'AR', name: 'Arweave', binanceSymbol: 'ARUSDT'},
-    {id: 'MultiversX', symbol: 'EGLD', name: 'MultiversX', binanceSymbol: 'EGLDUSDT'},
-    {id: 'bitcoin-gold', symbol: 'BTG', name: 'Bitcoin Gold', binanceSymbol: 'BTGUSDT'},
-    {id: 'nervos-network', symbol: 'CKB', name: 'Nervos Network', binanceSymbol: 'CKBUSDT'},
-    {id: 'horizen', symbol: 'ZEN', name: 'Horizen', binanceSymbol: 'ZENUSDT'},
-    {id: 'mask-network', symbol: 'MASK', name: 'Mask Network', binanceSymbol: 'MASKUSDT'},
-    {id: 'trust-wallet-token', symbol: 'TWT', name: 'Trust Wallet Token', binanceSymbol: 'TWTUSDT'},
-    {id: '0x', symbol: 'ZRX', name: '0x Protocol', binanceSymbol: 'ZRXUSDT'},
-    {id: 'iotex', symbol: 'IOTX', name: 'IoTeX', binanceSymbol: 'IOTXUSDT'},
-    {id: 'skale', symbol: 'SKL', name: 'SKALE Network', binanceSymbol: 'SKLUSDT'},
-    {id: 'livepeer', symbol: 'LPT', name: 'Livepeer', binanceSymbol: 'LPTUSDT'},
-    {id: 'gnosis', symbol: 'GNO', name: 'Gnosis', binanceSymbol: 'GNOUSDT'},
-    {id: 'ssv-network', symbol: 'SSV', name: 'SSV Network', binanceSymbol: 'SSVUSDT'},
-    
-    // Note: INIT and NOMI may not be on major exchanges yet or have different symbols
-    // If they appear on Binance, add them with correct symbols
-    {id: 'initverse', symbol: 'INIT', name: 'Initverse', binanceSymbol: 'INITUSDT'},
-    {id: 'nomi', symbol: 'NOMI', name: 'Nomi', binanceSymbol: 'NOMIUSDT'}
-];
+    <script>
+        // ====== Configuration ======
+        const COINS = [
+            // Top Market Cap Coins
+            { id: 'bitcoin', symbol: 'BTC', name: 'Bitcoin', binanceSymbol: 'BTCUSDT' },
+            { id: 'ethereum', symbol: 'ETH', name: 'Ethereum', binanceSymbol: 'ETHUSDT' },
+            { id: 'tether', symbol: 'USDT', name: 'Tether', binanceSymbol: 'USDCUSDT' },
+            { id: 'binancecoin', symbol: 'BNB', name: 'BNB', binanceSymbol: 'BNBUSDT' },
+            { id: 'solana', symbol: 'SOL', name: 'Solana', binanceSymbol: 'SOLUSDT' },
+            { id: 'usd-coin', symbol: 'USDC', name: 'USD Coin', binanceSymbol: 'USDCUSDT' },
+            { id: 'ripple', symbol: 'XRP', name: 'XRP', binanceSymbol: 'XRPUSDT' },
+            { id: 'cardano', symbol: 'ADA', name: 'Cardano', binanceSymbol: 'ADAUSDT' },
+            { id: 'dogecoin', symbol: 'DOGE', name: 'Dogecoin', binanceSymbol: 'DOGEUSDT' },
+            { id: 'tron', symbol: 'TRX', name: 'Tron', binanceSymbol: 'TRXUSDT' },
 
-// Achievement system
-const ACHIEVEMENTS = [
-    { id: 'first_alert', name: 'Alert Setter', description: 'Set your first price alert' },
-    { id: 'portfolio_add', name: 'Portfolio Starter', description: 'Added your first crypto to portfolio' },
-    { id: 'three_coins', name: 'Diversifier', description: 'Track 3+ coins in your portfolio' },
-    { id: 'streak_3', name: 'Hot Streak', description: '3-day login streak' },
-    { id: 'streak_7', name: 'Week Warrior', description: '7-day login streak' },
-    { id: 'shared_chart', name: 'Chart Sharer', description: 'Shared a chart analysis' }
-];
+            // DeFi & Layer 1 Blockchains
+            { id: 'avalanche-2', symbol: 'AVAX', name: 'Avalanche', binanceSymbol: 'AVAXUSDT' },
+            { id: 'polkadot', symbol: 'DOT', name: 'Polkadot', binanceSymbol: 'DOTUSDT' },
+            { id: 'polygon', symbol: 'MATIC', name: 'Polygon', binanceSymbol: 'MATICUSDT' },
+            { id: 'chainlink', symbol: 'LINK', name: 'Chainlink', binanceSymbol: 'LINKUSDT' },
+            { id: 'wrapped-bitcoin', symbol: 'WBTC', name: 'Wrapped Bitcoin', binanceSymbol: 'WBTCUSDT' },
+            { id: 'uniswap', symbol: 'UNI', name: 'Uniswap', binanceSymbol: 'UNIUSDT' },
+            { id: 'litecoin', symbol: 'LTC', name: 'Litecoin', binanceSymbol: 'LTCUSDT' },
+            { id: 'cosmos', symbol: 'ATOM', name: 'Cosmos', binanceSymbol: 'ATOMUSDT' },
+            { id: 'ethereum-classic', symbol: 'ETC', name: 'Ethereum Classic', binanceSymbol: 'ETCUSDT' },
+            { id: 'stellar', symbol: 'XLM', name: 'Stellar', binanceSymbol: 'XLMUSDT' },
 
-// ====== State Management ======
-let state = {
-    theme: localStorage.getItem('theme') || 'dark',
-    currentCoin: 'BTCUSDT',
-    currentTimeframe: '1D',
-    portfolio: JSON.parse(localStorage.getItem('portfolio')) || {},
-    alerts: JSON.parse(localStorage.getItem('alerts')) || [],
-    marketData: null,
-    binanceData: null,
-    activeTab: 'gecko',
-    tvWidget: null,
-    achievements: JSON.parse(localStorage.getItem('achievements')) || [],
-    lastLogin: localStorage.getItem('lastLogin') || null,
-    streak: parseInt(localStorage.getItem('streak')) || 0,
-    // Demo Trading State
-    demoBalance: parseFloat(localStorage.getItem('demoBalance')) || 50.00,
-    demoHoldings: JSON.parse(localStorage.getItem('demoHoldings')) || {},
-    demoTransactions: JSON.parse(localStorage.getItem('demoTransactions')) || [],
-    demoPurchasePrices: JSON.parse(localStorage.getItem('demoPurchasePrices')) || {}
-};
+            // Meme Coins & Popular Alts
+            { id: 'shiba-inu', symbol: 'SHIB', name: 'Shiba Inu', binanceSymbol: 'SHIBUSDT' },
+            { id: 'pepe', symbol: 'PEPE', name: 'Pepe', binanceSymbol: 'PEPEUSDT' },
+            { id: 'floki', symbol: 'FLOKI', name: 'Floki Inu', binanceSymbol: 'FLOKIUSDT' },
+            { id: 'bonk', symbol: 'BONK', name: 'Bonk', binanceSymbol: 'BONKUSDT' },
 
-// ====== Initialize App ======
-function init() {
-    setupTheme();
-    populateSelects();
-    setupEventListeners();
-    fetchMarketData();
-    fetchBinanceData();
-    initTradingViewChart();
-    checkLoginStreak();
-    updateAchievements();
-    updateChartShareLink();
-    updateDemoDisplay();
-    // Load initial tab content
-    document.getElementById(`${state.activeTab}Data`).classList.add('active');
-}
+            // Layer 2 & Scaling Solutions
+            { id: 'arbitrum', symbol: 'ARB', name: 'Arbitrum', binanceSymbol: 'ARBUSDT' },
+            { id: 'optimism', symbol: 'OP', name: 'Optimism', binanceSymbol: 'OPUSDT' },
+            { id: 'immutable-x', symbol: 'IMX', name: 'Immutable X', binanceSymbol: 'IMXUSDT' },
 
-// ====== Theme Management ======
-function setupTheme() {
-    document.body.dataset.theme = state.theme;
-    document.getElementById('themeToggle').textContent = state.theme === 'light' ? '🌙' : '🌓';
+            // DeFi Tokens
+            { id: 'aave', symbol: 'AAVE', name: 'Aave', binanceSymbol: 'AAVEUSDT' },
+            { id: 'maker', symbol: 'MKR', name: 'Maker', binanceSymbol: 'MKRUSDT' },
+            { id: 'compound', symbol: 'COMP', name: 'Compound', binanceSymbol: 'COMPUSDT' },
+            { id: 'curve-dao-token', symbol: 'CRV', name: 'Curve DAO', binanceSymbol: 'CRVUSDT' },
+            { id: 'pancakeswap-token', symbol: 'CAKE', name: 'PancakeSwap', binanceSymbol: 'CAKEUSDT' },
+            { id: 'sushi', symbol: 'SUSHI', name: 'SushiSwap', binanceSymbol: 'SUSHIUSDT' },
 
-    document.getElementById('themeToggle').addEventListener('click', () => {
-        state.theme = state.theme === 'light' ? 'dark' : 'light';
-        document.body.dataset.theme = state.theme;
-        document.getElementById('themeToggle').textContent = state.theme === 'light' ? '🌙' : '🌓';
-        localStorage.setItem('theme', state.theme);
+            // Web3 & Metaverse
+            { id: 'the-sandbox', symbol: 'SAND', name: 'The Sandbox', binanceSymbol: 'SANDUSDT' },
+            { id: 'decentraland', symbol: 'MANA', name: 'Decentraland', binanceSymbol: 'MANAUSDT' },
+            { id: 'axie-infinity', symbol: 'AXS', name: 'Axie Infinity', binanceSymbol: 'AXSUSDT' },
+            { id: 'gala', symbol: 'GALA', name: 'Gala', binanceSymbol: 'GALAUSDT' },
+            { id: 'enjincoin', symbol: 'ENJ', name: 'Enjin Coin', binanceSymbol: 'ENJUSDT' },
 
-        if (state.tvWidget) {
-            state.tvWidget.changeTheme(state.theme === 'light' ? 'light' : 'dark');
+            // Smart Contract Platforms
+            { id: 'near', symbol: 'NEAR', name: 'NEAR Protocol', binanceSymbol: 'NEARUSDT' },
+            { id: 'aptos', symbol: 'APT', name: 'Aptos', binanceSymbol: 'APTUSDT' },
+            { id: 'sui', symbol: 'SUI', name: 'Sui', binanceSymbol: 'SUIUSDT' },
+            { id: 'algorand', symbol: 'ALGO', name: 'Algorand', binanceSymbol: 'ALGOUSDT' },
+            { id: 'hedera-hashgraph', symbol: 'HBAR', name: 'Hedera', binanceSymbol: 'HBARUSDT' },
+            { id: 'vechain', symbol: 'VET', name: 'VeChain', binanceSymbol: 'VETUSDT' },
+            { id: 'fantom', symbol: 'FTM', name: 'Fantom', binanceSymbol: 'FTMUSDT' },
+            { id: 'elrond-erd-2', symbol: 'EGLD', name: 'MultiversX', binanceSymbol: 'EGLDUSDT' },
+            { id: 'flow', symbol: 'FLOW', name: 'Flow', binanceSymbol: 'FLOWUSDT' },
+            { id: 'tezos', symbol: 'XTZ', name: 'Tezos', binanceSymbol: 'XTZUSDT' },
+
+            // Exchange Tokens
+            { id: 'crypto-com-chain', symbol: 'CRO', name: 'Cronos', binanceSymbol: 'CROUSDT' },
+            { id: 'okb', symbol: 'OKB', name: 'OKB', binanceSymbol: 'OKBUSDT' },
+            { id: 'kucoin-shares', symbol: 'KCS', name: 'KuCoin Token', binanceSymbol: 'KCSUSDT' },
+
+            // Storage & Infrastructure
+            { id: 'filecoin', symbol: 'FIL', name: 'Filecoin', binanceSymbol: 'FILUSDT' },
+            { id: 'the-graph', symbol: 'GRT', name: 'The Graph', binanceSymbol: 'GRTUSDT' },
+            { id: 'theta-token', symbol: 'THETA', name: 'Theta Network', binanceSymbol: 'THETAUSDT' },
+            { id: 'render-token', symbol: 'RNDR', name: 'Render', binanceSymbol: 'RNDRUSDT' },
+
+            // AI & Data Tokens
+            { id: 'fetch-ai', symbol: 'FET', name: 'Fetch.ai', binanceSymbol: 'FETUSDT' },
+            { id: 'singularitynet', symbol: 'AGIX', name: 'SingularityNET', binanceSymbol: 'AGIXUSDT' },
+            { id: 'ocean-protocol', symbol: 'OCEAN', name: 'Ocean Protocol', binanceSymbol: 'OCEANUSDT' },
+
+            // Privacy Coins
+            { id: 'monero', symbol: 'XMR', name: 'Monero', binanceSymbol: 'XMRUSDT' },
+            { id: 'zcash', symbol: 'ZEC', name: 'Zcash', binanceSymbol: 'ZECUSDT' },
+
+            // Stablecoins & Wrapped Assets
+            { id: 'dai', symbol: 'DAI', name: 'Dai', binanceSymbol: 'DAIUSDT' },
+            { id: 'true-usd', symbol: 'TUSD', name: 'TrueUSD', binanceSymbol: 'TUSDUSDT' },
+            { id: 'paxos-standard', symbol: 'USDP', name: 'Pax Dollar', binanceSymbol: 'USDPUSDT' },
+
+            // Gaming & NFT
+            { id: 'immutable-x', symbol: 'IMX', name: 'Immutable X', binanceSymbol: 'IMXUSDT' },
+            { id: 'apecoin', symbol: 'APE', name: 'ApeCoin', binanceSymbol: 'APEUSDT' },
+            { id: 'smooth-love-potion', symbol: 'SLP', name: 'Smooth Love Potion', binanceSymbol: 'SLPUSDT' },
+
+            // Miscellaneous Popular Coins
+            { id: 'quant-network', symbol: 'QNT', name: 'Quant', binanceSymbol: 'QNTUSDT' },
+            { id: 'leo-token', symbol: 'LEO', name: 'LEO Token', binanceSymbol: 'LEOUSDT' },
+            { id: 'bitdao', symbol: 'BIT', name: 'BitDAO', binanceSymbol: 'BITUSDT' },
+            { id: 'injective-protocol', symbol: 'INJ', name: 'Injective', binanceSymbol: 'INJUSDT' },
+            { id: 'lido-dao', symbol: 'LDO', name: 'Lido DAO', binanceSymbol: 'LDOUSDT' },
+            { id: '1inch', symbol: '1INCH', name: '1inch Network', binanceSymbol: '1INCHUSDT' },
+            { id: 'chiliz', symbol: 'CHZ', name: 'Chiliz', binanceSymbol: 'CHZUSDT' },
+            { id: 'conflux-token', symbol: 'CFX', name: 'Conflux', binanceSymbol: 'CFXUSDT' },
+            { id: 'eos', symbol: 'EOS', name: 'EOS', binanceSymbol: 'EOSUSDT' },
+            { id: 'iota', symbol: 'IOTA', name: 'IOTA', binanceSymbol: 'IOTAUSDT' },
+            { id: 'neo', symbol: 'NEO', name: 'Neo', binanceSymbol: 'NEOUSDT' },
+            { id: 'dash', symbol: 'DASH', name: 'Dash', binanceSymbol: 'DASHUSDT' },
+            { id: 'bitcoin-cash', symbol: 'BCH', name: 'Bitcoin Cash', binanceSymbol: 'BCHUSDT' },
+            { id: 'bitcoin-sv', symbol: 'BSV', name: 'Bitcoin SV', binanceSymbol: 'BSVUSDT' },
+            { id: 'basic-attention-token', symbol: 'BAT', name: 'Basic Attention Token', binanceSymbol: 'BATUSDT' },
+            { id: 'zilliqa', symbol: 'ZIL', name: 'Zilliqa', binanceSymbol: 'ZILUSDT' },
+            { id: 'ontology', symbol: 'ONT', name: 'Ontology', binanceSymbol: 'ONTUSDT' },
+            { id: 'ravencoin', symbol: 'RVN', name: 'Ravencoin', binanceSymbol: 'RVNUSDT' },
+            { id: 'decred', symbol: 'DCR', name: 'Decred', binanceSymbol: 'DCRUSDT' },
+            { id: 'icon', symbol: 'ICX', name: 'ICON', binanceSymbol: 'ICXUSDT' },
+            { id: 'qtum', symbol: 'QTUM', name: 'Qtum', binanceSymbol: 'QTUMUSDT' },
+            { id: 'harmony', symbol: 'ONE', name: 'Harmony', binanceSymbol: 'ONEUSDT' },
+            { id: 'celo', symbol: 'CELO', name: 'Celo', binanceSymbol: 'CELOUSDT' },
+            { id: 'kava', symbol: 'KAVA', name: 'Kava', binanceSymbol: 'KAVAUSDT' },
+            { id: 'band-protocol', symbol: 'BAND', name: 'Band Protocol', binanceSymbol: 'BANDUSDT' },
+            { id: 'kusama', symbol: 'KSM', name: 'Kusama', binanceSymbol: 'KSMUSDT' },
+            { id: 'thorchain', symbol: 'RUNE', name: 'THORChain', binanceSymbol: 'RUNEUSDT' },
+            { id: 'synthetix-network-token', symbol: 'SNX', name: 'Synthetix', binanceSymbol: 'SNXUSDT' },
+            { id: 'yearn-finance', symbol: 'YFI', name: 'yearn.finance', binanceSymbol: 'YFIUSDT' },
+            { id: 'uma', symbol: 'UMA', name: 'UMA', binanceSymbol: 'UMAUSDT' },
+            { id: 'loopring', symbol: 'LRC', name: 'Loopring', binanceSymbol: 'LRCUSDT' },
+            { id: 'ren', symbol: 'REN', name: 'Ren', binanceSymbol: 'RENUSDT' },
+            { id: 'balancer', symbol: 'BAL', name: 'Balancer', binanceSymbol: 'BALUSDT' },
+            { id: 'nervos-network', symbol: 'CKB', name: 'Nervos Network', binanceSymbol: 'CKBUSDT' },
+            { id: 'storj', symbol: 'STORJ', name: 'Storj', binanceSymbol: 'STORJUSDT' },
+            { id: 'ankr', symbol: 'ANKR', name: 'Ankr', binanceSymbol: 'ANKRUSDT' },
+            { id: 'energy-web-token', symbol: 'EWT', name: 'Energy Web Token', binanceSymbol: 'EWTUSDT' },
+
+            // Trending & New Meme Coins
+            { id: 'neiro', symbol: 'NEIRO', name: 'Neiro', binanceSymbol: 'NEIROUSDT' },
+            { id: 'book-of-meme', symbol: 'BOME', name: 'Book of Meme', binanceSymbol: 'BOMEUSDT' },
+            { id: 'dogwifhat', symbol: 'WIF', name: 'dogwifhat', binanceSymbol: 'WIFUSDT' },
+            { id: 'mog-coin', symbol: 'MOG', name: 'Mog Coin', binanceSymbol: 'MOGUSDT' },
+            { id: 'popcat', symbol: 'POPCAT', name: 'Popcat', binanceSymbol: 'POPCATUSDT' },
+            { id: 'baby-doge-coin', symbol: 'BABYDOGE', name: 'Baby Doge Coin', binanceSymbol: 'BABYDOGEUSDT' },
+            { id: 'meme', symbol: 'MEME', name: 'Memecoin', binanceSymbol: 'MEMEUSDT' },
+            { id: 'turbo', symbol: 'TURBO', name: 'Turbo', binanceSymbol: 'TURBOUSDT' },
+            { id: 'mew', symbol: 'MEW', name: 'Cat in a dogs world', binanceSymbol: 'MEWUSDT' },
+            { id: 'myro', symbol: 'MYRO', name: 'Myro', binanceSymbol: 'MYROUSDT' },
+            { id: 'slerf', symbol: 'SLERF', name: 'Slerf', binanceSymbol: 'SLERFUSDT' },
+            { id: 'ponke', symbol: 'PONKE', name: 'Ponke', binanceSymbol: 'PONKEUSDT' },
+
+            // AI & Technology Tokens  
+            { id: 'worldcoin-wld', symbol: 'WLD', name: 'Worldcoin', binanceSymbol: 'WLDUSDT' },
+            { id: 'bittensor', symbol: 'TAO', name: 'Bittensor', binanceSymbol: 'TAOUSDT' },
+            { id: 'arkham', symbol: 'ARKM', name: 'Arkham', binanceSymbol: 'ARKMUSDT' },
+            { id: 'akash-network', symbol: 'AKT', name: 'Akash Network', binanceSymbol: 'AKTUSDT' },
+            { id: 'artificial-superintelligence-alliance', symbol: 'FET', name: 'ASI Alliance', binanceSymbol: 'FETUSDT' },
+
+            // New Layer 1 & 2 Projects
+            { id: 'celestia', symbol: 'TIA', name: 'Celestia', binanceSymbol: 'TIAUSDT' },
+            { id: 'sei-network', symbol: 'SEI', name: 'Sei', binanceSymbol: 'SEIUSDT' },
+            { id: 'starknet', symbol: 'STRK', name: 'Starknet', binanceSymbol: 'STRKUSDT' },
+            { id: 'blur', symbol: 'BLUR', name: 'Blur', binanceSymbol: 'BLURUSDT' },
+            { id: 'mantle', symbol: 'MNT', name: 'Mantle', binanceSymbol: 'MNTUSDT' },
+            { id: 'pyth-network', symbol: 'PYTH', name: 'Pyth Network', binanceSymbol: 'PYTHUSDT' },
+            { id: 'wormhole', symbol: 'W', name: 'Wormhole', binanceSymbol: 'WUSDT' },
+            { id: 'jupiter-exchange-solana', symbol: 'JUP', name: 'Jupiter', binanceSymbol: 'JUPUSDT' },
+            { id: 'ondo-finance', symbol: 'ONDO', name: 'Ondo', binanceSymbol: 'ONDOUSDT' },
+            { id: 'jito', symbol: 'JTO', name: 'Jito', binanceSymbol: 'JTOUSDT' },
+            { id: 'dydx', symbol: 'DYDX', name: 'dYdX', binanceSymbol: 'DYDXUSDT' },
+            { id: 'manta-network', symbol: 'MANTA', name: 'Manta Network', binanceSymbol: 'MANTAUSDT' },
+            { id: 'beam-2', symbol: 'BEAM', name: 'Beam', binanceSymbol: 'BEAMUSDT' },
+            { id: 'maverick-protocol', symbol: 'MAV', name: 'Maverick Protocol', binanceSymbol: 'MAVUSDT' },
+            { id: 'pendle', symbol: 'PENDLE', name: 'Pendle', binanceSymbol: 'PENDLEUSDT' },
+
+            // Gaming & Metaverse Expansion
+            { id: 'ronin', symbol: 'RON', name: 'Ronin', binanceSymbol: 'RONUSDT' },
+            { id: 'pixels', symbol: 'PIXEL', name: 'Pixels', binanceSymbol: 'PIXELUSDT' },
+            { id: 'portal', symbol: 'PORTAL', name: 'Portal', binanceSymbol: 'PORTALUSDT' },
+            { id: 'xai-blockchain', symbol: 'XAI', name: 'Xai', binanceSymbol: 'XAIUSDT' },
+            { id: 'super', symbol: 'SUPER', name: 'SuperVerse', binanceSymbol: 'SUPERUSDT' },
+            { id: 'illuvium', symbol: 'ILV', name: 'Illuvium', binanceSymbol: 'ILVUSDT' },
+            { id: 'magic', symbol: 'MAGIC', name: 'Magic', binanceSymbol: 'MAGICUSDT' },
+            { id: 'bigtime', symbol: 'BIGTIME', name: 'Big Time', binanceSymbol: 'BIGTIMEUSDT' },
+            { id: 'mythos', symbol: 'MYTH', name: 'Mythos', binanceSymbol: 'MYTHUSDT' },
+            { id: 'gmt', symbol: 'GMT', name: 'STEPN', binanceSymbol: 'GMTUSDT' },
+
+            // DeFi Protocol Expansion
+            { id: 'ethena', symbol: 'ENA', name: 'Ethena', binanceSymbol: 'ENAUSDT' },
+            { id: 'convex-finance', symbol: 'CVX', name: 'Convex Finance', binanceSymbol: 'CVXUSDT' },
+            { id: 'frax-share', symbol: 'FXS', name: 'Frax Share', binanceSymbol: 'FXSUSDT' },
+            { id: 'ribbon-finance', symbol: 'RBN', name: 'Ribbon Finance', binanceSymbol: 'RBNUSDT' },
+            { id: 'gmx', symbol: 'GMX', name: 'GMX', binanceSymbol: 'GMXUSDT' },
+            { id: 'joe', symbol: 'JOE', name: 'JoeToken', binanceSymbol: 'JOEUSDT' },
+            { id: 'radiant-capital', symbol: 'RDNT', name: 'Radiant Capital', binanceSymbol: 'RDNTUSDT' },
+            { id: 'magic-internet-money', symbol: 'MIM', name: 'Magic Internet Money', binanceSymbol: 'MIMUSDT' },
+
+            // Exchange & Platform Tokens
+            { id: 'woo-network', symbol: 'WOO', name: 'WOO Network', binanceSymbol: 'WOOUSDT' },
+            { id: 'gate-token', symbol: 'GT', name: 'Gate Token', binanceSymbol: 'GTUSDT' },
+            { id: 'bitget-token', symbol: 'BGB', name: 'Bitget Token', binanceSymbol: 'BGBUSDT' },
+            { id: 'mexc-token', symbol: 'MX', name: 'MEXC Token', binanceSymbol: 'MXUSDT' },
+
+            // RWA & Stablecoins
+            { id: 'maker', symbol: 'MKR', name: 'Maker', binanceSymbol: 'MKRUSDT' },
+            { id: 'polymesh', symbol: 'POLYX', name: 'Polymesh', binanceSymbol: 'POLYXUSDT' },
+            { id: 'reserve-rights', symbol: 'RSR', name: 'Reserve Rights', binanceSymbol: 'RSRUSDT' },
+            { id: 'frax', symbol: 'FRAX', name: 'Frax', binanceSymbol: 'FRAXUSDT' },
+
+            // Social & Community Tokens
+            { id: 'friend-tech', symbol: 'FRIEND', name: 'Friend.tech', binanceSymbol: 'FRIENDUSDT' },
+            { id: 'sats-ordinals', symbol: 'SATS', name: 'SATS', binanceSymbol: 'SATSUSDT' },
+            { id: 'ordi', symbol: 'ORDI', name: 'ORDI', binanceSymbol: 'ORDIUSDT' },
+            { id: 'inscribe', symbol: 'INS', name: 'Inscribe', binanceSymbol: 'INSUSDT' },
+            { id: 'rats', symbol: 'RATS', name: 'Rats', binanceSymbol: 'RATSUSDT' },
+
+            // Infrastructure & Oracle Expansion
+            { id: 'api3', symbol: 'API3', name: 'API3', binanceSymbol: 'API3USDT' },
+            { id: 'tellor', symbol: 'TRB', name: 'Tellor', binanceSymbol: 'TRBUSDT' },
+            { id: 'chainlink', symbol: 'LINK', name: 'Chainlink', binanceSymbol: 'LINKUSDT' },
+            { id: 'redstone', symbol: 'RED', name: 'RedStone', binanceSymbol: 'REDUSDT' },
+
+            // Polygon Ecosystem
+            { id: 'quickswap', symbol: 'QUICK', name: 'QuickSwap', binanceSymbol: 'QUICKUSDT' },
+            { id: 'gains-network', symbol: 'GNS', name: 'Gains Network', binanceSymbol: 'GNSUSDT' },
+
+            // Solana Ecosystem
+            { id: 'marinade', symbol: 'MNDE', name: 'Marinade', binanceSymbol: 'MNDEUSDT' },
+            { id: 'orca', symbol: 'ORCA', name: 'Orca', binanceSymbol: 'ORCAUSDT' },
+            { id: 'raydium', symbol: 'RAY', name: 'Raydium', binanceSymbol: 'RAYUSDT' },
+            { id: 'solend', symbol: 'SLND', name: 'Solend', binanceSymbol: 'SLNDUSDT' },
+
+            // BSC Ecosystem
+            { id: 'venus', symbol: 'XVS', name: 'Venus', binanceSymbol: 'XVSUSDT' },
+            { id: 'alpaca-finance', symbol: 'ALPACA', name: 'Alpaca Finance', binanceSymbol: 'ALPACAUSDT' },
+            { id: 'biswap', symbol: 'BSW', name: 'Biswap', binanceSymbol: 'BSWUSDT' },
+
+            // Ethereum Ecosystem
+            { id: 'rocket-pool', symbol: 'RPL', name: 'Rocket Pool', binanceSymbol: 'RPLUSDT' },
+            { id: 'lido-staked-ether', symbol: 'STETH', name: 'Lido Staked ETH', binanceSymbol: 'ETHUSDT' },
+            { id: 'frax-ether', symbol: 'FRXETH', name: 'Frax Ether', binanceSymbol: 'ETHUSDT' },
+
+            // Privacy & Security
+            { id: 'secret', symbol: 'SCRT', name: 'Secret', binanceSymbol: 'SCRTUSDT' },
+            { id: 'oasis-network', symbol: 'ROSE', name: 'Oasis Network', binanceSymbol: 'ROSEUSDT' },
+
+            // Interoperability
+            { id: 'axelar', symbol: 'AXL', name: 'Axelar', binanceSymbol: 'AXLUSDT' },
+            { id: 'layerzero', symbol: 'ZRO', name: 'LayerZero', binanceSymbol: 'ZROUSDT' },
+
+            // Additional Popular Tokens
+            { id: 'toncoin', symbol: 'TON', name: 'Toncoin', binanceSymbol: 'TONUSDT' },
+            { id: 'kaspa', symbol: 'KAS', name: 'Kaspa', binanceSymbol: 'KASUSDT' },
+            { id: 'render-token', symbol: 'RNDR', name: 'Render', binanceSymbol: 'RNDRUSDT' },
+            { id: 'internet-computer', symbol: 'ICP', name: 'Internet Computer', binanceSymbol: 'ICPUSDT' },
+            { id: 'stacks', symbol: 'STX', name: 'Stacks', binanceSymbol: 'STXUSDT' },
+            { id: 'immutable-x', symbol: 'IMX', name: 'Immutable X', binanceSymbol: 'IMXUSDT' },
+            { id: 'the-sandbox', symbol: 'SAND', name: 'The Sandbox', binanceSymbol: 'SANDUSDT' },
+            { id: 'theta-token', symbol: 'THETA', name: 'Theta Network', binanceSymbol: 'THETAUSDT' },
+            { id: 'helium', symbol: 'HNT', name: 'Helium', binanceSymbol: 'HNTUSDT' },
+            { id: 'arweave', symbol: 'AR', name: 'Arweave', binanceSymbol: 'ARUSDT' },
+            { id: 'MultiversX', symbol: 'EGLD', name: 'MultiversX', binanceSymbol: 'EGLDUSDT' },
+            { id: 'bitcoin-gold', symbol: 'BTG', name: 'Bitcoin Gold', binanceSymbol: 'BTGUSDT' },
+            { id: 'nervos-network', symbol: 'CKB', name: 'Nervos Network', binanceSymbol: 'CKBUSDT' },
+            { id: 'horizen', symbol: 'ZEN', name: 'Horizen', binanceSymbol: 'ZENUSDT' },
+            { id: 'mask-network', symbol: 'MASK', name: 'Mask Network', binanceSymbol: 'MASKUSDT' },
+            { id: 'trust-wallet-token', symbol: 'TWT', name: 'Trust Wallet Token', binanceSymbol: 'TWTUSDT' },
+            { id: '0x', symbol: 'ZRX', name: '0x Protocol', binanceSymbol: 'ZRXUSDT' },
+            { id: 'iotex', symbol: 'IOTX', name: 'IoTeX', binanceSymbol: 'IOTXUSDT' },
+            { id: 'skale', symbol: 'SKL', name: 'SKALE Network', binanceSymbol: 'SKLUSDT' },
+            { id: 'livepeer', symbol: 'LPT', name: 'Livepeer', binanceSymbol: 'LPTUSDT' },
+            { id: 'gnosis', symbol: 'GNO', name: 'Gnosis', binanceSymbol: 'GNOUSDT' },
+            { id: 'ssv-network', symbol: 'SSV', name: 'SSV Network', binanceSymbol: 'SSVUSDT' },
+
+            // Note: INIT and NOMI may not be on major exchanges yet or have different symbols
+            // If they appear on Binance, add them with correct symbols
+            { id: 'initverse', symbol: 'INIT', name: 'Initverse', binanceSymbol: 'INITUSDT' },
+            { id: 'nomi', symbol: 'NOMI', name: 'Nomi', binanceSymbol: 'NOMIUSDT' }
+        ];
+
+        // Achievement system
+        const ACHIEVEMENTS = [
+            { id: 'first_alert', name: 'Alert Setter', description: 'Set your first price alert' },
+            { id: 'portfolio_add', name: 'Portfolio Starter', description: 'Added your first crypto to portfolio' },
+            { id: 'three_coins', name: 'Diversifier', description: 'Track 3+ coins in your portfolio' },
+            { id: 'streak_3', name: 'Hot Streak', description: '3-day login streak' },
+            { id: 'streak_7', name: 'Week Warrior', description: '7-day login streak' },
+            { id: 'shared_chart', name: 'Chart Sharer', description: 'Shared a chart analysis' }
+        ];
+
+        // ====== State Management ======
+        let state = {
+            theme: localStorage.getItem('theme') || 'dark',
+            currentCoin: 'BTCUSDT',
+            currentTimeframe: '1D',
+            portfolio: JSON.parse(localStorage.getItem('portfolio')) || {},
+            alerts: JSON.parse(localStorage.getItem('alerts')) || [],
+            marketData: null,
+            binanceData: null,
+            activeTab: 'gecko',
+            tvWidget: null,
+            achievements: JSON.parse(localStorage.getItem('achievements')) || [],
+            lastLogin: localStorage.getItem('lastLogin') || null,
+            streak: parseInt(localStorage.getItem('streak')) || 0,
+            // Demo Trading State
+            demoBalance: parseFloat(localStorage.getItem('demoBalance')) || 50.00,
+            demoHoldings: JSON.parse(localStorage.getItem('demoHoldings')) || {},
+            demoTransactions: JSON.parse(localStorage.getItem('demoTransactions')) || [],
+            demoPurchasePrices: JSON.parse(localStorage.getItem('demoPurchasePrices')) || {}
+        };
+
+        // ====== Initialize App ======
+        function init() {
+            setupTheme();
+            populateSelects();
+            setupEventListeners();
+            fetchMarketData();
+            fetchBinanceData();
+            initTradingViewChart();
+            checkLoginStreak();
+            updateAchievements();
+            updateChartShareLink();
+            updateDemoDisplay();
+            // Load initial tab content
+            document.getElementById(`${state.activeTab}Data`).classList.add('active');
         }
-    });
-}
 
-// ====== TradingView Chart ======
-function initTradingViewChart() {
-    // Destroy existing widget if it exists
-    if (state.tvWidget !== null) {
-        state.tvWidget.remove();
-        state.tvWidget = null;
-    }
+        // ====== Theme Management ======
+        function setupTheme() {
+            document.body.dataset.theme = state.theme;
+            document.getElementById('themeToggle').textContent = state.theme === 'light' ? '🌙' : '🌓';
 
-    const widgetOptions = {
-        symbol: state.currentCoin,
-        interval: state.currentTimeframe,
-        container_id: 'tradingview-chart',
-        library_path: 'https://s3.tradingview.com/tv.js',
-        locale: 'en',
-        disabled_features: ['header_symbol_search', 'header_compare', 'header_screenshot', 'header_undo_redo'],
-        enabled_features: ['study_templates', 'save_chart_properties_to_local_storage'],
-        charts_storage_url: 'https://saveload.tradingview.com',
-        charts_storage_api_version: '1.1',
-        client_id: 'tradingview.com',
-        user_id: 'public_user_id',
-        fullscreen: false,
-        autosize: true,
-        theme: state.theme === 'light' ? 'light' : 'dark',
-        overrides: {
-            "paneProperties.background": state.theme === 'light' ? '#f8f9fa' : '#1a1a2e',
-            "paneProperties.vertGridProperties.color": state.theme === 'light' ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.06)',
-            "paneProperties.horzGridProperties.color": state.theme === 'light' ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.06)',
-            "symbolWatermarkProperties.transparency": 90,
-            "scalesProperties.textColor": state.theme === 'light' ? '#1a1a2e' : '#ffffff',
-        },
-        studies_overrides: {
-            "volume.volume.color.0": state.theme === 'light' ? '#f87171' : '#f87171',
-            "volume.volume.color.1": state.theme === 'light' ? '#4ade80' : '#4ade80',
-            "volume.volume.transparency": 70,
-        },
-    };
+            document.getElementById('themeToggle').addEventListener('click', () => {
+                state.theme = state.theme === 'light' ? 'dark' : 'light';
+                document.body.dataset.theme = state.theme;
+                document.getElementById('themeToggle').textContent = state.theme === 'light' ? '🌙' : '🌓';
+                localStorage.setItem('theme', state.theme);
 
-    state.tvWidget = new TradingView.widget(widgetOptions);
-}
+                if (state.tvWidget) {
+                    state.tvWidget.changeTheme(state.theme === 'light' ? 'light' : 'dark');
+                }
+            });
+        }
 
-function updateChart() {
-    // Completely reinitialize the chart with new settings
-    initTradingViewChart();
-}
+        // ====== TradingView Chart ======
+        function initTradingViewChart() {
+            // Destroy existing widget if it exists
+            if (state.tvWidget !== null) {
+                state.tvWidget.remove();
+                state.tvWidget = null;
+            }
 
-// ====== DOM Population ======
-function populateSelects() {
-    const coinSelect = document.getElementById('coinSelect');
-    const portfolioSelect = document.getElementById('coinId');
+            const widgetOptions = {
+                symbol: state.currentCoin,
+                interval: state.currentTimeframe,
+                container_id: 'tradingview-chart',
+                library_path: 'https://s3.tradingview.com/tv.js',
+                locale: 'en',
+                disabled_features: ['header_symbol_search', 'header_compare', 'header_screenshot', 'header_undo_redo'],
+                enabled_features: ['study_templates', 'save_chart_properties_to_local_storage'],
+                charts_storage_url: 'https://saveload.tradingview.com',
+                charts_storage_api_version: '1.1',
+                client_id: 'tradingview.com',
+                user_id: 'public_user_id',
+                fullscreen: false,
+                autosize: true,
+                theme: state.theme === 'light' ? 'light' : 'dark',
+                overrides: {
+                    "paneProperties.background": state.theme === 'light' ? '#f8f9fa' : '#1a1a2e',
+                    "paneProperties.vertGridProperties.color": state.theme === 'light' ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.06)',
+                    "paneProperties.horzGridProperties.color": state.theme === 'light' ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.06)',
+                    "symbolWatermarkProperties.transparency": 90,
+                    "scalesProperties.textColor": state.theme === 'light' ? '#1a1a2e' : '#ffffff',
+                },
+                studies_overrides: {
+                    "volume.volume.color.0": state.theme === 'light' ? '#f87171' : '#f87171',
+                    "volume.volume.color.1": state.theme === 'light' ? '#4ade80' : '#4ade80',
+                    "volume.volume.transparency": 70,
+                },
+            };
 
-    // Clear existing options before populating
-    coinSelect.innerHTML = '';
-    portfolioSelect.innerHTML = '';
+            state.tvWidget = new TradingView.widget(widgetOptions);
+        }
 
-    COINS.forEach(coin => {
-        const option1 = document.createElement('option');
-        option1.value = coin.id;
-        option1.textContent = `${coin.name} (${coin.symbol})`;
-        coinSelect.appendChild(option1);
+        function updateChart() {
+            // Completely reinitialize the chart with new settings
+            initTradingViewChart();
+        }
 
-        const option2 = document.createElement('option');
-        option2.value = coin.id;
-        option2.textContent = `${coin.name} (${coin.symbol})`;
-        portfolioSelect.appendChild(option2);
-    });
-    
-    // Populate chart coin dropdown
-    populateChartCoins();
-    
-    // Populate demo trading select
-    populateDemoTradeSelect();
-}
+        // ====== DOM Population ======
+        function populateSelects() {
+            const coinSelect = document.getElementById('coinSelect');
+            const portfolioSelect = document.getElementById('coinId');
 
-// Populate demo trading select
-function populateDemoTradeSelect() {
-    const demoSelect = document.getElementById('demoTradeSelect');
-    demoSelect.innerHTML = '<option value="">Select a coin to trade</option>';
-    
-    COINS.forEach(coin => {
-        const option = document.createElement('option');
-        option.value = coin.id;
-        option.textContent = `${coin.name} (${coin.symbol})`;
-        option.dataset.symbol = coin.symbol;
-        demoSelect.appendChild(option);
-    });
-}
+            // Clear existing options before populating
+            coinSelect.innerHTML = '';
+            portfolioSelect.innerHTML = '';
 
-// Populate chart coin dropdown with search
-function populateChartCoins(searchTerm = '') {
-    const dropdown = document.getElementById('coinDropdown');
-    const filteredCoins = COINS.filter(coin => {
-        const search = searchTerm.toLowerCase();
-        return coin.name.toLowerCase().includes(search) || 
-               coin.symbol.toLowerCase().includes(search) ||
-               coin.binanceSymbol.toLowerCase().includes(search);
-    });
-    
-    dropdown.innerHTML = filteredCoins.map(coin => `
+            COINS.forEach(coin => {
+                const option1 = document.createElement('option');
+                option1.value = coin.id;
+                option1.textContent = `${coin.name} (${coin.symbol})`;
+                coinSelect.appendChild(option1);
+
+                const option2 = document.createElement('option');
+                option2.value = coin.id;
+                option2.textContent = `${coin.name} (${coin.symbol})`;
+                portfolioSelect.appendChild(option2);
+            });
+
+            // Populate chart coin dropdown
+            populateChartCoins();
+
+            // Populate demo trading select
+            populateDemoTradeSelect();
+        }
+
+        // Populate demo trading select
+        function populateDemoTradeSelect() {
+            const demoSelect = document.getElementById('demoTradeSelect');
+            demoSelect.innerHTML = '<option value="">Select a coin to trade</option>';
+
+            COINS.forEach(coin => {
+                const option = document.createElement('option');
+                option.value = coin.id;
+                option.textContent = `${coin.name} (${coin.symbol})`;
+                option.dataset.symbol = coin.symbol;
+                demoSelect.appendChild(option);
+            });
+        }
+
+        // Populate chart coin dropdown with search
+        function populateChartCoins(searchTerm = '') {
+            const dropdown = document.getElementById('coinDropdown');
+            const filteredCoins = COINS.filter(coin => {
+                const search = searchTerm.toLowerCase();
+                return coin.name.toLowerCase().includes(search) ||
+                    coin.symbol.toLowerCase().includes(search) ||
+                    coin.binanceSymbol.toLowerCase().includes(search);
+            });
+
+            dropdown.innerHTML = filteredCoins.map(coin => `
         <div class="coin-option" onclick="selectChartCoin('${coin.binanceSymbol}', '${coin.name} (${coin.symbol}/USDT)')">
             <strong>${coin.name}</strong> <span style="opacity: 0.7;">(${coin.symbol}/USDT)</span>
         </div>
     `).join('');
-    
-    if (filteredCoins.length === 0) {
-        dropdown.innerHTML = '<div class="coin-option" style="opacity: 0.7; cursor: default;">No coins found</div>';
-    }
-}
 
-// Toggle coin dropdown visibility
-function toggleCoinDropdown() {
-    const dropdown = document.getElementById('coinDropdown');
-    dropdown.classList.toggle('show');
-}
-
-// Select a chart coin
-function selectChartCoin(binanceSymbol, displayText) {
-    state.currentCoin = binanceSymbol;
-    document.getElementById('selectedCoinText').textContent = displayText;
-    document.getElementById('coinDropdown').classList.remove('show');
-    document.getElementById('coinSearch').value = '';
-    updateChart();
-    updateChartShareLink();
-    populateChartCoins(); // Reset the dropdown
-}
-
-// ====== Data Fetching ======
-async function fetchMarketData() {
-    try {
-        const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${COINS.map(c => c.id).join(',')}&order=market_cap_desc`);
-        if (!response.ok) {
-             throw new Error(`API status: ${response.status}`);
+            if (filteredCoins.length === 0) {
+                dropdown.innerHTML = '<div class="coin-option" style="opacity: 0.7; cursor: default;">No coins found</div>';
+            }
         }
-        state.marketData = await response.json();
-        updateMarketOverview();
-        updatePortfolioValue();
-        updateAlertsList();
-        updateMarketOverviewWidget();
-        updateDemoDisplay(); // Update demo trading display with new prices
-    } catch (error) {
-        console.error('Failed to fetch CoinGecko data:', error);
-        document.getElementById('geckoData').innerHTML = '<p style="color: #ff6b6b;">Failed to load CoinGecko data. Please refresh or check API.</p>';
-        state.marketData = []; // Set to empty array on error
-        updateMarketOverview(); // Update UI to show error state
-        updatePortfolioValue();
-        updateAlertsList();
-        updateMarketOverviewWidget();
-        updateDemoDisplay(); // Update demo display even on error
-    }
-}
 
-async function fetchBinanceData() {
-    try {
-        const response = await fetch('https://api.binance.com/api/v3/ticker/24hr');
-         if (!response.ok) {
-             throw new Error(`API status: ${response.status}`);
-         }
-        const allBinanceData = await response.json();
+        // Toggle coin dropdown visibility
+        function toggleCoinDropdown() {
+            const dropdown = document.getElementById('coinDropdown');
+            dropdown.classList.toggle('show');
+        }
 
-        state.binanceData = COINS.map(coin => {
-            const binanceCoin = allBinanceData.find(b => b.symbol === coin.binanceSymbol);
-            return binanceCoin ? {
-                symbol: coin.symbol,
-                name: coin.name,
-                price: parseFloat(binanceCoin.lastPrice),
-                change: parseFloat(binanceCoin.priceChangePercent),
-                volume: parseFloat(binanceCoin.quoteVolume)
-            } : null;
-        }).filter(Boolean);
+        // Select a chart coin
+        function selectChartCoin(binanceSymbol, displayText) {
+            state.currentCoin = binanceSymbol;
+            document.getElementById('selectedCoinText').textContent = displayText;
+            document.getElementById('coinDropdown').classList.remove('show');
+            document.getElementById('coinSearch').value = '';
+            updateChart();
+            updateChartShareLink();
+            populateChartCoins(); // Reset the dropdown
+        }
 
-        updateBinanceOverview();
-        updateMarketOverviewWidget();
-    } catch (error) {
-        console.error('Failed to fetch Binance data:', error);
-        document.getElementById('binanceData').innerHTML = '<p style="color: #ff6b6b;">Failed to load Binance data. Please refresh or check API.</p>';
-        state.binanceData = []; // Set to empty array on error
-        updateBinanceOverview(); // Update UI to show error state
-        updateMarketOverviewWidget();
-    }
-}
+        // ====== Data Fetching ======
+        async function fetchMarketData() {
+            try {
+                const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${COINS.map(c => c.id).join(',')}&order=market_cap_desc`);
+                if (!response.ok) {
+                    throw new Error(`API status: ${response.status}`);
+                }
+                state.marketData = await response.json();
+                updateMarketOverview();
+                updatePortfolioValue();
+                updateAlertsList();
+                updateMarketOverviewWidget();
+                updateDemoDisplay(); // Update demo trading display with new prices
+            } catch (error) {
+                console.error('Failed to fetch CoinGecko data:', error);
+                document.getElementById('geckoData').innerHTML = '<p style="color: #ff6b6b;">Failed to load CoinGecko data. Please refresh or check API.</p>';
+                state.marketData = []; // Set to empty array on error
+                updateMarketOverview(); // Update UI to show error state
+                updatePortfolioValue();
+                updateAlertsList();
+                updateMarketOverviewWidget();
+                updateDemoDisplay(); // Update demo display even on error
+            }
+        }
+
+        async function fetchBinanceData() {
+            try {
+                const response = await fetch('https://api.binance.com/api/v3/ticker/24hr');
+                if (!response.ok) {
+                    throw new Error(`API status: ${response.status}`);
+                }
+                const allBinanceData = await response.json();
+
+                state.binanceData = COINS.map(coin => {
+                    const binanceCoin = allBinanceData.find(b => b.symbol === coin.binanceSymbol);
+                    return binanceCoin ? {
+                        symbol: coin.symbol,
+                        name: coin.name,
+                        price: parseFloat(binanceCoin.lastPrice),
+                        change: parseFloat(binanceCoin.priceChangePercent),
+                        volume: parseFloat(binanceCoin.quoteVolume)
+                    } : null;
+                }).filter(Boolean);
+
+                updateBinanceOverview();
+                updateMarketOverviewWidget();
+            } catch (error) {
+                console.error('Failed to fetch Binance data:', error);
+                document.getElementById('binanceData').innerHTML = '<p style="color: #ff6b6b;">Failed to load Binance data. Please refresh or check API.</p>';
+                state.binanceData = []; // Set to empty array on error
+                updateBinanceOverview(); // Update UI to show error state
+                updateMarketOverviewWidget();
+            }
+        }
 
 
-// ====== UI Updates ======
-function updateMarketOverview() {
-    const geckoDataElement = document.getElementById('geckoData');
-    if (!state.marketData || state.marketData.length === 0) {
-         geckoDataElement.innerHTML = '<p style="opacity: 0.7;">CoinGecko data not available.</p>';
-         return;
-    }
-    geckoDataElement.innerHTML = state.marketData.map(coin => `
+        // ====== UI Updates ======
+        function updateMarketOverview() {
+            const geckoDataElement = document.getElementById('geckoData');
+            if (!state.marketData || state.marketData.length === 0) {
+                geckoDataElement.innerHTML = '<p style="opacity: 0.7;">CoinGecko data not available.</p>';
+                return;
+            }
+            geckoDataElement.innerHTML = state.marketData.map(coin => `
         <div class="coin-item">
             <div>
                 <strong>${coin.symbol.toUpperCase()}</strong>
@@ -1180,15 +1307,15 @@ function updateMarketOverview() {
             </div>
         </div>
     `).join('');
-}
+        }
 
-function updateBinanceOverview() {
-    const binanceDataElement = document.getElementById('binanceData');
-     if (!state.binanceData || state.binanceData.length === 0) {
-         binanceDataElement.innerHTML = '<p style="opacity: 0.7;">Binance data not available.</p>';
-         return;
-    }
-    binanceDataElement.innerHTML = state.binanceData.map(coin => `
+        function updateBinanceOverview() {
+            const binanceDataElement = document.getElementById('binanceData');
+            if (!state.binanceData || state.binanceData.length === 0) {
+                binanceDataElement.innerHTML = '<p style="opacity: 0.7;">Binance data not available.</p>';
+                return;
+            }
+            binanceDataElement.innerHTML = state.binanceData.map(coin => `
         <div class="coin-item">
             <div>
                 <strong>${coin.symbol}</strong>
@@ -1202,33 +1329,33 @@ function updateBinanceOverview() {
             </div>
         </div>
     `).join('');
-}
+        }
 
-function updateMarketOverviewWidget() {
-    const data = state.activeTab === 'gecko' ? state.marketData : state.binanceData;
-    if (!data || data.length === 0) {
-         document.getElementById('marketOverview').innerHTML = '<p style="opacity: 0.7;">Market data not available for overview.</p>';
-         return;
-    }
-
-    // Calculate total market stats
-    let totalMarketCap = 0;
-    let totalVolume = 0;
-    let topGainer = { change: -Infinity, symbol: 'N/A', name: 'N/A' }; // Initialize with defaults
-    let topLoser = { change: Infinity, symbol: 'N/A', name: 'N/A' }; // Initialize with defaults
-
-    if (state.activeTab === 'gecko') {
-        data.forEach(coin => {
-            totalMarketCap += coin.market_cap || 0;
-            totalVolume += coin.total_volume || 0;
-            if (coin.price_change_percentage_24h > topGainer.change) {
-                topGainer = { symbol: coin.symbol, name: coin.name, change: coin.price_change_percentage_24h };
+        function updateMarketOverviewWidget() {
+            const data = state.activeTab === 'gecko' ? state.marketData : state.binanceData;
+            if (!data || data.length === 0) {
+                document.getElementById('marketOverview').innerHTML = '<p style="opacity: 0.7;">Market data not available for overview.</p>';
+                return;
             }
-            if (coin.price_change_percentage_24h < topLoser.change) {
-                topLoser = { symbol: coin.symbol, name: coin.name, change: coin.price_change_percentage_24h };
-            }
-        });
-         document.getElementById('marketOverview').innerHTML = `
+
+            // Calculate total market stats
+            let totalMarketCap = 0;
+            let totalVolume = 0;
+            let topGainer = { change: -Infinity, symbol: 'N/A', name: 'N/A' }; // Initialize with defaults
+            let topLoser = { change: Infinity, symbol: 'N/A', name: 'N/A' }; // Initialize with defaults
+
+            if (state.activeTab === 'gecko') {
+                data.forEach(coin => {
+                    totalMarketCap += coin.market_cap || 0;
+                    totalVolume += coin.total_volume || 0;
+                    if (coin.price_change_percentage_24h > topGainer.change) {
+                        topGainer = { symbol: coin.symbol, name: coin.name, change: coin.price_change_percentage_24h };
+                    }
+                    if (coin.price_change_percentage_24h < topLoser.change) {
+                        topLoser = { symbol: coin.symbol, name: coin.name, change: coin.price_change_percentage_24h };
+                    }
+                });
+                document.getElementById('marketOverview').innerHTML = `
              <div style="margin-top: 1rem; background: rgba(255, 255, 255, 0.05); padding: 1rem; border-radius: 10px;">
                  <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                      <span style="opacity: 0.7;">Total Market Cap:</span>
@@ -1250,20 +1377,20 @@ function updateMarketOverviewWidget() {
                  </div>
              </div>
          `;
-    } else { // Binance data
-        data.forEach(coin => {
-            // Binance 24hr ticker doesn't directly give market cap, only volume
-            totalVolume += coin.volume || 0;
-             if (coin.change !== undefined) { // Check if change is available
-                if (coin.change > topGainer.change) {
-                    topGainer = { symbol: coin.symbol, name: coin.name, change: coin.change };
-                }
-                if (coin.change < topLoser.change) {
-                    topLoser = { symbol: coin.symbol, name: coin.name, change: coin.change };
-                }
-             }
-        });
-         document.getElementById('marketOverview').innerHTML = `
+            } else { // Binance data
+                data.forEach(coin => {
+                    // Binance 24hr ticker doesn't directly give market cap, only volume
+                    totalVolume += coin.volume || 0;
+                    if (coin.change !== undefined) { // Check if change is available
+                        if (coin.change > topGainer.change) {
+                            topGainer = { symbol: coin.symbol, name: coin.name, change: coin.change };
+                        }
+                        if (coin.change < topLoser.change) {
+                            topLoser = { symbol: coin.symbol, name: coin.name, change: coin.change };
+                        }
+                    }
+                });
+                document.getElementById('marketOverview').innerHTML = `
              <div style="margin-top: 1rem; background: rgba(255, 255, 255, 0.05); padding: 1rem; border-radius: 10px;">
                  <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                      <span style="opacity: 0.7;">Total Volume (24h):</span>
@@ -1285,27 +1412,27 @@ function updateMarketOverviewWidget() {
                  </div>
              </div>
          `;
-    }
-}
+            }
+        }
 
-function updatePortfolioValue() {
-    let totalValue = 0;
-    let portfolioHTML = '';
-    let coinCount = 0;
+        function updatePortfolioValue() {
+            let totalValue = 0;
+            let portfolioHTML = '';
+            let coinCount = 0;
 
-    if (!state.marketData) { // Need CoinGecko data for USD conversion
-        document.getElementById('portfolioValue').innerHTML = '<p style="opacity: 0.7;">Load market data to see portfolio value.</p>';
-        return;
-    }
+            if (!state.marketData) { // Need CoinGecko data for USD conversion
+                document.getElementById('portfolioValue').innerHTML = '<p style="opacity: 0.7;">Load market data to see portfolio value.</p>';
+                return;
+            }
 
-    for (const [coinId, amount] of Object.entries(state.portfolio)) {
-        const coin = state.marketData?.find(c => c.id === coinId);
-        if (coin && coin.current_price !== undefined) { // Ensure coin and price data exist
-            coinCount++;
-            const value = amount * coin.current_price;
-            totalValue += value;
+            for (const [coinId, amount] of Object.entries(state.portfolio)) {
+                const coin = state.marketData?.find(c => c.id === coinId);
+                if (coin && coin.current_price !== undefined) { // Ensure coin and price data exist
+                    coinCount++;
+                    const value = amount * coin.current_price;
+                    totalValue += value;
 
-            portfolioHTML += `
+                    portfolioHTML += `
                 <div class="coin-item">
                     <div>
                         <strong>${coin.symbol.toUpperCase()}</strong>
@@ -1314,39 +1441,39 @@ function updatePortfolioValue() {
                         <strong>$${value.toFixed(value > 1000 ? 2 : 4)}</strong> <span style="opacity: 0.7; font-size: 0.9rem;">$${coin.current_price.toFixed(coin.current_price > 1000 ? 2 : 4)} each</span> </div>
                 </div>
             `;
-        }
-    }
+                }
+            }
 
-    document.getElementById('portfolioValue').innerHTML = portfolioHTML || '<p style="opacity: 0.7;">Your portfolio is empty. Add coins above!</p>';
-    if (totalValue > 0) {
-        document.getElementById('portfolioValue').innerHTML += `
+            document.getElementById('portfolioValue').innerHTML = portfolioHTML || '<p style="opacity: 0.7;">Your portfolio is empty. Add coins above!</p>';
+            if (totalValue > 0) {
+                document.getElementById('portfolioValue').innerHTML += `
             <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
                 <strong>Total Value:</strong> $${totalValue.toFixed(totalValue > 1000 ? 2 : 4)}
             </div>
         `;
-    }
+            }
 
-    // Check for achievements
-    if (coinCount >= 1 && !state.achievements.includes('portfolio_add')) {
-        unlockAchievement('portfolio_add');
-    }
-    if (coinCount >= 3 && !state.achievements.includes('three_coins')) {
-        unlockAchievement('three_coins');
-    }
-}
+            // Check for achievements
+            if (coinCount >= 1 && !state.achievements.includes('portfolio_add')) {
+                unlockAchievement('portfolio_add');
+            }
+            if (coinCount >= 3 && !state.achievements.includes('three_coins')) {
+                unlockAchievement('three_coins');
+            }
+        }
 
 
-function updateAlertsList() {
-     const alertsListElement = document.getElementById('alertsList');
-     if (!state.alerts || state.alerts.length === 0) {
-         alertsListElement.innerHTML = '<p style="opacity: 0.7;">No alerts set</p>';
-         return;
-     }
+        function updateAlertsList() {
+            const alertsListElement = document.getElementById('alertsList');
+            if (!state.alerts || state.alerts.length === 0) {
+                alertsListElement.innerHTML = '<p style="opacity: 0.7;">No alerts set</p>';
+                return;
+            }
 
-    alertsListElement.innerHTML = state.alerts.map((alert, index) => {
-        const coin = COINS.find(c => c.id === alert.coin);
-         if (!coin) return ''; // Skip if coin not found
-        return `
+            alertsListElement.innerHTML = state.alerts.map((alert, index) => {
+                const coin = COINS.find(c => c.id === alert.coin);
+                if (!coin) return ''; // Skip if coin not found
+                return `
             <div class="coin-item" style="${alert.triggered ? 'opacity: 0.6; text-decoration: line-through;' : ''}">
                 <div>
                     <strong>${coin.symbol.toUpperCase()}</strong>
@@ -1354,219 +1481,219 @@ function updateAlertsList() {
                 </div>
                 <button onclick="removeAlert(${index})" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; background: #f87171; color: white;">✕</button> </div>
         `;
-    }).join('') || '<p style="opacity: 0.7;">No alerts set</p>';
-}
+            }).join('') || '<p style="opacity: 0.7;">No alerts set</p>';
+        }
 
-function updateAchievements() {
-    const achievementsElement = document.getElementById('achievements');
-    if (!state.achievements || state.achievements.length === 0) {
-        achievementsElement.innerHTML = '<p style="opacity: 0.7;">Complete actions to unlock achievements</p>';
-        return;
-    }
+        function updateAchievements() {
+            const achievementsElement = document.getElementById('achievements');
+            if (!state.achievements || state.achievements.length === 0) {
+                achievementsElement.innerHTML = '<p style="opacity: 0.7;">Complete actions to unlock achievements</p>';
+                return;
+            }
 
-    achievementsElement.innerHTML = `
+            achievementsElement.innerHTML = `
         <p style="margin-bottom: 0.5rem;"><strong>Your Achievements:</strong></p>
         ${state.achievements.map(achId => {
-            const achievement = ACHIEVEMENTS.find(a => a.id === achId);
-            return achievement ? `<span class="achievement-badge">${achievement.name}</span>` : '';
-        }).join('')}
+                const achievement = ACHIEVEMENTS.find(a => a.id === achId);
+                return achievement ? `<span class="achievement-badge">${achievement.name}</span>` : '';
+            }).join('')}
     `;
-}
-
-function updateChartShareLink() {
-    const url = new URL(window.location.href);
-    url.searchParams.set('chart', state.currentCoin);
-    url.searchParams.set('timeframe', state.currentTimeframe);
-    // Add the domain if it's a custom domain, otherwise GitHub pages URL
-    const shareUrl = window.location.hostname === 'digitaltoolshub.github.io' ? url.toString() : `https://digitaltoolshub.github.io${url.pathname}${url.search}`; // Adjust if using custom domain
-    document.getElementById('chartShareLink').value = shareUrl;
-}
-
-
-function updateLoginStreak() {
-    document.getElementById('streakCount').textContent = state.streak;
-
-    // Check for streak achievements
-    if (state.streak >= 3 && !state.achievements.includes('streak_3')) {
-        unlockAchievement('streak_3');
-    }
-    if (state.streak >= 7 && !state.achievements.includes('streak_7')) {
-        unlockAchievement('streak_7');
-    }
-}
-
-// ====== New Features ======
-function checkLoginStreak() {
-    const today = new Date().toDateString();
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-    const yesterdayStr = yesterday.toDateString();
-
-    if (state.lastLogin === today) {
-        return; // Already logged in today
-    }
-
-    if (state.lastLogin === yesterdayStr) {
-        // Continuing streak
-        state.streak++;
-    } else if (state.lastLogin && state.lastLogin !== yesterdayStr) {
-        // Broken streak
-        state.streak = 1;
-    } else {
-        // First login or no previous login
-        state.streak = state.streak || 1; // Initialize to 1 if it was null/0
-    }
-
-    state.lastLogin = today;
-    localStorage.setItem('lastLogin', today);
-    localStorage.setItem('streak', state.streak);
-    updateLoginStreak();
-}
-
-function unlockAchievement(achievementId) {
-    if (!state.achievements.includes(achievementId)) {
-        state.achievements.push(achievementId);
-        localStorage.setItem('achievements', JSON.stringify(state.achievements));
-        updateAchievements();
-
-        // Show notification (basic alert for now)
-        const achievement = ACHIEVEMENTS.find(a => a.id === achievementId);
-        if (achievement) {
-            // Consider a more subtle UI notification instead of alert()
-            console.log(`🎉 Achievement Unlocked: ${achievement.name}`);
         }
-    }
-}
 
-function shareOnTwitter() {
-    const text = `Check out real-time crypto charts on CryptoVision Pro - free tool for tracking Bitcoin, Ethereum, and more!`; // Used a generic descriptive text
-    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(document.getElementById('chartShareLink').value)}`; // Use the generated share link
-    window.open(url, '_blank', 'width=550,height=420');
-    if (!state.achievements.includes('shared_chart')) {
-        unlockAchievement('shared_chart');
-    }
-}
-
-function shareOnReddit() {
-    const url = `https://www.reddit.com/submit?url=${encodeURIComponent(document.getElementById('chartShareLink').value)}&title=${encodeURIComponent("CryptoVision Pro: Real-Time Crypto Charts & Tracker")}`; // Use the generated share link and a descriptive title
-    window.open(url, '_blank', 'width=550,height=420');
-     if (!state.achievements.includes('shared_chart')) {
-        unlockAchievement('shared_chart');
-    }
-}
-
-
-function copyChartLink() {
-    const input = document.getElementById('chartShareLink');
-    input.select();
-    input.setSelectionRange(0, 99999); // For mobile devices
-
-    try {
-        const successful = document.execCommand('copy');
-        // Show copied notification
-        const originalValue = input.value;
-        input.value = successful ? 'Copied to clipboard!' : 'Failed to copy!';
-        setTimeout(() => {
-            input.value = originalValue;
-        }, 2000);
-
-        // Unlock achievement if not already
-        if (successful && !state.achievements.includes('shared_chart')) {
-            unlockAchievement('shared_chart');
+        function updateChartShareLink() {
+            const url = new URL(window.location.href);
+            url.searchParams.set('chart', state.currentCoin);
+            url.searchParams.set('timeframe', state.currentTimeframe);
+            // Add the domain if it's a custom domain, otherwise GitHub pages URL
+            const shareUrl = window.location.hostname === 'digitaltoolshub.github.io' ? url.toString() : `https://digitaltoolshub.github.io${url.pathname}${url.search}`; // Adjust if using custom domain
+            document.getElementById('chartShareLink').value = shareUrl;
         }
-    } catch (err) {
-        console.error('Copy failed:', err);
-         const originalValue = input.value;
-         input.value = 'Copying not supported or failed.';
-         setTimeout(() => {
-             input.value = originalValue;
-         }, 2000);
-    }
-}
 
 
-function openTutorial(tutorialId) {
-    const tutorials = {
-        'reading-charts': 'https://www.investopedia.com/articles/technical/02/010702.asp',
-        'technical-analysis': 'https://www.coindesk.com/learn/crypto-technical-analysis-for-beginners/',
-        'risk-management': 'https://academy.binance.com/en/articles/crypto-trading-risk-management-strategies'
-        // Add more tutorial links here
-    };
+        function updateLoginStreak() {
+            document.getElementById('streakCount').textContent = state.streak;
 
-    const url = tutorials[tutorialId];
-    if (url) {
-        window.open(url, '_blank');
-    } else {
-        console.error('Tutorial not found:', tutorialId);
-    }
-}
-
-// ====== Demo Trading Functions ======
-function updateDemoDisplay() {
-    // Update balance
-    document.getElementById('demoBalance').textContent = state.demoBalance.toFixed(2);
-    
-    // Calculate portfolio value
-    let portfolioValue = 0;
-    let initialInvestment = 0;
-    
-    for (const [coinId, amount] of Object.entries(state.demoHoldings)) {
-        const coin = state.marketData?.find(c => c.id === coinId);
-        if (coin && coin.current_price) {
-            const currentValue = amount * coin.current_price;
-            portfolioValue += currentValue;
-            
-            // Calculate initial investment
-            if (state.demoPurchasePrices[coinId]) {
-                initialInvestment += amount * state.demoPurchasePrices[coinId];
+            // Check for streak achievements
+            if (state.streak >= 3 && !state.achievements.includes('streak_3')) {
+                unlockAchievement('streak_3');
+            }
+            if (state.streak >= 7 && !state.achievements.includes('streak_7')) {
+                unlockAchievement('streak_7');
             }
         }
-    }
-    
-    document.getElementById('demoPortfolioValue').textContent = portfolioValue.toFixed(2);
-    
-    const totalValue = state.demoBalance + portfolioValue;
-    document.getElementById('demoTotalValue').textContent = totalValue.toFixed(2);
-    
-    // Show profit/loss
-    const profitLoss = totalValue - 50; // Starting balance was $50
-    const profitLossElement = document.getElementById('demoProfitLoss');
-    if (profitLoss !== 0) {
-        const percentage = ((profitLoss / 50) * 100).toFixed(2);
-        profitLossElement.textContent = `(${profitLoss >= 0 ? '+' : ''}$${profitLoss.toFixed(2)} / ${profitLoss >= 0 ? '+' : ''}${percentage}%)`;
-        profitLossElement.className = profitLoss >= 0 ? 'profit' : 'loss';
-    } else {
-        profitLossElement.textContent = '';
-    }
-    
-    // Update holdings display
-    updateDemoHoldings();
-    
-    // Update transactions
-    updateDemoTransactions();
-}
 
-function updateDemoHoldings() {
-    const holdingsDiv = document.getElementById('demoHoldings');
-    
-    if (Object.keys(state.demoHoldings).length === 0) {
-        holdingsDiv.innerHTML = '<p style="opacity: 0.7; text-align: center;">No holdings yet. Start trading!</p>';
-        return;
-    }
-    
-    let holdingsHTML = '';
-    for (const [coinId, amount] of Object.entries(state.demoHoldings)) {
-        const coin = COINS.find(c => c.id === coinId);
-        const marketCoin = state.marketData?.find(c => c.id === coinId);
-        
-        if (coin && marketCoin && marketCoin.current_price) {
-            const currentValue = amount * marketCoin.current_price;
-            const purchasePrice = state.demoPurchasePrices[coinId] || marketCoin.current_price;
-            const purchaseValue = amount * purchasePrice;
-            const profitLoss = currentValue - purchaseValue;
-            const profitLossPercent = ((profitLoss / purchaseValue) * 100).toFixed(2);
-            
-            holdingsHTML += `
+        // ====== New Features ======
+        function checkLoginStreak() {
+            const today = new Date().toDateString();
+            const yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            const yesterdayStr = yesterday.toDateString();
+
+            if (state.lastLogin === today) {
+                return; // Already logged in today
+            }
+
+            if (state.lastLogin === yesterdayStr) {
+                // Continuing streak
+                state.streak++;
+            } else if (state.lastLogin && state.lastLogin !== yesterdayStr) {
+                // Broken streak
+                state.streak = 1;
+            } else {
+                // First login or no previous login
+                state.streak = state.streak || 1; // Initialize to 1 if it was null/0
+            }
+
+            state.lastLogin = today;
+            localStorage.setItem('lastLogin', today);
+            localStorage.setItem('streak', state.streak);
+            updateLoginStreak();
+        }
+
+        function unlockAchievement(achievementId) {
+            if (!state.achievements.includes(achievementId)) {
+                state.achievements.push(achievementId);
+                localStorage.setItem('achievements', JSON.stringify(state.achievements));
+                updateAchievements();
+
+                // Show notification (basic alert for now)
+                const achievement = ACHIEVEMENTS.find(a => a.id === achievementId);
+                if (achievement) {
+                    // Consider a more subtle UI notification instead of alert()
+                    console.log(`🎉 Achievement Unlocked: ${achievement.name}`);
+                }
+            }
+        }
+
+        function shareOnTwitter() {
+            const text = `Check out real-time crypto charts on CryptoVision Pro - free tool for tracking Bitcoin, Ethereum, and more!`; // Used a generic descriptive text
+            const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(document.getElementById('chartShareLink').value)}`; // Use the generated share link
+            window.open(url, '_blank', 'width=550,height=420');
+            if (!state.achievements.includes('shared_chart')) {
+                unlockAchievement('shared_chart');
+            }
+        }
+
+        function shareOnReddit() {
+            const url = `https://www.reddit.com/submit?url=${encodeURIComponent(document.getElementById('chartShareLink').value)}&title=${encodeURIComponent("CryptoVision Pro: Real-Time Crypto Charts & Tracker")}`; // Use the generated share link and a descriptive title
+            window.open(url, '_blank', 'width=550,height=420');
+            if (!state.achievements.includes('shared_chart')) {
+                unlockAchievement('shared_chart');
+            }
+        }
+
+
+        function copyChartLink() {
+            const input = document.getElementById('chartShareLink');
+            input.select();
+            input.setSelectionRange(0, 99999); // For mobile devices
+
+            try {
+                const successful = document.execCommand('copy');
+                // Show copied notification
+                const originalValue = input.value;
+                input.value = successful ? 'Copied to clipboard!' : 'Failed to copy!';
+                setTimeout(() => {
+                    input.value = originalValue;
+                }, 2000);
+
+                // Unlock achievement if not already
+                if (successful && !state.achievements.includes('shared_chart')) {
+                    unlockAchievement('shared_chart');
+                }
+            } catch (err) {
+                console.error('Copy failed:', err);
+                const originalValue = input.value;
+                input.value = 'Copying not supported or failed.';
+                setTimeout(() => {
+                    input.value = originalValue;
+                }, 2000);
+            }
+        }
+
+
+        function openTutorial(tutorialId) {
+            const tutorials = {
+                'reading-charts': 'https://www.investopedia.com/articles/technical/02/010702.asp',
+                'technical-analysis': 'https://www.coindesk.com/learn/crypto-technical-analysis-for-beginners/',
+                'risk-management': 'https://academy.binance.com/en/articles/crypto-trading-risk-management-strategies'
+                // Add more tutorial links here
+            };
+
+            const url = tutorials[tutorialId];
+            if (url) {
+                window.open(url, '_blank');
+            } else {
+                console.error('Tutorial not found:', tutorialId);
+            }
+        }
+
+        // ====== Demo Trading Functions ======
+        function updateDemoDisplay() {
+            // Update balance
+            document.getElementById('demoBalance').textContent = state.demoBalance.toFixed(2);
+
+            // Calculate portfolio value
+            let portfolioValue = 0;
+            let initialInvestment = 0;
+
+            for (const [coinId, amount] of Object.entries(state.demoHoldings)) {
+                const coin = state.marketData?.find(c => c.id === coinId);
+                if (coin && coin.current_price) {
+                    const currentValue = amount * coin.current_price;
+                    portfolioValue += currentValue;
+
+                    // Calculate initial investment
+                    if (state.demoPurchasePrices[coinId]) {
+                        initialInvestment += amount * state.demoPurchasePrices[coinId];
+                    }
+                }
+            }
+
+            document.getElementById('demoPortfolioValue').textContent = portfolioValue.toFixed(2);
+
+            const totalValue = state.demoBalance + portfolioValue;
+            document.getElementById('demoTotalValue').textContent = totalValue.toFixed(2);
+
+            // Show profit/loss
+            const profitLoss = totalValue - 50; // Starting balance was $50
+            const profitLossElement = document.getElementById('demoProfitLoss');
+            if (profitLoss !== 0) {
+                const percentage = ((profitLoss / 50) * 100).toFixed(2);
+                profitLossElement.textContent = `(${profitLoss >= 0 ? '+' : ''}$${profitLoss.toFixed(2)} / ${profitLoss >= 0 ? '+' : ''}${percentage}%)`;
+                profitLossElement.className = profitLoss >= 0 ? 'profit' : 'loss';
+            } else {
+                profitLossElement.textContent = '';
+            }
+
+            // Update holdings display
+            updateDemoHoldings();
+
+            // Update transactions
+            updateDemoTransactions();
+        }
+
+        function updateDemoHoldings() {
+            const holdingsDiv = document.getElementById('demoHoldings');
+
+            if (Object.keys(state.demoHoldings).length === 0) {
+                holdingsDiv.innerHTML = '<p style="opacity: 0.7; text-align: center;">No holdings yet. Start trading!</p>';
+                return;
+            }
+
+            let holdingsHTML = '';
+            for (const [coinId, amount] of Object.entries(state.demoHoldings)) {
+                const coin = COINS.find(c => c.id === coinId);
+                const marketCoin = state.marketData?.find(c => c.id === coinId);
+
+                if (coin && marketCoin && marketCoin.current_price) {
+                    const currentValue = amount * marketCoin.current_price;
+                    const purchasePrice = state.demoPurchasePrices[coinId] || marketCoin.current_price;
+                    const purchaseValue = amount * purchasePrice;
+                    const profitLoss = currentValue - purchaseValue;
+                    const profitLossPercent = ((profitLoss / purchaseValue) * 100).toFixed(2);
+
+                    holdingsHTML += `
                 <div class="holding-item">
                     <div>
                         <strong>${coin.symbol.toUpperCase()}</strong>
@@ -1588,29 +1715,29 @@ function updateDemoHoldings() {
                     </div>
                 </div>
             `;
-        }
-    }
-    
-    holdingsDiv.innerHTML = holdingsHTML;
-}
+                }
+            }
 
-function updateDemoTransactions() {
-    const transactionsDiv = document.getElementById('demoTransactions');
-    
-    if (state.demoTransactions.length === 0) {
-        transactionsDiv.innerHTML = '<p style="opacity: 0.7; text-align: center; font-size: 0.9rem;">No transactions yet</p>';
-        return;
-    }
-    
-    // Show last 10 transactions
-    const recentTransactions = state.demoTransactions.slice(-10).reverse();
-    
-    transactionsDiv.innerHTML = recentTransactions.map(tx => {
-        const coin = COINS.find(c => c.id === tx.coinId);
-        const typeColor = tx.type === 'buy' ? '#4ade80' : '#f87171';
-        const typeSymbol = tx.type === 'buy' ? '🟢' : '🔴';
-        
-        return `
+            holdingsDiv.innerHTML = holdingsHTML;
+        }
+
+        function updateDemoTransactions() {
+            const transactionsDiv = document.getElementById('demoTransactions');
+
+            if (state.demoTransactions.length === 0) {
+                transactionsDiv.innerHTML = '<p style="opacity: 0.7; text-align: center; font-size: 0.9rem;">No transactions yet</p>';
+                return;
+            }
+
+            // Show last 10 transactions
+            const recentTransactions = state.demoTransactions.slice(-10).reverse();
+
+            transactionsDiv.innerHTML = recentTransactions.map(tx => {
+                const coin = COINS.find(c => c.id === tx.coinId);
+                const typeColor = tx.type === 'buy' ? '#4ade80' : '#f87171';
+                const typeSymbol = tx.type === 'buy' ? '🟢' : '🔴';
+
+                return `
             <div class="transaction-item">
                 <div>
                     ${typeSymbol} <strong>${tx.type.toUpperCase()}</strong> ${coin?.symbol.toUpperCase() || 'Unknown'}
@@ -1623,378 +1750,379 @@ function updateDemoTransactions() {
                 </div>
             </div>
         `;
-    }).join('');
-}
+            }).join('');
+        }
 
-function setMaxAmount() {
-    const select = document.getElementById('demoTradeSelect');
-    if (!select.value) {
-        alert('Please select a coin first');
-        return;
-    }
-    
-    document.getElementById('demoTradeAmount').value = state.demoBalance.toFixed(2);
-    updateTradePreview();
-}
+        function setMaxAmount() {
+            const select = document.getElementById('demoTradeSelect');
+            if (!select.value) {
+                alert('Please select a coin first');
+                return;
+            }
 
-function updateTradePreview() {
-    const select = document.getElementById('demoTradeSelect');
-    const amountInput = document.getElementById('demoTradeAmount');
-    const preview = document.getElementById('tradePreview');
-    
-    if (!select.value || !amountInput.value || parseFloat(amountInput.value) <= 0) {
-        preview.style.display = 'none';
-        return;
-    }
-    
-    const coinId = select.value;
-    const usdAmount = parseFloat(amountInput.value);
-    const coin = COINS.find(c => c.id === coinId);
-    const marketCoin = state.marketData?.find(c => c.id === coinId);
-    
-    if (!marketCoin || !marketCoin.current_price) {
-        preview.innerHTML = '<p style="opacity: 0.7;">Price data not available</p>';
-        preview.style.display = 'block';
-        return;
-    }
-    
-    const currentPrice = marketCoin.current_price;
-    const coinAmount = usdAmount / currentPrice;
-    
-    preview.innerHTML = `
+            document.getElementById('demoTradeAmount').value = state.demoBalance.toFixed(2);
+            updateTradePreview();
+        }
+
+        function updateTradePreview() {
+            const select = document.getElementById('demoTradeSelect');
+            const amountInput = document.getElementById('demoTradeAmount');
+            const preview = document.getElementById('tradePreview');
+
+            if (!select.value || !amountInput.value || parseFloat(amountInput.value) <= 0) {
+                preview.style.display = 'none';
+                return;
+            }
+
+            const coinId = select.value;
+            const usdAmount = parseFloat(amountInput.value);
+            const coin = COINS.find(c => c.id === coinId);
+            const marketCoin = state.marketData?.find(c => c.id === coinId);
+
+            if (!marketCoin || !marketCoin.current_price) {
+                preview.innerHTML = '<p style="opacity: 0.7;">Price data not available</p>';
+                preview.style.display = 'block';
+                return;
+            }
+
+            const currentPrice = marketCoin.current_price;
+            const coinAmount = usdAmount / currentPrice;
+
+            preview.innerHTML = `
         <div><strong>${coin.symbol.toUpperCase()}</strong> Current Price: <strong>$${currentPrice.toLocaleString()}</strong></div>
         <div style="margin-top: 0.3rem;">You will get: <strong>${coinAmount.toFixed(coinAmount > 1 ? 4 : 8)}</strong> ${coin.symbol.toUpperCase()}</div>
     `;
-    preview.style.display = 'block';
-}
-
-function executeDemoTrade(type) {
-    const select = document.getElementById('demoTradeSelect');
-    const amountInput = document.getElementById('demoTradeAmount');
-    
-    if (!select.value) {
-        alert('Please select a coin to trade');
-        return;
-    }
-    
-    const usdAmount = parseFloat(amountInput.value);
-    if (!usdAmount || usdAmount <= 0) {
-        alert('Please enter a valid amount');
-        return;
-    }
-    
-    const coinId = select.value;
-    const coin = COINS.find(c => c.id === coinId);
-    const marketCoin = state.marketData?.find(c => c.id === coinId);
-    
-    if (!marketCoin || !marketCoin.current_price) {
-        alert('Price data not available for this coin. Please try again.');
-        return;
-    }
-    
-    const currentPrice = marketCoin.current_price;
-    const coinAmount = usdAmount / currentPrice;
-    
-    if (type === 'buy') {
-        // Check if user has enough balance
-        if (usdAmount > state.demoBalance) {
-            alert(`Insufficient balance! You have $${state.demoBalance.toFixed(2)} available.`);
-            return;
-        }
-        
-        // Execute buy
-        state.demoBalance -= usdAmount;
-        state.demoHoldings[coinId] = (state.demoHoldings[coinId] || 0) + coinAmount;
-        
-        // Track purchase price (weighted average)
-        if (state.demoPurchasePrices[coinId]) {
-            const oldAmount = state.demoHoldings[coinId] - coinAmount;
-            const oldValue = oldAmount * state.demoPurchasePrices[coinId];
-            const newValue = coinAmount * currentPrice;
-            state.demoPurchasePrices[coinId] = (oldValue + newValue) / state.demoHoldings[coinId];
-        } else {
-            state.demoPurchasePrices[coinId] = currentPrice;
-        }
-        
-        // Record transaction
-        state.demoTransactions.push({
-            type: 'buy',
-            coinId: coinId,
-            amount: coinAmount,
-            price: currentPrice,
-            total: usdAmount,
-            timestamp: new Date().toISOString()
-        });
-        
-        alert(`✅ Bought ${coinAmount.toFixed(coinAmount > 1 ? 4 : 8)} ${coin.symbol.toUpperCase()} for $${usdAmount.toFixed(2)}`);
-        
-    } else if (type === 'sell') {
-        // Check if user has the coin
-        const holding = state.demoHoldings[coinId] || 0;
-        
-        if (holding <= 0) {
-            alert(`You don't own any ${coin.symbol.toUpperCase()} to sell!`);
-            return;
-        }
-        
-        // Check if trying to sell more than owned
-        if (coinAmount > holding) {
-            alert(`You only have ${holding.toFixed(holding > 1 ? 4 : 8)} ${coin.symbol.toUpperCase()}. Maximum sell value: $${(holding * currentPrice).toFixed(2)}`);
-            return;
-        }
-        
-        // Execute sell
-        state.demoBalance += usdAmount;
-        state.demoHoldings[coinId] -= coinAmount;
-        
-        // Remove from holdings if zero
-        if (state.demoHoldings[coinId] <= 0.00000001) {
-            delete state.demoHoldings[coinId];
-            delete state.demoPurchasePrices[coinId];
-        }
-        
-        // Record transaction
-        state.demoTransactions.push({
-            type: 'sell',
-            coinId: coinId,
-            amount: coinAmount,
-            price: currentPrice,
-            total: usdAmount,
-            timestamp: new Date().toISOString()
-        });
-        
-        alert(`✅ Sold ${coinAmount.toFixed(coinAmount > 1 ? 4 : 8)} ${coin.symbol.toUpperCase()} for $${usdAmount.toFixed(2)}`);
-    }
-    
-    // Save to localStorage
-    localStorage.setItem('demoBalance', state.demoBalance);
-    localStorage.setItem('demoHoldings', JSON.stringify(state.demoHoldings));
-    localStorage.setItem('demoTransactions', JSON.stringify(state.demoTransactions));
-    localStorage.setItem('demoPurchasePrices', JSON.stringify(state.demoPurchasePrices));
-    
-    // Update display
-    updateDemoDisplay();
-    
-    // Clear inputs
-    amountInput.value = '';
-    document.getElementById('tradePreview').style.display = 'none';
-}
-
-function resetDemoAccount() {
-    if (!confirm('Are you sure you want to reset your demo account? All your holdings and transaction history will be lost.')) {
-        return;
-    }
-    
-    state.demoBalance = 50.00;
-    state.demoHoldings = {};
-    state.demoTransactions = [];
-    state.demoPurchasePrices = {};
-    
-    localStorage.setItem('demoBalance', state.demoBalance);
-    localStorage.setItem('demoHoldings', JSON.stringify(state.demoHoldings));
-    localStorage.setItem('demoTransactions', JSON.stringify(state.demoTransactions));
-    localStorage.setItem('demoPurchasePrices', JSON.stringify(state.demoPurchasePrices));
-    
-    updateDemoDisplay();
-    
-    alert('✅ Demo account reset! You have $50.00 to start trading again.');
-}
-
-
-// ====== Event Handlers ======
-function setupEventListeners() {
-    // Tab switching
-    document.querySelectorAll('.tab-button').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-
-            btn.classList.add('active');
-            document.getElementById(`${btn.dataset.tab}Data`).classList.add('active');
-            state.activeTab = btn.dataset.tab;
-            updateMarketOverviewWidget();
-        });
-    });
-
-    // Chart coin search
-    document.getElementById('coinSearch').addEventListener('input', (e) => {
-        const searchTerm = e.target.value;
-        populateChartCoins(searchTerm);
-        if (searchTerm.length > 0) {
-            document.getElementById('coinDropdown').classList.add('show');
-        } else {
-            document.getElementById('coinDropdown').classList.remove('show');
-        }
-    });
-    
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-        const dropdown = document.getElementById('coinDropdown');
-        const searchInput = document.getElementById('coinSearch');
-        const selectedCoin = document.getElementById('selectedCoin');
-        
-        if (!dropdown.contains(e.target) && !searchInput.contains(e.target) && !selectedCoin.contains(e.target)) {
-            dropdown.classList.remove('show');
-        }
-    });
-
-    // Timeframe selection
-    document.querySelectorAll('.timeframe-buttons button').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            document.querySelectorAll('.timeframe-buttons button').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            state.currentTimeframe = btn.dataset.timeframe;
-            updateChart();
-            updateChartShareLink();
-        });
-    });
-
-    // Demo trading events
-    document.getElementById('demoTradeSelect').addEventListener('change', updateTradePreview);
-    document.getElementById('demoTradeAmount').addEventListener('input', updateTradePreview);
-
-    // Alert form
-    document.getElementById('alertForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const coin = document.getElementById('coinSelect').value;
-        const priceInput = document.getElementById('alertPrice');
-        const price = parseFloat(priceInput.value);
-
-        if (!coin || isNaN(price) || price <= 0) { // Added check for valid price
-             alert('Please select a coin and enter a valid alert price.');
-             return;
+            preview.style.display = 'block';
         }
 
-        state.alerts.push({ coin, price, triggered: false });
-        localStorage.setItem('alerts', JSON.stringify(state.alerts));
-        updateAlertsList();
-        priceInput.value = ''; // Clear the input after setting alert
+        function executeDemoTrade(type) {
+            const select = document.getElementById('demoTradeSelect');
+            const amountInput = document.getElementById('demoTradeAmount');
 
-        // Check for first alert achievement
-        if (!state.achievements.includes('first_alert')) {
-            unlockAchievement('first_alert');
+            if (!select.value) {
+                alert('Please select a coin to trade');
+                return;
+            }
+
+            const usdAmount = parseFloat(amountInput.value);
+            if (!usdAmount || usdAmount <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+
+            const coinId = select.value;
+            const coin = COINS.find(c => c.id === coinId);
+            const marketCoin = state.marketData?.find(c => c.id === coinId);
+
+            if (!marketCoin || !marketCoin.current_price) {
+                alert('Price data not available for this coin. Please try again.');
+                return;
+            }
+
+            const currentPrice = marketCoin.current_price;
+            const coinAmount = usdAmount / currentPrice;
+
+            if (type === 'buy') {
+                // Check if user has enough balance
+                if (usdAmount > state.demoBalance) {
+                    alert(`Insufficient balance! You have $${state.demoBalance.toFixed(2)} available.`);
+                    return;
+                }
+
+                // Execute buy
+                state.demoBalance -= usdAmount;
+                state.demoHoldings[coinId] = (state.demoHoldings[coinId] || 0) + coinAmount;
+
+                // Track purchase price (weighted average)
+                if (state.demoPurchasePrices[coinId]) {
+                    const oldAmount = state.demoHoldings[coinId] - coinAmount;
+                    const oldValue = oldAmount * state.demoPurchasePrices[coinId];
+                    const newValue = coinAmount * currentPrice;
+                    state.demoPurchasePrices[coinId] = (oldValue + newValue) / state.demoHoldings[coinId];
+                } else {
+                    state.demoPurchasePrices[coinId] = currentPrice;
+                }
+
+                // Record transaction
+                state.demoTransactions.push({
+                    type: 'buy',
+                    coinId: coinId,
+                    amount: coinAmount,
+                    price: currentPrice,
+                    total: usdAmount,
+                    timestamp: new Date().toISOString()
+                });
+
+                alert(`✅ Bought ${coinAmount.toFixed(coinAmount > 1 ? 4 : 8)} ${coin.symbol.toUpperCase()} for $${usdAmount.toFixed(2)}`);
+
+            } else if (type === 'sell') {
+                // Check if user has the coin
+                const holding = state.demoHoldings[coinId] || 0;
+
+                if (holding <= 0) {
+                    alert(`You don't own any ${coin.symbol.toUpperCase()} to sell!`);
+                    return;
+                }
+
+                // Check if trying to sell more than owned
+                if (coinAmount > holding) {
+                    alert(`You only have ${holding.toFixed(holding > 1 ? 4 : 8)} ${coin.symbol.toUpperCase()}. Maximum sell value: $${(holding * currentPrice).toFixed(2)}`);
+                    return;
+                }
+
+                // Execute sell
+                state.demoBalance += usdAmount;
+                state.demoHoldings[coinId] -= coinAmount;
+
+                // Remove from holdings if zero
+                if (state.demoHoldings[coinId] <= 0.00000001) {
+                    delete state.demoHoldings[coinId];
+                    delete state.demoPurchasePrices[coinId];
+                }
+
+                // Record transaction
+                state.demoTransactions.push({
+                    type: 'sell',
+                    coinId: coinId,
+                    amount: coinAmount,
+                    price: currentPrice,
+                    total: usdAmount,
+                    timestamp: new Date().toISOString()
+                });
+
+                alert(`✅ Sold ${coinAmount.toFixed(coinAmount > 1 ? 4 : 8)} ${coin.symbol.toUpperCase()} for $${usdAmount.toFixed(2)}`);
+            }
+
+            // Save to localStorage
+            localStorage.setItem('demoBalance', state.demoBalance);
+            localStorage.setItem('demoHoldings', JSON.stringify(state.demoHoldings));
+            localStorage.setItem('demoTransactions', JSON.stringify(state.demoTransactions));
+            localStorage.setItem('demoPurchasePrices', JSON.stringify(state.demoPurchasePrices));
+
+            // Update display
+            updateDemoDisplay();
+
+            // Clear inputs
+            amountInput.value = '';
+            document.getElementById('tradePreview').style.display = 'none';
         }
-         alert(`Alert set for ${COINS.find(c => c.id === coin)?.symbol.toUpperCase()} at $${price}`); // User feedback
-    });
 
-    // Portfolio form
-    document.getElementById('portfolioForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const coin = document.getElementById('coinId').value;
-        const amountInput = document.getElementById('amount');
-        const amount = parseFloat(amountInput.value);
+        function resetDemoAccount() {
+            if (!confirm('Are you sure you want to reset your demo account? All your holdings and transaction history will be lost.')) {
+                return;
+            }
 
-        if (!coin || isNaN(amount) || amount <= 0) { // Added check for valid amount
-            alert('Please select a coin and enter a valid amount.');
-            return;
+            state.demoBalance = 50.00;
+            state.demoHoldings = {};
+            state.demoTransactions = [];
+            state.demoPurchasePrices = {};
+
+            localStorage.setItem('demoBalance', state.demoBalance);
+            localStorage.setItem('demoHoldings', JSON.stringify(state.demoHoldings));
+            localStorage.setItem('demoTransactions', JSON.stringify(state.demoTransactions));
+            localStorage.setItem('demoPurchasePrices', JSON.stringify(state.demoPurchasePrices));
+
+            updateDemoDisplay();
+
+            alert('✅ Demo account reset! You have $50.00 to start trading again.');
         }
 
-        state.portfolio[coin] = (state.portfolio[coin] || 0) + amount;
-        localStorage.setItem('portfolio', JSON.stringify(state.portfolio));
-        updatePortfolioValue();
-        amountInput.value = ''; // Clear the input after adding to portfolio
 
-        // Check for achievements
-        if (Object.keys(state.portfolio).length >= 1 && !state.achievements.includes('portfolio_add')) {
-            unlockAchievement('portfolio_add');
+        // ====== Event Handlers ======
+        function setupEventListeners() {
+            // Tab switching
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+                    btn.classList.add('active');
+                    document.getElementById(`${btn.dataset.tab}Data`).classList.add('active');
+                    state.activeTab = btn.dataset.tab;
+                    updateMarketOverviewWidget();
+                });
+            });
+
+            // Chart coin search
+            document.getElementById('coinSearch').addEventListener('input', (e) => {
+                const searchTerm = e.target.value;
+                populateChartCoins(searchTerm);
+                if (searchTerm.length > 0) {
+                    document.getElementById('coinDropdown').classList.add('show');
+                } else {
+                    document.getElementById('coinDropdown').classList.remove('show');
+                }
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                const dropdown = document.getElementById('coinDropdown');
+                const searchInput = document.getElementById('coinSearch');
+                const selectedCoin = document.getElementById('selectedCoin');
+
+                if (!dropdown.contains(e.target) && !searchInput.contains(e.target) && !selectedCoin.contains(e.target)) {
+                    dropdown.classList.remove('show');
+                }
+            });
+
+            // Timeframe selection
+            document.querySelectorAll('.timeframe-buttons button').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelectorAll('.timeframe-buttons button').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    state.currentTimeframe = btn.dataset.timeframe;
+                    updateChart();
+                    updateChartShareLink();
+                });
+            });
+
+            // Demo trading events
+            document.getElementById('demoTradeSelect').addEventListener('change', updateTradePreview);
+            document.getElementById('demoTradeAmount').addEventListener('input', updateTradePreview);
+
+            // Alert form
+            document.getElementById('alertForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const coin = document.getElementById('coinSelect').value;
+                const priceInput = document.getElementById('alertPrice');
+                const price = parseFloat(priceInput.value);
+
+                if (!coin || isNaN(price) || price <= 0) { // Added check for valid price
+                    alert('Please select a coin and enter a valid alert price.');
+                    return;
+                }
+
+                state.alerts.push({ coin, price, triggered: false });
+                localStorage.setItem('alerts', JSON.stringify(state.alerts));
+                updateAlertsList();
+                priceInput.value = ''; // Clear the input after setting alert
+
+                // Check for first alert achievement
+                if (!state.achievements.includes('first_alert')) {
+                    unlockAchievement('first_alert');
+                }
+                alert(`Alert set for ${COINS.find(c => c.id === coin)?.symbol.toUpperCase()} at $${price}`); // User feedback
+            });
+
+            // Portfolio form
+            document.getElementById('portfolioForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const coin = document.getElementById('coinId').value;
+                const amountInput = document.getElementById('amount');
+                const amount = parseFloat(amountInput.value);
+
+                if (!coin || isNaN(amount) || amount <= 0) { // Added check for valid amount
+                    alert('Please select a coin and enter a valid amount.');
+                    return;
+                }
+
+                state.portfolio[coin] = (state.portfolio[coin] || 0) + amount;
+                localStorage.setItem('portfolio', JSON.stringify(state.portfolio));
+                updatePortfolioValue();
+                amountInput.value = ''; // Clear the input after adding to portfolio
+
+                // Check for achievements
+                if (Object.keys(state.portfolio).length >= 1 && !state.achievements.includes('portfolio_add')) {
+                    unlockAchievement('portfolio_add');
+                }
+                if (Object.keys(state.portfolio).length >= 3 && !state.achievements.includes('three_coins')) {
+                    unlockAchievement('three_coins');
+                }
+                alert(`${amount} of ${COINS.find(c => c.id === coin)?.symbol.toUpperCase()} added to portfolio.`); // User feedback
+            });
+
+
+            // Window resize
+            window.addEventListener('resize', () => {
+                if (state.tvWidget) {
+                    state.tvWidget.resize();
+                }
+            });
+
+            // Check for chart and timeframe parameters in URL
+            // This should happen after event listeners are set up but might be better placed in init() or right after init()
+            // Moving this URL parameter handling call to the end of init()
         }
-        if (Object.keys(state.portfolio).length >= 3 && !state.achievements.includes('three_coins')) {
-             unlockAchievement('three_coins');
-         }
-         alert(`${amount} of ${COINS.find(c => c.id === coin)?.symbol.toUpperCase()} added to portfolio.`); // User feedback
-    });
 
-
-    // Window resize
-    window.addEventListener('resize', () => {
-        if (state.tvWidget) {
-            state.tvWidget.resize();
+        // ====== Helper Functions ======
+        function removeAlert(index) {
+            state.alerts.splice(index, 1);
+            localStorage.setItem('alerts', JSON.stringify(state.alerts));
+            updateAlertsList();
+            alert('Alert removed.'); // User feedback
         }
-    });
 
-    // Check for chart and timeframe parameters in URL
-    // This should happen after event listeners are set up but might be better placed in init() or right after init()
-    // Moving this URL parameter handling call to the end of init()
-}
-
-// ====== Helper Functions ======
-function removeAlert(index) {
-    state.alerts.splice(index, 1);
-    localStorage.setItem('alerts', JSON.stringify(state.alerts));
-    updateAlertsList();
-     alert('Alert removed.'); // User feedback
-}
-
-// ====== Initialize ======
-init();
-// Initial call for market data
-fetchMarketData();
-fetchBinanceData();
-
-// Set interval for periodic data refresh
-setInterval(() => {
-    // Only fetch data if the relevant tab is active
-    if (state.activeTab === 'gecko') {
+        // ====== Initialize ======
+        init();
+        // Initial call for market data
         fetchMarketData();
-    } else if (state.activeTab === 'binance') {
         fetchBinanceData();
-    }
 
-    // Update portfolio value periodically if market data is available
-    if (state.marketData) {
-        updatePortfolioValue();
-        updateDemoDisplay(); // Update demo trading display with live prices
-    }
+        // Set interval for periodic data refresh
+        setInterval(() => {
+            // Only fetch data if the relevant tab is active
+            if (state.activeTab === 'gecko') {
+                fetchMarketData();
+            } else if (state.activeTab === 'binance') {
+                fetchBinanceData();
+            }
 
-    // You might also want to check alerts against current prices periodically
-    // This would require fetching current prices and comparing them to state.alerts
-    // (Implementation of checking alerts against live prices is not included here)
+            // Update portfolio value periodically if market data is available
+            if (state.marketData) {
+                updatePortfolioValue();
+                updateDemoDisplay(); // Update demo trading display with live prices
+            }
 
-}, 60000); // Refresh market data every 60 seconds (1 minute)
+            // You might also want to check alerts against current prices periodically
+            // This would require fetching current prices and comparing them to state.alerts
+            // (Implementation of checking alerts against live prices is not included here)
 
-// Handle URL parameters for chart and timeframe after initial load
-(function handleUrlParams() {
-     const urlParams = new URLSearchParams(window.location.search);
-     const chartSymbol = urlParams.get('chart');
-     const timeframe = urlParams.get('timeframe');
+        }, 60000); // Refresh market data every 60 seconds (1 minute)
 
-     let chartUpdatedFromUrl = false;
-     let timeframeUpdatedFromUrl = false;
+        // Handle URL parameters for chart and timeframe after initial load
+        (function handleUrlParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const chartSymbol = urlParams.get('chart');
+            const timeframe = urlParams.get('timeframe');
 
-     if (chartSymbol) {
-         // Find if the symbol exists in COINS
-         const coin = COINS.find(c => c.binanceSymbol === chartSymbol);
-         if (coin) {
-             state.currentCoin = chartSymbol;
-             document.getElementById('selectedCoinText').textContent = `${coin.name} (${coin.symbol}/USDT)`;
-             chartUpdatedFromUrl = true;
-         } else {
-             console.warn(`Chart symbol "${chartSymbol}" from URL not found in coin list.`);
-         }
-     }
+            let chartUpdatedFromUrl = false;
+            let timeframeUpdatedFromUrl = false;
 
-     if (timeframe) {
-         const buttons = document.querySelectorAll('.timeframe-buttons button');
-         // Find if the timeframe button exists
-         const button = Array.from(buttons).find(btn => btn.dataset.timeframe === timeframe);
-         if (button) {
-             buttons.forEach(btn => btn.classList.remove('active'));
-             button.classList.add('active');
-             state.currentTimeframe = timeframe;
-             timeframeUpdatedFromUrl = true;
-         } else {
-             console.warn(`Timeframe "${timeframe}" from URL not found in buttons.`);
-         }
-     }
+            if (chartSymbol) {
+                // Find if the symbol exists in COINS
+                const coin = COINS.find(c => c.binanceSymbol === chartSymbol);
+                if (coin) {
+                    state.currentCoin = chartSymbol;
+                    document.getElementById('selectedCoinText').textContent = `${coin.name} (${coin.symbol}/USDT)`;
+                    chartUpdatedFromUrl = true;
+                } else {
+                    console.warn(`Chart symbol "${chartSymbol}" from URL not found in coin list.`);
+                }
+            }
 
-     // Only update chart if parameters were valid and found
-     if (chartUpdatedFromUrl || timeframeUpdatedFromUrl) {
-         updateChart();
-     }
-     updateChartShareLink(); // Update the share link based on final chart state
-})(); // Immediately invoke the function
+            if (timeframe) {
+                const buttons = document.querySelectorAll('.timeframe-buttons button');
+                // Find if the timeframe button exists
+                const button = Array.from(buttons).find(btn => btn.dataset.timeframe === timeframe);
+                if (button) {
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    state.currentTimeframe = timeframe;
+                    timeframeUpdatedFromUrl = true;
+                } else {
+                    console.warn(`Timeframe "${timeframe}" from URL not found in buttons.`);
+                }
+            }
 
-</script>
+            // Only update chart if parameters were valid and found
+            if (chartUpdatedFromUrl || timeframeUpdatedFromUrl) {
+                updateChart();
+            }
+            updateChartShareLink(); // Update the share link based on final chart state
+        })(); // Immediately invoke the function
+
+    </script>
 </body>
+
 </html>

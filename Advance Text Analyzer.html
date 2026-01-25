@@ -1,22 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-R4N9RB1SNN');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-R4N9RB1SNN');
     </script>
-    
-    <!-- Google Ads -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
-    
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" type="text/javascript" async></script>    
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
+        crossorigin="anonymous"></script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f"
+        type="text/javascript" async></script>
+
+    <!-- Primary Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advance Text Analyzer</title>
+    <title>Advanced Text Analyzer | Word Count, Reading Time & Statistics</title>
+    <meta name="title" content="Advanced Text Analyzer | Word Count, Reading Time & Statistics">
+    <meta name="description"
+        content="Free advanced text analysis tool. Calculate word count, character count, sentence count, and reading time instantly. Improve your writing efficiency.">
+    <meta name="keywords"
+        content="text analyzer, word counter, character count, reading time calculator, text statistics, writing tool, free online tool, digital tools hub">
+    <meta name="author" content="Digital Tools Hub">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://digitaltoolshub.github.io/Advance%20Text%20Analyzer.html">
+    <meta property="og:title" content="Advanced Text Analyzer | Word Count, Reading Time & Statistics">
+    <meta property="og:description"
+        content="Free advanced text analysis tool. Calculate word count, character count, sentence count, and reading time instantly.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://digitaltoolshub.github.io/Advance%20Text%20Analyzer.html">
+    <meta property="twitter:title" content="Advanced Text Analyzer | Word Count, Reading Time & Statistics">
+    <meta property="twitter:description"
+        content="Free advanced text analysis tool. Calculate word count, character count, sentence count, and reading time instantly.">
+    <meta property="twitter:image" content="https://digitaltoolshub.github.io/preview.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://digitaltoolshub.github.io/Advance%20Text%20Analyzer.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Advanced Text Analyzer",
+      "url": "https://digitaltoolshub.github.io/Advance%20Text%20Analyzer.html",
+      "description": "Free advanced text analysis tool. Calculate word count, character count, sentence count, and reading time instantly.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": "Word Count, Character Count, Sentence Count, Reading Time Estimation"
+    }
+    </script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -29,13 +84,24 @@
             align-items: center;
             min-height: 100vh;
         }
+
         @keyframes gradientAnimation {
-            0% {background-position: 0% 50%;}
-            50% {background-position: 100% 50%;}
-            100% {background-position: 0% 50%;}
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
+
         .container {
-            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+            background-color: rgba(255, 255, 255, 0.9);
+            /* Slightly transparent white */
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
@@ -44,39 +110,63 @@
             width: 90%;
             animation: fadeIn 1s ease-out;
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
         h1 {
-            color: #e74c3c; /* A vibrant red */
+            color: #e74c3c;
+            /* A vibrant red */
             margin-bottom: 30px;
             font-size: 2.8em;
-            text-shadow: 2px 2px #f39c12; /* Orange shadow */
+            text-shadow: 2px 2px #f39c12;
+            /* Orange shadow */
             animation: pulseTitle 1.5s ease-in-out infinite alternate;
         }
+
         @keyframes pulseTitle {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.05); }
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.05);
+            }
         }
+
         textarea {
             width: calc(100% - 20px);
             padding: 15px;
             margin-bottom: 20px;
-            border: 2px solid #3498db; /* Blue border */
+            border: 2px solid #3498db;
+            /* Blue border */
             border-radius: 8px;
             box-sizing: border-box;
             font-size: 1.1em;
             line-height: 1.6;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
+
         textarea:focus {
-            border-color: #2ecc71; /* Green focus border */
+            border-color: #2ecc71;
+            /* Green focus border */
             outline: none;
-            box-shadow: 0 0 10px rgba(46, 204, 113, 0.5); /* Green focus shadow */
+            box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+            /* Green focus shadow */
         }
+
         button {
-            background-color: #9b59b6; /* Purple button */
+            background-color: #9b59b6;
+            /* Purple button */
             color: white;
             padding: 15px 30px;
             border: none;
@@ -86,74 +176,132 @@
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             animation: pulseButton 1.8s ease-in-out infinite alternate;
         }
+
         button:hover {
-            background-color: #8e44ad; /* Darker purple */
+            background-color: #8e44ad;
+            /* Darker purple */
             transform: scale(1.08);
             box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
         }
+
         @keyframes pulseButton {
-            0% { transform: scale(1); box-shadow: 0 0 0 rgba(155, 89, 182, 0.7); }
-            100% { transform: scale(1.03); box-shadow: 0 0 10px rgba(155, 89, 182, 0); }
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 rgba(155, 89, 182, 0.7);
+            }
+
+            100% {
+                transform: scale(1.03);
+                box-shadow: 0 0 10px rgba(155, 89, 182, 0);
+            }
         }
+
         .results {
             margin-top: 30px;
             padding: 25px;
-            border: 2px solid #f1c40f; /* Yellow border */
+            border: 2px solid #f1c40f;
+            /* Yellow border */
             border-radius: 10px;
-            background-color: #fff8e1; /* Light yellow background */
+            background-color: #fff8e1;
+            /* Light yellow background */
             text-align: left;
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-            animation-delay: 0.3s; /* Slight delay for staggered animation */
+            animation-delay: 0.3s;
+            /* Slight delay for staggered animation */
         }
+
         .results.show {
             opacity: 1;
             transform: translateY(0);
             animation: slideIn 0.6s ease-out forwards;
         }
+
         @keyframes slideIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
         h2 {
-            color: #d35400; /* Dark orange heading */
+            color: #d35400;
+            /* Dark orange heading */
             margin-top: 0;
             margin-bottom: 20px;
             font-size: 2em;
             text-decoration: underline;
             animation: underlineAnimation 1s ease-in-out infinite alternate;
         }
+
         @keyframes underlineAnimation {
-            0% { text-decoration-color: rgba(211, 84, 0, 0.8); }
-            100% { text-decoration-color: rgba(211, 84, 0, 0.3); }
+            0% {
+                text-decoration-color: rgba(211, 84, 0, 0.8);
+            }
+
+            100% {
+                text-decoration-color: rgba(211, 84, 0, 0.3);
+            }
         }
+
         .result-item {
             margin-bottom: 15px;
             font-size: 1.15em;
-            color: #2c3e50; /* Dark blue-gray text */
+            color: #2c3e50;
+            /* Dark blue-gray text */
             padding: 10px;
             border-radius: 6px;
-            background-color: #ecf0f1; /* Light gray background for items */
-            border-left: 5px solid #3498db; /* Blue highlight on the left */
+            background-color: #ecf0f1;
+            /* Light gray background for items */
+            border-left: 5px solid #3498db;
+            /* Blue highlight on the left */
             animation: fadeInLeft 0.5s ease-out forwards;
             opacity: 0;
             transform: translateX(-10px);
         }
-        .result-item:nth-child(2) { animation-delay: 0.2s; }
-        .result-item:nth-child(3) { animation-delay: 0.4s; }
-        .result-item:nth-child(4) { animation-delay: 0.6s; }
-        .result-item:nth-child(5) { animation-delay: 0.8s; }
-        @keyframes fadeInLeft {
-            from { opacity: 0; transform: translateX(-10px); }
-            to { opacity: 1; transform: translateX(0); }
+
+        .result-item:nth-child(2) {
+            animation-delay: 0.2s;
         }
+
+        .result-item:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .result-item:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        .result-item:nth-child(5) {
+            animation-delay: 0.8s;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
         .result-item strong {
             font-weight: bold;
-            color: #e67e22; /* Bright orange for strong text */
+            color: #e67e22;
+            /* Bright orange for strong text */
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Advance Text Analyzer</h1>
@@ -237,4 +385,5 @@
         observer.observe(resultsContainerElement, { attributes: true });
     </script>
 </body>
+
 </html>

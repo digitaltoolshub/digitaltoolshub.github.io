@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-R4N9RB1SNN');
+    </script>
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
+        crossorigin="anonymous"></script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f"
+        type="text/javascript" async></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LingoFlow Editor | Professional Online Markdown Editor</title>
+    <meta name="title" content="LingoFlow Editor | Professional Online Markdown Editor">
+    <meta name="description"
+        content="A free, professional online Markdown editor with real-time preview, HTML export, and templates for README, API specs, and meeting notes.">
+    <meta name="keywords"
+        content="markdown editor, online markdown editor, free markdown tool, readme generator, api spec builder, meeting notes template, lingoflow, digital tools hub">
+    <meta name="author" content="Digital Tools Hub">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://digitaltoolshub.github.io/markdown-editor.html">
+    <meta property="og:title" content="LingoFlow Editor | Professional Online Markdown Editor">
+    <meta property="og:description"
+        content="A free, professional online Markdown editor with real-time preview, HTML export, and templates.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://digitaltoolshub.github.io/markdown-editor.html">
+    <meta property="twitter:title" content="LingoFlow Editor | Professional Online Markdown Editor">
+    <meta property="twitter:description"
+        content="A free, professional online Markdown editor with real-time preview, HTML export, and templates.">
+    <meta property="twitter:image" content="https://digitaltoolshub.github.io/preview.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://digitaltoolshub.github.io/markdown-editor.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "LingoFlow Markdown Editor",
+      "url": "https://digitaltoolshub.github.io/markdown-editor.html",
+      "description": "A feature-rich online Markdown editor with real-time preview, HTML export, and templates.",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": "Real-time Preview, HTML Export, README Templates, API Spec Templates"
+    }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+    <style>
+        :root {
+            --bg-editor: #0d1117;
+            --bg-preview: #ffffff;
+            --text-editor: #c9d1d9;
+            --accent: #238636;
+            --border: #30363d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        header {
+            padding: 0.8rem 1.5rem;
+            background: #161b22;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .toolbar {
+            display: flex;
+            gap: 0.5rem;
+            background: #21262d;
+            padding: 0.4rem;
+            border-radius: 8px;
+            margin: 0 1rem;
+        }
+
+        .tool-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 0.4rem 0.6rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .tool-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--accent);
+        }
+
+        .editor-container {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .editor-pane {
+            flex: 1;
+            background: var(--bg-editor);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+        }
+
+        textarea {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--text-editor);
+            padding: 2rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 1rem;
+            line-height: 1.6;
+            resize: none;
+            outline: none;
+        }
+
+        .preview-pane {
+            flex: 1;
+            background: var(--bg-preview);
+            color: #1f2328;
+            padding: 2rem 3rem;
+            overflow-y: auto;
+            line-height: 1.6;
+        }
+
+        /* Markdown Preview Styles */
+        .preview-pane h1 {
+            border-bottom: 1px solid #d8dee4;
+            padding-bottom: 0.3em;
+            margin-bottom: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .preview-pane h2 {
+            border-bottom: 1px solid #d8dee4;
+            padding-bottom: 0.3em;
+            margin-bottom: 1rem;
+            margin-top: 1.2rem;
+        }
+
+        .preview-pane code {
+            background: rgba(175, 184, 193, 0.2);
+            padding: 0.2rem 0.4rem;
+            border-radius: 6px;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .preview-pane pre {
+            background: #f6f8fa;
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+        }
+
+        .preview-pane blockquote {
+            border-left: 0.25em solid #d0d7de;
+            color: #636c76;
+            padding: 0 1em;
+            margin-bottom: 1rem;
+        }
+
+        .preview-pane img {
+            max-width: 100%;
+            border-radius: 6px;
+        }
+
+        .preview-pane ul,
+        .preview-pane ol {
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .status-bar {
+            padding: 0.4rem 1.5rem;
+            background: #161b22;
+            border-top: 1px solid var(--border);
+            color: var(--text-editor);
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: #21262d;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content button {
+            color: white;
+            text-align: left;
+            background: none;
+            border: none;
+            padding: 10px 16px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .dropdown-content button:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            .editor-container {
+                flex-direction: column;
+            }
+
+            .toolbar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo"><i class="fab fa-markdown"></i> LingoFlow</div>
+
+        <div class="toolbar">
+            <button class="tool-btn" onclick="insertAtCursor('# ', '')" title="H1"><i
+                    class="fas fa-heading"></i>1</button>
+            <button class="tool-btn" onclick="insertAtCursor('## ', '')" title="H2"><i
+                    class="fas fa-heading"></i>2</button>
+            <button class="tool-btn" onclick="insertAtCursor('**', '**')" title="Bold"><i
+                    class="fas fa-bold"></i></button>
+            <button class="tool-btn" onclick="insertAtCursor('_', '_')" title="Italic"><i
+                    class="fas fa-italic"></i></button>
+            <button class="tool-btn" onclick="insertAtCursor('[', '](https://)')" title="Link"><i
+                    class="fas fa-link"></i></button>
+            <button class="tool-btn" onclick="insertAtCursor('> ', '')" title="Quote"><i
+                    class="fas fa-quote-left"></i></button>
+            <button class="tool-btn" onclick="insertAtCursor('```\n', '\n```')" title="Code Block"><i
+                    class="fas fa-code"></i></button>
+            <button class="tool-btn" onclick="insertAtCursor('- ', '')" title="List"><i
+                    class="fas fa-list-ul"></i></button>
+        </div>
+
+        <div style="display: flex; gap: 0.8rem;">
+            <div class="dropdown">
+                <button class="btn" style="background: transparent; border: 1px solid var(--border)">Templates <i
+                        class="fas fa-chevron-down" style="font-size: 0.7rem"></i></button>
+                <div class="dropdown-content">
+                    <button onclick="loadTemplate('readme')">README.md</button>
+                    <button onclick="loadTemplate('api')">API Spec</button>
+                    <button onclick="loadTemplate('meeting')">Meeting Notes</button>
+                </div>
+            </div>
+            <button class="btn" id="exportHtml">Export HTML</button>
+            <a href="index.html" class="btn" style="background: #30363d"><i class="fas fa-home"></i></a>
+        </div>
+    </header>
+
+    <div class="editor-container">
+        <div class="editor-pane">
+            <textarea id="markdownEditor" placeholder="Start writing markdown here..."></textarea>
+        </div>
+        <div class="preview-pane" id="markdownPreview">
+            <!-- Rendered markdown -->
+        </div>
+    </div>
+
+    <div class="status-bar">
+        <div id="wordCount">Words: 0 | Lines: 1</div>
+        <div id="readTime">Read time: 0m</div>
+    </div>
+
+    <script>
+        const editor = document.getElementById('markdownEditor');
+        const preview = document.getElementById('markdownPreview');
+        const wordCount = document.getElementById('wordCount');
+        const readTime = document.getElementById('readTime');
+
+        const templates = {
+            readme: "# Project Name\n\nShort description of the project.\n\n## Installation\n\n```bash\nnpm install my-project\n```\n\n## Usage\n\n- Step 1\n- Step 2\n\n## License\nMIT",
+            api: "# API Specification\n\n### GET /v1/users\n\nReturns a list of users.\n\n**Parameters:**\n| Name | Type | Description |\n|------|------|-------------|\n| limit| int  | Max results |\n\n**Example Response:**\n```json\n{ \"id\": 1, \"name\": \"Admin\" }\n```",
+            meeting: "# Meeting Notes\n\n**Date:** " + new Date().toLocaleDateString() + "\n**Attendees:** @user1, @user2\n\n## Agenda\n1. Project update\n2. Resource allocation\n\n## Decisions\n- Decision A\n- Decision B\n\n## Action Items\n- [ ] Task 1\n- [ ] Task 2"
+        };
+
+        function updatePreview() {
+            const raw = editor.value;
+            preview.innerHTML = marked.parse(raw);
+            saveToLocal();
+            updateStats();
+        }
+
+        function updateStats() {
+            const text = editor.value.trim();
+            const words = text ? text.split(/\s+/).length : 0;
+            const lines = text ? text.split('\n').length : 1;
+            const minutes = Math.ceil(words / 200);
+
+            wordCount.innerText = `Words: ${words} | Lines: ${lines}`;
+            readTime.innerText = `Read time: ${minutes}m`;
+        }
+
+        function insertAtCursor(before, after) {
+            const start = editor.selectionStart;
+            const end = editor.selectionEnd;
+            const text = editor.value;
+            const selection = text.substring(start, end);
+            const replacement = before + (selection || '') + after;
+
+            editor.value = text.substring(0, start) + replacement + text.substring(end);
+            editor.focus();
+            editor.setSelectionRange(start + before.length, start + before.length + (selection.length || 0));
+            updatePreview();
+        }
+
+        function loadTemplate(key) {
+            if (editor.value && !confirm("Overwrite current document?")) return;
+            editor.value = templates[key];
+            updatePreview();
+        }
+
+        function saveToLocal() {
+            localStorage.setItem('lingoflow_md_autosave', editor.value);
+        }
+
+        editor.addEventListener('input', updatePreview);
+
+        // Export functionality
+        document.getElementById('exportHtml').onclick = () => {
+            const blob = new Blob([preview.innerHTML], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'export.html';
+            a.click();
+        };
+
+        // Init
+        const saved = localStorage.getItem('lingoflow_md_autosave');
+        if (saved) {
+            editor.value = saved;
+        } else {
+            editor.value = "# Welcome to LingoFlow\n\nTry writing some **markdown** on the left!\n\n- It updates in *real-time*\n- Supports tables and code blocks\n- Persistence via LocalStorage";
+        }
+        updatePreview();
+
+    </script>
+</body>
+
+</html>

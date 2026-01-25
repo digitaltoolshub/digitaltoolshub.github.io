@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-R4N9RB1SNN');
+    </script>
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
+        crossorigin="anonymous"></script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f"
+        type="text/javascript" async></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenith Kanban | Free Online Project Management Board</title>
+    <meta name="title" content="Zenith Kanban | Free Online Project Management Board">
+    <meta name="description"
+        content="Organize your tasks and projects with Zenith Kanban. A free, beautiful, and easy-to-use Kanban board for personal productivity and team management.">
+    <meta name="keywords"
+        content="kanban board, project management, task organizer, free kanban, trello alternative, productivity tool, task management, digital tools hub">
+    <meta name="author" content="Digital Tools Hub">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://digitaltoolshub.github.io/kanban-board.html">
+    <meta property="og:title" content="Zenith Kanban | Free Online Project Management Board">
+    <meta property="og:description"
+        content="Organize your tasks and projects with Zenith Kanban. A free, beautiful, and easy-to-use Kanban board.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://digitaltoolshub.github.io/kanban-board.html">
+    <meta property="twitter:title" content="Zenith Kanban | Free Online Project Management Board">
+    <meta property="twitter:description"
+        content="Organize your tasks and projects with Zenith Kanban. A free, beautiful, and easy-to-use Kanban board.">
+    <meta property="twitter:image" content="https://digitaltoolshub.github.io/preview.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://digitaltoolshub.github.io/kanban-board.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Zenith Kanban",
+      "url": "https://digitaltoolshub.github.io/kanban-board.html",
+      "description": "A streamlined, beautifully designed Kanban board for efficient project management and task organizing.",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": "Drag & Drop Interface, Custom Columns, Local Storage Persistence, Dark Mode"
+    }
+    </script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Lexend:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-accent: #8b5cf6;
+            --primary-glow: rgba(139, 92, 246, 0.4);
+            --bg-deep: #050505;
+            --bg-glass: rgba(20, 20, 25, 0.7);
+            --bg-card: rgba(30, 30, 40, 0.6);
+            --border-glass: rgba(255, 255, 255, 0.1);
+            --text-vibrant: #ffffff;
+            --text-muted: #94a3b8;
+            --gradient-main: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
+            --spacing-unit: 1.2rem;
+
+            --cat-todo: #f59e0b;
+            --cat-doing: #3b82f6;
+            --cat-review: #ec4899;
+            --cat-done: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-deep);
+            background-image:
+                radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(217, 70, 239, 0.1) 0%, transparent 40%);
+            color: var(--text-vibrant);
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* --- Glass Sidebar --- */
+        .sidebar {
+            width: 290px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid var(--border-glass);
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 1.5rem;
+            z-index: 100;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--gradient-main);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .logo-text {
+            font-family: 'Lexend', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-group {
+            margin-bottom: 2.5rem;
+        }
+
+        .nav-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            padding-left: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.85rem 1rem;
+            border-radius: 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-bottom: 0.4rem;
+            border: 1px solid transparent;
+            font-weight: 500;
+            background: transparent;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            color: var(--text-vibrant);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(5px);
+        }
+
+        .nav-link.active {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--primary-accent);
+            border-color: rgba(139, 92, 246, 0.2);
+            box-shadow: inset 0 0 10px rgba(139, 92, 246, 0.05);
+        }
+
+        .board-count {
+            margin-left: auto;
+            font-size: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+
+        /* --- Main Workspace --- */
+        .workspace {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .top-bar {
+            padding: 1.5rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 5, 0.4);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-glass);
+            z-index: 50;
+        }
+
+        .title-group h1 {
+            font-family: 'Lexend', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.7rem 1.4rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--gradient-main);
+            color: white;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-glass {
+            background: var(--bg-card);
+            color: white;
+            border-color: var(--border-glass);
+        }
+
+        .btn-glass:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--text-muted);
+        }
+
+        /* --- Kanban Board Grid --- */
+        .board-container {
+            flex: 1;
+            padding: 2rem 2.5rem;
+            overflow-x: auto;
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            scrollbar-width: thin;
+        }
+
+        .board-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .board-container::-webkit-scrollbar-thumb {
+            background: var(--border-glass);
+            border-radius: 10px;
+        }
+
+        .kanban-column {
+            flex: 0 0 340px;
+            background: var(--bg-glass);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            max-height: 100%;
+            border: 1px solid var(--border-glass);
+            transition: border-color 0.3s ease;
+        }
+
+        .column-header {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .column-title {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 650;
+            font-family: 'Lexend', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px currentColor;
+        }
+
+        .column-body {
+            padding: 1.2rem;
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            min-height: 200px;
+        }
+
+        /* --- Premium Cards --- */
+        .task-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.2rem;
+            border: 1px solid var(--border-glass);
+            cursor: grab;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .task-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary-accent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .task-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(45, 45, 55, 0.8);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .task-card:hover::before {
+            opacity: 1;
+        }
+
+        .task-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .tag {
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+        }
+
+        .task-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            line-height: 1.4;
+        }
+
+        .task-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .task-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .task-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .avatar-group {
+            display: flex;
+            margin-left: auto;
+        }
+
+        .avatar {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 2px solid #1e1e28;
+            background: #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            margin-left: -8px;
+        }
+
+        /* --- Drag Effects --- */
+        .dragging {
+            opacity: 0.4;
+            transform: scale(0.9) rotate(2deg);
+        }
+
+        .drag-over {
+            background: rgba(139, 92, 246, 0.05);
+            border-color: var(--primary-accent);
+        }
+
+        /* --- Modal Overhaul --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: #15151a;
+            width: 600px;
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 1px solid var(--border-glass);
+            transform: scale(0.9);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .form-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glass);
+            padding: 1rem;
+            border-radius: 12px;
+            color: white;
+            font-family: inherit;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-accent);
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        /* Custom Scrollbar for columns */
+        .column-body::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .column-body::-webkit-scrollbar-thumb {
+            background: var(--border-glass);
+            border-radius: 10px;
+        }
+
+        /* Empty State */
+        .empty-indicator {
+            padding: 2rem;
+            text-align: center;
+            border: 2px dashed var(--border-glass);
+            border-radius: 16px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Menu */
+        #mobileToggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                position: absolute;
+                left: -300px;
+            }
+
+            .sidebar.show {
+                left: 0;
+            }
+
+            #mobileToggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- App Sidebar -->
+    <aside class="sidebar" id="mainSidebar">
+        <div class="logo-area">
+            <div class="logo-icon">
+                <i class="fas fa-bolt"></i>
+            </div>
+            <span class="logo-text">Zenith</span>
+        </div>
+
+        <div class="nav-group">
+            <p class="nav-label">Workspace</p>
+            <button class="nav-link active">
+                <i class="fas fa-th-large"></i> Overview
+            </button>
+            <button class="nav-link" id="newBoardBtn">
+                <i class="fas fa-plus-circle"></i> New Board
+            </button>
+        </div>
+
+        <div class="nav-group" style="flex: 1;">
+            <p class="nav-label">My Boards</p>
+            <div id="boardsNavList">
+                <!-- Boards list via JS -->
+            </div>
+        </div>
+
+        <div class="nav-group">
+            <p class="nav-label">System</p>
+            <button class="nav-link" id="resetApp">
+                <i class="fas fa-sync-alt"></i> Reset System
+            </button>
+            <a href="index.html" class="nav-link">
+                <i class="fas fa-sign-out-alt"></i> Exit to Hub
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="workspace">
+        <!-- Top Nav Bar -->
+        <header class="top-bar">
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <button id="mobileToggle"><i class="fas fa-bars"></i></button>
+                <div class="title-group">
+                    <h1 id="activeBoardTitle">Personal Project</h1>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;">Streamlined flow for peak
+                        performance</p>
+                </div>
+            </div>
+
+            <div class="action-btns">
+                <button class="btn btn-glass" id="exportBtn"><i class="fas fa-cloud-download-alt"></i> Save
+                    Project</button>
+                <button class="btn btn-primary" id="addColumnBtn"><i class="fas fa-plus"></i> New Column</button>
+            </div>
+        </header>
+
+        <!-- The Board Grid -->
+        <div class="board-container" id="boardCanvas">
+            <!-- Columns injected by JS -->
+        </div>
+    </main>
+
+    <!-- Task Modal -->
+    <div class="modal-overlay" id="taskModal">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 2rem;">
+                <h2 id="modalHeaderTitle">Add New Task</h2>
+                <button class="btn-glass" style="border:none; padding: 5px;" onclick="closeTaskModal()"><i
+                        class="fas fa-times"></i></button>
+            </div>
+
+            <label class="nav-label">Title</label>
+            <input type="text" class="form-input" id="taskTitleInput" placeholder="What needs to be done?">
+
+            <label class="nav-label">Description</label>
+            <textarea class="form-input" id="taskDescInput" style="min-height: 120px;"
+                placeholder="Add details..."></textarea>
+
+            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                <button class="btn btn-glass" style="flex: 1;" onclick="closeTaskModal()">Discard</button>
+                <button class="btn btn-primary" style="flex: 2;" id="saveTaskBtn">Confirm Task</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * ZENITH KANBAN CORE ENGINE
+         * High Performance, Ultra-smooth logic
+         */
+
+        const StorageKey = 'zenith_kanban_v2';
+
+        let state = {
+            boards: [],
+            activeBoardId: null
+        };
+
+        const defaultData = {
+            id: 'b1',
+            title: 'Mission to Mars',
+            columns: [
+                { id: 'c1', title: 'Preparation', color: '#f59e0b', cardIds: ['t1', 't2'] },
+                { id: 'c2', title: 'In Flight', color: '#3b82f6', cardIds: ['t3'] },
+                { id: 'c3', title: 'Target Landing', color: '#10b981', cardIds: [] }
+            ],
+            cards: {
+                t1: { id: 't1', title: 'Launch Trajectory Math', desc: 'Calculate the Hohmann transfer orbit parameters for efficient transit.', tags: ['Science', 'Critical'] },
+                t2: { id: 't2', title: 'Rations Inventory', desc: 'Verify 2 years of freeze-dried supply for the 4-person crew.', tags: ['Logistics'] },
+                t3: { id: 't3', title: 'Cryo-Sleep Testing', desc: 'Monitor vitals for subject A during the 48-hour deep sleep simulation.', tags: ['Bio-Tech'] }
+            }
+        };
+
+        function init() {
+            load();
+            if (!state.boards.length) {
+                state.boards.push(defaultData);
+                state.activeBoardId = defaultData.id;
+                save();
+            }
+            renderBoardsNav();
+            renderActiveBoard();
+            setupGlobalEvents();
+        }
+
+        function load() {
+            const data = localStorage.getItem(StorageKey);
+            if (data) state = JSON.parse(data);
+        }
+
+        function save() {
+            localStorage.setItem(StorageKey, JSON.stringify(state));
+        }
+
+        // --- Render Engine ---
+
+        function renderBoardsNav() {
+            const list = document.getElementById('boardsNavList');
+            list.innerHTML = '';
+            state.boards.forEach(b => {
+                const btn = document.createElement('button');
+                btn.className = `nav-link ${b.id === state.activeBoardId ? 'active' : ''}`;
+                btn.innerHTML = `
+                    <i class="fas fa-hashtag"></i> ${b.title}
+                    <span class="board-count">${Object.keys(b.cards).length}</span>
+                `;
+                btn.onclick = () => selectBoard(b.id);
+                list.appendChild(btn);
+            });
+        }
+
+        function renderActiveBoard() {
+            const board = state.boards.find(b => b.id === state.activeBoardId);
+            const canvas = document.getElementById('boardCanvas');
+            document.getElementById('activeBoardTitle').innerText = board.title;
+
+            canvas.innerHTML = '';
+            board.columns.forEach(col => {
+                const colEl = document.createElement('div');
+                colEl.className = 'kanban-column';
+                colEl.dataset.id = col.id;
+                colEl.innerHTML = `
+                    <div class="column-header">
+                        <div class="column-title"><div class="dot" style="color: ${col.color}"></div> ${col.title}</div>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">${col.cardIds.length}</span>
+                    </div>
+                    <div class="column-body" ondragover="dragOver(event)" ondrop="drop(event, '${col.id}')">
+                        ${col.cardIds.length === 0 ? '<div class="empty-indicator">Drop tasks here</div>' : ''}
+                        ${col.cardIds.map(id => renderTaskCard(board.cards[id])).join('')}
+                    </div>
+                    <div style="padding: 1rem; border-top: 1px solid var(--border-glass);">
+                        <button class="nav-link" style="margin: 0; padding: 0.5rem;" onclick="showTaskModal('${col.id}')">
+                            <i class="fas fa-plus"></i> Add Card
+                        </button>
+                    </div>
+                `;
+                canvas.appendChild(colEl);
+            });
+        }
+
+        function renderTaskCard(card) {
+            if (!card) return '';
+            const tagsHtml = (card.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
+            return `
+                <div class="task-card" draggable="true" ondragstart="dragStart(event, '${card.id}')" onclick="editTask('${card.id}')">
+                    <div class="task-tags">${tagsHtml}</div>
+                    <div class="task-title">${card.title}</div>
+                    <p class="task-desc">${card.desc}</p>
+                    <div class="task-footer">
+                        <div class="task-meta">
+                            <div class="meta-item"><i class="far fa-calendar"></i> Today</div>
+                            <div class="meta-item"><i class="far fa-comment"></i> 2</div>
+                        </div>
+                        <div class="avatar-group">
+                            <div class="avatar" style="background:var(--primary-accent)">R</div>
+                            <div class="avatar">J</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // --- Logic ---
+
+        function selectBoard(id) {
+            state.activeBoardId = id;
+            save();
+            renderBoardsNav();
+            renderActiveBoard();
+        }
+
+        // Global Events
+        function setupGlobalEvents() {
+            document.getElementById('mobileToggle').onclick = () => {
+                document.getElementById('mainSidebar').classList.toggle('show');
+            };
+
+            document.getElementById('resetApp').onclick = () => {
+                if (confirm("System Purge: This will clear all data and return to default state. Proceed?")) {
+                    localStorage.removeItem(StorageKey);
+                    location.reload();
+                }
+            };
+
+            document.getElementById('newBoardBtn').onclick = () => {
+                const name = prompt("Zenith Board Name:");
+                if (name) {
+                    const newId = 'b' + Date.now();
+                    state.boards.push({
+                        id: newId,
+                        title: name,
+                        columns: [
+                            { id: 'c' + Date.now() + '1', title: 'Planning', color: '#8b5cf6', cardIds: [] },
+                            { id: 'c' + Date.now() + '2', title: 'Execution', color: '#10b981', cardIds: [] }
+                        ],
+                        cards: {}
+                    });
+                    selectBoard(newId);
+                }
+            };
+
+            document.getElementById('addColumnBtn').onclick = () => {
+                const board = state.boards.find(b => b.id === state.activeBoardId);
+                const name = prompt("Column Name:");
+                if (name) {
+                    board.columns.push({
+                        id: 'c' + Date.now(),
+                        title: name,
+                        color: '#' + Math.floor(Math.random() * 16777215).toString(16),
+                        cardIds: []
+                    });
+                    save();
+                    renderActiveBoard();
+                }
+            };
+
+            document.getElementById('exportBtn').onclick = () => {
+                const data = JSON.stringify(state);
+                const blob = new Blob([data], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `zenith_backup_${new Date().toISOString().slice(0, 10)}.json`;
+                a.click();
+            };
+        }
+
+        // --- Drag & Drop Flow ---
+        let draggedCardId = null;
+
+        window.dragStart = (e, id) => {
+            draggedCardId = id;
+            e.dataTransfer.setData('text/plain', id);
+            setTimeout(() => e.target.classList.add('dragging'), 0);
+        };
+
+        const boardCanvas = document.getElementById('boardCanvas');
+        boardCanvas.addEventListener('dragend', (e) => {
+            if (e.target.classList.contains('task-card')) {
+                e.target.classList.remove('dragging');
+            }
+        });
+
+        window.dragOver = (e) => {
+            e.preventDefault();
+            const col = e.target.closest('.kanban-column');
+            if (col) col.classList.add('drag-over');
+        };
+
+        boardCanvas.addEventListener('dragleave', (e) => {
+            const col = e.target.closest('.kanban-column');
+            if (col) col.classList.remove('drag-over');
+        });
+
+        window.drop = (e, colId) => {
+            e.preventDefault();
+            const col = e.target.closest('.kanban-column');
+            if (col) col.classList.remove('drag-over');
+
+            const board = state.boards.find(b => b.id === state.activeBoardId);
+
+            // Remove from old column
+            board.columns.forEach(c => {
+                c.cardIds = c.cardIds.filter(id => id !== draggedCardId);
+            });
+
+            // Add to new
+            const targetCol = board.columns.find(c => c.id === colId);
+            targetCol.cardIds.push(draggedCardId);
+
+            save();
+            renderActiveBoard();
+        };
+
+        // --- Task Handling ---
+        let currentTargetCol = null;
+        let editingCardId = null;
+
+        window.showTaskModal = (colId) => {
+            currentTargetCol = colId;
+            editingCardId = null;
+            document.getElementById('modalHeaderTitle').innerText = "Create New Core Task";
+            document.getElementById('taskTitleInput').value = '';
+            document.getElementById('taskDescInput').value = '';
+            document.getElementById('taskModal').classList.add('active');
+        };
+
+        window.editTask = (cardId) => {
+            const board = state.boards.find(b => b.id === state.activeBoardId);
+            const card = board.cards[cardId];
+            editingCardId = cardId;
+            document.getElementById('modalHeaderTitle').innerText = "Update Task Intelligence";
+            document.getElementById('taskTitleInput').value = card.title;
+            document.getElementById('taskDescInput').value = card.desc;
+            document.getElementById('taskModal').classList.add('active');
+        };
+
+        window.closeTaskModal = () => {
+            document.getElementById('taskModal').classList.remove('active');
+        };
+
+        document.getElementById('saveTaskBtn').onclick = () => {
+            const title = document.getElementById('taskTitleInput').value;
+            const desc = document.getElementById('taskDescInput').value;
+            if (!title) return;
+
+            const board = state.boards.find(b => b.id === state.activeBoardId);
+
+            if (editingCardId) {
+                board.cards[editingCardId].title = title;
+                board.cards[editingCardId].desc = desc;
+            } else {
+                const id = 't' + Date.now();
+                board.cards[id] = {
+                    id: id,
+                    title: title,
+                    desc: desc,
+                    tags: ['New']
+                };
+                const col = board.columns.find(c => c.id === currentTargetCol);
+                col.cardIds.push(id);
+            }
+
+            save();
+            renderActiveBoard();
+            closeTaskModal();
+        };
+
+        init();
+    </script>
+</body>
+
+</html>

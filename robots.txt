@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://digitaltoolshub.github.io/sitemap.xml

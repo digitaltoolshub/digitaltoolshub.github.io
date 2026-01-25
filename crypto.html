@@ -66,6 +66,8 @@
     <link rel="preconnect" href="https://s3.tradingview.com">
     <link rel="icon" href="https://digitaltoolshub.github.io/favicon.ico" type="image/x-icon">
     <script src="https://s3.tradingview.com/tv.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.18.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/arima@1.0.0/arima.min.js"></script>
 
     <style>
         /* Your existing CSS styles go here */
@@ -587,6 +589,45 @@
         </div>
 
         <div class="card">
+            <h2>🤖 AI Price Predictions (Beta)</h2>
+            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 1rem;">Powered by LSTM Neural Networks & ARIMA
+                Models via TensorFlow.js</p>
+
+            <div class="model-controls" style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                <select id="predictionCoinSelect">
+                    <option value="bitcoin">Bitcoin</option>
+                    <option value="ethereum">Ethereum</option>
+                    <option value="binancecoin">BNB</option>
+                    <option value="solana">Solana</option>
+                    <option value="ripple">XRP</option>
+                    <option value="cardano">Cardano</option>
+                    <option value="dogecoin">Dogecoin</option>
+                </select>
+                <select id="predictionTimeframe">
+                    <option value="30" selected>30 Days History</option>
+                    <option value="60">60 Days History</option>
+                </select>
+                <button id="runLSTM" style="flex: 1; min-width: 120px;">Run LSTM AI</button>
+                <button id="runARIMA" style="flex: 1; min-width: 120px; background: var(--secondary);">Run
+                    ARIMA</button>
+            </div>
+
+            <div id="predictions"
+                style="display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                <div id="lstmPrediction"
+                    style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 10px;">
+                    <h3>LSTM Model</h3>
+                    <p style="opacity: 0.7;">Ready to predict...</p>
+                </div>
+                <div id="arimaPrediction"
+                    style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 10px;">
+                    <h3>ARIMA Model</h3>
+                    <p style="opacity: 0.7;">Ready to predict...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
             <h2>🔔 Price Alerts</h2>
             <form id="alertForm">
                 <select id="coinSelect"></select>
@@ -749,7 +790,8 @@
 
         <p>Consider exploring **Binance**, one of the world's largest cryptocurrency exchanges, for your trading needs
             <a href="https://www.binance.com" class="exchange-link" target="_blank" rel="noopener noreferrer">[external
-                link]</a>.</p>
+                link]</a>.
+        </p>
     </section>
 
     <footer>
@@ -1086,6 +1128,9 @@
             updateDemoDisplay();
             // Load initial tab content
             document.getElementById(`${state.activeTab}Data`).classList.add('active');
+
+            // Initialize AI Features
+            setupAI();
         }
 
         // ====== Theme Management ======
@@ -2121,6 +2166,186 @@
             }
             updateChartShareLink(); // Update the share link based on final chart state
         })(); // Immediately invoke the function
+
+        // ====== AI Prediction Features ======
+        let lstmModel;
+        let predictionHistory = [];
+
+        function setupAI() {
+            const runLSTMBtn = document.getElementById('runLSTM');
+            const runARIMABtn = document.getElementById('runARIMA');
+
+            if (runLSTMBtn) runLSTMBtn.addEventListener('click', runLSTMPrediction);
+            if (runARIMABtn) runARIMABtn.addEventListener('click', runARIMAPrediction);
+
+            // Pre-load LSTM model
+            setupLSTM().catch(console.error);
+        }
+
+        async function fetchPredictionData() {
+            const coin = document.getElementById('predictionCoinSelect').value;
+            const days = document.getElementById('predictionTimeframe').value;
+
+            try {
+                const response = await fetch(`https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=${days}&interval=daily`);
+                const data = await response.json();
+                predictionHistory = data.prices.map(item => ({
+                    date: new Date(item[0]),
+                    price: item[1]
+                }));
+                return true;
+            } catch (error) {
+                console.error('Error fetching prediction data:', error);
+                alert('Failed to fetch historical data for prediction. Please try again later.');
+                return false;
+            }
+        }
+
+        async function setupLSTM() {
+            lstmModel = tf.sequential();
+            lstmModel.add(tf.layers.lstm({
+                units: 32,
+                inputShape: [10, 1],
+                returnSequences: false
+            }));
+            lstmModel.add(tf.layers.dense({ units: 1 }));
+            lstmModel.compile({
+                optimizer: tf.train.adam(0.001),
+                loss: 'meanSquaredError'
+            });
+        }
+
+        async function runLSTMPrediction() {
+            const btn = document.getElementById('runLSTM');
+            const output = document.getElementById('lstmPrediction');
+
+            try {
+                btn.disabled = true;
+                const originalText = btn.textContent;
+                btn.textContent = 'Training...';
+                output.innerHTML = '<h3>LSTM Model</h3><p>Fetching data & training...</p>';
+
+                const success = await fetchPredictionData();
+                if (!success) throw new Error('Data fetch failed');
+
+                if (!lstmModel) await setupLSTM();
+
+                // Prepare data
+                const prices = predictionHistory.map(item => item.price);
+                const normalizedData = normalizeData(prices);
+                const [trainX, trainY] = createDataset(normalizedData, 10);
+
+                // Train
+                await lstmModel.fit(trainX, trainY, {
+                    epochs: 50,
+                    batchSize: 32,
+                    verbose: 0
+                });
+
+                // Predict
+                const lastWindow = normalizedData.slice(-10);
+                const predictions = [];
+                for (let i = 0; i < 5; i++) {
+                    const input = tf.tensor2d([lastWindow], [1, 10, 1]);
+                    const pred = lstmModel.predict(input).dataSync()[0];
+                    predictions.push(pred);
+                    lastWindow.shift();
+                    lastWindow.push(pred);
+                }
+
+                // Denormalize
+                const denormPredictions = denormalizeData(predictions, Math.min(...prices), Math.max(...prices));
+                const currentPrice = prices[prices.length - 1];
+                const predictedPrice = denormPredictions[denormPredictions.length - 1];
+                const changePercent = ((predictedPrice - currentPrice) / currentPrice) * 100;
+                const direction = changePercent >= 0 ? 'up' : 'down';
+                const arrow = direction === 'up' ? '↑' : '↓';
+                const color = direction === 'up' ? '#4ade80' : '#f87171';
+
+                output.innerHTML = `
+                    <h3>LSTM Model</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.5rem; opacity: 0.8;">Next 5 days forecast:</p>
+                    <p style="font-weight: bold; font-family: monospace; font-size: 0.9rem;">${denormPredictions.map(p => '$' + p.toFixed(2)).join(' → ')}</p>
+                    <div style="margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                        Target: <strong style="color: ${color}">${arrow} $${predictedPrice.toFixed(2)} (${changePercent.toFixed(2)}%)</strong>
+                    </div>
+                `;
+
+            } catch (error) {
+                console.error('LSTM error:', error);
+                output.innerHTML = '<h3>LSTM Model</h3><p style="color: #f87171;">Error generating prediction.</p>';
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Run LSTM AI';
+            }
+        }
+
+        async function runARIMAPrediction() {
+            const btn = document.getElementById('runARIMA');
+            const output = document.getElementById('arimaPrediction');
+
+            try {
+                btn.disabled = true;
+                const originalText = btn.textContent;
+                btn.textContent = 'Calculating...';
+                output.innerHTML = '<h3>ARIMA Model</h3><p>Fetching data & calculating...</p>';
+
+                const success = await fetchPredictionData();
+                if (!success) throw new Error('Data fetch failed');
+
+                const prices = predictionHistory.map(item => item.price);
+
+                // ARIMA
+                const model = new ARIMA({
+                    p: 2, d: 1, q: 2, verbose: false
+                }).train(prices);
+
+                const [predictedValues] = model.predict(5);
+                const currentPrice = prices[prices.length - 1];
+                const predictedPrice = predictedValues[predictedValues.length - 1];
+                const changePercent = ((predictedPrice - currentPrice) / currentPrice) * 100;
+                const direction = changePercent >= 0 ? 'up' : 'down';
+                const arrow = direction === 'up' ? '↑' : '↓';
+                const color = direction === 'up' ? '#4ade80' : '#f87171';
+
+                output.innerHTML = `
+                    <h3>ARIMA Model</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.5rem; opacity: 0.8;">Next 5 days forecast:</p>
+                    <p style="font-weight: bold; font-family: monospace; font-size: 0.9rem;">${predictedValues.map(p => '$' + p.toFixed(2)).join(' → ')}</p>
+                    <div style="margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                        Target: <strong style="color: ${color}">${arrow} $${predictedPrice.toFixed(2)} (${changePercent.toFixed(2)}%)</strong>
+                    </div>
+                 `;
+
+            } catch (error) {
+                console.error('ARIMA error:', error);
+                output.innerHTML = '<h3>ARIMA Model</h3><p style="color: #f87171;">Error generating prediction.</p>';
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Run ARIMA';
+            }
+        }
+
+        // AI Helpers
+        function normalizeData(data) {
+            const min = Math.min(...data);
+            const max = Math.max(...data);
+            return data.map(x => (x - min) / (max - min));
+        }
+
+        function denormalizeData(data, min, max) {
+            return data.map(x => x * (max - min) + min);
+        }
+
+        function createDataset(data, windowSize) {
+            const X = [];
+            const Y = [];
+            for (let i = 0; i < data.length - windowSize; i++) {
+                X.push(data.slice(i, i + windowSize));
+                Y.push(data[i + windowSize]);
+            }
+            return [tf.tensor3d(X, [X.length, windowSize, 1]), tf.tensor2d(Y, [Y.length, 1])];
+        }
 
     </script>
 </body>

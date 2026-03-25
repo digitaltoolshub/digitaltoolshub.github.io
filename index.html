@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html class="dark" lang="en">
 <head>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
@@ -11,55 +10,92 @@
         gtag('config', 'G-R4N9RB1SNN');
     </script>
 
-    <!-- Google AdSense -->
-    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
-        crossorigin="anonymous"></script>
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f"
-        type="text/javascript" async></script> -->
-
-    <!-- Primary Meta Tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Tools Hub | Best Free AI-Powered Online Tools & Calculators</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Curator Hub | Digital Tools Hub - Powerful Free AI Tools</title>
     <meta name="title" content="Digital Tools Hub | Best Free AI-Powered Online Tools & Calculators">
-    <meta name="description"
-        content="Access 50+ free, premium AI-powered tools for productivity, finance, health, and design. No sign-up required. Includes Scientific Calculator, BMI Checker, Image Editor, and more.">
-    <meta name="keywords"
-        content="free online tools, AI calculators, productivity suite, digital tools hub, scientific calculator, bmi calculator, image editor, currency converter, password generator, qr code generator, text analyzer, mbti test, kanban board, free web utilities, no signup tools">
-    <meta name="author" content="Digital Tools Hub">
-    <meta name="robots" content="index, follow">
-    <meta name="language" content="English">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://digitaltoolshub.github.io/">
-    <meta property="og:title" content="Digital Tools Hub | Best Free AI-Powered Online Tools & Calculators">
-    <meta property="og:description"
-        content="Access 50+ free, premium AI-powered tools for productivity, finance, health, and design. No sign-up required. Transform your workflow today.">
-    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
-    <meta property="og:site_name" content="Digital Tools Hub">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://digitaltoolshub.github.io/">
-    <meta property="twitter:title" content="Digital Tools Hub | Best Free AI-Powered Online Tools & Calculators">
-    <meta property="twitter:description"
-        content="Access 50+ free, premium AI-powered tools for productivity, finance, health, and design. No sign-up required.">
-    <meta property="twitter:image" content="https://digitaltoolshub.github.io/preview.png">
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://digitaltoolshub.github.io/">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="Digital Tools Hub" />
-    <link rel="manifest" href="/site.webmanifest" />
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="description" content="Access 50+ free, premium AI-powered tools for productivity, finance, health, and design. No sign-up required.">
+    <meta name="keywords" content="free online tools, AI calculators, productivity suite, digital tools hub, scientific calculator, bmi calculator, image editor, currency converter, password generator, qr code generator, text analyzer, mbti test, kanban board, free web utilities, no signup tools">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-highest": "#353534",
+                        "surface": "#131313",
+                        "on-surface": "#e5e2e1",
+                        "tertiary-fixed-dim": "#d5c5a6",
+                        "surface-bright": "#393939",
+                        "on-secondary": "#5b005a",
+                        "on-tertiary-fixed-variant": "#51452e",
+                        "on-error": "#690005",
+                        "surface-variant": "#353534",
+                        "outline-variant": "#444654",
+                        "primary-fixed": "#dee0ff",
+                        "tertiary-fixed": "#f2e0c1",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-container": "#201f1f",
+                        "on-primary-container": "#dcdfff",
+                        "background": "#131313",
+                        "tertiary": "#d5c5a6",
+                        "secondary-container": "#840482",
+                        "surface-container-low": "#1c1b1b",
+                        "tertiary-container": "#6f6249",
+                        "on-tertiary-fixed": "#231a07",
+                        "on-secondary-container": "#ff91f2",
+                        "outline": "#8f8f9f",
+                        "on-secondary-fixed-variant": "#810080",
+                        "inverse-primary": "#3b52ca",
+                        "inverse-on-surface": "#313030",
+                        "on-secondary-fixed": "#380037",
+                        "error": "#ffb4ab",
+                        "primary-container": "#4158d0",
+                        "on-primary-fixed-variant": "#1d37b2",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-tint": "#bac3ff",
+                        "on-primary-fixed": "#00105b",
+                        "primary": "#bac3ff",
+                        "on-tertiary-container": "#f0dfbf",
+                        "secondary-fixed": "#ffd7f5",
+                        "on-primary": "#001f8f",
+                        "on-surface-variant": "#c5c5d6",
+                        "surface-dim": "#131313",
+                        "primary-fixed-dim": "#bac3ff",
+                        "inverse-surface": "#e5e2e1",
+                        "on-background": "#e5e2e1",
+                        "secondary": "#ffabf2",
+                        "on-tertiary": "#392f1a",
+                        "error-container": "#93000a",
+                        "secondary-fixed-dim": "#ffabf2",
+                        "on-error-container": "#ffdad6"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #131313; color: #e5e2e1; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-card { backdrop-filter: blur(12px); background: rgba(53, 53, 52, 0.4); }
+        .bento-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .bento-card:hover { transform: translateY(-4px); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #131313; }
+        ::-webkit-scrollbar-thumb { background: #353534; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #444654; }
+    </style>
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -68,7 +104,7 @@
       "@type": "WebApplication",
       "name": "Digital Tools Hub",
       "url": "https://digitaltoolshub.github.io",
-      "description": "A comprehensive collection of powerful free tools created by AI for finance, health, productivity, and personal development. Features over 50 utilities including calculators, converters, and generators.",
+      "description": "A comprehensive collection of powerful free tools created by AI for finance, health, productivity, and personal development.",
       "applicationCategory": "UtilitiesApplication",
       "genre": "Productivity",
       "operatingSystem": "Any",
@@ -78,1128 +114,590 @@
         "price": "0",
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock"
-      },
-      "creator": {
-        "@type": "Organization",
-        "name": "Digital Tools Hub",
-        "url": "https://digitaltoolshub.github.io"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "ratingCount": "1250"
-      },
-      "featureList": "Scientific Calculator, Image Editor, BMI Calculator, Currency Converter, Password Generator, QR Code Creator"
+      }
     }
     </script>
-
-    <!-- Rest of your CSS remains the same -->
-    <style>
-        :root {
-            --primary-color: #4158D0;
-            --gradient-1: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #928469 100%);
-            --gradient-2: linear-gradient(45deg, #00DBDE 0%, #FC00FF 100%);
-            --gradient-3: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
-            --gradient-4: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
-            --gradient-5: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%);
-            --gradient-6: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
-            --gradient-7: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
-            --gradient-8: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%);
-            --gradient-9: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
-            --gradient-10: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
-            --gradient-11: linear-gradient(120deg, #F6D365 0%, #FDA085 100%);
-            --gradient-12: linear-gradient(60deg, #96FBC4 0%, #F9F586 100%);
-            --gradient-13: linear-gradient(315deg, #FFF886 0%, #F072B6 100%);
-            --gradient-14: linear-gradient(75deg, #FFDEE9 0%, #B5FFFC 100%);
-            --gradient-15: linear-gradient(270deg, #74EBD5 0%, #9FACE6 100%);
-            --gradient-16: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
-            --gradient-17: linear-gradient(90deg, #C471F5 0%, #FA71CD 100%);
-            --gradient-18: linear-gradient(225deg, #FFD3A5 0%, #FD6585 100%);
-            --gradient-19: linear-gradient(50deg, #43E97B 0%, #38F9D7 100%);
-            --gradient-20: linear-gradient(315deg, #F43B47 0%, #453A94 100%);
-            --bg-color: #f8f9fa;
-            --card-bg: white;
-            --text-color: #333;
-            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Rest of your CSS remains exactly the same */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            transition: all 0.3s ease;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        header {
-            text-align: center;
-            padding: 2rem 0;
-            background: var(--gradient-1);
-            color: white;
-            border-radius: 0 0 25px 25px;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow);
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .tagline {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 1.5rem;
-        }
-
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .card-header {
-            height: 160px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 4rem;
-            position: relative;
-        }
-
-        .card:nth-child(1) .card-header {
-            background: var(--gradient-1);
-        }
-
-        .card:nth-child(2) .card-header {
-            background: var(--gradient-2);
-        }
-
-        .card:nth-child(3) .card-header {
-            background: var(--gradient-3);
-        }
-
-        .card:nth-child(4) .card-header {
-            background: var(--gradient-4);
-        }
-
-        .card:nth-child(5) .card-header {
-            background: var(--gradient-5);
-        }
-
-        .card:nth-child(6) .card-header {
-            background: var(--gradient-6);
-        }
-
-        .card:nth-child(7) .card-header {
-            background: var(--gradient-7);
-        }
-
-        .card:nth-child(8) .card-header {
-            background: var(--gradient-8);
-        }
-
-        .card:nth-child(9) .card-header {
-            background: var(--gradient-9);
-        }
-
-        .card:nth-child(10) .card-header {
-            background: var(--gradient-10);
-        }
-
-        .card:nth-child(11) .card-header {
-            background: var(--gradient-12);
-        }
-
-        .card:nth-child(12) .card-header {
-            background: var(--gradient-13);
-        }
-
-        .card:nth-child(13) .card-header {
-            background: var(--gradient-14);
-        }
-
-        .card:nth-child(14) .card-header {
-            background: var(--gradient-15);
-        }
-
-        .card:nth-child(15) .card-header {
-            background: var(--gradient-16);
-        }
-
-        .card:nth-child(16) .card-header {
-            background: var(--gradient-17);
-        }
-
-        .card:nth-child(17) .card-header {
-            background: var(--gradient-18);
-        }
-
-        .card:nth-child(18) .card-header {
-            background: var(--gradient-19);
-        }
-
-        .card:nth-child(19) .card-header {
-            background: var(--gradient-20);
-        }
-
-        .card-body {
-            padding: 1.5rem;
-        }
-
-        .card-title {
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .card-text {
-            color: #666;
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            background: var(--primary-color);
-            color: white;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            background: #3047b5;
-            transform: translateY(-2px);
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-            color: #666;
-            border-top: 1px solid #eee;
-        }
-
-        .theme-toggle {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 3rem;
-            height: 3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1.2rem;
-            box-shadow: var(--shadow);
-            z-index: 100;
-        }
-
-        .theme-toggle:hover {
-            background: #3047b5;
-        }
-
-        /* Dark theme */
-        .dark-theme {
-            --bg-color: #1a1a2e;
-            --card-bg: #16213e;
-            --text-color: #e6e6e6;
-            --shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .dark-theme .card-text {
-            color: #bbb;
-        }
-
-        /* Animation */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .card {
-            animation: fadeIn 0.5s ease forwards;
-            opacity: 0;
-        }
-
-        .card:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .card:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        .card:nth-child(4) {
-            animation-delay: 0.4s;
-        }
-
-        .card:nth-child(5) {
-            animation-delay: 0.5s;
-        }
-
-        .card:nth-child(6) {
-            animation-delay: 0.6s;
-        }
-
-        /* Badge */
-        .badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(255, 255, 255, 0.3);
-            padding: 0.3rem 0.6rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            backdrop-filter: blur(5px);
-        }
-
-        /* particles */
-        .particles-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            background: rgba(65, 88, 208, 0.1);
-            border-radius: 50%;
-            animation: float linear infinite;
-        }
-
-        /* Accessibility improvements */
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border-width: 0;
-        }
-
-        /* Focus styles for accessibility */
-        a:focus,
-        button:focus {
-            outline: 2px solid var(--primary-color);
-            outline-offset: 2px;
-        }
-
-        /* Menu & Modal */
-        .menu-btn {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: var(--text-color);
-            border-radius: 50%;
-            width: 3rem;
-            height: 3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .dark-theme .menu-btn {
-            background: rgba(0, 0, 0, 0.3);
-            color: white;
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .menu-btn:hover {
-            transform: scale(1.1);
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-
-        .category-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            z-index: 999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
-
-        .dark-theme .category-overlay {
-            background: rgba(26, 26, 46, 0.95);
-        }
-
-        .category-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            max-width: 600px;
-            width: 90%;
-        }
-
-        @media (min-width: 768px) {
-            .category-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .category-btn {
-            padding: 1.5rem;
-            border: none;
-            border-radius: 15px;
-            background: var(--card-bg);
-            box-shadow: var(--shadow);
-            color: var(--text-color);
-            font-size: 1.1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .category-btn i {
-            font-size: 2rem;
-            color: var(--primary-color);
-        }
-
-        .category-btn:hover {
-            transform: translateY(-5px);
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .category-btn:hover i {
-            color: white;
-        }
-    </style>
 </head>
-
-<body>
-    <div class="particles-container" id="particles-container"></div>
-
-    <button class="menu-btn" id="menu-btn" aria-label="Open Categories">
-        <i class="fas fa-bars"></i>
-    </button>
-
-    <div class="category-overlay" id="category-overlay">
-        <button class="menu-btn" id="close-menu-btn"
-            style="position:absolute; top: 2rem; right: 2rem; border: none; background: transparent; box-shadow: none;"
-            aria-label="Close Categories">
-            <i class="fas fa-times" style="font-size: 2rem;"></i>
-        </button>
-        <h2 style="font-size: 2.5rem; margin-bottom: 3rem; color: var(--text-color);">Browse Categories</h2>
-        <div class="category-grid">
-            <button class="category-btn" data-filter="all"><i class="fas fa-th-large"></i>All Tools</button>
-            <button class="category-btn" data-filter="Productivity"><i class="fas fa-rocket"></i>Productivity</button>
-            <button class="category-btn" data-filter="Design"><i class="fas fa-palette"></i>Design</button>
-            <button class="category-btn" data-filter="Development"><i class="fas fa-code"></i>Development</button>
-            <button class="category-btn" data-filter="Media"><i class="fas fa-image"></i>Media</button>
-            <button class="category-btn" data-filter="Security"><i class="fas fa-shield-alt"></i>Security</button>
-            <button class="category-btn" data-filter="Finance"><i class="fas fa-coins"></i>Finance</button>
-            <button class="category-btn" data-filter="Health"><i class="fas fa-heartbeat"></i>Health</button>
-            <button class="category-btn" data-filter="Life"><i class="fas fa-user-clock"></i>Life</button>
-            <button class="category-btn" data-filter="Psychology"><i class="fas fa-brain"></i>Psychology</button>
-            <button class="category-btn" data-filter="Fun"><i class="fas fa-gamepad"></i>Fun</button>
-
-            <button class="category-btn" data-filter="Sports"><i class="fas fa-trophy"></i>Sports</button>
-        </div>
-    </div>
-
-    <header>
-        <h1>Digital Tools Hub</h1>
-        <p class="tagline">Powerful free tools created by AI for productivity, finance & health</p>
-        <div class="search-container-main"
-            style="margin-top: 1.5rem; position: relative; max-width: 500px; margin-left: auto; margin-right: auto;">
-            <input type="text" id="tool-search" placeholder="Search for tools (e.g., 'crypto', 'bmi', 'age')..."
-                style="width: 100%; padding: 0.8rem 1.5rem; border-radius: 50px; border: none; box-shadow: 0 4px 10px rgba(0,0,0,0.1); font-size: 1rem; outline: none;">
-            <i class="fas fa-search"
-                style="position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%); color: #666;"></i>
+<body class="bg-background text-on-background selection:bg-primary/30">
+    <!-- TopAppBar -->
+    <header class="bg-[#131313]/80 backdrop-blur-lg sticky top-0 w-full z-50 shadow-[0_24px_40px_rgba(0,0,0,0.08)]">
+        <div class="flex justify-between items-center px-6 py-3 w-full max-w-[1600px] mx-auto">
+            <div class="flex items-center gap-8">
+                <a class="text-lg font-bold tracking-tighter text-[#BAC3FF]" href="/">Curator Hub</a>
+                <div class="hidden md:flex items-center gap-6 font-inter tracking-tight text-sm">
+                    <nav class="flex gap-4">
+                        <a class="text-[#BAC3FF] border-b-2 border-[#BAC3FF] pb-1" href="/">Dashboard</a>
+                        <a class="text-zinc-500 hover:bg-zinc-800/40 hover:text-white transition-all px-2 py-1 rounded" href="social.html">Social Audit</a>
+                        <a class="text-zinc-500 hover:bg-zinc-800/40 hover:text-white transition-all px-2 py-1 rounded" href="mbti.html">MBTI Scan</a>
+                    </nav>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="hidden sm:flex items-center gap-2 bg-surface-container-high rounded-full px-4 py-1.5 focus-within:ring-2 focus-within:ring-[#BAC3FF]/30 transition-all">
+                    <span class="material-symbols-outlined text-sm text-zinc-500">search</span>
+                    <input id="global-search" class="bg-transparent border-none focus:ring-0 text-xs w-32 lg:w-48 text-on-surface placeholder-zinc-600" placeholder="Search tools..." type="text"/>
+                    <kbd class="text-[10px] bg-surface-container-highest px-1.5 py-0.5 rounded text-zinc-500 font-sans">⌘K</kbd>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button class="p-2 text-zinc-500 hover:bg-zinc-800/40 hover:text-white transition-all rounded-full">
+                        <span class="material-symbols-outlined">notifications</span>
+                    </button>
+                </div>
+            </div>
         </div>
     </header>
 
-    <main class="container">
-        <div class="card-grid">
+    <div class="flex min-h-screen">
+        <!-- SideNavBar -->
+        <aside class="h-screen w-64 fixed left-0 top-0 hidden lg:flex flex-col bg-[#131313] border-r border-zinc-800/50 pt-20 z-40">
+            <div class="flex flex-col gap-2 p-4 overflow-y-auto h-full">
+                <div class="px-2 mb-4">
+                    <p class="text-[#BAC3FF] font-bold uppercase tracking-widest text-[10px]">Categories</p>
+                    <p class="text-zinc-500 text-[11px]">Filter your workspace</p>
+                </div>
+                <nav class="space-y-1" id="category-filter">
+                    <button data-filter="all" class="w-full flex items-center gap-3 px-3 py-2 bg-zinc-800/60 text-[#BAC3FF] rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
+                        <span class="material-symbols-outlined text-lg">grid_view</span>
+                        All Tools
+                    </button>
+                    <button data-filter="Productivity" class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
+                        <span class="material-symbols-outlined text-lg">rocket_launch</span>
+                        Productivity
+                    </button>
+                    <button data-filter="Finance" class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
+                        <span class="material-symbols-outlined text-lg">payments</span>
+                        Finance
+                    </button>
+                    <button data-filter="Health" class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
+                        <span class="material-symbols-outlined text-lg">monitor_heart</span>
+                        Health
+                    </button>
+                    <button data-filter="Development" class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
+                        <span class="material-symbols-outlined text-lg">code</span>
+                        Development
+                    </button>
+                    <button data-filter="Design" class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
+                        <span class="material-symbols-outlined text-lg">palette</span>
+                        Design
+                    </button>
+                    <button data-filter="Security" class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
+                        <span class="material-symbols-outlined text-lg">shield</span>
+                        Security
+                    </button>
+                    <button data-filter="Life" class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
+                        <span class="material-symbols-outlined text-lg">nightlight</span>
+                        Life & Lifestyle
+                    </button>
+                </nav>
 
-
-
-
-            <!-- DataForge Mock -->
-            <div class="card" data-category="Development">
-                <div class="card-header" style="background: linear-gradient(135deg, #334155 0%, #0f172a 100%);">
-                    <i class="fas fa-database" aria-hidden="true"></i>
-                    <span class="badge">DevTools</span>
-                    <span
-                        style="position: absolute; top: 10px; left: 10px; background: #00DBDE; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;">New</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">DataForge</h2>
-                    <p class="card-text">Infinite mock data generator. Create realistic JSON, SQL, and CSV datasets for
-                        rapid prototyping.</p>
-                    <a href="data-generator.html" class="btn">Forge Data</a>
-                </div>
-            </div>
-
-
-
-            <!-- Kanban Board -->
-            <div class="card" data-category="Productivity">
-                <div class="card-header" style="background: linear-gradient(135deg, #111827 0%, #4f46e5 100%);">
-                    <i class="fas fa-layer-group" aria-hidden="true"></i>
-                    <span class="badge">Productivity</span>
-                    <span
-                        style="position: absolute; top: 10px; left: 10px; background: #00DBDE; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;">New</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">FlowTech Kanban</h2>
-                    <p class="card-text">Professional project management with drag-and-drop boards, persistence, and
-                        JSON export.</p>
-                    <a href="kanban-board.html" class="btn">Manage Projects</a>
-                </div>
-            </div>
-
-            <!-- Quantum Sci-Calc -->
-            <div class="card" data-category="Productivity">
-                <div class="card-header" style="background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);">
-                    <i class="fas fa-calculator" aria-hidden="true"></i>
-                    <span class="badge">Productivity</span>
-                    <span
-                        style="position: absolute; top: 10px; left: 10px; background: #00DBDE; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;">New</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Quantum Sci-Calc</h2>
-                    <p class="card-text">Advanced scientific computing engine with graphing capabilities, unit
-                        conversion, and history tape.</p>
-                    <a href="scientific-calculator.html" class="btn">Launch Calculator</a>
-                </div>
-            </div>
-
-            <div class="card" data-category="Finance">
-                <div class="card-header">
-                    <i class="fas fa-coins" aria-hidden="true"></i>
-                    <span class="badge">Finance</span>
-                    <span
-                        style="position: absolute; top: 10px; left: 10px; background: #ff4757; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;">Upgraded</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Currency Converter Pro</h2>
-                    <p class="card-text">Advanced real-time FX engine with historical charting and deep analytical
-                        insights.</p>
-                    <a href="currency.html" class="btn">Launch FX Engine</a>
-                </div>
-            </div>
-
-            <div class="card" data-category="Finance">
-                <div class="card-header">
-                    <i class="fas fa-money-bill-wave" aria-hidden="true"></i>
-                    <span class="badge">Finance</span>
-                    <span
-                        style="position: absolute; top: 10px; left: 10px; background: #ff4757; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;">Upgraded</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Ultra Earnings Engine</h2>
-                    <p class="card-text">Live income ticker, tax simulation, and high-precision global earning
-                        breakdowns.</p>
-                    <a href="salary.html" class="btn">Calculate Earnings</a>
-                </div>
-            </div>
-
-            <div class="card" data-category="Psychology">
-                <div class="card-header">
-                    <i class="fas fa-brain" aria-hidden="true"></i>
-                    <span class="badge">Psychology</span>
-                    <span
-                        style="position: absolute; top: 10px; left: 10px; background: #ff4757; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;">Upgraded</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Ultimate Personality Scan</h2>
-                    <p class="card-text">Neo-glassmorphic MBTI assessment with interactive psycho-demographic results.
-                    </p>
-                    <a href="mbti.html" class="btn">Start Personality Scan</a>
-                </div>
-            </div>
-
-            <div class="card" data-category="Security">
-                <div class="card-header">
-                    <i class="fas fa-fingerprint" aria-hidden="true"></i>
-                    <span class="badge">Security</span>
-                    <span
-                        style="position: absolute; top: 10px; left: 10px; background: #00DBDE; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;">New</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Password Nebula</h2>
-                    <p class="card-text">Generate unbreakable passwords with entropy-based security and cosmic
-                        visualizations.</p>
-                    <a href="password.html" class="btn">Secure Your Identity</a>
-                </div>
-            </div>
-
-
-
-            <div class="card" data-category="Finance">
-                <div class="card-header">
-                    <i class="fas fa-chart-line" aria-hidden="true"></i>
-                    <span class="badge">Finance</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Crypto Trend Pro</h2>
-                    <p class="card-text">Analyze cryptocurrency prices, analyze trends, and get AI-powered investment
-                        suggestions with our comprehensive crypto tracking tool.</p>
-                    <a href="crypto.html" class="btn">Explore Crypto Trend Pro</a>
-                </div>
-            </div>
-
-            <div class="card" data-category="Finance">
-                <div class="card-header">
-                    <i class="fas fa-hourglass-half" aria-hidden="true"></i>
-                    <span class="badge">Planning</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Retirement Countdown</h2>
-                    <p class="card-text">Plan your retirement and track progress with personalized savings goals and
-                        milestones using our retirement planning tool.</p>
-                    <a href="retire.html" class="btn">Plan Your Retirement</a>
-                </div>
-            </div>
-            <div class="card" data-category="Productivity">
-                <div class="card-header">
-                    <i class="fas fa-file-alt" aria-hidden="true"></i>
-                    <span class="badge">Productivity</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Text Lens Pro</h2>
-                    <p class="card-text">Advanced sentiment analysis and deep text statistics. Perfect for writers,
-                        researchers, and content creators.</p>
-                    <a href="Advance Text Analyzer.html" class="btn">Analyze Text</a>
-                </div>
-            </div>
-
-            <div class="card" data-category="Finance">
-                <div class="card-header">
-                    <i class="fas fa-paw" aria-hidden="true"></i>
-                    <span class="badge">Pets</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Pet Cost Analyzer</h2>
-                    <p class="card-text">Calculate accurate pet ownership costs for any animal with our comprehensive
-                        pet expense calculator.</p>
-                    <a href="pet.html" class="btn">Analyze Pet Costs</a>
-                </div>
-            </div>
-
-            <div class="card" data-category="Health">
-                <div class="card-header">
-                    <i class="fas fa-weight" aria-hidden="true"></i>
-                    <span class="badge">Health</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">BMI Calculator</h2>
-                    <p class="card-text">Calculate your Body Mass Index (BMI) and get personalized health insights and
-                        recommendations based on your results.</p>
-                    <a href="bmi.html" class="btn">Calculate BMI</a>
-                </div>
-            </div>
-
-            <div class="card" data-category="Health">
-                <div class="card-header">
-                    <i class="fas fa-apple-alt" aria-hidden="true"></i>
-                    <span class="badge">Nutrition</span>
-                    <span
-                        style="position: absolute; top: 10px; left: 10px; background: #00DBDE; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;">New</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Macro Blueprint</h2>
-                    <p class="card-text">Engineer your physique with hyper-precise macronutrient targets and calorie
-                        splits.</p>
-                    <a href="macros.html" class="btn">Optimize Your Macros</a>
-                </div>
-            </div>
-
-            <!-- Chroma Studio -->
-            <div class="card" data-category="Design">
-                <div class="card-header" style="background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);">
-                    <i class="fas fa-palette" aria-hidden="true"></i>
-                    <span class="badge">Design</span>
-                    <span
-                        style="position: absolute; top: 10px; left: 10px; background: #00DBDE; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;">New</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Chroma Studio</h2>
-                    <p class="card-text">Professional color palette generator. Extract themes from images and check WCAG
-                        accessibility.</p>
-                    <a href="chroma-studio.html" class="btn">Design Palette</a>
-                </div>
-            </div>
-
-            <!-- Cipher Shield -->
-            <div class="card" data-category="Security">
-                <div class="card-header" style="background: linear-gradient(135deg, #0f172a 0%, #334155 100%);">
-                    <i class="fas fa-shield-alt" aria-hidden="true"></i>
-                    <span class="badge">Security</span>
-                    <span
-                        style="position: absolute; top: 10px; left: 10px; background: #00DBDE; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;">New</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Cipher Shield</h2>
-                    <p class="card-text">Military-grade security suite. Analyze password entropy and generate
-                        uncrackable keys.</p>
-                    <a href="security-vault.html" class="btn">Secure Now</a>
-                </div>
-            </div>
-
-            <!-- The Void Script -->
-            <div class="card" data-category="Security">
-                <div class="card-header" style="background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);">
-                    <i class="fas fa-user-secret" aria-hidden="true"></i>
-                    <span class="badge">Privacy</span>
-                    <span
-                        style="position: absolute; top: 10px; left: 10px; background: #00DBDE; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;">New</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">The Void Script</h2>
-                    <p class="card-text">Premium stealth encoding suite. Encrypt sensitive text and files with
-                        ghost-protocol security.</p>
-                    <a href="decoder.html" class="btn">Enter The Void</a>
-                </div>
-            </div>
-
-            <!-- Trip Cost Estimator -->
-            <div class="card" data-category="Life">
-                <div class="card-header" style="background: linear-gradient(135deg, #ff6b6b 0%, #ff9f43 100%);">
-                    <i class="fas fa-plane-departure" aria-hidden="true"></i>
-                    <span class="badge">Life</span>
-                    <span
-                        style="position: absolute; top: 10px; left: 10px; background: #00DBDE; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;">New</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Trip Cost Estimator</h2>
-                    <p class="card-text">Plan your dream vacation. Calculate flights, hotels, and daily expenses
-                        accurately.</p>
-                    <a href="flight.html" class="btn">Plan Your Trip</a>
-                </div>
-            </div>
-
-            <!-- NRR Precision Pro -->
-            <div class="card" data-category="Sports">
-                <div class="card-header"
-                    style="background: linear-gradient(135deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);">
-                    <i class="fas fa-trophy" aria-hidden="true"></i>
-                    <span class="badge">Sports</span>
-                    <span
-                        style="position: absolute; top: 10px; left: 10px; background: #00DBDE; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;">New</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">NRR Precision Pro</h2>
-                    <p class="card-text">Advanced Net Run Rate calculator. Correctly handles the 'all-out' rule and
-                        cumulative tournament stats.</p>
-                    <a href="nrr-calculator.html" class="btn">Calculate NRR</a>
-                </div>
-            </div>
-
-            <div class="card" data-category="Productivity">
-                <div class="card-header">
-                    <i class="fas fa-qrcode" aria-hidden="true"></i>
-                    <span class="badge">Marketing</span>
-                    <span
-                        style="position: absolute; top: 10px; left: 10px; background: #00DBDE; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;">New</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">URL Architect</h2>
-                    <p class="card-text">Design professional, branded QR codes and shortened vanity links in seconds.
-                    </p>
-                    <a href="qr.html" class="btn">Architect Links</a>
-                </div>
-            </div>
-
-
-            <div class="card" data-category="Life">
-                <div class="card-header">
-                    <i class="fas fa-birthday-cake" aria-hidden="true"></i>
-                    <span class="badge">Life</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Age Calculator</h2>
-                    <p class="card-text">Track your age down to the millisecond with a beautiful visualization and
-                        birthday celebration in our precise age calculator.</p>
-                    <a href="birthday.html" class="btn">Calculate Your Age</a>
-                </div>
-            </div>
-
-            <div class="card" data-category="Life">
-                <div class="card-header">
-                    <i class="fas fa-users" aria-hidden="true"></i>
-                    <span class="badge">Life</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Age Comparison Calculator</h2>
-                    <p class="card-text">Compare the age difference between two people in real-time with fun facts and
-                        visualizations.</p>
-                    <a href="compare.html" class="btn">Compare Ages</a>
-                </div>
-            </div>
-
-            <div class="card" data-category="Health">
-                <div class="card-header">
-                    <i class="fas fa-hand-holding-heart" aria-hidden="true"></i>
-                    <span class="badge">Wellness</span>
-                    <span
-                        style="position: absolute; top: 10px; left: 10px; background: #ff4757; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;">Upgraded</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Digital Minimalism Analyzer</h2>
-                    <p class="card-text">A professional audit of your attention, calculating life costs and consumption
-                        ratios.</p>
-                    <a href="social.html" class="btn">Audit Your Usage</a>
-                </div>
-            </div>
-
-            <div class="card" data-category="Health">
-                <div class="card-header">
-                    <i class="fas fa-heartbeat" aria-hidden="true"></i>
-                    <span class="badge">Health</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Heartbeat Calculator</h2>
-                    <p class="card-text">Discover how many times your heart has beaten throughout your lifetime with our
-                        heart rate calculator.</p>
-                    <a href="heartbeat.html" class="btn">Calculate Heartbeats</a>
-                </div>
-            </div>
-
-            <div class="card" data-category="Health">
-                <div class="card-header">
-                    <i class="fas fa-wind" aria-hidden="true"></i>
-                    <span class="badge">Health</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Breath Calculator</h2>
-                    <p class="card-text">Find out how many breaths you've taken since you were born with our respiratory
-                        calculator.</p>
-                    <a href="breath.html" class="btn">Calculate Breaths</a>
-                </div>
-            </div>
-            <div class="card" data-category="Health">
-                <div class="card-header">
-                    <i class="fas fa-shoe-prints" aria-hidden="true"></i>
-                    <span class="badge">Health</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Step Calculator</h2>
-                    <p class="card-text">Track your daily steps and monitor your physical activity to stay fit and
-                        healthy with our step counter tool.</p>
-                    <a href="steps.html" class="btn">Track Your Steps</a>
-                </div>
-            </div>
-            <div class="card" data-category="Health">
-                <div class="card-header">
-                    <i class="fas fa-moon" aria-hidden="true"></i>
-                    <span class="badge">Health</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Sleep Time Calculator</h2>
-                    <p class="card-text">Discover how much of your life you've spent sleeping and see fun comparisons
-                        with our sleep duration calculator.</p>
-                    <a href="sleep.html" class="btn">Calculate Sleep Time</a>
-                </div>
-            </div>
-
-            <div class="card" data-category="Productivity">
-                <div class="card-header">
-                    <i class="fas fa-magic" aria-hidden="true"></i>
-                    <span class="badge">AI Productivity</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">AI Prompt Genius</h2>
-                    <p class="card-text">Optimize your AI prompts using the RTF framework to get high-quality,
-                        expert-level results from ChatGPT and Claude.</p>
-                    <a href="prompt-optimizer.html" class="btn">Optimize Prompts</a>
-                </div>
-            </div>
-
-
-            <div class="card" data-category="Finance">
-                <div class="card-header">
-                    <i class="fas fa-search-dollar" aria-hidden="true"></i>
-                    <span class="badge">Finance</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">SubScout Audit</h2>
-                    <p class="card-text">Audit your monthly subscriptions and visualize your yearly spending to find
-                        extra savings in your digital budget.</p>
-                    <a href="subs-audit.html" class="btn">Audit Subscriptions</a>
-                </div>
-            </div>
-
-
-
-
-            <!-- Lingo Flow Editor -->
-            <div class="card" data-category="Productivity">
-                <div class="card-header" style="background: linear-gradient(135deg, #0ea5e9 0%, #22c55e 100%);">
-                    <i class="fab fa-markdown" aria-hidden="true"></i>
-                    <span class="badge">Productivity</span>
-                    <span
-                        style="position: absolute; top: 10px; left: 10px; background: #00DBDE; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;">New</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Lingo Flow Editor</h2>
-                    <p class="card-text">High-performance Markdown suite. Real-time preview, professional templates, and
-                        PDF/HTML export.</p>
-                    <a href="markdown-editor.html" class="btn">Write Now</a>
-                </div>
-            </div>
-
-            <!-- YouTube Channels -->
-            <div class="card" data-category="Fun">
-                <div class="card-header" style="background: linear-gradient(135deg, #FF0000 0%, #282828 100%);">
-                    <i class="fab fa-youtube" aria-hidden="true"></i>
-                    <span class="badge">Fun</span>
-                </div>
-                <div class="card-body">
-                    <h2 class="card-title">Fun Video Channels</h2>
-                    <p class="card-text">Check out my entertaining YouTube channels!</p>
-                    <div style="display: flex; flex-direction: column; gap: 10px;">
-                        <a href="https://www.youtube.com/@MeowsicalMischief" class="btn" target="_blank"
-                            rel="noopener noreferrer">Meowsical Mischief</a>
-                        <a href="https://www.youtube.com/@PYRADOXANIMATION" class="btn" target="_blank"
-                            rel="noopener noreferrer">Pyradox Animation</a>
+                <div class="mt-8 px-2">
+                    <p class="text-zinc-600 font-bold uppercase tracking-widest text-[10px] mb-2">Legal & Info</p>
+                    <div class="space-y-1 text-xs">
+                        <a class="flex items-center gap-3 px-3 py-1.5 text-zinc-400 hover:text-zinc-100" href="privacy.html">Privacy Policy</a>
+                        <a class="flex items-center gap-3 px-3 py-1.5 text-zinc-400 hover:text-zinc-100" href="terms.html">Terms of Service</a>
+                        <a class="flex items-center gap-3 px-3 py-1.5 text-zinc-400 hover:text-zinc-100" href="contact.html">Contact Support</a>
                     </div>
                 </div>
-            </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-plus" aria-hidden="true"></i>
-                    <span class="badge">Coming Soon</span>
+                <div class="mt-auto pb-6">
+                    <button class="w-full flex items-center justify-center gap-2 py-2.5 bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 transition-colors text-[#BAC3FF] rounded-md text-[13px] font-semibold">
+                        <span class="material-symbols-outlined text-sm">info</span>
+                        v2.0 Beta
+                    </button>
                 </div>
-                <div class="card-body">
-                    <h2 class="card-title">More Tools Coming</h2>
-                    <p class="card-text">We're constantly developing new tools to help you manage your digital life more
-                        effectively. Check back soon for updates!</p>
-                    <a href="#" class="btn">Stay Tuned</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 lg:ml-64 p-6 md:p-10">
+            <div class="max-w-7xl mx-auto">
+                <!-- Hero Section -->
+                <section class="mb-12">
+                    <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-on-surface mb-4 max-w-2xl leading-tight">
+                        Precision engineering for <span class="text-primary">Digital Life</span>.
+                    </h1>
+                    <p class="text-zinc-400 max-w-xl text-lg font-light leading-relaxed">
+                        The ultimate curator hub for AI-powered professional tools. Efficiency, automated.
+                    </p>
+                </section>
+
+                <!-- Tools Bento Grid -->
+                <div id="tools-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    
+                    <!-- Featured: DataForge Pro -->
+                    <div data-category="Development" class="md:col-span-2 md:row-span-2 rounded-xl bg-surface-container p-8 flex flex-col justify-between group cursor-pointer hover:bg-surface-bright transition-all relative overflow-hidden bento-card">
+                        <div class="absolute top-0 right-0 p-6">
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Featured</span>
+                        </div>
+                        <div class="relative z-10">
+                            <div class="w-12 h-12 bg-primary-container rounded-lg flex items-center justify-center mb-6">
+                                <span class="material-symbols-outlined text-on-primary-container text-2xl">database</span>
+                            </div>
+                            <h2 class="text-2xl font-bold tracking-tight mb-2">DataForge Pro</h2>
+                            <p class="text-zinc-400 text-sm max-w-sm">Advanced neural processing for high-velocity data synthesis and cleansing. Optimized for enterprise AI workloads.</p>
+                        </div>
+                        <div class="mt-8 flex items-center gap-4">
+                            <a href="data-generator.html" class="bg-primary text-on-primary px-6 py-2 rounded-md text-sm font-bold flex items-center gap-2 hover:scale-105 transition-transform no-underline">
+                                Launch Tool <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- FlowTech Kanban -->
+                    <div data-category="Productivity" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-primary/10 rounded-lg">
+                                <span class="material-symbols-outlined text-primary">layers</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Productivity</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">FlowTech Kanban</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Agile visualization for complex project dependencies and team velocity tracking.</p>
+                        <a href="kanban-board.html" class="mt-auto text-primary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- Quantum Sci-Calc -->
+                    <div data-category="Productivity" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-primary/10 rounded-lg">
+                                <span class="material-symbols-outlined text-primary">calculate</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Productivity</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Quantum Sci-Calc</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Advanced scientific computing engine with graphing capabilities and unit conversion.</p>
+                        <a href="scientific-calculator.html" class="mt-auto text-primary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- Currency Pro -->
+                    <div data-category="Finance" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-tertiary/10 rounded-lg">
+                                <span class="material-symbols-outlined text-tertiary">currency_exchange</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Finance</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Currency Pro</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Real-time global exchange rates with deep historical analysis and API integration.</p>
+                        <a href="currency.html" class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- Ultra Earnings -->
+                    <div data-category="Finance" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-tertiary/10 rounded-lg">
+                                <span class="material-symbols-outlined text-tertiary">payments</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Finance</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Earnings Engine</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Live income ticker, tax simulation, and high-precision global earning breakdowns.</p>
+                        <a href="salary.html" class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- Ultimate Personality Scan -->
+                    <div data-category="Psychology" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-secondary/10 rounded-lg">
+                                <span class="material-symbols-outlined text-secondary">psychology</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Psychology</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Personality Scan</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Neo-glassmorphic MBTI assessment with interactive results.</p>
+                        <a href="mbti.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- Password Nebula -->
+                    <div data-category="Security" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-error/10 rounded-lg">
+                                <span class="material-symbols-outlined text-error">fingerprint</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Security</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Password Nebula</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Generate unbreakable passwords with entropy-based security.</p>
+                        <a href="password.html" class="mt-auto text-error text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- Crypto Trend Pro -->
+                    <div data-category="Finance" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-tertiary/10 rounded-lg">
+                                <span class="material-symbols-outlined text-tertiary">trending_up</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Finance</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Crypto Trend Pro</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Analyze cryptocurrency prices and trends with AI insights.</p>
+                        <a href="crypto.html" class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- Retirement Countdown -->
+                    <div data-category="Finance" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-tertiary/10 rounded-lg">
+                                <span class="material-symbols-outlined text-tertiary">hourglass_empty</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Finance</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Retirement Plan</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Plan your retirement and track progress with personalized savings goals.</p>
+                        <a href="retire.html" class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- Text Lens Pro -->
+                    <div data-category="Productivity" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-primary/10 rounded-lg">
+                                <span class="material-symbols-outlined text-primary">description</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Productivity</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Text Lens Pro</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Advanced sentiment analysis and deep text statistics.</p>
+                        <a href="Advance Text Analyzer.html" class="mt-auto text-primary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- Pet Cost Analyzer -->
+                    <div data-category="Finance" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-tertiary/10 rounded-lg">
+                                <span class="material-symbols-outlined text-tertiary">pets</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Finance</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Pet Cost Audit</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Calculate accurate pet ownership costs for any animal.</p>
+                        <a href="pet.html" class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- BMI Calculator -->
+                    <div data-category="Health" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-secondary/10 rounded-lg">
+                                <span class="material-symbols-outlined text-secondary">fitness_center</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Health</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">BMI Hub</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Calculate BMI and get personalized health insights.</p>
+                        <a href="bmi.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- Macro Blueprint -->
+                    <div data-category="Health" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-secondary/10 rounded-lg">
+                                <span class="material-symbols-outlined text-secondary">nutrition</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Health</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Macro Blueprint</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Hyper-precise macronutrient targets and calorie splits.</p>
+                        <a href="macros.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- Chroma Studio -->
+                    <div data-category="Design" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-[#FFABF2]/10 rounded-lg">
+                                <span class="material-symbols-outlined text-[#FFABF2]">palette</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Design</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Chroma Studio</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Extract themes from images and check accessibility.</p>
+                        <a href="chroma-studio.html" class="mt-auto text-[#FFABF2] text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- Cipher Shield -->
+                    <div data-category="Security" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-error/10 rounded-lg">
+                                <span class="material-symbols-outlined text-error">shield</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Security</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Cipher Shield</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Military-grade encryption and entropy analysis.</p>
+                        <a href="security-vault.html" class="mt-auto text-error text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- The Void Script -->
+                    <div data-category="Security" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-error/10 rounded-lg">
+                                <span class="material-symbols-outlined text-error">privacy_tip</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Privacy</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">The Void Script</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Premium stealth encoding suite for sensitive data.</p>
+                        <a href="decoder.html" class="mt-auto text-error text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- Trip Estimator -->
+                    <div data-category="Life" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-[#D5C5A6]/10 rounded-lg">
+                                <span class="material-symbols-outlined text-[#D5C5A6]">flight_takeoff</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Life</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Trip Estimator</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Calculate flights, hotels, and daily expenses.</p>
+                        <a href="flight.html" class="mt-auto text-[#D5C5A6] text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- NRR Pro -->
+                    <div data-category="Life" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-[#D5C5A6]/10 rounded-lg">
+                                <span class="material-symbols-outlined text-[#D5C5A6]">emoji_events</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Sports</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">NRR Precision Pro</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Advanced Net Run Rate calculator for tournaments.</p>
+                        <a href="nrr-calculator.html" class="mt-auto text-[#D5C5A6] text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- URL Architect -->
+                    <div data-category="Productivity" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-primary/10 rounded-lg">
+                                <span class="material-symbols-outlined text-primary">qr_code</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Marketing</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">URL Architect</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Design branded QR codes and vanity links.</p>
+                        <a href="qr.html" class="mt-auto text-primary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- Age Calculator -->
+                    <div data-category="Life" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-[#D5C5A6]/10 rounded-lg">
+                                <span class="material-symbols-outlined text-[#D5C5A6]">cake</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Life</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Age Chronos</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Track your age down to the millisecond with visuals.</p>
+                        <a href="birthday.html" class="mt-auto text-[#D5C5A6] text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- Digital Minimalism -->
+                    <div data-category="Health" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-secondary/10 rounded-lg">
+                                <span class="material-symbols-outlined text-secondary">volunteer_activism</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Wellness</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Minimalism audit</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Professional audit of your attention and digital usage.</p>
+                        <a href="social.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- AI Prompt Genius -->
+                    <div data-category="Productivity" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-primary/10 rounded-lg">
+                                <span class="material-symbols-outlined text-primary">auto_awesome</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">AI Productivity</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Prompt Genius</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Optimize your AI prompts using the RTF framework.</p>
+                        <a href="prompt-optimizer.html" class="mt-auto text-primary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- SubScout -->
+                    <div data-category="Finance" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-tertiary/10 rounded-lg">
+                                <span class="material-symbols-outlined text-tertiary">account_balance_wallet</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Finance</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">SubScout Audit</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Audit monthly subscriptions and visualize spending.</p>
+                        <a href="subs-audit.html" class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- Markdown Editor -->
+                    <div data-category="Productivity" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-primary/10 rounded-lg">
+                                <span class="material-symbols-outlined text-primary">edit_note</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Writing</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Lingo Flow</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">High-performance Markdown suite with real-time preview.</p>
+                        <a href="markdown-editor.html" class="mt-auto text-primary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- Heartbeat -->
+                    <div data-category="Health" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-secondary/10 rounded-lg">
+                                <span class="material-symbols-outlined text-secondary">monitor_heart</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Health</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Heartbeat Scan</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Lifetime heartbeat statistics and analysis.</p>
+                        <a href="heartbeat.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- Steps -->
+                    <div data-category="Health" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-secondary/10 rounded-lg">
+                                <span class="material-symbols-outlined text-secondary">steps</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Health</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Step Counter</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Track daily movement and life-step statistics.</p>
+                        <a href="steps.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- Sleep -->
+                    <div data-category="Health" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-secondary/10 rounded-lg">
+                                <span class="material-symbols-outlined text-secondary">bedtime</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Health</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Sleep Tracker</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Calculate total sleep and recovery ratios over time.</p>
+                        <a href="sleep.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- Age Comparison -->
+                    <div data-category="Life" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-[#D5C5A6]/10 rounded-lg">
+                                <span class="material-symbols-outlined text-[#D5C5A6]">groups</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Life</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Age Comparison</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Analyze age differences and life intersection points.</p>
+                        <a href="compare.html" class="mt-auto text-[#D5C5A6] text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+                    <!-- Breath -->
+                    <div data-category="Health" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="p-2 bg-secondary/10 rounded-lg">
+                                <span class="material-symbols-outlined text-secondary">air</span>
+                            </div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Health</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Breath Intake</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Calculate total respiratory activity and lung health peaks.</p>
+                        <a href="breath.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                    </div>
+
+
                 </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w-full py-12 px-6 bg-[#131313] border-t border-zinc-900 mt-20">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="col-span-2 md:col-span-1">
+                <p class="text-[#BAC3FF] font-black mb-4">Curator Hub</p>
+                <p class="text-zinc-500 text-xs leading-relaxed max-w-xs">The premier professional suite for digital craftsmanship and AI-assisted workflows.</p>
+            </div>
+            <div>
+                <p class="text-zinc-300 text-xs font-bold uppercase tracking-wider mb-4">Platform</p>
+                <ul class="space-y-2 font-inter text-xs tracking-wide">
+                    <li><a class="text-zinc-500 hover:text-zinc-300 transition-colors" href="/">Dashboard</a></li>
+                    <li><a class="text-zinc-500 hover:text-zinc-300 transition-colors" href="mbti.html">Personality</a></li>
+                    <li><a class="text-zinc-500 hover:text-zinc-300 transition-colors" href="social.html">Audit</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="text-zinc-300 text-xs font-bold uppercase tracking-wider mb-4">Legal</p>
+                <ul class="space-y-2 font-inter text-xs tracking-wide">
+                    <li><a class="text-zinc-500 hover:text-zinc-300 transition-colors" href="privacy.html">Privacy Policy</a></li>
+                    <li><a class="text-zinc-500 hover:text-zinc-300 transition-colors" href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="col-span-2 md:col-span-1 flex flex-col items-end justify-between">
+                <div class="flex gap-4">
+                    <a class="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-500 hover:text-primary transition-colors" href="https://www.youtube.com/@MeowsicalMischief">
+                        <span class="material-symbols-outlined text-sm">video_library</span>
+                    </a>
+                    <a class="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-500 hover:text-primary transition-colors" href="data-generator.html">
+                        <span class="material-symbols-outlined text-sm">terminal</span>
+                    </a>
+                </div>
+                <p class="text-zinc-600 text-[10px] mt-8">© 2025 Digital Curator Workspace</p>
             </div>
         </div>
-    </main>
-
-    <footer>
-        <p>© 2025 Digital Tools Hub • All tools are for educational purposes</p>
-        <nav aria-label="Footer navigation">
-            <a href="/privacy.html" style="margin-right: 15px;">Privacy Policy</a>
-            <a href="/terms.html" style="margin-right: 15px;">Terms of Service</a>
-            <a href="/contact.html">Contact Us</a>
-        </nav>
     </footer>
 
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-        <i class="fas fa-moon" aria-hidden="true"></i>
-    </button>
+    <script shadow>
+        // Search & Filter Logic
+        const searchInput = document.getElementById('global-search');
+        const toolsGrid = document.getElementById('tools-grid');
+        const toolCards = document.querySelectorAll('[data-category]');
+        const filterBtns = document.querySelectorAll('#category-filter button');
 
-    <script>
-        // Create floating particles
-        function createParticles() {
-            const container = document.getElementById('particles-container');
-            const particleCount = 20;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.setAttribute('aria-hidden', 'true');
-
-                // Random size between 10px and 40px
-                const size = Math.random() * 30 + 10;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-
-                // Random position
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-
-                // Random animation duration between 20s and 40s
-                particle.style.animationDuration = `${Math.random() * 20 + 20}s`;
-
-                container.appendChild(particle);
-            }
-        }
-
-        // Dark/Light theme toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = themeToggle.querySelector('i');
-
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-theme');
-
-            if (document.body.classList.contains('dark-theme')) {
-                themeIcon.className = 'fas fa-sun';
-                themeToggle.setAttribute('aria-label', 'Toggle light mode');
-            } else {
-                themeIcon.className = 'fas fa-moon';
-                themeToggle.setAttribute('aria-label', 'Toggle dark mode');
-            }
-
-            // Save preference to localStorage
-            localStorage.setItem('darkMode', document.body.classList.contains('dark-theme'));
-        });
-
-        // Tool Search Logic
-        const searchInput = document.getElementById('tool-search');
-        const toolCards = document.querySelectorAll('.card');
-
+        // Search logic
         searchInput.addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase().trim();
-
             toolCards.forEach(card => {
-                const title = card.querySelector('.card-title')?.innerText.toLowerCase() || "";
-                const text = card.querySelector('.card-text')?.innerText.toLowerCase() || "";
-                const badge = card.querySelector('.badge')?.innerText.toLowerCase() || "";
-
-                if (title.includes(term) || text.includes(term) || badge.includes(term)) {
-                    card.style.display = "block";
-                } else {
-                    card.style.display = "none";
-                }
+                const title = card.querySelector('h2, h3').innerText.toLowerCase();
+                const text = card.querySelector('p').innerText.toLowerCase();
+                const match = title.includes(term) || text.includes(term);
+                card.style.display = match ? 'flex' : 'none';
             });
         });
 
-        // Initialize
-        window.addEventListener('DOMContentLoaded', () => {
-            createParticles();
+        // Filter logic
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+                
+                // Update active state
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-zinc-800/60', 'text-[#BAC3FF]');
+                    b.classList.add('text-zinc-400');
+                });
+                btn.classList.add('bg-zinc-800/60', 'text-[#BAC3FF]');
+                btn.classList.remove('text-zinc-400');
 
-            // Check for saved theme preference
-            if (localStorage.getItem('darkMode') === 'true') {
-                document.body.classList.add('dark-theme');
-                themeIcon.className = 'fas fa-sun';
-                themeToggle.setAttribute('aria-label', 'Toggle light mode');
-            }
-
-            // Add animation to float particles
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes float {
-                    0% {
-                        transform: translate(0, 0);
+                // Filter cards
+                toolCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
                     }
-                    25% {
-                        transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px);
-                    }
-                    50% {
-                        transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px);
-                    }
-                    75% {
-                        transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px);
-                    }
-                    100% {
-                        transform: translate(0, 0);
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-
-            // Menu Logic
-            const menuBtn = document.getElementById('menu-btn');
-            const closeMenuBtn = document.getElementById('close-menu-btn');
-            const categoryOverlay = document.getElementById('category-overlay');
-            const categoryBtns = document.querySelectorAll('.category-btn');
-
-            function toggleMenu() {
-                categoryOverlay.classList.toggle('active');
-                document.body.style.overflow = categoryOverlay.classList.contains('active') ? 'hidden' : '';
-            }
-
-            menuBtn.addEventListener('click', toggleMenu);
-            closeMenuBtn.addEventListener('click', toggleMenu);
-
-            // Category Filtering
-            categoryBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const filter = btn.getAttribute('data-filter');
-
-                    toolCards.forEach(card => {
-                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                            card.style.display = 'block';
-                            // Reset animation to re-trigger fade in
-                            card.style.animation = 'none';
-                            card.offsetHeight; /* trigger reflow */
-                            card.style.animation = 'fadeIn 0.5s ease forwards';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-
-                    toggleMenu();
                 });
             });
         });
+
+        // Shortcut for search (Cmd+K)
+        window.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
     </script>
 </body>
-
 </html>

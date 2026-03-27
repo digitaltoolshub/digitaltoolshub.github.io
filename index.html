@@ -185,15 +185,16 @@
                 </div>
             </div>
             <div class="flex items-center gap-4">
-                <div class="hidden sm:flex items-center gap-2 bg-surface-container-high rounded-full px-4 py-1.5 focus-within:ring-2 focus-within:ring-[#BAC3FF]/30 transition-all">
-                    <span class="material-symbols-outlined text-sm text-zinc-500">search</span>
-                    <input id="global-search" class="bg-transparent border-none focus:ring-0 text-xs w-32 lg:w-48 text-on-surface placeholder-zinc-600" placeholder="Search tools..." type="text"/>
-                    <kbd class="text-[10px] bg-surface-container-highest px-1.5 py-0.5 rounded text-zinc-500 font-sans">⌘K</kbd>
+                <div class="hidden sm:flex items-center gap-2 bg-surface-container-high rounded-full px-4 py-1.5 focus-within:ring-2 focus-within:ring-[#BAC3FF]/30 transition-all border border-zinc-800/50">
+                    <span class="material-symbols-outlined text-sm text-zinc-500" aria-hidden="true">search</span>
+                    <input id="global-search" class="bg-transparent border-none focus:ring-0 text-xs w-32 lg:w-48 text-on-surface placeholder-zinc-600" placeholder="Search tools..." type="text" aria-label="Search all tools"/>
+                    <kbd class="text-[10px] bg-surface-container-highest px-1.5 py-0.5 rounded text-zinc-500 font-sans" aria-hidden="true">⌘K</kbd>
                 </div>
                 <div class="flex items-center gap-2">
-                    <button class="p-2 text-zinc-500 hover:bg-zinc-800/40 hover:text-white transition-all rounded-full">
-                        <span class="material-symbols-outlined">notifications</span>
+                    <button class="p-2 text-zinc-500 hover:bg-zinc-800/40 hover:text-white transition-all rounded-full" aria-label="View notifications">
+                        <span class="material-symbols-outlined" aria-hidden="true">notifications</span>
                     </button>
+                </div>
                 </div>
             </div>
         </div>
@@ -208,36 +209,36 @@
                     <p class="text-zinc-500 text-[11px]">Filter your workspace</p>
                 </div>
                 <nav class="space-y-1" id="category-filter">
-                    <button data-filter="all" class="w-full flex items-center gap-3 px-3 py-2 bg-zinc-800/60 text-[#BAC3FF] rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
-                        <span class="material-symbols-outlined text-lg">grid_view</span>
+                    <button data-filter="all" aria-label="Show all tools" class="w-full flex items-center gap-3 px-3 py-2 bg-zinc-800/60 text-[#BAC3FF] rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
+                        <span class="material-symbols-outlined text-lg" aria-hidden="true">grid_view</span>
                         All Tools
                     </button>
-                    <button data-filter="Productivity" class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
-                        <span class="material-symbols-outlined text-lg">rocket_launch</span>
+                    <button data-filter="Productivity" aria-label="Filter by Productivity" class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
+                        <span class="material-symbols-outlined text-lg" aria-hidden="true">rocket_launch</span>
                         Productivity
                     </button>
-                    <button data-filter="Finance" class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
-                        <span class="material-symbols-outlined text-lg">payments</span>
+                    <button data-filter="Finance" aria-label="Filter by Finance" class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
+                        <span class="material-symbols-outlined text-lg" aria-hidden="true">payments</span>
                         Finance
                     </button>
-                    <button data-filter="Health" class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
-                        <span class="material-symbols-outlined text-lg">monitor_heart</span>
+                    <button data-filter="Health" aria-label="Filter by Health" class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
+                        <span class="material-symbols-outlined text-lg" aria-hidden="true">monitor_heart</span>
                         Health
                     </button>
-                    <button data-filter="Development" class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
-                        <span class="material-symbols-outlined text-lg">code</span>
+                    <button data-filter="Development" aria-label="Filter by Development" class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
+                        <span class="material-symbols-outlined text-lg" aria-hidden="true">code</span>
                         Development
                     </button>
-                    <button data-filter="Design" class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
-                        <span class="material-symbols-outlined text-lg">palette</span>
+                    <button data-filter="Design" aria-label="Filter by Design" class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
+                        <span class="material-symbols-outlined text-lg" aria-hidden="true">palette</span>
                         Design
                     </button>
-                    <button data-filter="Security" class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
-                        <span class="material-symbols-outlined text-lg">shield</span>
+                    <button data-filter="Security" aria-label="Filter by Security" class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
+                        <span class="material-symbols-outlined text-lg" aria-hidden="true">shield</span>
                         Security
                     </button>
-                    <button data-filter="Life" class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
-                        <span class="material-symbols-outlined text-lg">nightlight</span>
+                    <button data-filter="Life" aria-label="Filter by Life & Lifestyle" class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
+                        <span class="material-symbols-outlined text-lg" aria-hidden="true">nightlight</span>
                         Life & Lifestyle
                     </button>
                 </nav>
@@ -254,8 +255,8 @@
                 </div>
 
                 <div class="mt-auto pb-6">
-                    <button class="w-full flex items-center justify-center gap-2 py-2.5 bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 transition-colors text-[#BAC3FF] rounded-md text-[13px] font-semibold">
-                        <span class="material-symbols-outlined text-sm">info</span>
+                    <button aria-label="Version 2.0 Beta information" class="w-full flex items-center justify-center gap-2 py-2.5 bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 transition-colors text-[#BAC3FF] rounded-md text-[13px] font-semibold">
+                        <span class="material-symbols-outlined text-sm" aria-hidden="true">info</span>
                         v2.0 Beta
                     </button>
                 </div>
@@ -284,15 +285,15 @@
                             <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Featured</span>
                         </div>
                         <div class="relative z-10">
-                            <div class="w-12 h-12 bg-primary-container rounded-lg flex items-center justify-center mb-6">
-                                <span class="material-symbols-outlined text-on-primary-container text-2xl">database</span>
+                            <div class="w-14 h-14 bg-primary-container rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-primary/20">
+                                <span class="material-symbols-outlined text-on-primary-container text-3xl" aria-hidden="true">database</span>
                             </div>
                             <h2 class="text-2xl font-bold tracking-tight mb-2">DataForge Pro</h2>
                             <p class="text-zinc-400 text-sm max-w-sm">Advanced neural processing for high-velocity data synthesis and cleansing. Optimized for enterprise AI workloads.</p>
                         </div>
                         <div class="mt-8 flex items-center gap-4">
                             <a href="data-generator.html" class="bg-primary text-on-primary px-6 py-2 rounded-md text-sm font-bold flex items-center gap-2 hover:scale-105 transition-transform no-underline">
-                                Launch Tool <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                Launch Tool <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
                             </a>
                         </div>
                     </div>
@@ -300,365 +301,365 @@
                     <!-- FlowTech Kanban -->
                     <div data-category="Productivity" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-primary/10 rounded-lg">
-                                <span class="material-symbols-outlined text-primary">layers</span>
+                            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-xl" aria-hidden="true">layers</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Productivity</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Productivity</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">FlowTech Kanban</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Agile visualization for complex project dependencies and team velocity tracking.</p>
-                        <a href="kanban-board.html" class="mt-auto text-primary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="kanban-board.html" class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- Quantum Sci-Calc -->
                     <div data-category="Productivity" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-primary/10 rounded-lg">
-                                <span class="material-symbols-outlined text-primary">calculate</span>
+                            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-xl" aria-hidden="true">calculate</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Productivity</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Productivity</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Quantum Sci-Calc</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Advanced scientific computing engine with graphing capabilities and unit conversion.</p>
-                        <a href="scientific-calculator.html" class="mt-auto text-primary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="scientific-calculator.html" class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- Currency Pro -->
                     <div data-category="Finance" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-tertiary/10 rounded-lg">
-                                <span class="material-symbols-outlined text-tertiary">currency_exchange</span>
+                            <div class="w-10 h-10 bg-tertiary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-tertiary text-xl" aria-hidden="true">currency_exchange</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Finance</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Finance</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Currency Pro</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Real-time global exchange rates with deep historical analysis and API integration.</p>
-                        <a href="currency.html" class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="currency.html" class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- Ultra Earnings -->
                     <div data-category="Finance" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-tertiary/10 rounded-lg">
-                                <span class="material-symbols-outlined text-tertiary">payments</span>
+                            <div class="w-10 h-10 bg-tertiary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-tertiary text-xl" aria-hidden="true">payments</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Finance</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Finance</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Earnings Engine</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Live income ticker, tax simulation, and high-precision global earning breakdowns.</p>
-                        <a href="salary.html" class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="salary.html" class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- Ultimate Personality Scan -->
                     <div data-category="Psychology" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-secondary/10 rounded-lg">
-                                <span class="material-symbols-outlined text-secondary">psychology</span>
+                            <div class="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-secondary text-xl" aria-hidden="true">psychology</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Psychology</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Psychology</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Personality Scan</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Neo-glassmorphic MBTI assessment with interactive results.</p>
-                        <a href="mbti.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="mbti.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- Password Nebula -->
                     <div data-category="Security" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-error/10 rounded-lg">
-                                <span class="material-symbols-outlined text-error">fingerprint</span>
+                            <div class="w-10 h-10 bg-error/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-error text-xl" aria-hidden="true">fingerprint</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Security</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Security</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Password Nebula</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Generate unbreakable passwords with entropy-based security.</p>
-                        <a href="password.html" class="mt-auto text-error text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="password.html" class="mt-auto text-error text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- Crypto Trend Pro -->
                     <div data-category="Finance" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-tertiary/10 rounded-lg">
-                                <span class="material-symbols-outlined text-tertiary">trending_up</span>
+                            <div class="w-10 h-10 bg-tertiary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-tertiary text-xl" aria-hidden="true">trending_up</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Finance</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Finance</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Crypto Trend Pro</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Analyze cryptocurrency prices and trends with AI insights.</p>
-                        <a href="crypto.html" class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="crypto.html" class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- Retirement Countdown -->
                     <div data-category="Finance" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-tertiary/10 rounded-lg">
-                                <span class="material-symbols-outlined text-tertiary">hourglass_empty</span>
+                            <div class="w-10 h-10 bg-tertiary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-tertiary text-xl" aria-hidden="true">hourglass_empty</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Finance</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Finance</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Retirement Plan</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Plan your retirement and track progress with personalized savings goals.</p>
-                        <a href="retire.html" class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="retire.html" class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- Text Lens Pro -->
                     <div data-category="Productivity" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-primary/10 rounded-lg">
-                                <span class="material-symbols-outlined text-primary">description</span>
+                            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-xl" aria-hidden="true">description</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Productivity</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Productivity</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Text Lens Pro</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Advanced sentiment analysis and deep text statistics.</p>
-                        <a href="Advance Text Analyzer.html" class="mt-auto text-primary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="Advance Text Analyzer.html" class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- Pet Cost Analyzer -->
                     <div data-category="Finance" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-tertiary/10 rounded-lg">
-                                <span class="material-symbols-outlined text-tertiary">pets</span>
+                            <div class="w-10 h-10 bg-tertiary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-tertiary text-xl" aria-hidden="true">pets</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Finance</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Finance</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Pet Cost Audit</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Calculate accurate pet ownership costs for any animal.</p>
-                        <a href="pet.html" class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="pet.html" class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- BMI Calculator -->
                     <div data-category="Health" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-secondary/10 rounded-lg">
-                                <span class="material-symbols-outlined text-secondary">fitness_center</span>
+                            <div class="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-secondary text-xl" aria-hidden="true">fitness_center</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Health</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Health</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">BMI Hub</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Calculate BMI and get personalized health insights.</p>
-                        <a href="bmi.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="bmi.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- Macro Blueprint -->
                     <div data-category="Health" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-secondary/10 rounded-lg">
-                                <span class="material-symbols-outlined text-secondary">nutrition</span>
+                            <div class="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-secondary text-xl" aria-hidden="true">nutrition</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Health</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Health</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Macro Blueprint</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Hyper-precise macronutrient targets and calorie splits.</p>
-                        <a href="macros.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="macros.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- Chroma Studio -->
                     <div data-category="Design" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-[#FFABF2]/10 rounded-lg">
-                                <span class="material-symbols-outlined text-[#FFABF2]">palette</span>
+                            <div class="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-secondary text-xl" aria-hidden="true">palette</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Design</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Design</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Chroma Studio</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Extract themes from images and check accessibility.</p>
-                        <a href="chroma-studio.html" class="mt-auto text-[#FFABF2] text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="chroma-studio.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- Cipher Shield -->
                     <div data-category="Security" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-error/10 rounded-lg">
-                                <span class="material-symbols-outlined text-error">shield</span>
+                            <div class="w-10 h-10 bg-error/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-error text-xl" aria-hidden="true">shield</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Security</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Security</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Cipher Shield</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Military-grade encryption and entropy analysis.</p>
-                        <a href="security-vault.html" class="mt-auto text-error text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="security-vault.html" class="mt-auto text-error text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- The Void Script -->
                     <div data-category="Security" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-error/10 rounded-lg">
-                                <span class="material-symbols-outlined text-error">privacy_tip</span>
+                            <div class="w-10 h-10 bg-error/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-error text-xl" aria-hidden="true">privacy_tip</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Privacy</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Privacy</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">The Void Script</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Premium stealth encoding suite for sensitive data.</p>
-                        <a href="decoder.html" class="mt-auto text-error text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="decoder.html" class="mt-auto text-error text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- Trip Estimator -->
                     <div data-category="Life" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-[#D5C5A6]/10 rounded-lg">
-                                <span class="material-symbols-outlined text-[#D5C5A6]">flight_takeoff</span>
+                            <div class="w-10 h-10 bg-tertiary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-tertiary text-xl" aria-hidden="true">flight_takeoff</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Life</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Life</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Trip Estimator</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Calculate flights, hotels, and daily expenses.</p>
-                        <a href="flight.html" class="mt-auto text-[#D5C5A6] text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="flight.html" class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- NRR Pro -->
                     <div data-category="Life" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-[#D5C5A6]/10 rounded-lg">
-                                <span class="material-symbols-outlined text-[#D5C5A6]">emoji_events</span>
+                            <div class="w-10 h-10 bg-tertiary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-tertiary text-xl" aria-hidden="true">emoji_events</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Sports</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Sports</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">NRR Precision Pro</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Advanced Net Run Rate calculator for tournaments.</p>
-                        <a href="nrr-calculator.html" class="mt-auto text-[#D5C5A6] text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="nrr-calculator.html" class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- URL Architect -->
                     <div data-category="Productivity" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-primary/10 rounded-lg">
-                                <span class="material-symbols-outlined text-primary">qr_code</span>
+                            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-xl" aria-hidden="true">qr_code</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Marketing</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Marketing</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">URL Architect</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Design branded QR codes and vanity links.</p>
-                        <a href="qr.html" class="mt-auto text-primary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="qr.html" class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- Age Calculator -->
                     <div data-category="Life" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-[#D5C5A6]/10 rounded-lg">
-                                <span class="material-symbols-outlined text-[#D5C5A6]">cake</span>
+                            <div class="w-10 h-10 bg-tertiary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-tertiary text-xl" aria-hidden="true">cake</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Life</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Life</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Age Chronos</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Track your age down to the millisecond with visuals.</p>
-                        <a href="birthday.html" class="mt-auto text-[#D5C5A6] text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="birthday.html" class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- Digital Minimalism -->
                     <div data-category="Health" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-secondary/10 rounded-lg">
-                                <span class="material-symbols-outlined text-secondary">volunteer_activism</span>
+                            <div class="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-secondary text-xl" aria-hidden="true">volunteer_activism</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Wellness</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Wellness</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Minimalism audit</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Professional audit of your attention and digital usage.</p>
-                        <a href="social.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="social.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- AI Prompt Genius -->
                     <div data-category="Productivity" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-primary/10 rounded-lg">
-                                <span class="material-symbols-outlined text-primary">auto_awesome</span>
+                            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-xl" aria-hidden="true">auto_awesome</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">AI Productivity</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">AI Productivity</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Prompt Genius</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Optimize your AI prompts using the RTF framework.</p>
-                        <a href="prompt-optimizer.html" class="mt-auto text-primary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="prompt-optimizer.html" class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- SubScout -->
                     <div data-category="Finance" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-tertiary/10 rounded-lg">
-                                <span class="material-symbols-outlined text-tertiary">account_balance_wallet</span>
+                            <div class="w-10 h-10 bg-tertiary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-tertiary text-xl" aria-hidden="true">account_balance_wallet</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Finance</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Finance</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">SubScout Audit</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Audit monthly subscriptions and visualize spending.</p>
-                        <a href="subs-audit.html" class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="subs-audit.html" class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- Markdown Editor -->
                     <div data-category="Productivity" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-primary/10 rounded-lg">
-                                <span class="material-symbols-outlined text-primary">edit_note</span>
+                            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-xl" aria-hidden="true">edit_note</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Writing</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Writing</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Lingo Flow</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">High-performance Markdown suite with real-time preview.</p>
-                        <a href="markdown-editor.html" class="mt-auto text-primary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="markdown-editor.html" class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- Heartbeat -->
                     <div data-category="Health" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-secondary/10 rounded-lg">
-                                <span class="material-symbols-outlined text-secondary">monitor_heart</span>
+                            <div class="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-secondary text-xl" aria-hidden="true">monitor_heart</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Health</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Health</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Heartbeat Scan</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Lifetime heartbeat statistics and analysis.</p>
-                        <a href="heartbeat.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="heartbeat.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- Steps -->
                     <div data-category="Health" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-secondary/10 rounded-lg">
-                                <span class="material-symbols-outlined text-secondary">steps</span>
+                            <div class="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-secondary text-xl" aria-hidden="true">steps</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Health</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Health</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Step Counter</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Track daily movement and life-step statistics.</p>
-                        <a href="steps.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="steps.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- Sleep -->
                     <div data-category="Health" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-secondary/10 rounded-lg">
-                                <span class="material-symbols-outlined text-secondary">bedtime</span>
+                            <div class="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-secondary text-xl" aria-hidden="true">bedtime</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Health</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Health</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Sleep Tracker</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Calculate total sleep and recovery ratios over time.</p>
-                        <a href="sleep.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="sleep.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- Age Comparison -->
                     <div data-category="Life" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-[#D5C5A6]/10 rounded-lg">
-                                <span class="material-symbols-outlined text-[#D5C5A6]">groups</span>
+                            <div class="w-10 h-10 bg-tertiary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-tertiary text-xl" aria-hidden="true">groups</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Life</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Life</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Age Comparison</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Analyze age differences and life intersection points.</p>
-                        <a href="compare.html" class="mt-auto text-[#D5C5A6] text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="compare.html" class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
                     <!-- Breath -->
                     <div data-category="Health" class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="p-2 bg-secondary/10 rounded-lg">
-                                <span class="material-symbols-outlined text-secondary">air</span>
+                            <div class="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-secondary text-xl" aria-hidden="true">air</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase">Health</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Health</span>
                         </div>
                         <h3 class="font-bold text-lg mb-2">Breath Intake</h3>
                         <p class="text-zinc-500 text-xs leading-relaxed mb-4">Calculate total respiratory activity and lung health peaks.</p>
-                        <a href="breath.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1">Open <span class="material-symbols-outlined text-sm">east</span></a>
+                        <a href="breath.html" class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
 
@@ -693,11 +694,11 @@
             </div>
             <div class="col-span-2 md:col-span-1 flex flex-col items-end justify-between">
                 <div class="flex gap-4">
-                    <a class="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-500 hover:text-primary transition-colors" href="https://www.youtube.com/@MeowsicalMischief">
-                        <span class="material-symbols-outlined text-sm">video_library</span>
+                    <a class="w-9 h-9 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-500 hover:text-primary transition-all hover:scale-110 border border-zinc-800/50" href="https://www.youtube.com/@MeowsicalMischief" aria-label="Visit our YouTube channel">
+                        <span class="material-symbols-outlined text-sm" aria-hidden="true">video_library</span>
                     </a>
-                    <a class="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-500 hover:text-primary transition-colors" href="data-generator.html">
-                        <span class="material-symbols-outlined text-sm">terminal</span>
+                    <a class="w-9 h-9 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-500 hover:text-primary transition-all hover:scale-110 border border-zinc-800/50" href="data-generator.html" aria-label="Launch DataForge Pro development tool">
+                        <span class="material-symbols-outlined text-sm" aria-hidden="true">terminal</span>
                     </a>
                 </div>
                 <p class="text-zinc-600 text-[10px] mt-8">© 2025 Digital Curator Workspace</p>

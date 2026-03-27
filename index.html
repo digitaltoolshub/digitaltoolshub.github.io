@@ -114,8 +114,60 @@
         "price": "0",
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Rabeeh",
+        "url": "https://digitaltoolshub.github.io/about.html",
+        "jobTitle": "Senior Developer & Automation Expert"
       }
     }
+    </script>
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "SoftwareApplication",
+            "name": "Curator Hub",
+            "url": "https://digitaltoolshub.github.io/index.html",
+            "applicationCategory": "UtilitiesApplication",
+            "operatingSystem": "All",
+            "offers": {
+                "@type": "Offer",
+                "price": "0.00",
+                "priceCurrency": "USD"
+            },
+            "author": {
+                "@type": "Person",
+                "name": "Rabeeh",
+                "url": "https://digitaltoolshub.github.io/about.html"
+            }
+        },
+        {
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Is Curator Hub free to use?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes, Curator Hub is completely free to use with no hidden charges, sign-ups, or subscriptions required."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Is my data safe when using Curator Hub?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Absolutely. Curator Hub processes all data client-side in your browser, meaning none of your inputs or results are ever sent to our servers."
+                    }
+                }
+            ]
+        }
+    ]
+}
     </script>
 </head>
 <body class="bg-background text-on-background selection:bg-primary/30">
@@ -191,8 +243,10 @@
                 </nav>
 
                 <div class="mt-8 px-2">
-                    <p class="text-zinc-600 font-bold uppercase tracking-widest text-[10px] mb-2">Legal & Info</p>
+                    <p class="text-zinc-600 font-bold uppercase tracking-widest text-[10px] mb-2">Trust & Info</p>
                     <div class="space-y-1 text-xs">
+                        <a class="flex items-center gap-3 px-3 py-1.5 text-zinc-400 hover:text-zinc-100" href="about.html">About Us</a>
+                        <a class="flex items-center gap-3 px-3 py-1.5 text-zinc-400 hover:text-zinc-100" href="about.html#how-it-works">How It Works</a>
                         <a class="flex items-center gap-3 px-3 py-1.5 text-zinc-400 hover:text-zinc-100" href="privacy.html">Privacy Policy</a>
                         <a class="flex items-center gap-3 px-3 py-1.5 text-zinc-400 hover:text-zinc-100" href="terms.html">Terms of Service</a>
                         <a class="flex items-center gap-3 px-3 py-1.5 text-zinc-400 hover:text-zinc-100" href="contact.html">Contact Support</a>
@@ -629,8 +683,10 @@
                 </ul>
             </div>
             <div>
-                <p class="text-zinc-300 text-xs font-bold uppercase tracking-wider mb-4">Legal</p>
+                <p class="text-zinc-300 text-xs font-bold uppercase tracking-wider mb-4">Trust & Transparency</p>
                 <ul class="space-y-2 font-inter text-xs tracking-wide">
+                    <li><a class="text-zinc-500 hover:text-zinc-300 transition-colors" href="about.html">About Us</a></li>
+                    <li><a class="text-zinc-500 hover:text-zinc-300 transition-colors" href="about.html#how-it-works">How It Works</a></li>
                     <li><a class="text-zinc-500 hover:text-zinc-300 transition-colors" href="privacy.html">Privacy Policy</a></li>
                     <li><a class="text-zinc-500 hover:text-zinc-300 transition-colors" href="terms.html">Terms of Service</a></li>
                 </ul>

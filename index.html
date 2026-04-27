@@ -10,8 +10,11 @@
         gtag('js', new Date());
         gtag('config', 'G-R4N9RB1SNN');
     </script>
+    <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
         crossorigin="anonymous"></script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f"
+        type="text/javascript" async></script>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Curator Hub | Digital Tools Hub - Powerful Free AI Tools</title>
@@ -131,6 +134,22 @@
 
         ::-webkit-scrollbar-thumb:hover {
             background: #444654;
+        }
+
+        @keyframes pulse-live {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        .live-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse-live 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            box-shadow: 0 0 10px #10b981;
         }
     </style>
 
@@ -340,27 +359,30 @@
                 <!-- Tools Bento Grid -->
                 <div id="tools-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 
-                    <!-- Featured: DataForge Pro -->
-                    <div data-category="Development"
+                    <!-- Featured: FX Terminal Pro -->
+                    <div data-category="Finance"
                         class="md:col-span-2 md:row-span-2 rounded-xl bg-surface-container p-8 flex flex-col justify-between group cursor-pointer hover:bg-surface-bright transition-all relative overflow-hidden bento-card">
-                        <div class="absolute top-0 right-0 p-6">
+                        <div class="absolute top-0 right-0 p-6 flex items-center gap-3">
+                            <div class="flex items-center gap-1.5 bg-zinc-900/50 backdrop-blur-md px-3 py-1 rounded-full border border-zinc-800/50">
+                                <span class="live-dot"></span>
+                                <span class="text-[9px] font-bold text-zinc-400 uppercase tracking-tighter">Live Rates</span>
+                            </div>
                             <span
                                 class="bg-primary/10 text-primary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Featured</span>
                         </div>
                         <div class="relative z-10">
                             <div
-                                class="w-14 h-14 bg-primary-container rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-primary/20">
-                                <span class="material-symbols-outlined text-on-primary-container text-3xl"
-                                    aria-hidden="true">database</span>
+                                class="w-14 h-14 bg-tertiary-container rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-tertiary/20">
+                                <span class="material-symbols-outlined text-on-tertiary-container text-3xl"
+                                    aria-hidden="true">currency_exchange</span>
                             </div>
-                            <h2 class="text-2xl font-bold tracking-tight mb-2">DataForge Pro</h2>
-                            <p class="text-zinc-400 text-sm max-w-sm">Advanced neural processing for high-velocity data
-                                synthesis and cleansing. Optimized for enterprise AI workloads.</p>
+                            <h2 class="text-2xl font-bold tracking-tight mb-2">FX Terminal Pro</h2>
+                            <p class="text-zinc-400 text-sm max-w-sm">Hyper-precise global currency engine with real-time liquidity tracking and multi-node rate verification. The gold standard for FX data.</p>
                         </div>
                         <div class="mt-8 flex items-center gap-4">
-                            <a href="data-generator.html"
-                                class="bg-primary text-on-primary px-6 py-2 rounded-md text-sm font-bold flex items-center gap-2 hover:scale-105 transition-transform no-underline">
-                                Launch Tool <span class="material-symbols-outlined text-sm"
+                            <a href="currency.html"
+                                class="bg-tertiary text-on-tertiary px-6 py-2 rounded-md text-sm font-bold flex items-center gap-2 hover:scale-105 transition-transform no-underline">
+                                Launch Terminal <span class="material-symbols-outlined text-sm"
                                     aria-hidden="true">arrow_forward</span>
                             </a>
                         </div>
@@ -404,21 +426,20 @@
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- Currency Pro -->
-                    <div data-category="Finance"
+                    <!-- DataForge Pro -->
+                    <div data-category="Development"
                         class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
                         <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-tertiary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-tertiary text-xl"
-                                    aria-hidden="true">currency_exchange</span>
+                            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-xl"
+                                    aria-hidden="true">database</span>
                             </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Finance</span>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Development</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Currency Pro</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Real-time global exchange rates with deep
-                            historical analysis and API integration.</p>
-                        <a href="currency.html"
-                            class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
+                        <h3 class="font-bold text-lg mb-2">DataForge Pro</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Advanced neural processing for high-velocity data synthesis and cleansing.</p>
+                        <a href="data-generator.html"
+                            class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
@@ -974,6 +995,16 @@
                 e.preventDefault();
                 searchInput.focus();
             }
+        });
+
+        // Global Bento Link Handler
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (e.target.tagName !== 'A' && !e.target.closest('a')) {
+                    const link = card.querySelector('a');
+                    if (link) link.click();
+                }
+            });
         });
     </script>
 </body>

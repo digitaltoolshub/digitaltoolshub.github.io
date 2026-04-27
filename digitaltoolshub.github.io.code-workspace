@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../Downloads/stitch-2"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "digitaltoolshub.github.io"
+	}
+}

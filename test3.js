@@ -1,0 +1,15 @@
+const THREE = require('three');
+let p = new THREE.Mesh();
+p.position.set(1, 1, 1);
+let group = new THREE.Group();
+group.add(p);
+group.rotation.x = -Math.PI / 2;
+group.updateMatrixWorld(true);
+let pos = new THREE.Vector3();
+p.getWorldPosition(pos);
+console.log("R move (-PI/2 around X). Orig: (1,1,1). New:", Math.round(pos.x), Math.round(pos.y), Math.round(pos.z));
+group.rotation.x = 0;
+group.rotation.y = -Math.PI / 2;
+group.updateMatrixWorld(true);
+p.getWorldPosition(pos);
+console.log("U move (-PI/2 around Y). Orig: (1,1,1). New:", Math.round(pos.x), Math.round(pos.y), Math.round(pos.z));

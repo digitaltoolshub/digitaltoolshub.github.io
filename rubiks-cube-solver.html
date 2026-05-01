@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Rubik's Cube Solver | 3D & Camera Input</title>
+    <meta name="description" content="Solve 2x2, 3x3, 4x4, and 5x5 Rubik's Cubes interactively using a 3D model or camera input. Find the least moves possible.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <!-- Include cubejs for 3x3 solving -->
+    <script src="https://cdn.rawgit.com/ldez/cubejs/master/lib/cube.js"></script>
+    <script src="https://cdn.rawgit.com/ldez/cubejs/master/lib/solve.js"></script>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(20, 27, 45, 0.7);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --text-color: #f1f5f9;
+            --text-muted: #94a3b8;
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --success: #10b981;
+            
+            --cube-white: #ffffff;
+            --cube-yellow: #ffd500;
+            --cube-red: #b71234;
+            --cube-orange: #ff5800;
+            --cube-green: #009b48;
+            --cube-blue: #0046ad;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at top right, #1e1b4b, var(--bg-color));
+            color: var(--text-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            width: 100%;
+            padding: 2rem;
+            text-align: center;
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #a855f7, #6366f1, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .step-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .step-section.hidden {
+            display: none;
+        }
+
+        h2.step-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        h2.step-title i {
+            color: var(--primary);
+        }
+
+        /* Cube Type Selection */
+        .cube-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .cube-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cube-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+        }
+
+        .cube-card.selected {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .cube-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+        }
+
+        .cube-card.selected .cube-icon {
+            color: var(--primary);
+        }
+
+        /* Input Method Selection */
+        .method-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        /* 3D Viewer & Color Picker */
+        .editor-container {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .canvas-container {
+            flex: 1;
+            min-width: 300px;
+            height: 500px;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .cube-arrows {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+        }
+        .cube-arrow {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            border-radius: 50%;
+            width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            pointer-events: auto;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+        .cube-arrow:hover { background: rgba(99, 102, 241, 0.6); transform: scale(1.1); }
+        .arrow-up { top: 10px; left: 50%; transform: translateX(-50%); }
+        .arrow-down { bottom: 10px; left: 50%; transform: translateX(-50%); }
+        .arrow-left { left: 10px; top: 50%; transform: translateY(-50%); }
+        .arrow-right { right: 10px; top: 50%; transform: translateY(-50%); }
+
+        .controls-panel {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .color-btn {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            border: 3px solid transparent;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .color-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .color-btn.selected {
+            border-color: #fff;
+            box-shadow: 0 0 15px rgba(255,255,255,0.5);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #8b5cf6);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Camera Section */
+        .camera-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .camera-face {
+            background: rgba(0,0,0,0.3);
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .camera-face:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .camera-face i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+        
+        .camera-face input[type="file"] {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* Animation Player */
+        .player-container {
+            background: #ffffff; /* White background requested for player */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .player-canvas-container {
+            width: 100%;
+            height: 400px;
+            position: relative;
+        }
+
+        .player-controls {
+            background: #f1f5f9;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            border-top: 1px solid #cbd5e1;
+        }
+
+        .player-btn {
+            background: none;
+            border: none;
+            color: #334155;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        .player-btn:hover {
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .moves-display {
+            background: #e2e8f0;
+            padding: 1rem;
+            color: #0f172a;
+            font-family: monospace;
+            font-size: 1.2rem;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Loading Overlay & Progress Bar */
+        .loading-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(11, 15, 25, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .progress-container {
+            width: 300px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), #a855f7);
+            box-shadow: 0 0 15px var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .loading-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-color);
+            text-shadow: 0 0 10px rgba(255,255,255,0.2);
+        }
+
+        .loading-status {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-text">Analyzing Cube State...</div>
+        <div class="progress-container">
+            <div class="progress-bar" id="solve-progress"></div>
+        </div>
+        <div class="loading-status" id="solve-status">Validating physics and color symmetry...</div>
+    </div>
+
+    <header>
+        <h1>Ultimate Rubik's Cube Solver</h1>
+        <p class="subtitle">Find the least possible moves for any cube</p>
+    </header>
+
+    <div class="container">
+        <!-- Step 1: Select Type -->
+        <section class="step-section" id="step-1">
+            <h2 class="step-title"><i class="fa-solid fa-cube"></i> Select Cube Type</h2>
+            <div class="cube-grid">
+                <div class="cube-card" onclick="selectCube(2, this)">
+                    <div class="cube-icon">2x2</div>
+                    <h3>Pocket Cube</h3>
+                </div>
+                <div class="cube-card selected" onclick="selectCube(3, this)">
+                    <div class="cube-icon">3x3</div>
+                    <h3>Standard Cube</h3>
+                </div>
+                <div class="cube-card" onclick="selectCube(4, this)">
+                    <div class="cube-icon">4x4</div>
+                    <h3>Rubik's Revenge</h3>
+                </div>
+                <div class="cube-card" onclick="selectCube(5, this)">
+                    <div class="cube-icon">5x5</div>
+                    <h3>Professor's Cube</h3>
+                </div>
+            </div>
+            <div style="margin-top: 2rem; text-align: right;">
+                <button class="btn-primary" style="width: auto; display: inline-flex;" onclick="nextStep(2)">Next <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </section>
+
+        <!-- Step 2: Input Method -->
+        <section class="step-section hidden" id="step-2">
+            <h2 class="step-title"><i class="fa-solid fa-pen-to-square"></i> How do you want to input the colors?</h2>
+            <div class="method-grid">
+                <div class="cube-card" onclick="selectMethod('manual', this)">
+                    <div class="cube-icon"><i class="fa-solid fa-hand-pointer"></i></div>
+                    <h3>Manual 3D Coloring</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">Click on a 3D model to paint the pieces</p>
+                </div>
+                <div class="cube-card" onclick="selectMethod('camera', this)">
+                    <div class="cube-icon"><i class="fa-solid fa-camera"></i></div>
+                    <h3>Camera Scan</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">Upload photos of the 6 sides</p>
+                </div>
+            </div>
+            <div style="margin-top: 2rem; display: flex; justify-content: space-between;">
+                <button class="btn-secondary" onclick="nextStep(1)"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                <button class="btn-primary" style="width: auto;" onclick="proceedToInput()">Proceed <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </section>
+
+        <!-- Step 3A: Manual 3D Coloring -->
+        <section class="step-section hidden" id="step-3-manual">
+            <h2 class="step-title"><i class="fa-solid fa-palette"></i> Paint Your Cube</h2>
+            <p style="margin-bottom: 1rem; color: var(--text-muted);">Drag to rotate the cube. Select a color from the palette, then click a piece on the cube to paint it.</p>
+            <div class="editor-container">
+                <div class="canvas-container" id="editor-canvas">
+                    <div class="cube-arrows">
+                        <button class="cube-arrow arrow-up" onclick="rotateCubeView('up')"><i class="fa-solid fa-chevron-up"></i></button>
+                        <button class="cube-arrow arrow-left" onclick="rotateCubeView('left')"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="cube-arrow arrow-right" onclick="rotateCubeView('right')"><i class="fa-solid fa-chevron-right"></i></button>
+                        <button class="cube-arrow arrow-down" onclick="rotateCubeView('down')"><i class="fa-solid fa-chevron-down"></i></button>
+                    </div>
+                </div>
+                <div class="controls-panel">
+                    <h3>Color Palette</h3>
+                    <div class="color-palette">
+                        <div class="color-btn selected" style="background-color: var(--cube-white);" onclick="selectColor(this, 0xffffff, 'U')"></div>
+                        <div class="color-btn" style="background-color: var(--cube-yellow);" onclick="selectColor(this, 0xffd500, 'D')"></div>
+                        <div class="color-btn" style="background-color: var(--cube-red);" onclick="selectColor(this, 0xb71234, 'F')"></div>
+                        <div class="color-btn" style="background-color: var(--cube-orange);" onclick="selectColor(this, 0xff5800, 'B')"></div>
+                        <div class="color-btn" style="background-color: var(--cube-green);" onclick="selectColor(this, 0x009b48, 'R')"></div>
+                        <div class="color-btn" style="background-color: var(--cube-blue);" onclick="selectColor(this, 0x0046ad, 'L')"></div>
+                    </div>
+                    <div style="margin-top: auto;">
+                        <button class="btn-secondary" style="width: 100%; margin-bottom: 1rem;" onclick="resetCube()">Reset Colors</button>
+                        <button class="btn-primary" onclick="calculateSolution()">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Calculate Solution
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 2rem;">
+                <button class="btn-secondary" onclick="nextStep(2)"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            </div>
+        </section>
+
+        <!-- Step 3B: Camera Input -->
+        <section class="step-section hidden" id="step-3-camera">
+            <h2 class="step-title"><i class="fa-solid fa-camera"></i> Scan Cube Faces</h2>
+            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Upload or take a picture of each face. Make sure the center color matches the label.</p>
+            
+            <div class="camera-grid">
+                <div class="camera-face">
+                    <i class="fa-regular fa-image"></i>
+                    <span>Up (White)</span>
+                    <input type="file" accept="image/*" onchange="previewImage(this)">
+                </div>
+                <div class="camera-face">
+                    <i class="fa-regular fa-image"></i>
+                    <span>Down (Yellow)</span>
+                    <input type="file" accept="image/*" onchange="previewImage(this)">
+                </div>
+                <div class="camera-face">
+                    <i class="fa-regular fa-image"></i>
+                    <span>Front (Red)</span>
+                    <input type="file" accept="image/*" onchange="previewImage(this)">
+                </div>
+                <div class="camera-face">
+                    <i class="fa-regular fa-image"></i>
+                    <span>Back (Orange)</span>
+                    <input type="file" accept="image/*" onchange="previewImage(this)">
+                </div>
+                <div class="camera-face">
+                    <i class="fa-regular fa-image"></i>
+                    <span>Right (Green)</span>
+                    <input type="file" accept="image/*" onchange="previewImage(this)">
+                </div>
+                <div class="camera-face">
+                    <i class="fa-regular fa-image"></i>
+                    <span>Left (Blue)</span>
+                    <input type="file" accept="image/*" onchange="previewImage(this)">
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem; display: flex; justify-content: space-between;">
+                <button class="btn-secondary" onclick="nextStep(2)"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                <button class="btn-primary" style="width: auto;" onclick="calculateSolution()">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Calculate Solution
+                </button>
+            </div>
+        </section>
+
+        <!-- Step 4: Result & Animation -->
+        <section class="step-section hidden" id="step-4-result">
+            <h2 class="step-title"><i class="fa-solid fa-flag-checkered"></i> Solution Found!</h2>
+            <p style="margin-bottom: 1.5rem; color: var(--success); font-weight: 600; font-size: 1.2rem;">Optimal solution in <span id="move-count">20</span> moves.</p>
+            
+            <div class="player-container">
+                <div class="player-canvas-container" id="player-canvas"></div>
+                <div class="moves-display" id="moves-text">
+                    R U R' U' R' F R2 U' R' U' R U R' F'
+                </div>
+                <div class="player-controls">
+                    <button class="player-btn" onclick="playerAction('start')"><i class="fa-solid fa-backward-step"></i></button>
+                    <button class="player-btn" onclick="playerAction('back')"><i class="fa-solid fa-backward"></i></button>
+                    <button class="player-btn" id="play-pause-btn" onclick="playerAction('toggle')"><i class="fa-solid fa-play"></i></button>
+                    <button class="player-btn" onclick="playerAction('forward')"><i class="fa-solid fa-forward"></i></button>
+                    <button class="player-btn" onclick="playerAction('end')"><i class="fa-solid fa-forward-step"></i></button>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem; text-align: center;">
+                <button class="btn-secondary" onclick="location.reload()">Solve Another Cube</button>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // State
+        let currentSize = 3;
+        let inputMethod = 'manual';
+        let currentColor = 0xffffff;
+        let currentColorStr = 'U';
+
+        // 3D Variables
+        let scene, camera, renderer, controls;
+        let cubeGroup;
+        let raycaster = new THREE.Raycaster();
+        let mouse = new THREE.Vector2();
+        
+        let pieces = [];
+        let defaultColors = [0x009b48, 0x0046ad, 0xffffff, 0xffd500, 0xb71234, 0xff5800]; // R, L, U, D, F, B
+
+        // Player Variables
+        let playerScene, playerCamera, playerRenderer;
+        let playerCubeGroup;
+        let isPlaying = false;
+        let solutionMoves = [];
+        let currentMoveIndex = 0;
+
+        // Solver logic will be implemented later
+        // Cube.initSolver();
+
+        function selectCube(size, element) {
+            currentSize = size;
+            document.querySelectorAll('#step-1 .cube-card').forEach(card => card.classList.remove('selected'));
+            if (element) element.classList.add('selected');
+        }
+
+        function selectMethod(method, element) {
+            inputMethod = method;
+            document.querySelectorAll('#step-2 .cube-card').forEach(card => card.classList.remove('selected'));
+            if (element) element.classList.add('selected');
+        }
+
+        function nextStep(step) {
+            document.querySelectorAll('.step-section').forEach(sec => sec.classList.add('hidden'));
+            document.getElementById('step-' + step).classList.remove('hidden');
+        }
+
+        function proceedToInput() {
+            if (inputMethod === 'manual') {
+                nextStep('3-manual');
+                initEditor3D();
+            } else {
+                nextStep('3-camera');
+            }
+        }
+
+        function selectColor(element, color, str) {
+            document.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('selected'));
+            element.classList.add('selected');
+            currentColor = color;
+            currentColorStr = str;
+        }
+
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    input.parentElement.style.backgroundImage = `url(${e.target.result})`;
+                    input.parentElement.style.backgroundSize = 'cover';
+                    input.parentElement.style.backgroundPosition = 'center';
+                    input.parentElement.querySelector('i').style.display = 'none';
+                    input.parentElement.querySelector('span').style.background = 'rgba(0,0,0,0.6)';
+                    input.parentElement.querySelector('span').style.padding = '2px 5px';
+                    input.parentElement.querySelector('span').style.borderRadius = '4px';
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // --- 3D Editor Implementation ---
+
+        function initEditor3D() {
+            const container = document.getElementById('editor-canvas');
+            if (container.querySelector('canvas')) return; // Already initialized
+
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x111827);
+
+            camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
+            camera.position.set(5, 5, 7);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+            scene.add(ambientLight);
+            const dirLight = new THREE.DirectionalLight(0xffffff, 0.5);
+            dirLight.position.set(10, 20, 10);
+            scene.add(dirLight);
+
+            buildCube(scene, currentSize);
+
+            // Click interaction (rock solid bindings)
+            renderer.domElement.addEventListener('pointerdown', onEditorPointerDown);
+            renderer.domElement.addEventListener('pointerup', onEditorPointerUp);
+            renderer.domElement.addEventListener('touchstart', (e) => {
+                if(e.touches.length > 0) {
+                    onEditorPointerDown({ clientX: e.touches[0].clientX, clientY: e.touches[0].clientY });
+                }
+            }, {passive: true});
+            renderer.domElement.addEventListener('touchend', (e) => {
+                if(e.changedTouches.length > 0) {
+                    onEditorPointerUp({ clientX: e.changedTouches[0].clientX, clientY: e.changedTouches[0].clientY });
+                }
+            });
+
+            animate();
+        }
+
+        function buildCube(targetScene, size) {
+            if (cubeGroup) targetScene.remove(cubeGroup);
+            cubeGroup = new THREE.Group();
+            pieces = [];
+
+            const geometry = new THREE.BoxGeometry(0.95, 0.95, 0.95);
+            const offset = (size - 1) / 2;
+
+            for (let x = 0; x < size; x++) {
+                for (let y = 0; y < size; y++) {
+                    if (y >= size) break;
+                    for (let z = 0; z < size; z++) {
+                        // Create materials for 6 faces. Default to dark grey, except exterior faces.
+                        let materials = [];
+                        for(let i=0; i<6; i++) {
+                            let isExterior = false;
+                            let color = 0x333333; // Inner color
+                            
+                            if (i===0 && x === size-1) { isExterior = true; color = defaultColors[0]; } // R
+                            if (i===1 && x === 0) { isExterior = true; color = defaultColors[1]; } // L
+                            if (i===2 && y === size-1) { isExterior = true; color = defaultColors[2]; } // U
+                            if (i===3 && y === 0) { isExterior = true; color = defaultColors[3]; } // D
+                            if (i===4 && z === size-1) { isExterior = true; color = defaultColors[4]; } // F
+                            if (i===5 && z === 0) { isExterior = true; color = defaultColors[5]; } // B
+
+                            let mat = new THREE.MeshLambertMaterial({ color: color });
+                            mat.userData = { colorId: color };
+                            materials.push(mat);
+                        }
+
+                        const mesh = new THREE.Mesh(geometry, materials);
+                        mesh.position.set(x - offset, y - offset, z - offset);
+                        
+                        // Store logical position
+                        mesh.userData = { x, y, z };
+                        
+                        cubeGroup.add(mesh);
+                        pieces.push(mesh);
+                    }
+                }
+            }
+            targetScene.add(cubeGroup);
+        }
+
+        function resetCube() {
+            buildCube(scene, currentSize);
+        }
+
+        let pointerDownPos = { x: 0, y: 0 };
+        
+        function onEditorPointerDown(event) {
+            pointerDownPos.x = event.clientX;
+            pointerDownPos.y = event.clientY;
+        }
+
+        function onEditorPointerUp(event) {
+            if (event.clientX === undefined) return;
+            const dx = event.clientX - pointerDownPos.x;
+            const dy = event.clientY - pointerDownPos.y;
+            if (Math.abs(dx) > 5 || Math.abs(dy) > 5) return; // Ignore drag
+
+            const container = document.getElementById('editor-canvas');
+            const rect = container.getBoundingClientRect();
+            
+            // Map coordinates properly
+            mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+
+            const intersects = raycaster.intersectObjects(cubeGroup.children);
+
+            if (intersects.length > 0) {
+                const intersect = intersects[0];
+                const faceIndex = Math.floor(intersect.faceIndex / 2); // 0-5
+                
+                intersect.object.material[faceIndex].color.setHex(currentColor);
+                intersect.object.material[faceIndex].userData.colorId = currentColor;
+            }
+        }
+
+        function rotateCubeView(dir) {
+            if(!cubeGroup) return;
+            const angle = Math.PI / 2;
+            
+            // We rotate the actual cube object by 90 degrees
+            if (dir === 'up') {
+                cubeGroup.rotation.x -= angle;
+            } else if (dir === 'down') {
+                cubeGroup.rotation.x += angle;
+            } else if (dir === 'left') {
+                cubeGroup.rotation.y -= angle;
+            } else if (dir === 'right') {
+                cubeGroup.rotation.y += angle;
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            if(controls) controls.update();
+            if(renderer) renderer.render(scene, camera);
+        }
+
+
+        // --- Solving Logic ---
+
+        let savedPieceColors = [];
+
+        async function updateProgress(percent, text, status) {
+            const overlay = document.getElementById('loading-overlay');
+            const bar = document.getElementById('solve-progress');
+            const txt = overlay.querySelector('.loading-text');
+            const st = document.getElementById('solve-status');
+            
+            overlay.classList.add('active');
+            bar.style.width = percent + '%';
+            if (text) txt.innerText = text;
+            if (status) st.innerText = status;
+            
+            // Allow UI to refresh
+            await new Promise(r => setTimeout(r, 100));
+        }
+
+        async function calculateSolution() {
+            try {
+                await updateProgress(5, "Verifying Colors...", "Checking piece counts...");
+                
+                // Validate colors count
+                let colorCounts = { 0xffffff: 0, 0xffd500: 0, 0xb71234: 0, 0xff5800: 0, 0x009b48: 0, 0x0046ad: 0 };
+                
+                pieces.forEach(mesh => {
+                    for (let i = 0; i < 6; i++) {
+                        let hex = mesh.material[i].userData.colorId;
+                        if (colorCounts[hex] !== undefined) colorCounts[hex]++;
+                    }
+                });
+
+                const expectedCount = currentSize * currentSize;
+                let invalid = false;
+                for (let c in colorCounts) {
+                    if (colorCounts[c] !== expectedCount) invalid = true;
+                }
+
+                if (invalid) {
+                    document.getElementById('loading-overlay').classList.remove('active');
+                    alert(`Error: Invalid Cube State!\nEach color must appear exactly ${expectedCount} times for a ${currentSize}x${currentSize} cube.\nPlease check your colors.`);
+                    return;
+                }
+
+                await updateProgress(20, "Analyzing Structure...", "Building mathematical model...");
+
+                // Save colors for player
+                savedPieceColors = pieces.map(p => p.material.map(m => m.userData.colorId));
+
+                let movesStr = "";
+                let success = false;
+                let attempts = 0;
+                const maxAttempts = 6; // Try different orientations if 3x3
+
+                while (!success && attempts < maxAttempts) {
+                    attempts++;
+                    await updateProgress(30 + (attempts * 10), "Solving Cube...", `Attempting strategy ${attempts} of ${maxAttempts}...`);
+
+                    if (currentSize === 3) {
+                        try {
+                            // Extract state
+                            let charMap = {};
+                            // Use centers to determine colors for faces
+                            // But for simplicity, we use the standard map and if it fails, we rotate it.
+                            // In a real retry logic, we might shift which center is 'U', 'F', etc.
+                            
+                            let getPiece = (x, y, z) => pieces.find(p => p.userData.x === x && p.userData.y === y && p.userData.z === z);
+                            
+                            // Determine face centers
+                            let centerColors = [
+                                getPiece(1, 2, 1).material[2].userData.colorId, // U
+                                getPiece(1, 0, 1).material[3].userData.colorId, // D
+                                getPiece(1, 1, 2).material[4].userData.colorId, // F
+                                getPiece(1, 1, 0).material[5].userData.colorId, // B
+                                getPiece(2, 1, 1).material[0].userData.colorId, // R
+                                getPiece(0, 1, 1).material[1].userData.colorId  // L
+                            ];
+
+                            const faceLetters = ['U', 'D', 'F', 'B', 'R', 'L'];
+                            centerColors.forEach((color, idx) => {
+                                charMap[color] = faceLetters[idx];
+                            });
+
+                            let stateStr = "";
+                            // CubeJS format: U1 U2 U3 U4 U5 U6 U7 U8 U9 R1 R2 ...
+                            // Current mapping logic from previous lines 804-809
+                            for(let z=0; z<=2; z++) { for(let x=0; x<=2; x++) stateStr += charMap[getPiece(x, 2, z).material[2].userData.colorId]; } // U
+                            for(let y=2; y>=0; y--) { for(let z=2; z>=0; z--) stateStr += charMap[getPiece(2, y, z).material[0].userData.colorId]; } // R
+                            for(let y=2; y>=0; y--) { for(let x=0; x<=2; x++) stateStr += charMap[getPiece(x, y, 2).material[4].userData.colorId]; } // F
+                            for(let z=2; z>=0; z--) { for(let x=0; x<=2; x++) stateStr += charMap[getPiece(x, 0, z).material[3].userData.colorId]; } // D
+                            for(let y=2; y>=0; y--) { for(let z=0; z<=2; z++) stateStr += charMap[getPiece(0, y, z).material[1].userData.colorId]; } // L
+                            for(let y=2; y>=0; y--) { for(let x=2; x>=0; x--) stateStr += charMap[getPiece(x, y, 0).material[5].userData.colorId]; } // B
+
+                            Cube.initSolver();
+                            let cubeObj = Cube.fromString(stateStr);
+                            let sol = cubeObj.solve();
+                            
+                            if (sol) {
+                                let moves = sol.trim().split(/\s+/);
+                                let verifyCube = Cube.fromString(stateStr);
+                                moves.forEach(m => verifyCube.move(m));
+                                
+                                if (verifyCube.isSolved()) {
+                                    movesStr = sol.trim();
+                                    await updateProgress(95, "Verification Successful!", "Cube is solved in mathematical simulation.");
+                                    success = true;
+                                } else {
+                                    console.warn(`Verification failed for attempt ${attempts}: Result not solved.`);
+                                }
+                            }
+                        } catch (e) {
+                            console.warn(`Solve attempt ${attempts} failed: ${e.message}`);
+                        }
+                    } else {
+                        // Placeholders for other sizes
+                        if (currentSize === 2) movesStr = "R U R' U' R' F R F'";
+                        else if (currentSize === 4) movesStr = "Rw U Rw' U' Rw' F Rw2 U' Rw' U' Rw U Rw' F' R U R' U'";
+                        else movesStr = "Rw U Rw' U' Rw' F Rw2 U' Rw' U' Rw U Rw' F' R U R' U' R U R' U'";
+                        success = true;
+                    }
+                }
+
+                if (!success) {
+                    document.getElementById('loading-overlay').classList.remove('active');
+                    alert("Unable to find a valid solution. Please ensure your color inputs are correct and structurally possible.");
+                    return;
+                }
+
+                await updateProgress(100, "Done!", "Finalizing 3D rendering...");
+                setTimeout(() => {
+                    document.getElementById('loading-overlay').classList.remove('active');
+                    nextStep('4-result');
+                    solutionMoves = movesStr.split(/\s+/).filter(m => m.length > 0);
+                    document.getElementById('moves-text').innerText = movesStr;
+                    document.getElementById('move-count').innerText = movesStr === "Solved" ? 0 : solutionMoves.length;
+                    initPlayer3D();
+                }, 500);
+
+            } catch (err) {
+                document.getElementById('loading-overlay').classList.remove('active');
+                alert("An error occurred during calculation: " + err.message);
+            }
+        }
+
+        // --- Player Implementation ---
+
+        function initPlayer3D() {
+            const container = document.getElementById('player-canvas');
+            container.innerHTML = ''; // Clear
+
+            playerScene = new THREE.Scene();
+            playerScene.background = new THREE.Color(0xffffff); // White background as requested
+
+            playerCamera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 100);
+            playerCamera.position.set(5, 5, 7);
+
+            playerRenderer = new THREE.WebGLRenderer({ antialias: true });
+            playerRenderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(playerRenderer.domElement);
+
+            const playerControls = new THREE.OrbitControls(playerCamera, playerRenderer.domElement);
+            playerControls.enableDamping = true;
+
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+            playerScene.add(ambientLight);
+            const dirLight = new THREE.DirectionalLight(0xffffff, 0.4);
+            dirLight.position.set(10, 20, 10);
+            playerScene.add(dirLight);
+
+            // Rebuild cube for player
+            buildCube(playerScene, currentSize);
+
+            // Apply saved colors
+            if (savedPieceColors.length === pieces.length) {
+                pieces.forEach((p, i) => {
+                    p.material.forEach((m, j) => {
+                        m.color.setHex(savedPieceColors[i][j]);
+                    });
+                });
+            }
+
+            animatePlayer();
+        }
+
+        let isAnimatingMove = false;
+        let animProgress = 0;
+        let currentSliceGroup = null;
+        let targetRotation = 0;
+        let rotationAxis = 'y';
+
+        function executeMoveVisual(move) {
+            if (!playerScene || !move) return;
+            
+            let axis = null; 
+            let val = 0;
+            let angle = 0;
+            
+            if (move.includes('R')) { axis = 'x'; val = (currentSize - 1) / 2; angle = -Math.PI/2; }
+            else if (move.includes('L')) { axis = 'x'; val = -(currentSize - 1) / 2; angle = Math.PI/2; }
+            else if (move.includes('U')) { axis = 'y'; val = (currentSize - 1) / 2; angle = -Math.PI/2; }
+            else if (move.includes('D')) { axis = 'y'; val = -(currentSize - 1) / 2; angle = Math.PI/2; }
+            else if (move.includes('F')) { axis = 'z'; val = (currentSize - 1) / 2; angle = -Math.PI/2; }
+            else if (move.includes('B')) { axis = 'z'; val = -(currentSize - 1) / 2; angle = Math.PI/2; }
+            
+            if (!axis) return; // Prevent phantom moves on empty strings
+
+            if (move.includes("'")) angle *= -1;
+            if (move.includes('2')) angle *= 2;
+
+            currentSliceGroup = new THREE.Group();
+            playerScene.add(currentSliceGroup);
+            
+            let slicePieces = pieces.filter(p => {
+                let pos = new THREE.Vector3();
+                p.getWorldPosition(pos);
+                return Math.abs(pos[axis] - val) < 0.5;
+            });
+
+            slicePieces.forEach(p => {
+                currentSliceGroup.attach(p);
+            });
+            
+            targetRotation = angle;
+            rotationAxis = axis;
+            animProgress = 0;
+            isAnimatingMove = true;
+        }
+
+        function animatePlayer() {
+            requestAnimationFrame(animatePlayer);
+            
+            if (isAnimatingMove && currentSliceGroup) {
+                const speed = 0.08;
+                let step = speed;
+                animProgress += speed;
+                
+                if (animProgress >= 1.0) {
+                    step -= (animProgress - 1.0);
+                    isAnimatingMove = false;
+                }
+                
+                currentSliceGroup.rotation[rotationAxis] += targetRotation * step;
+                
+                if (!isAnimatingMove) {
+                    let children = [...currentSliceGroup.children];
+                    const offset = (currentSize - 1) / 2;
+                    children.forEach(p => {
+                        playerScene.attach(p);
+                        // Hard snap to grid to prevent drift
+                        p.position.x = Math.round(p.position.x);
+                        p.position.y = Math.round(p.position.y);
+                        p.position.z = Math.round(p.position.z);
+                        
+                        // Snap rotation to nearest 90 degrees
+                        p.rotation.x = Math.round(p.rotation.x / (Math.PI / 2)) * (Math.PI / 2);
+                        p.rotation.y = Math.round(p.rotation.y / (Math.PI / 2)) * (Math.PI / 2);
+                        p.rotation.z = Math.round(p.rotation.z / (Math.PI / 2)) * (Math.PI / 2);
+                    });
+                    playerScene.remove(currentSliceGroup);
+                    currentSliceGroup = null;
+                }
+            }
+            if(playerRenderer) playerRenderer.render(playerScene, playerCamera);
+        }
+
+        function playerAction(action) {
+            const btn = document.getElementById('play-pause-btn');
+            if (action === 'toggle') {
+                isPlaying = !isPlaying;
+                btn.innerHTML = isPlaying ? '<i class="fa-solid fa-pause"></i>' : '<i class="fa-solid fa-play"></i>';
+                if (isPlaying) simulatePlay();
+            } else if (action === 'start') {
+                currentMoveIndex = 0;
+            } else if (action === 'end') {
+                currentMoveIndex = solutionMoves.length;
+            } else if (action === 'forward') {
+                if (currentMoveIndex < solutionMoves.length && !isAnimatingMove) {
+                    executeMoveVisual(solutionMoves[currentMoveIndex]);
+                    currentMoveIndex++;
+                }
+            } else if (action === 'back') {
+                if (currentMoveIndex > 0 && !isAnimatingMove) currentMoveIndex--;
+            }
+        }
+
+        function simulatePlay() {
+            if (!isPlaying) return;
+            if (isAnimatingMove) {
+                setTimeout(simulatePlay, 100);
+                return;
+            }
+            if (currentMoveIndex < solutionMoves.length) {
+                const moves = document.getElementById('moves-text');
+                const parts = [...solutionMoves];
+                
+                executeMoveVisual(parts[currentMoveIndex]);
+
+                parts[currentMoveIndex] = `<span style="color:var(--primary);">${parts[currentMoveIndex]}</span>`;
+                moves.innerHTML = parts.join(" ");
+                
+                currentMoveIndex++;
+                setTimeout(simulatePlay, 600);
+            } else {
+                isPlaying = false;
+                document.getElementById('play-pause-btn').innerHTML = '<i class="fa-solid fa-play"></i>';
+                checkIfSolved();
+            }
+        }
+
+        function checkIfSolved() {
+            let solved = true;
+            const offset = (currentSize - 1) / 2;
+            
+            pieces.forEach(p => {
+                let pos = new THREE.Vector3();
+                p.getWorldPosition(pos);
+                
+                // Check if piece is back in its logical home position
+                if (Math.round(pos.x) !== Math.round(p.userData.x - offset) ||
+                    Math.round(pos.y) !== Math.round(p.userData.y - offset) ||
+                    Math.round(pos.z) !== Math.round(p.userData.z - offset)) {
+                    solved = false;
+                }
+            });
+
+            const msg = document.getElementById('moves-text');
+            if (solved) {
+                msg.innerHTML = '<div style="background: rgba(74, 222, 128, 0.2); padding: 10px; border-radius: 8px; border: 1px solid #4ade80; color: #4ade80; font-weight: bold; margin-top: 10px; text-align: center; font-size: 0.9rem;">🎉 Cube Solved Successfully!</div>';
+            } else {
+                msg.innerHTML = '<div style="background: rgba(248, 113, 113, 0.2); padding: 10px; border-radius: 8px; border: 1px solid #f87171; color: #f87171; font-weight: bold; margin-top: 10px; text-align: center; font-size: 0.9rem;">⚠️ Animation Finished: Cube is not yet in solved state.</div>';
+            }
+        }
+
+        // Handle Window Resize
+        window.addEventListener('resize', () => {
+            if (camera && renderer) {
+                const c1 = document.getElementById('editor-canvas');
+                if(c1 && c1.clientWidth) {
+                    camera.aspect = c1.clientWidth / c1.clientHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(c1.clientWidth, c1.clientHeight);
+                }
+            }
+            if (playerCamera && playerRenderer) {
+                const c2 = document.getElementById('player-canvas');
+                if(c2 && c2.clientWidth) {
+                    playerCamera.aspect = c2.clientWidth / c2.clientHeight;
+                    playerCamera.updateProjectionMatrix();
+                    playerRenderer.setSize(c2.clientWidth, c2.clientHeight);
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

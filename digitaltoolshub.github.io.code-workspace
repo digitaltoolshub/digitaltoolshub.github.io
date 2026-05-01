@@ -8,6 +8,7 @@
 		}
 	],
 	"settings": {
-		"liveServer.settings.multiRootWorkspaceName": "digitaltoolshub.github.io"
+		"liveServer.settings.multiRootWorkspaceName": "digitaltoolshub.github.io",
+		"liveServer.settings.port": 8001
 	}
 }

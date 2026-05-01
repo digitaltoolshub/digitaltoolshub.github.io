@@ -818,6 +818,14 @@
                 await updateProgress(5, "Verifying Colors...", "Checking piece counts...");
                 
                 // Validate colors count
+                const colorNames = {
+                    0xffffff: "White",
+                    0xffd500: "Yellow",
+                    0xb71234: "Red",
+                    0xff5800: "Orange",
+                    0x009b48: "Green",
+                    0x0046ad: "Blue"
+                };
                 let colorCounts = { 0xffffff: 0, 0xffd500: 0, 0xb71234: 0, 0xff5800: 0, 0x009b48: 0, 0x0046ad: 0 };
                 
                 pieces.forEach(mesh => {
@@ -829,13 +837,19 @@
 
                 const expectedCount = currentSize * currentSize;
                 let invalid = false;
+                let details = "";
                 for (let c in colorCounts) {
-                    if (colorCounts[c] !== expectedCount) invalid = true;
+                    const hex = parseInt(c);
+                    const count = colorCounts[hex];
+                    if (count !== expectedCount) {
+                        invalid = true;
+                        details += `\n- ${colorNames[hex]}: found ${count}, expected ${expectedCount}`;
+                    }
                 }
 
                 if (invalid) {
                     document.getElementById('loading-overlay').classList.remove('active');
-                    alert(`Error: Invalid Cube State!\nEach color must appear exactly ${expectedCount} times for a ${currentSize}x${currentSize} cube.\nPlease check your colors.`);
+                    alert(`Error: Invalid Cube State!${details}\n\nPlease ensure you have colored all sides correctly. Every face must have exactly ${expectedCount} pieces of its color.`);
                     return;
                 }
 

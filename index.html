@@ -112,11 +112,77 @@
         }
 
         .bento-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .bento-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-8px);
+            border-color: rgba(186, 195, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .bento-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .bento-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .tool-logo-container {
+            width: 100%;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .tool-logo-img {
+            max-width: 80%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5));
+            transition: transform 0.5s ease;
+        }
+
+        .bento-card:hover .tool-logo-img {
+            transform: scale(1.15) rotate(3deg);
+        }
+
+        .featured-logo-container {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            right: -20px;
+            bottom: -20px;
+            opacity: 0.8;
+            filter: blur(0px);
+            transition: all 0.5s ease;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .bento-card:hover .featured-logo-container {
+            transform: scale(1.1) translate(-10px, -10px);
+            opacity: 1;
         }
 
         ::-webkit-scrollbar {
@@ -150,6 +216,18 @@
             display: inline-block;
             animation: pulse-live 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
             box-shadow: 0 0 10px #10b981;
+        }
+
+        .category-badge {
+            font-size: 9px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 4px 10px;
+            border-radius: 99px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #888;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
     </style>
 
@@ -358,560 +436,517 @@
 
                 <!-- Tools Bento Grid -->
                 <div id="tools-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-
-                    <!-- Featured: FX Terminal Pro -->
+                    <!-- FX Terminal Pro (First Position, Normal Size) -->
                     <div data-category="Finance"
-                        class="md:col-span-2 md:row-span-2 rounded-xl bg-surface-container p-8 flex flex-col justify-between group cursor-pointer hover:bg-surface-bright transition-all relative overflow-hidden bento-card">
-                        <div class="absolute top-0 right-0 p-6 flex items-center gap-3">
-                            <div class="flex items-center gap-1.5 bg-zinc-900/50 backdrop-blur-md px-3 py-1 rounded-full border border-zinc-800/50">
-                                <span class="live-dot"></span>
-                                <span class="text-[9px] font-bold text-zinc-400 uppercase tracking-tighter">Live Rates</span>
-                            </div>
-                            <span
-                                class="bg-primary/10 text-primary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Featured</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-tertiary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Finance</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Live Rates</span>
                         </div>
-                        <div class="relative z-10">
-                            <div
-                                class="w-14 h-14 bg-tertiary-container rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-tertiary/20">
-                                <span class="material-symbols-outlined text-on-tertiary-container text-3xl"
-                                    aria-hidden="true">currency_exchange</span>
-                            </div>
-                            <h2 class="text-2xl font-bold tracking-tight mb-2">FX Terminal Pro</h2>
-                            <p class="text-zinc-400 text-sm max-w-sm">Hyper-precise global currency engine with real-time liquidity tracking and multi-node rate verification. The gold standard for FX data.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/currency.png" alt="FX Logo" class="tool-logo-img">
                         </div>
-                        <div class="mt-8 flex items-center gap-4">
-                            <a href="currency.html"
-                                class="bg-tertiary text-on-tertiary px-6 py-2 rounded-md text-sm font-bold flex items-center gap-2 hover:scale-105 transition-transform no-underline">
-                                Launch Terminal <span class="material-symbols-outlined text-sm"
-                                    aria-hidden="true">arrow_forward</span>
-                            </a>
-                        </div>
-                    </div>
-
-
-                    <!-- FlowTech Kanban -->
-                    <div data-category="Productivity"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-primary text-xl"
-                                    aria-hidden="true">layers</span>
-                            </div>
-                            <span
-                                class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Productivity</span>
-                        </div>
-                        <h3 class="font-bold text-lg mb-2">FlowTech Kanban</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Agile visualization for complex project
-                            dependencies and team velocity tracking.</p>
-                        <a href="kanban-board.html"
-                            class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
+                        <h3 class="font-black text-xl mb-2 text-white">FX Terminal Pro</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Hyper-precise global currency engine with real-time liquidity tracking and multi-node rate verification.</p>
+                        <a href="currency.html"
+                            class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open Terminal
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- Rubik's Cube Solver -->
-                    <div data-category="Life"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-tertiary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-tertiary text-xl"
-                                    aria-hidden="true">extension</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Life</span>
-                        </div>
-                        <h3 class="font-bold text-lg mb-2">Rubik's Solver</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Ultimate 3D & Camera Rubik's Cube Solver for least moves possible.</p>
-                        <a href="rubiks-cube-solver.html"
-                            class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
-                    </div>
-
-                    <!-- Quantum Sci-Calc -->
-                    <div data-category="Productivity"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-primary text-xl"
-                                    aria-hidden="true">calculate</span>
-                            </div>
-                            <span
-                                class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Productivity</span>
-                        </div>
-                        <h3 class="font-bold text-lg mb-2">Quantum Sci-Calc</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Advanced scientific computing engine with
-                            graphing capabilities and unit conversion.</p>
-                        <a href="scientific-calculator.html"
-                            class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
-                    </div>
-
-                    <!-- DataForge Pro -->
+                    <!-- DataForge Pro (Updated) -->
                     <div data-category="Development"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-primary text-xl"
-                                    aria-hidden="true">database</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Development</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-primary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Dev</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Data Synth</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">DataForge Pro</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Advanced neural processing for high-velocity data synthesis and cleansing.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/dev.png" alt="Dev Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">DataForge Pro</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Advanced neural processing for high-velocity data synthesis and cleansing.</p>
                         <a href="data-generator.html"
                             class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- Ultra Earnings -->
-                    <div data-category="Finance"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-tertiary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-tertiary text-xl"
-                                    aria-hidden="true">payments</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Finance</span>
+                    <!-- Rubik's Cube Solver (2nd) -->
+                    <div data-category="Life"
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-tertiary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Solver</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Premium Tool</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Earnings Engine</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Live income ticker, tax simulation, and
-                            high-precision global earning breakdowns.</p>
-                        <a href="salary.html"
-                            class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
+                        <div class="tool-logo-container">
+                            <img src="logos/rubiks.png" alt="Rubik's Solver" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">Rubik's Solver</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-6 font-medium">Ultimate 3D & Camera Rubik's Cube Solver for least moves possible. Real-time vision mapping.</p>
+                        <a href="rubiks-cube-solver.html"
+                            class="mt-auto text-tertiary text-xs font-black flex items-center gap-1 hover:gap-3 transition-all group-hover:translate-x-1">Open Solver
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- Ultimate Personality Scan -->
-                    <div data-category="Psychology"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-secondary text-xl"
-                                    aria-hidden="true">psychology</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Psychology</span>
+                    <!-- Earnings Engine (3rd) -->
+                    <div data-category="Finance"
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-tertiary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Finance</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">High precision</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Personality Scan</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Neo-glassmorphic MBTI assessment with
-                            interactive results.</p>
+                        <div class="tool-logo-container">
+                            <img src="logos/earnings.png" alt="Earnings Engine" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">Earnings Engine</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-6 font-medium">Live income ticker, tax simulation, and high-precision global earning breakdowns for professionals.</p>
+                        <a href="salary.html"
+                            class="mt-auto text-tertiary text-xs font-black flex items-center gap-1 hover:gap-3 transition-all group-hover:translate-x-1">Analyze Income
+                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    </div>
+
+                    <!-- FlowTech Kanban (4th) -->
+                    <div data-category="Productivity"
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-primary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Flow</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Agile</span>
+                        </div>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/productivity.png" alt="Kanban Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">FlowTech Kanban</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Agile visualization for complex project dependencies and team velocity tracking.</p>
+                        <a href="kanban-board.html"
+                            class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
+                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    </div>
+
+                    <!-- Quantum Sci-Calc (Updated) -->
+                    <div data-category="Productivity"
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-primary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Science</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Computing</span>
+                        </div>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/math.png" alt="Math Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">Quantum Sci-Calc</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Advanced scientific computing engine with graphing and unit conversion.</p>
+                        <a href="scientific-calculator.html"
+                            class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
+                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    </div>
+
+                    <!-- Ultimate Personality Scan (Updated with Logo) -->
+                    <div data-category="Psychology"
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-secondary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Psychology</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Neo-Scan</span>
+                        </div>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/mbti.png" alt="MBTI Scan" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">Personality Scan</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Neo-glassmorphic MBTI assessment with interactive results and cognitive mapping.</p>
                         <a href="mbti.html"
                             class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- Password Nebula -->
+                    <!-- Password Nebula (Updated with Logo) -->
                     <div data-category="Security"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-error/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-error text-xl"
-                                    aria-hidden="true">fingerprint</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Security</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-error/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Security</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Encrypted</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Password Nebula</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Generate unbreakable passwords with
-                            entropy-based security.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/security.png" alt="Password Nebula" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">Password Nebula</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Generate unbreakable passwords with entropy-based security and vault protection.</p>
                         <a href="password.html"
                             class="mt-auto text-error text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- Crypto Trend Pro -->
+                    <!-- Crypto Trend Pro (Updated) -->
                     <div data-category="Finance"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-tertiary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-tertiary text-xl"
-                                    aria-hidden="true">trending_up</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Finance</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-tertiary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Crypto</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Trends</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Crypto Trend Pro</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Analyze cryptocurrency prices and trends
-                            with AI insights.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/crypto.png" alt="Crypto Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">Crypto Trend Pro</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Analyze cryptocurrency prices and trends with AI insights and predictive modeling.</p>
                         <a href="crypto.html"
                             class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- Retirement Countdown -->
+                    <!-- Retirement Plan (Updated) -->
                     <div data-category="Finance"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-tertiary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-tertiary text-xl"
-                                    aria-hidden="true">hourglass_empty</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Finance</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-tertiary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Retire</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Future</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Retirement Plan</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Plan your retirement and track progress
-                            with personalized savings goals.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/time.png" alt="Time Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">Retirement Plan</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Plan your retirement and track progress with personalized savings goals and inflation auditing.</p>
                         <a href="retire.html"
                             class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- Text Lens Pro -->
+                    <!-- Text Lens Pro (Updated) -->
                     <div data-category="Productivity"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-primary text-xl"
-                                    aria-hidden="true">description</span>
-                            </div>
-                            <span
-                                class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Productivity</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-primary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Text</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Analyzer</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Text Lens Pro</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Advanced sentiment analysis and deep text
-                            statistics.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/ai.png" alt="AI Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">Text Lens Pro</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Advanced sentiment analysis and deep text statistics for professional writers.</p>
                         <a href="Advance Text Analyzer.html"
                             class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- Pet Cost Analyzer -->
+                    <!-- Pet Cost Analyzer (Updated) -->
                     <div data-category="Finance"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-tertiary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-tertiary text-xl"
-                                    aria-hidden="true">pets</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Finance</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-tertiary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Life</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Audit</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Pet Cost Audit</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Calculate accurate pet ownership costs for
-                            any animal.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/crypto.png" alt="Finance Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">Pet Cost Audit</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Calculate accurate pet ownership costs for any animal with life-cycle projections.</p>
                         <a href="pet.html"
                             class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- BMI Calculator -->
+                    <!-- BMI Calculator (Updated with Logo) -->
                     <div data-category="Health"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-secondary text-xl"
-                                    aria-hidden="true">fitness_center</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Health</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-secondary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Health</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Metrics</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">BMI Hub</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Calculate BMI and get personalized health
-                            insights.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/health.png" alt="BMI Hub" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">BMI Hub</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Calculate BMI and get personalized health insights with advanced metrics.</p>
                         <a href="bmi.html"
                             class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- Macro Blueprint -->
+                    <!-- Macro Blueprint (Updated) -->
                     <div data-category="Health"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-secondary text-xl"
-                                    aria-hidden="true">nutrition</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Health</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-secondary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Diet</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Precision</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Macro Blueprint</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Hyper-precise macronutrient targets and
-                            calorie splits.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/health.png" alt="Health Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">Macro Blueprint</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Hyper-precise macronutrient targets and calorie splits for elite physical performance.</p>
                         <a href="macros.html"
                             class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- Chroma Studio -->
+                    <!-- Chroma Studio (Updated) -->
                     <div data-category="Design"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-secondary text-xl"
-                                    aria-hidden="true">palette</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Design</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-secondary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Design</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Studio</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Chroma Studio</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Extract themes from images and check
-                            accessibility.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/design.png" alt="Design Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">Chroma Studio</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Extract themes from images and check accessibility with professional color grading.</p>
                         <a href="chroma-studio.html"
                             class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- Cipher Shield -->
+                    <!-- Cipher Shield (Updated) -->
                     <div data-category="Security"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-error/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-error text-xl"
-                                    aria-hidden="true">shield</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Security</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-error/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Shield</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Secure</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Cipher Shield</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Military-grade encryption and entropy
-                            analysis.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/security.png" alt="Security Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">Cipher Shield</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Military-grade encryption and entropy analysis for your most sensitive data.</p>
                         <a href="security-vault.html"
                             class="mt-auto text-error text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- The Void Script -->
+                    <!-- The Void Script (Updated) -->
                     <div data-category="Security"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-error/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-error text-xl"
-                                    aria-hidden="true">privacy_tip</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Privacy</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-error/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Stealth</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Private</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">The Void Script</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Premium stealth encoding suite for
-                            sensitive data.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/privacy.png" alt="Privacy Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">The Void Script</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Premium stealth encoding suite for sensitive data obfuscation and privacy.</p>
                         <a href="decoder.html"
                             class="mt-auto text-error text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- Trip Estimator -->
+                    <!-- Trip Estimator (Updated) -->
                     <div data-category="Life"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-tertiary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-tertiary text-xl"
-                                    aria-hidden="true">flight_takeoff</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Life</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-tertiary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Travel</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Estimator</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Trip Estimator</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Calculate flights, hotels, and daily
-                            expenses.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/travel.png" alt="Travel Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">Trip Estimator</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Calculate flights, hotels, and daily expenses with global currency support.</p>
                         <a href="flight.html"
                             class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- NRR Pro -->
+                    <!-- NRR Pro (Updated) -->
                     <div data-category="Life"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-tertiary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-tertiary text-xl"
-                                    aria-hidden="true">emoji_events</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Sports</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-tertiary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Sports</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Pro Stats</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">NRR Precision Pro</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Advanced Net Run Rate calculator for
-                            tournaments.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/productivity.png" alt="Stats Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">NRR Precision Pro</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Advanced Net Run Rate calculator for high-stakes cricket tournaments.</p>
                         <a href="nrr-calculator.html"
                             class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- URL Architect -->
+                    <!-- URL Architect (Updated) -->
                     <div data-category="Productivity"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-primary text-xl"
-                                    aria-hidden="true">qr_code</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Marketing</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-primary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Marketing</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Architect</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">URL Architect</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Design branded QR codes and vanity links.
-                        </p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/ai.png" alt="Marketing Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">URL Architect</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Design branded QR codes and vanity links with high-conversion tracking.</p>
                         <a href="qr.html"
                             class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- Age Calculator -->
+                    <!-- Age Calculator (Updated) -->
                     <div data-category="Life"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-tertiary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-tertiary text-xl"
-                                    aria-hidden="true">cake</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Life</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-tertiary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Time</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Chronos</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Age Chronos</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Track your age down to the millisecond
-                            with visuals.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/time.png" alt="Time Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">Age Chronos</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Track your age down to the millisecond with advanced biological visuals.</p>
                         <a href="birthday.html"
                             class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- Digital Minimalism -->
+                    <!-- Digital Minimalism (Updated) -->
                     <div data-category="Health"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-secondary text-xl"
-                                    aria-hidden="true">volunteer_activism</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Wellness</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-secondary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Wellness</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Focus</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Minimalism audit</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Professional audit of your attention and
-                            digital usage.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/mbti.png" alt="Focus Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">Minimalism Audit</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Professional audit of your attention economy and digital footprint.</p>
                         <a href="social.html"
                             class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- AI Prompt Genius -->
+                    <!-- AI Prompt Genius (Updated) -->
                     <div data-category="Productivity"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-primary text-xl"
-                                    aria-hidden="true">auto_awesome</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">AI
-                                Productivity</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-primary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">AI</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Productivity</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Prompt Genius</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Optimize your AI prompts using the RTF
-                            framework.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/ai.png" alt="AI Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">Prompt Genius</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Optimize your AI prompts using the professional RTF framework.</p>
                         <a href="prompt-optimizer.html"
                             class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- SubScout -->
+                    <!-- SubScout (Updated) -->
                     <div data-category="Finance"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-tertiary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-tertiary text-xl"
-                                    aria-hidden="true">account_balance_wallet</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Finance</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-tertiary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Finance</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Scout</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">SubScout Audit</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Audit monthly subscriptions and visualize
-                            spending.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/crypto.png" alt="Scout Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">SubScout Audit</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Audit monthly subscriptions and visualize global spending patterns.</p>
                         <a href="subs-audit.html"
                             class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- Markdown Editor -->
+                    <!-- Markdown Editor (Updated) -->
                     <div data-category="Productivity"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-primary text-xl"
-                                    aria-hidden="true">edit_note</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Writing</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-primary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Writing</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Flow</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Lingo Flow</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">High-performance Markdown suite with
-                            real-time preview.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/productivity.png" alt="Writing Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">Lingo Flow</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">High-performance Markdown suite with real-time preview and export.</p>
                         <a href="markdown-editor.html"
                             class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- Heartbeat -->
+                    <!-- Heartbeat (Updated) -->
                     <div data-category="Health"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-secondary text-xl"
-                                    aria-hidden="true">monitor_heart</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Health</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-secondary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Health</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Heart</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Heartbeat Scan</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Lifetime heartbeat statistics and
-                            analysis.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/health.png" alt="Heart Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">Heartbeat Scan</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Lifetime heartbeat statistics and analysis with biometric mapping.</p>
                         <a href="heartbeat.html"
                             class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- Steps -->
+                    <!-- Steps (Updated) -->
                     <div data-category="Health"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-secondary text-xl"
-                                    aria-hidden="true">steps</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Health</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-secondary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Health</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Steps</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Step Counter</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Track daily movement and life-step
-                            statistics.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/health.png" alt="Steps Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">Step Counter</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Track daily movement and life-step statistics with biological calibration.</p>
                         <a href="steps.html"
                             class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- Sleep -->
+                    <!-- Sleep (Updated) -->
                     <div data-category="Health"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-secondary text-xl"
-                                    aria-hidden="true">bedtime</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Health</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-secondary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Health</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Sleep</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Sleep Tracker</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Calculate total sleep and recovery ratios
-                            over time.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/health.png" alt="Sleep Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">Sleep Tracker</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Calculate total sleep and recovery ratios with advanced circadian auditing.</p>
                         <a href="sleep.html"
                             class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- Age Comparison -->
+                    <!-- Age Comparison (Updated) -->
                     <div data-category="Life"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-tertiary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-tertiary text-xl"
-                                    aria-hidden="true">groups</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Life</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-tertiary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Life</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Compare</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Age Comparison</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Analyze age differences and life
-                            intersection points.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/time.png" alt="Compare Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">Age Comparison</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Analyze age differences and life intersection points with multi-node biological auditing.</p>
                         <a href="compare.html"
                             class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
 
-                    <!-- Breath -->
+                    <!-- Breath (Updated) -->
                     <div data-category="Health"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-[#BAC3FF]/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-secondary text-xl"
-                                    aria-hidden="true">air</span>
-                            </div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Health</span>
+                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-secondary/20 border border-transparent">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="category-badge">Health</div>
+                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Breath</span>
                         </div>
-                        <h3 class="font-bold text-lg mb-2">Breath Intake</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Calculate total respiratory activity and
-                            lung health peaks.</p>
+                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
+                            <img src="logos/health.png" alt="Breath Logo" class="tool-logo-img">
+                        </div>
+                        <h3 class="font-black text-xl mb-2 text-white">Breath Intake</h3>
+                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Calculate total respiratory activity and lung health peaks with advanced volumetric auditing.</p>
                         <a href="breath.html"
                             class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
                             <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
                     </div>
+
+
 
 
                 </div>
@@ -1006,7 +1041,7 @@
                 });
             });
         });
-
+o
         // Shortcut for search (Cmd+K)
         window.addEventListener('keydown', (e) => {
             if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -1022,6 +1057,19 @@
                     const link = card.querySelector('a');
                     if (link) link.click();
                 }
+            });
+        });
+
+        // Floating Animation
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
+                const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20;
+                card.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg) translateY(-5px)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(0px)';
             });
         });
     </script>

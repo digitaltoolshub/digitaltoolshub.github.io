@@ -98,8 +98,61 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #131313;
+            background-color: #0c0c0c;
             color: #e5e2e1;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Background Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(186, 195, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(213, 197, 166, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(12, 12, 12, 1) 0%, rgba(8, 8, 8, 1) 100%);
+            z-index: -2;
+        }
+
+        /* Dot Grid Overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Animated Aurora Blobs */
+        .aurora {
+            position: fixed;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.1;
+            z-index: -1;
+            pointer-events: none;
+            animation: move-aurora 30s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
+        }
+
+        .aurora-1 { background: #bac3ff; top: -20%; left: -10%; }
+        .aurora-2 { background: #d5c5a6; bottom: -20%; right: -10%; animation-delay: -7s; }
+        .aurora-3 { background: #ffabf2; top: 30%; right: -20%; animation-delay: -15s; }
+
+        @keyframes move-aurora {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            100% { transform: translate(150px, 100px) scale(1.3) rotate(15deg); }
         }
 
         .material-symbols-outlined {
@@ -196,6 +249,44 @@
         ::-webkit-scrollbar-thumb {
             background: #353534;
             border-radius: 4px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .live-dot::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background-color: #10b981;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse-live 2s infinite;
+        }
+
+        @keyframes pulse-live {
+            0% { width: 100%; height: 100%; opacity: 0.6; }
+            100% { width: 300%; height: 300%; opacity: 0; }
+        }
+
+        .category-badge {
+            background: rgba(186, 195, 255, 0.1);
+            color: #bac3ff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            border: 1px solid rgba(186, 195, 255, 0.15);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         ::-webkit-scrollbar-thumb:hover {
@@ -306,6 +397,9 @@
 </head>
 
 <body class="bg-background text-on-background selection:bg-primary/30">
+    <div class="aurora aurora-1"></div>
+    <div class="aurora aurora-2"></div>
+    <div class="aurora aurora-3"></div>
     <!-- TopAppBar -->
     <header class="bg-[#131313]/80 backdrop-blur-lg sticky top-0 w-full z-50 shadow-[0_24px_40px_rgba(0,0,0,0.08)]">
         <div class="flex justify-between items-center px-6 py-3 w-full max-w-[1600px] mx-auto">
@@ -321,14 +415,14 @@
                     </nav>
                 </div>
             </div>
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-3 sm:gap-4">
                 <div
-                    class="hidden sm:flex items-center gap-2 bg-surface-container-high rounded-full px-4 py-1.5 focus-within:ring-2 focus-within:ring-[#BAC3FF]/30 transition-all border border-zinc-800/50">
+                    class="flex items-center gap-2 bg-surface-container-high rounded-full px-3 py-1.5 focus-within:ring-2 focus-within:ring-[#BAC3FF]/30 transition-all border border-zinc-800/50">
                     <span class="material-symbols-outlined text-sm text-zinc-500" aria-hidden="true">search</span>
                     <input id="global-search"
-                        class="bg-transparent border-none focus:ring-0 text-xs w-32 lg:w-48 text-on-surface placeholder-zinc-600"
-                        placeholder="Search tools..." type="text" aria-label="Search all tools" />
-                    <kbd class="text-[10px] bg-surface-container-highest px-1.5 py-0.5 rounded text-zinc-500 font-sans"
+                        class="bg-transparent border-none focus:ring-0 text-xs w-20 sm:w-32 lg:w-48 text-on-surface placeholder-zinc-600"
+                        placeholder="Search..." type="text" aria-label="Search all tools" />
+                    <kbd class="hidden sm:inline-block text-[10px] bg-surface-container-highest px-1.5 py-0.5 rounded text-zinc-500 font-sans"
                         aria-hidden="true">⌘K</kbd>
                 </div>
                 <div class="flex items-center gap-2">

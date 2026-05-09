@@ -61,6 +61,7 @@
             font-size: 2.5rem;
             font-weight: 800;
             background: linear-gradient(135deg, #a855f7, #6366f1, #3b82f6);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 0.5rem;
@@ -541,6 +542,109 @@
             font-size: 0.9rem;
         }
 
+        .scanner-orientation {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .orientation-chip {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 999px;
+            padding: 0.45rem 0.8rem;
+            font-size: 0.9rem;
+            color: #e2e8f0;
+        }
+
+        .camera-live-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .camera-live-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .camera-guide-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .camera-guide-item {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 0.9rem;
+        }
+
+        .camera-guide-item strong {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .scan-status-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
+        }
+
+        .scan-status-item {
+            border-radius: 12px;
+            padding: 0.85rem 0.9rem;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.04);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .scan-status-item.active {
+            border-color: rgba(99, 102, 241, 0.7);
+            background: rgba(99, 102, 241, 0.14);
+            color: #eef2ff;
+        }
+
+        .scan-status-item.done {
+            border-color: rgba(16, 185, 129, 0.55);
+            background: rgba(16, 185, 129, 0.14);
+            color: #d1fae5;
+        }
+
+        .camera-actions-row {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary:disabled,
+        .btn-secondary:disabled,
+        .scanner-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        @media (max-width: 900px) {
+            .camera-live-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .camera-guide-list,
+            .scan-status-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .close-scanner {
             position: absolute;
             top: 20px; right: 20px;
@@ -565,6 +669,10 @@
         <div class="scanner-controls">
             <div class="scanner-instruction" id="scanner-instruction">Scan Top Face (White)</div>
             <div class="scanner-subtext" id="scanner-subtext">Align the 3x3 grid with the cube face</div>
+            <div class="scanner-orientation" id="scanner-orientation">
+                <div class="orientation-chip">Top edge: Orange</div>
+                <div class="orientation-chip">Right edge: Green</div>
+            </div>
             <button class="scanner-btn" id="scanner-capture-btn" onclick="captureFace()">Capture Face</button>
             <div id="scan-progress" style="margin-top: 1rem; color: var(--primary);">Face 1 / 6</div>
         </div>
@@ -602,7 +710,7 @@
                     <div class="cube-card">
                         <div class="cube-icon"><i class="fa-solid fa-camera"></i></div>
                         <h3>Camera Scan</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">Upload photos or use Guided Scanner</p>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">Live guided scan with orientation prompts</p>
                     </div>
                 </label>
             </div>
@@ -660,50 +768,55 @@
 
         <!-- Step 3B: Camera Input -->
         <section class="step-section hidden" id="step-3-camera">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-                <h2 class="step-title" style="margin-bottom: 0;"><i class="fa-solid fa-camera"></i> Camera Scan</h2>
-                <button class="btn-primary" style="width: auto; padding: 0.6rem 1.2rem;" onclick="startCameraScan()">
-                    <i class="fa-solid fa-video"></i> Launch Guided Scanner
-                </button>
-            </div>
-            <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Either use the guided scanner above or manually upload photos of each side below.</p>
-            
-            <div class="camera-grid">
-                <div class="camera-face">
-                    <i class="fa-regular fa-image"></i>
-                    <span>Up (White)</span>
-                    <input type="file" accept="image/*" onchange="previewImage(this)">
-                </div>
-                <div class="camera-face">
-                    <i class="fa-regular fa-image"></i>
-                    <span>Down (Yellow)</span>
-                    <input type="file" accept="image/*" onchange="previewImage(this)">
-                </div>
-                <div class="camera-face">
-                    <i class="fa-regular fa-image"></i>
-                    <span>Front (Red)</span>
-                    <input type="file" accept="image/*" onchange="previewImage(this)">
-                </div>
-                <div class="camera-face">
-                    <i class="fa-regular fa-image"></i>
-                    <span>Back (Orange)</span>
-                    <input type="file" accept="image/*" onchange="previewImage(this)">
-                </div>
-                <div class="camera-face">
-                    <i class="fa-regular fa-image"></i>
-                    <span>Right (Green)</span>
-                    <input type="file" accept="image/*" onchange="previewImage(this)">
-                </div>
-                <div class="camera-face">
-                    <i class="fa-regular fa-image"></i>
-                    <span>Left (Blue)</span>
-                    <input type="file" accept="image/*" onchange="previewImage(this)">
+            <h2 class="step-title"><i class="fa-solid fa-camera"></i> Live Camera Scan</h2>
+            <div class="camera-live-card">
+                <div class="camera-live-grid">
+                    <div>
+                        <p style="color: var(--text-muted); line-height: 1.7;">Use the live camera only. The scanner will tell you which face to show and which adjacent colors must sit on the top and right edges so the cube orientation stays consistent for the solver.</p>
+                        <div class="camera-guide-list">
+                            <div class="camera-guide-item">
+                                <strong>How to hold the cube</strong>
+                                Keep the center sticker named in the prompt inside the 3x3 grid.
+                            </div>
+                            <div class="camera-guide-item">
+                                <strong>Orientation matters</strong>
+                                Match the top-edge and right-edge colors shown by the prompt before capturing.
+                            </div>
+                            <div class="camera-guide-item">
+                                <strong>One live workflow</strong>
+                                No separate uploads are needed. Scan all 6 faces in one guided pass.
+                            </div>
+                            <div class="camera-guide-item">
+                                <strong>After scan</strong>
+                                The cube model is filled automatically and the solve button unlocks.
+                            </div>
+                        </div>
+                        <div class="camera-actions-row">
+                            <button class="btn-primary" style="width: auto; padding: 0.8rem 1.4rem;" onclick="startCameraScan()">
+                                <i class="fa-solid fa-video"></i> Start Live Scan
+                            </button>
+                            <button class="btn-secondary" style="width: auto;" onclick="resetCameraScanData()">
+                                <i class="fa-solid fa-rotate-left"></i> Reset Scan
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 0.9rem;">Scan Progress</h3>
+                        <div class="scan-status-grid" id="scan-status-grid">
+                            <div class="scan-status-item" id="scan-status-U">White face pending</div>
+                            <div class="scan-status-item" id="scan-status-F">Red face pending</div>
+                            <div class="scan-status-item" id="scan-status-R">Green face pending</div>
+                            <div class="scan-status-item" id="scan-status-B">Orange face pending</div>
+                            <div class="scan-status-item" id="scan-status-L">Blue face pending</div>
+                            <div class="scan-status-item" id="scan-status-D">Yellow face pending</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div style="margin-top: 2rem; display: flex; justify-content: space-between;">
                 <button class="btn-secondary" onclick="nextStep(2)"><i class="fa-solid fa-arrow-left"></i> Back</button>
-                <button class="btn-primary" style="width: auto;" onclick="calculateSolution()">
+                <button class="btn-primary" style="width: auto;" id="camera-calculate-btn" onclick="calculateSolution()" disabled>
                     <i class="fa-solid fa-wand-magic-sparkles"></i> Calculate Solution
                 </button>
             </div>
@@ -748,7 +861,7 @@
         let raycaster, mouse;
         
         let pieces = [];
-        let defaultColors = [0x009b48, 0x0046ad, 0xffffff, 0xffd500, 0xb71234, 0xff5800]; // R, L, U, D, F, B
+        let defaultColors = [0x0046ad, 0x009b48, 0xffffff, 0xffd500, 0xb71234, 0xff5800]; // R, L, U, D, F, B
         const INNER_COLOR = 0x333333;
         const BLANK_COLOR = 0x555555;
 
@@ -797,33 +910,115 @@
                 setTimeout(initEditor3D, 100);
             } else {
                 nextStep('3-camera');
+                setTimeout(() => {
+                    initEditor3D();
+                    updateCameraScanStatus();
+                }, 100);
             }
         }
 
         // Guided Scanner Logic
         let currentScanFace = 0;
         let scanSequence = [
-            { name: "Up (White)", id: 'U', instruction: "Scan Top Face (White)", next: "Now rotate cube DOWN to show Front (Red)" },
-            { name: "Down (Yellow)", id: 'D', instruction: "Scan Bottom Face (Yellow)", next: "Now rotate cube UP twice to show Front (Red)" },
-            { name: "Front (Red)", id: 'F', instruction: "Scan Front Face (Red)", next: "Now rotate cube LEFT to show Right (Green)" },
-            { name: "Back (Orange)", id: 'B', instruction: "Scan Back Face (Orange)", next: "All faces scanned! Click to finish." },
-            { name: "Right (Green)", id: 'R', instruction: "Scan Right Face (Green)", next: "Now rotate cube LEFT twice to show Left (Blue)" },
-            { name: "Left (Blue)", id: 'L', instruction: "Scan Left Face (Blue)", next: "Now rotate cube RIGHT to show Back (Orange)" }
+            {
+                name: "White",
+                id: 'U',
+                instruction: "Show the White face in the grid",
+                subtext: "Keep Orange on the top edge and Green on the right edge before capturing.",
+                orientation: ["Top edge: Orange", "Right edge: Green"]
+            },
+            {
+                name: "Red",
+                id: 'F',
+                instruction: "Show the Red face in the grid",
+                subtext: "Keep White on the top edge and Green on the right edge.",
+                orientation: ["Top edge: White", "Right edge: Green"]
+            },
+            {
+                name: "Green",
+                id: 'R',
+                instruction: "Show the Green face in the grid",
+                subtext: "Keep White on the top edge and Orange on the right edge.",
+                orientation: ["Top edge: White", "Right edge: Orange"]
+            },
+            {
+                name: "Orange",
+                id: 'B',
+                instruction: "Show the Orange face in the grid",
+                subtext: "Keep White on the top edge and Blue on the right edge.",
+                orientation: ["Top edge: White", "Right edge: Blue"]
+            },
+            {
+                name: "Blue",
+                id: 'L',
+                instruction: "Show the Blue face in the grid",
+                subtext: "Keep White on the top edge and Red on the right edge.",
+                orientation: ["Top edge: White", "Right edge: Red"]
+            },
+            {
+                name: "Yellow",
+                id: 'D',
+                instruction: "Show the Yellow face in the grid",
+                subtext: "Keep Red on the top edge and Green on the right edge.",
+                orientation: ["Top edge: Red", "Right edge: Green"]
+            }
         ];
+        let scannedFaces = {};
+        let cameraScanComplete = false;
         let stream = null;
+
+        function updateCameraScanStatus() {
+            for (let i = 0; i < scanSequence.length; i++) {
+                const face = scanSequence[i];
+                const item = document.getElementById('scan-status-' + face.id);
+                if (!item) continue;
+
+                item.classList.remove('active', 'done');
+                if (scannedFaces[face.id]) {
+                    item.classList.add('done');
+                    item.innerText = `${face.name} face captured`;
+                } else if (currentScanFace < scanSequence.length && scanSequence[currentScanFace].id === face.id) {
+                    item.classList.add('active');
+                    item.innerText = `${face.name} face ready to scan`;
+                } else {
+                    item.innerText = `${face.name} face pending`;
+                }
+            }
+
+            const solveBtn = document.getElementById('camera-calculate-btn');
+            if (solveBtn) solveBtn.disabled = !cameraScanComplete;
+        }
+
+        function resetCameraScanData() {
+            currentScanFace = 0;
+            scannedFaces = {};
+            cameraScanComplete = false;
+            initEditor3D();
+            if (scene) buildCube(scene, currentSize, true);
+            updateCameraScanStatus();
+        }
 
         async function startCameraScan() {
             const modal = document.getElementById('scanner-modal');
             const video = document.getElementById('scanner-video');
+
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                stream = null;
+            }
             
             // Ensure 3D pieces are initialized for color storage
             initEditor3D();
+            if (scene) buildCube(scene, currentSize, true);
+            currentScanFace = 0;
+            scannedFaces = {};
+            cameraScanComplete = false;
+            updateCameraScanStatus();
             
             try {
                 stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
                 video.srcObject = stream;
                 modal.classList.add('active');
-                currentScanFace = 0;
                 updateScannerUI();
             } catch (err) {
                 alert("Camera access denied or not available: " + err.message);
@@ -833,16 +1028,22 @@
         function stopCameraScan() {
             if (stream) {
                 stream.getTracks().forEach(track => track.stop());
+                stream = null;
             }
             document.getElementById('scanner-modal').classList.remove('active');
         }
 
         function updateScannerUI() {
             const face = scanSequence[currentScanFace];
+            const orientation = document.getElementById('scanner-orientation');
             document.getElementById('scanner-instruction').innerText = face.instruction;
-            document.getElementById('scanner-subtext').innerText = face.next;
+            document.getElementById('scanner-subtext').innerText = face.subtext;
             document.getElementById('scan-progress').innerText = `Face ${currentScanFace + 1} / 6`;
             document.getElementById('scanner-capture-btn').innerText = (currentScanFace === 5) ? "Finish Scanning" : "Capture Face";
+            if (orientation) {
+                orientation.innerHTML = face.orientation.map(text => `<div class="orientation-chip">${text}</div>`).join('');
+            }
+            updateCameraScanStatus();
         }
 
         function captureFace() {
@@ -868,17 +1069,17 @@
 
             // Map extracted colors to cube model (simplified)
             applyFaceColors(scanSequence[currentScanFace].id, faceData);
+            scannedFaces[scanSequence[currentScanFace].id] = true;
+            updateCameraScanStatus();
 
             if (currentScanFace < 5) {
                 currentScanFace++;
                 updateScannerUI();
             } else {
+                cameraScanComplete = true;
+                updateCameraScanStatus();
                 stopCameraScan();
-                alert("Scan complete! The cube has been populated with the detected colors.");
-                // Switch to manual mode so user can verify
-                inputMethod = 'manual';
-                nextStep('3-manual');
-                initEditor3D();
+                alert("Live scan complete. The cube has been populated from the camera feed and is ready to solve.");
             }
         }
 
@@ -1008,6 +1209,7 @@
             controls = new THREE.OrbitControls(camera, renderer.domElement);
             controls.enableDamping = true;
             controls.dampingFactor = 0.05;
+            controls.enableRotate = false; // cube rotation handled manually
 
             // Lighting
             const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
@@ -1020,10 +1222,16 @@
 
             // Click interaction (rock solid bindings)
             renderer.domElement.addEventListener('pointerdown', onEditorPointerDown);
+            renderer.domElement.addEventListener('pointermove', onEditorPointerMove);
             renderer.domElement.addEventListener('pointerup', onEditorPointerUp);
             renderer.domElement.addEventListener('touchstart', (e) => {
                 if(e.touches.length > 0) {
                     onEditorPointerDown({ clientX: e.touches[0].clientX, clientY: e.touches[0].clientY });
+                }
+            }, {passive: true});
+            renderer.domElement.addEventListener('touchmove', (e) => {
+                if(e.touches.length > 0) {
+                    onEditorPointerMove({ clientX: e.touches[0].clientX, clientY: e.touches[0].clientY });
                 }
             }, {passive: true});
             renderer.domElement.addEventListener('touchend', (e) => {
@@ -1190,13 +1398,43 @@
         }
 
         let pointerDownPos = { x: 0, y: 0 };
+        let editorIsDragging = false;
+        let editorLastDragX = 0, editorLastDragY = 0;
+
+        function isExteriorFace(piece, faceIndex) {
+            const { x, y, z } = piece.userData;
+            if (faceIndex === 0) return x === currentSize - 1; // +X (R)
+            if (faceIndex === 1) return x === 0;               // -X (L)
+            if (faceIndex === 2) return y === currentSize - 1; // +Y (U)
+            if (faceIndex === 3) return y === 0;               // -Y (D)
+            if (faceIndex === 4) return z === currentSize - 1; // +Z (F)
+            if (faceIndex === 5) return z === 0;               // -Z (B)
+            return false;
+        }
         
         function onEditorPointerDown(event) {
             pointerDownPos.x = event.clientX;
             pointerDownPos.y = event.clientY;
+            editorIsDragging = true;
+            editorLastDragX = event.clientX;
+            editorLastDragY = event.clientY;
+        }
+
+        function onEditorPointerMove(event) {
+            if (!editorIsDragging || !cubeGroup) return;
+            const dx = event.clientX - editorLastDragX;
+            const dy = event.clientY - editorLastDragY;
+            editorLastDragX = event.clientX;
+            editorLastDragY = event.clientY;
+            if (Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
+            const SENS = 0.008;
+            const qY = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, -1, 0), dx * SENS);
+            const qX = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), -dy * SENS);
+            cubeGroup.quaternion.premultiply(qX).premultiply(qY);
         }
 
         function onEditorPointerUp(event) {
+            editorIsDragging = false;
             if (event.clientX === undefined) return;
             const dx = event.clientX - pointerDownPos.x;
             const dy = event.clientY - pointerDownPos.y;
@@ -1213,12 +1451,15 @@
 
             const intersects = raycaster.intersectObjects(cubeGroup.children);
 
-            if (intersects.length > 0) {
-                const intersect = intersects[0];
+            // Paint only true exterior stickers; never allow inner body faces.
+            for (let i = 0; i < intersects.length; i++) {
+                const intersect = intersects[i];
                 const faceIndex = Math.floor(intersect.faceIndex / 2); // 0-5
-                
+                if (!isExteriorFace(intersect.object, faceIndex)) continue;
+
                 intersect.object.material[faceIndex].color.setHex(currentColor);
                 intersect.object.material[faceIndex].userData.colorId = currentColor;
+                break;
             }
         }
 
@@ -1229,8 +1470,8 @@
             let axis = new THREE.Vector3();
             if (dir === 'up') axis.set(1, 0, 0);
             else if (dir === 'down') axis.set(-1, 0, 0);
-            else if (dir === 'left') axis.set(0, -1, 0);
-            else if (dir === 'right') axis.set(0, 1, 0);
+            else if (dir === 'left') axis.set(0, 1, 0);
+            else if (dir === 'right') axis.set(0, -1, 0);
 
             let q = new THREE.Quaternion().setFromAxisAngle(axis, angle);
             cubeGroup.quaternion.premultiply(q);
@@ -1252,6 +1493,125 @@
 
         let savedPieceColors = [];
 
+        function cloneStateFromPieces() {
+            return pieces.map(p => ({
+                x: p.userData.x,
+                y: p.userData.y,
+                z: p.userData.z,
+                colors: p.material.map(m => m.userData.colorId)
+            }));
+        }
+
+        function rotateVecQuarter(v, axis, dir) {
+            const x = v.x, y = v.y, z = v.z;
+            if (axis === 'x') {
+                if (dir === 1) return { x, y: -z, z: y };
+                return { x, y: z, z: -y };
+            }
+            if (axis === 'y') {
+                if (dir === 1) return { x: z, y, z: -x };
+                return { x: -z, y, z: x };
+            }
+            if (axis === 'z') {
+                if (dir === 1) return { x: -y, y: x, z };
+                return { x: y, y: -x, z };
+            }
+            return { x, y, z };
+        }
+
+        function normalToFaceIndex(n) {
+            if (n.x === 1) return 0;
+            if (n.x === -1) return 1;
+            if (n.y === 1) return 2;
+            if (n.y === -1) return 3;
+            if (n.z === 1) return 4;
+            if (n.z === -1) return 5;
+            return -1;
+        }
+
+        function applyQuarterTurnToState(state, axis, layer, dir) {
+            for (let i = 0; i < state.length; i++) {
+                const cubie = state[i];
+                if (cubie[axis] !== layer) continue;
+
+                const centered = { x: cubie.x - 1, y: cubie.y - 1, z: cubie.z - 1 };
+                const rotatedPos = rotateVecQuarter(centered, axis, dir);
+
+                const newColors = [INNER_COLOR, INNER_COLOR, INNER_COLOR, INNER_COLOR, INNER_COLOR, INNER_COLOR];
+                for (let f = 0; f < 6; f++) {
+                    const color = cubie.colors[f];
+                    const normal = [
+                        { x: 1, y: 0, z: 0 },
+                        { x: -1, y: 0, z: 0 },
+                        { x: 0, y: 1, z: 0 },
+                        { x: 0, y: -1, z: 0 },
+                        { x: 0, y: 0, z: 1 },
+                        { x: 0, y: 0, z: -1 }
+                    ][f];
+                    const rotatedNormal = rotateVecQuarter(normal, axis, dir);
+                    const newFaceIndex = normalToFaceIndex(rotatedNormal);
+                    if (newFaceIndex !== -1) newColors[newFaceIndex] = color;
+                }
+
+                cubie.x = Math.round(rotatedPos.x + 1);
+                cubie.y = Math.round(rotatedPos.y + 1);
+                cubie.z = Math.round(rotatedPos.z + 1);
+                cubie.colors = newColors;
+            }
+        }
+
+        function applyMovesToState(state, moves) {
+            const baseMap = {
+                R: { axis: 'x', layer: 2, dir: -1 },
+                L: { axis: 'x', layer: 0, dir: 1 },
+                U: { axis: 'y', layer: 2, dir: -1 },
+                D: { axis: 'y', layer: 0, dir: 1 },
+                F: { axis: 'z', layer: 2, dir: -1 },
+                B: { axis: 'z', layer: 0, dir: 1 }
+            };
+
+            for (let i = 0; i < moves.length; i++) {
+                const move = moves[i];
+                const base = move && move[0];
+                if (!baseMap[base]) continue;
+
+                let dir = baseMap[base].dir;
+                if (move.includes("'")) dir *= -1;
+                const turns = move.includes('2') ? 2 : 1;
+
+                for (let t = 0; t < turns; t++) {
+                    applyQuarterTurnToState(state, baseMap[base].axis, baseMap[base].layer, dir);
+                }
+            }
+
+            return state;
+        }
+
+        function isStateSolved(state) {
+            const checks = [
+                { coord: 'x', value: 2, face: 0 },
+                { coord: 'x', value: 0, face: 1 },
+                { coord: 'y', value: 2, face: 2 },
+                { coord: 'y', value: 0, face: 3 },
+                { coord: 'z', value: 2, face: 4 },
+                { coord: 'z', value: 0, face: 5 }
+            ];
+
+            for (let i = 0; i < checks.length; i++) {
+                const c = checks[i];
+                const stickers = state.filter(cubie => cubie[c.coord] === c.value).map(cubie => cubie.colors[c.face]);
+                if (stickers.length !== 9) return false;
+
+                const first = stickers[0];
+                if (first === INNER_COLOR || first === BLANK_COLOR) return false;
+                for (let k = 1; k < stickers.length; k++) {
+                    if (stickers[k] !== first) return false;
+                }
+            }
+
+            return true;
+        }
+
         async function updateProgress(percent, text, status) {
             const overlay = document.getElementById('loading-overlay');
             const bar = document.getElementById('solve-progress');
@@ -1269,6 +1629,11 @@
 
         async function calculateSolution() {
             try {
+                if (inputMethod === 'camera' && !cameraScanComplete) {
+                    alert('Complete the guided live scan for all 6 faces before calculating the solution.');
+                    return;
+                }
+
                 await updateProgress(5, "Verifying Colors...", "Checking piece counts...");
                 
                 // Validate colors — count only exterior stickers (skip inner dark grey faces)
@@ -1383,6 +1748,14 @@
                     if (sol !== null) {
                         movesStr = sol.trim();
                         if (movesStr === "") movesStr = "Solved";
+
+                        // Strict verification: only accept solutions that solve this exact cube model state.
+                        const verifyMoves = (movesStr === "Solved") ? [] : movesStr.split(/\s+/).filter(m => m.length > 0);
+                        const verifyState = applyMovesToState(cloneStateFromPieces(), verifyMoves);
+                        if (!isStateSolved(verifyState)) {
+                            throw new Error("Internal verification failed: generated moves did not solve the cube model. Please recheck the painted colors and try again.");
+                        }
+
                         success = true;
                     } else {
                         throw new Error("No solution found. This state may be mathematically impossible.");
@@ -1469,6 +1842,67 @@
         let targetRotation = 0;
         let rotationAxis = 'y';
 
+        function bakePlayerStateToGrid() {
+            const offset = (currentSize - 1) / 2;
+            const localNormals = [
+                new THREE.Vector3(1, 0, 0),
+                new THREE.Vector3(-1, 0, 0),
+                new THREE.Vector3(0, 1, 0),
+                new THREE.Vector3(0, -1, 0),
+                new THREE.Vector3(0, 0, 1),
+                new THREE.Vector3(0, 0, -1)
+            ];
+
+            let bakedColors = [];
+
+            for (let x = 0; x < currentSize; x++) {
+                for (let y = 0; y < currentSize; y++) {
+                    for (let z = 0; z < currentSize; z++) {
+                        let targetPos = new THREE.Vector3(x - offset, y - offset, z - offset);
+
+                        // Find the piece currently occupying this world position.
+                        let piece = pieces.find(p => {
+                            let worldPos = new THREE.Vector3();
+                            p.getWorldPosition(worldPos);
+                            return worldPos.distanceTo(targetPos) < 0.2;
+                        });
+                        if (!piece) continue;
+
+                        let worldQuat = new THREE.Quaternion();
+                        piece.getWorldQuaternion(worldQuat);
+                        let newColors = [INNER_COLOR, INNER_COLOR, INNER_COLOR, INNER_COLOR, INNER_COLOR, INNER_COLOR];
+
+                        for (let i = 0; i < 6; i++) {
+                            let normal = localNormals[i].clone().applyQuaternion(worldQuat).round();
+                            let color = piece.material[i].color.getHex();
+
+                            if (normal.x === 1) newColors[0] = color;
+                            else if (normal.x === -1) newColors[1] = color;
+                            else if (normal.y === 1) newColors[2] = color;
+                            else if (normal.y === -1) newColors[3] = color;
+                            else if (normal.z === 1) newColors[4] = color;
+                            else if (normal.z === -1) newColors[5] = color;
+                        }
+
+                        bakedColors.push({ x, y, z, colors: newColors });
+                    }
+                }
+            }
+
+            // Reset all pieces to canonical orientation/position and apply baked colors.
+            bakedColors.forEach(b => {
+                let p = pieces.find(piece => piece.userData.x === b.x && piece.userData.y === b.y && piece.userData.z === b.z);
+                if (!p) return;
+
+                p.position.set(b.x - offset, b.y - offset, b.z - offset);
+                p.quaternion.identity();
+                for (let i = 0; i < 6; i++) {
+                    p.material[i].color.setHex(b.colors[i]);
+                    p.material[i].userData.colorId = b.colors[i];
+                }
+            });
+        }
+
         function executeMoveVisual(move) {
             if (!playerScene || !move) return;
             
@@ -1526,23 +1960,14 @@
                 
                 if (!isAnimatingMove) {
                     let children = [...currentSliceGroup.children];
-                    const offset = (currentSize - 1) / 2;
                     children.forEach(p => {
                         playerScene.attach(p);
-                        // Hard snap position to grid to prevent drift
-                        p.position.x = Math.round(p.position.x);
-                        p.position.y = Math.round(p.position.y);
-                        p.position.z = Math.round(p.position.z);
-                        
-                        // Snap rotation robustly using a Rotation Matrix to avoid Gimbal Lock
-                        let mat = new THREE.Matrix4().makeRotationFromQuaternion(p.quaternion);
-                        for (let i = 0; i < 16; i++) {
-                            mat.elements[i] = Math.round(mat.elements[i]);
-                        }
-                        p.quaternion.setFromRotationMatrix(mat);
                     });
                     playerScene.remove(currentSliceGroup);
                     currentSliceGroup = null;
+
+                    // Convert transformed mesh state into exact logical cubie colors.
+                    bakePlayerStateToGrid();
                 }
             }
             if(playerRenderer) playerRenderer.render(playerScene, playerCamera);

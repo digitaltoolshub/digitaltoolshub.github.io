@@ -652,9 +652,547 @@
             font-size: 2rem;
             cursor: pointer;
         }
+
+        /* Move History */
+        .move-history-panel {
+            display: none;
+            margin-top: 1.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .move-history-panel.visible {
+            display: block;
+        }
+
+        .move-history-header {
+            background: rgba(99, 102, 241, 0.15);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.9rem 1.2rem;
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--text-color);
+        }
+
+        .move-history-header i {
+            color: var(--primary);
+        }
+
+        .move-history-scroll {
+            max-height: 220px;
+            overflow-y: auto;
+            padding: 1rem 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .move-history-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .move-history-scroll::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .move-history-scroll::-webkit-scrollbar-thumb {
+            background: rgba(99,102,241,0.5);
+            border-radius: 3px;
+        }
+
+        .move-chip {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 6px;
+            padding: 0.3rem 0.6rem;
+            font-family: monospace;
+            font-size: 0.95rem;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .move-chip .move-num {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+
+        .move-chip.current {
+            background: rgba(99, 102, 241, 0.25);
+            border-color: var(--primary);
+            color: #c7d2fe;
+        }
+
+        /* Download Video button */
+        .btn-download-video {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-download-video:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.55);
+        }
+
+        .btn-download-video:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-download-video.recording {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+            animation: pulse-record 1.2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-record {
+            0%, 100% { box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4); }
+            50% { box-shadow: 0 4px 25px rgba(239, 68, 68, 0.75); }
+        }
+
+        /* ── Type Pieces Modal ── */
+        .type-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(11, 15, 25, 0.97);
+            backdrop-filter: blur(16px);
+            z-index: 3000;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        .type-modal.active { display: flex; }
+
+        .type-modal-header {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+
+        .type-modal-header h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .type-modal-close {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #fff;
+            width: 38px; height: 38px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+        }
+        .type-modal-close:hover { background: rgba(239,68,68,0.3); }
+
+        .type-legend {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .type-legend-chip {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 20px;
+            padding: 0.3rem 0.7rem;
+            font-size: 0.82rem;
+            color: var(--text-color);
+        }
+
+        .type-legend-swatch {
+            width: 14px; height: 14px;
+            border-radius: 3px;
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .type-canvas-wrapper {
+            width: 100%;
+            max-width: 700px;
+            height: 460px;
+            background: #111827;
+            border-radius: 14px;
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        #type-render-target {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+        }
+
+        #type-render-target canvas {
+            display: block !important;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .type-canvas-arrows {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .type-modal-hint {
+            margin-top: 0.6rem;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            text-align: center;
+        }
+
+        .type-modal-actions {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Face Input Panel */
+        .face-input-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(6px);
+            z-index: 4000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .face-input-overlay.active { display: flex; }
+
+        .face-input-panel {
+            background: #1e293b;
+            border: 2px solid var(--primary);
+            border-radius: 18px;
+            padding: 1.5rem 2rem 1.8rem;
+            box-shadow: 0 16px 60px rgba(0,0,0,0.8);
+            width: 340px;
+            max-width: 95vw;
+        }
+
+        .face-input-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.9rem;
+        }
+
+        .face-input-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .face-input-close {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #fff;
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .face-input-close:hover { background: rgba(239,68,68,0.3); }
+
+        .face-input-legend {
+            display: flex;
+            gap: 0.35rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .face-input-legend span {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            cursor: default;
+        }
+
+        .face-input-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 1.2rem;
+        }
+
+        .face-cell {
+            position: relative;
+            border-radius: 8px;
+            border: 2px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.05);
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: border-color 0.15s, transform 0.1s;
+        }
+        .face-cell:focus-within {
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(99,102,241,0.5);
+            transform: scale(1.05);
+        }
+
+        .face-cell input {
+            position: absolute;
+            inset: 0;
+            width: 100%; height: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #fff;
+            caret-color: transparent;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .face-cell-letter {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: rgba(255,255,255,0.9);
+            pointer-events: none;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+            z-index: 2;
+            position: relative;
+        }
+
+        .face-input-hint {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .face-input-actions {
+            display: flex;
+            gap: 0.7rem;
+        }
+
+        .btn-type-pieces {
+            background: linear-gradient(135deg, #7c3aed, #6366f1);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.2rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(124,58,237,0.35);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            width: 100%;
+            justify-content: center;
+        }
+        /* Face Picker Grid */
+        .face-picker-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            width: 100%;
+            max-width: 560px;
+            margin: 0 auto 0.5rem;
+        }
+
+        .face-picker-btn {
+            background: rgba(255,255,255,0.04);
+            border: 2px solid rgba(255,255,255,0.12);
+            border-radius: 14px;
+            padding: 0.9rem 0.5rem 0.7rem;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.55rem;
+            transition: all 0.2s;
+            color: var(--text-color);
+        }
+        .face-picker-btn:hover {
+            border-color: var(--primary);
+            background: rgba(99,102,241,0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(99,102,241,0.25);
+        }
+        .face-picker-btn.done {
+            border-color: rgba(16,185,129,0.6);
+            background: rgba(16,185,129,0.07);
+        }
+
+        .face-mini-preview {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 2px;
+            width: 54px;
+            height: 54px;
+        }
+
+        .face-mini-cell {
+            border-radius: 2px;
+            background: #555;
+        }
+
+        .face-picker-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+        }
+
+        .face-picker-status {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+        }
+        .face-picker-btn.done .face-picker-status {
+            color: #6ee7b7;
+        }
+        .face-hold-hint {
+            font-size: 0.62rem;
+            color: rgba(255,255,255,0.45);
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 5px;
+            padding: 0.12rem 0.45rem;
+            letter-spacing: 0.01em;
+            white-space: nowrap;
+        }
+        .face-input-hold-hint {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 7px;
+            padding: 0.35rem 0.7rem;
+            margin-bottom: 0.6rem;
+        }
+        .face-input-hold-hint i { opacity: 0.7; }
+
+        .type-color-key {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 0.9rem;
+        }
+        .type-color-key-chip {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.18rem 0.55rem;
+            border-radius: 5px;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+        }
     </style>
 </head>
 <body>
+    <!-- Type Pieces Modal -->
+    <div class="type-modal" id="type-modal">
+        <div class="type-modal-header">
+            <h2><i class="fa-solid fa-keyboard" style="margin-right:0.5rem;"></i>Type the Pieces</h2>
+            <button class="type-modal-close" onclick="closeTypePiecesModal()" title="Close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <p style="color:var(--text-muted);font-size:0.88rem;text-align:center;margin-bottom:0.8rem;">Click a face below to enter its 9 colors using letter keys.</p>
+
+        <div class="type-color-key">
+            <span class="type-color-key-chip" style="background:#ffffff;color:#000;">W = White</span>
+            <span class="type-color-key-chip" style="background:#ffd500;color:#000;">Y = Yellow</span>
+            <span class="type-color-key-chip" style="background:#b71234;">R = Red</span>
+            <span class="type-color-key-chip" style="background:#ff5800;">O = Orange</span>
+            <span class="type-color-key-chip" style="background:#009b48;">G = Green</span>
+            <span class="type-color-key-chip" style="background:#0046ad;">B = Blue</span>
+        </div>
+
+        <div class="face-picker-grid" id="face-picker-grid"></div>
+
+        <div class="type-modal-actions">
+            <button class="btn-primary" style="width:auto;padding:0.9rem 2rem;" onclick="applyTypedColorsAndSolve()">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Apply &amp; Calculate Solution
+            </button>
+            <button class="btn-secondary" onclick="closeTypePiecesModal()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Face Input Panel -->
+    <div class="face-input-overlay" id="face-input-overlay">
+        <div class="face-input-panel">
+            <div class="face-input-header">
+                <div class="face-input-title">
+                    <span id="face-input-swatch" style="width:18px;height:18px;border-radius:4px;border:1px solid rgba(255,255,255,0.3);display:inline-block;"></span>
+                    <span id="face-input-title-text">Front Face</span>
+                </div>
+                <button class="face-input-close" onclick="closeFaceInputPanel()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="face-input-legend">
+                <span style="background:#ffffff;color:#000;">W</span>
+                <span style="background:#ffd500;color:#000;">Y</span>
+                <span style="background:#b71234;">R</span>
+                <span style="background:#ff5800;">O</span>
+                <span style="background:#009b48;">G</span>
+                <span style="background:#0046ad;">B</span>
+            </div>
+            <div class="face-input-grid" id="face-input-grid"></div>
+            <p class="face-input-hint">Type W Y R O G B in each cell — Tab or arrow keys to move</p>
+            <div class="face-input-actions">
+                <button class="btn-primary" style="padding:0.7rem 1.2rem;font-size:0.95rem;" onclick="applyFaceInputPanel()">
+                    <i class="fa-solid fa-check"></i> Apply Face
+                </button>
+                <button class="btn-secondary" onclick="closeFaceInputPanel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Scanner Modal -->
     <div class="scanner-modal" id="scanner-modal">
         <div class="close-scanner" onclick="stopCameraScan()"><i class="fa-solid fa-xmark"></i></div>
@@ -755,6 +1293,9 @@
                         <div class="color-btn" style="background-color: var(--cube-blue);" onclick="selectColor(this, 0x0046ad, 'L')"></div>
                     </div>
 
+                        <button class="btn-type-pieces" onclick="openTypePiecesModal()">
+                            <i class="fa-solid fa-keyboard"></i> Type the Pieces
+                        </button>
                         <button class="btn-primary" onclick="calculateSolution()">
                             <i class="fa-solid fa-wand-magic-sparkles"></i> Calculate Solution
                         </button>
@@ -841,7 +1382,18 @@
                 </div>
             </div>
 
-            <div style="margin-top: 2rem; text-align: center;">
+            <!-- Move History Panel (shown after animation ends) -->
+            <div class="move-history-panel" id="move-history-panel">
+                <div class="move-history-header">
+                    <i class="fa-solid fa-list-ol"></i> All Moves (<span id="history-total">0</span>)
+                </div>
+                <div class="move-history-scroll" id="move-history-scroll"></div>
+            </div>
+
+            <div style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: center;">
+                <button class="btn-download-video" id="record-btn" onclick="startRecordAndDownload()">
+                    <i class="fa-solid fa-video"></i> Download Video
+                </button>
                 <button class="btn-secondary" onclick="location.reload()">Solve Another Cube</button>
             </div>
         </section>
@@ -1304,6 +1856,9 @@
         }
 
         function shuffleCube() {
+            // Always start from a fully solved cube, ignoring any manually entered colors
+            buildCube(scene, currentSize, false);
+
             // Pick random moves
             const axes = ['x', 'y', 'z'];
             const angles = [Math.PI/2, -Math.PI/2, Math.PI];
@@ -1612,6 +2167,66 @@
             return true;
         }
 
+        // Run Kociemba solver in a Web Worker so an unsolvable/invalid state can't
+        // freeze the browser. Returns the solution string, or throws on error/timeout.
+        function solveWithTimeout(stateStr, timeoutMs = 12000) {
+            return new Promise((resolve, reject) => {
+                const src = [
+                    "importScripts(",
+                    "'https://cdn.jsdelivr.net/gh/ldez/cubejs/lib/cube.js',",
+                    "'https://cdn.jsdelivr.net/gh/ldez/cubejs/lib/solve.js'",
+                    ");",
+                    "self.onmessage = function(e) {",
+                    "  try {",
+                    "    Cube.initSolver();",
+                    "    var sol = Cube.fromString(e.data).solve();",
+                    "    self.postMessage({ ok: true, sol: sol });",
+                    "  } catch(err) {",
+                    "    self.postMessage({ ok: false, err: err && err.message ? err.message : String(err) });",
+                    "  }",
+                    "};"
+                ].join('\n');
+
+                let worker;
+                try {
+                    const blob = new Blob([src], { type: 'application/javascript' });
+                    worker = new Worker(URL.createObjectURL(blob));
+                } catch (e) {
+                    // Fallback: run synchronously (no Worker support)
+                    try {
+                        Cube.initSolver();
+                        resolve(Cube.fromString(stateStr).solve());
+                    } catch(err) {
+                        reject(err);
+                    }
+                    return;
+                }
+
+                const timer = setTimeout(() => {
+                    worker.terminate();
+                    reject(new Error(
+                        'Solver timed out — this cube configuration appears to be physically impossible. ' +
+                        'Please double-check each face using the hold instructions and re-enter the colors.'
+                    ));
+                }, timeoutMs);
+
+                worker.onmessage = function(e) {
+                    clearTimeout(timer);
+                    worker.terminate();
+                    if (e.data.ok) resolve(e.data.sol);
+                    else reject(new Error(e.data.err || 'Solver error'));
+                };
+
+                worker.onerror = function(e) {
+                    clearTimeout(timer);
+                    worker.terminate();
+                    reject(new Error('Solver worker error: ' + (e.message || e)));
+                };
+
+                worker.postMessage(stateStr);
+            });
+        }
+
         async function updateProgress(percent, text, status) {
             const overlay = document.getElementById('loading-overlay');
             const bar = document.getElementById('solve-progress');
@@ -1742,23 +2357,28 @@
                     for (let y = 2; y >= 0; y--) for (let x = 2; x >= 0; x--) stateStr += fc(getPiece(x, y, 0).material[5].userData.colorId);
 
                     await updateProgress(60, "Solving Cube...", "Calculating optimal solution...");
-                    Cube.initSolver();
-                    let sol = Cube.fromString(stateStr).solve();
-                    
-                    if (sol !== null) {
-                        movesStr = sol.trim();
-                        if (movesStr === "") movesStr = "Solved";
 
-                        // Strict verification: only accept solutions that solve this exact cube model state.
-                        const verifyMoves = (movesStr === "Solved") ? [] : movesStr.split(/\s+/).filter(m => m.length > 0);
+                    let sol;
+                    try {
+                        sol = await solveWithTimeout(stateStr, 12000);
+                    } catch (solveErr) {
+                        throw solveErr; // propagate to outer catch
+                    }
+
+                    if (sol !== null && sol !== undefined) {
+                        movesStr = (sol + '').trim();
+                        if (movesStr === '') movesStr = 'Solved';
+
+                        // Verify the solution against the 3-D model state.
+                        const verifyMoves = (movesStr === 'Solved') ? [] : movesStr.split(/\s+/).filter(m => m.length > 0);
                         const verifyState = applyMovesToState(cloneStateFromPieces(), verifyMoves);
                         if (!isStateSolved(verifyState)) {
-                            throw new Error("Internal verification failed: generated moves did not solve the cube model. Please recheck the painted colors and try again.");
+                            throw new Error('Internal verification failed — the generated moves did not solve the cube model. Please re-check your entered colors and try again.');
                         }
 
                         success = true;
                     } else {
-                        throw new Error("No solution found. This state may be mathematically impossible.");
+                        throw new Error('No solution found. This cube state may be physically impossible. Check your colors and hold instructions.');
                     }
                 } catch (e) {
                     document.getElementById('loading-overlay').classList.remove('active');
@@ -1798,6 +2418,10 @@
         function initPlayer3D() {
             const container = document.getElementById('player-canvas');
             container.innerHTML = ''; // Clear
+
+            executedMoves = [];
+            const histPanel = document.getElementById('move-history-panel');
+            if (histPanel) histPanel.classList.remove('visible');
 
             playerScene = new THREE.Scene();
             playerScene.background = new THREE.Color(0x111827); // Premium dark background
@@ -1994,27 +2618,7 @@
         }
 
         function simulatePlay() {
-            if (!isPlaying) return;
-            if (isAnimatingMove) {
-                setTimeout(simulatePlay, 100);
-                return;
-            }
-            if (currentMoveIndex < solutionMoves.length) {
-                const moves = document.getElementById('moves-text');
-                const parts = [...solutionMoves];
-                
-                executeMoveVisual(parts[currentMoveIndex]);
-
-                parts[currentMoveIndex] = `<span style="color:var(--primary);">${parts[currentMoveIndex]}</span>`;
-                moves.innerHTML = parts.join(" ");
-                
-                currentMoveIndex++;
-                setTimeout(simulatePlay, 600);
-            } else {
-                isPlaying = false;
-                document.getElementById('play-pause-btn').innerHTML = '<i class="fa-solid fa-play"></i>';
-                checkIfSolved();
-            }
+            simulatePlayWithCallback(null);
         }
 
         function checkIfSolved() {
@@ -2091,6 +2695,416 @@
                 }
             }
         });
+
+        // --- Move History ---
+
+        let executedMoves = [];
+
+        function renderMoveHistory() {
+            const panel = document.getElementById('move-history-panel');
+            const scroll = document.getElementById('move-history-scroll');
+            const totalEl = document.getElementById('history-total');
+            if (!panel || !scroll) return;
+
+            panel.classList.add('visible');
+            totalEl.textContent = executedMoves.length;
+            scroll.innerHTML = executedMoves.map((mv, i) =>
+                `<div class="move-chip" id="hist-chip-${i}">
+                    <span class="move-num">${i + 1}.</span>
+                    <span>${mv}</span>
+                </div>`
+            ).join('');
+        }
+
+        function highlightHistoryMove(index) {
+            document.querySelectorAll('.move-chip').forEach(c => c.classList.remove('current'));
+            const chip = document.getElementById('hist-chip-' + index);
+            if (chip) {
+                chip.classList.add('current');
+                chip.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            }
+        }
+
+        // --- Video Recording ---
+
+        let mediaRecorder = null;
+        let recordedChunks = [];
+
+        function startRecordAndDownload() {
+            if (!playerRenderer) {
+                alert('The 3D player is not ready yet.');
+                return;
+            }
+            if (solutionMoves.length === 0) {
+                alert('No moves to record — the cube is already solved!');
+                return;
+            }
+
+            const btn = document.getElementById('record-btn');
+            btn.disabled = true;
+            btn.classList.add('recording');
+            btn.innerHTML = '<i class="fa-solid fa-circle"></i> Recording…';
+
+            // Reset cube to initial scrambled state and rewind
+            executedMoves = [];
+            currentMoveIndex = 0;
+            initPlayer3D();
+
+            const canvas = playerRenderer.domElement;
+            const stream = canvas.captureStream(30);
+
+            const mimeType = (typeof MediaRecorder !== 'undefined' && MediaRecorder.isTypeSupported('video/webm;codecs=vp9'))
+                ? 'video/webm;codecs=vp9'
+                : 'video/webm';
+
+            recordedChunks = [];
+            mediaRecorder = new MediaRecorder(stream, { mimeType });
+
+            mediaRecorder.ondataavailable = (e) => {
+                if (e.data && e.data.size > 0) recordedChunks.push(e.data);
+            };
+
+            mediaRecorder.onstop = () => {
+                const blob = new Blob(recordedChunks, { type: 'video/webm' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'rubiks-cube-solution.webm';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                setTimeout(() => URL.revokeObjectURL(url), 5000);
+
+                btn.disabled = false;
+                btn.classList.remove('recording');
+                btn.innerHTML = '<i class="fa-solid fa-video"></i> Download Video';
+            };
+
+            mediaRecorder.start(100); // collect chunks every 100 ms
+
+            // Play through all moves; stop recording when done
+            isPlaying = true;
+            document.getElementById('play-pause-btn').innerHTML = '<i class="fa-solid fa-pause"></i>';
+            simulatePlayWithCallback(() => {
+                setTimeout(() => {
+                    if (mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop();
+                }, 600);
+            });
+        }
+
+        // Extended simulatePlay that calls an optional callback when all moves finish
+        function simulatePlayWithCallback(onDone) {
+            if (!isPlaying) { if (onDone) onDone(); return; }
+            if (isAnimatingMove) {
+                setTimeout(() => simulatePlayWithCallback(onDone), 100);
+                return;
+            }
+            if (currentMoveIndex < solutionMoves.length) {
+                const parts = [...solutionMoves];
+                const mv = parts[currentMoveIndex];
+
+                executedMoves.push(mv);
+                highlightHistoryMove(executedMoves.length - 1);
+
+                executeMoveVisual(mv);
+
+                parts[currentMoveIndex] = `<span style="color:var(--primary);">${mv}</span>`;
+                document.getElementById('moves-text').innerHTML = parts.join(" ");
+
+                currentMoveIndex++;
+                setTimeout(() => simulatePlayWithCallback(onDone), 600);
+            } else {
+                isPlaying = false;
+                document.getElementById('play-pause-btn').innerHTML = '<i class="fa-solid fa-play"></i>';
+                checkIfSolved();
+                renderMoveHistory();
+                if (onDone) onDone();
+            }
+        }
+
+        // ── Type Pieces Modal ──────────────────────────────────────────────
+
+        const TYPE_LETTER_MAP = {
+            'W': { hex: 0xffffff },
+            'Y': { hex: 0xffd500 },
+            'R': { hex: 0xb71234 },
+            'O': { hex: 0xff5800 },
+            'G': { hex: 0x009b48 },
+            'B': { hex: 0x0046ad }
+        };
+
+        // FACE_INFO uses the main editor `pieces` array directly (no separate 3D scene needed)
+        // Face colour → 3D piece mapping.
+        // getPiece(r,c) maps typed grid (r=0 top, r=2 bottom, c=0 left, c=2 right)
+        // to the physical cube piece matching the Kociemba scan order exactly.
+        // Model axes: x 0=Left/Green 2=Right/Blue, y 0=Down/Yellow 2=Up/White, z 0=Back/Orange 2=Front/Red
+        // Kociemba scan:  U(z0→2,x0→2)  R(y2→0,z2→0)  F(y2→0,x0→2)  D(z2→0,x0→2)  L(y2→0,z0→2)  B(y2→0,x2→0)
+        const FACE_DEFS = [
+            // White (U, y=2): scan row=z, col=x  →  getPiece(r,c)=(x=c, y=2, z=r)
+            // Visually row-0 = Orange side, col-0 = Green side
+            { name: 'White',  center: '#ffffff', matIdx: 2,
+              hint: 'Orange side at top · Green side on left',
+              getPiece: (r,c) => pieces.find(p=>p.userData.x===c&&p.userData.y===2&&p.userData.z===r) },
+
+            // Yellow (D, y=0): scan row=2-z, col=x  →  getPiece(r,c)=(x=c, y=0, z=2-r)
+            // Visually row-0 = Red side, col-0 = Green side
+            { name: 'Yellow', center: '#ffd500', matIdx: 3,
+              hint: 'Red side at top · Green side on left',
+              getPiece: (r,c) => pieces.find(p=>p.userData.x===c&&p.userData.y===0&&p.userData.z===(2-r)) },
+
+            // Red (F, z=2): scan row=2-y, col=x  →  getPiece(r,c)=(x=c, y=2-r, z=2)
+            // Visually row-0 = White side, col-0 = Green side
+            { name: 'Red',    center: '#b71234', matIdx: 4,
+              hint: 'White side at top · Green side on left',
+              getPiece: (r,c) => pieces.find(p=>p.userData.x===c&&p.userData.y===(2-r)&&p.userData.z===2) },
+
+            // Orange (B, z=0): scan row=2-y, col=2-x  →  getPiece(r,c)=(x=2-c, y=2-r, z=0)
+            // Visually row-0 = White side, col-0 = Blue side (mirror since viewed from behind)
+            { name: 'Orange', center: '#ff5800', matIdx: 5,
+              hint: 'White side at top · Blue side on left',
+              getPiece: (r,c) => pieces.find(p=>p.userData.x===(2-c)&&p.userData.y===(2-r)&&p.userData.z===0) },
+
+            // Blue (R, x=2): scan row=2-y, col=2-z  →  getPiece(r,c)=(x=2, y=2-r, z=2-c)
+            // Visually row-0 = White side, col-0 = Red side
+            { name: 'Blue',   center: '#0046ad', matIdx: 0,
+              hint: 'White side at top · Red side on left',
+              getPiece: (r,c) => pieces.find(p=>p.userData.x===2&&p.userData.y===(2-r)&&p.userData.z===(2-c)) },
+
+            // Green (L, x=0): scan row=2-y, col=z  →  getPiece(r,c)=(x=0, y=2-r, z=c)
+            // Visually row-0 = White side, col-0 = Orange side
+            { name: 'Green',  center: '#009b48', matIdx: 1,
+              hint: 'White side at top · Orange side on left',
+              getPiece: (r,c) => pieces.find(p=>p.userData.x===0&&p.userData.y===(2-r)&&p.userData.z===c) }
+        ];
+
+        // Track which faces have been fully filled
+        let typeFaceDone = [false,false,false,false,false,false];
+
+        function openTypePiecesModal() {
+            // Ensure main editor is initialised so pieces[] exists
+            initThreeCore();
+            if (!pieces.length) {
+                initEditor3D();
+                setTimeout(openTypePiecesModal, 200);
+                return;
+            }
+            typeFaceDone = [false,false,false,false,false,false];
+            document.getElementById('type-modal').classList.add('active');
+            renderFacePickerGrid();
+        }
+
+        function closeTypePiecesModal() {
+            closeFaceInputPanel();
+            document.getElementById('type-modal').classList.remove('active');
+        }
+
+        function renderFacePickerGrid() {
+            const grid = document.getElementById('face-picker-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            FACE_DEFS.forEach((face, idx) => {
+                // Build mini 3×3 preview colors
+                const cells = [];
+                for (let r = 0; r < 3; r++) {
+                    for (let c = 0; c < 3; c++) {
+                        const piece = face.getPiece(r, c);
+                        const colorHex = piece ? piece.material[face.matIdx].userData.colorId : 0x555555;
+                        const isBlank = (colorHex === BLANK_COLOR || colorHex === INNER_COLOR || !colorHex);
+                        cells.push(isBlank ? '#555555' : '#' + colorHex.toString(16).padStart(6,'0'));
+                    }
+                }
+
+                // Check if face is fully done (no blank/inner cells)
+                const done = cells.every(c => c !== '#555555' && c !== '#333333');
+                typeFaceDone[idx] = done;
+
+                const btn = document.createElement('button');
+                btn.className = 'face-picker-btn' + (done ? ' done' : '');
+                btn.onclick = () => openFaceInputPanel(idx);
+
+                const preview = document.createElement('div');
+                preview.className = 'face-mini-preview';
+                cells.forEach(color => {
+                    const cell = document.createElement('div');
+                    cell.className = 'face-mini-cell';
+                    cell.style.background = color;
+                    preview.appendChild(cell);
+                });
+
+                const label = document.createElement('div');
+                label.className = 'face-picker-label';
+                label.textContent = face.name + ' Face';
+
+                const status = document.createElement('div');
+                status.className = 'face-picker-status';
+                status.textContent = done ? '✓ Done' : 'Tap to edit';
+
+                const holdHint = document.createElement('div');
+                holdHint.className = 'face-hold-hint';
+                holdHint.textContent = '↕→ ' + face.hint;
+
+                btn.appendChild(preview);
+                btn.appendChild(label);
+                btn.appendChild(status);
+                btn.appendChild(holdHint);
+                grid.appendChild(btn);
+            });
+        }
+
+        let activeFaceIdx = -1;
+
+        // ── Face Input Panel ──────────────────────────────────────────────
+
+        function openFaceInputPanel(faceIdx) {
+            activeFaceIdx = faceIdx;
+            const info = FACE_DEFS[faceIdx];
+
+            // Get center piece color for the swatch
+            const centerPiece = info.getPiece(1, 1);
+            const centerColor = centerPiece ? centerPiece.material[info.matIdx].userData.colorId : 0x555555;
+            document.getElementById('face-input-swatch').style.background = '#' + centerColor.toString(16).padStart(6,'0');
+            document.getElementById('face-input-title-text').textContent = info.name + ' Face';
+
+            // Show hold hint
+            let hintEl = document.getElementById('face-input-hold-hint');
+            if (!hintEl) {
+                hintEl = document.createElement('div');
+                hintEl.id = 'face-input-hold-hint';
+                hintEl.className = 'face-input-hold-hint';
+                const grid = document.getElementById('face-input-grid');
+                grid.parentNode.insertBefore(hintEl, grid);
+            }
+            hintEl.innerHTML = '<i class="fa-solid fa-hand"></i> Hold with <strong style="color:rgba(255,255,255,0.85);margin:0 0.15rem;">' + info.hint + '</strong>';
+
+            // Build 3x3 grid
+            const grid = document.getElementById('face-input-grid');
+            grid.innerHTML = '';
+            for (let r = 0; r < 3; r++) {
+                for (let c = 0; c < 3; c++) {
+                    const piece = info.getPiece(r, c);
+                    const existingColor = piece ? piece.material[info.matIdx].userData.colorId : 0x555555;
+                    // Reverse-map existing color to letter
+                    let existingLetter = '';
+                    for (const [ltr, entry] of Object.entries(TYPE_LETTER_MAP)) {
+                        if (entry.hex === existingColor) { existingLetter = ltr; break; }
+                    }
+
+                    const cell = document.createElement('div');
+                    cell.className = 'face-cell';
+                    cell.dataset.row = r;
+                    cell.dataset.col = c;
+                    if (existingColor !== 0x555555 && existingColor !== BLANK_COLOR && existingColor !== INNER_COLOR) {
+                        cell.style.background = '#' + existingColor.toString(16).padStart(6,'0');
+                    }
+
+                    const letterSpan = document.createElement('span');
+                    letterSpan.className = 'face-cell-letter';
+                    letterSpan.textContent = existingLetter;
+
+                    const inp = document.createElement('input');
+                    inp.type = 'text';
+                    inp.maxLength = 1;
+                    inp.autocomplete = 'off';
+                    inp.dataset.row = r;
+                    inp.dataset.col = c;
+                    inp.value = existingLetter;
+
+                    inp.addEventListener('focus', () => { cell.style.zIndex = 2; });
+                    inp.addEventListener('blur',  () => { cell.style.zIndex = ''; });
+                    inp.addEventListener('keydown', (e) => faceCellKeydown(e, r, c));
+                    inp.addEventListener('input', (e) => faceCellInput(e, r, c, cell, letterSpan));
+
+                    cell.appendChild(letterSpan);
+                    cell.appendChild(inp);
+                    grid.appendChild(cell);
+                }
+            }
+
+            document.getElementById('face-input-overlay').classList.add('active');
+            // Focus first cell
+            const firstInput = grid.querySelector('input');
+            if (firstInput) firstInput.focus();
+        }
+
+        function getFaceCellInput(r, c) {
+            return document.querySelector(`#face-input-grid input[data-row="${r}"][data-col="${c}"]`);
+        }
+
+        function faceCellKeydown(e, r, c) {
+            const key = e.key;
+            if (key === 'Escape') { closeFaceInputPanel(); return; }
+            if (key === 'Enter')  { applyFaceInputPanel(); return; }
+            // Navigation
+            let nr = r, nc = c;
+            if (key === 'ArrowRight' || key === 'Tab') { e.preventDefault(); nc = c+1; if(nc>2){nc=0;nr=r+1;} if(nr>2)nr=0; }
+            if (key === 'ArrowLeft')  { e.preventDefault(); nc = c-1; if(nc<0){nc=2;nr=r-1;} if(nr<0)nr=2; }
+            if (key === 'ArrowDown')  { e.preventDefault(); nr = (r+1)%3; }
+            if (key === 'ArrowUp')    { e.preventDefault(); nr = (r+2)%3; }
+            if (nr !== r || nc !== c) {
+                const next = getFaceCellInput(nr, nc);
+                if (next) next.focus();
+            }
+        }
+
+        function faceCellInput(e, r, c, cell, letterSpan) {
+            const val = e.target.value.slice(-1).toUpperCase();
+            e.target.value = val;
+            const entry = TYPE_LETTER_MAP[val];
+            if (entry) {
+                cell.style.background = '#' + entry.hex.toString(16).padStart(6,'0');
+                letterSpan.textContent = val;
+                // Auto-advance to next cell
+                let nr = r, nc = c + 1;
+                if (nc > 2) { nc = 0; nr = r + 1; }
+                if (nr <= 2) {
+                    const next = getFaceCellInput(nr, nc);
+                    if (next) next.focus();
+                }
+            } else {
+                e.target.value = '';
+                letterSpan.textContent = '';
+                cell.style.background = '';
+            }
+        }
+
+        function closeFaceInputPanel() {
+            document.getElementById('face-input-overlay').classList.remove('active');
+            activeFaceIdx = -1;
+        }
+
+        function applyFaceInputPanel() {
+            if (activeFaceIdx < 0) return;
+            const info = FACE_DEFS[activeFaceIdx];
+            let allFilled = true;
+            for (let r = 0; r < 3; r++) {
+                for (let c = 0; c < 3; c++) {
+                    const inp = getFaceCellInput(r, c);
+                    const letter = inp ? inp.value.trim().toUpperCase() : '';
+                    const entry = TYPE_LETTER_MAP[letter];
+                    if (!entry) { allFilled = false; continue; }
+                    const piece = info.getPiece(r, c);
+                    if (!piece) continue;
+                    piece.material[info.matIdx].color.setHex(entry.hex);
+                    piece.material[info.matIdx].userData.colorId = entry.hex;
+                }
+            }
+            closeFaceInputPanel();
+            renderFacePickerGrid(); // refresh mini previews
+            if (!allFilled) alert('Some cells were left blank or had invalid letters — those stickers were skipped.');
+        }
+
+        // Close when clicking overlay backdrop
+        document.addEventListener('pointerdown', (e) => {
+            const overlay = document.getElementById('face-input-overlay');
+            if (overlay && overlay.classList.contains('active') && e.target === overlay) {
+                closeFaceInputPanel();
+            }
+        }, true);
+
+        function applyTypedColorsAndSolve() {
+            closeTypePiecesModal();
+            calculateSolution();
+        }
 
     </script>
 </body>

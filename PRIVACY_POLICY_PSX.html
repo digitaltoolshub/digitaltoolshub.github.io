@@ -149,7 +149,7 @@
 <body>
     <div class="container">
         <h1>Privacy Policy for Pakistan Stock Advisor</h1>
-        <p class="last-updated"><strong>Last Updated:</strong> July 11, 2026 &nbsp;|&nbsp; <strong>Effective Date:</strong> July 9, 2026</p>
+        <p class="last-updated"><strong>Last Updated:</strong> September 29, 2026 &nbsp;|&nbsp; <strong>Effective Date:</strong> July 9, 2026</p>
 
         <h2>Introduction</h2>
         <p>Digital Tools Hub ("we", "us", or "our") operates the <strong>Pakistan Stock Advisor</strong> mobile application (the "App"). This Privacy Policy explains what information we collect, how we use it, and what choices you have when using the App. We are committed to being transparent about our data practices while delivering powerful stock analysis tools for the Pakistan Stock Exchange (PSX).</p>
@@ -200,7 +200,7 @@
         <p>We use the information we collect to:</p>
         <ul>
             <li>Provide core App functionality (stock screening, charts, portfolios, alerts)</li>
-            <li>Authenticate users and enable cloud sync of watchlists, portfolios, transactions, alerts, and preferences</li>
+            <li>Authenticate users and enable cloud sync of watchlists, portfolios, transactions, alerts, investor risk profiles, and preferences</li>
             <li>Process and restore premium subscriptions</li>
             <li>Show advertisements to free-tier users</li>
             <li>Analyze anonymous usage trends to improve the App</li>
@@ -214,13 +214,15 @@
             <li>Stock screening results and filter preferences</li>
             <li>Portfolios, transactions, and dividend records</li>
             <li>Price alerts and watchlist settings</li>
+            <li>Investor suitability questionnaire answers and draft responses</li>
             <li>Theme preferences and chart settings</li>
             <li>Cached market data for offline access</li>
         </ul>
         <p>Local data can be cleared by uninstalling the App or clearing the App's storage from your device settings.</p>
 
         <h2>Cloud Data & Sync</h2>
-        <p>If you sign in, your custom watchlists/indexes, portfolios and their transactions, price alerts, preferences, and limited account metadata are stored in <strong>Firebase Firestore</strong> to enable cross-device synchronization. Portfolio transaction records can include stock symbols, quantities, prices, dates, and optional notes. Alert records can include stock symbols, target values, and condition types. This cloud data is associated with your authenticated Firebase account.</p>
+        <p>If you sign in, your custom watchlists/indexes, portfolios and their transactions, price alerts, completed investor risk profiles (including answer maps, capacity/tolerance scores, effective suitability scores, and timestamps), preferences, and limited account metadata are stored in <strong>Firebase Firestore</strong> to enable cross-device synchronization. Portfolio transaction records can include stock symbols, quantities, prices, dates, and optional notes. Alert records can include stock symbols, target values, and condition types. This cloud data is associated with your authenticated Firebase account.</p>
+        <p>If you choose to use the PSX Learning Challenge, we store server-accepted challenge entries, learning statistics, XP ledger, result-review status, and an optional anonymous weekly-league alias. Weekly-league participation is opt-in. Public league entries contain only the alias and limited score projection, never your email, UID, holdings, individual answers, confidence, or reason selections.</p>
 
         <h2>Third-Party Services</h2>
         <p>We use the following trusted third-party services to operate the App:</p>
@@ -248,7 +250,7 @@
         <p>Premium subscriptions are processed through <strong>RevenueCat</strong> and platform app stores (Google Play / Apple App Store). We do not handle or store your payment information. RevenueCat provides us with subscription status so we can unlock premium features and remove ads.</p>
 
         <h2>Push Notifications</h2>
-        <p>If you enable price alerts, the App will request permission to send <strong>push notifications</strong>. Notifications are used only to notify you when your configured alert conditions are met. You can disable notifications at any time in your device settings.</p>
+        <p>If you enable price alerts or opt into Learning Challenge reminders/results, the App will request permission to send <strong>push notifications</strong>. Challenge notification timing is based on configured market sessions. A push token, device platform, locale/timezone, and notification preferences may be stored with your signed-in account to deliver opted-in notifications. You can disable notifications in device settings or in the App.</p>
 
         <h2>Permissions</h2>
         <p>The App may request the following permissions:</p>
@@ -259,22 +261,42 @@
             <li><strong>Storage / File Access</strong> — only when you choose to import or export portfolio CSV files</li>
         </ul>
 
-        <h2>Data Security</h2>
-        <p>We take reasonable measures to protect your information:</p>
+        <h2>Data Security & Encryption</h2>
+        <p>We take comprehensive measures to protect your information:</p>
         <ul>
-            <li>Authentication is handled by Firebase, which uses industry-standard security practices.</li>
-            <li>Cloud-synced data is stored in secure Firebase infrastructure.</li>
-            <li>Local data is protected by your device's operating system security.</li>
-            <li>We do not sell or rent your personal information.</li>
+            <li><strong>Encryption in Transit:</strong> All data transmitted between the App and our backend services or third-party service providers (Firebase, Google Cloud, RevenueCat, Google AdMob, and market data sources) is encrypted in transit using industry-standard Transport Layer Security (TLS / HTTPS).</li>
+            <li><strong>Authentication Security:</strong> User authentication is managed via Firebase Authentication using industry-standard security protocols and OAuth 2.0 (Google Sign-In).</li>
+            <li><strong>Cloud Storage Security:</strong> Cloud-synced data is hosted in Google Firebase Firestore infrastructure protected by granular security rules.</li>
+            <li><strong>Local Device Security:</strong> Locally stored data is sandboxed by your mobile operating system.</li>
+            <li><strong>No Sale of Data:</strong> We never sell, rent, or trade your personal information to third parties.</li>
         </ul>
 
-        <h2>Data Retention & Deletion</h2>
+        <div id="account-deletion"></div>
+        <div id="data-deletion"></div>
+        <h2>Account Deletion & Data Retention</h2>
+        <p>Users have full control over their account and personal data. You may request permanent deletion of your account and all associated cloud data at any time.</p>
+
+        <h3>How to Delete Your Account and Data</h3>
         <ul>
-            <li><strong>Local data</strong> is retained on your device until you uninstall the App or clear its storage.</li>
-            <li><strong>Cloud-synced account data</strong>, including watchlists, portfolios, transactions, alerts, and preferences, is retained while your account is active. If you delete your account, associated cloud data is removed.</li>
-            <li><strong>Anonymous analytics data</strong> may be retained by Firebase according to Google's data retention policies.</li>
+            <li><strong>In-App Deletion (Immediate):</strong> Open the App &rarr; Navigate to <strong>Settings</strong> &rarr; Select <strong>Account</strong> &rarr; Tap <strong>Delete Account</strong> and confirm. Your account and all associated cloud records are permanently and immediately purged from our servers.</li>
+            <li><strong>Web / Email Deletion Request:</strong> If you cannot access the App or have uninstalled it, you can request account deletion by emailing us at <a href="mailto:digitaltoolshub4all@gmail.com">digitaltoolshub4all@gmail.com</a> with the subject line <em>"Account Deletion Request"</em> from the email address registered with your account. We will process and confirm your deletion request within 30 days.</li>
         </ul>
-        <p>To request deletion of your account and associated cloud data, contact us at the email below or use the account deletion option in the App settings.</p>
+
+        <h3>What Data Is Deleted Upon Account Deletion</h3>
+        <ul>
+            <li>Account credentials and profile (Email address, Firebase UID, authentication provider link).</li>
+            <li>All cloud-synced portfolio holdings, custom watchlists, transaction histories, dividends, and notes.</li>
+            <li>All active price alerts and notification tokens.</li>
+            <li>Investor suitability questionnaire responses and risk profiling scores.</li>
+            <li>PSX Learning Challenge entries, learning statistics, XP, and public league alias.</li>
+        </ul>
+
+        <h3>Data Retention Policy</h3>
+        <ul>
+            <li><strong>Cloud Account Data:</strong> Stored only while your account remains active. Deleted permanently upon account deletion request.</li>
+            <li><strong>Local Device Data:</strong> Retained on your device until you clear the application data/storage or uninstall the App.</li>
+            <li><strong>Anonymous Analytics Data:</strong> Non-personally identifiable aggregate analytics (e.g. feature popularity) may be retained by Firebase according to Google's standard analytics retention schedule.</li>
+        </ul>
 
         <h2>Children's Privacy</h2>
         <p>The App is not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe we have inadvertently collected such information, please contact us and we will delete it promptly.</p>

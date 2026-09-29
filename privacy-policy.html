@@ -1,186 +1,363 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - TradeWave</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --surface: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --border: #e5e7eb;
+            --card-bg: #f9fafb;
         }
-        h1 { color: #2563eb; }
-        h2 { color: #1e40af; margin-top: 2rem; }
-        .last-updated { color: #666; font-style: italic; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.65;
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 24px 20px 48px;
+            color: var(--text-main);
+            background-color: var(--surface);
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 0.25rem;
+        }
+
+        h2 {
+            color: var(--primary-dark);
+            font-size: 1.35rem;
+            margin-top: 2rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h3 {
+            color: #374151;
+            font-size: 1.1rem;
+            margin-top: 1.25rem;
+        }
+
+        p,
+        li {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        ul {
+            padding-left: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+        }
+
+        .last-updated {
+            color: #6b7280;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-box {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: #1e3a8a;
+            font-size: 0.95rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 1rem 0;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        th,
+        td {
+            border: 1px solid var(--border);
+            padding: 10px 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f3f4f6;
+            color: #111827;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
     </style>
 
     <script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@graph": [
-        {
-            "@type": "SoftwareApplication",
-            "name": "Privacy Policy - TradeWave",
-            "url": "https://digitaltoolshub.github.io/privacy-policy.html",
-            "applicationCategory": "UtilitiesApplication",
-            "operatingSystem": "All",
-            "offers": {
-                "@type": "Offer",
-                "price": "0.00",
-                "priceCurrency": "USD"
-            },
-            "author": {
-                "@type": "Person",
-                "name": "Rabeeh",
-                "url": "https://digitaltoolshub.github.io/about.html"
-            }
-        },
-        {
-            "@type": "FAQPage",
-            "mainEntity": [
-                {
-                    "@type": "Question",
-                    "name": "Is Privacy Policy - TradeWave free to use?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Yes, Privacy Policy - TradeWave is completely free to use with no hidden charges, sign-ups, or subscriptions required."
-                    }
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "SoftwareApplication",
+                "name": "TradeWave - Paper Trading Platform for Cryptocurrency",
+                "url": "https://digitaltoolshub.github.io/privacy-policy.html",
+                "applicationCategory": "FinanceApplication",
+                "operatingSystem": "Android",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0.00",
+                    "priceCurrency": "USD"
                 },
-                {
-                    "@type": "Question",
-                    "name": "Is my data safe when using Privacy Policy - TradeWave?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Absolutely. Privacy Policy - TradeWave processes all data client-side in your browser, meaning none of your inputs or results are ever sent to our servers."
-                    }
+                "author": {
+                    "@type": "Person",
+                    "name": "Rabeeh",
+                    "url": "https://digitaltoolshub.github.io/about.html"
                 }
-            ]
-        }
-    ]
-}
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "Does TradeWave use real money or crypto wallets?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "No. TradeWave is an educational paper trading simulation app. All portfolio balances and trades are entirely virtual with zero financial risk."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How can I request deletion of my TradeWave account and data?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "You can request full deletion of your account and associated cloud data at any time by emailing digitaltoolshub4all@gmail.com with your registered email."
+                        }
+                    }
+                ]
+            }
+        ]
+    }
     </script>
 </head>
+
 <body>
     <h1>Privacy Policy for TradeWave</h1>
-    <p class="last-updated">Last Updated: December 23, 2025</p>
+    <p class="last-updated">Last Updated: September 29, 2026</p>
 
-    <h2>1) What This Policy Covers</h2>
-    <p>TradeWave is a crypto paper-trading app. It does not support real-money trading and does not collect payment details or wallet addresses. This policy explains what limited data is handled and how.</p>
+    <div class="highlight-box">
+        <p><strong>Educational Simulator Notice:</strong> TradeWave is a risk-free cryptocurrency paper-trading and
+            educational platform. The app does not execute real-money transactions, does not connect to real crypto
+            wallets or bank accounts, and does not provide financial or investment advice.</p>
+    </div>
 
-    <h2>2) Data We Store Locally (on your device)</h2>
-    <ul>
-        <li><strong>Preferences:</strong> theme, sound, and similar UI settings.</li>
-        <li><strong>Demo trading data:</strong> virtual balance, holdings, purchase prices, and transaction history saved in localStorage.</li>
-        <li><strong>Optional profiles:</strong> if you create a local profile, its data stays on your device.</li>
-    </ul>
-    <p>Clearing your browser/app storage deletes this data.</p>
-
-    <h2>3) Data We Do Not Collect</h2>
-    <ul>
-        <li>No account creation on our servers; no email, phone, or name collection.</li>
-        <li>No payment, banking, or crypto wallet details.</li>
-        <li>No advertising or analytics trackers.</li>
-        <li>No background location tracking.</li>
-    </ul>
-
-    <h2>4) Network Requests & Third Parties</h2>
-    <p>The app calls third-party endpoints to show live market data and charts. Your IP address is shared with these providers when requests are made.</p>
-    <p>Review their respective privacy policies for details on their handling of request metadata.</p>
-
-    <h2>5) Offline Cache</h2>
-    <p>A service worker caches core app files so pages can load faster offline. Cached files do not include personal data. You can clear cached data from your browser/app settings.</p>
-
-    <h2>6) How We Use Data</h2>
-    <ul>
-        <li>Run the app, render prices, and keep your demo portfolio in sync on your device.</li>
-        <li>Remember your UI preferences (theme, sound).</li>
-        <li>Improve stability (e.g., retrying failed price fetches); we do not run analytics.</li>
-    </ul>
-
-    <h2>7) Sharing</h2>
-    <p>We do not sell or rent data. Data is only shared when required to fetch market data (see Section 4) or if required by law.</p>
-
-    <h2>8) Security</h2>
-    <ul>
-        <li>All requests to our site and third-party APIs use HTTPS.</li>
-        <li>Most data lives in your device storage; protect your device to protect your data.</li>
-    </ul>
-
-    <h2>9) Your Choices</h2>
-    <ul>
-        <li>Clear localStorage and cached data in your browser/app to remove stored holdings and preferences.</li>
-        <li>Use the app without creating a local profile; guest mode data also stays on-device.</li>
-    </ul>
-
-    <h2>10) Children's Privacy</h2>
-    <p>The app is not directed to children under 13. Do not use the app if you are under 13.</p>
-
-    <h2>11) Changes</h2>
-    <p>We may update this policy. We will update the "Last Updated" date and post the revised version here.</p>
-
-    <h2>12) Contact</h2>
-    <p>If you have questions, email us at <strong>digitaltoolshub4all@gmail.com</strong>.</p>
-
-    <hr style="margin-top: 3rem; border: none; border-top: 1px solid #ddd;">
-    <p style="text-align: center; color: #666; font-size: 0.9rem;">
-        TradeWave - Practice Crypto Trading Risk-Free<br>
-        <a href="index.html" style="color: #2563eb;">Return to App</a>
+    <h2>1. Introduction</h2>
+    <p>This Privacy Policy explains how TradeWave ("we", "us", or "our") collects, uses, protects, and discloses your
+        information when you use the TradeWave mobile application on Android. We are committed to transparency, data
+        minimization, and protecting user privacy in compliance with applicable laws and Google Play developer policies.
     </p>
 
-    <!-- SEO EXPERT GUIDE -->
-    <style>
-        .seo-expert-guide {
-            max-width: 800px;
-            margin: 4rem auto;
-            padding: 2rem;
-            background: rgba(30, 30, 30, 0.5);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #e5e2e1;
-            font-family: 'Inter', sans-serif;
-            text-align: left;
-        }
-        .seo-expert-guide h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem; color: #bac3ff; }
-        .seo-expert-guide h3 { font-size: 1.3rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem; color: #dcdfff; }
-        .seo-expert-guide p { line-height: 1.6; margin-bottom: 1rem; color: #c5c5d6; font-size: 0.95rem; }
-        .seo-expert-guide ul { margin-left: 1.5rem; margin-bottom: 1rem; color: #c5c5d6; font-size: 0.95rem; list-style-type: disc; }
-        .seo-expert-guide li { margin-bottom: 0.5rem; }
-    </style>
-    <article id="seo-expert-guide" class="seo-expert-guide">
-        <h2>Expert Guide: Deep Dive into Privacy Policy - TradeWave</h2>
-        <p><em>(Content Strategy Outline - 600+ Words Target)</em></p>
-        
-        <h3>1. Introduction & Core Philosophy</h3>
-        <p>The Privacy Policy - TradeWave is engineered for professionals requiring high-precision tools directly in the browser. Unlike server-side alternatives, this application leverages client-side computation, ensuring zero latency and absolute data privacy. Our mission is to eliminate the friction typically associated with premium utilities by offering instantaneous access without sign-ups.</p>
-        
-        <h3>2. Architecture & Underlying Logic</h3>
-        <p>Understanding the processing engine beneath surface operations:</p>
+    <h2>2. Information We Collect and How It Is Collected</h2>
+    <p>Depending on how you use TradeWave (as a guest or signed-in user), we collect the following categories of data:
+    </p>
+
+    <h3>A. Personal Information (Optional)</h3>
+    <ul>
+        <li><strong>Account Credentials:</strong> If you choose to create an account or sign in with Google, we collect
+            your <strong>Email address</strong>, <strong>Name (display name)</strong>, and a unique <strong>User
+                ID</strong>. Guest mode is also available and does not require providing personal credentials.</li>
+        <li><strong>Profile Customization:</strong> In-app avatar selection or profile photo URL from your Google
+            account.</li>
+    </ul>
+
+    <h3>B. In-App Activity and Virtual Portfolio Data</h3>
+    <ul>
+        <li><strong>Paper Trading Portfolio:</strong> Virtual cash balance, simulated cryptocurrency holdings, buy/sell
+            trade logs, and performance statistics. For signed-in users, this data is synchronized to Firebase Cloud
+            Firestore so you can access your practice portfolio across devices. For guest users, this data remains
+            stored exclusively on your local device.</li>
+    </ul>
+
+    <h3>C. Financial Information & Purchases</h3>
+    <ul>
+        <li><strong>In-App Purchases (Subscriptions):</strong> If you upgrade to TradeWave Pro, transactions are
+            processed directly by Google Play Billing. We do not collect or store your payment card numbers or banking
+            information. We and our subscription management provider (RevenueCat) receive transaction confirmation,
+            subscription status, and purchase history tokens to unlock Pro features.</li>
+    </ul>
+
+    <h3>D. Device Identifiers & Analytics (Consented)</h3>
+    <ul>
+        <li><strong>Firebase Analytics & Google Signals:</strong> With your consent via the in-app consent prompt, we
+            collect app interaction events (such as screens viewed, buttons tapped, sign-in methods) and mobile instance
+            identifiers to analyze performance and improve the app. Personal identifiers and trading amounts are never
+            sent to analytics events.</li>
+        <li><strong>Advertising Identifiers (Google Mobile Ads / AdMob):</strong> Free-tier users are served
+            advertisements. The Google Mobile Ads SDK accesses the Google Advertising ID (<code>AD_ID</code>) and device
+            diagnostic information to deliver, measure, and prevent fraud in ad delivery. TradeWave requests
+            non-personalized ad delivery within the application. TradeWave Pro subscribers enjoy an ad-free experience.
+        </li>
+    </ul>
+
+    <h3>E. AI Chat & RAG Queries (Coach Wavey)</h3>
+    <ul>
+        <li>When using the Coach Wavey AI assistant with a user-supplied Google Gemini API key, your queries are
+            transmitted to Google's Generative AI API to produce educational responses. The API key is stored securely
+            in your device's hardware keychain using <code>expo-secure-store</code> and is never transmitted to our
+            servers. Offline responses in the Playbook are processed entirely on-device without network transmission.
+        </li>
+    </ul>
+
+    <h2>3. Third-Party SDKs and Service Providers</h2>
+    <p>We work with trusted third-party service providers that process data under strict security standards:</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Service Provider</th>
+                <th>Purpose</th>
+                <th>Data Handled</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Google Firebase</strong> (Auth, Firestore, Analytics)</td>
+                <td>User authentication, cloud sync for simulated portfolios, and consented usage analytics.</td>
+                <td>Email, Display Name, User ID, Paper trading logs, App interaction events, Device IDs.</td>
+            </tr>
+            <tr>
+                <td><strong>Google Mobile Ads</strong> (AdMob)</td>
+                <td>Serving rewarded and interstitial ads to support the free version.</td>
+                <td>Google Advertising ID (AD_ID), IP-derived approximate location, ad interaction metrics, diagnostics.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>RevenueCat</strong></td>
+                <td>Managing Google Play in-app subscriptions and Pro entitlements.</td>
+                <td>App User ID, Purchase history tokens, subscription tier status.</td>
+            </tr>
+            <tr>
+                <td><strong>Google Generative AI</strong> (Gemini)</td>
+                <td>Optional AI trading coach interactions when configured by the user.</td>
+                <td>User chat prompts sent directly from device via user's API key.</td>
+            </tr>
+            <tr>
+                <td><strong>Market Data Providers</strong> </td>
+                <td>Fetching real-time cryptocurrency market prices and rendering candlestick charts.</td>
+                <td>Standard HTTP request metadata (IP address). No personal data is sent.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>4. How We Use Your Data</h2>
+    <p>We use the data we handle strictly to:</p>
+    <ul>
+        <li>Provide, maintain, and synchronize your practice paper-trading account.</li>
+        <li>Process and verify TradeWave Pro subscriptions and restore purchases.</li>
+        <li>Monitor application stability, fix bugs, and optimize app speed and responsiveness.</li>
+        <li>Display non-personalized ads to users on the free tier.</li>
+        <li>Enforce account security and prevent fraudulent misuse.</li>
+    </ul>
+
+    <h2>5. Data Storage, Encryption, and Security</h2>
+    <ul>
+        <li><strong>Encryption in Transit:</strong> All communications between the app, Firebase, AdMob, RevenueCat, and
+            third-party APIs use industry-standard HTTPS and Transport Layer Security (TLS).</li>
+        <li><strong>Local Storage:</strong> Guest portfolios, cache, and UI preferences are stored in local device
+            storage. Sensitive keys (such as user-provided Gemini API keys) are stored in the device's hardware keychain
+            via <code>SecureStore</code>.</li>
+        <li><strong>Access Control:</strong> Cloud-synced user data is protected by Firebase security rules, restricting
+            data access strictly to authenticated account owners.</li>
+    </ul>
+
+    <h2 id="data-deletion">6. Account Deletion and Data Retention</h2>
+    <p>We respect your right to control your personal data and provide clear, accessible mechanisms to delete it:</p>
+    <div class="card">
+        <h3>How to Request Account and Data Deletion</h3>
+        <p>You can request complete deletion of your TradeWave account and all associated cloud data at any time:</p>
         <ul>
-            <li><strong>Data Handling Pipeline:</strong> Inputs are parsed dynamically and sanitized locally before any algorithmic transformation occurs, protecting against injection and maintaining state cleanly.</li>
-            <li><strong>Algorithmic Complexity:</strong> Core functions utilize optimized pathways (e.g., optimized iteration for analytics, highly-entropied pseudo-random generation for security) to ensure big-O efficiency even with large datasets.</li>
-            <li><strong>Memory Management:</strong> Utilizing garbage-collected lightweight DOM updates to prevent memory leaks during extended sessions.</li>
+            <li><strong>Email Request:</strong> Send an email to <strong><a
+                        href="mailto:digitaltoolshub4all@gmail.com?subject=TradeWave%20Account%20and%20Data%20Deletion%20Request">digitaltoolshub4all@gmail.com</a></strong>
+                with the subject line <code>TradeWave Account and Data Deletion Request</code>. Please send the request
+                from the email address associated with your TradeWave account.</li>
+            <li><strong>What is Deleted:</strong> Upon receiving your request, we permanently delete your Firebase
+                Authentication record, Firestore profile document, and all cloud-stored paper trading portfolio records
+                and transaction history. Associated customer identifiers in RevenueCat are also deleted or anonymized.
+            </li>
+            <li><strong>Processing Timeline:</strong> Requests are processed within 30 days of verification.</li>
+            <li><strong>Local Data:</strong> For guest mode or locally cached data, you can instantly erase all local
+                data by resetting the active account in the app's Profile settings or by clearing the app's storage in
+                Android Settings.</li>
         </ul>
-        
-        <h3>3. Primary Professional Use-Cases</h3>
-        <p>How industry experts deploy the Privacy Policy - TradeWave in active workflows:</p>
-        <ul>
-            <li><strong>Workflow Acceleration:</strong> Bypassing the need for heavy desktop software for single-purpose tasks.</li>
-            <li><strong>Secure Environments:</strong> Running offline-capable processes where corporate firewalls restrict outbound data uploads.</li>
-            <li><strong>Data Normalization:</strong> Operating consistently across varying OS environments without environment discrepancies.</li>
-        </ul>
-        
-        <h3>4. Expert Insights & Best Practices</h3>
-        <p>To maximize utility, consider the following operational heuristics:</p>
-        <ul>
-            <li>Ensure input datasets are pre-formatted to match standardized expectations (e.g., UTF-8 encoding).</li>
-            <li>Leverage the tool's modularity by chaining its outputs directly into your primary development or analytical pipeline.</li>
-            <li>Regularly clear local browser caches if working with excessively large sequential operations to maintain optimal render speeds.</li>
-        </ul>
-    </article>
-    
+    </div>
+
+    <h2>7. Children's Privacy</h2>
+    <p>TradeWave is intended for general audiences aged 13 and older (or the applicable minimum age in your
+        jurisdiction). We do not knowingly collect personal data from children under 13. If we become aware that a child
+        under 13 has provided us with personal information, we will take immediate steps to delete such data from our
+        servers.</p>
+
+    <h2>8. Your Choices & Controls</h2>
+    <ul>
+        <li><strong>Guest Mode:</strong> You can practice trading completely anonymously without registering an account.
+        </li>
+        <li><strong>Analytics & Ads Consent:</strong> You can review the analytics and advertising consent choices
+            within the app settings.</li>
+        <li><strong>Ad-Free Experience:</strong> You can upgrade to TradeWave Pro to remove all ads.</li>
+        <li><strong>API Key Management:</strong> You can view, test, or permanently delete your stored Gemini API key
+            from the Coach Wavey settings at any time.</li>
+    </ul>
+
+    <h2>9. Updates to This Privacy Policy</h2>
+    <p>We may update this Privacy Policy from time to time to reflect changes in our app features or regulatory
+        requirements. Any updates will be published on this page with an updated "Last Updated" date. We encourage you
+        to review this policy periodically.</p>
+
+    <h2>10. Contact Us</h2>
+    <p>If you have any questions, concerns, or requests regarding this Privacy Policy or your data privacy, please
+        contact us at:</p>
+    <p>
+        <strong>TradeWave Team</strong><br>
+        Email: <a href="mailto:digitaltoolshub4all@gmail.com">digitaltoolshub4all@gmail.com</a><br>
+        Website: <a href="https://digitaltoolshub.github.io">https://digitaltoolshub.github.io</a>
+    </p>
+
+    <div class="footer">
+        TradeWave &copy; 2026 &middot; Practice Crypto Trading Risk-Free &middot;
+        <a href="index.html">Return to App</a>
+    </div>
 </body>
+
 </html>

@@ -1,49 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-hub>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Privacy Policy | Digital Tools Hub</title>
+    <meta name="description" content="How Digital Tools Hub handles your data: tools run in your browser, with analytics and advertising only with your consent.">
+    <link rel="canonical" href="https://digitaltoolshub.github.io/privacy.html">
+    <meta property="og:title" content="Privacy Policy | Digital Tools Hub">
+    <meta property="og:description" content="How Digital Tools Hub handles your data: tools run in your browser, with analytics and advertising only with your consent.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+    <!-- @head -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#f7f7fb" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0b0d14" media="(prefers-color-scheme: dark)">
+    <script>try{var t=localStorage.getItem("dth:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="stylesheet" href="assets/css/hub.css">
+    <link rel="preload" href="assets/img/icons.svg" as="image" type="image/svg+xml">
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-R4N9RB1SNN');
-    </script>
-
-    <!-- Google Ads -->
-    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
-    
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" type="text/javascript" async></script>     -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy | Digital Tools Hub</title>
-    <link rel="stylesheet" href="styles.css">
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-R4N9RB1SNN");</script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" async></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
+    <!-- /@head -->
 </head>
-
 <body>
-    <header>
-        <h1>Privacy Policy</h1>
+    <!-- @header -->
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="./" aria-label="Digital Tools Hub home"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+            <nav class="site-nav" aria-label="Main">
+                <a href="./">All tools</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="search-trigger" type="button" data-open-palette aria-label="Search tools"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#search"></use></svg><span class="label">Search tools…</span><span class="kbd" data-mod-key>Ctrl K</span></button>
+                <button class="icon-btn" type="button" data-theme-toggle aria-label="Change theme"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#monitor"></use></svg></button>
+            </div>
+        </div>
     </header>
-    <main>
-        <section>
-            <h2>Introduction</h2>
-            <p>Your privacy is important to us. This policy explains how we collect, use, and protect your information.
-            </p>
-        </section>
-        <section>
-            <h2>Information We Collect</h2>
-            <p>We may collect data such as your IP address, browser type, and usage statistics to improve our services.
-            </p>
-        </section>
-        <section>
-            <h2>How We Use Your Information</h2>
-            <p>We use your information to provide and improve our tools and services.</p>
-        </section>
-    </main>
-    <footer>
-        <p>© 2025 Digital Tools Hub</p>
-    </footer>
-</body>
+    <!-- /@header -->
 
+    <main id="main">
+        <div class="container container-narrow">
+            <div class="page-head">
+                <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="./">Home</a><svg aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"></use></svg><span>Privacy policy</span></nav>
+                <h1>Privacy policy</h1>
+                <p>Effective 9 October 2026</p>
+            </div>
+            <div class="prose">
+                <p>This policy explains what information Digital Tools Hub (“we”, “us”) at <code>digitaltoolshub.github.io</code> collects, why, and the choices you have. The short version: <strong>the tools run in your browser and we never receive what you type into them.</strong></p>
+
+                <h2>1. Data you enter into tools</h2>
+                <p>Calculations and transformations (for example passwords, text, salaries, health metrics or JSON) are processed locally by JavaScript in your browser. This data is not transmitted to or stored on our servers.</p>
+                <p>Some tools save data on your device so it’s there when you return, for example Kanban tasks, subscription lists, favourites, recently used tools and theme preference. This uses your browser’s <strong>local storage</strong>, stays on your device, and can be deleted at any time by clearing your browser’s site data.</p>
+
+                <h2>2. Live data services</h2>
+                <p>A few tools fetch public data from third-party APIs, for example exchange rates (currency, salary and trip tools) and cryptocurrency prices (crypto tracker). These requests ask only for public market data. Your inputs are not included, though the provider will see your IP address as with any web request.</p>
+
+                <h2>3. Analytics</h2>
+                <p>With your consent, we use <strong>Google Analytics</strong> to understand aggregate usage, such as which tools are popular and which browsers to support. Google Analytics uses cookies and collects information such as pages viewed, approximate location, device and browser type. We do not use it to identify you personally.</p>
+
+                <h2>4. Advertising</h2>
+                <p>The site is funded by ads served by <strong>Google AdSense</strong>. Google and its partners may use cookies to serve ads based on your prior visits to this and other websites. You can opt out of personalised advertising at <a href="https://adssettings.google.com" rel="noopener">Google Ads Settings</a> or <a href="https://www.aboutads.info/choices/" rel="noopener">aboutads.info</a>. Learn more about <a href="https://policies.google.com/technologies/partner-sites" rel="noopener">how Google uses data from partner sites</a>.</p>
+
+                <h2>5. Cookie consent</h2>
+                <p>We use <strong>Cookiebot</strong> to ask for, record and manage your consent for non-essential cookies. Where consent is required (for example in the EEA, UK or California), analytics and personalised ads only load after you opt in. You can change your choice at any time from the consent banner or by clearing your cookies.</p>
+
+                <h2>6. Hosting</h2>
+                <p>The website is hosted on <strong>GitHub Pages</strong>. GitHub may process technical information such as IP addresses in server logs for security and reliability. See <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHub’s privacy statement</a>.</p>
+
+                <h2>7. Children</h2>
+                <p>The site is not directed at children under 13, and we do not knowingly collect personal information from children.</p>
+
+                <h2>8. Your rights</h2>
+                <p>Depending on where you live, you may have rights to access, correct, delete or object to processing of personal data. Because we don’t hold tool data, most requests can be met by clearing your browser data. For anything handled by Google or Cookiebot, use their tools linked above, or contact us.</p>
+
+                <h2>9. Mobile apps</h2>
+                <p>Our mobile apps have their own privacy policies: <a href="PRIVACY_POLICY_PSX.html">Pakistan Stock Advisor</a>, <a href="privacy-policy.html">TradeWave</a>, <a href="PRIVACY_POLICY_GALICRICKET.html">Gali Cricket</a> and <a href="PRIVACY_POLICY_PHYSPREP.html">PhysPrep</a>.</p>
+
+                <h2>10. Changes and contact</h2>
+                <p>We may update this policy. Material changes will be reflected by the effective date above. Questions? Email <a href="mailto:digitaltoolshub4all@gmail.com">digitaltoolshub4all@gmail.com</a> or use our <a href="contact.html">contact page</a>.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- @footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a class="brand" href="./"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+                    <p>34 free tools for money, health, work and code. No sign-up, no paywalls, and your data stays in your browser.</p>
+                </div>
+                <div>
+                    <h4>Popular</h4>
+                    <ul>
+                        <li><a href="currency.html">Currency Converter</a></li>
+                        <li><a href="bmi.html">BMI Calculator</a></li>
+                        <li><a href="kanban-board.html">Kanban Board</a></li>
+                        <li><a href="scientific-calculator.html">Scientific Calculator</a></li>
+                        <li><a href="json-formatter.html">JSON Formatter</a></li>
+                        <li><a href="password.html">Password Generator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="./?cat=finance">Finance</a></li>
+                        <li><a href="./?cat=health">Health</a></li>
+                        <li><a href="./?cat=productivity">Productivity</a></li>
+                        <li><a href="./?cat=dev">Developer</a></li>
+                        <li><a href="./?cat=design">Design</a></li>
+                        <li><a href="./?cat=security">Security</a></li>
+                        <li><a href="./?cat=life">Lifestyle</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy policy</a></li>
+                        <li><a href="terms.html">Terms of service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Digital Tools Hub. Built by <a href="about.html">Rabeeh</a>.</span>
+                <span>Tip: press <span class="kbd" data-mod-key>Ctrl K</span> anywhere to jump to a tool.</span>
+            </div>
+        </div>
+    </footer>
+    <!-- /@footer -->
+    <!-- @scripts -->
+    <script src="assets/js/tools.js" defer></script>
+    <script src="assets/js/shell.js" defer></script>
+    <script src="assets/js/hub.js" defer></script>
+    <!-- /@scripts -->
+</body>
 </html>

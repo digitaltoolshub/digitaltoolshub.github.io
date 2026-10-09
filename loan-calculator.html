@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" data-hub>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Loan & EMI Calculator | Mortgage Payment & Amortization Schedule | Digital Tools Hub</title>
+    <meta name="description" content="Free loan and EMI calculator. Work out monthly payments, total interest and payoff date for any mortgage, car or personal loan, see how extra payments save money, and export the amortization schedule.">
+    <link rel="canonical" href="https://digitaltoolshub.github.io/loan-calculator.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Digital Tools Hub">
+    <meta property="og:url" content="https://digitaltoolshub.github.io/loan-calculator.html">
+    <meta property="og:title" content="Loan & EMI Calculator | Mortgage Payment & Amortization Schedule | Digital Tools Hub">
+    <meta property="og:description" content="Free loan and EMI calculator. Work out monthly payments, total interest and payoff date for any mortgage, car or personal loan, see how extra payments save money, and export the amortization schedule.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- @head -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#f7f7fb" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0b0d14" media="(prefers-color-scheme: dark)">
+    <script>try{var t=localStorage.getItem("dth:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="stylesheet" href="assets/css/hub.css">
+    <link rel="preload" href="assets/img/icons.svg" as="image" type="image/svg+xml">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-R4N9RB1SNN");</script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" async></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
+    <!-- /@head -->
+    <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Loan & EMI Calculator", "url": "https://digitaltoolshub.github.io/loan-calculator.html", "description": "Free loan and EMI calculator. Work out monthly payments, total interest and payoff date for any mortgage, car or personal loan, see how extra payments save money, and export the amortization schedule.", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "browserRequirements": "Requires JavaScript", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://digitaltoolshub.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Finance", "item": "https://digitaltoolshub.github.io/?cat=finance"}, {"@type": "ListItem", "position": 3, "name": "Loan & EMI Calculator", "item": "https://digitaltoolshub.github.io/loan-calculator.html"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is EMI?", "acceptedAnswer": {"@type": "Answer", "text": "EMI (Equated Monthly Instalment) is the fixed monthly payment that pays off a loan, including interest, over its term. It’s the same as the monthly payment shown here."}}, {"@type": "Question", "name": "Does this include taxes and insurance?", "acceptedAnswer": {"@type": "Answer", "text": "No. Mortgage payments often include property tax, insurance and fees (escrow). Add those separately to estimate your full monthly cost."}}, {"@type": "Question", "name": "Is it better to pay extra each month?", "acceptedAnswer": {"@type": "Answer", "text": "Usually, if your loan has no prepayment penalty and its interest rate is higher than what you could safely earn elsewhere. Check your loan terms."}}]}]}</script>
+    <style>
+
+        .loan { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 16px; align-items: start; }
+        @media (max-width: 900px) { .loan { grid-template-columns: 1fr; } }
+        .hero-stat { padding: 20px; border-radius: 14px; background: linear-gradient(135deg, color-mix(in srgb, var(--c-finance) 16%, var(--bg-elev)), var(--bg-elev)); border: 1px solid color-mix(in srgb, var(--c-finance) 30%, var(--border)); }
+        .hero-stat .k { font-size: .82rem; color: var(--text-3); font-weight: 650; text-transform: uppercase; letter-spacing: .05em; }
+        .hero-stat .v { font-size: clamp(2rem, 5vw, 2.6rem); font-weight: 800; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+        .split { display: flex; height: 12px; border-radius: 99px; overflow: hidden; background: var(--bg-sunken); margin: 14px 0 8px; }
+        .split span { display: block; height: 100%; }
+        .legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: .85rem; color: var(--text-2); }
+        .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+        .p-col { background: var(--c-finance); } .i-col { background: var(--c-dev); } .x-col { background: var(--c-productivity); }
+        .chart { width: 100%; height: 220px; display: block; }
+        .chart text { fill: var(--text-3); font-size: 10px; font-family: var(--font); }
+        .chart .grid-line { stroke: var(--border); }
+        .table-wrap { max-height: 440px; }
+        .range-row { display: flex; gap: 10px; align-items: center; }
+        .range-row input[type=range] { flex: 1; }
+
+    </style>
+</head>
+<body>
+    <!-- @header -->
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="./" aria-label="Digital Tools Hub home"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+            <nav class="site-nav" aria-label="Main">
+                <a href="./" aria-current="page">All tools</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="search-trigger" type="button" data-open-palette aria-label="Search tools"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#search"></use></svg><span class="label">Search tools…</span><span class="kbd" data-mod-key>Ctrl K</span></button>
+                <button class="icon-btn" type="button" data-theme-toggle aria-label="Change theme"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#monitor"></use></svg></button>
+            </div>
+        </div>
+    </header>
+    <!-- /@header -->
+
+    <main id="main" class="container">
+        <div class="page-head">
+            <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="./">Home</a><svg aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"></use></svg><a href="./?cat=finance">Finance</a><svg aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"></use></svg><span>Loan & EMI Calculator</span></nav>
+            <h1><span class="tool-icon" data-cat="finance"><svg aria-hidden="true"><use href="assets/img/icons.svg#landmark"></use></svg></span>Loan & EMI Calculator</h1>
+            <p>Monthly payment, total interest and a full amortization schedule for any mortgage, car or personal loan, plus how much extra payments save you.</p>
+        </div>
+
+        <div class="loan">
+            <section class="panel stack" aria-label="Loan details">
+                <div class="field"><label for="amount">Loan amount</label>
+                    <div class="input-group"><input class="input" id="amount" type="text" inputmode="decimal" value="250,000"><select class="addon select" id="currency" aria-label="Currency" style="width:auto;border-radius:0 10px 10px 0;min-height:42px"></select></div></div>
+                <div class="field"><label for="rate">Interest rate (annual %)</label>
+                    <div class="range-row"><input type="range" id="rate-r" min="0" max="25" step="0.05" value="6.5" aria-label="Interest rate slider"><input class="input" id="rate" type="number" min="0" max="100" step="0.01" value="6.5" style="width:96px"></div></div>
+                <div class="field"><label for="term">Term</label>
+                    <div class="input-group"><input class="input" id="term" type="number" min="1" max="600" value="30"><select class="addon select" id="term-unit" aria-label="Term unit" style="width:auto;border-radius:0 10px 10px 0;min-height:42px"><option value="y">years</option><option value="m">months</option></select></div></div>
+                <div class="field"><label for="start">First payment</label><input class="input" id="start" type="month"></div>
+                <div class="field"><label for="extra">Extra payment per month (optional)</label><input class="input" id="extra" type="text" inputmode="decimal" value="0"></div>
+                <p class="muted" style="font-size:.85rem;margin:0">Assumes a fixed rate with monthly payments. Taxes, insurance and fees are not included.</p>
+            </section>
+            <div class="stack">
+                <section class="panel">
+                    <div class="cols-2" style="gap:14px">
+                        <div class="hero-stat"><div class="k">Monthly payment</div><div class="v" id="r-monthly">—</div><div class="muted" id="r-monthly-sub" style="font-size:.88rem"></div></div>
+                        <div class="cols-2" style="gap:10px;grid-template-columns:1fr 1fr">
+                            <div class="stat"><div class="k">Total interest</div><div class="v" id="r-interest" style="font-size:1.2rem">—</div></div>
+                            <div class="stat"><div class="k">Total paid</div><div class="v" id="r-total" style="font-size:1.2rem">—</div></div>
+                            <div class="stat"><div class="k">Payoff date</div><div class="v" id="r-payoff" style="font-size:1.2rem">—</div></div>
+                            <div class="stat"><div class="k">Payments</div><div class="v" id="r-count" style="font-size:1.2rem">—</div></div>
+                        </div>
+                    </div>
+                    <div class="split" aria-hidden="true"><span class="p-col" id="split-p"></span><span class="i-col" id="split-i"></span></div>
+                    <div class="legend"><span><i class="p-col"></i>Principal <b id="pct-p"></b></span><span><i class="i-col"></i>Interest <b id="pct-i"></b></span></div>
+                    <div class="alert alert-ok" id="saving" hidden style="margin-top:14px"><svg aria-hidden="true"><use href="assets/img/icons.svg#zap"></use></svg><span id="saving-text"></span></div>
+                </section>
+                <section class="panel" aria-labelledby="chart-h">
+                    <div class="panel-head"><h2 id="chart-h">Remaining balance and yearly payments</h2>
+                        <div class="legend"><span><i class="p-col"></i>Principal</span><span><i class="i-col"></i>Interest</span><span><i class="x-col"></i>Balance</span></div></div>
+                    <svg class="chart" id="chart" role="img" aria-label="Chart of yearly principal and interest with remaining balance"></svg>
+                </section>
+                <section class="panel" aria-labelledby="sched-h">
+                    <div class="panel-head"><h2 id="sched-h">Amortization schedule</h2>
+                        <div class="row">
+                            <div class="segmented" role="tablist" aria-label="Schedule detail">
+                                <button type="button" data-g="y" aria-selected="true">Yearly</button><button type="button" data-g="m" aria-selected="false">Monthly</button>
+                            </div>
+                            <button class="btn btn-secondary btn-sm" type="button" id="csv"><svg aria-hidden="true"><use href="assets/img/icons.svg#download"></use></svg>CSV</button>
+                        </div>
+                    </div>
+                    <div class="table-wrap"><table class="table"><thead><tr><th id="th-period">Year</th><th>Payment</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead><tbody id="sched"></tbody></table></div>
+                </section>
+            </div>
+        </div>
+
+        <div class="cols-2" style="margin-top:40px;align-items:start">
+            <section class="prose" aria-labelledby="guide-h">
+                <h2 id="guide-h" style="margin-top:0">How it works</h2>
+                <p>The monthly payment for a fixed-rate loan uses the standard amortization formula:</p>
+                <p><code>M = P × r(1 + r)ⁿ ÷ ((1 + r)ⁿ − 1)</code></p>
+                <p>where <strong>P</strong> is the amount borrowed, <strong>r</strong> is the monthly interest rate (annual rate ÷ 12) and <strong>n</strong> is the number of monthly payments. Each payment first covers that month’s interest (balance × r); the rest reduces the principal. That’s why early payments are mostly interest.</p>
+                <p><strong>Extra payments</strong> go straight to principal, which shortens the loan and can save a large amount of interest. The calculator shows exactly how much time and money an extra amount saves.</p>
+            </section>
+            <section aria-labelledby="faq-h">
+                <h2 id="faq-h" style="font-size:1.35rem">FAQ</h2>
+                <div class="faq">
+                    <details><summary>What is EMI?</summary><p>EMI (Equated Monthly Instalment) is the fixed monthly payment that pays off a loan, including interest, over its term. It’s the same as the monthly payment shown here.</p></details>
+                    <details><summary>Does this include taxes and insurance?</summary><p>No. Mortgage payments often include property tax, insurance and fees (escrow). Add those separately to estimate your full monthly cost.</p></details>
+                    <details><summary>Is it better to pay extra each month?</summary><p>Usually, if your loan has no prepayment penalty and its interest rate is higher than what you could safely earn elsewhere. Check your loan terms.</p></details>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- @footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a class="brand" href="./"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+                    <p>34 free tools for money, health, work and code. No sign-up, no paywalls, and your data stays in your browser.</p>
+                </div>
+                <div>
+                    <h4>Popular</h4>
+                    <ul>
+                        <li><a href="currency.html">Currency Converter</a></li>
+                        <li><a href="bmi.html">BMI Calculator</a></li>
+                        <li><a href="kanban-board.html">Kanban Board</a></li>
+                        <li><a href="scientific-calculator.html">Scientific Calculator</a></li>
+                        <li><a href="json-formatter.html">JSON Formatter</a></li>
+                        <li><a href="password.html">Password Generator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="./?cat=finance">Finance</a></li>
+                        <li><a href="./?cat=health">Health</a></li>
+                        <li><a href="./?cat=productivity">Productivity</a></li>
+                        <li><a href="./?cat=dev">Developer</a></li>
+                        <li><a href="./?cat=design">Design</a></li>
+                        <li><a href="./?cat=security">Security</a></li>
+                        <li><a href="./?cat=life">Lifestyle</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy policy</a></li>
+                        <li><a href="terms.html">Terms of service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Digital Tools Hub. Built by <a href="about.html">Rabeeh</a>.</span>
+                <span>Tip: press <span class="kbd" data-mod-key>Ctrl K</span> anywhere to jump to a tool.</span>
+            </div>
+        </div>
+    </footer>
+    <!-- /@footer -->
+    <!-- @scripts -->
+    <script src="assets/js/tools.js" defer></script>
+    <script src="assets/js/shell.js" defer></script>
+    <script src="assets/js/hub.js" defer></script>
+    <!-- /@scripts -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        var $ = function (id) { return document.getElementById(id); };
+        var CUR = ["USD", "EUR", "GBP", "INR", "PKR", "AED", "SAR", "CAD", "AUD", "JPY", "CNY", "NGN", "BDT", "ZAR", "BRL", "MXN", "TRY", "CHF", "SGD", "MYR"];
+        $("currency").innerHTML = CUR.map(function (c) { return "<option>" + c + "</option>"; }).join("");
+        var now = new Date(), nextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+        $("start").value = nextMonth.getFullYear() + "-" + String(nextMonth.getMonth() + 1).padStart(2, "0");
+        var KEY = "dth:loan", gran = "y", last = null;
+        try {
+            var s = JSON.parse(localStorage.getItem(KEY));
+            if (s) ["amount", "rate", "term", "term-unit", "extra", "currency"].forEach(function (k) { if (s[k] != null) $(k).value = s[k]; });
+        } catch (e) {}
+        $("rate-r").value = $("rate").value;
+
+        function num(id) { var v = parseFloat(String($(id).value).replace(/[^\d.\-]/g, "")); return isFinite(v) ? v : 0; }
+        function money(v, dec) {
+            try { return new Intl.NumberFormat(undefined, { style: "currency", currency: $("currency").value, maximumFractionDigits: dec == null ? 0 : dec, minimumFractionDigits: dec == null ? 0 : dec }).format(v); }
+            catch (e) { return v.toFixed(dec || 0); }
+        }
+        function payment(P, r, n) { return r === 0 ? P / n : P * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1); }
+        function amortize(P, r, n, M, extra) {
+            var bal = P, rows = [], totalI = 0, k = 0;
+            while (bal > 0.005 && k < n + 1) {
+                var interest = bal * r, princ = Math.min(bal, M - interest + extra);
+                if (princ <= 0) return null; // payment doesn't cover interest
+                bal -= princ; totalI += interest; k++;
+                rows.push({ k: k, pay: princ + interest, p: princ, i: interest, bal: Math.max(0, bal) });
+            }
+            return { rows: rows, interest: totalI };
+        }
+        function addMonths(ym, m) { var p = ym.split("-"), d = new Date(+p[0], +p[1] - 1 + m, 1); return d; }
+        function calc() {
+            var P = num("amount"), rate = num("rate"), term = num("term"), extra = Math.max(0, num("extra"));
+            var n = Math.round($("term-unit").value === "y" ? term * 12 : term), r = rate / 100 / 12;
+            try { localStorage.setItem(KEY, JSON.stringify({ amount: $("amount").value, rate: $("rate").value, term: $("term").value, "term-unit": $("term-unit").value, extra: $("extra").value, currency: $("currency").value })); } catch (e) {}
+            if (!(P > 0) || !(n > 0) || rate < 0) { $("r-monthly").textContent = "—"; $("sched").innerHTML = ""; $("chart").innerHTML = ""; return; }
+            var M = payment(P, r, n);
+            var base = amortize(P, r, n, M, 0), withX = extra > 0 ? amortize(P, r, n, M, extra) : base;
+            var res = withX; last = { rows: res.rows, start: $("start").value || (now.getFullYear() + "-01") };
+            $("r-monthly").textContent = money(M + extra, 2);
+            $("r-monthly-sub").textContent = extra > 0 ? money(M, 2) + " + " + money(extra, 2) + " extra" : "for " + n + " months";
+            $("r-interest").textContent = money(res.interest);
+            $("r-total").textContent = money(P + res.interest);
+            $("r-count").textContent = res.rows.length;
+            var end = addMonths(last.start, res.rows.length - 1);
+            $("r-payoff").textContent = end.toLocaleDateString(undefined, { month: "short", year: "numeric" });
+            var pp = P / (P + res.interest) * 100;
+            $("split-p").style.width = pp + "%"; $("split-i").style.width = (100 - pp) + "%";
+            $("pct-p").textContent = Math.round(pp) + "%"; $("pct-i").textContent = Math.round(100 - pp) + "%";
+            if (extra > 0) {
+                var months = base.rows.length - res.rows.length, saved = base.interest - res.interest;
+                $("saving").hidden = false;
+                $("saving-text").textContent = "Paying " + money(extra) + " extra each month saves " + money(saved) + " in interest and pays the loan off " +
+                    (months >= 12 ? Math.floor(months / 12) + " yr " : "") + (months % 12) + " mo sooner.";
+            } else $("saving").hidden = true;
+            table(); chart();
+        }
+        function grouped() {
+            if (gran === "m") return last.rows.map(function (r) {
+                return { label: addMonths(last.start, r.k - 1).toLocaleDateString(undefined, { month: "short", year: "numeric" }), pay: r.pay, p: r.p, i: r.i, bal: r.bal };
+            });
+            var out = [], startYear = +last.start.split("-")[0];
+            last.rows.forEach(function (r) {
+                var y = addMonths(last.start, r.k - 1).getFullYear(), g = out[y - startYear];
+                if (!g) g = out[y - startYear] = { label: String(y), pay: 0, p: 0, i: 0, bal: 0 };
+                g.pay += r.pay; g.p += r.p; g.i += r.i; g.bal = r.bal;
+            });
+            return out.filter(Boolean);
+        }
+        function table() {
+            $("th-period").textContent = gran === "y" ? "Year" : "Month";
+            $("sched").innerHTML = grouped().map(function (g) {
+                return "<tr><td>" + g.label + "</td><td>" + money(g.pay, 2) + "</td><td>" + money(g.p, 2) + "</td><td>" + money(g.i, 2) + "</td><td>" + money(g.bal, 2) + "</td></tr>";
+            }).join("");
+        }
+        function chart() {
+            var svg = $("chart"), W = svg.clientWidth || 600, H = 220, pad = { l: 8, r: 8, t: 10, b: 22 };
+            var saveG = gran; gran = "y"; var ys = grouped(); gran = saveG;
+            if (!ys.length) { svg.innerHTML = ""; return; }
+            var maxPay = Math.max.apply(null, ys.map(function (g) { return g.pay; }));
+            var maxBal = num("amount");
+            var cw = (W - pad.l - pad.r) / ys.length, bw = Math.max(2, cw * 0.66), h = H - pad.t - pad.b;
+            var html = "";
+            for (var gl = 0; gl <= 4; gl++) { var gy = pad.t + h * gl / 4; html += '<line class="grid-line" x1="' + pad.l + '" x2="' + (W - pad.r) + '" y1="' + gy + '" y2="' + gy + '" stroke-width="1"/>'; }
+            var line = "";
+            ys.forEach(function (g, i) {
+                var x = pad.l + i * cw + (cw - bw) / 2;
+                var hp = h * g.p / maxPay, hi = h * g.i / maxPay;
+                html += '<rect x="' + x + '" y="' + (pad.t + h - hp) + '" width="' + bw + '" height="' + hp + '" rx="1.5" fill="var(--c-finance)"><title>' + g.label + ": principal " + money(g.p) + "</title></rect>";
+                html += '<rect x="' + x + '" y="' + (pad.t + h - hp - hi) + '" width="' + bw + '" height="' + hi + '" rx="1.5" fill="var(--c-dev)"><title>' + g.label + ": interest " + money(g.i) + "</title></rect>";
+                line += (i ? "L" : "M") + (x + bw / 2) + "," + (pad.t + h - h * g.bal / maxBal);
+                var every = Math.ceil(ys.length / 8);
+                if (i % every === 0) html += '<text x="' + (x + bw / 2) + '" y="' + (H - 6) + '" text-anchor="middle">' + g.label + "</text>";
+            });
+            html += '<path d="' + line + '" fill="none" stroke="var(--c-productivity)" stroke-width="2.5" stroke-linejoin="round"/>';
+            svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+            svg.innerHTML = html;
+        }
+        $("rate-r").addEventListener("input", function () { $("rate").value = this.value; calc(); });
+        $("rate").addEventListener("input", function () { $("rate-r").value = this.value; calc(); });
+        ["amount", "term", "term-unit", "extra", "start", "currency"].forEach(function (id) { $(id).addEventListener("input", calc); $(id).addEventListener("change", calc); });
+        $("amount").addEventListener("blur", function () { var v = num("amount"); if (v) this.value = v.toLocaleString("en-US"); });
+        document.querySelectorAll("[data-g]").forEach(function (b) {
+            b.addEventListener("click", function () {
+                gran = b.dataset.g;
+                document.querySelectorAll("[data-g]").forEach(function (x) { x.setAttribute("aria-selected", x === b ? "true" : "false"); });
+                table();
+            });
+        });
+        $("csv").addEventListener("click", function () {
+            if (!last) return;
+            var saveG = gran; gran = "m"; var rows = grouped(); gran = saveG;
+            var csv = "Month,Payment,Principal,Interest,Balance\n" + rows.map(function (g) {
+                return ['"' + g.label + '"', g.pay.toFixed(2), g.p.toFixed(2), g.i.toFixed(2), g.bal.toFixed(2)].join(",");
+            }).join("\n");
+            var a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" })); a.download = "amortization-schedule.csv"; a.click();
+            setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+        });
+        var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(chart, 150); });
+        calc();
+
+    });
+    </script>
+</body>
+</html>

@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -15,7 +16,6 @@
 
     <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f"
         type="text/javascript" async></script> -->
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Age Comparison Calculator | Exact Age Difference</title>
@@ -97,7 +97,7 @@
 
         body {
             background: linear-gradient(135deg, #f5f7fa 0%, #dfe6f0 100%);
-            min-min-height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -672,6 +672,7 @@
     ]
 }
     </script>
+    <link rel="manifest" href="site.webmanifest">
 </head>
 
 <body>
@@ -775,7 +776,7 @@
             const yearsDiffElement = document.getElementById('yearsDiff');
             const monthsDiffElement = document.getElementById('monthsDiff');
             const daysDiffElement = document.getElementById('daysDiff');
-            const hoursDiffElement = documentgetElementById('hoursDiff');
+            const hoursDiffElement = document.getElementById('hoursDiff');
             const ageBar = document.getElementById('ageBar');
             const barLabel = document.getElementById('barLabel');
 
@@ -1106,57 +1107,30 @@
         });
     </script>
 
-    <!-- SEO EXPERT GUIDE -->
     <style>
-        .seo-expert-guide {
-            max-width: 800px;
-            margin: 4rem auto;
-            padding: 2rem;
-            background: rgba(30, 30, 30, 0.5);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #e5e2e1;
-            font-family: 'Inter', sans-serif;
-            text-align: left;
-        }
-        .seo-expert-guide h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem; color: #bac3ff; }
-        .seo-expert-guide h3 { font-size: 1.3rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem; color: #dcdfff; }
-        .seo-expert-guide p { line-height: 1.6; margin-bottom: 1rem; color: #c5c5d6; font-size: 0.95rem; }
-        .seo-expert-guide ul { margin-left: 1.5rem; margin-bottom: 1rem; color: #c5c5d6; font-size: 0.95rem; list-style-type: disc; }
-        .seo-expert-guide li { margin-bottom: 0.5rem; }
+        .dth-guide { --g-bg: #ffffff; --g-tx: #1f2333; --g-mu: #4a5068; --g-bd: #e3e5ee; --g-ac: #4f46e5;
+            max-width: 820px; margin: 48px auto; padding: 28px 32px; border-radius: 16px; background: var(--g-bg); color: var(--g-tx);
+            border: 1px solid var(--g-bd); font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; line-height: 1.65; text-align: left; position: relative; z-index: 1; }
+        @media (prefers-color-scheme: dark) { .dth-guide:not([data-tone=light]) { --g-bg: #141724; --g-tx: #eceef6; --g-mu: #a9afc4; --g-bd: #2a3043; --g-ac: #818cf8; } }
+        .dth-guide[data-tone=dark] { --g-bg: #141724; --g-tx: #eceef6; --g-mu: #a9afc4; --g-bd: #2a3043; --g-ac: #818cf8; }
+        .dth-guide h2 { font-size: 1.4rem; font-weight: 750; margin: 0 0 8px; color: var(--g-tx); letter-spacing: -.01em; }
+        .dth-guide h3 { font-size: 1.05rem; font-weight: 700; margin: 22px 0 6px; color: var(--g-tx); }
+        .dth-guide p, .dth-guide li { color: var(--g-mu); font-size: .97rem; margin: 0 0 10px; }
+        .dth-guide ul { margin: 0 0 10px; padding-left: 1.3em; list-style: disc; }
+        .dth-guide strong { color: var(--g-tx); }
+        .dth-guide code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .88em; padding: 1px 6px; border-radius: 6px; background: color-mix(in srgb, var(--g-ac) 12%, transparent); color: var(--g-tx); }
+        @media (max-width: 640px) { .dth-guide { margin: 32px 16px; padding: 22px 20px; } }
     </style>
-    <article id="seo-expert-guide" class="seo-expert-guide">
-        <h2>Expert Guide: Deep Dive into Age Comparison Calculator</h2>
-        <p><em>(Content Strategy Outline - 600+ Words Target)</em></p>
-        
-        <h3>1. Introduction & Core Philosophy</h3>
-        <p>The Age Comparison Calculator is engineered for professionals requiring high-precision tools directly in the browser. Unlike server-side alternatives, this application leverages client-side computation, ensuring zero latency and absolute data privacy. Our mission is to eliminate the friction typically associated with premium utilities by offering instantaneous access without sign-ups.</p>
-        
-        <h3>2. Architecture & Underlying Logic</h3>
-        <p>Understanding the processing engine beneath surface operations:</p>
-        <ul>
-            <li><strong>Data Handling Pipeline:</strong> Inputs are parsed dynamically and sanitized locally before any algorithmic transformation occurs, protecting against injection and maintaining state cleanly.</li>
-            <li><strong>Algorithmic Complexity:</strong> Core functions utilize optimized pathways (e.g., optimized iteration for analytics, highly-entropied pseudo-random generation for security) to ensure big-O efficiency even with large datasets.</li>
-            <li><strong>Memory Management:</strong> Utilizing garbage-collected lightweight DOM updates to prevent memory leaks during extended sessions.</li>
-        </ul>
-        
-        <h3>3. Primary Professional Use-Cases</h3>
-        <p>How industry experts deploy the Age Comparison Calculator in active workflows:</p>
-        <ul>
-            <li><strong>Workflow Acceleration:</strong> Bypassing the need for heavy desktop software for single-purpose tasks.</li>
-            <li><strong>Secure Environments:</strong> Running offline-capable processes where corporate firewalls restrict outbound data uploads.</li>
-            <li><strong>Data Normalization:</strong> Operating consistently across varying OS environments without environment discrepancies.</li>
-        </ul>
-        
-        <h3>4. Expert Insights & Best Practices</h3>
-        <p>To maximize utility, consider the following operational heuristics:</p>
-        <ul>
-            <li>Ensure input datasets are pre-formatted to match standardized expectations (e.g., UTF-8 encoding).</li>
-            <li>Leverage the tool's modularity by chaining its outputs directly into your primary development or analytical pipeline.</li>
-            <li>Regularly clear local browser caches if working with excessively large sequential operations to maintain optimal render speeds.</li>
-        </ul>
-    </article>
+    <section class="dth-guide" aria-labelledby="guide-title">
+        <h2 id="guide-title">About the age difference calculator</h2>
+        <h3>How it works</h3>
+        <p>Enter two birth dates to see the exact difference in years, months, days and hours, plus who is older. Calendar months and leap years are taken into account.</p>
+        <h3>Ideas for using it</h3>
+        <ul><li>Find the age gap between siblings, partners or friends.</li><li>Work out how old one person was when the other was born.</li><li>Find milestone dates, such as when one person will be double or half the other’s age.</li></ul>
+    </section>
     
+    <script src="assets/js/tools.js" defer></script>
+    <script src="assets/js/shell.js" defer></script>
 </body>
 
 </html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" data-hub>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pomodoro Timer | Free Online Focus Timer with Stats | Digital Tools Hub</title>
+    <meta name="description" content="Free online Pomodoro timer. 25/5 focus and break sessions, custom durations, auto-start, sound and desktop notifications, keyboard shortcuts and daily focus stats.">
+    <link rel="canonical" href="https://digitaltoolshub.github.io/pomodoro.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Digital Tools Hub">
+    <meta property="og:url" content="https://digitaltoolshub.github.io/pomodoro.html">
+    <meta property="og:title" content="Pomodoro Timer | Free Online Focus Timer with Stats | Digital Tools Hub">
+    <meta property="og:description" content="Free online Pomodoro timer. 25/5 focus and break sessions, custom durations, auto-start, sound and desktop notifications, keyboard shortcuts and daily focus stats.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- @head -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#f7f7fb" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0b0d14" media="(prefers-color-scheme: dark)">
+    <script>try{var t=localStorage.getItem("dth:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="stylesheet" href="assets/css/hub.css">
+    <link rel="preload" href="assets/img/icons.svg" as="image" type="image/svg+xml">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-R4N9RB1SNN");</script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" async></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
+    <!-- /@head -->
+    <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Pomodoro Focus Timer", "url": "https://digitaltoolshub.github.io/pomodoro.html", "description": "Free online Pomodoro timer. 25/5 focus and break sessions, custom durations, auto-start, sound and desktop notifications, keyboard shortcuts and daily focus stats.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "browserRequirements": "Requires JavaScript", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://digitaltoolshub.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Productivity", "item": "https://digitaltoolshub.github.io/?cat=productivity"}, {"@type": "ListItem", "position": 3, "name": "Pomodoro Focus Timer", "item": "https://digitaltoolshub.github.io/pomodoro.html"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Will the timer keep running in a background tab?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. It is based on the system clock rather than counting ticks, so it stays accurate even when the browser throttles background tabs."}}, {"@type": "Question", "name": "Where are my stats stored?", "acceptedAnswer": {"@type": "Answer", "text": "In your browser’s local storage on this device. Nothing is sent to a server."}}, {"@type": "Question", "name": "Why don’t I get notifications?", "acceptedAnswer": {"@type": "Answer", "text": "Enable “Desktop notification” and allow notifications when your browser asks. Some browsers block notifications on pages you haven’t interacted with."}}]}]}</script>
+    <style>
+
+        .pomo { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+        @media (max-width: 900px) { .pomo { grid-template-columns: 1fr; } }
+        .timer-panel { text-align: center; padding: 28px 20px 26px; }
+        .ring { position: relative; width: min(320px, 78vw); aspect-ratio: 1; margin: 22px auto 18px; }
+        .ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+        .ring .track { stroke: var(--bg-sunken); }
+        .ring .bar { stroke: var(--mode); transition: stroke-dashoffset .4s linear, stroke .3s; }
+        .ring .time { position: absolute; inset: 0; display: grid; place-content: center; gap: 4px; }
+        .ring .time b { font-size: clamp(3rem, 12vw, 4.6rem); font-weight: 750; letter-spacing: -.03em; font-variant-numeric: tabular-nums; line-height: 1; }
+        .ring .time span { color: var(--text-3); font-size: .95rem; }
+        .timer-panel { --mode: var(--c-health); }
+        .timer-panel[data-mode="short"] { --mode: var(--c-finance); }
+        .timer-panel[data-mode="long"] { --mode: var(--c-productivity); }
+        .controls { display: flex; gap: 10px; justify-content: center; align-items: center; }
+        .play { width: 64px; height: 64px; border-radius: 50%; background: var(--mode); color: #fff; border: 0; cursor: pointer; display: grid; place-items: center; box-shadow: 0 10px 24px -10px var(--mode); }
+        .play svg { width: 26px; height: 26px; --icon-fill: currentColor; }
+        .play:active { transform: scale(.97); }
+        .dots { display: flex; gap: 6px; justify-content: center; margin-top: 18px; }
+        .dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--border-strong); }
+        .dots i.on { background: var(--mode); }
+        .task-input { max-width: 420px; margin: 0 auto; text-align: center; }
+        .settings-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+        .switch { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 0; font-size: .93rem; cursor: pointer; }
+        .switch input { width: 18px; height: 18px; accent-color: var(--accent); }
+        .log { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; max-height: 220px; overflow: auto; }
+        .log li { display: flex; justify-content: space-between; gap: 10px; font-size: .88rem; padding: 8px 10px; border-radius: 8px; background: var(--bg-sunken); }
+        .log li span:last-child { color: var(--text-3); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+    </style>
+</head>
+<body>
+    <!-- @header -->
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="./" aria-label="Digital Tools Hub home"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+            <nav class="site-nav" aria-label="Main">
+                <a href="./" aria-current="page">All tools</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="search-trigger" type="button" data-open-palette aria-label="Search tools"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#search"></use></svg><span class="label">Search tools…</span><span class="kbd" data-mod-key>Ctrl K</span></button>
+                <button class="icon-btn" type="button" data-theme-toggle aria-label="Change theme"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#monitor"></use></svg></button>
+            </div>
+        </div>
+    </header>
+    <!-- /@header -->
+
+    <main id="main" class="container">
+        <div class="page-head">
+            <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="./">Home</a><svg aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"></use></svg><a href="./?cat=productivity">Productivity</a><svg aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"></use></svg><span>Pomodoro Focus Timer</span></nav>
+            <h1><span class="tool-icon" data-cat="productivity"><svg aria-hidden="true"><use href="assets/img/icons.svg#timer"></use></svg></span>Pomodoro Focus Timer</h1>
+            <p>Work in focused sprints with timed breaks. Customise durations, get notified when time is up, and track your focus today.</p>
+        </div>
+
+        <div class="pomo">
+            <section class="panel timer-panel" id="timer" data-mode="focus" aria-label="Timer">
+                <div class="segmented" role="tablist" aria-label="Session type">
+                    <button type="button" role="tab" data-mode="focus" aria-selected="true">Focus</button>
+                    <button type="button" role="tab" data-mode="short" aria-selected="false">Short break</button>
+                    <button type="button" role="tab" data-mode="long" aria-selected="false">Long break</button>
+                </div>
+                <div class="ring">
+                    <svg viewBox="0 0 120 120" aria-hidden="true">
+                        <circle class="track" cx="60" cy="60" r="54" fill="none" stroke-width="7"></circle>
+                        <circle class="bar" id="bar" cx="60" cy="60" r="54" fill="none" stroke-width="7" stroke-linecap="round"></circle>
+                    </svg>
+                    <div class="time"><b id="clock" role="timer" aria-live="off">25:00</b><span id="mode-label">Time to focus</span></div>
+                </div>
+                <div class="controls">
+                    <button class="icon-btn" type="button" id="reset" aria-label="Reset (R)" title="Reset (R)"><svg aria-hidden="true"><use href="assets/img/icons.svg#rotate-ccw"></use></svg></button>
+                    <button class="play" type="button" id="toggle" aria-label="Start (Space)" title="Start / pause (Space)"><svg aria-hidden="true"><use href="assets/img/icons.svg#play"></use></svg></button>
+                    <button class="icon-btn" type="button" id="skip" aria-label="Skip to next session (S)" title="Skip (S)"><svg aria-hidden="true"><use href="assets/img/icons.svg#skip-forward"></use></svg></button>
+                </div>
+                <div class="dots" id="dots" aria-label="Sessions until long break"></div>
+                <div class="task-input" style="margin-top:20px">
+                    <label class="sr-only" for="task">What are you working on?</label>
+                    <input class="input" id="task" placeholder="What are you working on?" maxlength="80" autocomplete="off">
+                </div>
+            </section>
+            <div class="stack">
+                <section class="panel" aria-labelledby="today-h">
+                    <div class="panel-head"><h2 id="today-h">Today</h2><button class="link-btn" type="button" id="clear-log">Reset day</button></div>
+                    <div class="cols-3" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+                        <div class="stat"><div class="k">Sessions</div><div class="v" id="st-sessions">0</div></div>
+                        <div class="stat"><div class="k">Focus</div><div class="v" id="st-minutes">0m</div></div>
+                        <div class="stat"><div class="k">Streak</div><div class="v" id="st-streak">0d</div></div>
+                    </div>
+                    <ul class="log" id="log" style="margin-top:12px"></ul>
+                </section>
+                <section class="panel" aria-labelledby="set-h">
+                    <div class="panel-head"><h2 id="set-h">Settings</h2></div>
+                    <div class="settings-grid">
+                        <div class="field"><label for="d-focus">Focus (min)</label><input class="input" id="d-focus" type="number" min="1" max="180" value="25"></div>
+                        <div class="field"><label for="d-short">Short (min)</label><input class="input" id="d-short" type="number" min="1" max="60" value="5"></div>
+                        <div class="field"><label for="d-long">Long (min)</label><input class="input" id="d-long" type="number" min="1" max="90" value="15"></div>
+                    </div>
+                    <div class="field" style="margin-top:10px"><label for="d-every">Long break after</label>
+                        <select class="select" id="d-every"><option value="2">2 sessions</option><option value="3">3 sessions</option><option value="4" selected>4 sessions</option><option value="5">5 sessions</option><option value="6">6 sessions</option></select></div>
+                    <div style="margin-top:8px">
+                        <label class="switch">Auto-start breaks <input type="checkbox" id="auto-break"></label>
+                        <label class="switch">Auto-start focus sessions <input type="checkbox" id="auto-focus"></label>
+                        <label class="switch">Sound <input type="checkbox" id="sound" checked></label>
+                        <label class="switch">Desktop notification <input type="checkbox" id="notify"></label>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="cols-2" style="margin-top:40px;align-items:start">
+            <section class="prose" aria-labelledby="guide-h">
+                <h2 id="guide-h" style="margin-top:0">How it works</h2>
+                <p>The Pomodoro Technique alternates short, focused work sessions with breaks. The classic pattern is <strong>25 minutes of focus</strong> followed by a <strong>5-minute break</strong>, with a longer 15–30 minute break after every four sessions.</p>
+                <ol>
+                    <li>Write down the one task you’ll work on.</li>
+                    <li>Press start (or <span class="kbd">Space</span>) and work until the timer rings.</li>
+                    <li>Take the break and step away from the screen.</li>
+                    <li>Repeat. Completed sessions and focus minutes are tracked for today.</li>
+                </ol>
+                <p>The timer keeps accurate time even if the tab is in the background, and the remaining time is shown in the tab title. Shortcuts: <span class="kbd">Space</span> start/pause, <span class="kbd">R</span> reset, <span class="kbd">S</span> skip.</p>
+            </section>
+            <section aria-labelledby="faq-h">
+                <h2 id="faq-h" style="font-size:1.35rem">FAQ</h2>
+                <div class="faq">
+                    <details><summary>Will the timer keep running in a background tab?</summary><p>Yes. It is based on the system clock rather than counting ticks, so it stays accurate even when the browser throttles background tabs.</p></details>
+                    <details><summary>Where are my stats stored?</summary><p>In your browser’s local storage on this device. Nothing is sent to a server.</p></details>
+                    <details><summary>Why don’t I get notifications?</summary><p>Enable “Desktop notification” and allow notifications when your browser asks. Some browsers block notifications on pages you haven’t interacted with.</p></details>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- @footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a class="brand" href="./"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+                    <p>34 free tools for money, health, work and code. No sign-up, no paywalls, and your data stays in your browser.</p>
+                </div>
+                <div>
+                    <h4>Popular</h4>
+                    <ul>
+                        <li><a href="currency.html">Currency Converter</a></li>
+                        <li><a href="bmi.html">BMI Calculator</a></li>
+                        <li><a href="kanban-board.html">Kanban Board</a></li>
+                        <li><a href="scientific-calculator.html">Scientific Calculator</a></li>
+                        <li><a href="json-formatter.html">JSON Formatter</a></li>
+                        <li><a href="password.html">Password Generator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="./?cat=finance">Finance</a></li>
+                        <li><a href="./?cat=health">Health</a></li>
+                        <li><a href="./?cat=productivity">Productivity</a></li>
+                        <li><a href="./?cat=dev">Developer</a></li>
+                        <li><a href="./?cat=design">Design</a></li>
+                        <li><a href="./?cat=security">Security</a></li>
+                        <li><a href="./?cat=life">Lifestyle</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy policy</a></li>
+                        <li><a href="terms.html">Terms of service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Digital Tools Hub. Built by <a href="about.html">Rabeeh</a>.</span>
+                <span>Tip: press <span class="kbd" data-mod-key>Ctrl K</span> anywhere to jump to a tool.</span>
+            </div>
+        </div>
+    </footer>
+    <!-- /@footer -->
+    <!-- @scripts -->
+    <script src="assets/js/tools.js" defer></script>
+    <script src="assets/js/shell.js" defer></script>
+    <script src="assets/js/hub.js" defer></script>
+    <!-- /@scripts -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        var $ = function (id) { return document.getElementById(id); };
+        var KEY = "dth:pomo", LOGKEY = "dth:pomo:log";
+        var LABELS = { focus: "Time to focus", short: "Short break", long: "Long break" };
+        var cfg = { focus: 25, short: 5, long: 15, every: 4, autoBreak: false, autoFocus: false, sound: true, notify: false };
+        try { Object.assign(cfg, JSON.parse(localStorage.getItem(KEY)) || {}); } catch (e) {}
+        var st = { mode: "focus", running: false, endAt: 0, remaining: cfg.focus * 60000, count: 0 };
+        var bar = $("bar"), C = 2 * Math.PI * 54, raf = 0, baseTitle = document.title;
+        bar.style.strokeDasharray = C;
+
+        function today() { var d = new Date(); return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); }
+        function readLog() { try { return JSON.parse(localStorage.getItem(LOGKEY)) || {}; } catch (e) { return {}; } }
+        function writeLog(l) { try { localStorage.setItem(LOGKEY, JSON.stringify(l)); } catch (e) {} }
+        function saveCfg() { try { localStorage.setItem(KEY, JSON.stringify(cfg)); } catch (e) {} }
+        function dur(mode) { return Math.max(1, +cfg[mode] || 1) * 60000; }
+        function pad(n) { return (n < 10 ? "0" : "") + n; }
+        function fmt(ms) { var s = Math.ceil(ms / 1000); return pad(Math.floor(s / 60)) + ":" + pad(s % 60); }
+
+        function render() {
+            var left = st.running ? Math.max(0, st.endAt - Date.now()) : st.remaining;
+            $("clock").textContent = fmt(left);
+            bar.style.strokeDashoffset = C * (1 - left / dur(st.mode));
+            document.title = (st.running || left < dur(st.mode)) ? fmt(left) + " · " + (st.mode === "focus" ? "Focus" : "Break") + " | Pomodoro" : baseTitle;
+            return left;
+        }
+        function loop() {
+            var left = render();
+            if (st.running && left <= 0) { complete(); return; }
+            if (st.running) raf = setTimeout(loop, 250);
+        }
+        function setPlayIcon() {
+            $("toggle").querySelector("use").setAttribute("href", DTH.icons + "#" + (st.running ? "pause" : "play"));
+            $("toggle").setAttribute("aria-label", st.running ? "Pause (Space)" : "Start (Space)");
+        }
+        function start() {
+            if (st.running) return;
+            st.running = true; st.endAt = Date.now() + st.remaining;
+            setPlayIcon(); unlockAudio(); loop();
+        }
+        function pause() {
+            if (!st.running) return;
+            st.remaining = Math.max(0, st.endAt - Date.now()); st.running = false;
+            clearTimeout(raf); setPlayIcon(); render();
+        }
+        function setMode(mode, autostart) {
+            clearTimeout(raf);
+            st.mode = mode; st.running = false; st.remaining = dur(mode);
+            $("timer").dataset.mode = mode; $("mode-label").textContent = LABELS[mode];
+            document.querySelectorAll("[role=tab][data-mode]").forEach(function (b) { b.setAttribute("aria-selected", b.dataset.mode === mode ? "true" : "false"); });
+            setPlayIcon(); render(); dots();
+            if (autostart) start();
+        }
+        function next(fromComplete) {
+            if (st.mode === "focus") {
+                if (fromComplete) st.count++;
+                var long = st.count > 0 && st.count % cfg.every === 0;
+                setMode(long ? "long" : "short", fromComplete && cfg.autoBreak);
+            } else {
+                setMode("focus", fromComplete && cfg.autoFocus);
+            }
+        }
+        function complete() {
+            var finished = st.mode;
+            if (finished === "focus") {
+                var log = readLog(), d = today();
+                log[d] = log[d] || { sessions: 0, minutes: 0, items: [] };
+                log[d].sessions++; log[d].minutes += +cfg.focus;
+                log[d].items.unshift({ t: Date.now(), task: $("task").value.trim(), min: +cfg.focus });
+                log[d].items = log[d].items.slice(0, 30);
+                writeLog(log); stats();
+            }
+            alertDone(finished);
+            next(true);
+        }
+
+        // ----- sound & notifications -----
+        var actx = null;
+        function unlockAudio() { if (!actx && cfg.sound) { try { actx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {} } }
+        function chime() {
+            if (!cfg.sound || !actx) return;
+            [0, 0.22, 0.44].forEach(function (t, i) {
+                var o = actx.createOscillator(), g = actx.createGain();
+                o.type = "sine"; o.frequency.value = [880, 1046.5, 1318.5][i];
+                g.gain.setValueAtTime(0.0001, actx.currentTime + t);
+                g.gain.exponentialRampToValueAtTime(0.25, actx.currentTime + t + 0.02);
+                g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + t + 0.5);
+                o.connect(g).connect(actx.destination); o.start(actx.currentTime + t); o.stop(actx.currentTime + t + 0.55);
+            });
+        }
+        function alertDone(mode) {
+            chime();
+            var msg = mode === "focus" ? "Focus session complete. Time for a break." : "Break over. Ready to focus?";
+            DTH.toast(msg);
+            if (cfg.notify && "Notification" in window && Notification.permission === "granted") {
+                try { new Notification("Pomodoro", { body: msg, icon: "favicon-96x96.png", tag: "dth-pomo" }); } catch (e) {}
+            }
+        }
+
+        // ----- stats -----
+        function streak(log) {
+            var n = 0, d = new Date();
+            if (!log[today()]) d.setDate(d.getDate() - 1);
+            for (;;) {
+                var k = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+                if (log[k] && log[k].sessions) { n++; d.setDate(d.getDate() - 1); } else break;
+            }
+            return n;
+        }
+        function stats() {
+            var log = readLog(), t = log[today()] || { sessions: 0, minutes: 0, items: [] };
+            $("st-sessions").textContent = t.sessions;
+            $("st-minutes").textContent = t.minutes >= 60 ? Math.floor(t.minutes / 60) + "h " + (t.minutes % 60) + "m" : t.minutes + "m";
+            $("st-streak").textContent = streak(log) + "d";
+            $("log").innerHTML = t.items.length ? t.items.map(function (it) {
+                var time = new Date(it.t).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+                return "<li><span>" + DTH.esc(it.task || "Focus session") + "</span><span>" + it.min + " min · " + time + "</span></li>";
+            }).join("") : '<li><span class="muted">No sessions yet today</span><span></span></li>';
+        }
+        function dots() {
+            var inCycle = st.count % cfg.every, html = "";
+            for (var i = 0; i < cfg.every; i++) html += "<i" + (i < inCycle ? ' class="on"' : "") + "></i>";
+            $("dots").innerHTML = html;
+        }
+
+        // ----- wiring -----
+        $("toggle").addEventListener("click", function () { st.running ? pause() : start(); });
+        $("reset").addEventListener("click", function () { setMode(st.mode); });
+        $("skip").addEventListener("click", function () { next(false); });
+        document.querySelectorAll("[role=tab][data-mode]").forEach(function (b) { b.addEventListener("click", function () { setMode(b.dataset.mode); }); });
+        document.addEventListener("keydown", function (e) {
+            var t = e.target; if (/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName) || e.ctrlKey || e.metaKey || e.altKey) return;
+            if (e.code === "Space") { e.preventDefault(); st.running ? pause() : start(); }
+            else if (e.key === "r" || e.key === "R") setMode(st.mode);
+            else if (e.key === "s" || e.key === "S") next(false);
+        });
+        [["d-focus", "focus"], ["d-short", "short"], ["d-long", "long"]].forEach(function (p) {
+            var el = $(p[0]); el.value = cfg[p[1]];
+            el.addEventListener("change", function () {
+                var v = Math.round(+el.value); if (!(v >= 1)) v = 1; el.value = v; cfg[p[1]] = v; saveCfg();
+                if (!st.running && st.mode === p[1]) setMode(st.mode);
+            });
+        });
+        $("d-every").value = cfg.every;
+        $("d-every").addEventListener("change", function () { cfg.every = +this.value; saveCfg(); dots(); });
+        [["auto-break", "autoBreak"], ["auto-focus", "autoFocus"], ["sound", "sound"], ["notify", "notify"]].forEach(function (p) {
+            var el = $(p[0]); el.checked = !!cfg[p[1]];
+            el.addEventListener("change", function () {
+                cfg[p[1]] = el.checked; saveCfg();
+                if (p[1] === "sound" && el.checked) { unlockAudio(); chime(); }
+                if (p[1] === "notify" && el.checked && "Notification" in window && Notification.permission !== "granted") {
+                    Notification.requestPermission().then(function (r) { if (r !== "granted") { el.checked = false; cfg.notify = false; saveCfg(); DTH.toast("Notifications are blocked in your browser"); } });
+                }
+            });
+        });
+        $("clear-log").addEventListener("click", function () {
+            if (!confirm("Clear today's sessions?")) return;
+            var log = readLog(); delete log[today()]; writeLog(log); st.count = 0; stats(); dots();
+        });
+        try { $("task").value = localStorage.getItem("dth:pomo:task") || ""; } catch (e) {}
+        $("task").addEventListener("input", function () { try { localStorage.setItem("dth:pomo:task", this.value); } catch (e) {} });
+        window.addEventListener("beforeunload", function (e) { if (st.running) { e.preventDefault(); e.returnValue = ""; } });
+        st.count = (readLog()[today()] || {}).sessions || 0;
+        setMode("focus"); stats();
+
+    });
+    </script>
+</body>
+</html>

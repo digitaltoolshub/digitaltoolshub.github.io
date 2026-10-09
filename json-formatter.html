@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en" data-hub>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JSON Formatter & Validator | Beautify, Minify, Tree View | Digital Tools Hub</title>
+    <meta name="description" content="Free online JSON formatter and validator. Beautify, minify and sort JSON, see exact error line and column, and explore data in a tree view. 100% private, runs in your browser.">
+    <link rel="canonical" href="https://digitaltoolshub.github.io/json-formatter.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Digital Tools Hub">
+    <meta property="og:url" content="https://digitaltoolshub.github.io/json-formatter.html">
+    <meta property="og:title" content="JSON Formatter & Validator | Beautify, Minify, Tree View | Digital Tools Hub">
+    <meta property="og:description" content="Free online JSON formatter and validator. Beautify, minify and sort JSON, see exact error line and column, and explore data in a tree view. 100% private, runs in your browser.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- @head -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#f7f7fb" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0b0d14" media="(prefers-color-scheme: dark)">
+    <script>try{var t=localStorage.getItem("dth:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="stylesheet" href="assets/css/hub.css">
+    <link rel="preload" href="assets/img/icons.svg" as="image" type="image/svg+xml">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-R4N9RB1SNN");</script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" async></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
+    <!-- /@head -->
+    <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "JSON Formatter", "url": "https://digitaltoolshub.github.io/json-formatter.html", "description": "Free online JSON formatter and validator. Beautify, minify and sort JSON, see exact error line and column, and explore data in a tree view. 100% private, runs in your browser.", "applicationCategory": "DeveloperApplication", "operatingSystem": "Any", "browserRequirements": "Requires JavaScript", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://digitaltoolshub.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Developer", "item": "https://digitaltoolshub.github.io/?cat=dev"}, {"@type": "ListItem", "position": 3, "name": "JSON Formatter", "item": "https://digitaltoolshub.github.io/json-formatter.html"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is my JSON sent to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. Parsing, formatting and validation all happen locally in your browser, so it’s safe for API keys, tokens and private data."}}, {"@type": "Question", "name": "Why does it say “Unexpected token”?", "acceptedAnswer": {"@type": "Answer", "text": "Common causes are trailing commas, single quotes instead of double quotes, unquoted keys, or comments. Strict JSON allows none of these."}}, {"@type": "Question", "name": "How large a file can it handle?", "acceptedAnswer": {"@type": "Answer", "text": "Several megabytes comfortably. Very large files may be slower to highlight; minify or the tree view stay fast."}}]}]}</script>
+    <style>
+
+        .json-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+        @media (max-width: 900px) { .json-grid { grid-template-columns: 1fr; } }
+        .json-grid .panel { display: flex; flex-direction: column; min-height: 520px; padding: 0; overflow: hidden; }
+        .pane-bar { min-height: 58px; display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-bottom: 1px solid var(--border); flex-wrap: wrap; background: var(--bg-sunken); }
+        .pane-bar h2 { font-size: .9rem; margin: 0 auto 0 4px; }
+        #json-in { flex: 1; border: 0; border-radius: 0; resize: none; min-height: 460px; padding: 14px 16px; background: transparent; box-shadow: none; tab-size: 2; }
+        #json-in:focus { box-shadow: none; }
+        .out { flex: 1; overflow: auto; margin: 0; padding: 14px 16px; font-family: var(--mono); font-size: .88rem; line-height: 1.55; white-space: pre; tab-size: 2; max-height: 70vh; }
+        .out.wrap { white-space: pre-wrap; word-break: break-word; }
+        .j-key { color: var(--c-design); } .j-str { color: var(--c-finance); } .j-num { color: var(--c-dev); }
+        .j-bool { color: var(--c-productivity); } .j-null { color: var(--text-3); font-style: italic; }
+        .status { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; padding: 9px 14px; border-top: 1px solid var(--border); font-size: .82rem; color: var(--text-3); background: var(--bg-sunken); }
+        .status .ok { color: var(--ok); font-weight: 650; } .status .bad { color: var(--danger); font-weight: 650; }
+        .tree { font-family: var(--mono); font-size: .88rem; line-height: 1.7; padding: 12px 16px; overflow: auto; max-height: 70vh; flex: 1; }
+        .tree details { padding-left: 16px; border-left: 1px dashed var(--border); margin-left: 4px; }
+        .tree summary { cursor: pointer; margin-left: -16px; list-style: none; }
+        .tree summary::before { content: "▸"; display: inline-block; width: 14px; color: var(--text-3); transition: transform .15s; }
+        .tree details[open] > summary::before { transform: rotate(90deg); }
+        .tree .leaf { padding-left: 2px; }
+        .tree .meta { color: var(--text-3); font-size: .8rem; }
+        .err-line { background: color-mix(in srgb, var(--danger) 18%, transparent); display: inline-block; min-width: 100%; }
+        .select-sm { width: auto; min-height: 34px; height: 34px; padding-top: 0; padding-bottom: 0; font-size: .85rem; border-radius: 8px; }
+
+    </style>
+</head>
+<body>
+    <!-- @header -->
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="./" aria-label="Digital Tools Hub home"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+            <nav class="site-nav" aria-label="Main">
+                <a href="./" aria-current="page">All tools</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="search-trigger" type="button" data-open-palette aria-label="Search tools"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#search"></use></svg><span class="label">Search tools…</span><span class="kbd" data-mod-key>Ctrl K</span></button>
+                <button class="icon-btn" type="button" data-theme-toggle aria-label="Change theme"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#monitor"></use></svg></button>
+            </div>
+        </div>
+    </header>
+    <!-- /@header -->
+
+    <main id="main" class="container">
+        <div class="page-head">
+            <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="./">Home</a><svg aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"></use></svg><a href="./?cat=dev">Developer</a><svg aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"></use></svg><span>JSON Formatter</span></nav>
+            <h1><span class="tool-icon" data-cat="dev"><svg aria-hidden="true"><use href="assets/img/icons.svg#braces"></use></svg></span>JSON Formatter</h1>
+            <p>Format, validate, minify and explore JSON. Errors are pinpointed to the exact line and column. Nothing leaves your browser.</p>
+        </div>
+
+        <div class="json-grid">
+            <section class="panel" aria-labelledby="in-h">
+                <div class="pane-bar">
+                    <h2 id="in-h">Input</h2>
+                    <button class="btn btn-ghost btn-sm" type="button" id="btn-sample"><svg aria-hidden="true"><use href="assets/img/icons.svg#wand-sparkles"></use></svg>Sample</button>
+                    <label class="btn btn-ghost btn-sm" for="file-in" style="cursor:pointer"><svg aria-hidden="true"><use href="assets/img/icons.svg#upload"></use></svg>Open file</label>
+                    <input type="file" id="file-in" accept=".json,application/json,text/plain" hidden>
+                    <button class="btn btn-ghost btn-sm" type="button" id="btn-clear"><svg aria-hidden="true"><use href="assets/img/icons.svg#trash-2"></use></svg>Clear</button>
+                </div>
+                <label for="json-in" class="sr-only">JSON input</label>
+                <textarea id="json-in" class="textarea" spellcheck="false" autocomplete="off" placeholder='Paste JSON here, e.g. {"name": "Ada", "skills": ["math", "code"]}'></textarea>
+                <div class="status" id="in-status" aria-live="polite"><span>Waiting for input</span></div>
+            </section>
+            <section class="panel" aria-labelledby="out-h">
+                <div class="pane-bar">
+                    <h2 id="out-h">Output</h2>
+                    <div class="segmented" role="tablist" aria-label="View">
+                        <button type="button" role="tab" aria-selected="true" data-view="code">Code</button>
+                        <button type="button" role="tab" aria-selected="false" data-view="tree">Tree</button>
+                    </div>
+                    <button class="btn btn-ghost btn-sm" type="button" id="btn-copy"><svg aria-hidden="true"><use href="assets/img/icons.svg#copy"></use></svg>Copy</button>
+                    <button class="btn btn-ghost btn-sm" type="button" id="btn-download"><svg aria-hidden="true"><use href="assets/img/icons.svg#download"></use></svg>Save</button>
+                </div>
+                <pre class="out" id="out" tabindex="0" aria-label="Formatted JSON"></pre>
+                <div class="tree" id="tree" hidden></div>
+                <div class="status" id="out-status"><span>—</span></div>
+            </section>
+        </div>
+        <div class="panel row" style="margin-top:16px">
+            <button class="btn btn-primary" type="button" id="btn-format"><svg aria-hidden="true"><use href="assets/img/icons.svg#braces"></use></svg>Format</button>
+            <button class="btn btn-secondary" type="button" id="btn-minify"><svg aria-hidden="true"><use href="assets/img/icons.svg#minus"></use></svg>Minify</button>
+            <label class="sr-only" for="indent">Indentation</label>
+            <select class="select select-sm" id="indent">
+                <option value="2">2 spaces</option><option value="4">4 spaces</option><option value="tab">Tabs</option>
+            </select>
+            <label class="row" style="gap:6px;font-size:.9rem;cursor:pointer"><input type="checkbox" id="sort-keys"> Sort keys</label>
+            <label class="row" style="gap:6px;font-size:.9rem;cursor:pointer"><input type="checkbox" id="wrap"> Wrap lines</label>
+            <label class="row" style="gap:6px;font-size:.9rem;cursor:pointer"><input type="checkbox" id="live" checked> Live preview</label>
+            <span class="muted" style="margin-left:auto;font-size:.85rem"><span class="kbd">Ctrl/⌘</span> + <span class="kbd">Enter</span> to format</span>
+        </div>
+
+        <div class="cols-2" style="margin-top:40px;align-items:start">
+            <section class="prose" aria-labelledby="guide-h">
+                <h2 id="guide-h" style="margin-top:0">How it works</h2>
+                <p>Paste JSON or open a <code>.json</code> file. The formatter parses it with your browser’s built-in <code>JSON.parse</code>, so validation is exact. If something is wrong you’ll see the line and column of the first error, with that line highlighted.</p>
+                <ul>
+                    <li><strong>Format</strong> re-indents with 2 spaces, 4 spaces or tabs.</li>
+                    <li><strong>Minify</strong> removes all whitespace for the smallest payload.</li>
+                    <li><strong>Sort keys</strong> orders object keys alphabetically (recursively), which makes diffs easier to read.</li>
+                    <li><strong>Tree</strong> view lets you expand and collapse nested objects and arrays.</li>
+                </ul>
+                <p>Your input is kept as a draft in this browser so you don’t lose work on refresh. Nothing is uploaded.</p>
+            </section>
+            <section aria-labelledby="faq-h">
+                <h2 id="faq-h" style="font-size:1.35rem">FAQ</h2>
+                <div class="faq">
+                    <details><summary>Is my JSON sent to a server?</summary><p>No. Parsing, formatting and validation all happen locally in your browser, so it’s safe for API keys, tokens and private data.</p></details>
+                    <details><summary>Why does it say “Unexpected token”?</summary><p>Common causes are trailing commas, single quotes instead of double quotes, unquoted keys, or comments. Strict JSON allows none of these.</p></details>
+                    <details><summary>How large a file can it handle?</summary><p>Several megabytes comfortably. Very large files may be slower to highlight; minify or the tree view stay fast.</p></details>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- @footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a class="brand" href="./"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+                    <p>34 free tools for money, health, work and code. No sign-up, no paywalls, and your data stays in your browser.</p>
+                </div>
+                <div>
+                    <h4>Popular</h4>
+                    <ul>
+                        <li><a href="currency.html">Currency Converter</a></li>
+                        <li><a href="bmi.html">BMI Calculator</a></li>
+                        <li><a href="kanban-board.html">Kanban Board</a></li>
+                        <li><a href="scientific-calculator.html">Scientific Calculator</a></li>
+                        <li><a href="json-formatter.html">JSON Formatter</a></li>
+                        <li><a href="password.html">Password Generator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="./?cat=finance">Finance</a></li>
+                        <li><a href="./?cat=health">Health</a></li>
+                        <li><a href="./?cat=productivity">Productivity</a></li>
+                        <li><a href="./?cat=dev">Developer</a></li>
+                        <li><a href="./?cat=design">Design</a></li>
+                        <li><a href="./?cat=security">Security</a></li>
+                        <li><a href="./?cat=life">Lifestyle</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy policy</a></li>
+                        <li><a href="terms.html">Terms of service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Digital Tools Hub. Built by <a href="about.html">Rabeeh</a>.</span>
+                <span>Tip: press <span class="kbd" data-mod-key>Ctrl K</span> anywhere to jump to a tool.</span>
+            </div>
+        </div>
+    </footer>
+    <!-- /@footer -->
+    <!-- @scripts -->
+    <script src="assets/js/tools.js" defer></script>
+    <script src="assets/js/shell.js" defer></script>
+    <script src="assets/js/hub.js" defer></script>
+    <!-- /@scripts -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        var $ = function (id) { return document.getElementById(id); };
+        var input = $("json-in"), out = $("out"), tree = $("tree"), inStatus = $("in-status"), outStatus = $("out-status");
+        var DRAFT = "dth:json:draft", view = "code", lastText = "";
+        try { input.value = localStorage.getItem(DRAFT) || ""; } catch (e) {}
+
+        function esc(s) { return s.replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); }
+        function sortDeep(v) {
+            if (Array.isArray(v)) return v.map(sortDeep);
+            if (v && typeof v === "object") { var o = {}; Object.keys(v).sort().forEach(function (k) { o[k] = sortDeep(v[k]); }); return o; }
+            return v;
+        }
+        function highlight(text) {
+            return esc(text).replace(/("(?:\\u[a-fA-F0-9]{4}|\\[^u]|[^\\"])*")(\s*:)?|\b(true|false)\b|\bnull\b|-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?/g, function (m, str, colon, bool) {
+                if (str) return colon ? '<span class="j-key">' + str + "</span>" + colon : '<span class="j-str">' + str + "</span>";
+                if (bool) return '<span class="j-bool">' + m + "</span>";
+                if (m === "null") return '<span class="j-null">null</span>';
+                return '<span class="j-num">' + m + "</span>";
+            });
+        }
+        function stats(v) {
+            var keys = 0, depth = 0;
+            (function walk(x, d) {
+                depth = Math.max(depth, d);
+                if (Array.isArray(x)) x.forEach(function (y) { walk(y, d + 1); });
+                else if (x && typeof x === "object") Object.keys(x).forEach(function (k) { keys++; walk(x[k], d + 1); });
+            })(v, 0);
+            return { keys: keys, depth: depth };
+        }
+        function bytes(n) { return n < 1024 ? n + " B" : n < 1048576 ? (n / 1024).toFixed(1) + " KB" : (n / 1048576).toFixed(2) + " MB"; }
+        // Browsers word JSON.parse errors differently (and recent Chrome omits the
+        // position), so locate the first error with a small strict scanner.
+        function locateError(text) {
+            var i = 0, n = text.length;
+            function fail(msg) { throw { pos: i, msg: msg }; }
+            function ws() { while (i < n && " \t\n\r".indexOf(text[i]) !== -1) i++; }
+            function ch() { return i < n ? "'" + text[i] + "'" : "end of input"; }
+            function value() {
+                ws();
+                var c = text[i];
+                if (c === "{") return obj();
+                if (c === "[") return arr();
+                if (c === '"') return str();
+                if (c === "-" || (c >= "0" && c <= "9")) return num();
+                if (text.startsWith("true", i)) { i += 4; return; }
+                if (text.startsWith("false", i)) { i += 5; return; }
+                if (text.startsWith("null", i)) { i += 4; return; }
+                if (c === "'") fail("Strings must use double quotes");
+                fail("Unexpected " + ch());
+            }
+            function obj() {
+                i++; ws();
+                if (text[i] === "}") { i++; return; }
+                for (;;) {
+                    ws();
+                    if (text[i] === "}") fail("Trailing comma before '}'");
+                    if (text[i] !== '"') fail(text[i] === "'" ? "Keys must use double quotes" : "Expected a quoted key but found " + ch());
+                    str(); ws();
+                    if (text[i] !== ":") fail("Expected ':' after key but found " + ch());
+                    i++; value(); ws();
+                    if (text[i] === ",") { i++; continue; }
+                    if (text[i] === "}") { i++; return; }
+                    fail("Expected ',' or '}' but found " + ch());
+                }
+            }
+            function arr() {
+                i++; ws();
+                if (text[i] === "]") { i++; return; }
+                for (;;) {
+                    ws();
+                    if (text[i] === "]") fail("Trailing comma before ']'");
+                    value(); ws();
+                    if (text[i] === ",") { i++; continue; }
+                    if (text[i] === "]") { i++; return; }
+                    fail("Expected ',' or ']' but found " + ch());
+                }
+            }
+            function str() {
+                i++;
+                while (i < n) {
+                    var c = text[i];
+                    if (c === '"') { i++; return; }
+                    if (c === "\\") { i += text[i + 1] === "u" ? 6 : 2; continue; }
+                    if (c === "\n") fail("Unterminated string");
+                    i++;
+                }
+                fail("Unterminated string");
+            }
+            function num() {
+                var m = /^-?(0|[1-9]\d*)(\.\d+)?([eE][+-]?\d+)?/.exec(text.slice(i));
+                if (!m) fail("Invalid number");
+                i += m[0].length;
+            }
+            try { value(); ws(); if (i < n) fail("Unexpected " + ch() + " after the end of the JSON value"); }
+            catch (e) {
+                if (e && e.pos !== undefined) {
+                    var before = text.slice(0, e.pos).split("\n");
+                    return { line: before.length, col: before[before.length - 1].length + 1, msg: e.msg, index: e.pos };
+                }
+            }
+            return null;
+        }
+        function indentValue() { var v = $("indent").value; return v === "tab" ? "\t" : +v; }
+
+        function run(mode) {
+            var text = input.value;
+            try { localStorage.setItem(DRAFT, text); } catch (e) {}
+            if (!text.trim()) {
+                out.innerHTML = ""; tree.innerHTML = ""; lastText = "";
+                inStatus.innerHTML = "<span>Waiting for input</span>"; outStatus.innerHTML = "<span>—</span>";
+                return;
+            }
+            var data;
+            try { data = JSON.parse(text); }
+            catch (e) {
+                var p = locateError(text);
+                inStatus.innerHTML = '<span class="bad">✕ Invalid JSON</span><span>' + esc(p ? p.msg : e.message) + "</span>";
+                if (p) {
+                    var lines = text.split("\n");
+                    out.innerHTML = lines.map(function (l, i) {
+                        return i + 1 === p.line ? '<span class="err-line">' + esc(l || " ") + "</span>" : esc(l);
+                    }).join("\n");
+                    outStatus.innerHTML = '<span class="bad">Error at line ' + p.line + ", column " + p.col + "</span>";
+                    if (mode === "format" || mode === "minify") { input.focus(); input.setSelectionRange(p.index, p.index + 1); }
+                } else { out.textContent = text; outStatus.innerHTML = '<span class="bad">Fix the error to see formatted output</span>'; }
+                tree.innerHTML = ""; lastText = "";
+                return;
+            }
+            if ($("sort-keys").checked) data = sortDeep(data);
+            var result = mode === "minify" ? JSON.stringify(data) : JSON.stringify(data, null, indentValue());
+            lastText = result;
+            out.innerHTML = result.length > 400000 ? esc(result) : highlight(result);
+            renderTree(data);
+            var st = stats(data);
+            inStatus.innerHTML = '<span class="ok">✓ Valid JSON</span><span>' + bytes(new Blob([text]).size) + "</span><span>" + text.split("\n").length + " lines</span>";
+            outStatus.innerHTML = "<span>" + bytes(new Blob([result]).size) + "</span><span>" + st.keys + " keys</span><span>depth " + st.depth + "</span>" +
+                (mode === "minify" ? '<span class="ok">minified</span>' : "");
+            if (mode === "format" || mode === "minify") { input.value = result; try { localStorage.setItem(DRAFT, result); } catch (e) {} }
+        }
+
+        function renderTree(data) {
+            if (view !== "tree") { tree.dataset.stale = "1"; tree._data = data; return; }
+            tree.innerHTML = "";
+            tree.appendChild(node(data, null, 0));
+        }
+        function node(v, key, depth, isIndex) {
+            var label = key === null ? "" : isIndex ? '<span class="meta">' + key + "</span>: " : '<span class="j-key">' + esc(JSON.stringify(key)) + "</span>: ";
+            if (v && typeof v === "object") {
+                var isArr = Array.isArray(v), n = isArr ? v.length : Object.keys(v).length;
+                var d = document.createElement("details"); d.open = depth < 2;
+                var s = document.createElement("summary");
+                s.innerHTML = label + (isArr ? "[ ]" : "{ }") + ' <span class="meta">' + n + (isArr ? " items" : " keys") + "</span>";
+                d.appendChild(s);
+                (isArr ? v.map(function (x, i) { return [i, x]; }) : Object.keys(v).map(function (k) { return [k, v[k]]; }))
+                    .forEach(function (kv) { d.appendChild(node(kv[1], kv[0], depth + 1, isArr)); });
+                return d;
+            }
+            var div = document.createElement("div"); div.className = "leaf";
+            div.innerHTML = label + highlight(JSON.stringify(v));
+            return div;
+        }
+
+        var timer;
+        input.addEventListener("input", function () {
+            clearTimeout(timer);
+            timer = setTimeout(function () { run($("live").checked ? "live" : "validate"); }, 250);
+        });
+        input.addEventListener("keydown", function (e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === "Enter") { e.preventDefault(); run("format"); }
+            if (e.key === "Tab" && !e.shiftKey) { // insert indentation instead of leaving the field
+                e.preventDefault();
+                var s = input.selectionStart, en = input.selectionEnd, ind = $("indent").value === "tab" ? "\t" : " ".repeat(+$("indent").value);
+                input.setRangeText(ind, s, en, "end");
+            }
+        });
+        $("btn-format").addEventListener("click", function () { run("format"); });
+        $("btn-minify").addEventListener("click", function () { run("minify"); });
+        ["indent", "sort-keys"].forEach(function (id) { $(id).addEventListener("change", function () { run("live"); }); });
+        $("wrap").addEventListener("change", function () { out.classList.toggle("wrap", this.checked); });
+        $("btn-clear").addEventListener("click", function () { input.value = ""; run(); input.focus(); });
+        $("btn-sample").addEventListener("click", function () {
+            input.value = JSON.stringify({ id: 1024, name: "Digital Tools Hub", tags: ["free", "private", "fast"], active: true,
+                owner: { name: "Ada Lovelace", email: "ada@example.com" }, rating: 4.9, archived: null,
+                tools: [{ slug: "json", users: 1520 }, { slug: "bmi", users: 980 }] });
+            run("format");
+        });
+        $("file-in").addEventListener("change", function () {
+            var f = this.files[0]; if (!f) return;
+            f.text().then(function (t) { input.value = t; run("live"); window.DTH.toast("Loaded " + f.name); });
+            this.value = "";
+        });
+        $("btn-copy").addEventListener("click", function () {
+            if (!lastText) { window.DTH.toast("Nothing to copy yet"); return; }
+            window.DTH.copy(lastText, "Copied JSON to clipboard");
+        });
+        $("btn-download").addEventListener("click", function () {
+            if (!lastText) { window.DTH.toast("Nothing to save yet"); return; }
+            var a = document.createElement("a");
+            a.href = URL.createObjectURL(new Blob([lastText], { type: "application/json" }));
+            a.download = "formatted.json"; a.click();
+            setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+        });
+        document.querySelectorAll("[data-view]").forEach(function (b) {
+            b.addEventListener("click", function () {
+                view = b.dataset.view;
+                document.querySelectorAll("[data-view]").forEach(function (x) { x.setAttribute("aria-selected", x === b ? "true" : "false"); });
+                out.hidden = view !== "code"; tree.hidden = view !== "tree";
+                if (view === "tree" && tree.dataset.stale) { delete tree.dataset.stale; tree.innerHTML = ""; if (tree._data !== undefined) tree.appendChild(node(tree._data, null, 0)); }
+            });
+        });
+        run("live");
+
+    });
+    </script>
+</body>
+</html>

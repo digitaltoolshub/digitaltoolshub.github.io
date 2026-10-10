@@ -69,7 +69,7 @@
     </script>
 
     <link rel="preconnect" href="https://api.coingecko.com">
-    <link rel="preconnect" href="https://api.binance.com">
+    <link rel="preconnect" href="https://data-api.binance.vision">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://s3.tradingview.com">
     <link rel="icon" href="https://digitaltoolshub.github.io/favicon.ico" type="image/x-icon">
@@ -1339,13 +1339,35 @@
         }
 
         // ====== Data Fetching ======
+        // Public APIs answer rate limits (CoinGecko 429) and region blocks (Binance 451)
+        // without CORS headers, which browsers report as "blocked by CORS policy".
+        // Try each URL in turn and fall back to the last good response saved locally.
+        async function fetchJsonWithFallback(urls, cacheKey, pick) {
+            for (const url of urls) {
+                try {
+                    const ctl = new AbortController();
+                    const timer = setTimeout(() => ctl.abort(), 10000);
+                    const response = await fetch(url, { signal: ctl.signal });
+                    clearTimeout(timer);
+                    if (!response.ok) throw new Error(`API status: ${response.status}`);
+                    let data = await response.json();
+                    if (pick) data = pick(data);
+                    try { localStorage.setItem(cacheKey, JSON.stringify({ t: Date.now(), data })); } catch (e) {}
+                    return data;
+                } catch (e) { /* try the next source */ }
+            }
+            try {
+                const cached = JSON.parse(localStorage.getItem(cacheKey));
+                if (cached && cached.data) return cached.data;
+            } catch (e) {}
+            throw new Error('All data sources failed');
+        }
+
         async function fetchMarketData() {
             try {
-                const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${COINS.map(c => c.id).join(',')}&order=market_cap_desc`);
-                if (!response.ok) {
-                    throw new Error(`API status: ${response.status}`);
-                }
-                state.marketData = await response.json();
+                state.marketData = await fetchJsonWithFallback(
+                    [`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${COINS.map(c => c.id).join(',')}&order=market_cap_desc`],
+                    'dth:crypto:gecko');
                 updateMarketOverview();
                 updatePortfolioValue();
                 updateAlertsList();
@@ -1365,11 +1387,12 @@
 
         async function fetchBinanceData() {
             try {
-                const response = await fetch('https://api.binance.com/api/v3/ticker/24hr');
-                if (!response.ok) {
-                    throw new Error(`API status: ${response.status}`);
-                }
-                const allBinanceData = await response.json();
+                // data-api.binance.vision is Binance's public market-data mirror; it isn't
+                // region-blocked like api.binance.com.
+                const allBinanceData = await fetchJsonWithFallback(
+                    ['https://data-api.binance.vision/api/v3/ticker/24hr', 'https://api.binance.com/api/v3/ticker/24hr'],
+                    'dth:crypto:binance',
+                    all => all.filter(b => COINS.some(c => c.binanceSymbol === b.symbol)));
 
                 state.binanceData = COINS.map(coin => {
                     const binanceCoin = allBinanceData.find(b => b.symbol === coin.binanceSymbol);
@@ -2162,10 +2185,7 @@
         }
 
         // ====== Initialize ======
-        init();
-        // Initial call for market data
-        fetchMarketData();
-        fetchBinanceData();
+        init(); // also performs the initial market data fetches
 
         // Set interval for periodic data refresh
         setInterval(() => {
@@ -2249,8 +2269,9 @@
             const days = document.getElementById('predictionTimeframe').value;
 
             try {
-                const response = await fetch(`https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=${days}&interval=daily`);
-                const data = await response.json();
+                const data = await fetchJsonWithFallback(
+                    [`https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=usd&days=${days}&interval=daily`],
+                    `dth:crypto:chart:${coin}:${days}`);
                 predictionHistory = data.prices.map(item => ({
                     date: new Date(item[0]),
                     price: item[1]

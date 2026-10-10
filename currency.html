@@ -863,6 +863,7 @@
         }
 
         // Real 30-day history from the Frankfurter (ECB) API; hidden when unavailable for the pair.
+        // api.frankfurter.app no longer sends CORS headers; the API now lives at api.frankfurter.dev/v1.
         async function loadHistory(from, to) {
             if (!chart) return;
             const token = ++historyToken;
@@ -872,7 +873,7 @@
                 const end = new Date();
                 const start = new Date(end.getTime() - 30 * 86400000);
                 const iso = d => d.toISOString().slice(0, 10);
-                const res = await fetch(`https://api.frankfurter.app/${iso(start)}..${iso(end)}?from=${from}&to=${to}`);
+                const res = await fetch(`https://api.frankfurter.dev/v1/${iso(start)}..${iso(end)}?from=${from}&to=${to}`);
                 if (!res.ok) throw new Error('no history');
                 const data = await res.json();
                 if (token !== historyToken) return;

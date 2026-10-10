@@ -1,1172 +1,557 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
-
+<html lang="en" data-hub>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Digital Tools Hub | Free Online Calculators, Converters &amp; Utilities</title>
+    <meta name="description" content="Free, private online tools: currency converter, BMI and macro calculators, password generator, JSON formatter, Kanban board, QR codes and more. No sign-up. Runs in your browser.">
+    <link rel="canonical" href="https://digitaltoolshub.github.io/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Digital Tools Hub">
+    <meta property="og:url" content="https://digitaltoolshub.github.io/">
+    <meta property="og:title" content="Digital Tools Hub | Free Online Tools">
+    <meta property="og:description" content="Free, private online tools for finance, health, productivity, development and design. No sign-up. Runs in your browser.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- @head -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#f7f7fb" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0b0d14" media="(prefers-color-scheme: dark)">
+    <script>try{var t=localStorage.getItem("dth:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="stylesheet" href="assets/css/hub.css">
+    <link rel="preload" href="assets/img/icons.svg" as="image" type="image/svg+xml">
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-R4N9RB1SNN');
-    </script>
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
-        crossorigin="anonymous"></script>
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f"
-        type="text/javascript" async></script>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Curator Hub | Digital Tools Hub - Powerful Free AI Tools</title>
-    <meta name="title" content="Digital Tools Hub | Best Free AI-Powered Online Tools & Calculators">
-    <meta name="description"
-        content="Access 50+ free, premium AI-powered tools for productivity, finance, health, and design. No sign-up required.">
-    <meta name="keywords"
-        content="free online tools, AI calculators, productivity suite, digital tools hub, scientific calculator, bmi calculator, image editor, currency converter, password generator, qr code generator, text analyzer, mbti test, kanban board, free web utilities, no signup tools">
-
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "surface-container-highest": "#353534",
-                        "surface": "#131313",
-                        "on-surface": "#e5e2e1",
-                        "tertiary-fixed-dim": "#d5c5a6",
-                        "surface-bright": "#393939",
-                        "on-secondary": "#5b005a",
-                        "on-tertiary-fixed-variant": "#51452e",
-                        "on-error": "#690005",
-                        "surface-variant": "#353534",
-                        "outline-variant": "#444654",
-                        "primary-fixed": "#dee0ff",
-                        "tertiary-fixed": "#f2e0c1",
-                        "surface-container-lowest": "#0e0e0e",
-                        "surface-container": "#201f1f",
-                        "on-primary-container": "#dcdfff",
-                        "background": "#131313",
-                        "tertiary": "#d5c5a6",
-                        "secondary-container": "#840482",
-                        "surface-container-low": "#1c1b1b",
-                        "tertiary-container": "#6f6249",
-                        "on-tertiary-fixed": "#231a07",
-                        "on-secondary-container": "#ff91f2",
-                        "outline": "#8f8f9f",
-                        "on-secondary-fixed-variant": "#810080",
-                        "inverse-primary": "#3b52ca",
-                        "inverse-on-surface": "#313030",
-                        "on-secondary-fixed": "#380037",
-                        "error": "#ffb4ab",
-                        "primary-container": "#4158d0",
-                        "on-primary-fixed-variant": "#1d37b2",
-                        "surface-container-high": "#2a2a2a",
-                        "surface-tint": "#bac3ff",
-                        "on-primary-fixed": "#00105b",
-                        "primary": "#bac3ff",
-                        "on-tertiary-container": "#f0dfbf",
-                        "secondary-fixed": "#ffd7f5",
-                        "on-primary": "#001f8f",
-                        "on-surface-variant": "#c5c5d6",
-                        "surface-dim": "#131313",
-                        "primary-fixed-dim": "#bac3ff",
-                        "inverse-surface": "#e5e2e1",
-                        "on-background": "#e5e2e1",
-                        "secondary": "#ffabf2",
-                        "on-tertiary": "#392f1a",
-                        "error-container": "#93000a",
-                        "secondary-fixed-dim": "#ffabf2",
-                        "on-error-container": "#ffdad6"
-                    },
-                    fontFamily: {
-                        "headline": ["Inter", "sans-serif"],
-                        "body": ["Inter", "sans-serif"],
-                        "label": ["Inter", "sans-serif"]
-                    },
-                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
-                },
-            },
-        }
-    </script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0c0c0c;
-            color: #e5e2e1;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Ambient Background Background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(186, 195, 255, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(213, 197, 166, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(12, 12, 12, 1) 0%, rgba(8, 8, 8, 1) 100%);
-            z-index: -2;
-        }
-
-        /* Dot Grid Overlay */
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* Animated Aurora Blobs */
-        .aurora {
-            position: fixed;
-            width: 800px;
-            height: 800px;
-            border-radius: 50%;
-            filter: blur(150px);
-            opacity: 0.1;
-            z-index: -1;
-            pointer-events: none;
-            animation: move-aurora 30s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
-        }
-
-        .aurora-1 { background: #bac3ff; top: -20%; left: -10%; }
-        .aurora-2 { background: #d5c5a6; bottom: -20%; right: -10%; animation-delay: -7s; }
-        .aurora-3 { background: #ffabf2; top: 30%; right: -20%; animation-delay: -15s; }
-
-        @keyframes move-aurora {
-            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-            100% { transform: translate(150px, 100px) scale(1.3) rotate(15deg); }
-        }
-
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-
-        .glass-card {
-            backdrop-filter: blur(12px);
-            background: rgba(53, 53, 52, 0.4);
-        }
-
-        .bento-card {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .bento-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(186, 195, 255, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .bento-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.03), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s;
-        }
-
-        .bento-card:hover::before {
-            transform: translateX(100%);
-        }
-
-        .tool-logo-container {
-            width: 100%;
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .tool-logo-img {
-            max-width: 80%;
-            max-height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5));
-            transition: transform 0.5s ease;
-        }
-
-        .bento-card:hover .tool-logo-img {
-            transform: scale(1.15) rotate(3deg);
-        }
-
-        .featured-logo-container {
-            width: 200px;
-            height: 200px;
-            position: absolute;
-            right: -20px;
-            bottom: -20px;
-            opacity: 0.8;
-            filter: blur(0px);
-            transition: all 0.5s ease;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
-        }
-
-        .bento-card:hover .featured-logo-container {
-            transform: scale(1.1) translate(-10px, -10px);
-            opacity: 1;
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #131313;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #353534;
-            border-radius: 4px;
-        }
-
-        .live-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #10b981;
-            border-radius: 50%;
-            position: relative;
-        }
-
-        .live-dot::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100%;
-            height: 100%;
-            background-color: #10b981;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            animation: pulse-live 2s infinite;
-        }
-
-        @keyframes pulse-live {
-            0% { width: 100%; height: 100%; opacity: 0.6; }
-            100% { width: 300%; height: 300%; opacity: 0; }
-        }
-
-        .category-badge {
-            background: rgba(186, 195, 255, 0.1);
-            color: #bac3ff;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            border: 1px solid rgba(186, 195, 255, 0.15);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #444654;
-        }
-
-        @keyframes pulse-live {
-            0% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.2); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.8; }
-        }
-
-        .live-dot {
-            width: 6px;
-            height: 6px;
-            background-color: #10b981;
-            border-radius: 50%;
-            display: inline-block;
-            animation: pulse-live 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-            box-shadow: 0 0 10px #10b981;
-        }
-
-        .category-badge {
-            font-size: 9px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 4px 10px;
-            border-radius: 99px;
-            background: rgba(255, 255, 255, 0.05);
-            color: #888;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-    </style>
-
-    <!-- Structured Data -->
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-R4N9RB1SNN");</script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" async></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
+    <!-- /@head -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Digital Tools Hub",
-      "url": "https://digitaltoolshub.github.io",
-      "description": "A comprehensive collection of powerful free tools created by AI for finance, health, productivity, and personal development.",
-      "applicationCategory": "UtilitiesApplication",
-      "genre": "Productivity",
-      "operatingSystem": "Any",
-      "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD",
-        "availability": "https://schema.org/InStock"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Rabeeh",
-        "url": "https://digitaltoolshub.github.io/about.html",
-        "jobTitle": "Senior Developer & Automation Expert"
-      }
-    }
-    </script>
-
-    <script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@graph": [
+      "@graph": [
         {
-            "@type": "SoftwareApplication",
-            "name": "Curator Hub",
-            "url": "https://digitaltoolshub.github.io/index.html",
-            "applicationCategory": "UtilitiesApplication",
-            "operatingSystem": "All",
-            "offers": {
-                "@type": "Offer",
-                "price": "0.00",
-                "priceCurrency": "USD"
-            },
-            "author": {
-                "@type": "Person",
-                "name": "Rabeeh",
-                "url": "https://digitaltoolshub.github.io/about.html"
-            }
+          "@type": "WebSite",
+          "name": "Digital Tools Hub",
+          "url": "https://digitaltoolshub.github.io/",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://digitaltoolshub.github.io/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
         },
         {
-            "@type": "FAQPage",
-            "mainEntity": [
-                {
-                    "@type": "Question",
-                    "name": "Is Curator Hub free to use?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Yes, Curator Hub is completely free to use with no hidden charges, sign-ups, or subscriptions required."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Is my data safe when using Curator Hub?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Absolutely. Curator Hub processes all data client-side in your browser, meaning none of your inputs or results are ever sent to our servers."
-                    }
-                }
-            ]
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "Are these tools really free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every tool is free to use with no sign-up, subscription or usage limit. The site is supported by unobtrusive ads." } },
+            { "@type": "Question", "name": "Is my data sent to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. Calculations run in your browser. Data you choose to save, such as Kanban tasks or favourites, is stored locally on your device. Live-rate tools fetch public market data but never send your inputs." } },
+            { "@type": "Question", "name": "Do the tools work offline?", "acceptedAnswer": { "@type": "Answer", "text": "Tools you have opened before are cached and keep working offline. Tools that need live data, such as currency and crypto rates, need a connection to refresh." } },
+            { "@type": "Question", "name": "Can I install Digital Tools Hub as an app?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. In Chrome, Edge or Safari choose Install app or Add to Home Screen to use Digital Tools Hub like a native app." } }
+          ]
         }
-    ]
-}
+      ]
+    }
     </script>
+    <!-- @itemlist -->
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Free online tools","itemListElement":[{"@type":"ListItem","position":1,"name":"Currency Converter","url":"https://digitaltoolshub.github.io/currency.html"},{"@type":"ListItem","position":2,"name":"Crypto Tracker","url":"https://digitaltoolshub.github.io/crypto.html"},{"@type":"ListItem","position":3,"name":"Salary Calculator","url":"https://digitaltoolshub.github.io/salary.html"},{"@type":"ListItem","position":4,"name":"Loan & EMI Calculator","url":"https://digitaltoolshub.github.io/loan-calculator.html"},{"@type":"ListItem","position":5,"name":"Retirement Planner","url":"https://digitaltoolshub.github.io/retire.html"},{"@type":"ListItem","position":6,"name":"Subscription Audit","url":"https://digitaltoolshub.github.io/subs-audit.html"},{"@type":"ListItem","position":7,"name":"Pet Cost Calculator","url":"https://digitaltoolshub.github.io/pet.html"},{"@type":"ListItem","position":8,"name":"BMI Calculator","url":"https://digitaltoolshub.github.io/bmi.html"},{"@type":"ListItem","position":9,"name":"Macro Calculator","url":"https://digitaltoolshub.github.io/macros.html"},{"@type":"ListItem","position":10,"name":"Lifetime Heartbeats","url":"https://digitaltoolshub.github.io/heartbeat.html"},{"@type":"ListItem","position":11,"name":"Lifetime Steps","url":"https://digitaltoolshub.github.io/steps.html"},{"@type":"ListItem","position":12,"name":"Sleep Calculator","url":"https://digitaltoolshub.github.io/sleep.html"},{"@type":"ListItem","position":13,"name":"Breath Counter","url":"https://digitaltoolshub.github.io/breath.html"},{"@type":"ListItem","position":14,"name":"Kanban Board","url":"https://digitaltoolshub.github.io/kanban-board.html"},{"@type":"ListItem","position":15,"name":"Pomodoro Focus Timer","url":"https://digitaltoolshub.github.io/pomodoro.html"},{"@type":"ListItem","position":16,"name":"Scientific Calculator","url":"https://digitaltoolshub.github.io/scientific-calculator.html"},{"@type":"ListItem","position":17,"name":"Unit Converter","url":"https://digitaltoolshub.github.io/unit-converter.html"},{"@type":"ListItem","position":18,"name":"Text Analyzer","url":"https://digitaltoolshub.github.io/text-analyzer.html"},{"@type":"ListItem","position":19,"name":"Markdown Editor","url":"https://digitaltoolshub.github.io/markdown-editor.html"},{"@type":"ListItem","position":20,"name":"AI Prompt Optimizer","url":"https://digitaltoolshub.github.io/prompt-optimizer.html"},{"@type":"ListItem","position":21,"name":"JSON Formatter","url":"https://digitaltoolshub.github.io/json-formatter.html"},{"@type":"ListItem","position":22,"name":"Mock Data Generator","url":"https://digitaltoolshub.github.io/data-generator.html"},{"@type":"ListItem","position":23,"name":"Color Palette Studio","url":"https://digitaltoolshub.github.io/chroma-studio.html"},{"@type":"ListItem","position":24,"name":"QR Code Generator","url":"https://digitaltoolshub.github.io/qr.html"},{"@type":"ListItem","position":25,"name":"Password Generator","url":"https://digitaltoolshub.github.io/password.html"},{"@type":"ListItem","position":26,"name":"Password Strength Tester","url":"https://digitaltoolshub.github.io/security-vault.html"},{"@type":"ListItem","position":27,"name":"Steganography Studio","url":"https://digitaltoolshub.github.io/decoder.html"},{"@type":"ListItem","position":28,"name":"Personality Test (MBTI)","url":"https://digitaltoolshub.github.io/mbti.html"},{"@type":"ListItem","position":29,"name":"Rubik's Cube Solver","url":"https://digitaltoolshub.github.io/rubiks-cube-solver.html"},{"@type":"ListItem","position":30,"name":"Age Calculator","url":"https://digitaltoolshub.github.io/birthday.html"},{"@type":"ListItem","position":31,"name":"Age Difference","url":"https://digitaltoolshub.github.io/compare.html"},{"@type":"ListItem","position":32,"name":"Trip Cost Estimator","url":"https://digitaltoolshub.github.io/flight.html"},{"@type":"ListItem","position":33,"name":"Cricket NRR Calculator","url":"https://digitaltoolshub.github.io/nrr-calculator.html"},{"@type":"ListItem","position":34,"name":"Digital Minimalism Audit","url":"https://digitaltoolshub.github.io/social.html"}]}</script>
+    <!-- /@itemlist -->
 </head>
-
-<body class="bg-background text-on-background selection:bg-primary/30">
-    <div class="aurora aurora-1"></div>
-    <div class="aurora aurora-2"></div>
-    <div class="aurora aurora-3"></div>
-    <!-- TopAppBar -->
-    <header class="bg-[#131313]/80 backdrop-blur-lg sticky top-0 w-full z-50 shadow-[0_24px_40px_rgba(0,0,0,0.08)]">
-        <div class="flex justify-between items-center px-6 py-3 w-full max-w-[1600px] mx-auto">
-            <div class="flex items-center gap-8">
-                <a class="text-lg font-bold tracking-tighter text-[#BAC3FF]" href="/">Curator Hub</a>
-                <div class="hidden md:flex items-center gap-6 font-inter tracking-tight text-sm">
-                    <nav class="flex gap-4">
-                        <a class="text-[#BAC3FF] border-b-2 border-[#BAC3FF] pb-1" href="/">Dashboard</a>
-                        <a class="text-zinc-500 hover:bg-zinc-800/40 hover:text-white transition-all px-2 py-1 rounded"
-                            href="social.html">Social Audit</a>
-                        <a class="text-zinc-500 hover:bg-zinc-800/40 hover:text-white transition-all px-2 py-1 rounded"
-                            href="mbti.html">MBTI Scan</a>
-                    </nav>
-                </div>
+<body>
+    <!-- @header -->
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="./" aria-label="Digital Tools Hub home"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+            <nav class="site-nav" aria-label="Main">
+                <a href="./" aria-current="page">All tools</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="search-trigger" type="button" data-open-palette aria-label="Search tools"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#search"></use></svg><span class="label">Search tools…</span><span class="kbd" data-mod-key>Ctrl K</span></button>
+                <button class="icon-btn" type="button" data-theme-toggle aria-label="Change theme"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#monitor"></use></svg></button>
             </div>
-            <div class="flex items-center gap-3 sm:gap-4">
-                <div
-                    class="flex items-center gap-2 bg-surface-container-high rounded-full px-3 py-1.5 focus-within:ring-2 focus-within:ring-[#BAC3FF]/30 transition-all border border-zinc-800/50">
-                    <span class="material-symbols-outlined text-sm text-zinc-500" aria-hidden="true">search</span>
-                    <input id="global-search"
-                        class="bg-transparent border-none focus:ring-0 text-xs w-20 sm:w-32 lg:w-48 text-on-surface placeholder-zinc-600"
-                        placeholder="Search..." type="text" aria-label="Search all tools" />
-                    <kbd class="hidden sm:inline-block text-[10px] bg-surface-container-highest px-1.5 py-0.5 rounded text-zinc-500 font-sans"
-                        aria-hidden="true">⌘K</kbd>
-                </div>
-                <div class="flex items-center gap-2">
-                    <button class="p-2 text-zinc-500 hover:bg-zinc-800/40 hover:text-white transition-all rounded-full"
-                        aria-label="View notifications">
-                        <span class="material-symbols-outlined" aria-hidden="true">notifications</span>
-                    </button>
-                </div>
-            </div>
-        </div>
         </div>
     </header>
+    <!-- /@header -->
 
-    <div class="flex min-h-screen">
-        <!-- SideNavBar -->
-        <aside
-            class="h-screen w-64 fixed left-0 top-0 hidden lg:flex flex-col bg-[#131313] border-r border-zinc-800/50 pt-20 z-40">
-            <div class="flex flex-col gap-2 p-4 overflow-y-auto h-full">
-                <div class="px-2 mb-4">
-                    <p class="text-[#BAC3FF] font-bold uppercase tracking-widest text-[10px]">Categories</p>
-                    <p class="text-zinc-500 text-[11px]">Filter your workspace</p>
+    <main id="main">
+        <section class="hero">
+            <div class="container">
+                <span class="eyebrow"><svg aria-hidden="true"><use href="assets/img/icons.svg#zap"></use></svg><!-- @count -->34<!-- /@count --> free tools · no sign-up</span>
+                <h1>Everyday tools that are <span class="grad">fast, free and private</span>.</h1>
+                <p class="lead">Calculators, converters and utilities for money, health, work and code. Everything runs in your browser, so your data never leaves your device.</p>
+                <div class="hero-search" role="search">
+                    <svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#search"></use></svg>
+                    <label for="tool-search" class="sr-only">Search tools</label>
+                    <input id="tool-search" type="search" placeholder="Search tools, e.g. “bmi”, “json”, “currency”" autocomplete="off" spellcheck="false">
+                    <span class="kbd" aria-hidden="true">/</span>
                 </div>
-                <nav class="space-y-1" id="category-filter">
-                    <button data-filter="all" aria-label="Show all tools"
-                        class="w-full flex items-center gap-3 px-3 py-2 bg-zinc-800/60 text-[#BAC3FF] rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
-                        <span class="material-symbols-outlined text-lg" aria-hidden="true">grid_view</span>
-                        All Tools
-                    </button>
-                    <button data-filter="Productivity" aria-label="Filter by Productivity"
-                        class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
-                        <span class="material-symbols-outlined text-lg" aria-hidden="true">rocket_launch</span>
-                        Productivity
-                    </button>
-                    <button data-filter="Finance" aria-label="Filter by Finance"
-                        class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
-                        <span class="material-symbols-outlined text-lg" aria-hidden="true">payments</span>
-                        Finance
-                    </button>
-                    <button data-filter="Health" aria-label="Filter by Health"
-                        class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
-                        <span class="material-symbols-outlined text-lg" aria-hidden="true">monitor_heart</span>
-                        Health
-                    </button>
-                    <button data-filter="Development" aria-label="Filter by Development"
-                        class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
-                        <span class="material-symbols-outlined text-lg" aria-hidden="true">code</span>
-                        Development
-                    </button>
-                    <button data-filter="Design" aria-label="Filter by Design"
-                        class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
-                        <span class="material-symbols-outlined text-lg" aria-hidden="true">palette</span>
-                        Design
-                    </button>
-                    <button data-filter="Security" aria-label="Filter by Security"
-                        class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
-                        <span class="material-symbols-outlined text-lg" aria-hidden="true">shield</span>
-                        Security
-                    </button>
-                    <button data-filter="Life" aria-label="Filter by Life & Lifestyle"
-                        class="w-full flex items-center gap-3 px-3 py-2 text-zinc-400 hover:bg-zinc-800/30 hover:text-zinc-100 rounded-md font-inter text-[13px] font-medium transition-transform active:scale-95 text-left">
-                        <span class="material-symbols-outlined text-lg" aria-hidden="true">nightlight</span>
-                        Life & Lifestyle
-                    </button>
-                </nav>
-
-                <div class="mt-8 px-2">
-                    <p class="text-zinc-600 font-bold uppercase tracking-widest text-[10px] mb-2">Trust & Info</p>
-                    <div class="space-y-1 text-xs">
-                        <a class="flex items-center gap-3 px-3 py-1.5 text-zinc-400 hover:text-zinc-100"
-                            href="about.html">About Us</a>
-                        <a class="flex items-center gap-3 px-3 py-1.5 text-zinc-400 hover:text-zinc-100"
-                            href="about.html#how-it-works">How It Works</a>
-                        <a class="flex items-center gap-3 px-3 py-1.5 text-zinc-400 hover:text-zinc-100"
-                            href="privacy.html">Privacy Policy</a>
-                        <a class="flex items-center gap-3 px-3 py-1.5 text-zinc-400 hover:text-zinc-100"
-                            href="terms.html">Terms of Service</a>
-                        <a class="flex items-center gap-3 px-3 py-1.5 text-zinc-400 hover:text-zinc-100"
-                            href="contact.html">Contact Support</a>
-                    </div>
-                </div>
-
-                <div class="mt-auto pb-6">
-                    <button aria-label="Version 2.0 Beta information"
-                        class="w-full flex items-center justify-center gap-2 py-2.5 bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 transition-colors text-[#BAC3FF] rounded-md text-[13px] font-semibold">
-                        <span class="material-symbols-outlined text-sm" aria-hidden="true">info</span>
-                        v2.0 Beta
-                    </button>
+                <div class="hero-stats">
+                    <span><svg aria-hidden="true"><use href="assets/img/icons.svg#lock"></use></svg>Runs locally in your browser</span>
+                    <span><svg aria-hidden="true"><use href="assets/img/icons.svg#check"></use></svg>No account needed</span>
+                    <span><svg aria-hidden="true"><use href="assets/img/icons.svg#wifi-off"></use></svg>Works offline once opened</span>
                 </div>
             </div>
-        </aside>
+        </section>
 
-        <!-- Main Content -->
-        <main class="flex-1 lg:ml-64 p-6 md:p-10">
-            <div class="max-w-7xl mx-auto">
-                <!-- Hero Section -->
-                <section class="mb-12">
-                    <h1
-                        class="text-4xl md:text-5xl font-black tracking-tighter text-on-surface mb-4 max-w-2xl leading-tight">
-                        Precision engineering for <span class="text-primary">Digital Life</span>.
-                    </h1>
-                    <p class="text-zinc-400 max-w-xl text-lg font-light leading-relaxed">
-                        The ultimate curator hub for AI-powered professional tools. Efficiency, automated.
-                    </p>
+        <div class="container">
+            <div id="personal" hidden>
+                <section class="section" id="fav-section" hidden aria-labelledby="fav-h">
+                    <div class="section-head"><h2 id="fav-h"><svg aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg>Favourites</h2></div>
+                    <div class="grid grid-compact"></div>
                 </section>
+                <section class="section" id="recent-section" hidden aria-labelledby="recent-h">
+                    <div class="section-head"><h2 id="recent-h"><svg aria-hidden="true"><use href="assets/img/icons.svg#history"></use></svg>Recently used</h2><button class="link-btn" id="clear-recent" type="button">Clear</button></div>
+                    <div class="grid grid-compact"></div>
+                </section>
+            </div>
 
-                <!-- Tools Bento Grid -->
-                <div id="tools-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    <!-- FX Terminal Pro (First Position, Normal Size) -->
-                    <div data-category="Finance"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-tertiary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Finance</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Live Rates</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/currency.png" alt="FX Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">FX Terminal Pro</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Hyper-precise global currency engine with real-time liquidity tracking and multi-node rate verification.</p>
-                        <a href="currency.html"
-                            class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open Terminal
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+            <section class="section" aria-labelledby="all-h" id="tools">
+                <div class="section-head">
+                    <h2 id="all-h"><svg aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg>All tools</h2>
+                    <div class="row"><span class="meta" id="result-count" aria-live="polite"></span>
+                        <label for="tool-sort" class="sr-only">Sort tools</label>
+                        <select id="tool-sort" class="select sort-select">
+                            <option value="featured">Featured</option>
+                            <option value="az">A–Z</option>
+                            <option value="used">Most used by me</option>
+                            <option value="new">Newest</option>
+                        </select>
                     </div>
-
-                    <!-- DataForge Pro (Updated) -->
-                    <div data-category="Development"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-primary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Dev</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Data Synth</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/dev.png" alt="Dev Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">DataForge Pro</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Advanced neural processing for high-velocity data synthesis and cleansing.</p>
-                        <a href="data-generator.html"
-                            class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                </div>
+                <div class="toolbar">
+                    <div class="chips" role="group" aria-label="Filter by category"><!-- @chips -->
+                <button class="chip" type="button" data-filter="all" aria-pressed="true"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg>All <span class="count">34</span></button>
+                <button class="chip" type="button" data-filter="finance" aria-pressed="false"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#wallet"></use></svg>Finance <span class="count">7</span></button>
+                <button class="chip" type="button" data-filter="health" aria-pressed="false"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#heart-pulse"></use></svg>Health <span class="count">6</span></button>
+                <button class="chip" type="button" data-filter="productivity" aria-pressed="false"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#rocket"></use></svg>Productivity <span class="count">7</span></button>
+                <button class="chip" type="button" data-filter="dev" aria-pressed="false"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#code"></use></svg>Developer <span class="count">2</span></button>
+                <button class="chip" type="button" data-filter="design" aria-pressed="false"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#palette"></use></svg>Design <span class="count">2</span></button>
+                <button class="chip" type="button" data-filter="security" aria-pressed="false"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#shield"></use></svg>Security <span class="count">3</span></button>
+                <button class="chip" type="button" data-filter="life" aria-pressed="false"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg>Lifestyle <span class="count">7</span></button>
+                <!-- /@chips --></div>
+                </div>
+                <div class="grid" id="tool-grid"><!-- @cards -->
+                <article class="card" data-id="currency" data-cat="finance" data-name="Currency Converter">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#banknote"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Currency Converter to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- Rubik's Cube Solver (2nd) -->
-                    <div data-category="Life"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-tertiary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Solver</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Premium Tool</span>
-                        </div>
-                        <div class="tool-logo-container">
-                            <img src="logos/rubiks.png" alt="Rubik's Solver" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">Rubik's Solver</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-6 font-medium">Ultimate 3D & Camera Rubik's Cube Solver for least moves possible. Real-time vision mapping.</p>
-                        <a href="rubiks-cube-solver.html"
-                            class="mt-auto text-tertiary text-xs font-black flex items-center gap-1 hover:gap-3 transition-all group-hover:translate-x-1">Open Solver
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="currency.html">Currency Converter</a></h3>
+                    <p>Convert 150+ currencies with live exchange rates, historical charts and a market board.</p>
+                    <div class="card-foot"><span class="cat-label">Finance</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="crypto" data-cat="finance" data-name="Crypto Tracker">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#bitcoin"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Crypto Tracker to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- Earnings Engine (3rd) -->
-                    <div data-category="Finance"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-tertiary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Finance</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">High precision</span>
-                        </div>
-                        <div class="tool-logo-container">
-                            <img src="logos/earnings.png" alt="Earnings Engine" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">Earnings Engine</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-6 font-medium">Live income ticker, tax simulation, and high-precision global earning breakdowns for professionals.</p>
-                        <a href="salary.html"
-                            class="mt-auto text-tertiary text-xs font-black flex items-center gap-1 hover:gap-3 transition-all group-hover:translate-x-1">Analyze Income
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="crypto.html">Crypto Tracker</a></h3>
+                    <p>Live crypto prices, trading charts and a personal portfolio for Bitcoin, Ethereum and 200+ coins.</p>
+                    <div class="card-foot"><span class="cat-label">Finance</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="salary" data-cat="finance" data-name="Salary Calculator">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#wallet"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Salary Calculator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- FlowTech Kanban (4th) -->
-                    <div data-category="Productivity"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-primary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Flow</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Agile</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/productivity.png" alt="Kanban Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">FlowTech Kanban</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Agile visualization for complex project dependencies and team velocity tracking.</p>
-                        <a href="kanban-board.html"
-                            class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="salary.html">Salary Calculator</a></h3>
+                    <p>See your pay per year, month, hour, minute and second across 18 currencies with a live ticker.</p>
+                    <div class="card-foot"><span class="cat-label">Finance</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="loan" data-cat="finance" data-name="Loan &amp; EMI Calculator" data-new="1">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#landmark"></use></svg></span>
+                        <div class="card-badges"><span class="badge badge-new">New</span><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Loan &amp; EMI Calculator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- Quantum Sci-Calc (Updated) -->
-                    <div data-category="Productivity"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-primary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Science</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Computing</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/math.png" alt="Math Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">Quantum Sci-Calc</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Advanced scientific computing engine with graphing and unit conversion.</p>
-                        <a href="scientific-calculator.html"
-                            class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="loan-calculator.html">Loan &amp; EMI Calculator</a></h3>
+                    <p>Monthly payment, total interest and a full amortization schedule for any loan or mortgage.</p>
+                    <div class="card-foot"><span class="cat-label">Finance</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="retire" data-cat="finance" data-name="Retirement Planner">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#piggy-bank"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Retirement Planner to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- Ultimate Personality Scan (Updated with Logo) -->
-                    <div data-category="Psychology"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-secondary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Psychology</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Neo-Scan</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/mbti.png" alt="MBTI Scan" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">Personality Scan</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Neo-glassmorphic MBTI assessment with interactive results and cognitive mapping.</p>
-                        <a href="mbti.html"
-                            class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="retire.html">Retirement Planner</a></h3>
+                    <p>Project your retirement savings and compare cost of living in destinations worldwide.</p>
+                    <div class="card-foot"><span class="cat-label">Finance</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="subs" data-cat="finance" data-name="Subscription Audit">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#repeat"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Subscription Audit to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- Password Nebula (Updated with Logo) -->
-                    <div data-category="Security"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-error/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Security</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Encrypted</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/security.png" alt="Password Nebula" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">Password Nebula</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Generate unbreakable passwords with entropy-based security and vault protection.</p>
-                        <a href="password.html"
-                            class="mt-auto text-error text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="subs-audit.html">Subscription Audit</a></h3>
+                    <p>Track recurring subscriptions, visualize monthly spend and find easy savings.</p>
+                    <div class="card-foot"><span class="cat-label">Finance</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="pet" data-cat="finance" data-name="Pet Cost Calculator">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#paw-print"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Pet Cost Calculator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- Crypto Trend Pro (Updated) -->
-                    <div data-category="Finance"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-tertiary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Crypto</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Trends</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/crypto.png" alt="Crypto Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">Crypto Trend Pro</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Analyze cryptocurrency prices and trends with AI insights and predictive modeling.</p>
-                        <a href="crypto.html"
-                            class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="pet.html">Pet Cost Calculator</a></h3>
+                    <p>Monthly and lifetime cost of owning a dog, cat or exotic pet, with care guides.</p>
+                    <div class="card-foot"><span class="cat-label">Finance</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="bmi" data-cat="health" data-name="BMI Calculator">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#scale"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add BMI Calculator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- Retirement Plan (Updated) -->
-                    <div data-category="Finance"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-tertiary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Retire</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Future</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/time.png" alt="Time Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">Retirement Plan</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Plan your retirement and track progress with personalized savings goals and inflation auditing.</p>
-                        <a href="retire.html"
-                            class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="bmi.html">BMI Calculator</a></h3>
+                    <p>Body Mass Index, ideal weight range and waist-to-height ratio with personalized tips.</p>
+                    <div class="card-foot"><span class="cat-label">Health</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="macros" data-cat="health" data-name="Macro Calculator">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#apple"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Macro Calculator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- Text Lens Pro (Updated) -->
-                    <div data-category="Productivity"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-primary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Text</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Analyzer</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/ai.png" alt="AI Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">Text Lens Pro</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Advanced sentiment analysis and deep text statistics for professional writers.</p>
-                        <a href="Advance Text Analyzer.html"
-                            class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="macros.html">Macro Calculator</a></h3>
+                    <p>Protein, carb and fat targets for cutting, bulking or maintenance.</p>
+                    <div class="card-foot"><span class="cat-label">Health</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="heartbeat" data-cat="health" data-name="Lifetime Heartbeats">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#heart-pulse"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Lifetime Heartbeats to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- Pet Cost Analyzer (Updated) -->
-                    <div data-category="Finance"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-tertiary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Life</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Audit</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/crypto.png" alt="Finance Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">Pet Cost Audit</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Calculate accurate pet ownership costs for any animal with life-cycle projections.</p>
-                        <a href="pet.html"
-                            class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="heartbeat.html">Lifetime Heartbeats</a></h3>
+                    <p>How many times your heart has beaten since birth, with live counter and heart facts.</p>
+                    <div class="card-foot"><span class="cat-label">Health</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="steps" data-cat="health" data-name="Lifetime Steps">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#footprints"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Lifetime Steps to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- BMI Calculator (Updated with Logo) -->
-                    <div data-category="Health"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-secondary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Health</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Metrics</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/health.png" alt="BMI Hub" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">BMI Hub</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Calculate BMI and get personalized health insights with advanced metrics.</p>
-                        <a href="bmi.html"
-                            class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="steps.html">Lifetime Steps</a></h3>
+                    <p>Total steps and distance walked in your lifetime, compared to famous journeys.</p>
+                    <div class="card-foot"><span class="cat-label">Health</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="sleep" data-cat="health" data-name="Sleep Calculator">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#moon"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Sleep Calculator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- Macro Blueprint (Updated) -->
-                    <div data-category="Health"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-secondary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Diet</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Precision</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/health.png" alt="Health Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">Macro Blueprint</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Hyper-precise macronutrient targets and calorie splits for elite physical performance.</p>
-                        <a href="macros.html"
-                            class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="sleep.html">Sleep Calculator</a></h3>
+                    <p>How much of your life you've spent asleep, plus sleep facts and recovery insights.</p>
+                    <div class="card-foot"><span class="cat-label">Health</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="breath" data-cat="health" data-name="Breath Counter">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#wind"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Breath Counter to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- Chroma Studio (Updated) -->
-                    <div data-category="Design"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-secondary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Design</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Studio</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/design.png" alt="Design Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">Chroma Studio</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Extract themes from images and check accessibility with professional color grading.</p>
-                        <a href="chroma-studio.html"
-                            class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="breath.html">Breath Counter</a></h3>
+                    <p>Estimate the breaths you've taken in your lifetime and the air volume you've moved.</p>
+                    <div class="card-foot"><span class="cat-label">Health</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="kanban" data-cat="productivity" data-name="Kanban Board">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#square-kanban"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Kanban Board to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- Cipher Shield (Updated) -->
-                    <div data-category="Security"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-error/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Shield</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Secure</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/security.png" alt="Security Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">Cipher Shield</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Military-grade encryption and entropy analysis for your most sensitive data.</p>
-                        <a href="security-vault.html"
-                            class="mt-auto text-error text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="kanban-board.html">Kanban Board</a></h3>
+                    <p>Drag-and-drop task board that saves to your browser. Plan projects without an account.</p>
+                    <div class="card-foot"><span class="cat-label">Productivity</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="pomodoro" data-cat="productivity" data-name="Pomodoro Focus Timer" data-new="1">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#timer"></use></svg></span>
+                        <div class="card-badges"><span class="badge badge-new">New</span><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Pomodoro Focus Timer to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- The Void Script (Updated) -->
-                    <div data-category="Security"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-error/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Stealth</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Private</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/privacy.png" alt="Privacy Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">The Void Script</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Premium stealth encoding suite for sensitive data obfuscation and privacy.</p>
-                        <a href="decoder.html"
-                            class="mt-auto text-error text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="pomodoro.html">Pomodoro Focus Timer</a></h3>
+                    <p>Focus and break timer with session stats, notifications and keyboard shortcuts.</p>
+                    <div class="card-foot"><span class="cat-label">Productivity</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="calc" data-cat="productivity" data-name="Scientific Calculator">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#calculator"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Scientific Calculator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- Trip Estimator (Updated) -->
-                    <div data-category="Life"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-tertiary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Travel</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Estimator</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/travel.png" alt="Travel Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">Trip Estimator</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Calculate flights, hotels, and daily expenses with global currency support.</p>
-                        <a href="flight.html"
-                            class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="scientific-calculator.html">Scientific Calculator</a></h3>
+                    <p>Scientific calculator with graphing, unit conversion and a history tape.</p>
+                    <div class="card-foot"><span class="cat-label">Productivity</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="units" data-cat="productivity" data-name="Unit Converter" data-new="1">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#ruler"></use></svg></span>
+                        <div class="card-badges"><span class="badge badge-new">New</span><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Unit Converter to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- NRR Pro (Updated) -->
-                    <div data-category="Life"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-tertiary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Sports</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Pro Stats</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/productivity.png" alt="Stats Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">NRR Precision Pro</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Advanced Net Run Rate calculator for high-stakes cricket tournaments.</p>
-                        <a href="nrr-calculator.html"
-                            class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="unit-converter.html">Unit Converter</a></h3>
+                    <p>Convert length, weight, temperature, area, volume, speed, data and time instantly.</p>
+                    <div class="card-foot"><span class="cat-label">Productivity</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="text" data-cat="productivity" data-name="Text Analyzer">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#scan-text"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Text Analyzer to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- URL Architect (Updated) -->
-                    <div data-category="Productivity"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-primary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Marketing</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Architect</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/ai.png" alt="Marketing Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">URL Architect</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Design branded QR codes and vanity links with high-conversion tracking.</p>
-                        <a href="qr.html"
-                            class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="text-analyzer.html">Text Analyzer</a></h3>
+                    <p>Word and character counts, reading time, readability score and keyword density for any text.</p>
+                    <div class="card-foot"><span class="cat-label">Productivity</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="markdown" data-cat="productivity" data-name="Markdown Editor">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#notebook-pen"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Markdown Editor to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- Age Calculator (Updated) -->
-                    <div data-category="Life"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-tertiary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Time</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Chronos</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/time.png" alt="Time Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">Age Chronos</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Track your age down to the millisecond with advanced biological visuals.</p>
-                        <a href="birthday.html"
-                            class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="markdown-editor.html">Markdown Editor</a></h3>
+                    <p>Markdown editor with live preview, templates and HTML export.</p>
+                    <div class="card-foot"><span class="cat-label">Productivity</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="prompt" data-cat="productivity" data-name="AI Prompt Optimizer">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add AI Prompt Optimizer to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- Digital Minimalism (Updated) -->
-                    <div data-category="Health"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-secondary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Wellness</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Focus</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/mbti.png" alt="Focus Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">Minimalism Audit</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Professional audit of your attention economy and digital footprint.</p>
-                        <a href="social.html"
-                            class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="prompt-optimizer.html">AI Prompt Optimizer</a></h3>
+                    <p>Turn rough ideas into structured prompts for ChatGPT, Claude and Gemini using the RTF framework.</p>
+                    <div class="card-foot"><span class="cat-label">Productivity</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="json" data-cat="dev" data-name="JSON Formatter" data-new="1">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#braces"></use></svg></span>
+                        <div class="card-badges"><span class="badge badge-new">New</span><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add JSON Formatter to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- AI Prompt Genius (Updated) -->
-                    <div data-category="Productivity"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-primary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">AI</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Productivity</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/ai.png" alt="AI Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">Prompt Genius</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Optimize your AI prompts using the professional RTF framework.</p>
-                        <a href="prompt-optimizer.html"
-                            class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="json-formatter.html">JSON Formatter</a></h3>
+                    <p>Format, validate, minify and explore JSON with precise error locations. Runs locally.</p>
+                    <div class="card-foot"><span class="cat-label">Developer</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="data" data-cat="dev" data-name="Mock Data Generator">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#database"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Mock Data Generator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- SubScout (Updated) -->
-                    <div data-category="Finance"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-tertiary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Finance</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Scout</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/crypto.png" alt="Scout Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">SubScout Audit</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Audit monthly subscriptions and visualize global spending patterns.</p>
-                        <a href="subs-audit.html"
-                            class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="data-generator.html">Mock Data Generator</a></h3>
+                    <p>Generate realistic test data from a custom schema and export it as JSON or CSV.</p>
+                    <div class="card-foot"><span class="cat-label">Developer</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="chroma" data-cat="design" data-name="Color Palette Studio">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#palette"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Color Palette Studio to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- Markdown Editor (Updated) -->
-                    <div data-category="Productivity"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-primary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Writing</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Flow</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/productivity.png" alt="Writing Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">Lingo Flow</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">High-performance Markdown suite with real-time preview and export.</p>
-                        <a href="markdown-editor.html"
-                            class="mt-auto text-primary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="chroma-studio.html">Color Palette Studio</a></h3>
+                    <p>Generate palettes, extract colors from images and check WCAG contrast.</p>
+                    <div class="card-foot"><span class="cat-label">Design</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="qr" data-cat="design" data-name="QR Code Generator">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#qr-code"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add QR Code Generator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- Heartbeat (Updated) -->
-                    <div data-category="Health"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-secondary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Health</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Heart</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/health.png" alt="Heart Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">Heartbeat Scan</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Lifetime heartbeat statistics and analysis with biometric mapping.</p>
-                        <a href="heartbeat.html"
-                            class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="qr.html">QR Code Generator</a></h3>
+                    <p>Create custom high-resolution QR codes with your colors and download instantly.</p>
+                    <div class="card-foot"><span class="cat-label">Design</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="password" data-cat="security" data-name="Password Generator">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#key-round"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Password Generator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- Steps (Updated) -->
-                    <div data-category="Health"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-secondary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Health</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Steps</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/health.png" alt="Steps Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">Step Counter</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Track daily movement and life-step statistics with biological calibration.</p>
-                        <a href="steps.html"
-                            class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="password.html">Password Generator</a></h3>
+                    <p>Strong random passwords generated with your browser's secure crypto and entropy analysis.</p>
+                    <div class="card-foot"><span class="cat-label">Security</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="vault" data-cat="security" data-name="Password Strength Tester">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#shield-check"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Password Strength Tester to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- Sleep (Updated) -->
-                    <div data-category="Health"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-secondary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Health</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Sleep</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/health.png" alt="Sleep Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">Sleep Tracker</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Calculate total sleep and recovery ratios with advanced circadian auditing.</p>
-                        <a href="sleep.html"
-                            class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="security-vault.html">Password Strength Tester</a></h3>
+                    <p>Check how strong a password is, estimate crack time and generate secure keys.</p>
+                    <div class="card-foot"><span class="cat-label">Security</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="decoder" data-cat="security" data-name="Steganography Studio">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#eye-off"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Steganography Studio to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- Age Comparison (Updated) -->
-                    <div data-category="Life"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-tertiary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Life</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Compare</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/time.png" alt="Compare Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">Age Comparison</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Analyze age differences and life intersection points with multi-node biological auditing.</p>
-                        <a href="compare.html"
-                            class="mt-auto text-tertiary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="decoder.html">Steganography Studio</a></h3>
+                    <p>Hide messages in invisible text or images, with optional AES-256 encryption.</p>
+                    <div class="card-foot"><span class="cat-label">Security</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="mbti" data-cat="life" data-name="Personality Test (MBTI)">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#brain"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Personality Test (MBTI) to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
-
-                    <!-- Breath (Updated) -->
-                    <div data-category="Health"
-                        class="rounded-xl bg-surface-container p-6 flex flex-col hover:bg-surface-bright bento-card transition-all cursor-pointer group hover:border-secondary/20 border border-transparent">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="category-badge">Health</div>
-                            <span class="text-[10px] font-bold text-zinc-600 uppercase tracking-wider">Breath</span>
-                        </div>
-                        <div class="tool-logo-container" style="height: 100px; margin-bottom: 1rem;">
-                            <img src="logos/health.png" alt="Breath Logo" class="tool-logo-img">
-                        </div>
-                        <h3 class="font-black text-xl mb-2 text-white">Breath Intake</h3>
-                        <p class="text-zinc-500 text-xs leading-relaxed mb-4 font-medium">Calculate total respiratory activity and lung health peaks with advanced volumetric auditing.</p>
-                        <a href="breath.html"
-                            class="mt-auto text-secondary text-xs font-bold flex items-center gap-1 hover:gap-2 transition-all">Open
-                            <span class="material-symbols-outlined text-sm" aria-hidden="true">east</span></a>
+                    <h3><a href="mbti.html">Personality Test (MBTI)</a></h3>
+                    <p>A free Myers-Briggs style test with detailed type analysis, strengths and careers.</p>
+                    <div class="card-foot"><span class="cat-label">Lifestyle</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="rubiks" data-cat="life" data-name="Rubik's Cube Solver">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#box"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Rubik's Cube Solver to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
                     </div>
+                    <h3><a href="rubiks-cube-solver.html">Rubik's Cube Solver</a></h3>
+                    <p>Solve a 3x3 cube using an interactive 3D model or your camera, step by step.</p>
+                    <div class="card-foot"><span class="cat-label">Lifestyle</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="birthday" data-cat="life" data-name="Age Calculator">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#cake"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Age Calculator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="birthday.html">Age Calculator</a></h3>
+                    <p>Your exact age down to the millisecond, plus a live countdown to your next birthday.</p>
+                    <div class="card-foot"><span class="cat-label">Lifestyle</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="compare" data-cat="life" data-name="Age Difference">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#users"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Age Difference to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="compare.html">Age Difference</a></h3>
+                    <p>Compare two birthdates and see the exact age gap in years, days and seconds.</p>
+                    <div class="card-foot"><span class="cat-label">Lifestyle</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="trip" data-cat="life" data-name="Trip Cost Estimator">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#plane"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Trip Cost Estimator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="flight.html">Trip Cost Estimator</a></h3>
+                    <p>Budget flights, hotels, food and activities for your next trip in any currency.</p>
+                    <div class="card-foot"><span class="cat-label">Lifestyle</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="nrr" data-cat="life" data-name="Cricket NRR Calculator">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#trophy"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Cricket NRR Calculator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="nrr-calculator.html">Cricket NRR Calculator</a></h3>
+                    <p>Net Run Rate for cricket tournaments with all-out rules and multi-match tracking.</p>
+                    <div class="card-foot"><span class="cat-label">Lifestyle</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="social" data-cat="life" data-name="Digital Minimalism Audit">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#smartphone"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Digital Minimalism Audit to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="social.html">Digital Minimalism Audit</a></h3>
+                    <p>Audit your screen time and social media habits and get a minimalism score.</p>
+                    <div class="card-foot"><span class="cat-label">Lifestyle</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+            <!-- /@cards --></div>
+                <div class="empty" id="empty-state" hidden>
+                    <svg aria-hidden="true"><use href="assets/img/icons.svg#search"></use></svg>
+                    <p>No tools match “<span data-empty-term></span>”.</p>
+                    <button class="btn btn-secondary btn-sm" id="clear-filters" type="button">Clear search</button>
+                </div>
+            </section>
 
+            <section class="section" aria-labelledby="why-h">
+                <div class="section-head"><h2 id="why-h">Why Digital Tools Hub</h2></div>
+                <div class="features">
+                    <div class="feature">
+                        <svg aria-hidden="true"><use href="assets/img/icons.svg#lock"></use></svg>
+                        <h3>Private by design</h3>
+                        <p>Your inputs are processed on your device. Nothing you type is uploaded or stored on a server.</p>
+                    </div>
+                    <div class="feature">
+                        <svg aria-hidden="true"><use href="assets/img/icons.svg#zap"></use></svg>
+                        <h3>Instant results</h3>
+                        <p>No loading spinners or round-trips. Results update as you type.</p>
+                    </div>
+                    <div class="feature">
+                        <svg aria-hidden="true"><use href="assets/img/icons.svg#command"></use></svg>
+                        <h3>Keyboard friendly</h3>
+                        <p>Press <span class="kbd" data-mod-key>Ctrl K</span> on any page to jump to another tool, or <span class="kbd">/</span> here to search.</p>
+                    </div>
+                    <div class="feature">
+                        <svg aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg>
+                        <h3>Your toolkit</h3>
+                        <p>Star favourites and pick up where you left off. Preferences are saved locally, without an account.</p>
+                    </div>
+                </div>
+            </section>
 
+            <section class="section container-narrow" aria-labelledby="faq-h" style="margin:0;padding-left:0;padding-right:0">
+                <div class="section-head"><h2 id="faq-h">Frequently asked questions</h2></div>
+                <div class="faq">
+                    <details>
+                        <summary>Are these tools really free?</summary>
+                        <p>Yes. Every tool is free to use with no sign-up, subscription or usage limit. The site is supported by unobtrusive ads.</p>
+                    </details>
+                    <details>
+                        <summary>Is my data sent to a server?</summary>
+                        <p>No. Calculations run in your browser. Data you choose to save, such as Kanban tasks or favourites, is stored locally on your device. Live-rate tools fetch public market data but never send your inputs.</p>
+                    </details>
+                    <details>
+                        <summary>Do the tools work offline?</summary>
+                        <p>Tools you have opened before are cached and keep working offline. Tools that need live data, such as currency and crypto rates, need a connection to refresh.</p>
+                    </details>
+                    <details>
+                        <summary>Can I install Digital Tools Hub as an app?</summary>
+                        <p>Yes. In Chrome, Edge or Safari choose “Install app” or “Add to Home Screen” to use Digital Tools Hub like a native app.</p>
+                    </details>
+                </div>
+            </section>
+        </div>
+    </main>
 
-
+    <!-- @footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a class="brand" href="./"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+                    <p>34 free tools for money, health, work and code. No sign-up, no paywalls, and your data stays in your browser.</p>
+                </div>
+                <div>
+                    <h4>Popular</h4>
+                    <ul>
+                        <li><a href="currency.html">Currency Converter</a></li>
+                        <li><a href="bmi.html">BMI Calculator</a></li>
+                        <li><a href="kanban-board.html">Kanban Board</a></li>
+                        <li><a href="scientific-calculator.html">Scientific Calculator</a></li>
+                        <li><a href="json-formatter.html">JSON Formatter</a></li>
+                        <li><a href="password.html">Password Generator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="./?cat=finance">Finance</a></li>
+                        <li><a href="./?cat=health">Health</a></li>
+                        <li><a href="./?cat=productivity">Productivity</a></li>
+                        <li><a href="./?cat=dev">Developer</a></li>
+                        <li><a href="./?cat=design">Design</a></li>
+                        <li><a href="./?cat=security">Security</a></li>
+                        <li><a href="./?cat=life">Lifestyle</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy policy</a></li>
+                        <li><a href="terms.html">Terms of service</a></li>
+                    </ul>
                 </div>
             </div>
-        </main>
-    </div>
-
-    <!-- Footer -->
-    <footer class="w-full py-12 px-6 bg-[#131313] border-t border-zinc-900 mt-20">
-        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div class="col-span-2 md:col-span-1">
-                <p class="text-[#BAC3FF] font-black mb-4">Curator Hub</p>
-                <p class="text-zinc-500 text-xs leading-relaxed max-w-xs">The premier professional suite for digital
-                    craftsmanship and AI-assisted workflows.</p>
-            </div>
-            <div>
-                <p class="text-zinc-300 text-xs font-bold uppercase tracking-wider mb-4">Platform</p>
-                <ul class="space-y-2 font-inter text-xs tracking-wide">
-                    <li><a class="text-zinc-500 hover:text-zinc-300 transition-colors" href="/">Dashboard</a></li>
-                    <li><a class="text-zinc-500 hover:text-zinc-300 transition-colors" href="mbti.html">Personality</a>
-                    </li>
-                    <li><a class="text-zinc-500 hover:text-zinc-300 transition-colors" href="social.html">Audit</a></li>
-                </ul>
-            </div>
-            <div>
-                <p class="text-zinc-300 text-xs font-bold uppercase tracking-wider mb-4">Trust & Transparency</p>
-                <ul class="space-y-2 font-inter text-xs tracking-wide">
-                    <li><a class="text-zinc-500 hover:text-zinc-300 transition-colors" href="about.html">About Us</a>
-                    </li>
-                    <li><a class="text-zinc-500 hover:text-zinc-300 transition-colors"
-                            href="about.html#how-it-works">How It Works</a></li>
-                    <li><a class="text-zinc-500 hover:text-zinc-300 transition-colors" href="privacy.html">Privacy
-                            Policy</a></li>
-                    <li><a class="text-zinc-500 hover:text-zinc-300 transition-colors" href="terms.html">Terms of
-                            Service</a></li>
-                </ul>
-            </div>
-            <div class="col-span-2 md:col-span-1 flex flex-col items-end justify-between">
-                <div class="flex gap-4">
-                    <a class="w-9 h-9 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-500 hover:text-primary transition-all hover:scale-110 border border-zinc-800/50"
-                        href="https://www.youtube.com/@MeowsicalMischief" aria-label="Visit our YouTube channel">
-                        <span class="material-symbols-outlined text-sm" aria-hidden="true">video_library</span>
-                    </a>
-                    <a class="w-9 h-9 rounded-full bg-zinc-900 flex items-center justify-center text-zinc-500 hover:text-primary transition-all hover:scale-110 border border-zinc-800/50"
-                        href="data-generator.html" aria-label="Launch DataForge Pro development tool">
-                        <span class="material-symbols-outlined text-sm" aria-hidden="true">terminal</span>
-                    </a>
-                </div>
-                <p class="text-zinc-600 text-[10px] mt-8">© 2025 Digital Curator Workspace</p>
+            <div class="footer-bottom">
+                <span>© 2026 Digital Tools Hub. Built by <a href="about.html">Rabeeh</a>.</span>
+                <span>Tip: press <span class="kbd" data-mod-key>Ctrl K</span> anywhere to jump to a tool.</span>
             </div>
         </div>
     </footer>
-
-    <script shadow>
-        // Search & Filter Logic
-        const searchInput = document.getElementById('global-search');
-        const toolsGrid = document.getElementById('tools-grid');
-        const toolCards = document.querySelectorAll('[data-category]');
-        const filterBtns = document.querySelectorAll('#category-filter button');
-
-        // Search logic
-        searchInput.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase().trim();
-            toolCards.forEach(card => {
-                const title = card.querySelector('h2, h3').innerText.toLowerCase();
-                const text = card.querySelector('p').innerText.toLowerCase();
-                const match = title.includes(term) || text.includes(term);
-                card.style.display = match ? 'flex' : 'none';
-            });
-        });
-
-        // Filter logic
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const filter = btn.getAttribute('data-filter');
-
-                // Update active state
-                filterBtns.forEach(b => {
-                    b.classList.remove('bg-zinc-800/60', 'text-[#BAC3FF]');
-                    b.classList.add('text-zinc-400');
-                });
-                btn.classList.add('bg-zinc-800/60', 'text-[#BAC3FF]');
-                btn.classList.remove('text-zinc-400');
-
-                // Filter cards
-                toolCards.forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
-o
-        // Shortcut for search (Cmd+K)
-        window.addEventListener('keydown', (e) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-                e.preventDefault();
-                searchInput.focus();
-            }
-        });
-
-        // Global Bento Link Handler
-        document.querySelectorAll('.bento-card').forEach(card => {
-            card.addEventListener('click', (e) => {
-                if (e.target.tagName !== 'A' && !e.target.closest('a')) {
-                    const link = card.querySelector('a');
-                    if (link) link.click();
-                }
-            });
-        });
-
-        // Floating Animation
-        document.querySelectorAll('.bento-card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
-                const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20;
-                card.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg) translateY(-5px)`;
-            });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(0px)';
-            });
-        });
-    </script>
+    <!-- /@footer -->
+    <!-- @scripts -->
+    <script src="assets/js/tools.js" defer></script>
+    <script src="assets/js/shell.js" defer></script>
+    <script src="assets/js/hub.js" defer></script>
+    <!-- /@scripts -->
 </body>
-
 </html>

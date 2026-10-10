@@ -1,51 +1,153 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-hub>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact | Digital Tools Hub</title>
+    <meta name="description" content="Contact Digital Tools Hub to report a bug, request a new tool or send feedback.">
+    <link rel="canonical" href="https://digitaltoolshub.github.io/contact.html">
+    <meta property="og:title" content="Contact | Digital Tools Hub">
+    <meta property="og:description" content="Contact Digital Tools Hub to report a bug, request a new tool or send feedback.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+    <!-- @head -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#f7f7fb" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0b0d14" media="(prefers-color-scheme: dark)">
+    <script>try{var t=localStorage.getItem("dth:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="stylesheet" href="assets/css/hub.css">
+    <link rel="preload" href="assets/img/icons.svg" as="image" type="image/svg+xml">
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-R4N9RB1SNN');
-    </script>
-
-    <!-- Google Ads -->
-    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
-    
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" type="text/javascript" async></script>     -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | Digital Tools Hub</title>
-    <link rel="stylesheet" href="styles.css">
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-R4N9RB1SNN");</script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" async></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
+    <!-- /@head -->
 </head>
-
 <body>
-    <header>
-        <h1>Contact Us</h1>
+    <!-- @header -->
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="./" aria-label="Digital Tools Hub home"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+            <nav class="site-nav" aria-label="Main">
+                <a href="./">All tools</a>
+                <a href="about.html">About</a>
+                <a href="contact.html" aria-current="page">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="search-trigger" type="button" data-open-palette aria-label="Search tools"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#search"></use></svg><span class="label">Search tools…</span><span class="kbd" data-mod-key>Ctrl K</span></button>
+                <button class="icon-btn" type="button" data-theme-toggle aria-label="Change theme"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#monitor"></use></svg></button>
+            </div>
+        </div>
     </header>
-    <main>
-        <section>
-            <h2>Get in Touch</h2>
-            <p>If you have any questions or feedback, feel free to reach out to us.</p>
-        </section>
-        <section>
-            <h2>Contact Form</h2>
-            <form action="mailto:fortunate.shaheer@gmail.com" method="post" enctype="text/plain">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-                <button type="submit">Send</button>
-            </form>
-        </section>
-    </main>
-    <footer>
-        <p>© 2025 Digital Tools Hub</p>
-    </footer>
-</body>
+    <!-- /@header -->
 
+    <main id="main">
+        <div class="container container-narrow">
+            <div class="page-head">
+                <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="./">Home</a><svg aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"></use></svg><span>Contact</span></nav>
+                <h1>Contact us</h1>
+                <p>Report a bug, suggest a tool or just say hello. We usually reply within a few days.</p>
+            </div>
+            <div class="cols-2" style="align-items:start">
+                <form class="panel stack" id="contact-form" novalidate>
+                    <div class="field"><label for="c-name">Name</label><input class="input" id="c-name" name="name" autocomplete="name" required></div>
+                    <div class="field"><label for="c-topic">Topic</label>
+                        <select class="select" id="c-topic" name="topic">
+                            <option>General feedback</option><option>Bug report</option><option>Tool request</option><option>Business enquiry</option><option>Privacy request</option>
+                        </select></div>
+                    <div class="field"><label for="c-msg">Message</label><textarea class="textarea" id="c-msg" name="message" rows="6" required style="font-family:var(--font)"></textarea></div>
+                    <div class="alert alert-error" id="c-err" hidden><svg aria-hidden="true"><use href="assets/img/icons.svg#circle-alert"></use></svg><span>Please enter your name and a message.</span></div>
+                    <button class="btn btn-primary" type="submit"><svg aria-hidden="true"><use href="assets/img/icons.svg#mail"></use></svg>Open in my email app</button>
+                    <p class="muted" style="font-size:.85rem;margin:0">This form opens a pre-filled email in your mail app. Nothing is sent from this website.</p>
+                </form>
+                <div class="stack">
+                    <div class="panel">
+                        <h2 style="font-size:1rem">Email</h2>
+                        <p class="muted" style="margin-bottom:12px">Prefer writing directly? Reach us at:</p>
+                        <div class="row"><a class="mono" href="mailto:digitaltoolshub4all@gmail.com">digitaltoolshub4all@gmail.com</a>
+                        <button class="btn btn-secondary btn-sm" type="button" id="copy-email"><svg aria-hidden="true"><use href="assets/img/icons.svg#copy"></use></svg>Copy</button></div>
+                    </div>
+                    <div class="panel">
+                        <h2 style="font-size:1rem">Reporting a bug?</h2>
+                        <p class="muted" style="margin:0">Include the tool name, what you expected, what happened, and your browser and device. A screenshot helps a lot.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var EMAIL = "digitaltoolshub4all@gmail.com";
+            var f = document.getElementById("contact-form"), err = document.getElementById("c-err");
+            f.addEventListener("submit", function (e) {
+                e.preventDefault();
+                var name = f.name.value.trim(), msg = f.message.value.trim();
+                err.hidden = !!(name && msg);
+                if (!name || !msg) return;
+                var subject = "[Digital Tools Hub] " + f.topic.value;
+                var body = msg + "\n\n— " + name;
+                location.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+            });
+            document.getElementById("copy-email").addEventListener("click", function () { window.DTH.copy(EMAIL, "Email address copied"); });
+        });
+        </script>
+    </main>
+
+    <!-- @footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a class="brand" href="./"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+                    <p>34 free tools for money, health, work and code. No sign-up, no paywalls, and your data stays in your browser.</p>
+                </div>
+                <div>
+                    <h4>Popular</h4>
+                    <ul>
+                        <li><a href="currency.html">Currency Converter</a></li>
+                        <li><a href="bmi.html">BMI Calculator</a></li>
+                        <li><a href="kanban-board.html">Kanban Board</a></li>
+                        <li><a href="scientific-calculator.html">Scientific Calculator</a></li>
+                        <li><a href="json-formatter.html">JSON Formatter</a></li>
+                        <li><a href="password.html">Password Generator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="./?cat=finance">Finance</a></li>
+                        <li><a href="./?cat=health">Health</a></li>
+                        <li><a href="./?cat=productivity">Productivity</a></li>
+                        <li><a href="./?cat=dev">Developer</a></li>
+                        <li><a href="./?cat=design">Design</a></li>
+                        <li><a href="./?cat=security">Security</a></li>
+                        <li><a href="./?cat=life">Lifestyle</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy policy</a></li>
+                        <li><a href="terms.html">Terms of service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Digital Tools Hub. Built by <a href="about.html">Rabeeh</a>.</span>
+                <span>Tip: press <span class="kbd" data-mod-key>Ctrl K</span> anywhere to jump to a tool.</span>
+            </div>
+        </div>
+    </footer>
+    <!-- /@footer -->
+    <!-- @scripts -->
+    <script src="assets/js/tools.js" defer></script>
+    <script src="assets/js/shell.js" defer></script>
+    <script src="assets/js/hub.js" defer></script>
+    <!-- /@scripts -->
+</body>
 </html>

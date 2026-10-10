@@ -406,9 +406,28 @@
             meeting: "# Meeting Notes\n\n**Date:** " + new Date().toLocaleDateString() + "\n**Attendees:** @user1, @user2\n\n## Agenda\n1. Project update\n2. Resource allocation\n\n## Decisions\n- Decision A\n- Decision B\n\n## Action Items\n- [ ] Task 1\n- [ ] Task 2"
         };
 
+        // Strip scripts, event handlers and javascript: URLs from rendered Markdown.
+        function sanitizeHtml(html) {
+            const doc = new DOMParser().parseFromString(html, 'text/html');
+            doc.querySelectorAll('script, style, iframe, object, embed, link, meta, base, form').forEach(n => n.remove());
+            doc.body.querySelectorAll('*').forEach(el => {
+                [...el.attributes].forEach(a => {
+                    const name = a.name.toLowerCase();
+                    if (name.startsWith('on') || /^\s*(javascript|data|vbscript):/i.test(a.value) && ['href', 'src', 'xlink:href', 'action', 'formaction'].includes(name)) {
+                        el.removeAttribute(a.name);
+                    }
+                });
+            });
+            return doc.body.innerHTML;
+        }
+
         function updatePreview() {
             const raw = editor.value;
-            preview.innerHTML = marked.parse(raw);
+            if (typeof marked === 'undefined') {
+                preview.textContent = raw; // Markdown library unavailable: show plain text
+            } else {
+                preview.innerHTML = sanitizeHtml(marked.parse(raw));
+            }
             saveToLocal();
             updateStats();
         }

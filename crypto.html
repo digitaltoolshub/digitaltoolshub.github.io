@@ -1165,7 +1165,7 @@
             lastLogin: localStorage.getItem('lastLogin') || null,
             streak: parseInt(localStorage.getItem('streak')) || 0,
             // Demo Trading State
-            demoBalance: parseFloat(localStorage.getItem('demoBalance')) || 50.00,
+            demoBalance: isNaN(parseFloat(localStorage.getItem('demoBalance'))) ? 50.00 : parseFloat(localStorage.getItem('demoBalance')),
             demoHoldings: JSON.parse(localStorage.getItem('demoHoldings')) || {},
             demoTransactions: JSON.parse(localStorage.getItem('demoTransactions')) || [],
             demoPurchasePrices: JSON.parse(localStorage.getItem('demoPurchasePrices')) || {}

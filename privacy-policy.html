@@ -221,23 +221,19 @@
 
     <h3>D. Device Identifiers & Analytics (Consented)</h3>
     <ul>
-        <li><strong>Firebase Analytics & Google Signals:</strong> With your consent via the in-app consent prompt, we
-            collect app interaction events (such as screens viewed, buttons tapped, sign-in methods) and mobile instance
-            identifiers to analyze performance and improve the app. Personal identifiers and trading amounts are never
-            sent to analytics events.</li>
+        <li><strong>Firebase Analytics (optional):</strong> Only if you choose "Allow usage analytics" (you can change this any time in Profile &amp; settings), we collect app interaction events (such as screens viewed, buttons tapped, sign-in methods) and mobile instance
+            identifiers to analyze performance and improve the app. Personal identifiers and trading amounts are never sent to analytics events. Google Signals, advertising-ID collection and ad personalization are turned off. The app works fully if you decline.</li>
+        <li><strong>Firebase Crashlytics (optional):</strong> With the same choice, crash reports (stack trace, device model, OS version, app version and a Firebase installation ID) are sent to Google so we can fix crashes. They never include your name, email or trading data.</li>
+        <li><strong>PostHog session recordings (optional):</strong> With the same choice, PostHog (US cloud) receives anonymous recordings of how screens are used: screen names, layout and taps, plus device model, OS and app version. All text, text fields and images are blanked out on your device before upload, so recordings never show your name, email, balances, trade amounts or coach questions. Recordings are not linked to your account.</li>
         <li><strong>Advertising Identifiers (Google Mobile Ads / AdMob):</strong> Free-tier users are served
-            advertisements. The Google Mobile Ads SDK accesses the Google Advertising ID (<code>AD_ID</code>) and device
-            diagnostic information to deliver, measure, and prevent fraud in ad delivery. TradeWave requests
-            non-personalized ad delivery within the application. TradeWave Pro subscribers enjoy an ad-free experience.
+            advertisements. TradeWave does not request the Google Advertising ID permission (<code>AD_ID</code>) and only requests non-personalized ads. The Google Mobile Ads SDK still processes the device IP address (from which an approximate location can be inferred), the app set ID, ad interactions and diagnostics to deliver, measure and prevent fraud in ad delivery. TradeWave Pro subscribers enjoy an ad-free experience.
         </li>
     </ul>
 
     <h3>E. AI Chat & RAG Queries (Coach Wavey)</h3>
     <ul>
-        <li>When using the Coach Wavey AI assistant with a user-supplied Google Gemini API key, your queries are
-            transmitted to Google's Generative AI API to produce educational responses. The API key is stored securely
-            in your device's hardware keychain using <code>expo-secure-store</code> and is never transmitted to our
-            servers. Offline responses in the Playbook are processed entirely on-device without network transmission.
+        <li>When using the Coach Wavey AI assistant with a user-supplied Google Gemini API key, your questions and, unless you turn it off in Profile &amp; settings, a summary of your paper portfolio (cash, positions and recent trades; no name or email) are transmitted to Google's Generative AI API to produce educational responses. The API key is stored securely
+            in your device's hardware keychain using <code>expo-secure-store</code> and is sent only to Google with each request, never to our servers. Offline responses in the Playbook are processed entirely on-device without network transmission.
         </li>
     </ul>
 
@@ -253,14 +249,19 @@
         </thead>
         <tbody>
             <tr>
-                <td><strong>Google Firebase</strong> (Auth, Firestore, Analytics)</td>
+                <td><strong>Google Firebase</strong> (Auth, Firestore, Analytics, Crashlytics)</td>
                 <td>User authentication, cloud sync for simulated portfolios, and consented usage analytics.</td>
-                <td>Email, Display Name, User ID, Paper trading logs, App interaction events, Device IDs.</td>
+                <td>Email, Display Name, User ID, Paper trading logs; app interaction events, crash reports and app-instance ID only with analytics consent.</td>
+            </tr>
+            <tr>
+                <td><strong>PostHog</strong></td>
+                <td>Consented, anonymous session recordings to find usability problems.</td>
+                <td>Screen names, masked screen layout and taps, device model, OS and app version (only with analytics consent).</td>
             </tr>
             <tr>
                 <td><strong>Google Mobile Ads</strong> (AdMob)</td>
                 <td>Serving rewarded and interstitial ads to support the free version.</td>
-                <td>Google Advertising ID (AD_ID), IP-derived approximate location, ad interaction metrics, diagnostics.
+                <td>App set ID, IP-derived approximate location, ad interaction metrics, diagnostics (non-personalized ads only).
                 </td>
             </tr>
             <tr>
@@ -308,7 +309,8 @@
         <h3>How to Request Account and Data Deletion</h3>
         <p>You can request complete deletion of your TradeWave account and all associated cloud data at any time:</p>
         <ul>
-            <li><strong>Email Request:</strong> Send an email to <strong><a
+            <li><strong>In the app:</strong> Open Profile &amp; settings and tap <em>Delete account</em>. This deletes your Firebase Authentication record, profile and all cloud portfolio data, then erases data on the device. Guests can tap <em>Erase data on this device</em>.</li>
+                        <li><strong>Email Request:</strong> Send an email to <strong><a
                         href="mailto:digitaltoolshub4all@gmail.com?subject=TradeWave%20Account%20and%20Data%20Deletion%20Request">digitaltoolshub4all@gmail.com</a></strong>
                 with the subject line <code>TradeWave Account and Data Deletion Request</code>. Please send the request
                 from the email address associated with your TradeWave account.</li>
@@ -318,8 +320,7 @@
             </li>
             <li><strong>Processing Timeline:</strong> Requests are processed within 30 days of verification.</li>
             <li><strong>Local Data:</strong> For guest mode or locally cached data, you can instantly erase all local
-                data by resetting the active account in the app's Profile settings or by clearing the app's storage in
-                Android Settings.</li>
+                data by tapping Erase data on this device in Profile &amp; settings, or by clearing the app's storage in Android Settings.</li>
         </ul>
     </div>
 

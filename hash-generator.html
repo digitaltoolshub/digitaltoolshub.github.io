@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" data-hub>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hash Generator | MD5, SHA-1, SHA-256, SHA-512 &amp; HMAC Online</title>
+    <meta name="description" content="Free online hash generator: calculate MD5, SHA-1, SHA-256, SHA-384 and SHA-512 checksums of text or files, create HMAC signatures and verify file integrity. Private, runs in your browser.">
+    <link rel="canonical" href="https://digitaltoolshub.github.io/hash-generator.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Digital Tools Hub">
+    <meta property="og:url" content="https://digitaltoolshub.github.io/hash-generator.html">
+    <meta property="og:title" content="Hash Generator | MD5, SHA-256, SHA-512 &amp; HMAC">
+    <meta property="og:description" content="Calculate MD5, SHA-1, SHA-256, SHA-384 and SHA-512 hashes of text or files, and HMAC signatures. 100% private.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- @head -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#090b13" media="(prefers-color-scheme: dark)">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <meta name="author" content="Rabeeh">
+    <script>try{var t=localStorage.getItem("dth:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"></noscript>
+    <link rel="stylesheet" href="assets/css/hub.css">
+    <link rel="preload" href="assets/img/icons.svg" as="image" type="image/svg+xml">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-R4N9RB1SNN");</script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" async></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
+    <!-- /@head -->
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Hash Generator","url":"https://digitaltoolshub.github.io/hash-generator.html","description":"Calculate MD5, SHA-1, SHA-256, SHA-384 and SHA-512 hashes of text or files, plus HMAC signatures.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://digitaltoolshub.github.io/"},{"@type":"ListItem","position":2,"name":"Developer","item":"https://digitaltoolshub.github.io/developer-tools.html"},{"@type":"ListItem","position":3,"name":"Hash Generator","item":"https://digitaltoolshub.github.io/hash-generator.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a hash?","acceptedAnswer":{"@type":"Answer","text":"A cryptographic hash function turns any input into a fixed-length fingerprint. The same input always gives the same hash, and changing a single character changes the hash completely, which makes hashes ideal for checking file integrity."}},{"@type":"Question","name":"Is MD5 still safe to use?","acceptedAnswer":{"@type":"Answer","text":"MD5 and SHA-1 are broken for security purposes because collisions can be created deliberately. They're still fine for non-security checksums, but use SHA-256 or stronger for anything security-related."}},{"@type":"Question","name":"Should I hash passwords with SHA-256?","acceptedAnswer":{"@type":"Answer","text":"No. Plain hashes are too fast to resist brute force. Store passwords with a slow, salted algorithm designed for the purpose, such as Argon2, bcrypt or scrypt."}},{"@type":"Question","name":"How do I verify a downloaded file?","acceptedAnswer":{"@type":"Answer","text":"Drop the file into the tool and paste the checksum published by the download site into the Verify box. If any algorithm matches, it's highlighted and the file is intact."}}]}]}</script>
+    <style>
+        .hash-list { display: grid; gap: 10px; }
+        .hash-row { display: grid; grid-template-columns: 90px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-sunken); transition: border-color .2s, background-color .2s; }
+        .hash-row .alg { font-weight: 800; font-size: .85rem; }
+        .hash-row code { font-family: var(--mono); font-size: .86rem; word-break: break-all; color: var(--text); }
+        .hash-row.match { border-color: var(--ok); background: color-mix(in srgb, var(--ok) 10%, transparent); }
+        .hash-row.match .alg::after { content: " ✓"; color: var(--ok); }
+        @media (max-width: 560px) { .hash-row { grid-template-columns: 1fr auto; } .hash-row code { grid-column: 1 / -1; grid-row: 2; } }
+        .drop-mini { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 12px; border: 2px dashed var(--border-strong); color: var(--text-2); cursor: pointer; font-size: .92rem; transition: border-color .2s, background-color .2s; }
+        .drop-mini:hover, .drop-mini.over { border-color: var(--accent); background: var(--accent-soft); }
+        .drop-mini svg { width: 20px; height: 20px; color: var(--accent); flex: none; }
+        .progress { height: 6px; border-radius: 99px; background: var(--bg-sunken); overflow: hidden; }
+        .progress i { display: block; height: 100%; width: 0; background: var(--grad); transition: width .15s; }
+    </style>
+</head>
+<body>
+    <!-- @header -->
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="./" aria-label="Digital Tools Hub home"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+            <nav class="site-nav" aria-label="Main">
+                <div class="nav-dd">
+                    <button type="button" aria-haspopup="true">Tools<svg class="" aria-hidden="true"><use href="assets/img/icons.svg#chevron-down"></use></svg></button>
+                    <div class="mega">
+                        <a href="finance-tools.html" data-cat="finance"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#wallet"></use></svg></span><span><strong>Finance</strong><small>Calculators for money, loans, savings and markets</small></span></a>
+                        <a href="health-tools.html" data-cat="health"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#heart-pulse"></use></svg></span><span><strong>Health</strong><small>BMI, nutrition and lifetime body stats</small></span></a>
+                        <a href="productivity-tools.html" data-cat="productivity"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#rocket"></use></svg></span><span><strong>Productivity</strong><small>Timers, calculators, converters and writing tools</small></span></a>
+                        <a href="developer-tools.html" data-cat="dev"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#code"></use></svg></span><span><strong>Developer</strong><small>Formatters, encoders and generators for coders</small></span></a>
+                        <a href="design-tools.html" data-cat="design"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#palette"></use></svg></span><span><strong>Design</strong><small>Colors, images and QR codes</small></span></a>
+                        <a href="security-tools.html" data-cat="security"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#shield"></use></svg></span><span><strong>Security</strong><small>Passwords, strength checks and private messages</small></span></a>
+                        <a href="lifestyle-tools.html" data-cat="life"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg></span><span><strong>Lifestyle</strong><small>Age, travel, personality, sport and fun</small></span></a>
+                        <div class="mega-foot"><span>41 free tools, no sign-up</span><a href="./#tools">Browse all tools →</a></div>
+                    </div>
+                </div>
+                <a href="./#popular">Popular</a>
+                <a href="./#new">New</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="search-trigger" type="button" data-open-palette aria-label="Search tools"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#search"></use></svg><span class="label">Search 41 tools…</span><span class="kbd" data-mod-key>Ctrl K</span></button>
+                <button class="icon-btn" type="button" data-theme-toggle aria-label="Change theme"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#monitor"></use></svg></button>
+                <button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#menu"></use></svg></button>
+            </div>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobile-menu">
+        <nav aria-label="Mobile">
+            <a href="./"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#house"></use></svg></span>Home</a>
+            <a href="./#popular"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#flame"></use></svg></span>Popular tools</a>
+            <a href="./#new"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg></span>New tools</a>
+        </nav>
+        <h4>Categories</h4>
+        <nav aria-label="Categories">
+            <a href="finance-tools.html" data-cat="finance"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#wallet"></use></svg></span><span>Finance<small>8 tools</small></span></a>
+            <a href="health-tools.html" data-cat="health"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#heart-pulse"></use></svg></span><span>Health<small>6 tools</small></span></a>
+            <a href="productivity-tools.html" data-cat="productivity"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#rocket"></use></svg></span><span>Productivity<small>9 tools</small></span></a>
+            <a href="developer-tools.html" data-cat="dev"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#code"></use></svg></span><span>Developer<small>5 tools</small></span></a>
+            <a href="design-tools.html" data-cat="design"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#palette"></use></svg></span><span>Design<small>3 tools</small></span></a>
+            <a href="security-tools.html" data-cat="security"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#shield"></use></svg></span><span>Security<small>3 tools</small></span></a>
+            <a href="lifestyle-tools.html" data-cat="life"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg></span><span>Lifestyle<small>7 tools</small></span></a>
+        </nav>
+        <h4>Digital Tools Hub</h4>
+        <nav aria-label="Company">
+            <a href="about.html"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#info"></use></svg></span>About</a>
+            <a href="contact.html"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#mail"></use></svg></span>Contact</a>
+        </nav>
+    </div>
+    <!-- /@header -->
+
+    <main id="main" class="container">
+        <div class="page-head">
+            <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="./">Home</a><svg aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"></use></svg><a href="developer-tools.html">Developer</a><svg aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"></use></svg><span>Hash Generator</span></nav>
+            <h1><span class="tool-icon" data-cat="dev"><svg aria-hidden="true"><use href="assets/img/icons.svg#hash"></use></svg></span>Hash Generator</h1>
+            <p>Generate MD5, SHA-1, SHA-256, SHA-384 and SHA-512 hashes of text or files, sign messages with HMAC and verify checksums. Hashing runs locally with your browser's Web Crypto API.</p>
+            <div class="trust"><span><svg aria-hidden="true"><use href="assets/img/icons.svg#check"></use></svg>Text &amp; files</span><span><svg aria-hidden="true"><use href="assets/img/icons.svg#check"></use></svg>HMAC signing</span><span><svg aria-hidden="true"><use href="assets/img/icons.svg#lock"></use></svg>Nothing uploaded</span></div>
+        </div>
+
+        <div class="tool-layout">
+            <section class="panel stack" aria-labelledby="in-h">
+                <div class="panel-head" style="margin:0"><h2 id="in-h">Input</h2>
+                    <div class="segmented" role="tablist" aria-label="Input type">
+                        <button type="button" role="tab" aria-selected="true" data-src="text">Text</button>
+                        <button type="button" role="tab" aria-selected="false" data-src="file">File</button>
+                    </div></div>
+                <div id="src-text" class="stack">
+                    <label class="sr-only" for="txt">Text to hash</label>
+                    <textarea class="textarea" id="txt" rows="8" spellcheck="false" placeholder="Type or paste text…">hello world</textarea>
+                </div>
+                <div id="src-file" class="stack" hidden>
+                    <label class="drop-mini" id="drop" for="file"><svg aria-hidden="true"><use href="assets/img/icons.svg#upload"></use></svg><span id="file-name">Drop a file or click to choose</span></label>
+                    <input type="file" id="file" hidden>
+                    <div class="progress" id="prog" hidden><i></i></div>
+                </div>
+                <div class="field"><label for="key">HMAC secret key <span class="muted">(optional)</span></label><input class="input mono" id="key" placeholder="Leave empty for plain hashes" autocomplete="off" spellcheck="false"></div>
+                <div class="row" style="gap:16px;font-size:.9rem">
+                    <label class="row" style="gap:6px;cursor:pointer"><input type="checkbox" id="upper"> Uppercase</label>
+                    <label class="row" style="gap:6px;cursor:pointer"><input type="checkbox" id="b64"> Base64 output</label>
+                </div>
+                <div class="field"><label for="verify">Verify against a checksum</label><input class="input mono" id="verify" placeholder="Paste an expected hash" autocomplete="off" spellcheck="false"></div>
+                <div id="verify-msg"></div>
+            </section>
+            <section class="panel" aria-labelledby="out-h">
+                <div class="panel-head"><h2 id="out-h">Hashes</h2><span class="muted" id="meta" style="font-size:.85rem"></span></div>
+                <div class="hash-list" id="list"></div>
+            </section>
+        </div>
+
+        <div class="cols-2" style="margin-top:48px;align-items:start;gap:40px">
+            <section class="prose" aria-labelledby="guide-h">
+                <h2 id="guide-h" style="margin-top:0">Which hash algorithm should I use?</h2>
+                <ul>
+                    <li><strong>SHA-256</strong> is the everyday default: used for file checksums, Git (newer repositories), TLS certificates and Bitcoin.</li>
+                    <li><strong>SHA-384 / SHA-512</strong> give longer digests and are often faster than SHA-256 on 64-bit machines.</li>
+                    <li><strong>SHA-1</strong> and <strong>MD5</strong> are kept for legacy checksums and compatibility. Don't use them where an attacker could forge a collision.</li>
+                    <li><strong>HMAC</strong> combines a hash with a secret key to prove a message wasn't tampered with. It's how webhooks from Stripe, GitHub and Slack are signed.</li>
+                </ul>
+                <p>Text is hashed as UTF-8. Line endings matter: a file saved with Windows line endings (CRLF) has a different hash to the same text with Unix line endings (LF).</p>
+            </section>
+            <section aria-labelledby="faq-h">
+                <h2 id="faq-h" style="font-size:1.4rem">FAQ</h2>
+                <div class="faq">
+                    <details><summary>What is a hash?</summary><p>A cryptographic hash function turns any input into a fixed-length fingerprint. The same input always gives the same hash, and changing a single character changes the hash completely, which makes hashes ideal for checking file integrity.</p></details>
+                    <details><summary>Is MD5 still safe to use?</summary><p>MD5 and SHA-1 are broken for security purposes because collisions can be created deliberately. They're still fine for non-security checksums, but use SHA-256 or stronger for anything security-related.</p></details>
+                    <details><summary>Should I hash passwords with SHA-256?</summary><p>No. Plain hashes are too fast to resist brute force. Store passwords with a slow, salted algorithm designed for the purpose, such as Argon2, bcrypt or scrypt.</p></details>
+                    <details><summary>How do I verify a downloaded file?</summary><p>Drop the file into the tool and paste the checksum published by the download site into the Verify box. If any algorithm matches, it's highlighted and the file is intact.</p></details>
+                </div>
+            </section>
+        </div>
+        <!-- @related -->
+        <section class="section reveal" aria-labelledby="rel-h" style="margin-top:32px">
+            <div class="section-head"><h2 id="rel-h"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layers"></use></svg>Related tools</h2><a class="see-all" href="developer-tools.html">All developer tools<svg class="" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></a></div>
+            <div class="grid">
+                <article class="card" data-id="json" data-cat="dev" data-name="JSON Formatter">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#braces"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add JSON Formatter to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="json-formatter.html">JSON Formatter</a></h3>
+                    <p>Format, validate, minify and explore JSON with precise error locations. Runs locally.</p>
+                    <div class="card-foot"><span class="cat-label">Developer</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="base64" data-cat="dev" data-name="Base64 &amp; URL Encoder" data-new="1">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#binary"></use></svg></span>
+                        <div class="card-badges"><span class="badge badge-new">New</span><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Base64 &amp; URL Encoder to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="base64-encoder.html">Base64 &amp; URL Encoder</a></h3>
+                    <p>Encode and decode Base64, URL, HTML entities and inspect JWT tokens. Unicode-safe and private.</p>
+                    <div class="card-foot"><span class="cat-label">Developer</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="uuid" data-cat="dev" data-name="UUID Generator" data-new="1">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#fingerprint"></use></svg></span>
+                        <div class="card-badges"><span class="badge badge-new">New</span><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add UUID Generator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="uuid-generator.html">UUID Generator</a></h3>
+                    <p>Generate UUID v4 and time-ordered v7 identifiers in bulk, validate UUIDs and copy in one click.</p>
+                    <div class="card-foot"><span class="cat-label">Developer</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="data" data-cat="dev" data-name="Mock Data Generator">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#database"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Mock Data Generator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="data-generator.html">Mock Data Generator</a></h3>
+                    <p>Generate realistic test data from a custom schema and export it as JSON or CSV.</p>
+                    <div class="card-foot"><span class="cat-label">Developer</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+            </div>
+        </section>
+        <!-- /@related -->
+    </main>
+
+    <!-- @footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a class="brand" href="./"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+                    <p>41 free tools for money, health, work and code. No sign-up, no paywalls, and your data stays in your browser.</p>
+                    <div class="footer-badges"><span><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#lock"></use></svg>Private</span><span><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#zap"></use></svg>Instant</span><span><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#wifi-off"></use></svg>Works offline</span></div>
+                </div>
+                <div>
+                    <h4>Popular</h4>
+                    <ul>
+                        <li><a href="currency.html">Currency Converter</a></li>
+                        <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+                        <li><a href="bmi.html">BMI Calculator</a></li>
+                        <li><a href="kanban-board.html">Kanban Board</a></li>
+                        <li><a href="scientific-calculator.html">Scientific Calculator</a></li>
+                        <li><a href="percentage-calculator.html">Percentage Calculator</a></li>
+                        <li><a href="json-formatter.html">JSON Formatter</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>New tools</h4>
+                    <ul>
+                        <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+                        <li><a href="percentage-calculator.html">Percentage Calculator</a></li>
+                        <li><a href="date-calculator.html">Date Calculator</a></li>
+                        <li><a href="base64-encoder.html">Base64 &amp; URL Encoder</a></li>
+                        <li><a href="hash-generator.html">Hash Generator</a></li>
+                        <li><a href="uuid-generator.html">UUID Generator</a></li>
+                        <li><a href="image-compressor.html">Image Compressor &amp; Resizer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="finance-tools.html">Finance tools</a></li>
+                        <li><a href="health-tools.html">Health tools</a></li>
+                        <li><a href="productivity-tools.html">Productivity tools</a></li>
+                        <li><a href="developer-tools.html">Developer tools</a></li>
+                        <li><a href="design-tools.html">Design tools</a></li>
+                        <li><a href="security-tools.html">Security tools</a></li>
+                        <li><a href="lifestyle-tools.html">Lifestyle tools</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy policy</a></li>
+                        <li><a href="terms.html">Terms of service</a></li>
+                        <li><a href="sitemap.xml">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Digital Tools Hub. Built by <a href="about.html">Rabeeh</a>.</span>
+                <span>Tip: press <span class="kbd" data-mod-key>Ctrl K</span> anywhere to jump to a tool.</span>
+            </div>
+        </div>
+    </footer>
+    <button class="to-top" type="button" aria-label="Back to top"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#arrow-up"></use></svg></button>
+    <!-- /@footer -->
+
+    <!-- @scripts -->
+    <script src="assets/js/tools.js" defer></script>
+    <script src="assets/js/shell.js" defer></script>
+    <script src="assets/js/hub.js" defer></script>
+    <!-- /@scripts -->
+    <script>
+    // MD5 (RFC 1321) for Uint8Array input. Web Crypto doesn't provide MD5.
+    function md5(bytes) {
+        var K = new Int32Array(64), S = [7, 12, 17, 22, 5, 9, 14, 20, 4, 11, 16, 23, 6, 10, 15, 21];
+        for (var i = 0; i < 64; i++) K[i] = Math.floor(Math.abs(Math.sin(i + 1)) * 4294967296) | 0;
+        var len = bytes.length, nBlocks = ((len + 8) >>> 6) + 1, words = new Int32Array(nBlocks * 16);
+        for (i = 0; i < len; i++) words[i >> 2] |= bytes[i] << ((i % 4) * 8);
+        words[len >> 2] |= 0x80 << ((len % 4) * 8);
+        words[nBlocks * 16 - 2] = (len * 8) | 0;
+        words[nBlocks * 16 - 1] = Math.floor(len / 536870912);
+        var a0 = 0x67452301, b0 = 0xefcdab89 | 0, c0 = 0x98badcfe | 0, d0 = 0x10325476;
+        for (var blk = 0; blk < words.length; blk += 16) {
+            var A = a0, B = b0, C = c0, D = d0;
+            for (var j = 0; j < 64; j++) {
+                var F, g;
+                if (j < 16) { F = (B & C) | (~B & D); g = j; }
+                else if (j < 32) { F = (D & B) | (~D & C); g = (5 * j + 1) % 16; }
+                else if (j < 48) { F = B ^ C ^ D; g = (3 * j + 5) % 16; }
+                else { F = C ^ (B | ~D); g = (7 * j) % 16; }
+                var s = S[(j >> 4) * 4 + (j % 4)];
+                var tmp = (A + F + K[j] + words[blk + g]) | 0;
+                A = D; D = C; C = B;
+                B = (B + ((tmp << s) | (tmp >>> (32 - s)))) | 0;
+            }
+            a0 = (a0 + A) | 0; b0 = (b0 + B) | 0; c0 = (c0 + C) | 0; d0 = (d0 + D) | 0;
+        }
+        var out = new Uint8Array(16), v = [a0, b0, c0, d0];
+        for (i = 0; i < 4; i++) for (var k = 0; k < 4; k++) out[i * 4 + k] = (v[i] >>> (k * 8)) & 0xff;
+        return out;
+    }
+    function hmacMd5(key, msg) {
+        if (key.length > 64) key = md5(key);
+        var k = new Uint8Array(64); k.set(key);
+        var ip = new Uint8Array(64 + msg.length), op = new Uint8Array(64 + 16);
+        for (var i = 0; i < 64; i++) { ip[i] = k[i] ^ 0x36; op[i] = k[i] ^ 0x5c; }
+        ip.set(msg, 64); op.set(md5(ip), 64);
+        return md5(op);
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+        var $ = function (id) { return document.getElementById(id); };
+        var ALGS = ["MD5", "SHA-1", "SHA-256", "SHA-384", "SHA-512"], src = "text", fileData = null, results = {}, token = 0;
+        var subtle = window.crypto && crypto.subtle;
+        var enc = new TextEncoder();
+        $("list").innerHTML = ALGS.map(function (a) {
+            return '<div class="hash-row" data-alg="' + a + '"><span class="alg">' + a + '</span><code>—</code><button class="btn btn-ghost btn-sm" type="button" aria-label="Copy ' + a + '"><svg aria-hidden="true"><use href="assets/img/icons.svg#copy"></use></svg></button></div>';
+        }).join("");
+
+        function hex(u8) { var s = ""; for (var i = 0; i < u8.length; i++) s += (u8[i] < 16 ? "0" : "") + u8[i].toString(16); return s; }
+        function b64(u8) { var s = ""; for (var i = 0; i < u8.length; i++) s += String.fromCharCode(u8[i]); return btoa(s); }
+        function digest(alg, data, key) {
+            if (alg === "MD5") return Promise.resolve(key ? hmacMd5(key, data) : md5(data));
+            if (!subtle) return Promise.reject(new Error("Web Crypto needs HTTPS"));
+            if (!key) return subtle.digest(alg, data).then(function (b) { return new Uint8Array(b); });
+            return subtle.importKey("raw", key.length ? key : new Uint8Array(1), { name: "HMAC", hash: alg }, false, ["sign"])
+                .then(function (k) { return subtle.sign("HMAC", k, data); }).then(function (b) { return new Uint8Array(b); });
+        }
+        function fmt(u8) { if (!u8) return "—"; if ($("b64").checked) return b64(u8); var h = hex(u8); return $("upper").checked ? h.toUpperCase() : h; }
+        function paint() {
+            var expect = $("verify").value.trim(), hit = null;
+            ALGS.forEach(function (a) {
+                var row = document.querySelector('[data-alg="' + a + '"]'), v = fmt(results[a]);
+                row.querySelector("code").textContent = v;
+                var m = !!expect && !!results[a] && (expect.toLowerCase() === hex(results[a]) || expect === b64(results[a]));
+                row.classList.toggle("match", m); if (m) hit = a;
+            });
+            var msg = $("verify-msg");
+            msg.innerHTML = !expect ? "" : hit ? '<div class="alert alert-ok"><svg aria-hidden="true"><use href="assets/img/icons.svg#check"></use></svg><span>Match! The ' + hit + " hash is identical.</span></div>"
+                : '<div class="alert alert-error"><svg aria-hidden="true"><use href="assets/img/icons.svg#circle-alert"></use></svg><span>No match with any algorithm.</span></div>';
+        }
+        function run() {
+            var data = src === "text" ? enc.encode($("txt").value) : fileData;
+            var keyStr = $("key").value, key = keyStr ? enc.encode(keyStr) : null, my = ++token;
+            ALGS.forEach(function (a) { results[a] = null; });
+            if (!data) { paint(); $("meta").textContent = ""; return; }
+            $("meta").textContent = (key ? "HMAC · " : "") + data.length.toLocaleString() + " bytes";
+            ALGS.forEach(function (a) {
+                digest(a, data, key).then(function (r) { if (my === token) { results[a] = r; paint(); } })
+                    .catch(function (e) { if (my === token) document.querySelector('[data-alg="' + a + '"] code').textContent = e.message; });
+            });
+        }
+        var t;
+        $("txt").addEventListener("input", function () { clearTimeout(t); t = setTimeout(run, 120); });
+        $("key").addEventListener("input", function () { clearTimeout(t); t = setTimeout(run, 120); });
+        ["upper", "b64"].forEach(function (id) { $(id).addEventListener("change", paint); });
+        $("verify").addEventListener("input", paint);
+        $("list").addEventListener("click", function (e) {
+            var b = e.target.closest("button"); if (!b) return;
+            var a = b.closest(".hash-row").dataset.alg;
+            if (results[a]) window.DTH.copy(fmt(results[a]), "Copied " + a);
+        });
+        document.querySelectorAll("[data-src]").forEach(function (b) {
+            b.addEventListener("click", function () {
+                src = b.dataset.src;
+                document.querySelectorAll("[data-src]").forEach(function (x) { x.setAttribute("aria-selected", x === b ? "true" : "false"); });
+                $("src-text").hidden = src !== "text"; $("src-file").hidden = src !== "file";
+                run();
+            });
+        });
+        function loadFile(f) {
+            if (!f) return;
+            var r = new FileReader(), bar = $("prog");
+            bar.hidden = false; bar.firstElementChild.style.width = "0";
+            r.onprogress = function (e) { if (e.lengthComputable) bar.firstElementChild.style.width = (e.loaded / e.total * 100) + "%"; };
+            r.onload = function () {
+                fileData = new Uint8Array(r.result); bar.firstElementChild.style.width = "100%";
+                setTimeout(function () { bar.hidden = true; }, 400);
+                $("file-name").textContent = f.name + " · " + (f.size / 1048576 >= 1 ? (f.size / 1048576).toFixed(2) + " MB" : (f.size / 1024).toFixed(1) + " KB");
+                run();
+            };
+            r.onerror = function () { window.DTH.toast("Couldn't read that file"); bar.hidden = true; };
+            r.readAsArrayBuffer(f);
+        }
+        $("file").addEventListener("change", function () { loadFile(this.files[0]); this.value = ""; });
+        var drop = $("drop");
+        ["dragenter", "dragover"].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add("over"); }); });
+        ["dragleave", "drop"].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove("over"); }); });
+        drop.addEventListener("drop", function (e) { loadFile(e.dataTransfer.files[0]); });
+        run();
+    });
+    </script>
+</body>
+</html>

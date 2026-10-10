@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en" data-hub>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Date Calculator | Days Between Dates, Business Days &amp; Add Days</title>
+    <meta name="description" content="Free date calculator: count the days, weeks, months and business days between two dates, or add and subtract days, weeks, months and years from any date. Instant and private.">
+    <link rel="canonical" href="https://digitaltoolshub.github.io/date-calculator.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Digital Tools Hub">
+    <meta property="og:url" content="https://digitaltoolshub.github.io/date-calculator.html">
+    <meta property="og:title" content="Date Calculator | Days Between Dates, Business Days &amp; Add Days">
+    <meta property="og:description" content="Count days, weeks, months and business days between dates, or add and subtract time from a date.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- @head -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#090b13" media="(prefers-color-scheme: dark)">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <meta name="author" content="Rabeeh">
+    <script>try{var t=localStorage.getItem("dth:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"></noscript>
+    <link rel="stylesheet" href="assets/css/hub.css">
+    <link rel="preload" href="assets/img/icons.svg" as="image" type="image/svg+xml">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-R4N9RB1SNN");</script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" async></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
+    <!-- /@head -->
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Date Calculator","url":"https://digitaltoolshub.github.io/date-calculator.html","description":"Count the days, weeks, months and business days between two dates, or add and subtract time from a date.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://digitaltoolshub.github.io/"},{"@type":"ListItem","position":2,"name":"Productivity","item":"https://digitaltoolshub.github.io/productivity-tools.html"},{"@type":"ListItem","position":3,"name":"Date Calculator","item":"https://digitaltoolshub.github.io/date-calculator.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I count the days between two dates?","acceptedAnswer":{"@type":"Answer","text":"Enter a start and end date. The calculator counts every calendar day from the start date up to the end date. Tick “Include end date” if you want both days counted, for example for the length of a booking or an event."}},{"@type":"Question","name":"What counts as a business day?","acceptedAnswer":{"@type":"Answer","text":"Business days are Monday to Friday. You can also choose a Sunday to Thursday or Monday to Saturday work week. Public holidays vary by country and are not subtracted automatically."}},{"@type":"Question","name":"What happens when adding a month to January 31?","acceptedAnswer":{"@type":"Answer","text":"Months have different lengths, so the result is clamped to the last day of the target month: January 31 plus one month is February 28, or February 29 in a leap year."}}]}]}</script>
+    <style>
+        .dc-out { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+        .dc-out .stat-hero { grid-column: 1 / -1; }
+        @media (max-width: 640px) { .dc-out { grid-template-columns: 1fr 1fr; } }
+        .date-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: end; }
+        .amounts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+        @media (max-width: 560px) { .amounts { grid-template-columns: 1fr 1fr; } }
+        .check { display: inline-flex; gap: 8px; align-items: center; font-size: .92rem; cursor: pointer; }
+        .presets { display: flex; flex-wrap: wrap; gap: 6px; }
+    </style>
+</head>
+<body>
+    <!-- @header -->
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="./" aria-label="Digital Tools Hub home"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+            <nav class="site-nav" aria-label="Main">
+                <div class="nav-dd">
+                    <button type="button" aria-haspopup="true">Tools<svg class="" aria-hidden="true"><use href="assets/img/icons.svg#chevron-down"></use></svg></button>
+                    <div class="mega">
+                        <a href="finance-tools.html" data-cat="finance"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#wallet"></use></svg></span><span><strong>Finance</strong><small>Calculators for money, loans, savings and markets</small></span></a>
+                        <a href="health-tools.html" data-cat="health"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#heart-pulse"></use></svg></span><span><strong>Health</strong><small>BMI, nutrition and lifetime body stats</small></span></a>
+                        <a href="productivity-tools.html" data-cat="productivity"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#rocket"></use></svg></span><span><strong>Productivity</strong><small>Timers, calculators, converters and writing tools</small></span></a>
+                        <a href="developer-tools.html" data-cat="dev"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#code"></use></svg></span><span><strong>Developer</strong><small>Formatters, encoders and generators for coders</small></span></a>
+                        <a href="design-tools.html" data-cat="design"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#palette"></use></svg></span><span><strong>Design</strong><small>Colors, images and QR codes</small></span></a>
+                        <a href="security-tools.html" data-cat="security"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#shield"></use></svg></span><span><strong>Security</strong><small>Passwords, strength checks and private messages</small></span></a>
+                        <a href="lifestyle-tools.html" data-cat="life"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg></span><span><strong>Lifestyle</strong><small>Age, travel, personality, sport and fun</small></span></a>
+                        <div class="mega-foot"><span>41 free tools, no sign-up</span><a href="./#tools">Browse all tools →</a></div>
+                    </div>
+                </div>
+                <a href="./#popular">Popular</a>
+                <a href="./#new">New</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="search-trigger" type="button" data-open-palette aria-label="Search tools"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#search"></use></svg><span class="label">Search 41 tools…</span><span class="kbd" data-mod-key>Ctrl K</span></button>
+                <button class="icon-btn" type="button" data-theme-toggle aria-label="Change theme"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#monitor"></use></svg></button>
+                <button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#menu"></use></svg></button>
+            </div>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobile-menu">
+        <nav aria-label="Mobile">
+            <a href="./"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#house"></use></svg></span>Home</a>
+            <a href="./#popular"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#flame"></use></svg></span>Popular tools</a>
+            <a href="./#new"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg></span>New tools</a>
+        </nav>
+        <h4>Categories</h4>
+        <nav aria-label="Categories">
+            <a href="finance-tools.html" data-cat="finance"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#wallet"></use></svg></span><span>Finance<small>8 tools</small></span></a>
+            <a href="health-tools.html" data-cat="health"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#heart-pulse"></use></svg></span><span>Health<small>6 tools</small></span></a>
+            <a href="productivity-tools.html" data-cat="productivity"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#rocket"></use></svg></span><span>Productivity<small>9 tools</small></span></a>
+            <a href="developer-tools.html" data-cat="dev"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#code"></use></svg></span><span>Developer<small>5 tools</small></span></a>
+            <a href="design-tools.html" data-cat="design"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#palette"></use></svg></span><span>Design<small>3 tools</small></span></a>
+            <a href="security-tools.html" data-cat="security"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#shield"></use></svg></span><span>Security<small>3 tools</small></span></a>
+            <a href="lifestyle-tools.html" data-cat="life"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg></span><span>Lifestyle<small>7 tools</small></span></a>
+        </nav>
+        <h4>Digital Tools Hub</h4>
+        <nav aria-label="Company">
+            <a href="about.html"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#info"></use></svg></span>About</a>
+            <a href="contact.html"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#mail"></use></svg></span>Contact</a>
+        </nav>
+    </div>
+    <!-- /@header -->
+
+    <main id="main" class="container">
+        <div class="page-head">
+            <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="./">Home</a><svg aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"></use></svg><a href="productivity-tools.html">Productivity</a><svg aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"></use></svg><span>Date Calculator</span></nav>
+            <h1><span class="tool-icon" data-cat="productivity"><svg aria-hidden="true"><use href="assets/img/icons.svg#calendar"></use></svg></span>Date Calculator</h1>
+            <p>Count the days between two dates, including business days, or add and subtract days, weeks, months and years from any date.</p>
+            <div class="trust"><span><svg aria-hidden="true"><use href="assets/img/icons.svg#check"></use></svg>Leap-year aware</span><span><svg aria-hidden="true"><use href="assets/img/icons.svg#check"></use></svg>Business days</span><span><svg aria-hidden="true"><use href="assets/img/icons.svg#lock"></use></svg>Runs in your browser</span></div>
+        </div>
+
+        <div class="row" style="margin-bottom:16px">
+            <div class="segmented" role="tablist" aria-label="Mode">
+                <button type="button" role="tab" aria-selected="true" data-mode="between">Days between dates</button>
+                <button type="button" role="tab" aria-selected="false" data-mode="add">Add or subtract</button>
+            </div>
+        </div>
+
+        <div class="tool-layout" id="mode-between">
+            <section class="panel stack" aria-labelledby="b-h">
+                <h2 id="b-h" style="font-size:1.02rem;margin:0">Dates</h2>
+                <div class="date-row"><div class="field"><label for="d1">Start date</label><input class="input" type="date" id="d1"></div><button class="btn btn-secondary btn-sm" type="button" data-today="d1" style="height:44px">Today</button></div>
+                <div class="date-row"><div class="field"><label for="d2">End date</label><input class="input" type="date" id="d2"></div><button class="btn btn-secondary btn-sm" type="button" data-today="d2" style="height:44px">Today</button></div>
+                <div class="presets" aria-label="Quick end dates">
+                    <button class="btn btn-ghost btn-sm" type="button" data-preset="newyear">Until New Year</button>
+                    <button class="btn btn-ghost btn-sm" type="button" data-preset="christmas">Until Christmas</button>
+                    <button class="btn btn-ghost btn-sm" type="button" data-preset="swap">Swap dates</button>
+                </div>
+                <label class="check"><input type="checkbox" id="incl"> Include end date (add 1 day)</label>
+                <div class="field"><label for="week">Work week</label>
+                    <select class="select" id="week"><option value="1,2,3,4,5">Monday – Friday</option><option value="0,1,2,3,4">Sunday – Thursday</option><option value="1,2,3,4,5,6">Monday – Saturday</option></select></div>
+            </section>
+            <section class="panel" aria-labelledby="br-h">
+                <h2 id="br-h" class="sr-only">Result</h2>
+                <div class="dc-out">
+                    <div class="stat stat-hero"><div class="k">Duration</div><div class="v" id="b-main">—</div><div class="muted" id="b-sub" style="font-size:.9rem"></div></div>
+                    <div class="stat"><div class="k">Total days</div><div class="v" id="b-days">—</div></div>
+                    <div class="stat"><div class="k">Business days</div><div class="v" id="b-biz">—</div></div>
+                    <div class="stat"><div class="k">Weekend days</div><div class="v" id="b-wkd">—</div></div>
+                    <div class="stat"><div class="k">Weeks</div><div class="v" id="b-weeks">—</div></div>
+                    <div class="stat"><div class="k">Hours</div><div class="v" id="b-hours">—</div></div>
+                    <div class="stat"><div class="k">Minutes</div><div class="v" id="b-mins">—</div></div>
+                </div>
+            </section>
+        </div>
+
+        <div class="tool-layout" id="mode-add" hidden>
+            <section class="panel stack" aria-labelledby="a-h">
+                <h2 id="a-h" style="font-size:1.02rem;margin:0">Start from</h2>
+                <div class="date-row"><div class="field"><label for="a-d">Date</label><input class="input" type="date" id="a-d"></div><button class="btn btn-secondary btn-sm" type="button" data-today="a-d" style="height:44px">Today</button></div>
+                <div class="segmented" role="group" aria-label="Direction">
+                    <button type="button" aria-pressed="true" data-dir="1">Add</button>
+                    <button type="button" aria-pressed="false" data-dir="-1">Subtract</button>
+                </div>
+                <div class="amounts">
+                    <div class="field"><label for="a-y">Years</label><input class="input" id="a-y" type="number" min="0" value="0"></div>
+                    <div class="field"><label for="a-m">Months</label><input class="input" id="a-m" type="number" min="0" value="0"></div>
+                    <div class="field"><label for="a-w">Weeks</label><input class="input" id="a-w" type="number" min="0" value="0"></div>
+                    <div class="field"><label for="a-dd">Days</label><input class="input" id="a-dd" type="number" min="0" value="30"></div>
+                </div>
+                <label class="check"><input type="checkbox" id="a-biz"> Count days as business days (Mon–Fri)</label>
+            </section>
+            <section class="panel" aria-labelledby="ar-h">
+                <h2 id="ar-h" class="sr-only">Result</h2>
+                <div class="dc-out">
+                    <div class="stat stat-hero"><div class="k">Result date</div><div class="v" id="a-main">—</div><div class="muted" id="a-sub" style="font-size:.9rem"></div></div>
+                    <div class="stat"><div class="k">Day of week</div><div class="v" id="a-dow">—</div></div>
+                    <div class="stat"><div class="k">Day of year</div><div class="v" id="a-doy">—</div></div>
+                    <div class="stat"><div class="k">ISO week</div><div class="v" id="a-wk">—</div></div>
+                </div>
+                <div class="row" style="margin-top:14px"><button class="btn btn-secondary btn-sm" type="button" id="a-copy"><svg aria-hidden="true"><use href="assets/img/icons.svg#copy"></use></svg>Copy date</button></div>
+            </section>
+        </div>
+
+        <div class="cols-2" style="margin-top:48px;align-items:start;gap:40px">
+            <section class="prose" aria-labelledby="guide-h">
+                <h2 id="guide-h" style="margin-top:0">How the date calculator works</h2>
+                <p>All dates are handled as whole calendar days in UTC, so daylight-saving changes never add or remove an hour from your results. Leap years follow the Gregorian rules: every fourth year, except century years not divisible by 400.</p>
+                <ul>
+                    <li><strong>Duration</strong> is shown as years, months and days, counted the way people do: from 15 January to 20 March is 2 months and 5 days.</li>
+                    <li><strong>Business days</strong> count the working days in your chosen work week. Public holidays aren't removed, since they differ by country and region.</li>
+                    <li><strong>Adding months</strong> keeps the day of month where possible and clamps to the month's last day otherwise (31 January + 1 month = 28 or 29 February).</li>
+                </ul>
+                <p>Use it for project deadlines, notice periods, pregnancy and visa countdowns, contract terms or simply to find out how many days are left until a holiday.</p>
+            </section>
+            <section aria-labelledby="faq-h">
+                <h2 id="faq-h" style="font-size:1.4rem">FAQ</h2>
+                <div class="faq">
+                    <details><summary>How do I count the days between two dates?</summary><p>Enter a start and end date. The calculator counts every calendar day from the start date up to the end date. Tick “Include end date” if you want both days counted, for example for the length of a booking or an event.</p></details>
+                    <details><summary>What counts as a business day?</summary><p>Business days are Monday to Friday. You can also choose a Sunday to Thursday or Monday to Saturday work week. Public holidays vary by country and are not subtracted automatically.</p></details>
+                    <details><summary>What happens when adding a month to January 31?</summary><p>Months have different lengths, so the result is clamped to the last day of the target month: January 31 plus one month is February 28, or February 29 in a leap year.</p></details>
+                </div>
+            </section>
+        </div>
+        <!-- @related -->
+        <section class="section reveal" aria-labelledby="rel-h" style="margin-top:32px">
+            <div class="section-head"><h2 id="rel-h"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layers"></use></svg>Related tools</h2><a class="see-all" href="productivity-tools.html">All productivity tools<svg class="" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></a></div>
+            <div class="grid">
+                <article class="card" data-id="kanban" data-cat="productivity" data-name="Kanban Board">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#square-kanban"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Kanban Board to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="kanban-board.html">Kanban Board</a></h3>
+                    <p>Drag-and-drop task board that saves to your browser. Plan projects without an account.</p>
+                    <div class="card-foot"><span class="cat-label">Productivity</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="pomodoro" data-cat="productivity" data-name="Pomodoro Focus Timer">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#timer"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Pomodoro Focus Timer to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="pomodoro.html">Pomodoro Focus Timer</a></h3>
+                    <p>Focus and break timer with session stats, notifications and keyboard shortcuts.</p>
+                    <div class="card-foot"><span class="cat-label">Productivity</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="calc" data-cat="productivity" data-name="Scientific Calculator">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#calculator"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Scientific Calculator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="scientific-calculator.html">Scientific Calculator</a></h3>
+                    <p>Scientific calculator with graphing, unit conversion and a history tape.</p>
+                    <div class="card-foot"><span class="cat-label">Productivity</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="percent" data-cat="productivity" data-name="Percentage Calculator" data-new="1">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#percent"></use></svg></span>
+                        <div class="card-badges"><span class="badge badge-new">New</span><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Percentage Calculator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="percentage-calculator.html">Percentage Calculator</a></h3>
+                    <p>Percent of a number, percentage change, increase or decrease, and what percent one number is of another.</p>
+                    <div class="card-foot"><span class="cat-label">Productivity</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+            </div>
+        </section>
+        <!-- /@related -->
+    </main>
+
+    <!-- @footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a class="brand" href="./"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+                    <p>41 free tools for money, health, work and code. No sign-up, no paywalls, and your data stays in your browser.</p>
+                    <div class="footer-badges"><span><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#lock"></use></svg>Private</span><span><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#zap"></use></svg>Instant</span><span><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#wifi-off"></use></svg>Works offline</span></div>
+                </div>
+                <div>
+                    <h4>Popular</h4>
+                    <ul>
+                        <li><a href="currency.html">Currency Converter</a></li>
+                        <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+                        <li><a href="bmi.html">BMI Calculator</a></li>
+                        <li><a href="kanban-board.html">Kanban Board</a></li>
+                        <li><a href="scientific-calculator.html">Scientific Calculator</a></li>
+                        <li><a href="percentage-calculator.html">Percentage Calculator</a></li>
+                        <li><a href="json-formatter.html">JSON Formatter</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>New tools</h4>
+                    <ul>
+                        <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+                        <li><a href="percentage-calculator.html">Percentage Calculator</a></li>
+                        <li><a href="date-calculator.html">Date Calculator</a></li>
+                        <li><a href="base64-encoder.html">Base64 &amp; URL Encoder</a></li>
+                        <li><a href="hash-generator.html">Hash Generator</a></li>
+                        <li><a href="uuid-generator.html">UUID Generator</a></li>
+                        <li><a href="image-compressor.html">Image Compressor &amp; Resizer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="finance-tools.html">Finance tools</a></li>
+                        <li><a href="health-tools.html">Health tools</a></li>
+                        <li><a href="productivity-tools.html">Productivity tools</a></li>
+                        <li><a href="developer-tools.html">Developer tools</a></li>
+                        <li><a href="design-tools.html">Design tools</a></li>
+                        <li><a href="security-tools.html">Security tools</a></li>
+                        <li><a href="lifestyle-tools.html">Lifestyle tools</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy policy</a></li>
+                        <li><a href="terms.html">Terms of service</a></li>
+                        <li><a href="sitemap.xml">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Digital Tools Hub. Built by <a href="about.html">Rabeeh</a>.</span>
+                <span>Tip: press <span class="kbd" data-mod-key>Ctrl K</span> anywhere to jump to a tool.</span>
+            </div>
+        </div>
+    </footer>
+    <button class="to-top" type="button" aria-label="Back to top"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#arrow-up"></use></svg></button>
+    <!-- /@footer -->
+
+    <!-- @scripts -->
+    <script src="assets/js/tools.js" defer></script>
+    <script src="assets/js/shell.js" defer></script>
+    <script src="assets/js/hub.js" defer></script>
+    <!-- /@scripts -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var $ = function (id) { return document.getElementById(id); };
+        var DAY = 864e5, nf = new Intl.NumberFormat();
+        var longFmt = new Intl.DateTimeFormat(undefined, { weekday: "long", year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
+        var dowFmt = new Intl.DateTimeFormat(undefined, { weekday: "long", timeZone: "UTC" });
+
+        function todayUTC() { var d = new Date(); return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()); }
+        function parse(v) { var m = /^(\d{4,})-(\d{2})-(\d{2})$/.exec(v || ""); return m ? Date.UTC(+m[1], +m[2] - 1, +m[3]) : NaN; }
+        function iso(t) { return new Date(t).toISOString().slice(0, 10); }
+        function daysIn(y, m) { return new Date(Date.UTC(y, m + 1, 0)).getUTCDate(); }
+        function addMonths(t, n) {
+            var d = new Date(t), y = d.getUTCFullYear(), m = d.getUTCMonth() + n, day = d.getUTCDate();
+            y += Math.floor(m / 12); m = ((m % 12) + 12) % 12;
+            return Date.UTC(y, m, Math.min(day, daysIn(y, m)));
+        }
+        function ymd(a, b) {
+            // Calendar difference between a <= b as years, months, days.
+            var d1 = new Date(a), d2 = new Date(b);
+            var months = (d2.getUTCFullYear() - d1.getUTCFullYear()) * 12 + d2.getUTCMonth() - d1.getUTCMonth();
+            if (addMonths(a, months) > b) months--;
+            var rest = Math.round((b - addMonths(a, months)) / DAY);
+            return { y: Math.floor(months / 12), m: months % 12, d: rest };
+        }
+        function plural(n, w) { return nf.format(n) + " " + w + (n === 1 ? "" : "s"); }
+        function countWork(a, days, set) {
+            // Weekdays in [a, a + days).
+            var full = Math.floor(days / 7), count = full * set.length, dow = new Date(a).getUTCDay();
+            for (var i = 0; i < days % 7; i++) if (set.indexOf((dow + i) % 7) !== -1) count++;
+            return count;
+        }
+
+        // ---------- between ----------
+        function between() {
+            var a = parse($("d1").value), b = parse($("d2").value);
+            var outs = ["b-main", "b-days", "b-biz", "b-wkd", "b-weeks", "b-hours", "b-mins"];
+            if (!isFinite(a) || !isFinite(b)) { outs.forEach(function (id) { $(id).textContent = "—"; }); $("b-sub").textContent = ""; return; }
+            var neg = b < a; if (neg) { var t = a; a = b; b = t; }
+            var incl = $("incl").checked, end = incl ? b + DAY : b;
+            var days = Math.round((end - a) / DAY);
+            var set = $("week").value.split(",").map(Number);
+            var biz = countWork(a, days, set);
+            var p = ymd(a, end), parts = [];
+            if (p.y) parts.push(plural(p.y, "year")); if (p.m) parts.push(plural(p.m, "month")); if (p.d || !parts.length) parts.push(plural(p.d, "day"));
+            $("b-main").textContent = parts.join(", ");
+            $("b-sub").textContent = (neg ? "End date is before start date · " : "") + longFmt.format(a) + " → " + longFmt.format(b) + (incl ? " (inclusive)" : "");
+            $("b-days").textContent = nf.format(days);
+            $("b-biz").textContent = nf.format(biz);
+            $("b-wkd").textContent = nf.format(days - biz);
+            $("b-weeks").textContent = nf.format(Math.floor(days / 7)) + (days % 7 ? " w " + (days % 7) + " d" : "");
+            $("b-hours").textContent = nf.format(days * 24);
+            $("b-mins").textContent = nf.format(days * 1440);
+        }
+
+        // ---------- add / subtract ----------
+        var dir = 1, lastResult = "";
+        function add() {
+            var t = parse($("a-d").value);
+            var outs = ["a-main", "a-dow", "a-doy", "a-wk"];
+            if (!isFinite(t)) { outs.forEach(function (id) { $(id).textContent = "—"; }); return; }
+            var y = Math.max(0, parseInt($("a-y").value, 10) || 0), m = Math.max(0, parseInt($("a-m").value, 10) || 0);
+            var w = Math.max(0, parseInt($("a-w").value, 10) || 0), d = Math.max(0, parseInt($("a-dd").value, 10) || 0);
+            var r = addMonths(t, dir * (y * 12 + m));
+            if ($("a-biz").checked) {
+                r += dir * w * 7 * DAY;
+                var left = d;
+                while (left > 0) { r += dir * DAY; var dw = new Date(r).getUTCDay(); if (dw !== 0 && dw !== 6) left--; }
+            } else r += dir * (w * 7 + d) * DAY;
+            if (r < Date.UTC(1, 0, 1) || r > Date.UTC(9999, 11, 31)) { $("a-main").textContent = "Out of range"; return; }
+            var rd = new Date(r);
+            lastResult = iso(r);
+            $("a-main").textContent = longFmt.format(r);
+            var diff = Math.round((r - t) / DAY);
+            $("a-sub").textContent = lastResult + " · " + (diff >= 0 ? "+" : "−") + plural(Math.abs(diff), "calendar day");
+            $("a-dow").textContent = dowFmt.format(r);
+            $("a-doy").textContent = Math.round((r - Date.UTC(rd.getUTCFullYear(), 0, 1)) / DAY) + 1;
+            var th = new Date(r); th.setUTCDate(th.getUTCDate() + 3 - ((th.getUTCDay() + 6) % 7));
+            var wk = 1 + Math.round(((th - Date.UTC(th.getUTCFullYear(), 0, 4)) / DAY - 3 + ((new Date(Date.UTC(th.getUTCFullYear(), 0, 4)).getUTCDay() + 6) % 7)) / 7);
+            $("a-wk").textContent = "W" + wk + " " + th.getUTCFullYear();
+        }
+
+        // ---------- wiring ----------
+        var today = iso(todayUTC()), y0 = new Date().getFullYear();
+        $("d1").value = today; $("d2").value = y0 + "-12-31"; $("a-d").value = today;
+        try {
+            var s = JSON.parse(localStorage.getItem("dth:date") || "{}");
+            ["d1", "d2", "a-d"].forEach(function (id) { if (s[id]) $(id).value = s[id]; });
+        } catch (e) {}
+        function save() { try { localStorage.setItem("dth:date", JSON.stringify({ d1: $("d1").value, d2: $("d2").value, "a-d": $("a-d").value })); } catch (e) {} }
+        ["d1", "d2", "incl", "week"].forEach(function (id) { $(id).addEventListener("input", function () { between(); save(); }); $(id).addEventListener("change", between); });
+        ["a-d", "a-y", "a-m", "a-w", "a-dd", "a-biz"].forEach(function (id) { $(id).addEventListener("input", function () { add(); save(); }); $(id).addEventListener("change", add); });
+        document.querySelectorAll("[data-today]").forEach(function (b) { b.addEventListener("click", function () { $(b.dataset.today).value = iso(todayUTC()); between(); add(); save(); }); });
+        document.querySelectorAll("[data-preset]").forEach(function (b) {
+            b.addEventListener("click", function () {
+                var p = b.dataset.preset, now = todayUTC(), yr = new Date(now).getUTCFullYear();
+                if (p === "swap") { var t = $("d1").value; $("d1").value = $("d2").value; $("d2").value = t; }
+                else {
+                    $("d1").value = iso(now);
+                    var target = p === "newyear" ? Date.UTC(yr + 1, 0, 1) : Date.UTC(yr, 11, 25);
+                    if (target <= now) target = p === "newyear" ? Date.UTC(yr + 2, 0, 1) : Date.UTC(yr + 1, 11, 25);
+                    $("d2").value = iso(target);
+                }
+                between(); save();
+            });
+        });
+        document.querySelectorAll("[data-dir]").forEach(function (b) {
+            b.addEventListener("click", function () {
+                dir = +b.dataset.dir;
+                document.querySelectorAll("[data-dir]").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+                add();
+            });
+        });
+        document.querySelectorAll("[data-mode]").forEach(function (b) {
+            b.addEventListener("click", function () {
+                document.querySelectorAll("[data-mode]").forEach(function (x) { x.setAttribute("aria-selected", x === b ? "true" : "false"); });
+                $("mode-between").hidden = b.dataset.mode !== "between"; $("mode-add").hidden = b.dataset.mode !== "add";
+            });
+        });
+        $("a-copy").addEventListener("click", function () { if (lastResult) window.DTH.copy(lastResult, "Copied " + lastResult); });
+        between(); add();
+    });
+    </script>
+</body>
+</html>

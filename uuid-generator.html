@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en" data-hub>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UUID Generator | Random UUID v4 &amp; Time-Ordered v7 GUIDs in Bulk</title>
+    <meta name="description" content="Free online UUID generator: create random UUID v4 or time-sortable UUID v7 (GUID) identifiers, up to 1,000 at a time, in any format. Validate and inspect UUIDs. Uses secure browser randomness.">
+    <link rel="canonical" href="https://digitaltoolshub.github.io/uuid-generator.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Digital Tools Hub">
+    <meta property="og:url" content="https://digitaltoolshub.github.io/uuid-generator.html">
+    <meta property="og:title" content="UUID Generator | UUID v4 &amp; v7 GUIDs in Bulk">
+    <meta property="og:description" content="Generate random UUID v4 and time-ordered UUID v7 identifiers in bulk, and validate UUIDs. Secure and private.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- @head -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#090b13" media="(prefers-color-scheme: dark)">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <meta name="author" content="Rabeeh">
+    <script>try{var t=localStorage.getItem("dth:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"></noscript>
+    <link rel="stylesheet" href="assets/css/hub.css">
+    <link rel="preload" href="assets/img/icons.svg" as="image" type="image/svg+xml">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-R4N9RB1SNN");</script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" async></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
+    <!-- /@head -->
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"UUID Generator","url":"https://digitaltoolshub.github.io/uuid-generator.html","description":"Generate UUID v4 and v7 identifiers in bulk and validate UUIDs.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://digitaltoolshub.github.io/"},{"@type":"ListItem","position":2,"name":"Developer","item":"https://digitaltoolshub.github.io/developer-tools.html"},{"@type":"ListItem","position":3,"name":"UUID Generator","item":"https://digitaltoolshub.github.io/uuid-generator.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a UUID?","acceptedAnswer":{"@type":"Answer","text":"A UUID (universally unique identifier), also called a GUID, is a 128-bit value usually written as 36 characters like 3f2b8c1e-9d4a-4f6b-8e21-5a7c9d0b1e2f. UUIDs can be generated anywhere without coordination and are practically guaranteed to be unique."}},{"@type":"Question","name":"Should I use UUID v4 or v7?","acceptedAnswer":{"@type":"Answer","text":"Use v7 for database primary keys: it begins with a timestamp so new rows insert in order, which keeps indexes efficient. Use v4 when you want identifiers that reveal nothing about when they were created."}},{"@type":"Question","name":"Can two UUIDs ever collide?","acceptedAnswer":{"@type":"Answer","text":"In theory, yes; in practice, no. A v4 UUID has 122 random bits. You would need to generate about a billion UUIDs per second for 85 years to have a 50% chance of a single collision."}}]}]}</script>
+    <style>
+        .hero-uuid { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 22px; border-radius: var(--radius); background: var(--grad-soft); border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--border)); }
+        .hero-uuid code { flex: 1; min-width: 0; font-family: var(--mono); font-size: clamp(1rem, 2.6vw, 1.5rem); font-weight: 700; word-break: break-all; letter-spacing: .01em; }
+        #bulk { min-height: 300px; }
+        .vgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+        .vgrid .stat .v { font-size: 1.05rem; }
+        @media (max-width: 520px) { .vgrid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <!-- @header -->
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="./" aria-label="Digital Tools Hub home"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+            <nav class="site-nav" aria-label="Main">
+                <div class="nav-dd">
+                    <button type="button" aria-haspopup="true">Tools<svg class="" aria-hidden="true"><use href="assets/img/icons.svg#chevron-down"></use></svg></button>
+                    <div class="mega">
+                        <a href="finance-tools.html" data-cat="finance"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#wallet"></use></svg></span><span><strong>Finance</strong><small>Calculators for money, loans, savings and markets</small></span></a>
+                        <a href="health-tools.html" data-cat="health"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#heart-pulse"></use></svg></span><span><strong>Health</strong><small>BMI, nutrition and lifetime body stats</small></span></a>
+                        <a href="productivity-tools.html" data-cat="productivity"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#rocket"></use></svg></span><span><strong>Productivity</strong><small>Timers, calculators, converters and writing tools</small></span></a>
+                        <a href="developer-tools.html" data-cat="dev"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#code"></use></svg></span><span><strong>Developer</strong><small>Formatters, encoders and generators for coders</small></span></a>
+                        <a href="design-tools.html" data-cat="design"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#palette"></use></svg></span><span><strong>Design</strong><small>Colors, images and QR codes</small></span></a>
+                        <a href="security-tools.html" data-cat="security"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#shield"></use></svg></span><span><strong>Security</strong><small>Passwords, strength checks and private messages</small></span></a>
+                        <a href="lifestyle-tools.html" data-cat="life"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg></span><span><strong>Lifestyle</strong><small>Age, travel, personality, sport and fun</small></span></a>
+                        <div class="mega-foot"><span>41 free tools, no sign-up</span><a href="./#tools">Browse all tools →</a></div>
+                    </div>
+                </div>
+                <a href="./#popular">Popular</a>
+                <a href="./#new">New</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="search-trigger" type="button" data-open-palette aria-label="Search tools"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#search"></use></svg><span class="label">Search 41 tools…</span><span class="kbd" data-mod-key>Ctrl K</span></button>
+                <button class="icon-btn" type="button" data-theme-toggle aria-label="Change theme"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#monitor"></use></svg></button>
+                <button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#menu"></use></svg></button>
+            </div>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobile-menu">
+        <nav aria-label="Mobile">
+            <a href="./"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#house"></use></svg></span>Home</a>
+            <a href="./#popular"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#flame"></use></svg></span>Popular tools</a>
+            <a href="./#new"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg></span>New tools</a>
+        </nav>
+        <h4>Categories</h4>
+        <nav aria-label="Categories">
+            <a href="finance-tools.html" data-cat="finance"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#wallet"></use></svg></span><span>Finance<small>8 tools</small></span></a>
+            <a href="health-tools.html" data-cat="health"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#heart-pulse"></use></svg></span><span>Health<small>6 tools</small></span></a>
+            <a href="productivity-tools.html" data-cat="productivity"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#rocket"></use></svg></span><span>Productivity<small>9 tools</small></span></a>
+            <a href="developer-tools.html" data-cat="dev"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#code"></use></svg></span><span>Developer<small>5 tools</small></span></a>
+            <a href="design-tools.html" data-cat="design"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#palette"></use></svg></span><span>Design<small>3 tools</small></span></a>
+            <a href="security-tools.html" data-cat="security"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#shield"></use></svg></span><span>Security<small>3 tools</small></span></a>
+            <a href="lifestyle-tools.html" data-cat="life"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg></span><span>Lifestyle<small>7 tools</small></span></a>
+        </nav>
+        <h4>Digital Tools Hub</h4>
+        <nav aria-label="Company">
+            <a href="about.html"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#info"></use></svg></span>About</a>
+            <a href="contact.html"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#mail"></use></svg></span>Contact</a>
+        </nav>
+    </div>
+    <!-- /@header -->
+
+    <main id="main" class="container">
+        <div class="page-head">
+            <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="./">Home</a><svg aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"></use></svg><a href="developer-tools.html">Developer</a><svg aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"></use></svg><span>UUID Generator</span></nav>
+            <h1><span class="tool-icon" data-cat="dev"><svg aria-hidden="true"><use href="assets/img/icons.svg#fingerprint"></use></svg></span>UUID Generator</h1>
+            <p>Generate random UUID v4 or time-ordered UUID v7 identifiers, one at a time or up to 1,000 in bulk, in the exact format your code needs.</p>
+            <div class="trust"><span><svg aria-hidden="true"><use href="assets/img/icons.svg#check"></use></svg>RFC 9562 compliant</span><span><svg aria-hidden="true"><use href="assets/img/icons.svg#check"></use></svg>Cryptographically random</span><span><svg aria-hidden="true"><use href="assets/img/icons.svg#lock"></use></svg>Generated locally</span></div>
+        </div>
+
+        <div class="hero-uuid" aria-live="polite">
+            <code id="one">—</code>
+            <button class="btn btn-secondary" type="button" id="one-new"><svg aria-hidden="true"><use href="assets/img/icons.svg#refresh-cw"></use></svg>New</button>
+            <button class="btn btn-primary" type="button" id="one-copy"><svg aria-hidden="true"><use href="assets/img/icons.svg#copy"></use></svg>Copy</button>
+        </div>
+
+        <div class="tool-layout" style="margin-top:16px">
+            <section class="panel stack" aria-labelledby="opt-h">
+                <h2 id="opt-h" style="font-size:1.02rem;margin:0">Options</h2>
+                <div class="field"><span class="label">Version</span>
+                    <div class="segmented" role="group" aria-label="UUID version">
+                        <button type="button" aria-pressed="true" data-v="4">v4 · random</button>
+                        <button type="button" aria-pressed="false" data-v="7">v7 · time-ordered</button>
+                    </div></div>
+                <div class="field"><label for="count">How many</label><input class="input" id="count" type="number" min="1" max="1000" value="10"></div>
+                <div class="field"><label for="fmt">Format</label>
+                    <select class="select" id="fmt">
+                        <option value="std">Standard (8-4-4-4-12)</option>
+                        <option value="nohyph">No hyphens (32 hex)</option>
+                        <option value="braces">{Braces} (Microsoft GUID)</option>
+                        <option value="urn">urn:uuid: prefix</option>
+                        <option value="quoted">"Quoted", comma-separated</option>
+                        <option value="sql">SQL VALUES list</option>
+                    </select></div>
+                <label class="row" style="gap:8px;cursor:pointer;font-size:.92rem"><input type="checkbox" id="upper"> Uppercase</label>
+                <button class="btn btn-primary" type="button" id="gen"><svg aria-hidden="true"><use href="assets/img/icons.svg#refresh-cw"></use></svg>Generate</button>
+            </section>
+            <section class="panel stack" aria-labelledby="bulk-h">
+                <div class="panel-head" style="margin:0"><h2 id="bulk-h">Bulk UUIDs</h2>
+                    <div class="row"><button class="btn btn-ghost btn-sm" type="button" id="copy-all"><svg aria-hidden="true"><use href="assets/img/icons.svg#copy"></use></svg>Copy all</button>
+                    <button class="btn btn-ghost btn-sm" type="button" id="dl"><svg aria-hidden="true"><use href="assets/img/icons.svg#download"></use></svg>Download</button></div></div>
+                <label class="sr-only" for="bulk">Generated UUIDs</label>
+                <textarea class="textarea" id="bulk" readonly spellcheck="false"></textarea>
+            </section>
+        </div>
+
+        <section class="panel" style="margin-top:16px" aria-labelledby="val-h">
+            <h2 id="val-h" style="font-size:1.02rem">Validate &amp; inspect a UUID</h2>
+            <label class="sr-only" for="val">UUID to validate</label>
+            <input class="input mono" id="val" placeholder="Paste a UUID, e.g. 0190a6e1-7b2c-7d3e-9f40-1a2b3c4d5e6f" spellcheck="false" autocomplete="off">
+            <div id="val-out"></div>
+        </section>
+
+        <div class="cols-2" style="margin-top:48px;align-items:start;gap:40px">
+            <section class="prose" aria-labelledby="guide-h">
+                <h2 id="guide-h" style="margin-top:0">UUID versions explained</h2>
+                <ul>
+                    <li><strong>Version 4</strong> is 122 bits of randomness plus 6 fixed bits marking the version and variant. It's the most widely used UUID.</li>
+                    <li><strong>Version 7</strong> (RFC 9562, 2024) starts with a 48-bit Unix timestamp in milliseconds followed by random bits. UUIDs sort by creation time, which makes them ideal primary keys in PostgreSQL, MySQL and other B-tree indexed databases.</li>
+                    <li>Within the same millisecond this generator increments a counter, so bulk v7 UUIDs stay strictly ordered.</li>
+                </ul>
+                <p>All randomness comes from <code>crypto.getRandomValues</code>, the browser's cryptographically secure generator, and no identifiers are sent anywhere.</p>
+            </section>
+            <section aria-labelledby="faq-h">
+                <h2 id="faq-h" style="font-size:1.4rem">FAQ</h2>
+                <div class="faq">
+                    <details><summary>What is a UUID?</summary><p>A UUID (universally unique identifier), also called a GUID, is a 128-bit value usually written as 36 characters like 3f2b8c1e-9d4a-4f6b-8e21-5a7c9d0b1e2f. UUIDs can be generated anywhere without coordination and are practically guaranteed to be unique.</p></details>
+                    <details><summary>Should I use UUID v4 or v7?</summary><p>Use v7 for database primary keys: it begins with a timestamp so new rows insert in order, which keeps indexes efficient. Use v4 when you want identifiers that reveal nothing about when they were created.</p></details>
+                    <details><summary>Can two UUIDs ever collide?</summary><p>In theory, yes; in practice, no. A v4 UUID has 122 random bits. You would need to generate about a billion UUIDs per second for 85 years to have a 50% chance of a single collision.</p></details>
+                </div>
+            </section>
+        </div>
+        <!-- @related -->
+        <section class="section reveal" aria-labelledby="rel-h" style="margin-top:32px">
+            <div class="section-head"><h2 id="rel-h"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layers"></use></svg>Related tools</h2><a class="see-all" href="developer-tools.html">All developer tools<svg class="" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></a></div>
+            <div class="grid">
+                <article class="card" data-id="json" data-cat="dev" data-name="JSON Formatter">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#braces"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add JSON Formatter to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="json-formatter.html">JSON Formatter</a></h3>
+                    <p>Format, validate, minify and explore JSON with precise error locations. Runs locally.</p>
+                    <div class="card-foot"><span class="cat-label">Developer</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="base64" data-cat="dev" data-name="Base64 &amp; URL Encoder" data-new="1">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#binary"></use></svg></span>
+                        <div class="card-badges"><span class="badge badge-new">New</span><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Base64 &amp; URL Encoder to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="base64-encoder.html">Base64 &amp; URL Encoder</a></h3>
+                    <p>Encode and decode Base64, URL, HTML entities and inspect JWT tokens. Unicode-safe and private.</p>
+                    <div class="card-foot"><span class="cat-label">Developer</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="hash" data-cat="dev" data-name="Hash Generator" data-new="1">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#hash"></use></svg></span>
+                        <div class="card-badges"><span class="badge badge-new">New</span><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Hash Generator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="hash-generator.html">Hash Generator</a></h3>
+                    <p>MD5, SHA-1, SHA-256, SHA-384 and SHA-512 hashes of text or files, plus HMAC signing.</p>
+                    <div class="card-foot"><span class="cat-label">Developer</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="data" data-cat="dev" data-name="Mock Data Generator">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#database"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Mock Data Generator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="data-generator.html">Mock Data Generator</a></h3>
+                    <p>Generate realistic test data from a custom schema and export it as JSON or CSV.</p>
+                    <div class="card-foot"><span class="cat-label">Developer</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+            </div>
+        </section>
+        <!-- /@related -->
+    </main>
+
+    <!-- @footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a class="brand" href="./"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+                    <p>41 free tools for money, health, work and code. No sign-up, no paywalls, and your data stays in your browser.</p>
+                    <div class="footer-badges"><span><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#lock"></use></svg>Private</span><span><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#zap"></use></svg>Instant</span><span><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#wifi-off"></use></svg>Works offline</span></div>
+                </div>
+                <div>
+                    <h4>Popular</h4>
+                    <ul>
+                        <li><a href="currency.html">Currency Converter</a></li>
+                        <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+                        <li><a href="bmi.html">BMI Calculator</a></li>
+                        <li><a href="kanban-board.html">Kanban Board</a></li>
+                        <li><a href="scientific-calculator.html">Scientific Calculator</a></li>
+                        <li><a href="percentage-calculator.html">Percentage Calculator</a></li>
+                        <li><a href="json-formatter.html">JSON Formatter</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>New tools</h4>
+                    <ul>
+                        <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+                        <li><a href="percentage-calculator.html">Percentage Calculator</a></li>
+                        <li><a href="date-calculator.html">Date Calculator</a></li>
+                        <li><a href="base64-encoder.html">Base64 &amp; URL Encoder</a></li>
+                        <li><a href="hash-generator.html">Hash Generator</a></li>
+                        <li><a href="uuid-generator.html">UUID Generator</a></li>
+                        <li><a href="image-compressor.html">Image Compressor &amp; Resizer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="finance-tools.html">Finance tools</a></li>
+                        <li><a href="health-tools.html">Health tools</a></li>
+                        <li><a href="productivity-tools.html">Productivity tools</a></li>
+                        <li><a href="developer-tools.html">Developer tools</a></li>
+                        <li><a href="design-tools.html">Design tools</a></li>
+                        <li><a href="security-tools.html">Security tools</a></li>
+                        <li><a href="lifestyle-tools.html">Lifestyle tools</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy policy</a></li>
+                        <li><a href="terms.html">Terms of service</a></li>
+                        <li><a href="sitemap.xml">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Digital Tools Hub. Built by <a href="about.html">Rabeeh</a>.</span>
+                <span>Tip: press <span class="kbd" data-mod-key>Ctrl K</span> anywhere to jump to a tool.</span>
+            </div>
+        </div>
+    </footer>
+    <button class="to-top" type="button" aria-label="Back to top"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#arrow-up"></use></svg></button>
+    <!-- /@footer -->
+
+    <!-- @scripts -->
+    <script src="assets/js/tools.js" defer></script>
+    <script src="assets/js/shell.js" defer></script>
+    <script src="assets/js/hub.js" defer></script>
+    <!-- /@scripts -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var $ = function (id) { return document.getElementById(id); };
+        var version = 4, lastMs = 0, seq = 0;
+
+        function hex(b) { var s = ""; for (var i = 0; i < b.length; i++) s += (b[i] < 16 ? "0" : "") + b[i].toString(16); return s; }
+        function v4() {
+            var b = crypto.getRandomValues(new Uint8Array(16));
+            b[6] = (b[6] & 0x0f) | 0x40; b[8] = (b[8] & 0x3f) | 0x80;
+            return hex(b);
+        }
+        function v7() {
+            var b = crypto.getRandomValues(new Uint8Array(16)), ms = Date.now();
+            // Monotonic: same millisecond → increment the 12-bit rand_a counter.
+            if (ms <= lastMs) { seq++; if (seq > 0xfff) { lastMs++; seq = 0; } ms = lastMs; }
+            else { lastMs = ms; seq = (b[6] & 0x07) << 8 | b[7]; } // start low in the range to leave room to count up
+            for (var i = 5; i >= 0; i--) { b[i] = ms % 256; ms = Math.floor(ms / 256); }
+            b[6] = 0x70 | ((seq >> 8) & 0x0f); b[7] = seq & 0xff;
+            b[8] = (b[8] & 0x3f) | 0x80;
+            return hex(b);
+        }
+        function std(h) { return h.slice(0, 8) + "-" + h.slice(8, 12) + "-" + h.slice(12, 16) + "-" + h.slice(16, 20) + "-" + h.slice(20); }
+        function format(h) {
+            var u = $("upper").checked, f = $("fmt").value, s = f === "nohyph" ? h : std(h);
+            if (u) s = s.toUpperCase();
+            if (f === "braces") s = "{" + s + "}";
+            if (f === "urn") s = "urn:uuid:" + s;
+            return s;
+        }
+        function make() { return version === 7 ? v7() : v4(); }
+        function one() { $("one").textContent = format(make()); }
+        function bulk() {
+            var n = Math.min(1000, Math.max(1, parseInt($("count").value, 10) || 1)), f = $("fmt").value, list = [];
+            for (var i = 0; i < n; i++) list.push(format(make()));
+            var text = f === "quoted" ? list.map(function (x) { return '"' + x + '"'; }).join(",\n")
+                : f === "sql" ? list.map(function (x) { return "('" + x + "')"; }).join(",\n") + ";"
+                : list.join("\n");
+            $("bulk").value = text;
+        }
+        function all() { one(); bulk(); try { localStorage.setItem("dth:uuid", JSON.stringify({ v: version, n: $("count").value, f: $("fmt").value, u: $("upper").checked })); } catch (e) {} }
+
+        function validate() {
+            var raw = $("val").value.trim(), out = $("val-out");
+            if (!raw) { out.innerHTML = ""; return; }
+            var h = raw.replace(/^urn:uuid:/i, "").replace(/[{}"'\s]/g, "").replace(/-/g, "").toLowerCase();
+            var okShape = /^[0-9a-f]{32}$/.test(h) && (raw.indexOf("-") === -1 || /^[{"']?(urn:uuid:)?[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}["'}]?$/i.test(raw));
+            if (!okShape) { out.innerHTML = '<div class="alert alert-error" style="margin-top:12px"><svg aria-hidden="true"><use href="assets/img/icons.svg#circle-alert"></use></svg><span>Not a valid UUID. Expected 32 hex digits, optionally as 8-4-4-4-12.</span></div>'; return; }
+            var ver = parseInt(h[12], 16), vn = parseInt(h[16], 16);
+            var variant = vn >= 0xe ? "Reserved (future)" : vn >= 0xc ? "Microsoft (legacy)" : vn >= 8 ? "RFC 9562 / 4122" : "NCS (legacy)";
+            var names = { 1: "v1 · time + MAC", 2: "v2 · DCE security", 3: "v3 · MD5 name-based", 4: "v4 · random", 5: "v5 · SHA-1 name-based", 6: "v6 · reordered time", 7: "v7 · Unix time + random", 8: "v8 · custom" };
+            var extra = "";
+            if (h === "00000000000000000000000000000000") extra = "Nil UUID";
+            else if (h === "ffffffffffffffffffffffffffffffff") extra = "Max UUID";
+            else if (ver === 7) extra = new Date(parseInt(h.slice(0, 12), 16)).toLocaleString();
+            out.innerHTML = '<div class="vgrid">' +
+                '<div class="stat"><div class="k">Status</div><div class="v" style="color:var(--ok)">✓ Valid UUID</div></div>' +
+                '<div class="stat"><div class="k">Version</div><div class="v">' + (names[ver] || "Unknown (" + ver + ")") + "</div></div>" +
+                '<div class="stat"><div class="k">Variant</div><div class="v">' + variant + "</div></div>" +
+                '<div class="stat"><div class="k">' + (ver === 7 && !extra.match(/UUID/) ? "Created" : "Canonical form") + '</div><div class="v mono" style="font-size:.9rem;word-break:break-all">' + (extra || std(h)) + "</div></div></div>";
+        }
+
+        document.querySelectorAll("[data-v]").forEach(function (b) {
+            b.addEventListener("click", function () {
+                version = +b.dataset.v;
+                document.querySelectorAll("[data-v]").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+                all();
+            });
+        });
+        $("gen").addEventListener("click", all);
+        $("one-new").addEventListener("click", one);
+        $("one-copy").addEventListener("click", function () { window.DTH.copy($("one").textContent, "Copied UUID"); });
+        $("copy-all").addEventListener("click", function () { if ($("bulk").value) window.DTH.copy($("bulk").value, "Copied " + $("bulk").value.split("\n").length + " lines"); });
+        $("dl").addEventListener("click", function () {
+            var a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([$("bulk").value], { type: "text/plain" }));
+            a.download = "uuids.txt"; a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+        });
+        ["fmt", "upper"].forEach(function (id) { $(id).addEventListener("change", all); });
+        $("count").addEventListener("change", bulk);
+        $("val").addEventListener("input", validate);
+        document.addEventListener("keydown", function (e) {
+            if (e.key === " " && document.activeElement === document.body) { e.preventDefault(); one(); }
+        });
+        try {
+            var s = JSON.parse(localStorage.getItem("dth:uuid") || "{}");
+            if (s.v === 7) { version = 7; document.querySelectorAll("[data-v]").forEach(function (x) { x.setAttribute("aria-pressed", x.dataset.v === "7" ? "true" : "false"); }); }
+            if (s.n) $("count").value = s.n; if (s.f) $("fmt").value = s.f; if (s.u) $("upper").checked = true;
+        } catch (e) {}
+        all();
+    });
+    </script>
+</body>
+</html>

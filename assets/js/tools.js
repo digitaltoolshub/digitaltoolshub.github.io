@@ -2,20 +2,21 @@
  * Digital Tools Hub — tool registry (single source of truth).
  *
  * Used by the homepage, the command palette (Ctrl/Cmd+K) on every page,
- * the "related tools" strip on tool pages, and scripts/build.py, which
- * regenerates the static homepage cards and sitemap.xml from this list.
+ * the "related tools" strip on tool pages, and scripts/build.mjs, which
+ * regenerates the static homepage cards, category pages and sitemap.xml
+ * from this list.
  *
- * To add a tool: add an entry here, then run `python3 scripts/build.py`.
+ * To add a tool: add an entry here, then run `node scripts/build.mjs`.
  * `icon` is the name of a symbol in assets/img/icons.svg.
  */
 window.DTH_CATEGORIES = [
-  { id: "finance", name: "Finance", icon: "wallet" },
-  { id: "health", name: "Health", icon: "heart-pulse" },
-  { id: "productivity", name: "Productivity", icon: "rocket" },
-  { id: "dev", name: "Developer", icon: "code" },
-  { id: "design", name: "Design", icon: "palette" },
-  { id: "security", name: "Security", icon: "shield" },
-  { id: "life", name: "Lifestyle", icon: "sparkles" }
+  { id: "finance", name: "Finance", icon: "wallet", slug: "finance-tools.html", tagline: "Calculators for money, loans, savings and markets" },
+  { id: "health", name: "Health", icon: "heart-pulse", slug: "health-tools.html", tagline: "BMI, nutrition and lifetime body stats" },
+  { id: "productivity", name: "Productivity", icon: "rocket", slug: "productivity-tools.html", tagline: "Timers, calculators, converters and writing tools" },
+  { id: "dev", name: "Developer", icon: "code", slug: "developer-tools.html", tagline: "Formatters, encoders and generators for coders" },
+  { id: "design", name: "Design", icon: "palette", slug: "design-tools.html", tagline: "Colors, images and QR codes" },
+  { id: "security", name: "Security", icon: "shield", slug: "security-tools.html", tagline: "Passwords, strength checks and private messages" },
+  { id: "life", name: "Lifestyle", icon: "sparkles", slug: "lifestyle-tools.html", tagline: "Age, travel, personality, sport and fun" }
 ];
 
 window.DTH_TOOLS = [
@@ -28,9 +29,12 @@ window.DTH_TOOLS = [
   { id: "salary", url: "salary.html", name: "Salary Calculator", alias: "Earnings Engine", cat: "finance", icon: "wallet",
     desc: "See your pay per year, month, hour, minute and second across 18 currencies with a live ticker.",
     tags: "income wage pay hourly earnings tax" },
-  { id: "loan", url: "loan-calculator.html", name: "Loan & EMI Calculator", cat: "finance", icon: "landmark", isNew: true,
+  { id: "loan", url: "loan-calculator.html", name: "Loan & EMI Calculator", cat: "finance", icon: "landmark",
     desc: "Monthly payment, total interest and a full amortization schedule for any loan or mortgage.",
     tags: "emi mortgage interest amortization car home loan repayment" },
+  { id: "compound", url: "compound-interest-calculator.html", name: "Compound Interest Calculator", cat: "finance", icon: "trending-up", isNew: true, featured: true,
+    desc: "See how savings grow with compound interest and monthly contributions, with a chart and yearly table.",
+    tags: "compound interest investment savings growth calculator returns sip deposit" },
   { id: "retire", url: "retire.html", name: "Retirement Planner", cat: "finance", icon: "piggy-bank",
     desc: "Project your retirement savings and compare cost of living in destinations worldwide.",
     tags: "pension savings invest compound future" },
@@ -63,13 +67,19 @@ window.DTH_TOOLS = [
   { id: "kanban", url: "kanban-board.html", name: "Kanban Board", alias: "Zenith Kanban", cat: "productivity", icon: "square-kanban", featured: true,
     desc: "Drag-and-drop task board that saves to your browser. Plan projects without an account.",
     tags: "tasks todo project management agile board" },
-  { id: "pomodoro", url: "pomodoro.html", name: "Pomodoro Focus Timer", cat: "productivity", icon: "timer", isNew: true,
+  { id: "pomodoro", url: "pomodoro.html", name: "Pomodoro Focus Timer", cat: "productivity", icon: "timer",
     desc: "Focus and break timer with session stats, notifications and keyboard shortcuts.",
     tags: "focus timer tomato study work break countdown" },
   { id: "calc", url: "scientific-calculator.html", name: "Scientific Calculator", alias: "Quantum Sci-Calc", cat: "productivity", icon: "calculator", featured: true,
     desc: "Scientific calculator with graphing, unit conversion and a history tape.",
     tags: "math trigonometry graph calculus" },
-  { id: "units", url: "unit-converter.html", name: "Unit Converter", cat: "productivity", icon: "ruler", isNew: true,
+  { id: "percent", url: "percentage-calculator.html", name: "Percentage Calculator", cat: "productivity", icon: "percent", isNew: true, featured: true,
+    desc: "Percent of a number, percentage change, increase or decrease, and what percent one number is of another.",
+    tags: "percentage percent calculator change increase decrease discount math ratio" },
+  { id: "date", url: "date-calculator.html", name: "Date Calculator", cat: "productivity", icon: "calendar", isNew: true,
+    desc: "Days between two dates, business days, and adding or subtracting days, weeks or months from a date.",
+    tags: "date days between dates duration add subtract business working days calendar countdown" },
+  { id: "units", url: "unit-converter.html", name: "Unit Converter", cat: "productivity", icon: "ruler",
     desc: "Convert length, weight, temperature, area, volume, speed, data and time instantly.",
     tags: "convert metric imperial kg lb cm inch celsius fahrenheit" },
   { id: "text", url: "text-analyzer.html", name: "Text Analyzer", alias: "Text Lens", cat: "productivity", icon: "scan-text",
@@ -82,9 +92,18 @@ window.DTH_TOOLS = [
     desc: "Turn rough ideas into structured prompts for ChatGPT, Claude and Gemini using the RTF framework.",
     tags: "ai chatgpt claude gemini llm prompt engineering" },
 
-  { id: "json", url: "json-formatter.html", name: "JSON Formatter", cat: "dev", icon: "braces", isNew: true, featured: true,
+  { id: "json", url: "json-formatter.html", name: "JSON Formatter", cat: "dev", icon: "braces", featured: true,
     desc: "Format, validate, minify and explore JSON with precise error locations. Runs locally.",
     tags: "json validator beautify minify pretty print lint" },
+  { id: "base64", url: "base64-encoder.html", name: "Base64 & URL Encoder", cat: "dev", icon: "binary", isNew: true,
+    desc: "Encode and decode Base64, URL, HTML entities and inspect JWT tokens. Unicode-safe and private.",
+    tags: "base64 encode decode url encoder html entities jwt decoder escape" },
+  { id: "hash", url: "hash-generator.html", name: "Hash Generator", cat: "dev", icon: "hash", isNew: true,
+    desc: "MD5, SHA-1, SHA-256, SHA-384 and SHA-512 hashes of text or files, plus HMAC signing.",
+    tags: "hash md5 sha1 sha256 sha512 checksum hmac file integrity" },
+  { id: "uuid", url: "uuid-generator.html", name: "UUID Generator", cat: "dev", icon: "fingerprint", isNew: true,
+    desc: "Generate UUID v4 and time-ordered v7 identifiers in bulk, validate UUIDs and copy in one click.",
+    tags: "uuid guid generator v4 v7 unique id random bulk" },
   { id: "data", url: "data-generator.html", name: "Mock Data Generator", alias: "DataForge", cat: "dev", icon: "database",
     desc: "Generate realistic test data from a custom schema and export it as JSON or CSV.",
     tags: "fake data json csv test seed schema" },
@@ -93,6 +112,9 @@ window.DTH_TOOLS = [
   { id: "chroma", url: "chroma-studio.html", name: "Color Palette Studio", alias: "Chroma Studio", cat: "design", icon: "palette",
     desc: "Generate palettes, extract colors from images and check WCAG contrast.",
     tags: "color palette contrast wcag hex rgb" },
+  { id: "image", url: "image-compressor.html", name: "Image Compressor & Resizer", cat: "design", icon: "image", isNew: true, featured: true,
+    desc: "Compress, resize and convert JPG, PNG and WebP images in bulk without uploading them anywhere.",
+    tags: "image compressor compress resize convert jpg jpeg png webp photo reduce size kb" },
   { id: "qr", url: "qr.html", name: "QR Code Generator", alias: "URL Architect", cat: "design", icon: "qr-code",
     desc: "Create custom high-resolution QR codes with your colors and download instantly.",
     tags: "qr code barcode link url" },

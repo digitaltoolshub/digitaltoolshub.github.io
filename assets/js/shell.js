@@ -28,6 +28,7 @@
     try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* private mode */ }
   }
   function byId(id) { for (var i = 0; i < TOOLS.length; i++) if (TOOLS[i].id === id) return TOOLS[i]; return null; }
+  function catSlug(id) { for (var i = 0; i < CATS.length; i++) if (CATS[i].id === id) return CATS[i].slug; return ""; }
   function catName(id) { for (var i = 0; i < CATS.length; i++) if (CATS[i].id === id) return CATS[i].name; return id; }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function icon(name, cls) { return '<svg class="' + (cls || "i") + '" aria-hidden="true"><use href="' + ICONS + "#" + name + '"></use></svg>'; }
@@ -87,12 +88,12 @@
 
   // ---------- shared shadow styles ----------
   var BASE_CSS = [
-    ":host{all:initial;font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;",
-    "--bg:#ffffff;--bg2:#f3f4f8;--bd:#e3e5ee;--tx:#121527;--tx2:#4a5068;--tx3:#767c95;--ac:#4f46e5;--acs:#eef0ff;--sh:0 24px 60px -12px rgba(18,21,39,.35);",
+    ":host{all:initial;font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;",
+    "--bg:#ffffff;--bg2:#f3f4f8;--bd:#e3e5ee;--tx:#121527;--tx2:#4a5068;--tx3:#767c95;--ac:#5b4bf5;--acs:#efedff;--sh:0 24px 60px -12px rgba(18,21,39,.35);",
     "--finance:#059669;--health:#e11d48;--productivity:#2563eb;--dev:#d97706;--design:#c026d3;--security:#0891b2;--life:#7c3aed;color-scheme:light}",
-    "@media (prefers-color-scheme:dark){:host(:not([data-theme=light])){--bg:#141724;--bg2:#1b1f2e;--bd:#2a3043;--tx:#eceef6;--tx2:#a9afc4;--tx3:#7b8199;--ac:#818cf8;--acs:#22264a;--sh:0 30px 70px -10px rgba(0,0,0,.75);",
+    "@media (prefers-color-scheme:dark){:host(:not([data-theme=light])){--bg:#141724;--bg2:#1b1f2e;--bd:#2a3043;--tx:#eceef6;--tx2:#a9afc4;--tx3:#7b8199;--ac:#8b80ff;--acs:#22264a;--sh:0 30px 70px -10px rgba(0,0,0,.75);",
     "--finance:#34d399;--health:#fb7185;--productivity:#60a5fa;--dev:#fbbf24;--design:#e879f9;--security:#22d3ee;--life:#a78bfa;color-scheme:dark}}",
-    ":host([data-theme=dark]){--bg:#141724;--bg2:#1b1f2e;--bd:#2a3043;--tx:#eceef6;--tx2:#a9afc4;--tx3:#7b8199;--ac:#818cf8;--acs:#22264a;--sh:0 30px 70px -10px rgba(0,0,0,.75);",
+    ":host([data-theme=dark]){--bg:#141724;--bg2:#1b1f2e;--bd:#2a3043;--tx:#eceef6;--tx2:#a9afc4;--tx3:#7b8199;--ac:#8b80ff;--acs:#22264a;--sh:0 30px 70px -10px rgba(0,0,0,.75);",
     "--finance:#34d399;--health:#fb7185;--productivity:#60a5fa;--dev:#fbbf24;--design:#e879f9;--security:#22d3ee;--life:#a78bfa;color-scheme:dark}",
     "*,*::before,*::after{box-sizing:border-box}a{text-decoration:none;color:inherit}",
     ".i{width:18px;height:18px;flex:none;display:block}",
@@ -252,7 +253,7 @@
       ".d.h{opacity:0;transform:translateY(12px);pointer-events:none}" +
       ".b{display:flex;align-items:center;gap:8px;height:36px;padding:0 10px;border-radius:10px;border:0;background:transparent;color:var(--tx2);font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;white-space:nowrap}" +
       ".b:hover{background:var(--bg2);color:var(--tx)}.b:focus-visible{outline:2px solid var(--ac);outline-offset:1px}" +
-      ".home{color:var(--tx)}.m{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff}.m .i{width:14px;height:14px}" +
+      ".home{color:var(--tx)}.m{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;background:linear-gradient(120deg,#5b4bf5,#9b3cf2 55%,#ec4899);color:#fff}.m .i{width:14px;height:14px}" +
       ".sep{width:1px;height:20px;background:var(--bd);margin:0 2px}.ic{width:36px;padding:0;justify-content:center}" +
       ".on{color:#f59e0b}.on .i{--icon-fill:currentColor}" +
       "@media (max-width:640px){.lbl,.kbd{display:none}.home{padding:0 6px}}@media print{.d{display:none}}" +
@@ -300,8 +301,8 @@
       ".w{background:var(--bg);color:var(--tx);border-top:1px solid var(--bd);padding:36px 20px 88px;line-height:1.5}" +
       ".c{max-width:1200px;margin:0 auto}h2{font-size:18px;font-weight:700;margin:0 0 4px;letter-spacing:-.01em}.s{color:var(--tx3);font-size:14px;margin:0 0 18px}" +
       ".g{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}" +
-      ".k{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:12px;border:1px solid var(--bd);background:var(--bg2);transition:border-color .15s,transform .15s}" +
-      ".k:hover{border-color:color-mix(in srgb,var(--c) 50%,var(--bd));transform:translateY(-1px)}.k strong{display:block;font-size:14.5px;font-weight:650}" +
+      ".k{display:flex;gap:12px;align-items:center;padding:14px 16px;border-radius:14px;border:1px solid var(--bd);background:var(--bg2);transition:border-color .2s,transform .2s,box-shadow .2s}" +
+      ".k:hover{border-color:color-mix(in srgb,var(--c) 50%,var(--bd));transform:translateY(-2px);box-shadow:0 12px 28px -16px color-mix(in srgb,var(--c) 70%,transparent)}.k strong{display:block;font-size:14.5px;font-weight:650}" +
       ".k small{display:block;font-size:12.5px;color:var(--tx3);overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}" +
       ".f{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;align-items:center;margin-top:28px;padding-top:18px;border-top:1px solid var(--bd);font-size:13px;color:var(--tx3)}" +
       ".f nav{display:flex;flex-wrap:wrap;gap:6px 18px}.f a:hover{color:var(--tx)}.all{color:var(--ac);font-weight:650}" +
@@ -312,7 +313,8 @@
         return '<a class="k" href="' + base + t.url + '" data-cat="' + t.cat + '"><span class="ti">' + icon(t.icon) + "</span><span><strong>" + esc(t.name) + "</strong><small>" + esc(t.desc) + "</small></span></a>";
       }).join("") +
       "</div>" +
-      '<div class="f"><nav><a class="all" href="' + base + '">Browse all ' + TOOLS.length + ' tools →</a><a href="' + base + 'about.html">About</a><a href="' + base + 'privacy.html">Privacy</a><a href="' + base + 'terms.html">Terms</a><a href="' + base + 'contact.html">Contact</a></nav>' +
+      '<div class="f"><nav><a class="all" href="' + base + '">Browse all ' + TOOLS.length + ' tools →</a>' +
+      (catSlug(current.cat) ? '<a href="' + base + catSlug(current.cat) + '">More ' + esc(catName(current.cat).toLowerCase()) + " tools</a>" : "") + '<a href="' + base + 'about.html">About</a><a href="' + base + 'privacy.html">Privacy</a><a href="' + base + 'terms.html">Terms</a><a href="' + base + 'contact.html">Contact</a></nav>' +
       "<span>© " + year + " Digital Tools Hub</span></div></div></section>";
     document.body.appendChild(host);
     fitToBody(host);

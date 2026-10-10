@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" data-hub>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Percentage Calculator | Percent Of, % Change, Increase &amp; Discount</title>
+    <meta name="description" content="Free percentage calculator: find X% of a number, what percent one number is of another, percentage increase or decrease, reverse percentages and discounts with tax. Instant, with formulas.">
+    <link rel="canonical" href="https://digitaltoolshub.github.io/percentage-calculator.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Digital Tools Hub">
+    <meta property="og:url" content="https://digitaltoolshub.github.io/percentage-calculator.html">
+    <meta property="og:title" content="Percentage Calculator | Percent Of, % Change, Increase &amp; Discount">
+    <meta property="og:description" content="Find X% of a number, percentage change, increase or decrease, reverse percentages and discounts. Instant results with the formula shown.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- @head -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#090b13" media="(prefers-color-scheme: dark)">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <meta name="author" content="Rabeeh">
+    <script>try{var t=localStorage.getItem("dth:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"></noscript>
+    <link rel="stylesheet" href="assets/css/hub.css">
+    <link rel="preload" href="assets/img/icons.svg" as="image" type="image/svg+xml">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-R4N9RB1SNN");</script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" async></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
+    <!-- /@head -->
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Percentage Calculator","url":"https://digitaltoolshub.github.io/percentage-calculator.html","description":"Find X% of a number, what percent one number is of another, percentage change, increase or decrease, reverse percentages and discounts.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://digitaltoolshub.github.io/"},{"@type":"ListItem","position":2,"name":"Productivity","item":"https://digitaltoolshub.github.io/productivity-tools.html"},{"@type":"ListItem","position":3,"name":"Percentage Calculator","item":"https://digitaltoolshub.github.io/percentage-calculator.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I calculate a percentage of a number?","acceptedAnswer":{"@type":"Answer","text":"Multiply the number by the percentage and divide by 100. For example, 15% of 80 is 80 × 15 ÷ 100 = 12."}},{"@type":"Question","name":"How do I calculate percentage change?","acceptedAnswer":{"@type":"Answer","text":"Subtract the old value from the new value, divide by the old value and multiply by 100. Going from 50 to 65 is (65 − 50) ÷ 50 × 100 = a 30% increase."}},{"@type":"Question","name":"What is the difference between percentage change and percentage points?","acceptedAnswer":{"@type":"Answer","text":"Percentage points measure the simple difference between two percentages (5% to 7% is +2 points), while percentage change is relative (5% to 7% is a 40% increase)."}},{"@type":"Question","name":"How do I find the original price before a discount?","acceptedAnswer":{"@type":"Answer","text":"Divide the sale price by (1 − discount ÷ 100). A $60 item after a 25% discount originally cost 60 ÷ 0.75 = $80. Use the reverse percentage calculator for this."}}]}]}</script>
+    <style>
+        .pc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+        @media (max-width: 900px) { .pc-grid { grid-template-columns: 1fr; } }
+        .pc { display: flex; flex-direction: column; gap: 14px; }
+        .pc h2 { font-size: 1.02rem; margin: 0; display: flex; align-items: center; gap: 10px; }
+        .pc h2 .n { width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; font-size: .8rem; background: var(--accent-soft); color: var(--accent); }
+        .sentence { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; font-weight: 600; color: var(--text-2); }
+        .sentence .input { width: 130px; min-height: 46px; font-size: 1.05rem; font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+        .out-box { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-radius: 14px; background: var(--bg-sunken); border: 1px solid var(--border); min-height: 64px; }
+        .out-box .val { font-size: 1.6rem; font-weight: 800; letter-spacing: -.02em; font-variant-numeric: tabular-nums; word-break: break-all; }
+        .out-box .val.up { color: var(--ok); } .out-box .val.down { color: var(--danger); }
+        .formula { font-size: .84rem; color: var(--text-3); font-family: var(--mono); min-height: 1.3em; }
+        .copy-btn { flex: none; }
+        .disc-out { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+        @media (max-width: 520px) { .disc-out { grid-template-columns: 1fr; } }
+        .disc-out .stat .v { font-size: 1.25rem; }
+    </style>
+</head>
+<body>
+    <!-- @header -->
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="./" aria-label="Digital Tools Hub home"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+            <nav class="site-nav" aria-label="Main">
+                <div class="nav-dd">
+                    <button type="button" aria-haspopup="true">Tools<svg class="" aria-hidden="true"><use href="assets/img/icons.svg#chevron-down"></use></svg></button>
+                    <div class="mega">
+                        <a href="finance-tools.html" data-cat="finance"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#wallet"></use></svg></span><span><strong>Finance</strong><small>Calculators for money, loans, savings and markets</small></span></a>
+                        <a href="health-tools.html" data-cat="health"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#heart-pulse"></use></svg></span><span><strong>Health</strong><small>BMI, nutrition and lifetime body stats</small></span></a>
+                        <a href="productivity-tools.html" data-cat="productivity"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#rocket"></use></svg></span><span><strong>Productivity</strong><small>Timers, calculators, converters and writing tools</small></span></a>
+                        <a href="developer-tools.html" data-cat="dev"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#code"></use></svg></span><span><strong>Developer</strong><small>Formatters, encoders and generators for coders</small></span></a>
+                        <a href="design-tools.html" data-cat="design"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#palette"></use></svg></span><span><strong>Design</strong><small>Colors, images and QR codes</small></span></a>
+                        <a href="security-tools.html" data-cat="security"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#shield"></use></svg></span><span><strong>Security</strong><small>Passwords, strength checks and private messages</small></span></a>
+                        <a href="lifestyle-tools.html" data-cat="life"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg></span><span><strong>Lifestyle</strong><small>Age, travel, personality, sport and fun</small></span></a>
+                        <div class="mega-foot"><span>41 free tools, no sign-up</span><a href="./#tools">Browse all tools →</a></div>
+                    </div>
+                </div>
+                <a href="./#popular">Popular</a>
+                <a href="./#new">New</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="search-trigger" type="button" data-open-palette aria-label="Search tools"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#search"></use></svg><span class="label">Search 41 tools…</span><span class="kbd" data-mod-key>Ctrl K</span></button>
+                <button class="icon-btn" type="button" data-theme-toggle aria-label="Change theme"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#monitor"></use></svg></button>
+                <button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#menu"></use></svg></button>
+            </div>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobile-menu">
+        <nav aria-label="Mobile">
+            <a href="./"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#house"></use></svg></span>Home</a>
+            <a href="./#popular"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#flame"></use></svg></span>Popular tools</a>
+            <a href="./#new"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg></span>New tools</a>
+        </nav>
+        <h4>Categories</h4>
+        <nav aria-label="Categories">
+            <a href="finance-tools.html" data-cat="finance"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#wallet"></use></svg></span><span>Finance<small>8 tools</small></span></a>
+            <a href="health-tools.html" data-cat="health"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#heart-pulse"></use></svg></span><span>Health<small>6 tools</small></span></a>
+            <a href="productivity-tools.html" data-cat="productivity"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#rocket"></use></svg></span><span>Productivity<small>9 tools</small></span></a>
+            <a href="developer-tools.html" data-cat="dev"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#code"></use></svg></span><span>Developer<small>5 tools</small></span></a>
+            <a href="design-tools.html" data-cat="design"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#palette"></use></svg></span><span>Design<small>3 tools</small></span></a>
+            <a href="security-tools.html" data-cat="security"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#shield"></use></svg></span><span>Security<small>3 tools</small></span></a>
+            <a href="lifestyle-tools.html" data-cat="life"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg></span><span>Lifestyle<small>7 tools</small></span></a>
+        </nav>
+        <h4>Digital Tools Hub</h4>
+        <nav aria-label="Company">
+            <a href="about.html"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#info"></use></svg></span>About</a>
+            <a href="contact.html"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#mail"></use></svg></span>Contact</a>
+        </nav>
+    </div>
+    <!-- /@header -->
+
+    <main id="main" class="container">
+        <div class="page-head">
+            <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="./">Home</a><svg aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"></use></svg><a href="productivity-tools.html">Productivity</a><svg aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"></use></svg><span>Percentage Calculator</span></nav>
+            <h1><span class="tool-icon" data-cat="productivity"><svg aria-hidden="true"><use href="assets/img/icons.svg#percent"></use></svg></span>Percentage Calculator</h1>
+            <p>Six percentage calculators in one. Type in any box and the answer updates instantly, with the formula shown so you can check the math.</p>
+            <div class="trust"><span><svg aria-hidden="true"><use href="assets/img/icons.svg#check"></use></svg>Instant results</span><span><svg aria-hidden="true"><use href="assets/img/icons.svg#check"></use></svg>Formulas shown</span><span><svg aria-hidden="true"><use href="assets/img/icons.svg#lock"></use></svg>Runs in your browser</span></div>
+        </div>
+
+        <div class="pc-grid">
+            <section class="panel pc" aria-labelledby="h1">
+                <h2 id="h1"><span class="n">1</span>Percent of a number</h2>
+                <div class="sentence">What is <input class="input" id="a1" inputmode="decimal" value="15" aria-label="Percentage"> % of <input class="input" id="b1" inputmode="decimal" value="80" aria-label="Number"> ?</div>
+                <div class="out-box"><span class="val" id="r1">—</span><button class="btn btn-ghost btn-sm copy-btn" type="button" data-copy="r1"><svg aria-hidden="true"><use href="assets/img/icons.svg#copy"></use></svg>Copy</button></div>
+                <div class="formula" id="f1"></div>
+            </section>
+
+            <section class="panel pc" aria-labelledby="h2">
+                <h2 id="h2"><span class="n">2</span>What percent is X of Y</h2>
+                <div class="sentence"><input class="input" id="a2" inputmode="decimal" value="24" aria-label="Part"> is what % of <input class="input" id="b2" inputmode="decimal" value="160" aria-label="Whole"> ?</div>
+                <div class="out-box"><span class="val" id="r2">—</span><button class="btn btn-ghost btn-sm copy-btn" type="button" data-copy="r2"><svg aria-hidden="true"><use href="assets/img/icons.svg#copy"></use></svg>Copy</button></div>
+                <div class="formula" id="f2"></div>
+            </section>
+
+            <section class="panel pc" aria-labelledby="h3">
+                <h2 id="h3"><span class="n">3</span>Percentage change</h2>
+                <div class="sentence">From <input class="input" id="a3" inputmode="decimal" value="50" aria-label="Old value"> to <input class="input" id="b3" inputmode="decimal" value="65" aria-label="New value"></div>
+                <div class="out-box"><span class="val" id="r3">—</span><button class="btn btn-ghost btn-sm copy-btn" type="button" data-copy="r3"><svg aria-hidden="true"><use href="assets/img/icons.svg#copy"></use></svg>Copy</button></div>
+                <div class="formula" id="f3"></div>
+            </section>
+
+            <section class="panel pc" aria-labelledby="h4">
+                <h2 id="h4"><span class="n">4</span>Increase or decrease by a percent</h2>
+                <div class="sentence">
+                    <label class="sr-only" for="op4">Increase or decrease</label>
+                    <select class="select" id="op4" style="width:auto"><option value="1">Increase</option><option value="-1">Decrease</option></select>
+                    <input class="input" id="b4" inputmode="decimal" value="200" aria-label="Number"> by <input class="input" id="a4" inputmode="decimal" value="12.5" aria-label="Percentage"> %
+                </div>
+                <div class="out-box"><span class="val" id="r4">—</span><button class="btn btn-ghost btn-sm copy-btn" type="button" data-copy="r4"><svg aria-hidden="true"><use href="assets/img/icons.svg#copy"></use></svg>Copy</button></div>
+                <div class="formula" id="f4"></div>
+            </section>
+
+            <section class="panel pc" aria-labelledby="h5">
+                <h2 id="h5"><span class="n">5</span>Reverse percentage</h2>
+                <div class="sentence"><input class="input" id="a5" inputmode="decimal" value="30" aria-label="Part"> is <input class="input" id="b5" inputmode="decimal" value="20" aria-label="Percentage"> % of what?</div>
+                <div class="out-box"><span class="val" id="r5">—</span><button class="btn btn-ghost btn-sm copy-btn" type="button" data-copy="r5"><svg aria-hidden="true"><use href="assets/img/icons.svg#copy"></use></svg>Copy</button></div>
+                <div class="formula" id="f5"></div>
+            </section>
+
+            <section class="panel pc" aria-labelledby="h6">
+                <h2 id="h6"><span class="n">6</span>Discount &amp; sales tax</h2>
+                <div class="sentence">Price <input class="input" id="p6" inputmode="decimal" value="120" aria-label="Original price"> with <input class="input" id="d6" inputmode="decimal" value="25" aria-label="Discount percent" style="width:90px"> % off, plus <input class="input" id="t6" inputmode="decimal" value="0" aria-label="Sales tax percent" style="width:90px"> % tax</div>
+                <div class="disc-out">
+                    <div class="stat"><div class="k">You pay</div><div class="v" id="r6">—</div></div>
+                    <div class="stat"><div class="k">You save</div><div class="v" id="s6">—</div></div>
+                    <div class="stat"><div class="k">Tax</div><div class="v" id="x6">—</div></div>
+                </div>
+                <div class="formula" id="f6"></div>
+            </section>
+        </div>
+
+        <div class="cols-2" style="margin-top:48px;align-items:start;gap:40px">
+            <section class="prose" aria-labelledby="guide-h">
+                <h2 id="guide-h" style="margin-top:0">How to calculate percentages</h2>
+                <p>A percentage is a number expressed as a fraction of 100. “Per cent” literally means “per hundred”, so 25% is 25/100 or 0.25. Every calculator above is built on that one idea:</p>
+                <ul>
+                    <li><strong>X% of Y</strong> = Y × X ÷ 100. Useful for tips, commissions and interest.</li>
+                    <li><strong>X is what % of Y</strong> = X ÷ Y × 100. Use it for test scores, budgets and conversion rates.</li>
+                    <li><strong>Percentage change</strong> = (new − old) ÷ |old| × 100. Positive is an increase, negative a decrease.</li>
+                    <li><strong>Increase Y by X%</strong> = Y × (1 + X ÷ 100); decrease uses (1 − X ÷ 100).</li>
+                    <li><strong>Reverse percentage</strong> = part ÷ (X ÷ 100). Find the whole when you know a part and its percentage.</li>
+                </ul>
+                <h3>A common trap</h3>
+                <p>A 50% increase followed by a 50% decrease does <em>not</em> bring you back to where you started: 100 → 150 → 75. Each percentage applies to a different base. That's why a stock that drops 50% needs to rise 100% to recover.</p>
+            </section>
+            <section aria-labelledby="faq-h">
+                <h2 id="faq-h" style="font-size:1.4rem">FAQ</h2>
+                <div class="faq">
+                    <details><summary>How do I calculate a percentage of a number?</summary><p>Multiply the number by the percentage and divide by 100. For example, 15% of 80 is 80 × 15 ÷ 100 = 12.</p></details>
+                    <details><summary>How do I calculate percentage change?</summary><p>Subtract the old value from the new value, divide by the old value and multiply by 100. Going from 50 to 65 is (65 − 50) ÷ 50 × 100 = a 30% increase.</p></details>
+                    <details><summary>What is the difference between percentage change and percentage points?</summary><p>Percentage points measure the simple difference between two percentages (5% to 7% is +2 points), while percentage change is relative (5% to 7% is a 40% increase).</p></details>
+                    <details><summary>How do I find the original price before a discount?</summary><p>Divide the sale price by (1 − discount ÷ 100). A $60 item after a 25% discount originally cost 60 ÷ 0.75 = $80. Use the reverse percentage calculator (number 5) with 75% for this.</p></details>
+                </div>
+            </section>
+        </div>
+        <!-- @related -->
+        <section class="section reveal" aria-labelledby="rel-h" style="margin-top:32px">
+            <div class="section-head"><h2 id="rel-h"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layers"></use></svg>Related tools</h2><a class="see-all" href="productivity-tools.html">All productivity tools<svg class="" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></a></div>
+            <div class="grid">
+                <article class="card" data-id="kanban" data-cat="productivity" data-name="Kanban Board">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#square-kanban"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Kanban Board to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="kanban-board.html">Kanban Board</a></h3>
+                    <p>Drag-and-drop task board that saves to your browser. Plan projects without an account.</p>
+                    <div class="card-foot"><span class="cat-label">Productivity</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="pomodoro" data-cat="productivity" data-name="Pomodoro Focus Timer">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#timer"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Pomodoro Focus Timer to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="pomodoro.html">Pomodoro Focus Timer</a></h3>
+                    <p>Focus and break timer with session stats, notifications and keyboard shortcuts.</p>
+                    <div class="card-foot"><span class="cat-label">Productivity</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="calc" data-cat="productivity" data-name="Scientific Calculator">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#calculator"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Scientific Calculator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="scientific-calculator.html">Scientific Calculator</a></h3>
+                    <p>Scientific calculator with graphing, unit conversion and a history tape.</p>
+                    <div class="card-foot"><span class="cat-label">Productivity</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="date" data-cat="productivity" data-name="Date Calculator" data-new="1">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#calendar"></use></svg></span>
+                        <div class="card-badges"><span class="badge badge-new">New</span><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Date Calculator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="date-calculator.html">Date Calculator</a></h3>
+                    <p>Days between two dates, business days, and adding or subtracting days, weeks or months from a date.</p>
+                    <div class="card-foot"><span class="cat-label">Productivity</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+            </div>
+        </section>
+        <!-- /@related -->
+    </main>
+
+    <!-- @footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a class="brand" href="./"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+                    <p>41 free tools for money, health, work and code. No sign-up, no paywalls, and your data stays in your browser.</p>
+                    <div class="footer-badges"><span><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#lock"></use></svg>Private</span><span><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#zap"></use></svg>Instant</span><span><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#wifi-off"></use></svg>Works offline</span></div>
+                </div>
+                <div>
+                    <h4>Popular</h4>
+                    <ul>
+                        <li><a href="currency.html">Currency Converter</a></li>
+                        <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+                        <li><a href="bmi.html">BMI Calculator</a></li>
+                        <li><a href="kanban-board.html">Kanban Board</a></li>
+                        <li><a href="scientific-calculator.html">Scientific Calculator</a></li>
+                        <li><a href="percentage-calculator.html">Percentage Calculator</a></li>
+                        <li><a href="json-formatter.html">JSON Formatter</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>New tools</h4>
+                    <ul>
+                        <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+                        <li><a href="percentage-calculator.html">Percentage Calculator</a></li>
+                        <li><a href="date-calculator.html">Date Calculator</a></li>
+                        <li><a href="base64-encoder.html">Base64 &amp; URL Encoder</a></li>
+                        <li><a href="hash-generator.html">Hash Generator</a></li>
+                        <li><a href="uuid-generator.html">UUID Generator</a></li>
+                        <li><a href="image-compressor.html">Image Compressor &amp; Resizer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="finance-tools.html">Finance tools</a></li>
+                        <li><a href="health-tools.html">Health tools</a></li>
+                        <li><a href="productivity-tools.html">Productivity tools</a></li>
+                        <li><a href="developer-tools.html">Developer tools</a></li>
+                        <li><a href="design-tools.html">Design tools</a></li>
+                        <li><a href="security-tools.html">Security tools</a></li>
+                        <li><a href="lifestyle-tools.html">Lifestyle tools</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy policy</a></li>
+                        <li><a href="terms.html">Terms of service</a></li>
+                        <li><a href="sitemap.xml">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Digital Tools Hub. Built by <a href="about.html">Rabeeh</a>.</span>
+                <span>Tip: press <span class="kbd" data-mod-key>Ctrl K</span> anywhere to jump to a tool.</span>
+            </div>
+        </div>
+    </footer>
+    <button class="to-top" type="button" aria-label="Back to top"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#arrow-up"></use></svg></button>
+    <!-- /@footer -->
+
+    <!-- @scripts -->
+    <script src="assets/js/tools.js" defer></script>
+    <script src="assets/js/shell.js" defer></script>
+    <script src="assets/js/hub.js" defer></script>
+    <!-- /@scripts -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var $ = function (id) { return document.getElementById(id); };
+        var fmt = new Intl.NumberFormat(undefined, { maximumFractionDigits: 6 });
+        var money = new Intl.NumberFormat(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        function num(id) {
+            var s = $(id).value.replace(/[\s,]/g, "").replace(/%$/, "");
+            if (s === "" || s === "-" || s === ".") return NaN;
+            return Number(s);
+        }
+        function f(n) { return fmt.format(Math.round(n * 1e10) / 1e10); }
+        function set(id, text, cls) { var el = $(id); el.textContent = text; el.className = "val" + (cls ? " " + cls : ""); }
+        function ok() { for (var i = 0; i < arguments.length; i++) if (!isFinite(arguments[i])) return false; return true; }
+
+        var calcs = {
+            1: function () {
+                var a = num("a1"), b = num("b1");
+                if (!ok(a, b)) return set("r1", "—"), $("f1").textContent = "";
+                set("r1", f(b * a / 100)); $("f1").textContent = f(b) + " × " + f(a) + " ÷ 100 = " + f(b * a / 100);
+            },
+            2: function () {
+                var a = num("a2"), b = num("b2");
+                if (!ok(a, b) || b === 0) return set("r2", b === 0 ? "Undefined" : "—"), $("f2").textContent = b === 0 ? "Can't divide by zero" : "";
+                var r = a / b * 100; set("r2", f(r) + "%"); $("f2").textContent = f(a) + " ÷ " + f(b) + " × 100 = " + f(r) + "%";
+            },
+            3: function () {
+                var a = num("a3"), b = num("b3");
+                if (!ok(a, b) || a === 0) return set("r3", a === 0 ? "Undefined" : "—"), $("f3").textContent = a === 0 ? "Percentage change from zero is undefined" : "";
+                var r = (b - a) / Math.abs(a) * 100;
+                set("r3", (r > 0 ? "+" : "") + f(r) + "% " + (r > 0 ? "increase" : r < 0 ? "decrease" : "(no change)"), r > 0 ? "up" : r < 0 ? "down" : "");
+                $("f3").textContent = "(" + f(b) + " − " + f(a) + ") ÷ |" + f(a) + "| × 100 · difference " + f(b - a);
+            },
+            4: function () {
+                var a = num("a4"), b = num("b4"), s = +$("op4").value;
+                if (!ok(a, b)) return set("r4", "—"), $("f4").textContent = "";
+                var r = b * (1 + s * a / 100);
+                set("r4", f(r)); $("f4").textContent = f(b) + " × (1 " + (s > 0 ? "+" : "−") + " " + f(a) + " ÷ 100) = " + f(r) + " · change " + (s > 0 ? "+" : "−") + f(Math.abs(r - b));
+            },
+            5: function () {
+                var a = num("a5"), b = num("b5");
+                if (!ok(a, b) || b === 0) return set("r5", b === 0 ? "Undefined" : "—"), $("f5").textContent = "";
+                var r = a / (b / 100); set("r5", f(r)); $("f5").textContent = f(a) + " ÷ (" + f(b) + " ÷ 100) = " + f(r);
+            },
+            6: function () {
+                var p = num("p6"), d = num("d6"), t = num("t6");
+                if (!isFinite(t)) t = 0;
+                if (!ok(p, d)) { ["r6", "s6", "x6"].forEach(function (id) { $(id).textContent = "—"; }); $("f6").textContent = ""; return; }
+                var sale = p * (1 - d / 100), tax = sale * t / 100, total = sale + tax;
+                $("r6").textContent = money.format(total); $("s6").textContent = money.format(p - sale); $("x6").textContent = money.format(tax);
+                $("f6").textContent = f(p) + " × (1 − " + f(d) + "%) = " + money.format(sale) + (t ? " + " + f(t) + "% tax = " + money.format(total) : "");
+            }
+        };
+        function run(n) { calcs[n](); }
+        Object.keys(calcs).forEach(run);
+
+        // Remember inputs between visits.
+        var KEY = "dth:percent";
+        try {
+            var saved = JSON.parse(localStorage.getItem(KEY) || "{}");
+            Object.keys(saved).forEach(function (id) { if ($(id)) $(id).value = saved[id]; });
+            Object.keys(calcs).forEach(run);
+        } catch (e) {}
+        document.querySelectorAll(".pc input, .pc select").forEach(function (el) {
+            el.addEventListener("input", function () {
+                run(el.closest(".pc").querySelector("h2 .n").textContent);
+                var all = {}; document.querySelectorAll(".pc input, .pc select").forEach(function (x) { all[x.id] = x.value; });
+                try { localStorage.setItem(KEY, JSON.stringify(all)); } catch (e) {}
+            });
+            if (el.tagName === "INPUT") el.addEventListener("focus", function () { el.select(); });
+        });
+        document.querySelectorAll("[data-copy]").forEach(function (b) {
+            b.addEventListener("click", function () {
+                var v = $(b.dataset.copy).textContent;
+                if (v && v !== "—") window.DTH.copy(v.replace(/ (increase|decrease|\(no change\))$/, ""), "Copied " + v);
+            });
+        });
+    });
+    </script>
+</body>
+</html>

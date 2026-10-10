@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en" data-hub>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Image Compressor &amp; Resizer | Compress JPG, PNG &amp; WebP Online Free</title>
+    <meta name="description" content="Compress, resize and convert images online for free. Reduce JPG, PNG and WebP file size in bulk, convert to WebP, and download as a ZIP. Images never leave your device.">
+    <link rel="canonical" href="https://digitaltoolshub.github.io/image-compressor.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Digital Tools Hub">
+    <meta property="og:url" content="https://digitaltoolshub.github.io/image-compressor.html">
+    <meta property="og:title" content="Image Compressor &amp; Resizer | Compress JPG, PNG &amp; WebP Free">
+    <meta property="og:description" content="Reduce image file size, resize and convert to WebP in bulk. 100% private: images are processed in your browser.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- @head -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#090b13" media="(prefers-color-scheme: dark)">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <meta name="author" content="Rabeeh">
+    <script>try{var t=localStorage.getItem("dth:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"></noscript>
+    <link rel="stylesheet" href="assets/css/hub.css">
+    <link rel="preload" href="assets/img/icons.svg" as="image" type="image/svg+xml">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-R4N9RB1SNN");</script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" async></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
+    <!-- /@head -->
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Image Compressor & Resizer","url":"https://digitaltoolshub.github.io/image-compressor.html","description":"Compress, resize and convert JPG, PNG and WebP images in bulk, privately in your browser.","applicationCategory":"MultimediaApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://digitaltoolshub.github.io/"},{"@type":"ListItem","position":2,"name":"Design","item":"https://digitaltoolshub.github.io/design-tools.html"},{"@type":"ListItem","position":3,"name":"Image Compressor","item":"https://digitaltoolshub.github.io/image-compressor.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Are my images uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. Images are decoded, resized and re-encoded by your browser using the canvas API. Nothing is uploaded, so it's safe for personal photos and confidential documents."}},{"@type":"Question","name":"What quality setting should I use?","acceptedAnswer":{"@type":"Answer","text":"For photos, 75–85% gives a large size reduction with little visible difference. Go lower for thumbnails and previews. Quality doesn't apply to PNG, which is lossless; resize or convert to WebP to make PNGs smaller."}},{"@type":"Question","name":"Why did my PNG get bigger?","acceptedAnswer":{"@type":"Answer","text":"PNG is lossless, and re-encoding an already optimized PNG can produce a larger file. When that happens the tool keeps your original. Converting to WebP or JPEG, or reducing the dimensions, usually helps."}},{"@type":"Question","name":"Is image metadata removed?","acceptedAnswer":{"@type":"Answer","text":"Yes. Re-encoding strips EXIF data such as camera details and GPS location, which is good for privacy when sharing photos online."}}]}]}</script>
+    <style>
+        .ic-layout { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 16px; align-items: start; }
+        @media (max-width: 900px) { .ic-layout { grid-template-columns: 1fr; } }
+        .q-val { font-variant-numeric: tabular-nums; font-weight: 800; color: var(--text); }
+        .files { display: flex; flex-direction: column; gap: 10px; }
+        .file { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 10px 12px; border-radius: 14px; border: 1px solid var(--border); background: var(--bg-elev); cursor: pointer; transition: border-color .15s; }
+        .file:hover, .file.sel { border-color: var(--accent); }
+        .file img { width: 64px; height: 64px; object-fit: cover; border-radius: 10px; background: var(--bg-sunken); }
+        .file .nm { font-weight: 700; font-size: .92rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .file .meta { font-size: .8rem; color: var(--text-3); font-variant-numeric: tabular-nums; }
+        .file .save { font-weight: 800; font-variant-numeric: tabular-nums; }
+        .save.good { color: var(--ok); } .save.bad { color: var(--warn); }
+        .summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+        @media (max-width: 560px) { .summary { grid-template-columns: 1fr; } .file { grid-template-columns: 48px minmax(0, 1fr); } .file img { width: 48px; height: 48px; } .file .act { grid-column: 1 / -1; } }
+        .compare { position: relative; border-radius: 14px; overflow: hidden; background: repeating-conic-gradient(var(--bg-sunken) 0 25%, var(--bg-elev) 0 50%) 0 0 / 20px 20px; user-select: none; touch-action: none; max-height: 70vh; display: grid; place-items: center; }
+        .compare img { display: block; max-width: 100%; max-height: 70vh; }
+        .compare .after { position: absolute; inset: 0; display: grid; place-items: center; clip-path: inset(0 0 0 50%); }
+        .compare .handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.2); transform: translateX(-1px); pointer-events: none; }
+        .compare .handle::after { content: "⇆"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 34px; height: 34px; border-radius: 50%; background: #fff; color: #333; display: grid; place-items: center; font-weight: 800; box-shadow: var(--shadow); }
+        .compare .tag { position: absolute; top: 10px; padding: 3px 9px; border-radius: 8px; background: rgba(0,0,0,.6); color: #fff; font-size: .75rem; font-weight: 700; pointer-events: none; }
+        .busy { opacity: .55; }
+    </style>
+</head>
+<body>
+    <!-- @header -->
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="./" aria-label="Digital Tools Hub home"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+            <nav class="site-nav" aria-label="Main">
+                <div class="nav-dd">
+                    <button type="button" aria-haspopup="true">Tools<svg class="" aria-hidden="true"><use href="assets/img/icons.svg#chevron-down"></use></svg></button>
+                    <div class="mega">
+                        <a href="finance-tools.html" data-cat="finance"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#wallet"></use></svg></span><span><strong>Finance</strong><small>Calculators for money, loans, savings and markets</small></span></a>
+                        <a href="health-tools.html" data-cat="health"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#heart-pulse"></use></svg></span><span><strong>Health</strong><small>BMI, nutrition and lifetime body stats</small></span></a>
+                        <a href="productivity-tools.html" data-cat="productivity"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#rocket"></use></svg></span><span><strong>Productivity</strong><small>Timers, calculators, converters and writing tools</small></span></a>
+                        <a href="developer-tools.html" data-cat="dev"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#code"></use></svg></span><span><strong>Developer</strong><small>Formatters, encoders and generators for coders</small></span></a>
+                        <a href="design-tools.html" data-cat="design"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#palette"></use></svg></span><span><strong>Design</strong><small>Colors, images and QR codes</small></span></a>
+                        <a href="security-tools.html" data-cat="security"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#shield"></use></svg></span><span><strong>Security</strong><small>Passwords, strength checks and private messages</small></span></a>
+                        <a href="lifestyle-tools.html" data-cat="life"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg></span><span><strong>Lifestyle</strong><small>Age, travel, personality, sport and fun</small></span></a>
+                        <div class="mega-foot"><span>41 free tools, no sign-up</span><a href="./#tools">Browse all tools →</a></div>
+                    </div>
+                </div>
+                <a href="./#popular">Popular</a>
+                <a href="./#new">New</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="search-trigger" type="button" data-open-palette aria-label="Search tools"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#search"></use></svg><span class="label">Search 41 tools…</span><span class="kbd" data-mod-key>Ctrl K</span></button>
+                <button class="icon-btn" type="button" data-theme-toggle aria-label="Change theme"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#monitor"></use></svg></button>
+                <button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#menu"></use></svg></button>
+            </div>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobile-menu">
+        <nav aria-label="Mobile">
+            <a href="./"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#house"></use></svg></span>Home</a>
+            <a href="./#popular"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#flame"></use></svg></span>Popular tools</a>
+            <a href="./#new"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg></span>New tools</a>
+        </nav>
+        <h4>Categories</h4>
+        <nav aria-label="Categories">
+            <a href="finance-tools.html" data-cat="finance"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#wallet"></use></svg></span><span>Finance<small>8 tools</small></span></a>
+            <a href="health-tools.html" data-cat="health"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#heart-pulse"></use></svg></span><span>Health<small>6 tools</small></span></a>
+            <a href="productivity-tools.html" data-cat="productivity"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#rocket"></use></svg></span><span>Productivity<small>9 tools</small></span></a>
+            <a href="developer-tools.html" data-cat="dev"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#code"></use></svg></span><span>Developer<small>5 tools</small></span></a>
+            <a href="design-tools.html" data-cat="design"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#palette"></use></svg></span><span>Design<small>3 tools</small></span></a>
+            <a href="security-tools.html" data-cat="security"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#shield"></use></svg></span><span>Security<small>3 tools</small></span></a>
+            <a href="lifestyle-tools.html" data-cat="life"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg></span><span>Lifestyle<small>7 tools</small></span></a>
+        </nav>
+        <h4>Digital Tools Hub</h4>
+        <nav aria-label="Company">
+            <a href="about.html"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#info"></use></svg></span>About</a>
+            <a href="contact.html"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#mail"></use></svg></span>Contact</a>
+        </nav>
+    </div>
+    <!-- /@header -->
+
+    <main id="main" class="container">
+        <div class="page-head">
+            <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="./">Home</a><svg aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"></use></svg><a href="design-tools.html">Design</a><svg aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"></use></svg><span>Image Compressor</span></nav>
+            <h1><span class="tool-icon" data-cat="design"><svg aria-hidden="true"><use href="assets/img/icons.svg#image"></use></svg></span>Image Compressor &amp; Resizer</h1>
+            <p>Shrink JPG, PNG and WebP images, resize them and convert formats in bulk. Everything happens on your device: your photos are never uploaded.</p>
+            <div class="trust"><span><svg aria-hidden="true"><use href="assets/img/icons.svg#lock"></use></svg>No uploads</span><span><svg aria-hidden="true"><use href="assets/img/icons.svg#check"></use></svg>Batch &amp; ZIP download</span><span><svg aria-hidden="true"><use href="assets/img/icons.svg#check"></use></svg>Strips GPS/EXIF data</span></div>
+        </div>
+
+        <div class="ic-layout">
+            <section class="panel stack" aria-labelledby="set-h">
+                <h2 id="set-h" style="font-size:1.02rem;margin:0">Settings</h2>
+                <div class="field"><label for="fmt">Output format</label>
+                    <select class="select" id="fmt"><option value="same">Same as original</option><option value="image/webp">WebP (smallest)</option><option value="image/jpeg">JPEG</option><option value="image/png">PNG (lossless)</option></select></div>
+                <div class="field"><label for="q">Quality: <span class="q-val" id="q-val">80%</span></label><input type="range" id="q" min="10" max="100" step="1" value="80"></div>
+                <div class="cols-2" style="gap:10px">
+                    <div class="field"><label for="mw">Max width</label><div class="input-group"><input class="input" id="mw" type="number" min="1" placeholder="Any"><span class="addon">px</span></div></div>
+                    <div class="field"><label for="mh">Max height</label><div class="input-group"><input class="input" id="mh" type="number" min="1" placeholder="Any"><span class="addon">px</span></div></div>
+                </div>
+                <div class="row" style="gap:6px">
+                    <button class="btn btn-ghost btn-sm" type="button" data-size="1920">1920 px</button>
+                    <button class="btn btn-ghost btn-sm" type="button" data-size="1280">1280 px</button>
+                    <button class="btn btn-ghost btn-sm" type="button" data-size="800">800 px</button>
+                    <button class="btn btn-ghost btn-sm" type="button" data-size="">Original</button>
+                </div>
+                <div class="alert alert-info"><svg aria-hidden="true"><use href="assets/img/icons.svg#info"></use></svg><span>Images keep their aspect ratio and are never enlarged. Transparent areas become white in JPEG.</span></div>
+            </section>
+
+            <div class="stack">
+                <label class="dropzone" id="drop" for="file">
+                    <svg aria-hidden="true"><use href="assets/img/icons.svg#upload"></use></svg>
+                    <strong>Drop images here or click to choose</strong>
+                    <span class="muted">JPG, PNG, WebP, GIF or BMP · you can also paste with <span class="kbd">Ctrl/⌘ V</span></span>
+                </label>
+                <input type="file" id="file" accept="image/*" multiple hidden>
+
+                <section class="panel stack" id="results" hidden aria-labelledby="res-h">
+                    <div class="panel-head" style="margin:0"><h2 id="res-h">Results</h2>
+                        <div class="row">
+                            <button class="btn btn-ghost btn-sm" type="button" id="clear"><svg aria-hidden="true"><use href="assets/img/icons.svg#trash-2"></use></svg>Clear</button>
+                            <button class="btn btn-primary btn-sm" type="button" id="zip"><svg aria-hidden="true"><use href="assets/img/icons.svg#download"></use></svg>Download all (ZIP)</button>
+                        </div>
+                    </div>
+                    <div class="summary">
+                        <div class="stat"><div class="k">Original</div><div class="v" id="s-in">—</div></div>
+                        <div class="stat"><div class="k">Compressed</div><div class="v" id="s-out">—</div></div>
+                        <div class="stat stat-hero"><div class="k">Saved</div><div class="v" id="s-save">—</div></div>
+                    </div>
+                    <div class="files" id="list"></div>
+                </section>
+
+                <section class="panel" id="preview" hidden aria-labelledby="pv-h">
+                    <div class="panel-head"><h2 id="pv-h">Before / after</h2><span class="muted" id="pv-info" style="font-size:.85rem"></span></div>
+                    <div class="compare" id="cmp"><img id="pv-a" alt="Original image"><div class="after"><img id="pv-b" alt="Compressed image"></div><div class="handle" id="hd"></div><span class="tag" style="left:10px">Original</span><span class="tag" style="right:10px">Compressed</span></div>
+                </section>
+            </div>
+        </div>
+
+        <div class="cols-2" style="margin-top:48px;align-items:start;gap:40px">
+            <section class="prose" aria-labelledby="guide-h">
+                <h2 id="guide-h" style="margin-top:0">How to compress images without losing quality</h2>
+                <ol>
+                    <li><strong>Pick the right format.</strong> WebP is typically 25–35% smaller than JPEG at the same visual quality and is supported by every modern browser. Use JPEG when you need maximum compatibility, and PNG for screenshots, logos and graphics with sharp edges.</li>
+                    <li><strong>Resize to the size you'll display.</strong> A 4000 px photo shown at 1200 px wastes most of its bytes. Resizing is often the biggest single saving.</li>
+                    <li><strong>Lower quality gradually.</strong> Between 70% and 85% most people can't tell the difference, especially on phones. Use the before/after slider to check.</li>
+                </ol>
+                <p>Smaller images make websites load faster, which improves Core Web Vitals and search rankings, and they make email attachments and uploads quicker too.</p>
+            </section>
+            <section aria-labelledby="faq-h">
+                <h2 id="faq-h" style="font-size:1.4rem">FAQ</h2>
+                <div class="faq">
+                    <details><summary>Are my images uploaded?</summary><p>No. Images are decoded, resized and re-encoded by your browser using the canvas API. Nothing is uploaded, so it's safe for personal photos and confidential documents.</p></details>
+                    <details><summary>What quality setting should I use?</summary><p>For photos, 75–85% gives a large size reduction with little visible difference. Go lower for thumbnails and previews. Quality doesn't apply to PNG, which is lossless; resize or convert to WebP to make PNGs smaller.</p></details>
+                    <details><summary>Why did my PNG get bigger?</summary><p>PNG is lossless, and re-encoding an already optimized PNG can produce a larger file. When that happens the tool keeps your original. Converting to WebP or JPEG, or reducing the dimensions, usually helps.</p></details>
+                    <details><summary>Is image metadata removed?</summary><p>Yes. Re-encoding strips EXIF data such as camera details and GPS location, which is good for privacy when sharing photos online.</p></details>
+                </div>
+            </section>
+        </div>
+        <!-- @related -->
+        <section class="section reveal" aria-labelledby="rel-h" style="margin-top:32px">
+            <div class="section-head"><h2 id="rel-h"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layers"></use></svg>Related tools</h2><a class="see-all" href="design-tools.html">All design tools<svg class="" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></a></div>
+            <div class="grid">
+                <article class="card" data-id="chroma" data-cat="design" data-name="Color Palette Studio">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#palette"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Color Palette Studio to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="chroma-studio.html">Color Palette Studio</a></h3>
+                    <p>Generate palettes, extract colors from images and check WCAG contrast.</p>
+                    <div class="card-foot"><span class="cat-label">Design</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="qr" data-cat="design" data-name="QR Code Generator">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#qr-code"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add QR Code Generator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="qr.html">QR Code Generator</a></h3>
+                    <p>Create custom high-resolution QR codes with your colors and download instantly.</p>
+                    <div class="card-foot"><span class="cat-label">Design</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="currency" data-cat="finance" data-name="Currency Converter">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#banknote"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Currency Converter to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="currency.html">Currency Converter</a></h3>
+                    <p>Convert 150+ currencies with live exchange rates, historical charts and a market board.</p>
+                    <div class="card-foot"><span class="cat-label">Finance</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="compound" data-cat="finance" data-name="Compound Interest Calculator" data-new="1">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#trending-up"></use></svg></span>
+                        <div class="card-badges"><span class="badge badge-new">New</span><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Compound Interest Calculator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="compound-interest-calculator.html">Compound Interest Calculator</a></h3>
+                    <p>See how savings grow with compound interest and monthly contributions, with a chart and yearly table.</p>
+                    <div class="card-foot"><span class="cat-label">Finance</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+            </div>
+        </section>
+        <!-- /@related -->
+    </main>
+
+    <!-- @footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a class="brand" href="./"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+                    <p>41 free tools for money, health, work and code. No sign-up, no paywalls, and your data stays in your browser.</p>
+                    <div class="footer-badges"><span><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#lock"></use></svg>Private</span><span><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#zap"></use></svg>Instant</span><span><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#wifi-off"></use></svg>Works offline</span></div>
+                </div>
+                <div>
+                    <h4>Popular</h4>
+                    <ul>
+                        <li><a href="currency.html">Currency Converter</a></li>
+                        <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+                        <li><a href="bmi.html">BMI Calculator</a></li>
+                        <li><a href="kanban-board.html">Kanban Board</a></li>
+                        <li><a href="scientific-calculator.html">Scientific Calculator</a></li>
+                        <li><a href="percentage-calculator.html">Percentage Calculator</a></li>
+                        <li><a href="json-formatter.html">JSON Formatter</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>New tools</h4>
+                    <ul>
+                        <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+                        <li><a href="percentage-calculator.html">Percentage Calculator</a></li>
+                        <li><a href="date-calculator.html">Date Calculator</a></li>
+                        <li><a href="base64-encoder.html">Base64 &amp; URL Encoder</a></li>
+                        <li><a href="hash-generator.html">Hash Generator</a></li>
+                        <li><a href="uuid-generator.html">UUID Generator</a></li>
+                        <li><a href="image-compressor.html">Image Compressor &amp; Resizer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="finance-tools.html">Finance tools</a></li>
+                        <li><a href="health-tools.html">Health tools</a></li>
+                        <li><a href="productivity-tools.html">Productivity tools</a></li>
+                        <li><a href="developer-tools.html">Developer tools</a></li>
+                        <li><a href="design-tools.html">Design tools</a></li>
+                        <li><a href="security-tools.html">Security tools</a></li>
+                        <li><a href="lifestyle-tools.html">Lifestyle tools</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy policy</a></li>
+                        <li><a href="terms.html">Terms of service</a></li>
+                        <li><a href="sitemap.xml">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Digital Tools Hub. Built by <a href="about.html">Rabeeh</a>.</span>
+                <span>Tip: press <span class="kbd" data-mod-key>Ctrl K</span> anywhere to jump to a tool.</span>
+            </div>
+        </div>
+    </footer>
+    <button class="to-top" type="button" aria-label="Back to top"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#arrow-up"></use></svg></button>
+    <!-- /@footer -->
+
+    <!-- @scripts -->
+    <script src="assets/js/tools.js" defer></script>
+    <script src="assets/js/shell.js" defer></script>
+    <script src="assets/js/hub.js" defer></script>
+    <!-- /@scripts -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var $ = function (id) { return document.getElementById(id); };
+        var items = [], selected = null, seq = 0;
+        var EXT = { "image/webp": "webp", "image/jpeg": "jpg", "image/png": "png" };
+
+        function bytes(n) { return n < 1024 ? n + " B" : n < 1048576 ? (n / 1024).toFixed(1) + " KB" : (n / 1048576).toFixed(2) + " MB"; }
+        function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+        function settings() {
+            return { fmt: $("fmt").value, q: +$("q").value / 100, mw: parseInt($("mw").value, 10) || 0, mh: parseInt($("mh").value, 10) || 0 };
+        }
+        function decode(file) {
+            if (window.createImageBitmap) {
+                return createImageBitmap(file, { imageOrientation: "from-image" }).catch(function () { return createImageBitmap(file); }).catch(function () { return viaImg(file); });
+            }
+            return viaImg(file);
+        }
+        function viaImg(file) {
+            return new Promise(function (res, rej) {
+                var img = new Image(), url = URL.createObjectURL(file);
+                img.onload = function () { res(img); }; img.onerror = function () { URL.revokeObjectURL(url); rej(new Error("Can't read image")); };
+                img.src = url;
+            });
+        }
+        function encode(src, s, type) {
+            var w = src.width, h = src.height, scale = 1;
+            if (s.mw && w > s.mw) scale = Math.min(scale, s.mw / w);
+            if (s.mh && h > s.mh) scale = Math.min(scale, s.mh / h);
+            var cw = Math.max(1, Math.round(w * scale)), ch = Math.max(1, Math.round(h * scale));
+            var c = document.createElement("canvas"); c.width = cw; c.height = ch;
+            var ctx = c.getContext("2d");
+            if (type === "image/jpeg") { ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, cw, ch); }
+            ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = "high";
+            ctx.drawImage(src, 0, 0, cw, ch);
+            return new Promise(function (res) { c.toBlob(function (b) { res({ blob: b, w: cw, h: ch, resized: scale < 1 }); }, type, s.q); });
+        }
+        function process(it) {
+            var s = settings(), my = ++it.run;
+            var type = s.fmt === "same" ? (EXT[it.file.type] ? it.file.type : "image/png") : s.fmt;
+            it.el.classList.add("busy");
+            return (it.bmp ? Promise.resolve(it.bmp) : decode(it.file).then(function (b) { it.bmp = b; return b; }))
+                .then(function (bmp) { it.w0 = bmp.width; it.h0 = bmp.height; return encode(bmp, s, type); })
+                .then(function (r) {
+                    if (my !== it.run) return;
+                    if (!r.blob || r.blob.type !== type) {
+                        // Browser can't encode this format (e.g. WebP in old Safari): fall back to JPEG/PNG.
+                        if (type === "image/webp") return encode(it.bmp, s, it.file.type === "image/png" ? "image/png" : "image/jpeg").then(finish);
+                    }
+                    finish(r);
+                    function finish(r) {
+                        if (my !== it.run) return;
+                        var sameType = r.blob && r.blob.type === it.file.type;
+                        // Keep the original when re-encoding didn't help and nothing else changed.
+                        if (!r.blob || (sameType && !r.resized && r.blob.size >= it.file.size)) { it.out = it.file; it.kept = true; it.w = it.w0; it.h = it.h0; }
+                        else { it.out = r.blob; it.kept = false; it.w = r.w; it.h = r.h; }
+                        if (it.outUrl) URL.revokeObjectURL(it.outUrl);
+                        it.outUrl = URL.createObjectURL(it.out);
+                        render(it); summary();
+                        if (selected === it) showPreview(it);
+                    }
+                })
+                .catch(function () { it.error = true; render(it); })
+                .then(function () { it.el.classList.remove("busy"); });
+        }
+        function outName(it) {
+            var ext = EXT[it.out.type] || it.file.name.split(".").pop();
+            return it.file.name.replace(/\.[^.]+$/, "") + (it.kept ? "" : "-min") + "." + ext;
+        }
+        function render(it) {
+            if (it.error) { it.el.querySelector(".meta").textContent = "Couldn't read this image"; return; }
+            var saved = 1 - it.out.size / it.file.size;
+            it.el.querySelector(".meta").textContent = bytes(it.file.size) + " → " + bytes(it.out.size) + " · " + it.w + "×" + it.h + (it.w !== it.w0 ? " (from " + it.w0 + "×" + it.h0 + ")" : "") + " · " + (EXT[it.out.type] || "").toUpperCase();
+            var sv = it.el.querySelector(".save");
+            sv.textContent = it.kept ? "Already optimized" : (saved >= 0 ? "−" : "+") + Math.abs(saved * 100).toFixed(0) + "%";
+            sv.className = "save " + (saved > 0.02 ? "good" : "bad");
+        }
+        function summary() {
+            var done = items.filter(function (i) { return i.out; });
+            var a = done.reduce(function (s, i) { return s + i.file.size; }, 0), b = done.reduce(function (s, i) { return s + i.out.size; }, 0);
+            $("s-in").textContent = bytes(a); $("s-out").textContent = bytes(b);
+            $("s-save").textContent = a ? Math.max(0, (1 - b / a) * 100).toFixed(0) + "%" : "—";
+        }
+        function add(files) {
+            var list = Array.prototype.filter.call(files, function (f) { return /^image\//.test(f.type); });
+            if (!list.length) { window.DTH.toast("Please choose image files"); return; }
+            $("results").hidden = false;
+            list.forEach(function (f) {
+                var it = { id: ++seq, file: f, run: 0, inUrl: URL.createObjectURL(f) };
+                var el = document.createElement("div"); el.className = "file"; el.tabIndex = 0;
+                el.innerHTML = '<img alt="" src="' + it.inUrl + '"><div style="min-width:0"><div class="nm">' + esc(f.name) + '</div><div class="meta">Compressing…</div><div class="save"></div></div>' +
+                    '<div class="act"><button class="btn btn-secondary btn-sm" type="button"><svg aria-hidden="true"><use href="assets/img/icons.svg#download"></use></svg>Download</button></div>';
+                it.el = el;
+                el.addEventListener("click", function (e) {
+                    if (e.target.closest("button")) { if (it.out) download(it.outUrl, outName(it)); return; }
+                    select(it);
+                });
+                el.addEventListener("keydown", function (e) { if (e.key === "Enter") select(it); });
+                $("list").appendChild(el); items.push(it);
+                process(it).then(function () { if (!selected && it.out) select(it); });
+            });
+        }
+        function select(it) {
+            selected = it;
+            items.forEach(function (x) { x.el.classList.toggle("sel", x === it); });
+            showPreview(it);
+        }
+        function showPreview(it) {
+            if (!it.out) return;
+            $("preview").hidden = false;
+            $("pv-a").src = it.inUrl; $("pv-b").src = it.outUrl;
+            $("pv-info").textContent = it.file.name + " · " + bytes(it.file.size) + " → " + bytes(it.out.size);
+        }
+        function download(url, name) { var a = document.createElement("a"); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); }
+
+        // Compare slider
+        var cmp = $("cmp"), dragging = false;
+        function slide(e) {
+            var r = cmp.getBoundingClientRect(), p = Math.min(100, Math.max(0, (e.clientX - r.left) / r.width * 100));
+            cmp.querySelector(".after").style.clipPath = "inset(0 0 0 " + p + "%)"; $("hd").style.left = p + "%";
+        }
+        cmp.addEventListener("pointerdown", function (e) { dragging = true; cmp.setPointerCapture(e.pointerId); slide(e); });
+        cmp.addEventListener("pointermove", function (e) { if (dragging) slide(e); });
+        cmp.addEventListener("pointerup", function () { dragging = false; });
+
+        // Minimal ZIP writer (stored, no compression: images are already compressed).
+        var CRC = (function () { var t = new Uint32Array(256); for (var n = 0; n < 256; n++) { var c = n; for (var k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
+        function crc32(u8) { var c = 0xFFFFFFFF; for (var i = 0; i < u8.length; i++) c = CRC[(c ^ u8[i]) & 0xFF] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; }
+        function zip(files) {
+            var enc = new TextEncoder(), parts = [], central = [], offset = 0;
+            var d = new Date(), dosTime = (d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1), dosDate = ((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate();
+            files.forEach(function (f) {
+                var name = enc.encode(f.name), crc = crc32(f.data), size = f.data.length;
+                var h = new DataView(new ArrayBuffer(30));
+                h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(6, 0x0800, true); h.setUint16(8, 0, true);
+                h.setUint16(10, dosTime, true); h.setUint16(12, dosDate, true); h.setUint32(14, crc, true); h.setUint32(18, size, true); h.setUint32(22, size, true);
+                h.setUint16(26, name.length, true); h.setUint16(28, 0, true);
+                parts.push(h.buffer, name, f.data);
+                var c = new DataView(new ArrayBuffer(46));
+                c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 20, true); c.setUint16(8, 0x0800, true); c.setUint16(10, 0, true);
+                c.setUint16(12, dosTime, true); c.setUint16(14, dosDate, true); c.setUint32(16, crc, true); c.setUint32(20, size, true); c.setUint32(24, size, true);
+                c.setUint16(28, name.length, true); c.setUint32(42, offset, true);
+                central.push(c.buffer, name);
+                offset += 30 + name.length + size;
+            });
+            var cSize = central.reduce(function (s, p) { return s + (p.byteLength || p.length); }, 0);
+            var e = new DataView(new ArrayBuffer(22));
+            e.setUint32(0, 0x06054b50, true); e.setUint16(8, files.length, true); e.setUint16(10, files.length, true); e.setUint32(12, cSize, true); e.setUint32(16, offset, true);
+            return new Blob(parts.concat(central, [e.buffer]), { type: "application/zip" });
+        }
+        $("zip").addEventListener("click", function () {
+            var done = items.filter(function (i) { return i.out; });
+            if (!done.length) return;
+            if (done.length === 1) { download(done[0].outUrl, outName(done[0])); return; }
+            var used = {};
+            Promise.all(done.map(function (it) {
+                return it.out.arrayBuffer().then(function (buf) {
+                    var n = outName(it), base = n, k = 1;
+                    while (used[n]) n = base.replace(/(\.[^.]+)$/, "-" + (k++) + "$1");
+                    used[n] = 1;
+                    return { name: n, data: new Uint8Array(buf) };
+                });
+            })).then(function (files) {
+                var url = URL.createObjectURL(zip(files));
+                download(url, "compressed-images.zip");
+                setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+            });
+        });
+        $("clear").addEventListener("click", function () {
+            items.forEach(function (i) { URL.revokeObjectURL(i.inUrl); if (i.outUrl) URL.revokeObjectURL(i.outUrl); if (i.bmp && i.bmp.close) i.bmp.close(); });
+            items = []; selected = null; $("list").innerHTML = ""; $("results").hidden = true; $("preview").hidden = true;
+        });
+
+        // Inputs
+        $("file").addEventListener("change", function () { add(this.files); this.value = ""; });
+        var drop = $("drop");
+        ["dragenter", "dragover"].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add("over"); }); });
+        ["dragleave", "drop"].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove("over"); }); });
+        drop.addEventListener("drop", function (e) { if (e.dataTransfer.files.length) add(e.dataTransfer.files); });
+        document.addEventListener("paste", function (e) {
+            var files = Array.prototype.map.call(e.clipboardData ? e.clipboardData.items : [], function (i) { return i.kind === "file" ? i.getAsFile() : null; }).filter(Boolean);
+            if (files.length) add(files);
+        });
+        var t;
+        function reprocess() { clearTimeout(t); t = setTimeout(function () { items.forEach(process); }, 250); }
+        $("q").addEventListener("input", function () { $("q-val").textContent = this.value + "%"; reprocess(); });
+        ["fmt", "mw", "mh"].forEach(function (id) { $(id).addEventListener("input", reprocess); });
+        $("fmt").addEventListener("change", function () { $("q").disabled = this.value === "image/png"; });
+        document.querySelectorAll("[data-size]").forEach(function (b) {
+            b.addEventListener("click", function () { $("mw").value = b.dataset.size; $("mh").value = b.dataset.size; reprocess(); });
+        });
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en" data-hub>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Base64 Encode &amp; Decode Online | URL Encoder, HTML Entities &amp; JWT Decoder</title>
+    <meta name="description" content="Free Base64 encoder and decoder with full Unicode support, plus URL encode/decode, HTML entity encoder and JWT decoder. Convert files to Base64 data URIs. Private, runs in your browser.">
+    <link rel="canonical" href="https://digitaltoolshub.github.io/base64-encoder.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Digital Tools Hub">
+    <meta property="og:url" content="https://digitaltoolshub.github.io/base64-encoder.html">
+    <meta property="og:title" content="Base64 Encode &amp; Decode | URL Encoder &amp; JWT Decoder">
+    <meta property="og:description" content="Encode and decode Base64, URLs and HTML entities, and inspect JWT tokens. Unicode-safe and 100% private.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- @head -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#090b13" media="(prefers-color-scheme: dark)">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <meta name="author" content="Rabeeh">
+    <script>try{var t=localStorage.getItem("dth:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"></noscript>
+    <link rel="stylesheet" href="assets/css/hub.css">
+    <link rel="preload" href="assets/img/icons.svg" as="image" type="image/svg+xml">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-R4N9RB1SNN");</script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" async></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
+    <!-- /@head -->
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Base64 & URL Encoder","url":"https://digitaltoolshub.github.io/base64-encoder.html","description":"Encode and decode Base64, URLs and HTML entities, and decode JWT tokens. Unicode-safe and private.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://digitaltoolshub.github.io/"},{"@type":"ListItem","position":2,"name":"Developer","item":"https://digitaltoolshub.github.io/developer-tools.html"},{"@type":"ListItem","position":3,"name":"Base64 & URL Encoder","item":"https://digitaltoolshub.github.io/base64-encoder.html"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is Base64 encoding?","acceptedAnswer":{"@type":"Answer","text":"Base64 represents binary data using 64 printable characters (A–Z, a–z, 0–9, + and /). It's used to embed images in HTML or CSS, send attachments in email and carry binary data in JSON. It is an encoding, not encryption."}},{"@type":"Question","name":"What is URL-safe Base64?","acceptedAnswer":{"@type":"Answer","text":"URL-safe Base64 replaces + with - and / with _ and usually drops the = padding, so the result can be used in URLs and file names. JWTs use this variant."}},{"@type":"Question","name":"Does the JWT decoder verify signatures?","acceptedAnswer":{"@type":"Answer","text":"No. It decodes the header and payload so you can read the claims and expiry, but verifying a signature requires the secret or public key and should be done on your server."}}]}]}</script>
+    <style>
+        .b64-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 12px; align-items: stretch; }
+        @media (max-width: 900px) { .b64-grid { grid-template-columns: 1fr; } .swap-col { flex-direction: row !important; justify-content: center; } }
+        .b64-grid .panel { display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+        .pane-bar { min-height: 54px; display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-bottom: 1px solid var(--border); flex-wrap: wrap; background: var(--bg-sunken); }
+        .pane-bar h2 { font-size: .9rem; margin: 0 auto 0 4px; }
+        .b64-grid textarea { flex: 1; border: 0; border-radius: 0; resize: vertical; min-height: 320px; padding: 14px 16px; background: transparent; box-shadow: none; word-break: break-all; }
+        .b64-grid textarea:focus { box-shadow: none; }
+        .status { padding: 8px 14px; border-top: 1px solid var(--border); font-size: .8rem; color: var(--text-3); background: var(--bg-sunken); display: flex; gap: 14px; flex-wrap: wrap; }
+        .status .bad { color: var(--danger); font-weight: 650; }
+        .swap-col { display: flex; flex-direction: column; justify-content: center; gap: 8px; }
+        .opts { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; font-size: .9rem; }
+        .opts label { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; }
+        .jwt { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+        @media (max-width: 900px) { .jwt { grid-template-columns: 1fr; } }
+        .jwt pre { margin: 0; padding: 14px 16px; font-family: var(--mono); font-size: .86rem; white-space: pre-wrap; word-break: break-word; background: var(--bg-sunken); border-radius: 12px; border: 1px solid var(--border); min-height: 120px; }
+        .claims { display: grid; gap: 8px; margin-top: 12px; font-size: .9rem; }
+        .claims div { display: flex; justify-content: space-between; gap: 12px; padding: 8px 12px; border-radius: 10px; background: var(--bg-sunken); }
+        .tok { font-family: var(--mono); font-size: .86rem; word-break: break-all; }
+        .tok .h { color: var(--c-health); } .tok .p { color: var(--c-design); } .tok .s { color: var(--c-security); }
+    </style>
+</head>
+<body>
+    <!-- @header -->
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="./" aria-label="Digital Tools Hub home"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+            <nav class="site-nav" aria-label="Main">
+                <div class="nav-dd">
+                    <button type="button" aria-haspopup="true">Tools<svg class="" aria-hidden="true"><use href="assets/img/icons.svg#chevron-down"></use></svg></button>
+                    <div class="mega">
+                        <a href="finance-tools.html" data-cat="finance"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#wallet"></use></svg></span><span><strong>Finance</strong><small>Calculators for money, loans, savings and markets</small></span></a>
+                        <a href="health-tools.html" data-cat="health"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#heart-pulse"></use></svg></span><span><strong>Health</strong><small>BMI, nutrition and lifetime body stats</small></span></a>
+                        <a href="productivity-tools.html" data-cat="productivity"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#rocket"></use></svg></span><span><strong>Productivity</strong><small>Timers, calculators, converters and writing tools</small></span></a>
+                        <a href="developer-tools.html" data-cat="dev"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#code"></use></svg></span><span><strong>Developer</strong><small>Formatters, encoders and generators for coders</small></span></a>
+                        <a href="design-tools.html" data-cat="design"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#palette"></use></svg></span><span><strong>Design</strong><small>Colors, images and QR codes</small></span></a>
+                        <a href="security-tools.html" data-cat="security"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#shield"></use></svg></span><span><strong>Security</strong><small>Passwords, strength checks and private messages</small></span></a>
+                        <a href="lifestyle-tools.html" data-cat="life"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg></span><span><strong>Lifestyle</strong><small>Age, travel, personality, sport and fun</small></span></a>
+                        <div class="mega-foot"><span>41 free tools, no sign-up</span><a href="./#tools">Browse all tools →</a></div>
+                    </div>
+                </div>
+                <a href="./#popular">Popular</a>
+                <a href="./#new">New</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="search-trigger" type="button" data-open-palette aria-label="Search tools"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#search"></use></svg><span class="label">Search 41 tools…</span><span class="kbd" data-mod-key>Ctrl K</span></button>
+                <button class="icon-btn" type="button" data-theme-toggle aria-label="Change theme"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#monitor"></use></svg></button>
+                <button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#menu"></use></svg></button>
+            </div>
+        </div>
+    </header>
+    <div class="mobile-menu" id="mobile-menu">
+        <nav aria-label="Mobile">
+            <a href="./"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#house"></use></svg></span>Home</a>
+            <a href="./#popular"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#flame"></use></svg></span>Popular tools</a>
+            <a href="./#new"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg></span>New tools</a>
+        </nav>
+        <h4>Categories</h4>
+        <nav aria-label="Categories">
+            <a href="finance-tools.html" data-cat="finance"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#wallet"></use></svg></span><span>Finance<small>8 tools</small></span></a>
+            <a href="health-tools.html" data-cat="health"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#heart-pulse"></use></svg></span><span>Health<small>6 tools</small></span></a>
+            <a href="productivity-tools.html" data-cat="productivity"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#rocket"></use></svg></span><span>Productivity<small>9 tools</small></span></a>
+            <a href="developer-tools.html" data-cat="dev"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#code"></use></svg></span><span>Developer<small>5 tools</small></span></a>
+            <a href="design-tools.html" data-cat="design"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#palette"></use></svg></span><span>Design<small>3 tools</small></span></a>
+            <a href="security-tools.html" data-cat="security"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#shield"></use></svg></span><span>Security<small>3 tools</small></span></a>
+            <a href="lifestyle-tools.html" data-cat="life"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg></span><span>Lifestyle<small>7 tools</small></span></a>
+        </nav>
+        <h4>Digital Tools Hub</h4>
+        <nav aria-label="Company">
+            <a href="about.html"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#info"></use></svg></span>About</a>
+            <a href="contact.html"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#mail"></use></svg></span>Contact</a>
+        </nav>
+    </div>
+    <!-- /@header -->
+
+    <main id="main" class="container">
+        <div class="page-head">
+            <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="./">Home</a><svg aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"></use></svg><a href="developer-tools.html">Developer</a><svg aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"></use></svg><span>Base64 &amp; URL Encoder</span></nav>
+            <h1><span class="tool-icon" data-cat="dev"><svg aria-hidden="true"><use href="assets/img/icons.svg#binary"></use></svg></span>Base64 &amp; URL Encoder</h1>
+            <p>Encode and decode Base64, URLs and HTML entities, convert files to data URIs and inspect JWT tokens. Unicode-safe, live as you type, and nothing leaves your browser.</p>
+            <div class="trust"><span><svg aria-hidden="true"><use href="assets/img/icons.svg#check"></use></svg>UTF-8 &amp; emoji safe</span><span><svg aria-hidden="true"><use href="assets/img/icons.svg#check"></use></svg>File → data URI</span><span><svg aria-hidden="true"><use href="assets/img/icons.svg#lock"></use></svg>Safe for tokens</span></div>
+        </div>
+
+        <div class="row" style="margin-bottom:14px;justify-content:space-between">
+            <div class="segmented" role="tablist" aria-label="Encoding">
+                <button type="button" role="tab" aria-selected="true" data-mode="b64">Base64</button>
+                <button type="button" role="tab" aria-selected="false" data-mode="url">URL</button>
+                <button type="button" role="tab" aria-selected="false" data-mode="html">HTML entities</button>
+                <button type="button" role="tab" aria-selected="false" data-mode="jwt">JWT decoder</button>
+            </div>
+            <div class="segmented" role="group" aria-label="Direction" id="dir-group">
+                <button type="button" aria-pressed="true" data-dir="enc">Encode</button>
+                <button type="button" aria-pressed="false" data-dir="dec">Decode</button>
+            </div>
+        </div>
+
+        <div id="codec">
+            <div class="b64-grid">
+                <section class="panel" aria-labelledby="in-h">
+                    <div class="pane-bar"><h2 id="in-h">Input</h2>
+                        <label class="btn btn-ghost btn-sm" for="file" id="file-btn" style="cursor:pointer"><svg aria-hidden="true"><use href="assets/img/icons.svg#upload"></use></svg>File</label>
+                        <input type="file" id="file" hidden>
+                        <button class="btn btn-ghost btn-sm" type="button" id="clear"><svg aria-hidden="true"><use href="assets/img/icons.svg#trash-2"></use></svg>Clear</button></div>
+                    <label class="sr-only" for="in">Input text</label>
+                    <textarea class="textarea" id="in" spellcheck="false" placeholder="Type or paste text…"></textarea>
+                    <div class="status" id="in-st"><span>0 characters</span></div>
+                </section>
+                <div class="swap-col"><button class="icon-btn" type="button" id="swap" title="Swap input and output" aria-label="Swap input and output"><svg aria-hidden="true"><use href="assets/img/icons.svg#arrow-up-down"></use></svg></button></div>
+                <section class="panel" aria-labelledby="out-h">
+                    <div class="pane-bar"><h2 id="out-h">Output</h2>
+                        <button class="btn btn-ghost btn-sm" type="button" id="copy"><svg aria-hidden="true"><use href="assets/img/icons.svg#copy"></use></svg>Copy</button>
+                        <button class="btn btn-ghost btn-sm" type="button" id="save"><svg aria-hidden="true"><use href="assets/img/icons.svg#download"></use></svg>Save</button></div>
+                    <label class="sr-only" for="out">Output</label>
+                    <textarea class="textarea" id="out" spellcheck="false" readonly></textarea>
+                    <div class="status" id="out-st"><span>—</span></div>
+                </section>
+            </div>
+            <div class="panel opts" style="margin-top:12px" id="opts">
+                <label data-for="b64"><input type="checkbox" id="o-urlsafe"> URL-safe (- and _, no padding)</label>
+                <label data-for="b64"><input type="checkbox" id="o-wrap"> Wrap at 76 characters (MIME)</label>
+                <label data-for="b64" id="o-datauri-l"><input type="checkbox" id="o-datauri" checked> Files as data URI</label>
+                <label data-for="url"><input type="checkbox" id="o-full"> Encode full URL (keep :/?#&amp;=)</label>
+                <label data-for="url"><input type="checkbox" id="o-plus"> Spaces as +</label>
+                <label data-for="html"><input type="checkbox" id="o-all"> Encode all non-ASCII characters</label>
+            </div>
+        </div>
+
+        <div id="jwt" hidden>
+            <section class="panel stack" aria-labelledby="jwt-h">
+                <h2 id="jwt-h" style="font-size:1.02rem;margin:0">Paste a JSON Web Token</h2>
+                <label class="sr-only" for="jwt-in">JWT</label>
+                <textarea class="textarea" id="jwt-in" rows="4" spellcheck="false" placeholder="eyJhbGciOi…"></textarea>
+                <div class="tok" id="jwt-tok" aria-hidden="true"></div>
+                <div id="jwt-err"></div>
+            </section>
+            <div class="jwt" style="margin-top:16px">
+                <section class="panel"><div class="panel-head"><h2>Header</h2><button class="btn btn-ghost btn-sm" type="button" data-copy-pre="jwt-h-out"><svg aria-hidden="true"><use href="assets/img/icons.svg#copy"></use></svg>Copy</button></div><pre id="jwt-h-out"></pre></section>
+                <section class="panel"><div class="panel-head"><h2>Payload</h2><button class="btn btn-ghost btn-sm" type="button" data-copy-pre="jwt-p-out"><svg aria-hidden="true"><use href="assets/img/icons.svg#copy"></use></svg>Copy</button></div><pre id="jwt-p-out"></pre><div class="claims" id="claims"></div></section>
+            </div>
+            <div class="alert alert-info" style="margin-top:16px"><svg aria-hidden="true"><use href="assets/img/icons.svg#info"></use></svg><span>The signature is not verified. Decoding happens locally, so it's safe to inspect production tokens.</span></div>
+        </div>
+
+        <div class="cols-2" style="margin-top:48px;align-items:start;gap:40px">
+            <section class="prose" aria-labelledby="guide-h">
+                <h2 id="guide-h" style="margin-top:0">Base64, URL and HTML encoding explained</h2>
+                <ul>
+                    <li><strong>Base64</strong> turns any bytes into plain text. Every 3 bytes become 4 characters, so output is about 33% larger. Text is converted to UTF-8 first, so emoji and non-Latin scripts round-trip correctly.</li>
+                    <li><strong>URL encoding</strong> (percent-encoding) replaces characters that have special meaning in URLs, like spaces, <code>&amp;</code> and <code>?</code>, with <code>%XX</code> codes. Use component mode for query values, and full-URL mode to clean up a whole link.</li>
+                    <li><strong>HTML entities</strong> escape <code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code> and quotes so text displays literally instead of being parsed as markup, which helps prevent XSS.</li>
+                    <li><strong>JWTs</strong> are three URL-safe Base64 parts: header, payload and signature. The decoder shows the claims and turns <code>exp</code>, <code>iat</code> and <code>nbf</code> into readable dates.</li>
+                </ul>
+                <p>Remember: Base64 is not encryption. Anyone can decode it. Use the <a href="decoder.html">steganography studio</a> or proper encryption for secrets.</p>
+            </section>
+            <section aria-labelledby="faq-h">
+                <h2 id="faq-h" style="font-size:1.4rem">FAQ</h2>
+                <div class="faq">
+                    <details><summary>What is Base64 encoding?</summary><p>Base64 represents binary data using 64 printable characters (A–Z, a–z, 0–9, + and /). It's used to embed images in HTML or CSS, send attachments in email and carry binary data in JSON. It is an encoding, not encryption.</p></details>
+                    <details><summary>What is URL-safe Base64?</summary><p>URL-safe Base64 replaces + with - and / with _ and usually drops the = padding, so the result can be used in URLs and file names. JWTs use this variant.</p></details>
+                    <details><summary>Does the JWT decoder verify signatures?</summary><p>No. It decodes the header and payload so you can read the claims and expiry, but verifying a signature requires the secret or public key and should be done on your server.</p></details>
+                </div>
+            </section>
+        </div>
+        <!-- @related -->
+        <section class="section reveal" aria-labelledby="rel-h" style="margin-top:32px">
+            <div class="section-head"><h2 id="rel-h"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layers"></use></svg>Related tools</h2><a class="see-all" href="developer-tools.html">All developer tools<svg class="" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></a></div>
+            <div class="grid">
+                <article class="card" data-id="json" data-cat="dev" data-name="JSON Formatter">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#braces"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add JSON Formatter to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="json-formatter.html">JSON Formatter</a></h3>
+                    <p>Format, validate, minify and explore JSON with precise error locations. Runs locally.</p>
+                    <div class="card-foot"><span class="cat-label">Developer</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="hash" data-cat="dev" data-name="Hash Generator" data-new="1">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#hash"></use></svg></span>
+                        <div class="card-badges"><span class="badge badge-new">New</span><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Hash Generator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="hash-generator.html">Hash Generator</a></h3>
+                    <p>MD5, SHA-1, SHA-256, SHA-384 and SHA-512 hashes of text or files, plus HMAC signing.</p>
+                    <div class="card-foot"><span class="cat-label">Developer</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="uuid" data-cat="dev" data-name="UUID Generator" data-new="1">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#fingerprint"></use></svg></span>
+                        <div class="card-badges"><span class="badge badge-new">New</span><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add UUID Generator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="uuid-generator.html">UUID Generator</a></h3>
+                    <p>Generate UUID v4 and time-ordered v7 identifiers in bulk, validate UUIDs and copy in one click.</p>
+                    <div class="card-foot"><span class="cat-label">Developer</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+                <article class="card" data-id="data" data-cat="dev" data-name="Mock Data Generator">
+                    <div class="card-top">
+                        <span class="tool-icon"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#database"></use></svg></span>
+                        <div class="card-badges"><button class="fav-btn" type="button" aria-pressed="false" aria-label="Add Mock Data Generator to favourites"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#star"></use></svg></button></div>
+                    </div>
+                    <h3><a href="data-generator.html">Mock Data Generator</a></h3>
+                    <p>Generate realistic test data from a custom schema and export it as JSON or CSV.</p>
+                    <div class="card-foot"><span class="cat-label">Developer</span><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#arrow-right"></use></svg></div>
+                </article>
+            </div>
+        </section>
+        <!-- /@related -->
+    </main>
+
+    <!-- @footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a class="brand" href="./"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+                    <p>41 free tools for money, health, work and code. No sign-up, no paywalls, and your data stays in your browser.</p>
+                    <div class="footer-badges"><span><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#lock"></use></svg>Private</span><span><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#zap"></use></svg>Instant</span><span><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#wifi-off"></use></svg>Works offline</span></div>
+                </div>
+                <div>
+                    <h4>Popular</h4>
+                    <ul>
+                        <li><a href="currency.html">Currency Converter</a></li>
+                        <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+                        <li><a href="bmi.html">BMI Calculator</a></li>
+                        <li><a href="kanban-board.html">Kanban Board</a></li>
+                        <li><a href="scientific-calculator.html">Scientific Calculator</a></li>
+                        <li><a href="percentage-calculator.html">Percentage Calculator</a></li>
+                        <li><a href="json-formatter.html">JSON Formatter</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>New tools</h4>
+                    <ul>
+                        <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+                        <li><a href="percentage-calculator.html">Percentage Calculator</a></li>
+                        <li><a href="date-calculator.html">Date Calculator</a></li>
+                        <li><a href="base64-encoder.html">Base64 &amp; URL Encoder</a></li>
+                        <li><a href="hash-generator.html">Hash Generator</a></li>
+                        <li><a href="uuid-generator.html">UUID Generator</a></li>
+                        <li><a href="image-compressor.html">Image Compressor &amp; Resizer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="finance-tools.html">Finance tools</a></li>
+                        <li><a href="health-tools.html">Health tools</a></li>
+                        <li><a href="productivity-tools.html">Productivity tools</a></li>
+                        <li><a href="developer-tools.html">Developer tools</a></li>
+                        <li><a href="design-tools.html">Design tools</a></li>
+                        <li><a href="security-tools.html">Security tools</a></li>
+                        <li><a href="lifestyle-tools.html">Lifestyle tools</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy policy</a></li>
+                        <li><a href="terms.html">Terms of service</a></li>
+                        <li><a href="sitemap.xml">Sitemap</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Digital Tools Hub. Built by <a href="about.html">Rabeeh</a>.</span>
+                <span>Tip: press <span class="kbd" data-mod-key>Ctrl K</span> anywhere to jump to a tool.</span>
+            </div>
+        </div>
+    </footer>
+    <button class="to-top" type="button" aria-label="Back to top"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#arrow-up"></use></svg></button>
+    <!-- /@footer -->
+
+    <!-- @scripts -->
+    <script src="assets/js/tools.js" defer></script>
+    <script src="assets/js/shell.js" defer></script>
+    <script src="assets/js/hub.js" defer></script>
+    <!-- /@scripts -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var $ = function (id) { return document.getElementById(id); };
+        var mode = "b64", dir = "enc", fileOut = null;
+        var enc = new TextEncoder(), dec = new TextDecoder("utf-8", { fatal: true });
+
+        function bytesToB64(u8) {
+            var s = "", CH = 0x8000;
+            for (var i = 0; i < u8.length; i += CH) s += String.fromCharCode.apply(null, u8.subarray(i, i + CH));
+            return btoa(s);
+        }
+        function b64ToBytes(s) {
+            s = s.replace(/^data:[^,]*,/, "").replace(/\s+/g, "").replace(/-/g, "+").replace(/_/g, "/");
+            if (/[^A-Za-z0-9+/=]/.test(s)) throw new Error("Contains characters that aren't valid Base64");
+            s = s.replace(/=+$/, "");
+            if (s.length % 4 === 1) throw new Error("Invalid length for Base64");
+            while (s.length % 4) s += "=";
+            var bin = atob(s), u8 = new Uint8Array(bin.length);
+            for (var i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i);
+            return u8;
+        }
+        function b64Opts(s) {
+            if ($("o-urlsafe").checked) s = s.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+            if ($("o-wrap").checked) s = s.replace(/(.{76})(?=.)/g, "$1\n");
+            return s;
+        }
+        function htmlEncode(s) {
+            var all = $("o-all").checked;
+            return s.replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; })
+                .replace(all ? /[^\x00-\x7E]/gu : /(?!)/g, function (c) { return "&#x" + c.codePointAt(0).toString(16).toUpperCase() + ";"; });
+        }
+        function htmlDecode(s) { var t = document.createElement("textarea"); t.innerHTML = s; return t.value; }
+
+        function run() {
+            var input = $("in").value, out = "", err = "", info = "";
+            fileOut = null;
+            try {
+                if (mode === "b64") {
+                    if (dir === "enc") out = b64Opts(bytesToB64(enc.encode(input)));
+                    else if (input.trim()) {
+                        var u8 = b64ToBytes(input);
+                        try { out = dec.decode(u8); }
+                        catch (e) { out = ""; fileOut = u8; info = "Decoded " + u8.length + " bytes of binary data. Use Save to download it."; }
+                    }
+                } else if (mode === "url") {
+                    var plus = $("o-plus").checked, full = $("o-full").checked;
+                    if (dir === "enc") { out = full ? encodeURI(input) : encodeURIComponent(input); if (plus) out = out.replace(/%20/g, "+"); }
+                    else out = decodeURIComponent(plus ? input.replace(/\+/g, " ") : input);
+                } else if (mode === "html") {
+                    out = dir === "enc" ? htmlEncode(input) : htmlDecode(input);
+                }
+            } catch (e) { err = e && e.message ? e.message : "Couldn't decode the input"; if (mode === "url") err = "Malformed percent-encoding (e.g. a stray % sign)"; }
+            $("out").value = err ? "" : out;
+            var ib = enc.encode(input).length, ob = fileOut ? fileOut.length : enc.encode(out).length;
+            $("in-st").innerHTML = "<span>" + input.length.toLocaleString() + " characters</span><span>" + ib.toLocaleString() + " bytes</span>";
+            $("out-st").innerHTML = err ? '<span class="bad">✕ ' + err.replace(/</g, "&lt;") + "</span>" : info ? "<span>" + info + "</span>" :
+                "<span>" + out.length.toLocaleString() + " characters</span><span>" + ob.toLocaleString() + " bytes</span>" + (ib ? "<span>" + (ob / ib * 100).toFixed(0) + "% of input</span>" : "");
+            try { localStorage.setItem("dth:b64", JSON.stringify({ mode: mode, dir: dir, text: input.length < 100000 ? input : "" })); } catch (e) {}
+        }
+
+        // ---------- JWT ----------
+        function jwt() {
+            var t = $("jwt-in").value.trim(), parts = t.split(".");
+            var hOut = $("jwt-h-out"), pOut = $("jwt-p-out"), err = $("jwt-err"), claims = $("claims"), tok = $("jwt-tok");
+            hOut.textContent = ""; pOut.textContent = ""; claims.innerHTML = ""; err.innerHTML = ""; tok.innerHTML = "";
+            if (!t) return;
+            function esc(s) { return s.replace(/[&<>]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); }
+            if (parts.length < 2) { err.innerHTML = '<div class="alert alert-error">A JWT has three parts separated by dots.</div>'; return; }
+            tok.innerHTML = '<span class="h">' + esc(parts[0]) + '</span>.<span class="p">' + esc(parts[1]) + "</span>" + (parts[2] != null ? '.<span class="s">' + esc(parts[2]) + "</span>" : "");
+            try {
+                var h = JSON.parse(dec.decode(b64ToBytes(parts[0]))), p = JSON.parse(dec.decode(b64ToBytes(parts[1])));
+                hOut.textContent = JSON.stringify(h, null, 2); pOut.textContent = JSON.stringify(p, null, 2);
+                var now = Date.now() / 1000, rows = [];
+                function when(s) { return new Date(s * 1000).toLocaleString(); }
+                if (h.alg) rows.push(["Algorithm", h.alg]);
+                if (p.sub != null) rows.push(["Subject", String(p.sub)]);
+                if (p.iss) rows.push(["Issuer", String(p.iss)]);
+                if (typeof p.iat === "number") rows.push(["Issued", when(p.iat)]);
+                if (typeof p.nbf === "number") rows.push(["Not before", when(p.nbf) + (p.nbf > now ? " (not yet valid)" : "")]);
+                if (typeof p.exp === "number") rows.push(["Expires", when(p.exp) + (p.exp < now ? " ✕ expired" : " ✓ valid")]);
+                claims.innerHTML = rows.map(function (r) { return "<div><span class='muted'>" + esc(r[0]) + "</span><strong>" + esc(r[1]) + "</strong></div>"; }).join("");
+            } catch (e) { err.innerHTML = '<div class="alert alert-error">This doesn\'t look like a valid JWT: the header or payload isn\'t Base64-encoded JSON.</div>'; }
+        }
+
+        // ---------- wiring ----------
+        function setMode(m) {
+            mode = m;
+            document.querySelectorAll("[data-mode]").forEach(function (b) { b.setAttribute("aria-selected", b.dataset.mode === m ? "true" : "false"); });
+            $("codec").hidden = m === "jwt"; $("jwt").hidden = m !== "jwt"; $("dir-group").hidden = m === "jwt";
+            document.querySelectorAll("#opts [data-for]").forEach(function (l) { l.hidden = l.dataset.for !== m; });
+            $("file-btn").hidden = m !== "b64";
+            if (m === "jwt") jwt(); else run();
+        }
+        function setDir(d) {
+            dir = d;
+            document.querySelectorAll("[data-dir]").forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.dir === d ? "true" : "false"); });
+            $("in").placeholder = d === "enc" ? "Type or paste text to encode…" : "Paste encoded text to decode…";
+            run();
+        }
+        document.querySelectorAll("[data-mode]").forEach(function (b) { b.addEventListener("click", function () { setMode(b.dataset.mode); }); });
+        document.querySelectorAll("[data-dir]").forEach(function (b) { b.addEventListener("click", function () { setDir(b.dataset.dir); }); });
+        $("in").addEventListener("input", run);
+        document.querySelectorAll("#opts input").forEach(function (i) { i.addEventListener("change", run); });
+        $("jwt-in").addEventListener("input", jwt);
+        $("swap").addEventListener("click", function () { if (fileOut) return; $("in").value = $("out").value; setDir(dir === "enc" ? "dec" : "enc"); });
+        $("clear").addEventListener("click", function () { $("in").value = ""; run(); $("in").focus(); });
+        $("copy").addEventListener("click", function () { if ($("out").value) window.DTH.copy($("out").value, "Copied output"); });
+        $("save").addEventListener("click", function () {
+            var blob = fileOut ? new Blob([fileOut]) : new Blob([$("out").value], { type: "text/plain" });
+            if (!blob.size) return;
+            var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = fileOut ? "decoded.bin" : "output.txt"; a.click();
+            setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+        });
+        document.querySelectorAll("[data-copy-pre]").forEach(function (b) { b.addEventListener("click", function () { var t = $(b.dataset.copyPre).textContent; if (t) window.DTH.copy(t, "Copied"); }); });
+        $("file").addEventListener("change", function () {
+            var f = this.files[0]; if (!f) return; this.value = "";
+            if (f.size > 25 * 1048576) { window.DTH.toast("Please choose a file under 25 MB"); return; }
+            f.arrayBuffer().then(function (buf) {
+                var b = bytesToB64(new Uint8Array(buf));
+                setDir("enc");
+                $("in").value = "";
+                $("out").value = $("o-datauri").checked ? "data:" + (f.type || "application/octet-stream") + ";base64," + b : b64Opts(b);
+                $("out-st").innerHTML = "<span>" + f.name.replace(/</g, "&lt;") + "</span><span>" + f.size.toLocaleString() + " bytes → " + $("out").value.length.toLocaleString() + " characters</span>";
+            });
+        });
+        try {
+            var s = JSON.parse(localStorage.getItem("dth:b64") || "{}");
+            if (s.text) $("in").value = s.text;
+            if (s.dir) dir = s.dir;
+            if (s.mode) mode = s.mode;
+        } catch (e) {}
+        setDir(dir); setMode(mode);
+    });
+    </script>
+</body>
+</html>

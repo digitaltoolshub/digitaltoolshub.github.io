@@ -14,11 +14,19 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
-    <meta name="theme-color" content="#f7f7fb" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#0b0d14" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#090b13" media="(prefers-color-scheme: dark)">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <meta name="author" content="Rabeeh">
     <script>try{var t=localStorage.getItem("dth:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"></noscript>
     <link rel="stylesheet" href="assets/css/hub.css">
     <link rel="preload" href="assets/img/icons.svg" as="image" type="image/svg+xml">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-R4N9RB1SNN");</script>
@@ -33,16 +41,53 @@
         <div class="container">
             <a class="brand" href="./" aria-label="Digital Tools Hub home"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
             <nav class="site-nav" aria-label="Main">
-                <a href="./">All tools</a>
+                <div class="nav-dd">
+                    <button type="button" aria-haspopup="true">Tools<svg class="" aria-hidden="true"><use href="assets/img/icons.svg#chevron-down"></use></svg></button>
+                    <div class="mega">
+                        <a href="finance-tools.html" data-cat="finance"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#wallet"></use></svg></span><span><strong>Finance</strong><small>Calculators for money, loans, savings and markets</small></span></a>
+                        <a href="health-tools.html" data-cat="health"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#heart-pulse"></use></svg></span><span><strong>Health</strong><small>BMI, nutrition and lifetime body stats</small></span></a>
+                        <a href="productivity-tools.html" data-cat="productivity"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#rocket"></use></svg></span><span><strong>Productivity</strong><small>Timers, calculators, converters and writing tools</small></span></a>
+                        <a href="developer-tools.html" data-cat="dev"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#code"></use></svg></span><span><strong>Developer</strong><small>Formatters, encoders and generators for coders</small></span></a>
+                        <a href="design-tools.html" data-cat="design"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#palette"></use></svg></span><span><strong>Design</strong><small>Colors, images and QR codes</small></span></a>
+                        <a href="security-tools.html" data-cat="security"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#shield"></use></svg></span><span><strong>Security</strong><small>Passwords, strength checks and private messages</small></span></a>
+                        <a href="lifestyle-tools.html" data-cat="life"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg></span><span><strong>Lifestyle</strong><small>Age, travel, personality, sport and fun</small></span></a>
+                        <div class="mega-foot"><span>41 free tools, no sign-up</span><a href="./#tools">Browse all tools →</a></div>
+                    </div>
+                </div>
+                <a href="./#popular">Popular</a>
+                <a href="./#new">New</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
             </nav>
             <div class="header-actions">
-                <button class="search-trigger" type="button" data-open-palette aria-label="Search tools"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#search"></use></svg><span class="label">Search tools…</span><span class="kbd" data-mod-key>Ctrl K</span></button>
+                <button class="search-trigger" type="button" data-open-palette aria-label="Search tools"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#search"></use></svg><span class="label">Search 41 tools…</span><span class="kbd" data-mod-key>Ctrl K</span></button>
                 <button class="icon-btn" type="button" data-theme-toggle aria-label="Change theme"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#monitor"></use></svg></button>
+                <button class="icon-btn menu-btn" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#menu"></use></svg></button>
             </div>
         </div>
     </header>
+    <div class="mobile-menu" id="mobile-menu">
+        <nav aria-label="Mobile">
+            <a href="./"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#house"></use></svg></span>Home</a>
+            <a href="./#popular"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#flame"></use></svg></span>Popular tools</a>
+            <a href="./#new"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg></span>New tools</a>
+        </nav>
+        <h4>Categories</h4>
+        <nav aria-label="Categories">
+            <a href="finance-tools.html" data-cat="finance"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#wallet"></use></svg></span><span>Finance<small>8 tools</small></span></a>
+            <a href="health-tools.html" data-cat="health"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#heart-pulse"></use></svg></span><span>Health<small>6 tools</small></span></a>
+            <a href="productivity-tools.html" data-cat="productivity"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#rocket"></use></svg></span><span>Productivity<small>9 tools</small></span></a>
+            <a href="developer-tools.html" data-cat="dev"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#code"></use></svg></span><span>Developer<small>5 tools</small></span></a>
+            <a href="design-tools.html" data-cat="design"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#palette"></use></svg></span><span>Design<small>3 tools</small></span></a>
+            <a href="security-tools.html" data-cat="security"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#shield"></use></svg></span><span>Security<small>3 tools</small></span></a>
+            <a href="lifestyle-tools.html" data-cat="life"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#sparkles"></use></svg></span><span>Lifestyle<small>7 tools</small></span></a>
+        </nav>
+        <h4>Digital Tools Hub</h4>
+        <nav aria-label="Company">
+            <a href="about.html"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#info"></use></svg></span>About</a>
+            <a href="contact.html"><span class="tool-icon"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#mail"></use></svg></span>Contact</a>
+        </nav>
+    </div>
     <!-- /@header -->
 
     <main id="main">
@@ -95,29 +140,43 @@
             <div class="footer-grid">
                 <div class="footer-about">
                     <a class="brand" href="./"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
-                    <p>34 free tools for money, health, work and code. No sign-up, no paywalls, and your data stays in your browser.</p>
+                    <p>41 free tools for money, health, work and code. No sign-up, no paywalls, and your data stays in your browser.</p>
+                    <div class="footer-badges"><span><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#lock"></use></svg>Private</span><span><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#zap"></use></svg>Instant</span><span><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#wifi-off"></use></svg>Works offline</span></div>
                 </div>
                 <div>
                     <h4>Popular</h4>
                     <ul>
                         <li><a href="currency.html">Currency Converter</a></li>
+                        <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
                         <li><a href="bmi.html">BMI Calculator</a></li>
                         <li><a href="kanban-board.html">Kanban Board</a></li>
                         <li><a href="scientific-calculator.html">Scientific Calculator</a></li>
+                        <li><a href="percentage-calculator.html">Percentage Calculator</a></li>
                         <li><a href="json-formatter.html">JSON Formatter</a></li>
-                        <li><a href="password.html">Password Generator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>New tools</h4>
+                    <ul>
+                        <li><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li>
+                        <li><a href="percentage-calculator.html">Percentage Calculator</a></li>
+                        <li><a href="date-calculator.html">Date Calculator</a></li>
+                        <li><a href="base64-encoder.html">Base64 &amp; URL Encoder</a></li>
+                        <li><a href="hash-generator.html">Hash Generator</a></li>
+                        <li><a href="uuid-generator.html">UUID Generator</a></li>
+                        <li><a href="image-compressor.html">Image Compressor &amp; Resizer</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4>Categories</h4>
                     <ul>
-                        <li><a href="./?cat=finance">Finance</a></li>
-                        <li><a href="./?cat=health">Health</a></li>
-                        <li><a href="./?cat=productivity">Productivity</a></li>
-                        <li><a href="./?cat=dev">Developer</a></li>
-                        <li><a href="./?cat=design">Design</a></li>
-                        <li><a href="./?cat=security">Security</a></li>
-                        <li><a href="./?cat=life">Lifestyle</a></li>
+                        <li><a href="finance-tools.html">Finance tools</a></li>
+                        <li><a href="health-tools.html">Health tools</a></li>
+                        <li><a href="productivity-tools.html">Productivity tools</a></li>
+                        <li><a href="developer-tools.html">Developer tools</a></li>
+                        <li><a href="design-tools.html">Design tools</a></li>
+                        <li><a href="security-tools.html">Security tools</a></li>
+                        <li><a href="lifestyle-tools.html">Lifestyle tools</a></li>
                     </ul>
                 </div>
                 <div>
@@ -127,6 +186,7 @@
                         <li><a href="contact.html">Contact</a></li>
                         <li><a href="privacy.html">Privacy policy</a></li>
                         <li><a href="terms.html">Terms of service</a></li>
+                        <li><a href="sitemap.xml">Sitemap</a></li>
                     </ul>
                 </div>
             </div>
@@ -136,6 +196,7 @@
             </div>
         </div>
     </footer>
+    <button class="to-top" type="button" aria-label="Back to top"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#arrow-up"></use></svg></button>
     <!-- /@footer -->
     <!-- @scripts -->
     <script src="assets/js/tools.js" defer></script>

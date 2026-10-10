@@ -829,6 +829,7 @@
     <audio id="location-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-unlock-game-notification-253.mp3"
         preload="auto"></audio>
 
+    <script src="assets/js/fx.js"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
         // Retirement data with accurate local values
@@ -1000,10 +1001,14 @@
         function init() {
             createParticles();
             setupEventListeners();
-            initMap();
+            if (typeof L !== 'undefined') initMap();
             updateCurrencyDisplay();
             calculateRetirement();
             showRandomTip();
+            if (window.DTH_FX) {
+                const refresh = () => { updateCurrencyDisplay(); calculateRetirement(); };
+                DTH_FX.onUpdate(refresh);
+            }
 
             // Rotate tips every 15 seconds
             setInterval(showRandomTip, 15000);
@@ -1067,7 +1072,18 @@
 
             // Currency selection
             document.getElementById('currency').addEventListener('change', function () {
+                const previous = currentCurrency;
                 currentCurrency = this.value;
+                // Convert the typed amounts so the same plan is shown in the new currency
+                ['current-savings', 'monthly-contribution', 'custom-annual-cost'].forEach(id => {
+                    const input = document.getElementById(id);
+                    const v = parseFloat(input.value);
+                    if (v > 0) {
+                        const c = convertCurrency(v, previous, currentCurrency);
+                        input.value = c >= 100 ? Math.round(c) : Math.round(c * 100) / 100;
+                    }
+                });
+                customAnnualCost = parseFloat(document.getElementById('custom-annual-cost').value) || 0;
                 updateCurrencyDisplay();
                 calculateRetirement();
             });
@@ -1109,6 +1125,7 @@
             // Location selection
             document.getElementById('retirement-location').addEventListener('change', function () {
                 currentLocation = this.value;
+                updateCurrencyDisplay();
                 updateMap();
                 calculateRetirement();
             });
@@ -1124,38 +1141,27 @@
                 el.textContent = currentCurrency;
             });
 
-            // Update lifestyle cost displays based on currency
-            document.querySelectorAll('.lifestyle-cost').forEach(el => {
-                let cost;
-
-                // Use currency-specific value if available
-                if (el.dataset[currentCurrency.toLowerCase()]) {
-                    cost = parseFloat(el.dataset[currentCurrency.toLowerCase()]);
-                }
-                // Otherwise use the base USD value and convert
-                else {
-                    const baseValue = parseFloat(el.dataset.base);
-                    cost = convertCurrency(baseValue, 'USD', currentCurrency);
-                }
-
-                const formattedValue = formatCurrency(cost, currentCurrency);
-                el.textContent = formattedValue;
+            // Lifestyle costs depend on the selected retirement region, shown in the selected currency
+            document.querySelectorAll('.lifestyle-option').forEach(opt => {
+                const el = opt.querySelector('.lifestyle-cost');
+                if (el) el.textContent = formatCurrency(annualCost(opt.dataset.value), currentCurrency).replace(/\.00$/, '');
             });
         }
 
-        // Convert between currencies
+        // Annual living cost (in the selected currency) for a lifestyle in the selected region
+        function annualCost(lifestyle) {
+            const usd = retirementData.locationCosts[currentLocation][lifestyle];
+            return convertCurrency(usd, 'USD', currentCurrency);
+        }
+
+        // Convert between currencies (live rates when available, built-in table otherwise)
         function convertCurrency(amount, fromCurrency, toCurrency) {
             if (fromCurrency === toCurrency) return amount;
-
-            // First convert to USD if needed
-            const usdAmount = fromCurrency === 'USD' ?
-                amount :
-                amount / retirementData.exchangeRates[fromCurrency];
-
-            // Then convert to target currency if needed
-            return toCurrency === 'USD' ?
-                usdAmount :
-                usdAmount * retirementData.exchangeRates[toCurrency];
+            if (window.DTH_FX && DTH_FX.has(fromCurrency) && DTH_FX.has(toCurrency)) {
+                return DTH_FX.convert(amount, fromCurrency, toCurrency);
+            }
+            const r = retirementData.exchangeRates;
+            return amount / r[fromCurrency] * r[toCurrency];
         }
 
         // Format currency with proper symbols and formatting
@@ -1209,6 +1215,7 @@
 
         // Update map with retirement locations
         function updateMap() {
+            if (typeof L === 'undefined' || !map) return;
             // Clear existing markers
             markers.forEach(marker => map.removeLayer(marker));
             markers = [];
@@ -1282,9 +1289,10 @@
             // Get input values
             const currentAge = parseInt(document.getElementById('current-age').value);
             const retirementAge = parseInt(document.getElementById('retirement-age').value);
-            const currentSavings = parseFloat(document.getElementById('current-savings').value);
-            const monthlyContribution = parseFloat(document.getElementById('monthly-contribution').value);
-            const returnRate = parseFloat(document.getElementById('return-rate').value) / 100;
+            const currentSavings = parseFloat(document.getElementById('current-savings').value) || 0;
+            const monthlyContribution = parseFloat(document.getElementById('monthly-contribution').value) || 0;
+            const returnRate = (parseFloat(document.getElementById('return-rate').value) || 0) / 100;
+            if (!(currentAge >= 0) || !(retirementAge >= 0)) return;
 
             // Validate inputs
             if (currentAge >= retirementAge) {
@@ -1319,21 +1327,7 @@
                 // Use user-defined custom amount
                 retirementNumber = customAnnualCost * 25; // Using 4% rule
             } else {
-                // Get lifestyle cost in selected currency
-                let annualCost;
-
-                // Use currency-specific value if available
-                const lifestyleElement = document.querySelector(`.lifestyle-option.${currentLifestyle} .lifestyle-cost`);
-                if (lifestyleElement.dataset[currentCurrency.toLowerCase()]) {
-                    annualCost = parseFloat(lifestyleElement.dataset[currentCurrency.toLowerCase()]);
-                }
-                // Otherwise use the base USD value and convert
-                else {
-                    const baseValue = parseFloat(lifestyleElement.dataset.base);
-                    annualCost = convertCurrency(baseValue, 'USD', currentCurrency);
-                }
-
-                retirementNumber = annualCost * 25; // Using 4% rule
+                retirementNumber = annualCost(currentLifestyle) * 25; // Using 4% rule
             }
 
             // Update comparison

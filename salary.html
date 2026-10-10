@@ -636,12 +636,13 @@
     <div class="fortune-cookie" id="fortuneCookie" onclick="showFortune()" role="button"
         aria-label="Click for money wisdom">🎉 Click for Money Wisdom!</div>
 
+    <script src="assets/js/fx.js"></script>
     <script>
         // ================
         // INITIALIZATION
         // ================
 
-        // Currency Exchange Rates (example rates - should use real API)
+        // Currency Exchange Rates (built-in approximations, upgraded to live rates by assets/js/fx.js)
         const exchangeRates = {
             USD: 1,
             PKR: 278.50,
@@ -751,10 +752,12 @@
                 'Year (Net)': annualUsdAmount,
                 'Month (Net)': annualUsdAmount / 12,
                 'Week (Net)': annualUsdAmount / 52,
-                'Day (Net)': annualUsdAmount / 365,
-                'Hour (Net)': (annualUsdAmount / 365) / 24,
-                'Minute (Net)': ((annualUsdAmount / 365) / 24) / 60,
-                'Second (Net)': (((annualUsdAmount / 365) / 24) / 60) / 60
+                // Working-time basis (260 days x 8 hours = 2,080 hours a year) so that an
+                // hourly rate you enter comes back as the same hourly rate.
+                'Day (Net)': annualUsdAmount / 260,
+                'Hour (Net)': annualUsdAmount / 2080,
+                'Minute (Net)': annualUsdAmount / 2080 / 60,
+                'Second (Net)': annualUsdAmount / 2080 / 3600
             };
 
             updateResults(calculations, currency);
@@ -912,7 +915,7 @@
             return new Intl.NumberFormat('en-US', {
                 style: 'currency',
                 currency: currency,
-                minimumFractionDigits: 2,
+                minimumFractionDigits: currency === 'JPY' || currency === 'KRW' ? 0 : 2,
                 maximumFractionDigits: currency === 'JPY' || currency === 'KRW' ? 0 : 2
             }).format(amount);
         }
@@ -922,7 +925,7 @@
                 return new Intl.NumberFormat('en-US', {
                     style: 'currency',
                     currency: currency,
-                    minimumFractionDigits: 2,
+                    minimumFractionDigits: 0,
                     maximumFractionDigits: 2,
                     notation: 'compact',
                     compactDisplay: 'short'
@@ -937,6 +940,18 @@
             }
         }
 
+        let previousCurrency = document.querySelector('.currency-flag.active').dataset.currency;
+
+        // Upgrade the built-in rates to live ones when available.
+        if (window.DTH_FX) {
+            const applyLive = () => {
+                Object.keys(exchangeRates).forEach(c => { if (DTH_FX.rates[c] > 0) exchangeRates[c] = DTH_FX.rates[c]; });
+                updateCalculations();
+            };
+            DTH_FX.ready.then(applyLive);
+            DTH_FX.onUpdate(applyLive);
+        }
+
         // Initial Calculation
         updateCalculations();
 
@@ -949,6 +964,15 @@
             flag.classList.add('active');
             flag.setAttribute('aria-selected', 'true');
             const currency = flag.dataset.currency;
+            // Convert the entered amount so the same salary is shown in the new currency.
+            if (previousCurrency !== currency) {
+                const typed = parseFloat(elements.salaryInput.value);
+                if (typed > 0) {
+                    const converted = typed / exchangeRates[previousCurrency] * exchangeRates[currency];
+                    elements.salaryInput.value = converted >= 100 ? Math.round(converted) : Math.round(converted * 100) / 100;
+                }
+                previousCurrency = currency;
+            }
             elements.currencySymbol.textContent = currencySymbols[currency] || '$';
             sessionStartTime = Date.now(); // Reset ticker on currency change
             updateCalculations();
@@ -1003,7 +1027,7 @@
     <section class="dth-guide" aria-labelledby="guide-title">
         <h2 id="guide-title">About the salary calculator</h2>
         <h3>How the breakdown works</h3>
-        <p>Your annual pay is divided by 12 months, 52 weeks and 365 days. The per-hour, per-minute and per-second figures spread a day’s pay across all 24 hours, which is what the live ticker shows: money earned around the clock. Hourly wages are annualised at 2,080 hours (40 hours × 52 weeks).</p>
+        <p>Your annual pay is divided by 12 months and 52 weeks. Day, hour, minute and second figures use working time: 260 working days of 8 hours, or 2,080 hours a year (40 hours × 52 weeks), so an hourly rate you enter comes back unchanged. The live ticker shows what you earn per working second since you opened the page.</p>
         <h3>Converting between currencies</h3>
         <p>Amounts are converted with current exchange rates so you can compare offers across countries. Remember to account for cost of living and local taxes, which vary widely.</p>
         <h3>Gross vs. net</h3>

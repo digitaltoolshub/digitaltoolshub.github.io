@@ -706,7 +706,11 @@
         const addMatchBtn = document.getElementById('add-match');
         const resetBtn = document.getElementById('reset-btn');
 
-        let matches = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [createEmptyMatch()];
+        const esc = (v) => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+        let matches;
+        try { matches = JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch (e) { matches = null; }
+        if (!Array.isArray(matches) || !matches.length) matches = [createEmptyMatch()];
 
         function createEmptyMatch() {
             return {
@@ -734,7 +738,7 @@
                     <div class="match-header">
                         <div class="match-info-group">
                             <span class="match-number">Match #${idx + 1}</span>
-                            <input type="text" placeholder="Opposition / Game ID" value="${m.oppName}" 
+                            <input type="text" placeholder="Opposition / Game ID" value="${esc(m.oppName)}" 
                                 oninput="updateMatch(${m.id}, 'oppName', this.value)" 
                                 style="background: transparent; border: none; font-weight: 700; width: 220px; padding: 5px;">
                         </div>
@@ -848,7 +852,7 @@
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${idx + 1}</td>
-                    <td>${m.oppName || 'Unknown Opposition'}</td>
+                    <td>${esc(m.oppName) || 'Unknown Opposition'}</td>
                     <td>${rf}</td>
                     <td>${of.toFixed(1)}</td>
                     <td>${ra}</td>

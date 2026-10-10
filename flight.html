@@ -1,804 +1,390 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-hub>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trip Cost Estimator | Travel Budget Calculator | Digital Tools Hub</title>
+    <meta name="description" content="Estimate the cost of your trip: flights from your home city, hotels, food, transport and activities for 100+ destinations, in any currency.">
+    <link rel="canonical" href="https://digitaltoolshub.github.io/flight.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Digital Tools Hub">
+    <meta property="og:url" content="https://digitaltoolshub.github.io/flight.html">
+    <meta property="og:title" content="Trip Cost Estimator | Travel Budget Calculator | Digital Tools Hub">
+    <meta property="og:description" content="Estimate the cost of your trip: flights from your home city, hotels, food, transport and activities for 100+ destinations, in any currency.">
+    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- @head -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#f7f7fb" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0b0d14" media="(prefers-color-scheme: dark)">
+    <script>try{var t=localStorage.getItem("dth:theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+    <link rel="stylesheet" href="assets/css/hub.css">
+    <link rel="preload" href="assets/img/icons.svg" as="image" type="image/svg+xml">
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-R4N9RB1SNN"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-R4N9RB1SNN');
-    </script>
-
-    <!-- Google AdSense -->
-    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042"
-        crossorigin="anonymous"></script>
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f"
-        type="text/javascript" async></script> -->
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trip Cost Estimator | Calculate Travel Expenses</title>
-    <meta name="title" content="Trip Cost Estimator | Calculate Travel Expenses">
-    <meta name="description"
-        content="Estimate the cost of your next trip including flights, accommodation, food, and activities. Plan your travel budget with our free calculator.">
-    <meta name="keywords"
-        content="trip cost estimator, travel budget calculator, vacation cost, flight cost estimator, travel planner, holiday budget, digital tools hub">
-    <meta name="author" content="Digital Tools Hub">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://digitaltoolshub.github.io/flight.html">
-    <meta property="og:title" content="Trip Cost Estimator | Calculate Travel Expenses">
-    <meta property="og:description"
-        content="Estimate the cost of your next trip including flights, accommodation, food, and activities. Plan your travel budget with our free calculator.">
-    <meta property="og:image" content="https://digitaltoolshub.github.io/preview.png">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://digitaltoolshub.github.io/flight.html">
-    <meta property="twitter:title" content="Trip Cost Estimator | Calculate Travel Expenses">
-    <meta property="twitter:description"
-        content="Estimate the cost of your next trip including flights, accommodation, food, and activities. Plan your travel budget with our free calculator.">
-    <meta property="twitter:image" content="https://digitaltoolshub.github.io/preview.png">
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://digitaltoolshub.github.io/flight.html">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Trip Cost Estimator",
-      "url": "https://digitaltoolshub.github.io/flight.html",
-      "description": "A calculator to estimate travel expenses including flights, hotels, and daily costs.",
-      "applicationCategory": "TravelApplication",
-      "operatingSystem": "Any",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "featureList": "Flight Cost Estimation, Accommodation Budgeting, Daily Expenses Calculator"
-    }
-    </script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-R4N9RB1SNN");</script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="b84b76df-2fc0-4c4c-856d-b4b09a8e3c7f" async></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3518482809806042" crossorigin="anonymous"></script>
+    <!-- /@head -->
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Trip Cost Estimator", "url": "https://digitaltoolshub.github.io/flight.html", "applicationCategory": "TravelApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Estimate flights, accommodation, food, transport and activities for a trip, in any currency."}</script>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            background: linear-gradient(135deg, #a8edea, #fed6e3);
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden;
-            /* Hide potential overflow from animations */
-        }
-
-        .estimator-container {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            padding: 40px;
-            text-align: center;
-            animation: fadeIn 1s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        h1 {
-            color: #ff6b6b;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            animation: pulse 1.5s infinite alternate;
-        }
-
-        @keyframes pulse {
-            from {
-                transform: scale(1);
-            }
-
-            to {
-                transform: scale(1.05);
-            }
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-            text-align: left;
-            position: relative;
-            /* For autocomplete dropdown */
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-            font-weight: bold;
-            animation: slideInLabel 0.5s ease-out forwards;
-            opacity: 0;
-            transform: translateX(-10px);
-        }
-
-        @keyframes slideInLabel {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        input[type="text"],
-        input[type="number"],
-        select {
-            width: calc(100% - 22px);
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1em;
-            transition: border-color 0.3s ease;
-        }
-
-        input[type="text"]:focus,
-        input[type="number"]:focus,
-        select:focus {
-            border-color: #ff6b6b;
-            outline: none;
-            box-shadow: 0 0 8px rgba(255, 107, 107, 0.3);
-        }
-
-        #destination-suggestions {
-            position: absolute;
-            top: calc(100% + 5px);
-            left: 0;
-            width: 100%;
-            background-color: white;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-            display: none;
-            max-height: 150px;
-            overflow-y: auto;
-        }
-
-        .suggestion-item {
-            padding: 8px 12px;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
-
-        .suggestion-item:hover {
-            background-color: #f0f0f0;
-        }
-
-        #distance-input-group {
-            display: none;
-        }
-
-        .options-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .option-card {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 15px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .option-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .option-card label {
-            font-weight: normal;
-            display: block;
-            margin-top: 5px;
-        }
-
-        button {
-            background-color: #ff6b6b;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            cursor: pointer;
-            margin-top: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #e04f4f;
-        }
-
-        .result-area {
-            margin-top: 30px;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            font-size: 1.1em;
-            color: #444;
-            display: none;
-            animation: slideUp 0.5s ease-out forwards;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        @keyframes slideUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Creative Animation - Floating Elements */
-        .floating-plane {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2360a5fa' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z'/%3E%3C/svg%3E");
-            background-size: contain;
-            animation: float 5s infinite alternate, moveAcross 20s linear infinite;
-            opacity: 0.7;
-        }
-
-        @keyframes float {
-            from {
-                transform: translateY(0);
-            }
-
-            to {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes moveAcross {
-            0% {
-                left: -60px;
-            }
-
-            50% {
-                transform: rotate(15deg);
-            }
-
-            100% {
-                left: calc(100% + 60px);
-                transform: rotate(0deg);
-            }
-        }
-
-        .floating-star {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: yellow;
-            border-radius: 50%;
-            opacity: 0.8;
-            animation: twinkle 3s infinite alternate;
-        }
-
-        @keyframes twinkle {
-            from {
-                opacity: 0.8;
-                transform: scale(1);
-            }
-
-            to {
-                opacity: 0.4;
-                transform: scale(1.1);
-            }
-        }
+        .trip { display: grid; grid-template-columns: minmax(0, 400px) minmax(0, 1fr); gap: 16px; align-items: start; }
+        @media (max-width: 900px) { .trip { grid-template-columns: 1fr; } }
+        .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .checks { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .checks label { display: flex; gap: 8px; align-items: center; padding: 9px 12px; border: 1px solid var(--border); border-radius: 10px; font-size: .9rem; cursor: pointer; background: var(--bg-elev); }
+        .checks input { accent-color: var(--accent, #4f46e5); }
+        .hero-stat { padding: 20px; border-radius: 14px; background: linear-gradient(135deg, color-mix(in srgb, var(--c-life, #a855f7) 16%, var(--bg-elev)), var(--bg-elev)); border: 1px solid color-mix(in srgb, var(--c-life, #a855f7) 30%, var(--border)); }
+        .hero-stat .k { font-size: .82rem; color: var(--text-3); font-weight: 650; text-transform: uppercase; letter-spacing: .05em; }
+        .hero-stat .v { font-size: clamp(2rem, 5vw, 2.6rem); font-weight: 800; letter-spacing: -.03em; font-variant-numeric: tabular-nums; word-break: break-word; }
+        .bar { height: 8px; border-radius: 99px; background: var(--bg-sunken); overflow: hidden; margin-top: 6px; }
+        .bar span { display: block; height: 100%; background: var(--c-life, #a855f7); }
+        .line { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+        .line:last-child { border-bottom: 0; }
+        .line b { font-variant-numeric: tabular-nums; }
+        .line small { grid-column: 1 / -1; color: var(--text-3); }
+        #custom-box[hidden] { display: none; }
     </style>
-
-    <script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@graph": [
-        {
-            "@type": "SoftwareApplication",
-            "name": "Trip Cost Estimator",
-            "url": "https://digitaltoolshub.github.io/flight.html",
-            "applicationCategory": "UtilitiesApplication",
-            "operatingSystem": "All",
-            "offers": {
-                "@type": "Offer",
-                "price": "0.00",
-                "priceCurrency": "USD"
-            },
-            "author": {
-                "@type": "Person",
-                "name": "Rabeeh",
-                "url": "https://digitaltoolshub.github.io/about.html"
-            }
-        },
-        {
-            "@type": "FAQPage",
-            "mainEntity": [
-                {
-                    "@type": "Question",
-                    "name": "Is Trip Cost Estimator free to use?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Yes, Trip Cost Estimator is completely free to use with no hidden charges, sign-ups, or subscriptions required."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Is my data safe when using Trip Cost Estimator?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Absolutely. Trip Cost Estimator processes all data client-side in your browser, meaning none of your inputs or results are ever sent to our servers."
-                    }
-                }
-            ]
-        }
-    ]
-}
-    </script>
-    <link rel="manifest" href="site.webmanifest">
 </head>
-
 <body>
-    <div class="estimator-container">
-        <h1>🗺️ Plan Your Dream Trip! ✈️</h1>
+    <!-- @header -->
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="./" aria-label="Digital Tools Hub home"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+            <nav class="site-nav" aria-label="Main">
+                <a href="./" aria-current="page">All tools</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="search-trigger" type="button" data-open-palette aria-label="Search tools"><svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#search"></use></svg><span class="label">Search tools…</span><span class="kbd" data-mod-key>Ctrl K</span></button>
+                <button class="icon-btn" type="button" data-theme-toggle aria-label="Change theme"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#monitor"></use></svg></button>
+            </div>
+        </div>
+    </header>
+    <!-- /@header -->
 
-        <div class="input-group" style="animation-delay: 0.2s;">
-            <label for="destination">📍 Destination:</label>
-            <input type="text" id="destination" placeholder="Enter destination or 'Other'">
-            <div id="destination-suggestions"></div>
+    <main id="main" class="container">
+        <div class="page-head">
+            <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="./">Home</a><svg aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"></use></svg><a href="./?cat=life">Lifestyle</a><svg aria-hidden="true"><use href="assets/img/icons.svg#chevron-right"></use></svg><span aria-current="page">Trip Cost Estimator</span></nav>
+            <h1><span class="tool-icon" data-cat="life"><svg aria-hidden="true"><use href="assets/img/icons.svg#plane"></use></svg></span>Trip Cost Estimator</h1>
+            <p>Budget a trip to 100+ destinations. Flight prices come from the distance between your home city and the destination, and local costs from the destination’s price level.</p>
         </div>
 
-        <div class="input-group" id="distance-input-group" style="animation-delay: 0.3s;">
-            <label for="distance">📏 Estimated Distance (km):</label>
-            <input type="number" id="distance" min="0" placeholder="Enter distance in kilometers">
-        </div>
+        <div class="trip">
+            <section class="panel stack" aria-label="Trip details">
+                <div class="field"><label for="origin">Flying from</label>
+                    <input class="input" id="origin" list="cities" placeholder="Home city, e.g. London" autocomplete="off"></div>
+                <div class="field"><label for="dest">Destination</label>
+                    <input class="input" id="dest" list="cities" placeholder="e.g. Tokyo" autocomplete="off">
+                    <span class="muted" id="dest-hint" style="font-size:.82rem"></span></div>
+                <datalist id="cities"></datalist>
+                <div id="custom-box" class="two" hidden>
+                    <div class="field"><label for="c-dist">Distance (km, one way)</label><input class="input" id="c-dist" type="number" min="0" value="3000"></div>
+                    <div class="field"><label for="c-level">Price level</label>
+                        <select class="select" id="c-level"><option value="0.5">Low (e.g. South Asia)</option><option value="0.8">Moderate</option><option value="1.2" selected>Average</option><option value="1.7">High</option><option value="2">Very high</option></select></div>
+                </div>
+                <div class="two">
+                    <div class="field"><label for="days">Days</label><input class="input" id="days" type="number" min="1" max="365" value="7"></div>
+                    <div class="field"><label for="travelers">Travelers</label><input class="input" id="travelers" type="number" min="1" max="50" value="2"></div>
+                </div>
+                <div class="two">
+                    <div class="field"><label for="style">Travel style</label>
+                        <select class="select" id="style"><option value="budget">Budget</option><option value="mid" selected>Mid-range</option><option value="luxury">Luxury</option></select></div>
+                    <div class="field"><label for="season">Season</label>
+                        <select class="select" id="season"><option value="0.85">Low season</option><option value="1" selected>Shoulder</option><option value="1.25">Peak season</option></select></div>
+                </div>
+                <div class="two">
+                    <div class="field"><label for="cabin">Flight class</label>
+                        <select class="select" id="cabin"><option value="1">Economy</option><option value="1.6">Premium economy</option><option value="3">Business</option></select></div>
+                    <div class="field"><label for="trip-type">Flight type</label>
+                        <select class="select" id="trip-type"><option value="2" selected>Round trip</option><option value="1">One way</option></select></div>
+                </div>
+                <div class="field"><label for="currency">Show prices in</label><select class="select" id="currency"></select>
+                    <span class="muted" id="fx-note" style="font-size:.82rem"></span></div>
+                <div class="field"><span class="label">Include</span>
+                    <div class="checks">
+                        <label><input type="checkbox" id="i-flight" checked> Flights</label>
+                        <label><input type="checkbox" id="i-hotel" checked> Hotel</label>
+                        <label><input type="checkbox" id="i-food" checked> Food &amp; drink</label>
+                        <label><input type="checkbox" id="i-transport" checked> Local transport</label>
+                        <label><input type="checkbox" id="i-activities" checked> Activities</label>
+                        <label><input type="checkbox" id="i-shopping"> Shopping &amp; extras</label>
+                    </div>
+                </div>
+            </section>
 
-        <div class="input-group" style="animation-delay: 0.4s;">
-            <label for="duration">🗓️ Trip Duration (Days):</label>
-            <input type="number" id="duration" min="1" value="7">
-        </div>
-
-        <div class="input-group" style="animation-delay: 0.6s;">
-            <label for="travelers">🧑‍🤝‍🧑 Number of Travelers:</label>
-            <input type="number" id="travelers" min="1" value="1">
-        </div>
-
-        <div class="input-group" style="animation-delay: 0.8s;">
-            <label for="currency">💰 Preferred Currency:</label>
-            <select id="currency">
-                <option value="USD">United States Dollar (USD)</option>
-                <option value="EUR">Euro (EUR)</option>
-                <option value="GBP">British Pound (GBP)</option>
-                <option value="JPY">Japanese Yen (JPY)</option>
-                <option value="AED">United Arab Emirates Dirham (AED)</option>
-                <option value="AFN">Afghan Afghani (AFN)</option>
-                <option value="ALL">Albanian Lek (ALL)</option>
-                <option value="AMD">Armenian Dram (AMD)</option>
-                <option value="ANG">Netherlands Antillean Guilder (ANG)</option>
-                <option value="AOA">Angolan Kwanza (AOA)</option>
-                <option value="ARS">Argentine Peso (ARS)</option>
-                <option value="AUD">Australian Dollar (AUD)</option>
-                <option value="AWG">Aruban Florin (AWG)</option>
-                <option value="AZN">Azerbaijani Manat (AZN)</option>
-                <option value="BAM">Bosnia and Herzegovina Convertible Mark (BAM)</option>
-                <option value="BBD">Barbadian Dollar (BBD)</option>
-                <option value="BDT">Bangladeshi Taka (BDT)</option>
-                <option value="BGN">Bulgarian Lev (BGN)</option>
-                <option value="BHD">Bahraini Dinar (BHD)</option>
-                <option value="BIF">Burundian Franc (BIF)</option>
-                <option value="BMD">Bermudian Dollar (BMD)</option>
-                <option value="BND">Brunei Dollar (BND)</option>
-                <option value="BOB">Bolivian Boliviano (BOB)</option>
-                <option value="BRL">Brazilian Real (BRL)</option>
-                <option value="BSD">Bahamian Dollar (BSD)</option>
-                <option value="BTN">Bhutanese Ngultrum (BTN)</option>
-                <option value="BWP">Botswanan Pula (BWP)</option>
-                <option value="BYN">Belarusian Ruble (BYN)</option>
-                <option value="BZD">Belize Dollar (BZD)</option>
-                <option value="CAD">Canadian Dollar (CAD)</option>
-                <option value="CDF">Congolese Franc (CDF)</option>
-                <option value="CHF">Swiss Franc (CHF)</option>
-                <option value="CLP">Chilean Peso (CLP)</option>
-                <option value="CNY">Chinese Yuan (CNY)</option>
-                <option value="COP">Colombian Peso (COP)</option>
-                <option value="CRC">Costa Rican Colón (CRC)</option>
-                <option value="CUP">Cuban Peso (CUP)</option>
-                <option value="CVE">Cape Verdean Escudo (CVE)</option>
-                <option value="CZK">Czech Koruna (CZK)</option>
-                <option value="DJF">Djiboutian Franc (DJF)</option>
-                <option value="DKK">Danish Krone (DKK)</option>
-                <option value="DOP">Dominican Peso (DOP)</option>
-                <option value="DZD">Algerian Dinar (DZD)</option>
-                <option value="EGP">Egyptian Pound (EGP)</option>
-                <option value="ERN">Eritrean Nakfa (ERN)</option>
-                <option value="ETB">Ethiopian Birr (ETB)</option>
-                <option value="FJD">Fijian Dollar (FJD)</option>
-                <option value="FKP">Falkland Islands Pound (FKP)</option>
-                <option value="GEL">Georgian Lari (GEL)</option>
-                <option value="GHS">Ghanaian Cedi (GHS)</option>
-                <option value="GIP">Gibraltarian Pound (GIP)</option>
-                <option value="GMD">Gambian Dalasi (GMD)</option>
-                <option value="GNF">Guinean Franc (GNF)</option>
-                <option value="GTQ">Guatemalan Quetzal (GTQ)</option>
-                <option value="GYD">Guyanese Dollar (GYD)</option>
-                <option value="HKD">Hong Kong Dollar (HKD)</option>
-                <option value="HNL">Honduran Lempira (HNL)</option>
-                <option value="HRK">Croatian Kuna (HRK)</option>
-                <option value="HTG">Haitian Gourde (HTG)</option>
-                <option value="HUF">Hungarian Forint (HUF)</option>
-                <option value="IDR">Indonesian Rupiah (IDR)</option>
-                <option value="ILS">Israeli New Shekel (ILS)</option>
-                <option value="INR">Indian Rupee (INR)</option>
-                <option value="IQD">Iraqi Dinar (IQD)</option>
-                <option value="IRR">Iranian Rial (IRR)</option>
-                <option value="ISK">Icelandic Króna (ISK)</option>
-                <option value="JMD">Jamaican Dollar (JMD)</option>
-                <option value="JOD">Jordanian Dinar (JOD)</option>
-                <option value="KES">Kenyan Shilling (KES)</option>
-                <option value="KGS">Kyrgyzstani Som (KGS)</option>
-                <option value="KHR">Cambodian Riel (KHR)</option>
-                <option value="KMF">Comorian Franc (KMF)</option>
-                <option value="KPW">North Korean Won (KPW)</option>
-                <option value="KRW">South Korean Won (KRW)</option>
-                <option value="KWD">Kuwaiti Dinar (KWD)</option>
-                <option value="KYD">Cayman Islands Dollar (KYD)</option>
-                <option value="KZT">Kazakhstani Tenge (KZT)</option>
-                <option value="LAK">Lao Kip (LAK)</option>
-                <option value="LBP">Lebanese Pound (LBP)</option>
-                <option value="LKR">Sri Lankan Rupee (LKR)</option>
-                <option value="LRD">Liberian Dollar (LRD)</option>
-                <option value="LSL">Lesotho Loti (LSL)</option>
-                <option value="LYD">Libyan Dinar (LYD)</option>
-                <option value="MAD">Moroccan Dirham (MAD)</option>
-                <option value="MDL">Moldovan Leu (MDL)</option>
-                <option value="MGA">Malagasy Ariary (MGA)</option>
-                <option value="MKD">Macedonian Denar (MKD)</option>
-                <option value="MMK">Burmese Kyat (MMK)</option>
-                <option value="MNT">Mongolian Tögrög (MNT)</option>
-                <option value="MOP">Macanese Pataca (MOP)</option>
-                <option value="MRU">Mauritanian Ouguiya (MRU)</option>
-                <option value="MUR">Mauritian Rupee (MUR)</option>
-                <option value="MVR">Maldivian Rufiyaa (MVR)</option>
-                <option value="MWK">Malawian Kwacha (MWK)</option>
-                <option value="MXN">Mexican Peso (MXN)</option>
-                <option value="MYR">Malaysian Ringgit (MYR)</option>
-                <option value="MZN">Mozambican Metical (MZN)</option>
-                <option value="NAD">Namibian Dollar (NAD)</option>
-                <option value="NGN">Nigerian Naira (NGN)</option>
-                <option value="NIO">Nicaraguan Córdoba (NIO)</option>
-                <option value="NOK">Norwegian Krone (NOK)</option>
-                <option value="NPR">Nepalese Rupee (NPR)</option>
-                <option value="NZD">New Zealand Dollar (NZD)</option>
-                <option value="OMR">Omani Rial (OMR)</option>
-                <option value="PAB">Panamanian Balboa (PAB)</option>
-                <option value="PEN">Peruvian Sol (PEN)</option>
-                <option value="PGK">Papua New Guinean Kina (PGK)</option>
-                <option value="PHP">Philippine Peso (PHP)</option>
-                <option value="PKR">Pakistani Rupee (PKR)</option>
-                <option value="PLN">Polish Złoty (PLN)</option>
-                <option value="PYG">Paraguayan Guaraní (PYG)</option>
-                <option value="QAR">Qatari Riyal (QAR)</option>
-                <option value="RON">Romanian Leu (RON)</option>
-                <option value="RSD">Serbian Dinar (RSD)</option>
-                <option value="RUB">Russian Ruble (RUB)</option>
-                <option value="RWF">Rwandan Franc (RWF)</option>
-                <option value="SAR">Saudi Riyal (SAR)</option>
-                <option value="SBD">Solomon Islands Dollar (SBD)</option>
-                <option value="SCR">Seychellois Rupee (SCR)</option>
-                <option value="SDG">Sudanese Pound (SDG)</option>
-                <option value="SEK">Swedish Krona (SEK)</option>
-                <option value="SGD">Singapore Dollar (SGD)</option>
-                <option value="SHP">Saint Helena Pound (SHP)</option>
-                <option value="SLL">Sierra Leonean Leone (SLL)</option>
-                <option value="SOS">Somali Shilling (SOS)</option>
-                <option value="SRD">Surinamese Dollar (SRD)</option>
-                <option value="SSP">South Sudanese Pound (SSP)</option>
-                <option value="STN">São Tomé and Príncipe Dobra (STN)</option>
-                <option value="SYP">Syrian Pound (SYP)</option>
-                <option value="SZL">Swazi Lilangeni (SZL)</option>
-                <option value="THB">Thai Baht (THB)</option>
-                <option value="TJS">Tajikistani Somoni (TJS)</option>
-                <option value="TMT">Turkmenistani Manat (TMT)</option>
-                <option value="TND">Tunisian Dinar (TND)</option>
-                <option value="TOP">Tongan Paʻanga (TOP)</option>
-                <option value="TRY">Turkish Lira (TRY)</option>
-                <option value="TTD">Trinidad and Tobago Dollar (TTD)</option>
-                <option value="TVD">Tuvaluan Dollar (TVD)</option>
-                <option value="TWD">New Taiwan Dollar (TWD)</option>
-                <option value="TZS">Tanzanian Shilling (TZS)</option>
-                <option value="UAH">Ukrainian Hryvnia (UAH)</option>
-                <option value="UGX">Ugandan Shilling (UGX)</option>
-                <option value="UYU">Uruguayan Peso (UYU)</option>
-                <option value="UZS">Uzbekistani Som (UZS)</option>
-                <option value="VES">Venezuelan Bolívar Soberano (VES)</option>
-                <option value="VND">Vietnamese Đồng (VND)</option>
-                <option value="VUV">Vanuatu Vatu (VUV)</option>
-                <option value="WST">Samoan Tala (WST)</option>
-                <option value="XAF">Central African CFA Franc (XAF)</option>
-                <option value="XCD">East Caribbean Dollar (XCD)</option>
-                <option value="XOF">West African CFA Franc (XOF)</option>
-                <option value="XPF">CFP Franc (XPF)</option>
-                <option value="YER">Yemeni Rial (YER)</option>
-                <option value="ZAR">South African Rand (ZAR)</option>
-                <option value="ZMW">Zambian Kwacha (ZMW)</option>
-                <option value="ZWL">Zimbabwean Dollar (ZWL)</option>
-            </select>
-        </div>
-
-        <div class="options-container" style="animation-delay: 1s;">
-            <div class="option-card">
-                <input type="checkbox" id="flight">
-                <label for="flight">✈️ Flights</label>
-            </div>
-            <div class="option-card">
-                <input type="checkbox" id="hotel" checked>
-                <label for="hotel">🏨 Accommodation</label>
-            </div>
-            <div class="option-card">
-                <input type="checkbox" id="activities">
-                <label for="activities">🏞️ Activities</label>
-            </div>
-            <div class="option-card">
-                <input type="checkbox" id="food">
-                <label for="food">🍔 Food & Drinks</label>
-            </div>
-            <div class="option-card">
-                <input type="checkbox" id="transport">
-                <label for="transport">🚗 Local Transport</label>
-            </div>
-            <div class="option-card">
-                <input type="checkbox" id="shopping">
-                <label for="shopping">🛍️ Shopping</label>
+            <div class="stack">
+                <section class="panel" aria-live="polite" aria-label="Estimate">
+                    <div id="empty" class="alert"><svg aria-hidden="true"><use href="assets/img/icons.svg#info"></use></svg><span id="empty-text">Choose a destination to see an estimate.</span></div>
+                    <div id="out" hidden>
+                        <div class="cols-2" style="gap:14px">
+                            <div class="hero-stat"><div class="k">Estimated total</div><div class="v" id="r-total">—</div><div class="muted" id="r-sub" style="font-size:.88rem"></div></div>
+                            <div class="cols-2" style="gap:10px;grid-template-columns:1fr 1fr">
+                                <div class="stat"><div class="k">Per person</div><div class="v" id="r-pp" style="font-size:1.2rem">—</div></div>
+                                <div class="stat"><div class="k">Per day</div><div class="v" id="r-pd" style="font-size:1.2rem">—</div></div>
+                                <div class="stat"><div class="k">Distance</div><div class="v" id="r-dist" style="font-size:1.2rem">—</div></div>
+                                <div class="stat"><div class="k">In USD</div><div class="v" id="r-usd" style="font-size:1.2rem">—</div></div>
+                            </div>
+                        </div>
+                        <div id="breakdown" style="margin-top:16px"></div>
+                        <div class="row" style="margin-top:14px">
+                            <button class="btn btn-secondary btn-sm" type="button" id="copy"><svg aria-hidden="true"><use href="assets/img/icons.svg#copy"></use></svg>Copy summary</button>
+                        </div>
+                    </div>
+                </section>
+                <p class="muted" style="font-size:.85rem;margin:0">Estimates are typical mid-market averages for budgeting, not quotes. Exchange rates are converted from USD.</p>
             </div>
         </div>
 
-        <button onclick="estimateCost()">✨ Get Estimated Cost! ✨</button>
-
-        <div class="result-area" id="result">
-            <h3>💰 Your Estimated Trip Cost:</h3>
-            <p id="estimated-amount"></p>
-            <p id="breakdown"></p>
+        <div class="cols-2" style="margin-top:40px;align-items:start">
+            <section class="prose" aria-labelledby="guide-h">
+                <h2 id="guide-h" style="margin-top:0">How it works</h2>
+                <ul>
+                    <li><strong>Flights</strong> are priced from the great-circle distance between your two cities (cheaper per km on longer routes), scaled by class and season.</li>
+                    <li><strong>Hotels</strong> are priced per room per night (two travelers share a room) using the destination’s price level.</li>
+                    <li><strong>Food, transport and activities</strong> are daily per-person costs that scale with the destination’s price level and your travel style.</li>
+                    <li>Pick any currency; amounts are calculated in US dollars and converted using live exchange rates when available.</li>
+                </ul>
+                <p>Can’t find your city? Choose <code>Other</code> as the destination and enter the distance and price level yourself.</p>
+            </section>
+            <section aria-labelledby="faq-h">
+                <h2 id="faq-h" style="font-size:1.35rem">FAQ</h2>
+                <div class="faq">
+                    <details><summary>How accurate is the estimate?</summary><p>It is a planning figure based on typical prices. Real fares and hotel rates vary with booking time, events and availability, so check live prices before you book.</p></details>
+                    <details><summary>Why does the cost change with destination?</summary><p>Each destination has its own price level (a day in Zurich costs far more than a day in Hanoi) and its own distance from your home city, which drives the flight price.</p></details>
+                    <details><summary>Where do exchange rates come from?</summary><p>Live mid-market rates are fetched when you open the page. If you are offline, built-in approximate rates are used and the note under the currency box says so.</p></details>
+                </div>
+            </section>
         </div>
-    </div>
+    </main>
 
-    <div class="floating-plane" style="top: 10%; left: 15%; animation-delay: 2s;"></div>
-    <div class="floating-star" style="top: 30%; right: 10%; animation-delay: 1s;"></div>
-    <div class="floating-plane" style="bottom: 20%; right: 25%; animation-delay: 4s; transform: scaleX(-1);"></div>
-    <div class="floating-star" style="bottom: 5%; left: 35%; animation-delay: 0.5s;"></div>
-
-    <script>
-        const destinations = [
-            "Paris, France", "Tokyo, Japan", "New York City, USA", "London, UK", "Rome, Italy",
-            "Sydney, Australia", "Barcelona, Spain", "Kyoto, Japan", "Amsterdam, Netherlands", "Berlin, Germany",
-            "Rio de Janeiro, Brazil", "Cape Town, South Africa", "Bangkok, Thailand", "Istanbul, Turkey", "Mexico City, Mexico",
-            "Toronto, Canada", "Vancouver, Canada", "Los Angeles, USA", "Chicago, USA", "San Francisco, USA",
-            "Singapore", "Seoul, South Korea", "Shanghai, China", "Beijing, China", "Dubai, UAE",
-            "Hong Kong", "Kuala Lumpur, Malaysia", "Mumbai, India", "Delhi, India", "Cairo, Egypt",
-            "Marrakech, Morocco", "Buenos Aires, Argentina", "Santiago, Chile", "Lima, Peru", "Bogotá, Colombia",
-            "Moscow, Russia", "Saint Petersburg, Russia", "Stockholm, Sweden", "Copenhagen, Denmark", "Oslo, Norway",
-            "Helsinki, Finland", "Dublin, Ireland", "Edinburgh, Scotland", "Vienna, Austria", "Prague, Czech Republic",
-            "Budapest, Hungary", "Lisbon, Portugal", "Seville, Spain", "Athens, Greece", "Zurich, Switzerland",
-            "Munich, Germany", "Milan, Italy", "Florence, Italy", "Venice, Italy", "Naples, Italy",
-            "Cologne, Germany", "Hamburg, Germany", "Warsaw, Poland", "Krakow, Poland", "Bucharest, Romania",
-            "Sofia, Bulgaria", "Zagreb, Croatia", "Belgrade, Serbia", "Sarajevo, Bosnia and Herzegovina", "Tirana, Albania",
-            "Reykjavik, Iceland", "Auckland, New Zealand", "Wellington, New Zealand", "Perth, Australia", "Melbourne, Australia",
-            "Brisbane, Australia", "Adelaide, Australia", "Montreal, Canada", "Ottawa, Canada", "Calgary, Canada",
-            "Edmonton, Canada", "Quebec City, Canada", "Halifax, Canada", "Winnipeg, Canada", "Hamilton, Canada",
-            "San Diego, USA", "Seattle, USA", "Boston, USA", "Philadelphia, USA", "Atlanta, USA",
-            "Miami, USA", "Dallas, USA", "Houston, USA", "Phoenix, USA", "Denver, USA",
-            "Las Vegas, USA", "Orlando, USA", "Tampa, USA", "Minneapolis, USA", "St. Louis, USA",
-            "Austin, USA", "Charlotte, USA", "Jacksonville, USA", "Indianapolis, USA", "Columbus, USA",
-            "Nashville, USA", "Milwaukee, USA", "Oklahoma City, USA", "Portland, USA", "Memphis, USA",
-            "Louisville, USA", "Richmond, USA", "New Orleans, USA", "Salt Lake City, USA", "Hartford, USA",
-            "Providence, USA", "Baltimore, USA", "Cincinnati, USA", "Kansas City, USA", "Omaha, USA",
-            "Albuquerque, USA", "Tucson, USA", "Sacramento, USA", "Fresno, USA", "Long Beach, USA",
-            "Oakland, USA", "Anaheim, USA", "Santa Ana, USA", "Riverside, USA", "Bakersfield, USA",
-            "Stockton, USA", "Aurora, USA", "Buffalo, USA", "Raleigh, USA", "Plano, USA",
-            "Fort Wayne, USA", "Greensboro, USA", "Durham, USA", "Chandler, USA", "Scottsdale, USA",
-            "North Hempstead, USA", " Hempstead, USA", "Yonkers, USA", "Syracuse, USA", "Albany, USA",
-            "Rochester, USA", "New Rochelle, USA", "Mount Vernon, USA", "Schenectady, USA", "Utica, USA",
-            "White Plains, USA", "Niagara Falls, USA", "Troy, USA", "Binghamton, USA", "Poughkeepsie, USA",
-            "Newburgh, USA", "Middletown, USA", "Kingston, USA", "Jamestown, USA", "Ithaca, USA",
-            "Corning, USA", "Elmira, USA", "Watertown, USA", "Auburn, USA", "Oswego, USA",
-            "Cortland, USA", "Plattsburgh, USA", "Glens Falls, USA", "Saratoga Springs, USA", "Amsterdam, USA",
-            "Cohoes, USA", "Watervliet, USA", "Rensselaer, USA", "Mechanicville, USA", "Hudson, USA",
-            "Peekskill, USA", "Beacon, USA", "Glen Cove, USA", "Long Beach, USA", "Oyster Bay, USA",
-            "Babylon, USA", "Islip, USA", "Huntington, USA", "Smithtown, USA", "Brookhaven, USA",
-            "Riverhead, USA", "Southampton, USA", "East Hampton, USA", "Shelter Island, USA", "Northport, USA",
-            "Patchogue, USA", "Port Jefferson, USA", "Sag Harbor, USA", "Amagansett, USA", "Montauk, USA",
-            "Greenport, USA", "Orient, USA", "Mattituck, USA", "Cutchogue, USA", "Jamesport, USA",
-            "Westhampton Beach, USA", "Quogue, USA", "Southold, USA", "Fishers Island, USA", "Fire Island, USA",
-            "Jones Beach, USA", "Robert Moses State Park, USA", "Sunken Meadow State Park, USA", "Wildwood State Park, USA",
-            "Hither Hills State Park, USA", "Montauk Point State Park, USA", "Orient Beach State Park, USA", "Sears Bellows County Park, USA",
-            "Cedar Point County Park, USA", "Meschutt Beach County Park, USA", "Shin Pond State Park, USA", "Hallock State Park Preserve, USA",
-            "Nissequogue River State Park, USA", "Caleb Smith State Park Preserve, USA", "Sunken Forest Preserve, USA", "Connetquot River State Park Preserve, USA",
-            "Planting Fields Arboretum State Historic Park, USA", "Old Westbury Gardens, USA", "Bayard Cutting Arboretum, USA", "Bailey Arboretum, USA",
-            "Clark Botanic Garden, USA", "Wertheim National Wildlife Refuge, USA", "Seatuck National Wildlife Refuge, USA", "Amagansett National Wildlife Refuge, USA",
-            "Morton National Wildlife Refuge, USA", "Target Rock National Wildlife Refuge, USA", "Oka National Wildlife Refuge, USA", "Elizabeth A. Morton National Wildlife Refuge, USA",
-            "Wertheim National Wildlife Refuge, USA", "Seatuck National Wildlife Refuge, USA", "Amagansett National Wildlife Refuge, USA", "Morton National Wildlife Refuge, USA",
-            "Target Rock National Wildlife Refuge, USA", "Oka National Wildlife Refuge, USA", "Elizabeth A. Morton National Wildlife Refuge, USA", "Wertheim National Wildlife Refuge, USA",
-            "Seatuck National Wildlife Refuge, USA", "Amagansett National Wildlife Refuge, USA", "Morton National Wildlife Refuge, USA", "Target Rock National Wildlife Refuge, USA",
-            "Oka National Wildlife Refuge, USA", "Elizabeth A. Morton National Wildlife Refuge, USA", "Wertheim National Wildlife Refuge, USA", "Seatuck National Wildlife Refuge, USA",
-            "Amagansett National Wildlife Refuge, USA", "Morton National Wildlife Refuge, USA", "Target Rock National Wildlife Refuge, USA", "Oka National Wildlife Refuge, USA",
-            "Elizabeth A. Morton National Wildlife Refuge, USA", "Wertheim National Wildlife Refuge, USA", "Seatuck National Wildlife Refuge, USA", "Amagansett National Wildlife Refuge, USA",
-            "Morton National Wildlife Refuge, USA", "Target Rock National Wildlife Refuge, USA", "Oka National Wildlife Refuge, USA",
-            "Other (Please specify distance)"
-        ];
-
-        const destinationInput = document.getElementById('destination');
-        const suggestionsDiv = document.getElementById('destination-suggestions');
-        const distanceInputGroup = document.getElementById('distance-input-group');
-        const distanceInput = document.getElementById('distance');
-        const resultDiv = document.getElementById('result');
-        const estimatedAmount = document.getElementById('estimated-amount');
-        const breakdown = document.getElementById('breakdown');
-
-        destinationInput.addEventListener('input', function () {
-            const inputText = this.value.toLowerCase();
-            suggestionsDiv.innerHTML = '';
-            distanceInputGroup.style.display = 'none';
-
-            if (inputText === 'other') {
-                distanceInputGroup.style.display = 'block';
-                suggestionsDiv.style.display = 'none';
-                return;
-            }
-
-            const filteredDestinations = destinations.filter(dest =>
-                dest.toLowerCase().includes(inputText)
-            );
-
-            if (inputText && filteredDestinations.length > 0) {
-                suggestionsDiv.style.display = 'block';
-                filteredDestinations.forEach(dest => {
-                    const suggestionItem = document.createElement('div');
-                    suggestionItem.classList.add('suggestion-item');
-                    suggestionItem.textContent = dest;
-                    suggestionItem.addEventListener('click', function () {
-                        destinationInput.value = dest;
-                        suggestionsDiv.style.display = 'none';
-                        if (dest === 'Other (Please specify distance)') {
-                            distanceInputGroup.style.display = 'block';
-                        } else {
-                            distanceInputGroup.style.display = 'none';
-                        }
-                    });
-                    suggestionsDiv.appendChild(suggestionItem);
-                });
-            } else {
-                suggestionsDiv.style.display = 'none';
-            }
-        });
-
-        function estimateCost() {
-            const destination = document.getElementById('destination').value;
-            const duration = parseInt(document.getElementById('duration').value);
-            const travelers = parseInt(document.getElementById('travelers').value);
-            const currency = document.getElementById('currency').value;
-            const includeFlights = document.getElementById('flight').checked;
-            const includeHotel = document.getElementById('hotel').checked;
-            const includeActivities = document.getElementById('activities').checked;
-            const includeFood = document.getElementById('food').checked;
-            const includeTransport = document.getElementById('transport').checked;
-            const includeShopping = document.getElementById('shopping').checked;
-            const enteredDistance = parseFloat(document.getElementById('distance').value);
-
-            let baseCostPerDay = 50; // Placeholder
-            let flightCostPerPerson = 300; // Placeholder
-            let distanceFactor = 0.1; // Placeholder cost per km
-
-            if (destination.toLowerCase().includes('paris')) baseCostPerDay = 150;
-            else if (destination.toLowerCase().includes('bali')) baseCostPerDay = 70;
-            else if (destination === 'Other (Please specify distance)' && !isNaN(enteredDistance)) {
-                flightCostPerPerson = enteredDistance * distanceFactor;
-            } else if (includeFlights) {
-                // Basic fallback if destination doesn't trigger a specific flight cost
-            } else {
-                flightCostPerPerson = 0; // No flights selected
-            }
-
-            let totalCost = 0;
-            totalCost += baseCostPerDay * duration * travelers;
-
-            let breakdownText = "Based on your selections:";
-
-            if (includeFlights) {
-                totalCost += flightCostPerPerson * travelers;
-                breakdownText += `<br>- Flights (estimated): ${currency} ${(flightCostPerPerson * travelers).toFixed(2)}`;
-            }
-            if (includeHotel) {
-                const hotelCostPerDayPerPerson = 100; // Placeholder
-                totalCost += hotelCostPerDayPerPerson * duration * travelers;
-                breakdownText += `<br>- Accommodation (estimated): ${currency} ${(hotelCostPerDayPerPerson * duration * travelers).toFixed(2)}`;
-            }
-            if (includeActivities) {
-                const activitiesCostPerDayPerPerson = 30; // Placeholder
-                totalCost += activitiesCostPerDayPerPerson * duration * travelers;
-                breakdownText += `<br>- Activities (estimated): ${currency} ${(activitiesCostPerDayPerPerson * duration * travelers).toFixed(2)}`;
-            }
-            if (includeFood) {
-                const foodCostPerDayPerPerson = 40; // Placeholder
-                totalCost += foodCostPerDayPerPerson * duration * travelers;
-                breakdownText += `<br>- Food & Drinks (estimated): ${currency} ${(foodCostPerDayPerPerson * duration * travelers).toFixed(2)}`;
-            }
-            if (includeTransport) {
-                const transportCostPerDayPerPerson = 20; // Placeholder
-                totalCost += transportCostPerDayPerPerson * duration * travelers;
-                breakdownText += `<br>- Local Transport (estimated): ${currency} ${(transportCostPerDayPerPerson * duration * travelers).toFixed(2)}`;
-            }
-            if (includeShopping) {
-                const shoppingBudgetPerPerson = 50; // Placeholder
-                totalCost += shoppingBudgetPerPerson * travelers;
-                breakdownText += `<br>- Shopping (estimated): ${currency} ${(shoppingBudgetPerPerson * travelers).toFixed(2)}`;
-            }
-
-            estimatedAmount.textContent = `${currency} ${totalCost.toFixed(2)}`;
-            breakdown.innerHTML = breakdownText;
-            resultDiv.style.display = 'block';
-
-            // Add a slight delay for the slide-up animation
-            setTimeout(() => {
-                resultDiv.style.opacity = 1;
-                resultDiv.style.transform = 'translateY(0)';
-            }, 50);
-        }
-    </script>
-
-    <style>
-        .dth-guide { --g-bg: #ffffff; --g-tx: #1f2333; --g-mu: #4a5068; --g-bd: #e3e5ee; --g-ac: #4f46e5;
-            max-width: 820px; margin: 48px auto; padding: 28px 32px; border-radius: 16px; background: var(--g-bg); color: var(--g-tx);
-            border: 1px solid var(--g-bd); font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; line-height: 1.65; text-align: left; position: relative; z-index: 1; }
-        @media (prefers-color-scheme: dark) { .dth-guide:not([data-tone=light]) { --g-bg: #141724; --g-tx: #eceef6; --g-mu: #a9afc4; --g-bd: #2a3043; --g-ac: #818cf8; } }
-        .dth-guide[data-tone=dark] { --g-bg: #141724; --g-tx: #eceef6; --g-mu: #a9afc4; --g-bd: #2a3043; --g-ac: #818cf8; }
-        .dth-guide h2 { font-size: 1.4rem; font-weight: 750; margin: 0 0 8px; color: var(--g-tx); letter-spacing: -.01em; }
-        .dth-guide h3 { font-size: 1.05rem; font-weight: 700; margin: 22px 0 6px; color: var(--g-tx); }
-        .dth-guide p, .dth-guide li { color: var(--g-mu); font-size: .97rem; margin: 0 0 10px; }
-        .dth-guide ul { margin: 0 0 10px; padding-left: 1.3em; list-style: disc; }
-        .dth-guide strong { color: var(--g-tx); }
-        .dth-guide code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .88em; padding: 1px 6px; border-radius: 6px; background: color-mix(in srgb, var(--g-ac) 12%, transparent); color: var(--g-tx); }
-        @media (max-width: 640px) { .dth-guide { margin: 32px 16px; padding: 22px 20px; } }
-    </style>
-    <section class="dth-guide" aria-labelledby="guide-title">
-        <h2 id="guide-title">About the trip cost estimator</h2>
-        <h3>How it works</h3>
-        <p>Choose a destination, trip length, number of travellers and what to include. The estimator multiplies typical daily costs for accommodation, food, transport and activities by days and travellers, then adds flights.</p>
-        <h3>Accuracy</h3>
-        <p>Figures are ballpark averages for budgeting, not quotes. Prices vary with season, booking time and travel style, so check live prices before you book.</p>
-        <h3>Saving money</h3>
-        <ul><li>Fly mid-week and book 1–3 months ahead for short-haul trips.</li><li>Travel in shoulder season for lower prices and fewer crowds.</li></ul>
-    </section>
-    
+    <!-- @footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a class="brand" href="./"><span class="brand-mark"><svg class="" aria-hidden="true"><use href="assets/img/icons.svg#layout-grid"></use></svg></span>Digital Tools Hub</a>
+                    <p>34 free tools for money, health, work and code. No sign-up, no paywalls, and your data stays in your browser.</p>
+                </div>
+                <div>
+                    <h4>Popular</h4>
+                    <ul>
+                        <li><a href="currency.html">Currency Converter</a></li>
+                        <li><a href="bmi.html">BMI Calculator</a></li>
+                        <li><a href="kanban-board.html">Kanban Board</a></li>
+                        <li><a href="scientific-calculator.html">Scientific Calculator</a></li>
+                        <li><a href="json-formatter.html">JSON Formatter</a></li>
+                        <li><a href="password.html">Password Generator</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="./?cat=finance">Finance</a></li>
+                        <li><a href="./?cat=health">Health</a></li>
+                        <li><a href="./?cat=productivity">Productivity</a></li>
+                        <li><a href="./?cat=dev">Developer</a></li>
+                        <li><a href="./?cat=design">Design</a></li>
+                        <li><a href="./?cat=security">Security</a></li>
+                        <li><a href="./?cat=life">Lifestyle</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy policy</a></li>
+                        <li><a href="terms.html">Terms of service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Digital Tools Hub. Built by <a href="about.html">Rabeeh</a>.</span>
+                <span>Tip: press <span class="kbd" data-mod-key>Ctrl K</span> anywhere to jump to a tool.</span>
+            </div>
+        </div>
+    </footer>
+    <!-- /@footer -->
+    <!-- @scripts -->
     <script src="assets/js/tools.js" defer></script>
     <script src="assets/js/shell.js" defer></script>
-</body>
+    <script src="assets/js/hub.js" defer></script>
+    <!-- /@scripts -->
+    <script src="assets/js/fx.js"></script>
+    <script>
+    (function () {
+        "use strict";
+        // [name, lat, lon, price level (1 = typical big-city mid-range)]
+        var C = [
+            ["Paris, France",48.86,2.35,1.35],["Tokyo, Japan",35.68,139.69,1.2],["New York, USA",40.71,-74.0,1.7],["London, UK",51.51,-0.13,1.5],
+            ["Rome, Italy",41.9,12.5,1.2],["Sydney, Australia",-33.87,151.21,1.4],["Barcelona, Spain",41.39,2.17,1.1],["Madrid, Spain",40.42,-3.7,1.05],
+            ["Kyoto, Japan",35.01,135.77,1.1],["Osaka, Japan",34.69,135.5,1.1],["Amsterdam, Netherlands",52.37,4.9,1.4],["Berlin, Germany",52.52,13.4,1.1],
+            ["Munich, Germany",48.14,11.58,1.3],["Brussels, Belgium",50.85,4.35,1.25],["Rio de Janeiro, Brazil",-22.91,-43.17,0.8],["Cape Town, South Africa",-33.92,18.42,0.7],
+            ["Johannesburg, South Africa",-26.2,28.05,0.65],["Bangkok, Thailand",13.75,100.5,0.55],["Istanbul, Turkey",41.01,28.98,0.7],["Mexico City, Mexico",19.43,-99.13,0.65],
+            ["Cancun, Mexico",21.16,-86.85,1.0],["Toronto, Canada",43.65,-79.38,1.2],["Vancouver, Canada",49.28,-123.12,1.25],["Montreal, Canada",45.5,-73.57,1.15],
+            ["Los Angeles, USA",34.05,-118.24,1.5],["Chicago, USA",41.88,-87.63,1.4],["San Francisco, USA",37.77,-122.42,1.8],["Boston, USA",42.36,-71.06,1.6],
+            ["Washington DC, USA",38.9,-77.04,1.5],["Miami, USA",25.76,-80.19,1.5],["Las Vegas, USA",36.17,-115.14,1.4],["Orlando, USA",28.54,-81.38,1.3],
+            ["Seattle, USA",47.61,-122.33,1.5],["Honolulu, USA",21.31,-157.86,1.9],["Singapore",1.35,103.82,1.4],["Seoul, South Korea",37.57,126.98,1.0],
+            ["Shanghai, China",31.23,121.47,0.9],["Beijing, China",39.9,116.4,0.85],["Hong Kong",22.32,114.17,1.4],["Taipei, Taiwan",25.03,121.57,0.8],
+            ["Dubai, UAE",25.2,55.27,1.3],["Doha, Qatar",25.29,51.53,1.2],["Riyadh, Saudi Arabia",24.71,46.68,1.0],["Tel Aviv, Israel",32.09,34.78,1.5],
+            ["Amman, Jordan",31.95,35.93,0.8],["Kuala Lumpur, Malaysia",3.14,101.69,0.55],["Bali, Indonesia",-8.65,115.22,0.5],["Hanoi, Vietnam",21.03,105.85,0.4],
+            ["Ho Chi Minh City, Vietnam",10.82,106.63,0.45],["Manila, Philippines",14.6,120.98,0.5],["Mumbai, India",19.08,72.88,0.5],["Delhi, India",28.61,77.21,0.45],
+            ["Karachi, Pakistan",24.86,67.0,0.35],["Lahore, Pakistan",31.55,74.34,0.35],["Islamabad, Pakistan",33.68,73.05,0.4],["Dhaka, Bangladesh",23.81,90.41,0.35],
+            ["Colombo, Sri Lanka",6.93,79.86,0.45],["Kathmandu, Nepal",27.7,85.32,0.4],["Male, Maldives",4.18,73.51,1.8],["Cairo, Egypt",30.04,31.24,0.45],
+            ["Marrakech, Morocco",31.63,-8.0,0.55],["Nairobi, Kenya",-1.29,36.82,0.6],["Lagos, Nigeria",6.52,3.38,0.7],["Accra, Ghana",5.6,-0.19,0.6],
+            ["Buenos Aires, Argentina",-34.6,-58.38,0.65],["Santiago, Chile",-33.45,-70.67,0.8],["Lima, Peru",-12.05,-77.04,0.6],["Bogota, Colombia",4.71,-74.07,0.55],
+            ["Havana, Cuba",23.11,-82.37,0.7],["Panama City, Panama",8.98,-79.52,0.8],["San Jose, Costa Rica",9.93,-84.08,0.9],["Moscow, Russia",55.76,37.62,0.8],
+            ["Saint Petersburg, Russia",59.93,30.34,0.7],["Stockholm, Sweden",59.33,18.07,1.4],["Copenhagen, Denmark",55.68,12.57,1.6],["Oslo, Norway",59.91,10.75,1.8],
+            ["Helsinki, Finland",60.17,24.94,1.4],["Reykjavik, Iceland",64.15,-21.94,1.9],["Dublin, Ireland",53.35,-6.26,1.45],["Edinburgh, UK",55.95,-3.19,1.3],
+            ["Vienna, Austria",48.21,16.37,1.2],["Prague, Czechia",50.08,14.44,0.85],["Budapest, Hungary",47.5,19.04,0.8],["Warsaw, Poland",52.23,21.01,0.75],
+            ["Krakow, Poland",50.06,19.94,0.7],["Bucharest, Romania",44.43,26.1,0.6],["Lisbon, Portugal",38.72,-9.14,0.95],["Athens, Greece",37.98,23.73,0.9],
+            ["Zurich, Switzerland",47.37,8.54,2.0],["Milan, Italy",45.46,9.19,1.3],["Florence, Italy",43.77,11.26,1.2],["Venice, Italy",45.44,12.32,1.4],
+            ["Nice, France",43.7,7.26,1.4],["Dubrovnik, Croatia",42.65,18.09,1.2],["Tbilisi, Georgia",41.72,44.79,0.55],["Baku, Azerbaijan",40.41,49.87,0.65],
+            ["Almaty, Kazakhstan",43.24,76.89,0.6],["Tashkent, Uzbekistan",41.3,69.24,0.45],["Auckland, New Zealand",-36.85,174.76,1.2],["Melbourne, Australia",-37.81,144.96,1.3]
+        ];
+        var OTHER = "Other (enter distance)";
+        // USD per day at price level 1.0, mid-range.
+        var BASE = { hotelRoom: 110, food: 50, transport: 18, activities: 35, shopping: 20 };
+        var STYLE = { budget: { hotel: 0.5, rest: 0.6 }, mid: { hotel: 1, rest: 1 }, luxury: { hotel: 2.5, rest: 2.1 } };
 
+        var $ = function (id) { return document.getElementById(id); };
+        var fx = window.DTH_FX;
+        var STORE = "dth:trip:v2";
+
+        var dl = $("cities");
+        C.map(function (c) { return c[0]; }).concat([OTHER]).forEach(function (n) { var o = document.createElement("option"); o.value = n; dl.appendChild(o); });
+
+        function find(q) {
+            q = (q || "").trim().toLowerCase();
+            if (!q) return null;
+            if (q === "other" || q === OTHER.toLowerCase()) return "other";
+            var exact = C.filter(function (c) { return c[0].toLowerCase() === q; })[0];
+            if (exact) return exact;
+            var starts = C.filter(function (c) { return c[0].toLowerCase().indexOf(q) === 0; });
+            if (starts.length === 1) return starts[0];
+            var has = C.filter(function (c) { return c[0].toLowerCase().indexOf(q) !== -1; });
+            return has.length === 1 ? has[0] : (starts.length ? starts[0] : null);
+        }
+        function km(a, b) {
+            var R = 6371, rad = Math.PI / 180;
+            var dLat = (b[1] - a[1]) * rad, dLon = (b[2] - a[2]) * rad;
+            var h = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(a[1] * rad) * Math.cos(b[1] * rad) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            return 2 * R * Math.asin(Math.sqrt(h));
+        }
+        // One-way economy fare in USD for a given distance.
+        function fare(d) {
+            if (d < 50) return 0;
+            var f = 35 + Math.min(d, 1500) * 0.1 + Math.max(Math.min(d, 5000) - 1500, 0) * 0.07 + Math.max(d - 5000, 0) * 0.055;
+            return f;
+        }
+
+        // Currency dropdown.
+        var cur = $("currency");
+        var NAMES = (function () { try { return new Intl.DisplayNames(undefined, { type: "currency" }); } catch (e) { return null; } })();
+        var PRIORITY = ["USD", "EUR", "GBP", "JPY", "AED", "AUD", "CAD", "CHF", "CNY", "INR", "PKR", "SGD"];
+        function fillCurrencies() {
+            var keep = cur.value || "USD";
+            var codes = Object.keys(fx.rates).sort();
+            var order = PRIORITY.filter(function (c) { return fx.has(c); }).concat(codes.filter(function (c) { return PRIORITY.indexOf(c) < 0; }));
+            cur.innerHTML = "";
+            order.forEach(function (c) {
+                var n = ""; try { n = NAMES ? NAMES.of(c) : ""; } catch (e) {}
+                cur.add(new Option(c + (n && n !== c ? " - " + n : ""), c));
+            });
+            cur.value = fx.has(keep) ? keep : "USD";
+        }
+        fillCurrencies();
+
+        function state() {
+            return { origin: $("origin").value, dest: $("dest").value, days: $("days").value, travelers: $("travelers").value, style: $("style").value,
+                season: $("season").value, cabin: $("cabin").value, type: $("trip-type").value, cur: cur.value, dist: $("c-dist").value, level: $("c-level").value,
+                inc: ["flight", "hotel", "food", "transport", "activities", "shopping"].filter(function (k) { return $("i-" + k).checked; }) };
+        }
+        function restore() {
+            var s; try { s = JSON.parse(localStorage.getItem(STORE) || "null"); } catch (e) {}
+            if (!s) return;
+            ["origin", "dest", "days", "travelers", "style", "season", "cabin"].forEach(function (k) { if (s[k] != null) $(k).value = s[k]; });
+            if (s.type) $("trip-type").value = s.type;
+            if (s.dist) $("c-dist").value = s.dist;
+            if (s.level) $("c-level").value = s.level;
+            if (s.cur && fx.has(s.cur)) cur.value = s.cur;
+            if (s.inc) ["flight", "hotel", "food", "transport", "activities", "shopping"].forEach(function (k) { $("i-" + k).checked = s.inc.indexOf(k) >= 0; });
+        }
+
+        var last = null;
+        function calc() {
+            var s = state();
+            try { localStorage.setItem(STORE, JSON.stringify(s)); } catch (e) {}
+            var d = find(s.dest), o = find(s.origin);
+            $("custom-box").hidden = d !== "other";
+            $("dest-hint").textContent = d && d !== "other" ? d[0] : (s.dest && !d ? "No match. Pick from the list or choose Other." : "");
+            var days = Math.max(1, Math.min(365, Math.floor(+s.days) || 0)), trav = Math.max(1, Math.min(50, Math.floor(+s.travelers) || 0));
+            var show = function (msg) { $("out").hidden = true; $("empty").hidden = false; $("empty-text").textContent = msg; last = null; };
+            if (!d) return show("Choose a destination to see an estimate.");
+            if (!(+s.days >= 1) || !(+s.travelers >= 1)) return show("Enter at least 1 day and 1 traveler.");
+
+            var level, dist = null, inc = s.inc;
+            if (d === "other") { level = +s.level; dist = Math.max(0, +s.dist || 0); }
+            else {
+                level = d[3];
+                if (o && o !== "other") dist = km(o, d);
+            }
+            var st = STYLE[s.style], season = +s.season;
+            var rooms = Math.ceil(trav / 2), nights = days > 1 ? days - 1 : 0;
+            var rows = [];
+            var add = function (key, label, usd, note) { if (inc.indexOf(key) >= 0) rows.push({ label: label, usd: usd, note: note }); };
+            var flightNote, flightUsd = 0;
+            if (inc.indexOf("flight") >= 0) {
+                if (dist == null) { flightNote = "Enter your home city to price flights"; }
+                else {
+                    flightUsd = fare(dist) * (+s.cabin) * (+s.type) * season * trav;
+                    flightNote = Math.round(dist).toLocaleString() + " km " + (+s.type === 2 ? "round trip" : "one way") + " x " + trav + " traveler" + (trav > 1 ? "s" : "");
+                }
+            }
+            add("flight", "Flights", flightUsd, flightNote);
+            add("hotel", "Hotel", BASE.hotelRoom * level * st.hotel * season * rooms * nights, nights + " night" + (nights === 1 ? "" : "s") + " x " + rooms + " room" + (rooms > 1 ? "s" : ""));
+            add("food", "Food & drink", BASE.food * level * st.rest * trav * days, days + " day" + (days > 1 ? "s" : "") + " x " + trav + " traveler" + (trav > 1 ? "s" : ""));
+            add("transport", "Local transport", BASE.transport * level * st.rest * trav * days, "Metro, taxis and transfers");
+            add("activities", "Activities", BASE.activities * level * st.rest * trav * days, "Tours, entry fees and experiences");
+            add("shopping", "Shopping & extras", BASE.shopping * level * st.rest * trav * days, "Souvenirs and incidentals");
+
+            var totalUsd = rows.reduce(function (a, r) { return a + r.usd; }, 0);
+            var code = s.cur, rate = fx.convert(1, "USD", code);
+            if (!(rate > 0)) { code = "USD"; rate = 1; }
+            var f = function (usd) { return fx.format(usd * rate, code, { maximumFractionDigits: usd * rate >= 100 ? 0 : 2 }); };
+
+            if (!rows.length) return show("Tick at least one cost to include.");
+            $("empty").hidden = true; $("out").hidden = false;
+            $("r-total").textContent = f(totalUsd);
+            $("r-sub").textContent = (d === "other" ? "Custom destination" : d[0]) + " | " + days + " day" + (days > 1 ? "s" : "") + " | " + trav + " traveler" + (trav > 1 ? "s" : "");
+            $("r-pp").textContent = f(totalUsd / trav);
+            $("r-pd").textContent = f(totalUsd / days);
+            $("r-dist").textContent = dist == null ? "n/a" : Math.round(dist).toLocaleString() + " km";
+            $("r-usd").textContent = fx.format(totalUsd, "USD", { maximumFractionDigits: 0 });
+            var max = Math.max.apply(null, rows.map(function (r) { return r.usd; })) || 1;
+            $("breakdown").innerHTML = rows.map(function (r) {
+                return '<div class="line"><span>' + r.label + '</span><b>' + (r.usd || r.note !== "Enter your home city to price flights" ? f(r.usd) : "n/a") + '</b>' +
+                    '<small>' + (r.note || "") + '</small><div class="bar" style="grid-column:1/-1"><span style="width:' + Math.round(r.usd / max * 100) + '%"></span></div></div>';
+            }).join("");
+            last = { text: (d === "other" ? "Custom trip" : d[0]) + ", " + days + " days, " + trav + " traveler(s): " + f(totalUsd) + " total (" + f(totalUsd / trav) + " per person)" };
+        }
+
+        function note() { $("fx-note").textContent = fx.sourceLabel(); }
+        restore(); note(); calc();
+        fx.onUpdate(function () { fillCurrencies(); try { var s = JSON.parse(localStorage.getItem(STORE) || "{}"); if (s.cur && fx.has(s.cur)) cur.value = s.cur; } catch (e) {} note(); calc(); });
+        document.querySelectorAll("input, select").forEach(function (el) { el.addEventListener("input", calc); el.addEventListener("change", calc); });
+        $("copy").addEventListener("click", function () {
+            if (!last) return;
+            var b = $("copy"), t = b.innerHTML, done = function () { b.textContent = "Copied"; setTimeout(function () { b.innerHTML = t; }, 1500); };
+            if (navigator.clipboard) navigator.clipboard.writeText(last.text).then(done, function () {}); 
+        });
+    })();
+    </script>
+</body>
 </html>

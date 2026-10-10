@@ -1165,7 +1165,7 @@
             lastLogin: localStorage.getItem('lastLogin') || null,
             streak: parseInt(localStorage.getItem('streak')) || 0,
             // Demo Trading State
-            demoBalance: parseFloat(localStorage.getItem('demoBalance')) || 50.00,
+            demoBalance: isNaN(parseFloat(localStorage.getItem('demoBalance'))) ? 50.00 : parseFloat(localStorage.getItem('demoBalance')),
             demoHoldings: JSON.parse(localStorage.getItem('demoHoldings')) || {},
             demoTransactions: JSON.parse(localStorage.getItem('demoTransactions')) || [],
             demoPurchasePrices: JSON.parse(localStorage.getItem('demoPurchasePrices')) || {}
@@ -2231,8 +2231,8 @@
         })(); // Immediately invoke the function
 
         // ====== AI Prediction Features ======
-        let lstmModel;
-        let predictionHistory = [];
+        var lstmModel;
+        var predictionHistory = [];
 
         function setupAI() {
             const runLSTMBtn = document.getElementById('runLSTM');
@@ -2241,8 +2241,7 @@
             if (runLSTMBtn) runLSTMBtn.addEventListener('click', runLSTMPrediction);
             if (runARIMABtn) runARIMABtn.addEventListener('click', runARIMAPrediction);
 
-            // Pre-load LSTM model
-            setupLSTM().catch(console.error);
+            // The LSTM model is built lazily on the first run (see runLSTMPrediction).
         }
 
         async function fetchPredictionData() {
@@ -2265,6 +2264,7 @@
         }
 
         async function setupLSTM() {
+            if (typeof tf === 'undefined') throw new Error('TensorFlow.js failed to load');
             lstmModel = tf.sequential();
             lstmModel.add(tf.layers.lstm({
                 units: 32,

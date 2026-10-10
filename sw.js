@@ -8,7 +8,7 @@
  *
  * VERSION is stamped by scripts/build.mjs; changing it drops old caches.
  */
-const VERSION = "dth-4bfe828b";
+const VERSION = "dth-912a2740";
 const PRECACHE = [
   "./",
   "index.html",

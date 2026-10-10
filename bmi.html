@@ -25,9 +25,9 @@
     <title>Ultimate BMI Calculator | Free Body Mass Index Tool</title>
     <meta name="title" content="Ultimate BMI Calculator | Free Body Mass Index Tool">
     <meta name="description"
-        content="Free online BMI calculator with personalized health tips, ideal weight range, and WtHR. Check your Body Mass Index instantly. No sign-up.">
+        content="Free online BMI calculator with personalized health tips, ideal weight range, and BMI Prime. Check your Body Mass Index instantly. No sign-up.">
     <meta name="keywords"
-        content="bmi calculator, body mass index, health calculator, weight calculator, fitness tool, ideal weight calculator, health assessment, waist to height ratio">
+        content="bmi calculator, body mass index, health calculator, weight calculator, fitness tool, ideal weight calculator, health assessment, bmi prime">
     <meta name="author" content="Digital Tools Hub">
     <meta name="robots" content="index, follow">
 
@@ -71,7 +71,7 @@
         "price": "0",
         "priceCurrency": "USD"
       },
-      "featureList": "BMI Calculation, Waist-to-Height Ratio, Ideal Weight Range, Health Tips"
+      "featureList": "BMI Calculation, BMI Prime, Ideal Weight Range, Health Tips"
     }
     </script>
 
@@ -488,8 +488,11 @@
 
         <div class="input-group">
             <label for="height">Height</label>
-            <input type="number" id="height" placeholder="Enter height" min="100" max="250"
-                aria-describedby="height-help">
+            <div style="display:flex;gap:8px">
+                <input type="number" id="height" placeholder="Enter height (cm)" min="50" max="260" step="any"
+                    aria-describedby="height-help">
+                <input type="number" id="height-in" placeholder="in" min="0" max="11.99" step="any" style="display:none" aria-label="Height, inches">
+            </div>
             <span id="height-help" class="sr-only">Enter your height in centimeters or feet depending on selected unit
                 system</span>
         </div>
@@ -529,7 +532,7 @@
 
             <div class="additional-metrics">
                 <div class="metric-box">
-                    <div class="metric-title">Waist-to-Height</div>
+                    <div class="metric-title">BMI Prime</div>
                     <div class="metric-value" id="wthr">--</div>
                 </div>
                 <div class="metric-box">
@@ -564,12 +567,41 @@
             weightInput.focus();
 
             // Event Listeners
-            [weightInput, heightInput, ageInput, unitToggle].forEach(element => {
+            const heightIn = document.getElementById('height-in');
+            const weightLabel = document.querySelector('label[for="weight"]');
+            const heightLabel = document.querySelector('label[for="height"]');
+
+            [weightInput, heightInput, heightIn, ageInput].forEach(element => {
                 element.addEventListener('input', calculateBMI);
                 element.addEventListener('keydown', function (e) {
                     if (e.key === 'Enter') calculateBMI();
                 });
             });
+
+            // Switching units converts what is already typed instead of reinterpreting it.
+            function applyUnits(convert) {
+                const imperial = unitToggle.checked;
+                const w = parseFloat(weightInput.value), h = parseFloat(heightInput.value);
+                const inch = parseFloat(heightIn.value) || 0;
+                if (convert) {
+                    if (imperial) {
+                        if (w) weightInput.value = Math.round(w * 2.20462 * 10) / 10;
+                        if (h) { const total = h / 2.54; heightInput.value = Math.floor(total / 12); heightIn.value = Math.round((total % 12) * 10) / 10; }
+                    } else {
+                        if (w) weightInput.value = Math.round(w / 2.20462 * 10) / 10;
+                        if (h) heightInput.value = Math.round((h * 12 + inch) * 2.54);
+                        heightIn.value = '';
+                    }
+                }
+                weightLabel.textContent = imperial ? 'Weight (lbs)' : 'Weight (kg)';
+                heightLabel.textContent = imperial ? 'Height (ft / in)' : 'Height (cm)';
+                weightInput.min = imperial ? 44 : 20; weightInput.max = imperial ? 660 : 300;
+                heightInput.placeholder = imperial ? 'ft' : 'Enter height (cm)';
+                heightInput.min = imperial ? 2 : 50; heightInput.max = imperial ? 8.5 : 260;
+                heightIn.style.display = imperial ? '' : 'none';
+            }
+            unitToggle.addEventListener('change', () => { applyUnits(true); calculateBMI(); });
+            applyUnits(false);
 
             document.querySelectorAll('input[name="gender"]').forEach(radio => {
                 radio.addEventListener('change', calculateBMI);
@@ -592,21 +624,18 @@
                 // Convert units if imperial
                 if (isImperial) {
                     weight = weight / 2.20462; // lbs to kg
-                    height = height * 30.48; // ft to cm
+                    height = (height * 12 + (parseFloat(heightIn.value) || 0)) * 2.54; // ft + in to cm
                 }
 
                 // Calculate BMI
                 const heightInMeters = height / 100;
+                if (heightInMeters < 0.5 || heightInMeters > 2.6) { resultContainer.style.display = 'none'; return; }
                 const bmi = weight / (heightInMeters * heightInMeters);
                 const roundedBMI = Math.round(bmi * 10) / 10;
 
-                // Calculate Waist-to-Height Ratio (simulated)
-                const waistCircumference = (gender === 'male')
-                    ? 0.45 * height + 10 + (bmi > 25 ? (bmi - 25) * 0.5 : 0)
-                    : 0.42 * height + 8 + (bmi > 25 ? (bmi - 25) * 0.4 : 0);
-                const wthr = (waistCircumference / height).toFixed(2);
+                // BMI Prime: BMI relative to the upper healthy limit (25)
+                const prime = (bmi / 25).toFixed(2);
 
-                // Calculate Ideal Weight Range
                 const minIdeal = (18.5 * heightInMeters * heightInMeters).toFixed(1);
                 const maxIdeal = (24.9 * heightInMeters * heightInMeters).toFixed(1);
 
@@ -639,11 +668,13 @@
                 bmiPointer.style.left = `${pointerPosition}%`;
 
                 // Update additional metrics
-                wthrValue.textContent = wthr + (wthr > 0.5 ? " ⚠️" : " ✅");
-                idealWeight.textContent = `${minIdeal} - ${maxIdeal} kg`;
+                wthrValue.textContent = prime + (prime > 1 ? " ⚠️" : " ✅");
+                idealWeight.textContent = isImperial
+                    ? `${Math.round(minIdeal * 2.20462)} - ${Math.round(maxIdeal * 2.20462)} lbs`
+                    : `${minIdeal} - ${maxIdeal} kg`;
 
                 // Generate tips
-                generateTips(bmi, gender, age, wthr);
+                generateTips(bmi, gender, age);
 
                 // Show results
                 resultContainer.style.display = 'block';
@@ -658,7 +689,7 @@
             }
 
             // Generate Personalized Tips
-            function generateTips(bmi, gender, age, wthr) {
+            function generateTips(bmi, gender, age) {
                 let tips = [];
 
                 // BMI-based tips
@@ -701,12 +732,6 @@
                     tips.push("Include balance exercises to prevent falls");
                 }
 
-                // Waist-to-height ratio tips
-                if (wthr > 0.5) {
-                    tips.push("Your waist-to-height ratio suggests excess abdominal fat - focus on core exercises");
-                }
-
-                // Display tips
                 tipsContainer.innerHTML = '<h3>Personalized Health Tips:</h3><ul>' +
                     tips.map(tip => `<li>${tip}</li>`).join('') + '</ul>';
             }
@@ -766,6 +791,7 @@
                     }
                     if (params.has('unit')) {
                         unitToggle.checked = params.get('unit') === 'imperial';
+                        applyUnits(false);
                     }
                     calculateBMI();
                 }
@@ -793,7 +819,7 @@
         <h3>What the categories mean</h3>
         <ul><li><strong>Below 18.5</strong>: underweight</li><li><strong>18.5–24.9</strong>: healthy weight</li><li><strong>25–29.9</strong>: overweight</li><li><strong>30 and above</strong>: obesity</li></ul><p>These are the World Health Organization adult categories. They don’t apply to children, and some populations use lower cut-offs.</p>
         <h3>Limitations</h3>
-        <p>BMI doesn’t distinguish muscle from fat, so athletes can score “overweight” while being lean. Waist-to-height ratio (aim for below 0.5) is a useful second check. For medical advice, talk to a healthcare professional.</p>
+        <p>BMI doesn’t distinguish muscle from fat, so athletes can score “overweight” while being lean. BMI Prime (BMI ÷ 25; aim for 1.0 or below) shows how far you are from the upper healthy limit; a waist measurement is a useful second check. For medical advice, talk to a healthcare professional.</p>
     </section>
     
     <script src="assets/js/tools.js" defer></script>

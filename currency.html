@@ -515,7 +515,7 @@
                     <tr>
                         <th>Currency Pair</th>
                         <th>Rate</th>
-                        <th>Change</th>
+                        <th>Source</th>
                     </tr>
                 </thead>
                 <tbody id="live-board"></tbody>
@@ -550,6 +550,7 @@
         </aside>
     </div>
 
+    <script src="assets/js/fx.js"></script>
     <script>
         // Complete currency data with all requested currencies
         const currencies = [
@@ -739,42 +740,61 @@
         const lastUpdated = document.getElementById('last-updated');
         const tickerContent = document.getElementById('ticker-content');
 
-        // Exchange rates cache
-        let exchangeRates = {};
+        // Exchange rates come from the shared helper (live, cached or built-in fallback).
+        const fx = window.DTH_FX;
+        let exchangeRates = fx.rates;
         let baseCurrency = 'USD';
-        let lastUpdateTime = null;
         let chart = null;
+        let historyToken = 0;
         const liveBoard = document.getElementById('live-board');
 
-        // Initialize the app
         function init() {
             populateCurrencyDropdowns();
-            loadExchangeRates();
             setupEventListeners();
             displayPopularFlags();
-            initTicker();
             initChart();
+            convert();
+            updateLiveBoard();
+            updateLastUpdatedText();
+            fx.onUpdate(() => { exchangeRates = fx.rates; refreshAll(); });
+            fx.ready.then(() => { exchangeRates = fx.rates; refreshAll(); });
         }
 
-        function initTicker() {
-            const pairs = ['EUR/USD', 'GBP/USD', 'USD/JPY', 'AUD/USD', 'USD/CAD'];
-            tickerContent.innerHTML = pairs.map(pair => `
-                <div class="ticker-item">${pair} <span style="color: var(--success)">+${(Math.random() * 0.5).toFixed(2)}%</span></div>
-            `).join('').repeat(5);
+        function refreshAll() {
+            updateLastUpdatedText();
+            updateLiveBoard();
+            convert();
+        }
+
+        async function loadExchangeRates() {
+            lastUpdated.textContent = 'Updating...';
+            await fx.refresh();
+            exchangeRates = fx.rates;
+            refreshAll();
+        }
+
+        function updateTicker() {
+            const pairs = [['EUR', 'USD'], ['GBP', 'USD'], ['USD', 'JPY'], ['AUD', 'USD'], ['USD', 'CAD'], ['USD', 'INR']];
+            tickerContent.innerHTML = pairs.map(([a, b]) => {
+                const r = fx.convert(1, a, b);
+                return `<div class="ticker-item">${a}/${b} <span style="color: var(--success)">${r.toFixed(r < 10 ? 4 : 2)}</span></div>`;
+            }).join('').repeat(5);
         }
 
         function initChart() {
-            const ctx = document.getElementById('historyChart').getContext('2d');
-            chart = new Chart(ctx, {
+            const canvas = document.getElementById('historyChart');
+            if (typeof Chart === 'undefined') { canvas.style.display = 'none'; return; }
+            chart = new Chart(canvas.getContext('2d'), {
                 type: 'line',
                 data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    labels: [],
                     datasets: [{
                         label: 'Exchange Rate Trend',
-                        data: [1.08, 1.09, 1.07, 1.085, 1.10, 1.095],
+                        data: [],
                         borderColor: '#6366f1',
-                        tension: 0.4,
+                        tension: 0.3,
                         fill: true,
+                        pointRadius: 0,
                         backgroundColor: 'rgba(99, 102, 241, 0.1)'
                     }]
                 },
@@ -791,18 +811,15 @@
         function populateCurrencyDropdowns() {
             fromCurrency.innerHTML = '';
             toCurrency.innerHTML = '';
-
             const sortedCurrencies = [...currencies].sort((a, b) => a.code.localeCompare(b.code));
-
             sortedCurrencies.forEach(currency => {
-                const opt1 = new Option(`${currency.code} - ${currency.name}`, currency.code);
-                const opt2 = new Option(`${currency.code} - ${currency.name}`, currency.code);
-                fromCurrency.add(opt1);
-                toCurrency.add(opt2);
+                fromCurrency.add(new Option(`${currency.code} - ${currency.name}`, currency.code));
+                toCurrency.add(new Option(`${currency.code} - ${currency.name}`, currency.code));
             });
-
-            fromCurrency.value = 'USD';
-            toCurrency.value = 'EUR';
+            let saved = {};
+            try { saved = JSON.parse(localStorage.getItem('dth:fx:pair') || '{}'); } catch (e) {}
+            fromCurrency.value = saved.from && currencies.some(c => c.code === saved.from) ? saved.from : 'USD';
+            toCurrency.value = saved.to && currencies.some(c => c.code === saved.to) ? saved.to : 'EUR';
         }
 
         // Display popular flags
@@ -813,7 +830,7 @@
                 const curr = currencies.find(c => c.code === code);
                 const div = document.createElement('div');
                 div.className = 'fav-item';
-                div.innerHTML = `<span><img src="${curr.flag}" style="width:20px; border-radius:2px; margin-right:8px"> ${code}</span> <span>Explore</span>`;
+                div.innerHTML = `<span><img src="${curr.flag}" alt="" style="width:20px; border-radius:2px; margin-right:8px"> ${code}</span> <span>Explore</span>`;
                 div.onclick = () => {
                     toCurrency.value = code;
                     convert();
@@ -822,51 +839,53 @@
             });
         }
 
-        async function loadExchangeRates() {
-            try {
-                lastUpdated.textContent = 'Updating...';
-                const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${baseCurrency}`);
-                const data = await response.json();
-                exchangeRates = data.rates;
-                lastUpdateTime = new Date();
-                updateLastUpdatedText();
-                updateLiveBoard();
-                convert();
-            } catch (error) {
-                console.error('API Error:', error);
-                lastUpdated.textContent = 'Offline Mode - Mock Rates';
-                // Fallback mock rates
-                currencies.forEach(c => exchangeRates[c.code] = (Math.random() * 100));
-                exchangeRates['USD'] = 1;
-                convert();
-            }
-        }
-
         function updateLastUpdatedText() {
-            lastUpdated.textContent = `Live: ${new Date().toLocaleTimeString()}`;
+            lastUpdated.textContent = fx.sourceLabel();
         }
 
         function convert() {
             const amount = parseFloat(amountInput.value) || 0;
             const from = fromCurrency.value;
             const to = toCurrency.value;
-
-            if (exchangeRates[from] && exchangeRates[to]) {
-                const rate = (1 / exchangeRates[from]) * exchangeRates[to];
-                const result = amount * rate;
-                convertedAmount.textContent = result.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                conversionRate.textContent = `1 ${from} = ${rate.toFixed(6)} ${to}`;
-                updateChart(from, to, rate);
-                addToRecent(from, to);
+            const rate = fx.convert(1, from, to);
+            if (!(rate > 0)) {
+                convertedAmount.textContent = 'n/a';
+                conversionRate.textContent = `No rate available for ${from}/${to}`;
+                return;
             }
+            const result = amount * rate;
+            convertedAmount.textContent = result.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: result < 1 ? 6 : 2 });
+            conversionRate.textContent = `1 ${from} = ${rate.toFixed(rate < 1 ? 6 : 4)} ${to}`;
+            try { localStorage.setItem('dth:fx:pair', JSON.stringify({ from, to })); } catch (e) {}
+            updateTicker();
+            loadHistory(from, to);
+            addToRecent(from, to);
         }
 
-        function updateChart(from, to, currentRate) {
+        // Real 30-day history from the Frankfurter (ECB) API; hidden when unavailable for the pair.
+        async function loadHistory(from, to) {
             if (!chart) return;
-            const newData = Array.from({ length: 6 }, () => currentRate * (0.95 + Math.random() * 0.1));
-            chart.data.datasets[0].data = newData;
-            chart.data.datasets[0].label = `${from}/${to} Trend`;
-            chart.update();
+            const token = ++historyToken;
+            const canvas = document.getElementById('historyChart');
+            try {
+                if (from === to) throw new Error('same');
+                const end = new Date();
+                const start = new Date(end.getTime() - 30 * 86400000);
+                const iso = d => d.toISOString().slice(0, 10);
+                const res = await fetch(`https://api.frankfurter.app/${iso(start)}..${iso(end)}?from=${from}&to=${to}`);
+                if (!res.ok) throw new Error('no history');
+                const data = await res.json();
+                if (token !== historyToken) return;
+                const days = Object.keys(data.rates).sort();
+                if (!days.length) throw new Error('empty');
+                chart.data.labels = days.map(d => d.slice(5));
+                chart.data.datasets[0].data = days.map(d => data.rates[d][to]);
+                chart.data.datasets[0].label = `${from}/${to} (30 days)`;
+                chart.update();
+                canvas.style.display = '';
+            } catch (e) {
+                if (token === historyToken) canvas.style.display = 'none';
+            }
         }
 
         function addToRecent(from, to) {
@@ -891,28 +910,20 @@
 
         function copyResult() {
             const text = `${amountInput.value} ${fromCurrency.value} = ${convertedAmount.textContent} ${toCurrency.value}`;
-            navigator.clipboard.writeText(text).then(() => {
-                const btn = document.querySelector('.btn-action');
-                const originalText = btn.innerHTML;
+            const btn = document.querySelector('.btn-action');
+            const originalText = btn.innerHTML;
+            const done = () => {
                 btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
                 setTimeout(() => btn.innerHTML = originalText, 2000);
-            });
+            };
+            if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, () => { });
         }
 
         function updateLiveBoard() {
             const majorPairs = ['EUR', 'GBP', 'JPY', 'AUD', 'CAD', 'CHF', 'CNY', 'INR'];
             liveBoard.innerHTML = majorPairs.map(code => {
-                const rate = exchangeRates[code] || (Math.random() * 100);
-                const isUp = Math.random() > 0.5;
-                return `
-                    <tr>
-                        <td>USD/${code}</td>
-                        <td>${rate.toFixed(4)}</td>
-                        <td class="${isUp ? 'change-up' : 'change-down'}">
-                            ${isUp ? '▲' : '▼'} ${(Math.random() * 0.2).toFixed(2)}%
-                        </td>
-                    </tr>
-                `;
+                const rate = fx.rates[code];
+                return `<tr><td>USD/${code}</td><td>${rate.toFixed(4)}</td><td>${fx.source === 'fallback' ? 'approx.' : 'mid-market'}</td></tr>`;
             }).join('');
         }
 

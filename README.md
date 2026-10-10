@@ -22,6 +22,7 @@ assets/js/tools.js           Tool registry: single source of truth for all tools
 assets/js/shell.js           Loaded on every page: command palette, favourites,
                              recents, "All tools" dock and related-tools strip
 assets/js/hub.js             Homepage directory (search, filters, sorting), theme
+assets/js/fx.js              Shared exchange rates (live, cached, offline fallback) for currency-aware tools
 assets/img/icons.svg         SVG icon sprite (Lucide, ISC licence)
 sw.js                        Service worker (offline cache)
 scripts/build.mjs            Regenerates homepage cards, shared header/footer,

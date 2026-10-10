@@ -372,6 +372,12 @@
             const age = parseFloat(document.getElementById('age').value);
             const activity = parseFloat(document.getElementById('activity').value);
 
+            if (!(weight > 0 && height > 0 && age > 0)) {
+                ['total-calories', 'protein-val', 'carb-val', 'fat-val'].forEach(id => document.getElementById(id).textContent = '--');
+                if (myChart) { myChart.destroy(); myChart = null; }
+                return;
+            }
+
             // BMR Calculation (Mifflin-St Jeor Equation)
             let bmr;
             if (gender === 'male') {
@@ -383,6 +389,7 @@
             let calories = bmr * activity;
             if (currentGoal === 'cutting') calories -= 500;
             if (currentGoal === 'bulking') calories += 500;
+            calories = Math.max(calories, 1200); // never recommend below a safe minimum
 
             document.getElementById('total-calories').textContent = Math.round(calories);
 
@@ -392,7 +399,7 @@
             // Carbs: Remainder
             const protein = weight * 2.2;
             const fats = (calories * 0.25) / 9;
-            const carbs = (calories - (protein * 4) - (fats * 9)) / 4;
+            const carbs = Math.max((calories - (protein * 4) - (fats * 9)) / 4, 0);
 
             document.getElementById('protein-val').textContent = Math.round(protein) + 'g';
             document.getElementById('carb-val').textContent = Math.round(carbs) + 'g';
@@ -402,6 +409,7 @@
         }
 
         function updateChart(p, c, f) {
+            if (typeof Chart === 'undefined') return;
             const ctx = document.getElementById('macroChart').getContext('2d');
 
             if (myChart) myChart.destroy();

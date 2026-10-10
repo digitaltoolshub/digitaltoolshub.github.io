@@ -999,7 +999,7 @@
             if (circuits < 0.01) {
                 comparisonElement.textContent = "You're just getting started on your global journey!";
             } else if (circuits < 0.1) {
-                comparisonElement.textContent = `You've walked ${roundedCircuits}% around the Earth - keep going!`;
+                comparisonElement.textContent = `You've walked ${(percentage).toFixed(1)}% around the Earth - keep going!`;
             } else if (circuits < 1) {
                 comparisonElement.textContent = `You've walked ${(percentage).toFixed(2)}% of Earth's circumference - that's impressive!`;
             } else if (circuits < 2) {
@@ -1009,7 +1009,7 @@
             } else if (circuits < 10) {
                 comparisonElement.textContent = `Phenomenal! You've walked around the Earth ${roundedCircuits} times - that's astronaut-level walking!`;
             } else {
-                comparisonElement.textContent = `Legendary! You've walked around the Earth ${roundedCircuits} times - you could have walked to the Moon and back!`;
+                comparisonElement.textContent = `Legendary! You've walked around the Earth ${roundedCircuits} times - that's about ${Math.round(circuits * 40075 / 384400 * 100)}% of the way to the Moon!`;
             }
         }
 
@@ -1029,7 +1029,7 @@
             } else if (circuits < 5) {
                 commentElement.innerHTML = `<strong>Extraordinary!</strong> Multiple Earth circumnavigations puts you in elite walking company.`;
             } else {
-                commentElement.innerHTML = `<strong>Walking legend!</strong> Your lifetime steps could have taken you to the Moon (${Math.round(totalKm / 384400)}% of the way)!`;
+                commentElement.innerHTML = `<strong>Walking legend!</strong> Your lifetime steps could have taken you to the Moon (${Math.round(totalKm / 384400 * 100)}% of the way)!`;
             }
         }
     </script>

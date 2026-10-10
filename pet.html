@@ -1818,6 +1818,7 @@
         </p>
     </footer>
 
+    <script src="assets/js/fx.js"></script>
     <script>
         // Enhanced breed data for different pet types with more specific farm animals
         const breedData = {
@@ -2445,13 +2446,19 @@
                     costBadge.style.background = 'linear-gradient(to right, var(--primary-light), var(--light-gray))';
                 }
 
-                // Generate comparison text
-                const comparisons = [
-                    `Your ${petType} costs ${Math.round(Math.random() * 30) + 10}% ${Math.random() > 0.5 ? 'more' : 'less'} than similar pets in your area!`,
-                    `You spend ${Math.round(Math.random() * 40) + 10}% ${Math.random() > 0.5 ? 'more' : 'less'} on food than the average ${petType} owner.`,
-                    `Your healthcare costs are ${Math.round(Math.random() * 50) + 10}% ${Math.random() > 0.5 ? 'above' : 'below'} the national average.`
-                ];
-                compareResult.textContent = comparisons[Math.floor(Math.random() * comparisons.length)];
+                // Compare with a typical setup (standard lifestyle, adult, medium size) for the same pet and country
+                const typical = {};
+                for (const category in baseCost) {
+                    typical[category] = baseCost[category] *
+                        lifestyleMultipliers.standard[category] *
+                        ageMultipliers.adult[category] *
+                        countryMultiplier;
+                }
+                const typicalTotal = Object.values(typical).reduce((sum, cost) => sum + cost, 0);
+                const diffPct = typicalTotal > 0 ? Math.round((totalCost / typicalTotal - 1) * 100) : 0;
+                compareResult.textContent = diffPct === 0
+                    ? `Your plan costs about the same as a typical standard-lifestyle ${petType}.`
+                    : `Your plan costs ${Math.abs(diffPct)}% ${diffPct > 0 ? 'more' : 'less'} than a typical standard-lifestyle adult ${petType} in the same country.`;
 
                 // Update vet probability (simple simulation)
                 if (age === 'senior') {
@@ -2529,19 +2536,12 @@
                 'AED': 'د.إ'
             };
 
-            const currency = currencies[country];
-            const symbol = currencySymbols[currency] || '$';
-
-            // Round to 2 decimal places (except for JPY which doesn't use decimals)
-            amount = currency === 'JPY' ? Math.round(amount) : Math.round(amount * 100) / 100;
-
-            // Format number with commas
-            const formattedAmount = amount.toLocaleString(undefined, {
-                minimumFractionDigits: currency === 'JPY' ? 0 : 2,
-                maximumFractionDigits: currency === 'JPY' ? 0 : 2
-            });
-
-            return symbol + formattedAmount;
+            // Costs are modelled in USD (scaled by each country's price level); convert to local currency.
+            const currency = currencies[country] || 'USD';
+            let value = amount;
+            if (window.DTH_FX && DTH_FX.has(currency)) value = DTH_FX.convert(amount, 'USD', currency);
+            else if (currency !== 'USD') return 'USD ' + amount.toFixed(2);
+            return DTH_FX.format(value, currency, ['JPY', 'KRW'].includes(currency) ? { maximumFractionDigits: 0 } : undefined);
         }
 
         // Share comparison results
@@ -2779,7 +2779,7 @@
         // Update or create chart
         function updateChart(costData, country, labels) {
             const ctx = document.getElementById('cost-chart').getContext('2d');
-            const currencySymbol = formatCurrency(1, country).charAt(0);
+            if (typeof Chart === 'undefined') return;
 
             if (costChart) {
                 costChart.destroy();
@@ -2823,7 +2823,7 @@
                         tooltip: {
                             callbacks: {
                                 label: function (context) {
-                                    return context.label + ': ' + currencySymbol + context.raw.toLocaleString();
+                                    return context.label + ': ' + formatCurrency(context.raw, country);
                                 }
                             },
                             bodyFont: {

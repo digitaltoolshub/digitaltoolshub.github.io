@@ -41,6 +41,7 @@ const HUB_PAGES = {
   "unit-converter.html": { nav: "tools" },
   "pomodoro.html": { nav: "tools" },
   "loan-calculator.html": { nav: "tools" },
+  "flight.html": { nav: "tools" },
 };
 
 function head() {
@@ -201,7 +202,7 @@ fs.writeFileSync(path.join(ROOT, "sitemap.xml"), sitemap);
 // Stamp the service worker cache version from the shared assets so returning
 // visitors pick up new CSS/JS.
 const hash = crypto.createHash("sha256");
-for (const f of ["assets/css/hub.css", "assets/js/tools.js", "assets/js/shell.js", "assets/js/hub.js", "assets/img/icons.svg", ...Object.keys(HUB_PAGES)]) {
+for (const f of ["assets/css/hub.css", "assets/js/tools.js", "assets/js/shell.js", "assets/js/hub.js", "assets/js/fx.js", "assets/img/icons.svg", ...Object.keys(HUB_PAGES)]) {
   if (fs.existsSync(path.join(ROOT, f))) hash.update(fs.readFileSync(path.join(ROOT, f)));
 }
 const swFile = path.join(ROOT, "sw.js");

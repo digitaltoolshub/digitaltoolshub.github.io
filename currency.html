@@ -865,12 +865,27 @@
 
         // Real 30-day history from the Frankfurter (ECB) API; hidden when unavailable for the pair.
         // api.frankfurter.app no longer sends CORS headers; the API now lives at api.frankfurter.dev/v1.
+        // Frankfurter only covers ECB currencies (no PKR, etc.); requesting others returns a 404,
+        // so fetch the supported list once and skip history for unsupported pairs.
+        let historyCurrencies = null;
+        function getHistoryCurrencies() {
+            if (!historyCurrencies) {
+                historyCurrencies = fetch('https://api.frankfurter.dev/v1/currencies')
+                    .then(r => r.ok ? r.json() : null)
+                    .catch(() => null);
+            }
+            return historyCurrencies;
+        }
+
         async function loadHistory(from, to) {
             if (!chart) return;
             const token = ++historyToken;
             const canvas = document.getElementById('historyChart');
             try {
                 if (from === to) throw new Error('same');
+                const supported = await getHistoryCurrencies();
+                if (token !== historyToken) return;
+                if (supported && (!(from in supported) || !(to in supported))) throw new Error('unsupported');
                 const end = new Date();
                 const start = new Date(end.getTime() - 30 * 86400000);
                 const iso = d => d.toISOString().slice(0, 10);

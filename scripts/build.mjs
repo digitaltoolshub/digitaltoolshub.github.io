@@ -41,6 +41,7 @@ const HUB_PAGES = {
   "unit-converter.html": { nav: "tools" },
   "pomodoro.html": { nav: "tools" },
   "loan-calculator.html": { nav: "tools" },
+  "flight.html": { nav: "tools" },
 };
 
 function head() {

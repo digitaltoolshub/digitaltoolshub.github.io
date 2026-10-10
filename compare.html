@@ -737,7 +737,7 @@
 
             <div class="visualization">
                 <h3>Age Difference Visualization</h3>
-                <p>Percentage of a year difference:</p>
+                <p>The gap as a share of the older person’s age:</p>
                 <div class="bar-container">
                     <div class="bar" id="ageBar" style="width: 0%">
                         <div class="bar-label" id="barLabel">0%</div>
@@ -749,8 +749,7 @@
         </div>
 
         <div class="footer">
-            <p>Ultimate Age Comparison Calculator &copy; <span id="currentYear"></span> | Watch the difference grow in
-                real-time!</p>
+            <p>Ultimate Age Comparison Calculator &copy; <span id="currentYear"></span> | Compare any two birthdays!</p>
         </div>
     </div>
 
@@ -814,8 +813,8 @@
             function startComparison() {
                 const name1 = document.getElementById('name1').value.trim() || 'Person A';
                 const name2 = document.getElementById('name2').value.trim() || 'Person B';
-                const dob1 = new Date(document.getElementById('dob1').value);
-                const dob2 = new Date(document.getElementById('dob2').value);
+                const dob1 = new Date(document.getElementById('dob1').value + 'T00:00:00');
+                const dob2 = new Date(document.getElementById('dob2').value + 'T00:00:00');
 
                 // Validate inputs
                 if (isNaN(dob1.getTime())) {
@@ -833,7 +832,8 @@
                     clearInterval(updateInterval);
                 }
 
-                // Initial calculation
+                // Initial calculation (clear the old fun fact so a fresh one is picked)
+                funFactElement.textContent = '';
                 updateAgeDifference(name1, name2, dob1, dob2);
 
                 // Set up real-time updates
@@ -860,10 +860,12 @@
                 hoursDiffElement.textContent = diff.hours;
 
                 // Update the real-time counter
-                realTimeCounter.textContent = `Right now, the age difference is increasing by 1 second every second (${diff.totalSeconds.toLocaleString()} seconds total)`;
+                const older = dob1 < dob2 ? dob1 : dob2;
+                const olderAge = Math.max(now - older, 1);
+                realTimeCounter.textContent = `That gap is ${diff.totalDays.toLocaleString()} days (${diff.totalSeconds.toLocaleString()} seconds) and never changes: ${Math.floor((now - older) / 31557600000)} years old vs ${Math.floor((now - (dob1 < dob2 ? dob2 : dob1)) / 31557600000)} years old right now.`;
 
-                // Update the visualization bar
-                const percentage = Math.min(100, (diff.totalDays / 365) * 100).toFixed(1);
+                // Update the visualization bar: the gap as a share of the older person's age
+                const percentage = Math.min(100, (diff.totalSeconds * 1000 / olderAge) * 100).toFixed(1);
                 ageBar.style.width = `${percentage}%`;
                 barLabel.textContent = `${percentage}%`;
 
@@ -953,7 +955,7 @@
                 }
 
                 // Calculate hours difference from now
-                const timeDiff = Math.abs(now - (dob1 < dob2 ? dob2 : dob1));
+                const timeDiff = Math.abs(endDate - startDate);
                 const totalSeconds = Math.floor(timeDiff / 1000);
                 const totalMinutes = Math.floor(totalSeconds / 60);
                 const totalHours = Math.floor(totalMinutes / 60);

@@ -606,6 +606,9 @@
                     <option value="digital">Digital Storage</option>
                     <option value="energy">Energy</option>
                     <option value="pressure">Pressure</option>
+                    <option value="power">Power</option>
+                    <option value="force">Force</option>
+                    <option value="angle">Angle</option>
                 </select>
             </div>
 
@@ -755,101 +758,229 @@
         const keypad = document.getElementById('keypad');
         const historyList = document.getElementById('historyList');
 
-        // --- Calculator Core Functions --- 
+        // --- Expression engine (safe recursive-descent parser, no eval) ---
+
+        const FUNCS = {
+            sin: (v, e) => trigOut(Math.sin(toRad(v, e))),
+            cos: (v, e) => trigOut(Math.cos(toRad(v, e))),
+            tan: (v, e) => {
+                if (e.deg && Math.abs(v % 180) === 90) return NaN;
+                return trigOut(Math.tan(toRad(v, e)));
+            },
+            asin: (v, e) => fromRad(Math.asin(v), e),
+            acos: (v, e) => fromRad(Math.acos(v), e),
+            atan: (v, e) => fromRad(Math.atan(v), e),
+            ln: v => Math.log(v),
+            log: v => Math.log10(v),
+            sqrt: v => Math.sqrt(v),
+            cbrt: v => Math.cbrt(v),
+            abs: v => Math.abs(v)
+        };
+        const toRad = (v, e) => e.deg ? v * Math.PI / 180 : v;
+        const fromRad = (v, e) => e.deg ? v * 180 / Math.PI : v;
+        const trigOut = v => Math.abs(v) < 1e-14 ? 0 : v;
+
+        function factorial(n) {
+            if (n < 0 || n !== Math.floor(n) || n > 170) return NaN;
+            let r = 1;
+            for (let i = 2; i <= n; i++) r *= i;
+            return r;
+        }
+
+        // Compiles an expression string into a function (env) => number. Throws on syntax errors.
+        function compile(src) {
+            const s = src.replace(/×/g, '*').replace(/÷/g, '/').replace(/[−–]/g, '-').replace(/\s+/g, '');
+            let i = 0;
+            const fail = () => { throw new Error('Syntax error'); };
+
+            function expr() {
+                let left = term();
+                while (s[i] === '+' || s[i] === '-') {
+                    const op = s[i++];
+                    const l = left, r = term();
+                    left = op === '+' ? e => l(e) + r(e) : e => l(e) - r(e);
+                }
+                return left;
+            }
+
+            function term() {
+                let left = unary();
+                for (; ;) {
+                    let op = null;
+                    if (s[i] === '*' || s[i] === '/') op = s[i++];
+                    else if (s.startsWith('mod', i)) { op = 'mod'; i += 3; }
+                    else if (i < s.length && /[\d.(π√a-zA-Z]/.test(s[i]) && !s.startsWith('mod', i)) op = '*'; // implicit multiplication
+                    else break;
+                    const l = left, r = unary();
+                    if (op === '*') left = e => l(e) * r(e);
+                    else if (op === '/') left = e => l(e) / r(e);
+                    else left = e => { const a = l(e), b = r(e); return b === 0 ? NaN : a - b * Math.floor(a / b); };
+                }
+                return left;
+            }
+
+            function unary() {
+                if (s[i] === '-') { i++; const f = unary(); return e => -f(e); }
+                if (s[i] === '+') { i++; return unary(); }
+                return power();
+            }
+
+            function power() {
+                const base = postfix();
+                if (s[i] === '^') {
+                    i++;
+                    const exp = unary(); // right associative, allows 2^-3
+                    return e => Math.pow(base(e), exp(e));
+                }
+                return base;
+            }
+
+            function postfix() {
+                let f = primary();
+                while (s[i] === '!' || s[i] === '%') {
+                    const op = s[i++], g = f;
+                    f = op === '!' ? e => factorial(g(e)) : e => g(e) / 100;
+                }
+                return f;
+            }
+
+            function primary() {
+                const c = s[i];
+                if (c === undefined) fail();
+                if (c === '(') {
+                    i++;
+                    const inner = expr();
+                    if (s[i] === ')') i++; else if (i < s.length) fail(); // missing ")" at the end is auto-closed
+                    return inner;
+                }
+                if (c === '√') {
+                    i++;
+                    const arg = s[i] === '(' ? primary() : postfixNoImplicit();
+                    return e => Math.sqrt(arg(e));
+                }
+                if (c === 'π') { i++; return () => Math.PI; }
+                const m = /^(\d+\.?\d*|\.\d+)(E[+-]?\d+)?/.exec(s.slice(i));
+                if (m) { i += m[0].length; const v = parseFloat(m[0]); return () => v; }
+                const w = /^[a-zA-Z]+/.exec(s.slice(i));
+                if (w) {
+                    const name = w[0];
+                    if (name === 'e') { i++; return () => Math.E; }
+                    if (name === 'x') { i++; return e => e.x; }
+                    if (s.startsWith('Ans', i)) { i += 3; return e => e.ans; }
+                    for (const fn of Object.keys(FUNCS).sort((a, b) => b.length - a.length)) {
+                        if (name.startsWith(fn) && s[i + fn.length] === '(') {
+                            i += fn.length;
+                            const arg = primary();
+                            return e => FUNCS[fn](arg(e), e);
+                        }
+                    }
+                }
+                return fail();
+            }
+
+            function postfixNoImplicit() { return power(); }
+
+            const root = expr();
+            if (i < s.length) fail();
+            return root;
+        }
+
+        function evaluate(src, env) {
+            const v = compile(src)(env);
+            if (typeof v !== 'number' || !isFinite(v)) throw new Error('Math error');
+            return v;
+        }
+
+        // Round away floating point noise (0.1 + 0.2) and format without exponent clutter.
+        function formatResult(n) {
+            if (Object.is(n, -0)) n = 0;
+            let r = Number(n.toPrecision(12));
+            return String(r).replace('e+', 'E+').replace('e-', 'E-');
+        }
+
+        // --- Calculator Core Functions ---
+
+        const OPS = ['+', '−', '×', '÷', '^'];
+        let justEvaluated = false;
 
         function updateDisplay() {
             currDisp.innerText = state.currentValue;
             prevDisp.innerText = state.previousValue;
+            currDisp.classList.toggle('small', state.currentValue.length > 10);
+        }
 
-            // Auto size font based on length
-            if (state.currentValue.length > 10) {
-                currDisp.classList.add('small');
-            } else {
-                currDisp.classList.remove('small');
-            }
+        function startFresh() {
+            if (justEvaluated) { state.currentValue = '0'; state.previousValue = ''; justEvaluated = false; }
         }
 
         function appendNumber(num) {
+            startFresh();
             if (state.currentValue === '0' && num !== '.') {
                 state.currentValue = num;
             } else {
-                if (num === '.' && state.currentValue.includes('.')) return;
+                if (num === '.') {
+                    const lastNumber = state.currentValue.split(/[^0-9.]/).pop();
+                    if (lastNumber.includes('.')) return;
+                }
                 state.currentValue += num;
             }
             updateDisplay();
         }
 
-        function handleOperator(op) {
-            const lastChar = state.currentValue.slice(-1);
-            if (['+', '-', '×', '÷', '^', 'mod'].includes(lastChar)) {
-                state.currentValue = state.currentValue.slice(0, -1) + getOpSymbol(op);
-                updateDisplay();
-                return;
-            }
+        function insertText(text) {
+            startFresh();
+            state.currentValue = state.currentValue === '0' ? text : state.currentValue + text;
+            updateDisplay();
+        }
 
-            state.currentValue += getOpSymbol(op);
+        function handleOperator(op) {
+            justEvaluated = false;
+            const sym = getOpSymbol(op);
+            const last = state.currentValue.slice(-1);
+            if (state.currentValue === '0' && sym === '−') {
+                state.currentValue = '−';
+            } else if (OPS.includes(last)) {
+                if (state.currentValue.length > 1 || sym === '−') state.currentValue = state.currentValue.slice(0, -1) + sym;
+            } else {
+                state.currentValue += sym;
+            }
             updateDisplay();
         }
 
         function getOpSymbol(op) {
             switch (op) {
                 case 'add': return '+';
-                case 'subtract': return '-';
+                case 'subtract': return '−';
                 case 'multiply': return '×';
                 case 'divide': return '÷';
                 case 'powy': return '^';
-                case 'mod': return '%';
                 default: return '';
             }
         }
 
         function calculate() {
+            const expression = state.currentValue;
             try {
-                // Pre-process string for eval (SAFE EVALUATION NEEDED)
-                let expression = state.currentValue
-                    .replace(/×/g, '*')
-                    .replace(/÷/g, '/')
-                    .replace(/−/g, '-')
-                    .replace(/π/g, 'Math.PI')
-                    .replace(/e/g, 'Math.E')
-                    .replace(/\^/g, '**')
-                    .replace(/√/g, 'Math.sqrt');
-
-                // Handle trig functions with angle mode check
-                // Replace sin(x) with appropriate Math.sin(x) logic depending on mode
-                // This is a simplified parser logic
-
-                // For simplicity in this demo version, we use a basic function mapper
-                // A real 2000 line calculator would implement a Shunting-yard algorithm
-                // Here we inject Math. prefixes and handle basic trig
-
-                const trigFuncs = ['sin', 'cos', 'tan', 'asin', 'acos', 'atan'];
-                trigFuncs.forEach(func => {
-                    const regex = new RegExp(func + '\\(', 'g');
-                    expression = expression.replace(regex, `Math.${func}(`);
-                });
-
-                // If deg mode, we need conversion wrapper? 
-                // Complex without a parser.
-                // Let's rely on standard JS eval for now but wrap trig if needed. 
-                // Better approach: Use Function constructor for isolation.
-
-                const result = new Function('return ' + expression)();
-
-                if (!isFinite(result)) throw new Error("Math Error");
-
-                addToHistory(state.currentValue, result);
-                state.ans = result;
-                state.currentValue = result.toString();
-                state.previousValue = '';
+                const result = evaluate(expression, { deg: state.angleMode === 'deg', ans: state.ans });
+                const text = formatResult(result);
+                addToHistory(expression, text);
+                state.ans = Number(text);
+                state.previousValue = expression + ' =';
+                state.currentValue = text;
+                justEvaluated = true;
                 updateDisplay();
-
             } catch (e) {
-                state.currentValue = 'Error';
+                state.currentValue = e.message === 'Math error' ? 'Math error' : 'Error';
+                state.previousValue = expression;
+                justEvaluated = true;
                 updateDisplay();
                 setTimeout(() => {
-                    state.currentValue = '0';
-                    updateDisplay();
+                    if (state.currentValue === 'Error' || state.currentValue === 'Math error') {
+                        state.currentValue = '0';
+                        state.previousValue = '';
+                        justEvaluated = false;
+                        updateDisplay();
+                    }
                 }, 1500);
             }
         }
@@ -857,57 +988,53 @@
         function clear() {
             state.currentValue = '0';
             state.previousValue = '';
+            justEvaluated = false;
             updateDisplay();
         }
 
         function deleteChar() {
-            if (state.currentValue.length === 1) {
-                state.currentValue = '0';
-            } else {
-                state.currentValue = state.currentValue.slice(0, -1);
-            }
+            if (justEvaluated) { clear(); return; }
+            const next = state.currentValue.replace(/(asin|acos|atan|sin|cos|tan|ln|log|cbrt|abs)\($|Ans$|mod$|.$/, '');
+            state.currentValue = next === '' ? '0' : next;
             updateDisplay();
         }
 
         // --- Scientific Functions ---
 
+        const INVERSE = { sin: 'asin', cos: 'acos', tan: 'atan' };
+
         function handleScientific(action) {
             switch (action) {
-                case 'sin':
-                case 'cos':
-                case 'tan':
-                case 'log':
-                case 'ln':
-                case 'sqrt':
-                    if (state.currentValue === '0') state.currentValue = action + '(';
-                    else state.currentValue += action + '(';
+                case 'sin': case 'cos': case 'tan':
+                    insertText((state.secondFunction ? INVERSE[action] : action) + '(');
                     break;
-                case 'pi':
-                    if (state.currentValue === '0') state.currentValue = 'π';
-                    else state.currentValue += 'π';
+                case 'asin': case 'acos': case 'atan': case 'log': case 'ln':
+                    insertText(action + '(');
                     break;
-                case 'e':
-                    if (state.currentValue === '0') state.currentValue = 'e';
-                    else state.currentValue += 'e';
-                    break;
-                case 'pow': // x^2
-                    state.currentValue += '^2';
-                    break;
-                case 'inv':
-                    toggleSecondFunction();
-                    break;
-                case 'deg':
-                    toggleAngleMode();
-                    break;
+                case 'sqrt': insertText('√('); break;
+                case 'pi': insertText('π'); break;
+                case 'e': insertText('e'); break;
+                case 'pow': insertText('^2'); break;
+                case 'pow3': insertText('^3'); break;
+                case 'powy': handleOperator('powy'); break;
+                case 'fact': insertText('!'); break;
+                case 'open-paren': insertText('('); break;
+                case 'close-paren': insertText(')'); break;
+                case 'exp': insertText('E'); break;
+                case 'mod': insertText('mod'); break;
+                case 'ans': insertText('Ans'); break;
+                case 'rnd': insertText(String(Math.round(Math.random() * 1e6) / 1e6)); break;
+                case 'inv': toggleSecondFunction(); break;
+                case 'deg': toggleAngleMode(); break;
             }
-            updateDisplay();
         }
 
         function toggleSecondFunction() {
             state.secondFunction = !state.secondFunction;
-            document.querySelector('[data-action="inv"]').classList.toggle('active');
-            // Swap labels logic here (sin -> sin-1 etc)
-            // For brevity, logic omitted in this stub but buttons exist
+            document.querySelector('[data-action="inv"]').classList.toggle('active', state.secondFunction);
+            ['sin', 'cos', 'tan'].forEach(f => {
+                document.querySelector(`[data-action="${f}"]`).textContent = state.secondFunction ? f + '⁻¹' : f;
+            });
         }
 
         function toggleAngleMode() {
@@ -920,8 +1047,6 @@
         keypad.addEventListener('click', (e) => {
             const btn = e.target.closest('.key-btn');
             if (!btn) return;
-
-            // Adding Ripple Effect
 
             const val = btn.dataset.val;
             const action = btn.dataset.action;
@@ -937,6 +1062,26 @@
             }
         });
 
+        // Keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey || e.metaKey || e.altKey) return;
+            if (/^(INPUT|SELECT|TEXTAREA)$/.test(document.activeElement && document.activeElement.tagName)) return;
+            const k = e.key;
+            if (/^[0-9]$/.test(k)) appendNumber(k);
+            else if (k === '.') appendNumber('.');
+            else if (k === '+') handleOperator('add');
+            else if (k === '-') handleOperator('subtract');
+            else if (k === '*') handleOperator('multiply');
+            else if (k === '/') { e.preventDefault(); handleOperator('divide'); }
+            else if (k === '^') handleOperator('powy');
+            else if (k === '(' || k === ')' || k === '!') insertText(k);
+            else if (k === '%') insertText('%');
+            else if (k === 'Enter' || k === '=') { e.preventDefault(); calculate(); }
+            else if (k === 'Backspace') deleteChar();
+            else if (k === 'Escape') clear();
+            else return;
+        });
+
         // --- History Logic ---
 
         function addToHistory(expr, res) {
@@ -950,19 +1095,30 @@
             state.history.forEach(item => {
                 const el = document.createElement('div');
                 el.className = 'history-item';
-                el.innerHTML = `
-                    <div class="history-expression">${item.expression}</div>
-                    <div class="history-result">= ${item.result}</div>
-                `;
+                const ex = document.createElement('div');
+                ex.className = 'history-expression';
+                ex.textContent = item.expression;
+                const re = document.createElement('div');
+                re.className = 'history-result';
+                re.textContent = '= ' + item.result;
+                el.append(ex, re);
                 el.onclick = () => {
-                    state.currentValue = item.result.toString();
+                    state.currentValue = String(item.result);
+                    state.previousValue = '';
+                    justEvaluated = true;
                     updateDisplay();
                 };
                 historyList.appendChild(el);
             });
             // Persist to local storage
-            localStorage.setItem('calcHistory', JSON.stringify(state.history));
+            try { localStorage.setItem('calcHistory', JSON.stringify(state.history)); } catch (e) { }
         }
+
+        try {
+            const saved = JSON.parse(localStorage.getItem('calcHistory') || '[]');
+            if (Array.isArray(saved)) state.history = saved.filter(h => h && typeof h.expression === 'string').slice(0, 50);
+        } catch (e) { }
+        renderHistory();
 
         document.getElementById('clearHistory').onclick = () => {
             state.history = [];
@@ -1104,10 +1260,10 @@
                     eb: { rate: 1e-18, label: 'Exabytes (EB)' },
                     zb: { rate: 1e-21, label: 'Zettabytes (ZB)' },
                     yb: { rate: 1e-24, label: 'Yottabytes (YB)' },
-                    kib: { rate: 0.000976563, label: 'Kibibytes (KiB)' },
-                    mib: { rate: 9.5367e-7, label: 'Mebibytes (MiB)' },
-                    gib: { rate: 9.3132e-10, label: 'Gibibytes (GiB)' },
-                    tib: { rate: 9.0949e-13, label: 'Tebibytes (TiB)' }
+                    kib: { rate: 1 / 1024, label: 'Kibibytes (KiB)' },
+                    mib: { rate: 1 / 1048576, label: 'Mebibytes (MiB)' },
+                    gib: { rate: 1 / 1073741824, label: 'Gibibytes (GiB)' },
+                    tib: { rate: 1 / 1099511627776, label: 'Tebibytes (TiB)' }
                 }
             },
             energy: {
@@ -1175,8 +1331,16 @@
             }
         };
 
-        // Add Temperature separately as it's not rate-based
-        // Add more complex data...
+        // Temperature is offset-based, so it is converted through Celsius instead of by rate.
+        conversions.temperature = {
+            base: 'c',
+            units: {
+                c: { label: 'Celsius (°C)', toC: v => v, fromC: v => v },
+                f: { label: 'Fahrenheit (°F)', toC: v => (v - 32) * 5 / 9, fromC: v => v * 9 / 5 + 32 },
+                k: { label: 'Kelvin (K)', toC: v => v - 273.15, fromC: v => v + 273.15 },
+                r: { label: 'Rankine (°R)', toC: v => (v - 491.67) * 5 / 9, fromC: v => v * 9 / 5 + 491.67 }
+            }
+        };
 
         const convType = document.getElementById('convType');
         const convUnit1 = document.getElementById('convUnit1');
@@ -1210,13 +1374,15 @@
 
             // Simplified conversion logic
             const data = conversions[type];
-            if (data) {
-                const rate1 = data.units[u1].rate;
-                const rate2 = data.units[u2].rate;
-                // Convert to base then to target
-                const baseVal = val / rate1;
-                const finalVal = baseVal * rate2;
-                convAttr2.value = parseFloat(finalVal.toPrecision(6));
+            if (data && data.units[u1] && data.units[u2]) {
+                let finalVal;
+                if (type === 'temperature') {
+                    finalVal = data.units[u2].fromC(data.units[u1].toC(val));
+                } else {
+                    // Convert to base then to target
+                    finalVal = val / data.units[u1].rate * data.units[u2].rate;
+                }
+                convAttr2.value = parseFloat(finalVal.toPrecision(8));
             }
         }
 
@@ -1233,89 +1399,107 @@
         let scale = 40; // Pixels per unit
         let offsetX = canvas.width / 2;
         let offsetY = canvas.height / 2;
+        let panX = 0, panY = 0;
 
+        // Compiles the f(x) text with the same safe parser the calculator uses (radians).
         function parseFunction(str) {
-            // Safe parser wrapper
-            return (x) => {
-                try {
-                    return new Function('x', 'return ' + str
-                        .replace(/sin/g, 'Math.sin')
-                        .replace(/cos/g, 'Math.cos')
-                        .replace(/\^/g, '**')
-                    )(x);
-                } catch { return 0; }
-            };
+            try {
+                const f = compile(str);
+                return x => f({ x, deg: false, ans: state.ans });
+            } catch (e) {
+                return null;
+            }
+        }
+
+        function niceStep(range) {
+            const raw = range / 8, pow = Math.pow(10, Math.floor(Math.log10(raw))), n = raw / pow;
+            return (n < 1.5 ? 1 : n < 3.5 ? 2 : n < 7.5 ? 5 : 10) * pow;
         }
 
         function drawGraph() {
-            // Clear
-            canvas.width = canvas.parentElement.clientWidth;
-            canvas.height = canvas.parentElement.clientHeight - 80;
-            offsetX = canvas.width / 2;
-            offsetY = canvas.height / 2;
+            canvas.width = Math.max(canvas.parentElement.clientWidth, 200);
+            canvas.height = Math.max(canvas.parentElement.clientHeight - 80, 260);
+            offsetX = canvas.width / 2 + panX;
+            offsetY = canvas.height / 2 + panY;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.font = '10px sans-serif';
 
-            // Draw Axes
+            // Grid and axis labels
+            const step = niceStep(canvas.width / scale);
+            const x0 = Math.floor(-offsetX / scale / step) * step, x1 = (canvas.width - offsetX) / scale;
+            const y1 = offsetY / scale, y0 = (offsetY - canvas.height) / scale;
+            ctx.lineWidth = 1;
+            ctx.fillStyle = '#94a3b8';
+            for (let gx = x0; gx <= x1; gx += step) {
+                const px = offsetX + gx * scale;
+                ctx.strokeStyle = '#1e293b';
+                ctx.beginPath(); ctx.moveTo(px, 0); ctx.lineTo(px, canvas.height); ctx.stroke();
+                if (Math.abs(gx) > step / 2) ctx.fillText(String(Number(gx.toPrecision(6))), px + 2, Math.min(Math.max(offsetY + 12, 12), canvas.height - 2));
+            }
+            for (let gy = Math.floor(y0 / step) * step; gy <= y1; gy += step) {
+                const py = offsetY - gy * scale;
+                ctx.strokeStyle = '#1e293b';
+                ctx.beginPath(); ctx.moveTo(0, py); ctx.lineTo(canvas.width, py); ctx.stroke();
+                if (Math.abs(gy) > step / 2) ctx.fillText(String(Number(gy.toPrecision(6))), Math.min(Math.max(offsetX + 4, 2), canvas.width - 30), py - 2);
+            }
+
+            // Axes
             ctx.beginPath();
             ctx.strokeStyle = '#475569';
-            ctx.lineWidth = 1;
-
-            // X Axis
-            ctx.moveTo(0, offsetY);
-            ctx.lineTo(canvas.width, offsetY);
-
-            // Y Axis
-            ctx.moveTo(offsetX, 0);
-            ctx.lineTo(offsetX, canvas.height);
+            ctx.moveTo(0, offsetY); ctx.lineTo(canvas.width, offsetY);
+            ctx.moveTo(offsetX, 0); ctx.lineTo(offsetX, canvas.height);
             ctx.stroke();
 
-            // Draw Grid
-            ctx.beginPath();
-            ctx.strokeStyle = '#1e293b';
-
-            // ... Grid Logic ...
-
-            // Plot Function
+            // Plot function
+            const f = parseFunction(graphFunc.value);
+            graphFunc.style.borderColor = f ? '' : '#ef4444';
+            if (!f) return;
             ctx.beginPath();
             ctx.strokeStyle = '#06b6d4';
             ctx.lineWidth = 2;
-
-            const f = parseFunction(graphFunc.value);
-
-            ctx.moveTo(0, offsetY - f((0 - offsetX) / scale) * scale);
-
-            for (let px = 0; px < canvas.width; px++) {
-                const x = (px - offsetX) / scale;
-                const y = f(x);
+            let penDown = false, prevPy = 0;
+            for (let px = 0; px <= canvas.width; px++) {
+                const y = f((px - offsetX) / scale);
                 const py = offsetY - y * scale;
-                ctx.lineTo(px, py);
+                // break the line at gaps and across vertical asymptotes
+                if (!isFinite(y) || Math.abs(py) > 1e5 || (penDown && Math.abs(py - prevPy) > canvas.height * 2)) { penDown = false; continue; }
+                if (penDown) ctx.lineTo(px, py); else ctx.moveTo(px, py);
+                penDown = true; prevPy = py;
             }
             ctx.stroke();
         }
 
         document.getElementById('plotBtn').onclick = drawGraph;
+        graphFunc.addEventListener('keydown', e => { if (e.key === 'Enter') drawGraph(); });
+        document.getElementById('zoomIn').onclick = () => { scale = Math.min(scale * 1.25, 2000); drawGraph(); };
+        document.getElementById('zoomOut').onclick = () => { scale = Math.max(scale / 1.25, 2); drawGraph(); };
+        document.getElementById('resetView').onclick = () => { scale = 40; panX = 0; panY = 0; drawGraph(); };
+        // Drag to pan
+        let dragging = null;
+        canvas.addEventListener('pointerdown', e => { dragging = { x: e.clientX - panX, y: e.clientY - panY }; canvas.setPointerCapture(e.pointerId); });
+        canvas.addEventListener('pointermove', e => { if (dragging) { panX = e.clientX - dragging.x; panY = e.clientY - dragging.y; drawGraph(); } });
+        canvas.addEventListener('pointerup', () => { dragging = null; });
         window.addEventListener('resize', drawGraph);
 
         // --- Initialize ---
         populateUnits();
 
         // Mode Switch
-        document.querySelectorAll('.mode-btn[data-mode]').forEach(btn => {
-            btn.onclick = () => {
-                document.querySelectorAll('.mode-btn[data-mode]').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const mode = btn.dataset.mode;
-
-                if (mode === 'graphing') {
-                    document.getElementById('graphContainer').classList.add('active');
-                    setTimeout(drawGraph, 100);
-                } else {
-                    document.getElementById('graphContainer').classList.remove('active');
-                    // Modify keypad layout for scientific vs standard
-                }
-            }
-        });
+        function setMode(mode) {
+            document.querySelectorAll('.mode-btn[data-mode]').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+            state.mode = mode;
+            const showGraph = mode === 'graphing';
+            document.getElementById('graphContainer').classList.toggle('active', showGraph);
+            if (showGraph) setTimeout(drawGraph, 100);
+            // Scientific and graphing modes add the extra keys (x², x³, x^y, x!, brackets, EXP, mod, Ans, Rnd)
+            document.querySelectorAll('#keypad .key-btn[style*="display"], #keypad .key-btn[data-extra]').forEach(b => {
+                b.dataset.extra = '1';
+                b.style.display = mode === 'standard' ? 'none' : '';
+            });
+        }
+        document.querySelectorAll('.mode-btn[data-mode]').forEach(btn => { btn.onclick = () => setMode(btn.dataset.mode); });
+        document.getElementById('closeGraph').onclick = () => setMode('scientific');
 
         // Sidebar Toggle
         const sidebar = document.getElementById('sidebar');

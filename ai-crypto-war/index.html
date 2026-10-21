@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>AI Crypto War Live</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,600;8..144,800&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  /* TradeWave dark (Material 3) — leaderboard on top, holdings below */
+  :root{
+    --bg:#121318; --panel:#1E1F25; --panel-hi:#292A2F; --line:#34343A;
+    --fg:#E3E1E9; --muted:#9FA1AC; --primary:#B2C5FF; --brand:#3559B7;
+    --gain:#6FDB94; --gain-bg:#005229; --loss:#FFB4AB; --loss-bg:#93000A; --warn:#FFB95C;
+    --display:'Roboto Flex',system-ui,sans-serif; --mono:'Roboto Mono',ui-monospace,monospace;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--fg);font-family:var(--display);font-variant-numeric:tabular-nums;
+    padding:20px max(16px,env(safe-area-inset-right)) 40px max(16px,env(safe-area-inset-left))}
+  .wrap{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+  header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+  h1{font-size:22px;font-weight:800;letter-spacing:.5px}
+  h1 span{color:var(--primary)}
+  .live{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--muted)}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--gain);box-shadow:0 0 0 0 rgba(111,219,148,.6);animation:pulse 2s infinite}
+  .dot.err{background:var(--loss);animation:none}
+  @keyframes pulse{70%{box-shadow:0 0 0 8px rgba(111,219,148,0)}100%{box-shadow:0 0 0 0 rgba(111,219,148,0)}}
+  @media (prefers-reduced-motion:reduce){.dot{animation:none}}
+  button{font:inherit;font-size:13px;font-weight:700;color:var(--fg);background:var(--panel-hi);border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer}
+  button:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+  .daybar{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center}
+  .daybar .k{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted)}
+  .daybar .v{font-size:18px;font-weight:800;margin-top:2px}
+  .steps{display:flex;gap:6px;flex:1;min-width:180px}
+  .steps i{flex:1;height:8px;border-radius:4px;background:var(--panel-hi);display:block}
+  .steps i.done{background:var(--primary)} .steps i.now{background:var(--warn)}
+  .board{display:flex;flex-direction:column;gap:10px}
+  .row{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .row.lead{border-color:var(--gain)}
+  .sum{display:grid;grid-template-columns:34px 48px 1fr auto;gap:12px;align-items:center;padding:14px 16px;cursor:pointer;width:100%;text-align:left;background:none;border:0;border-radius:0;font-weight:inherit}
+  .rank{font-size:24px;font-weight:800;color:var(--muted);text-align:center}
+  .lead .rank{color:var(--gain)}
+  .av{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:17px;color:#fff;overflow:hidden}
+  .nm{font-size:17px;font-weight:800;min-width:0}
+  .bar{height:6px;border-radius:3px;background:var(--panel-hi);margin-top:8px;overflow:hidden}
+  .bar b{display:block;height:100%;border-radius:3px}
+  .money{text-align:right}
+  .tot{font-size:22px;font-weight:800}
+  .pill{display:inline-block;margin-top:4px;font-size:13px;font-weight:800;padding:3px 9px;border-radius:8px}
+  .up{background:var(--gain-bg);color:#8BF8AE} .dn{background:var(--loss-bg);color:#FFDAD6} .flat{background:var(--panel-hi);color:var(--muted)}
+  .det{border-top:1px solid var(--line);padding:6px 16px 14px;overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+  th{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:600;text-align:right;padding:10px 6px 6px}
+  th:first-child,td:first-child{text-align:left}
+  td{padding:8px 6px;text-align:right;border-top:1px solid var(--line)}
+  td.sym{font-weight:800} td.sym small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+  .g{color:var(--gain)} .l{color:var(--loss)}
+  .note{font-size:12px;color:var(--muted);line-height:1.5}
+  .err{color:var(--loss)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>AI CRYPTO <span>WAR</span></h1>
+    <div style="display:flex;gap:12px;align-items:center">
+      <span class="live"><span class="dot" id="dot"></span><span id="stamp">Loading prices…</span></span>
+      <button id="refresh" type="button">Refresh</button>
+    </div>
+  </header>
+  <section class="daybar" aria-label="Tournament progress">
+    <div><div class="k">Day</div><div class="v" id="day">—</div></div>
+    <div><div class="k">Final result in</div><div class="v" id="next">—</div></div>
+    <div class="steps" id="steps" aria-hidden="true"></div>
+  </section>
+  <section class="board" id="board" aria-live="polite"></section>
+  <p class="note" id="foot"></p>
+</div>
+<script>
+const DATA = {"start_balance":10000,"start":"2026-10-18T10:00:00+05:00","end":"2026-10-25T07:00:00+05:00","checkpoints":["2026-10-19T07:00:00+05:00","2026-10-20T07:00:00+05:00","2026-10-21T07:00:00+05:00","2026-10-22T07:00:00+05:00","2026-10-23T07:00:00+05:00","2026-10-24T07:00:00+05:00","2026-10-25T07:00:00+05:00"],"players":[{"name":"Claude","color":"#d95926","mono":"C","holdings":[{"id":"bitcoin","symbol":"BTC","name":"Bitcoin","qty":0.054527238901725734,"cost":4611.095957724437,"buy_price":84565},{"id":"solana","symbol":"SOL","name":"Solana","qty":28.350677596756345,"cost":3074.0639718162906,"buy_price":108.43},{"id":"sui","symbol":"SUI","name":"Sui","qty":2439.73331096531,"cost":2561.7199765135756,"buy_price":1.05}]},{"name":"Gemini Argon 4","color":"#3987e5","mono":"G4","holdings":[{"id":"sui","symbol":"SUI","name":"Sui","qty":5047.177818557052,"cost":5097.649596742623,"buy_price":1.01},{"id":"solana","symbol":"SOL","name":"Solana","qty":28.977638636149443,"cost":3058.5897580455735,"buy_price":105.55},{"id":"hyperliquid","symbol":"HYPE","name":"Hyperliquid","qty":25.68085439165049,"cost":2039.0598386970491,"buy_price":79.4}]},{"name":"Grok","color":"#199e70","mono":"GK","holdings":[{"id":"solana","symbol":"SOL","name":"Solana","qty":38.55050115651503,"cost":4000.0,"buy_price":103.76},{"id":"hyperliquid","symbol":"HYPE","name":"Hyperliquid","qty":37.94586390083481,"cost":3000.0,"buy_price":79.06},{"id":"monero","symbol":"XMR","name":"Monero","qty":5.033472592741733,"cost":3000.0,"buy_price":596.01}]},{"name":"Bandar Bhai","color":"#c98500","mono":null,"holdings":[{"id":"world-liberty-financial","symbol":"WLFI","name":"World Liberty Financial","qty":58573.580603218266,"cost":3304.1356818275426,"buy_price":0.05641},{"id":"leo-token","symbol":"LEO","name":"LEO Token","qty":365.50173471543616,"cost":3304.1356818275426,"buy_price":9.04},{"id":"ethereum-name-service","symbol":"ENS","name":"Ethereum Name Service","qty":564.8095182611185,"cost":3304.1356818275426,"buy_price":5.85}]}],"trades":[{"day":1,"at":"2026-10-18T10:00:00+05:00","note":"Opening buys at the 10:00 AM price"},{"day":2,"at":"2026-10-19T22:15:03+05:00","note":"Day 2 (Mon 10:15 PM): all three AIs kept their coins; Bandar Bhai re-spun to HTX, BC, AKT"},{"day":3,"at":"2026-10-20T21:31:09.154237+05:00","note":"Day 3 (Tue 9:31 PM): Claude swapped INJ for SOL; Gemini swapped TAO for HYPE; Grok kept; Bandar Bhai re-spun to CHZ, XMR, ULTIMA"},{"day":4,"at":"2026-10-21T21:11:08.531894+05:00","note":"Day 4 (Wed 9:11 PM): Claude swapped Monero for Sui (BTC 45 / SOL 30 / SUI 25); Gemini and Grok kept; Bandar Bhai re-spun to WLFI, LEO, ENS"}],"session_window":"7:00 AM \u2013 10:30 PM PKT"};
+const START = DATA.start_balance;
+const fmt$ = v => (v<0?'-':'')+'$'+Math.abs(v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const fmtP = v => (v>0?'+':'')+v.toFixed(2)+'%';
+const fmtPrice = v => v>=1 ? '$'+v.toLocaleString('en-US',{maximumFractionDigits:2}) : '$'+v.toPrecision(4);
+const cls = v => v>0.005?'up':v<-0.005?'dn':'flat';
+const tone = v => v>0?'g':v<0?'l':'';
+const open = new Set();
+const SNAP = {"at":"2026-10-21T21:11:08.531894+05:00","prices":{"hyperliquid":{"usd":81.57,"usd_24h_change":2.13288},"ethereum-name-service":{"usd":5.85,"usd_24h_change":4.69484},"bitcoin":{"usd":84565,"usd_24h_change":2.41625},"solana":{"usd":108.43,"usd_24h_change":2.41717},"leo-token":{"usd":9.04,"usd_24h_change":0.05942},"sui":{"usd":1.05,"usd_24h_change":3.3596},"world-liberty-financial":{"usd":0.05641,"usd_24h_change":4.51796},"monero":{"usd":596.57,"usd_24h_change":-3.92021}}};
+let prices = SNAP.prices, lastOk = null;
+
+const BOTS = {
+  // Original robot mascots (not company logos)
+  'Claude': `<svg width="48" height="48" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" fill="#d95926"/><line x1="50" y1="14" x2="50" y2="26" stroke="#fff3ea" stroke-width="4"/><circle cx="50" cy="12" r="6" fill="#fff3ea"/><rect x="20" y="26" width="60" height="50" rx="22" fill="#fff3ea"/><path d="M33 50 q6 -6 12 0" stroke="#3a1a0c" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M55 50 q6 -6 12 0" stroke="#3a1a0c" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M40 63 q10 7 20 0" stroke="#3a1a0c" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="34" y="78" width="32" height="12" rx="6" fill="#fff3ea" opacity=".7"/></svg>`,
+  'Gemini Argon 4': `<svg width="48" height="48" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" fill="#3987e5"/><line x1="32" y1="14" x2="36" y2="28" stroke="#e8f1ff" stroke-width="4"/><line x1="68" y1="14" x2="64" y2="28" stroke="#e8f1ff" stroke-width="4"/><circle cx="31" cy="12" r="5" fill="#e8f1ff"/><circle cx="69" cy="12" r="5" fill="#e8f1ff"/><rect x="18" y="28" width="64" height="48" rx="10" fill="#e8f1ff"/><rect x="26" y="40" width="48" height="14" rx="7" fill="#0b2a55"/><rect x="31" y="44" width="14" height="6" rx="3" fill="#7fd3ff"/><rect x="55" y="44" width="14" height="6" rx="3" fill="#7fd3ff"/><rect x="38" y="62" width="24" height="5" rx="2.5" fill="#0b2a55"/><text x="50" y="94" text-anchor="middle" font-size="16" font-weight="900" fill="#e8f1ff" font-family="sans-serif">4</text></svg>`,
+  'Grok': `<svg width="48" height="48" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" fill="#199e70"/><path d="M50 6 l-7 12 h6 l-4 10 l11 -14 h-6 l4 -8z" fill="#ffe27a"/><rect x="20" y="28" width="60" height="50" rx="16" fill="#eafff6"/><path d="M30 42 l14 3" stroke="#06352a" stroke-width="5" stroke-linecap="round"/><circle cx="38" cy="52" r="6" fill="#06352a"/><circle cx="63" cy="51" r="7" fill="#06352a"/><circle cx="65" cy="49" r="2.2" fill="#eafff6"/><path d="M36 66 q14 10 30 -2" stroke="#06352a" stroke-width="5" fill="none" stroke-linecap="round"/></svg>`,
+};
+const monkey = `<svg width="48" height="48" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" fill="#3a2a1f"/><circle cx="16" cy="44" r="15" fill="#8a5a3b"/><circle cx="84" cy="44" r="15" fill="#8a5a3b"/><circle cx="50" cy="48" r="36" fill="#8a5a3b"/><ellipse cx="50" cy="56" rx="26" ry="24" fill="#e9b98f"/><circle cx="39" cy="45" r="5" fill="#1a1b21"/><circle cx="61" cy="45" r="5" fill="#1a1b21"/><path d="M38 68 Q50 78 62 68" stroke="#5b3a26" stroke-width="3" fill="none" stroke-linecap="round"/></svg>`;
+
+function dayInfo(){
+  // Day N counts calendar days in Pakistan time from Sun Oct 18 (Day 1).
+  const now = Date.now(), start = Date.parse('2026-10-18T00:00:00+05:00'), end = Date.parse(DATA.end);
+  const dayN = Math.floor((now - start) / 864e5) + 1;
+  document.getElementById('steps').innerHTML = [1,2,3,4,5,6,7].map(i=>`<i class="${i<dayN?'done':i===dayN?'now':''}"></i>`).join('');
+  if (now >= end) { document.getElementById('day').textContent='Finished'; document.getElementById('next').textContent='Final result is in'; return; }
+  document.getElementById('day').textContent = `Day ${Math.min(7,dayN)} of 7`;
+  const ms = end - now, d = Math.floor(ms/864e5), h = Math.floor(ms%864e5/3.6e6);
+  document.getElementById('next').textContent = `${d}d ${h}h`;
+}
+
+function render(){
+  dayInfo();
+  if(!prices) return;
+  const rows = DATA.players.map(p=>{
+    const coins = p.holdings.map(h=>{
+      const q = prices[h.id] || {}; const px = q.usd ?? null;
+      const val = px==null ? null : h.qty*px;
+      return {...h, px, val, since: px==null?null:(px/h.buy_price-1)*100, d24: q.usd_24h_change ?? null};
+    });
+    const total = coins.reduce((s,c)=>s+(c.val??c.cost),0);
+    return {...p, coins, total, pnl: total-START, pct:(total/START-1)*100};
+  }).sort((a,b)=>b.total-a.total);
+  const lo = Math.min(...rows.map(r=>r.total)), hi = Math.max(...rows.map(r=>r.total));
+  const board = document.getElementById('board');
+  board.innerHTML = rows.map((r,i)=>{
+    const w = hi===lo ? 100 : 30 + 70*(r.total-lo)/(hi-lo);
+    const av = `<div class="av">${BOTS[r.name] || monkey}</div>`;
+    const body = open.has(r.name) ? `<div class="det"><table>
+      <thead><tr><th>Coin</th><th>Amount</th><th>Bought at</th><th>Price now</th><th>Value</th><th>Since buy</th><th>24h</th></tr></thead>
+      <tbody>${r.coins.map(c=>`<tr><td class="sym">${c.symbol}<small>${c.name}</small></td>
+        <td>${c.qty.toLocaleString('en-US',{maximumFractionDigits:c.qty<1?6:2})}</td>
+        <td>${fmtPrice(c.buy_price)}</td><td>${c.px==null?'—':fmtPrice(c.px)}</td>
+        <td>${c.val==null?'—':fmt$(c.val)}</td>
+        <td class="${tone(c.since)}">${c.since==null?'—':fmtP(c.since)}</td>
+        <td class="${tone(c.d24)}">${c.d24==null?'—':fmtP(c.d24)}</td></tr>`).join('')}</tbody></table></div>` : '';
+    return `<article class="row ${i===0?'lead':''}">
+      <button class="sum" type="button" aria-expanded="${open.has(r.name)}" data-name="${r.name}">
+        <div class="rank">${i+1}</div>${av}
+        <div class="nm">${r.name}<div class="bar"><b style="width:${w}%;background:${r.color}"></b></div></div>
+        <div class="money"><div class="tot">${fmt$(r.total)}</div><span class="pill ${cls(r.pct)}">${r.pnl>=0?'▲':'▼'} ${fmt$(Math.abs(r.pnl))} · ${fmtP(r.pct)}</span></div>
+      </button>${body}</article>`;
+  }).join('');
+  board.querySelectorAll('.sum').forEach(b=>b.onclick=()=>{const n=b.dataset.name; open.has(n)?open.delete(n):open.add(n); render();});
+}
+
+async function load(){
+  const ids = [...new Set(DATA.players.flatMap(p=>p.holdings.map(h=>h.id)))].join(',');
+  const dot = document.getElementById('dot'), stamp = document.getElementById('stamp');
+  try{
+    const r = await fetch(`https://api.coingecko.com/api/v3/simple/price?vs_currencies=usd&include_24hr_change=true&ids=${ids}`, {cache:'no-store'});
+    if(!r.ok) throw new Error(r.status===429?'CoinGecko is busy, retrying in a minute':'Price feed error '+r.status);
+    prices = await r.json(); lastOk = new Date();
+    dot.className='dot'; stamp.textContent = 'Live · updated '+lastOk.toLocaleTimeString([], {hour:'numeric',minute:'2-digit',second:'2-digit'});
+  }catch(e){
+    dot.className='dot err';
+    const when = lastOk || new Date(SNAP.at);
+    const why = /429|busy/.test(e.message) ? 'price site busy, retrying' : (location.protocol==='https:' ? 'no connection' : 'live prices need the web link');
+    stamp.textContent = 'Saved prices from ' + when.toLocaleString([], {weekday:'short',hour:'numeric',minute:'2-digit'}) + ' · ' + why;
+  }
+  render();
+}
+document.getElementById('refresh').onclick = load;
+document.getElementById('foot').textContent = `Everyone started with ${fmt$(START)} on Oct 18 at 10:00 AM. Prices from CoinGecko (the same source as TradeWave), refreshed every 60 seconds. Latest moves: ${DATA.trades[DATA.trades.length-1].note}. Daily trading window: 7:00 AM – 10:30 PM. Tap a player to see their coins. Paper trading, fake money.`;
+load(); setInterval(load, 60000); setInterval(dayInfo, 30000);
+</script>
+</body>
+</html>

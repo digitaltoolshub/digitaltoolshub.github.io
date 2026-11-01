@@ -1,0 +1,5 @@
+:root{--bg:#120b1a;--fg:#ece8f4;--dim:#a9a3b8;--gold:#e9c978}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:720px;margin:0 auto;padding:40px 16px 64px}
+h1{color:var(--gold);font-size:30px;margin:0 0 8px}h2{font-size:20px;margin:32px 0 8px}
+p,li{color:var(--fg)}small,.dim{color:var(--dim)}a{color:var(--gold)}
